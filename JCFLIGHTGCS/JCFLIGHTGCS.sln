@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JCFLIGHTGCS", "JCFLIGHTGCS.csproj", "{1D3163E6-DC65-4595-9D51-4FD9174F2F61}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "JCFLIGHT Setup", "..\JCFLIGHT Setup\JCFLIGHT Setup.vdproj", "{4237CB50-7582-4597-9753-5773E0FAF665}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1D3163E6-DC65-4595-9D51-4FD9174F2F61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D3163E6-DC65-4595-9D51-4FD9174F2F61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D3163E6-DC65-4595-9D51-4FD9174F2F61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D3163E6-DC65-4595-9D51-4FD9174F2F61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4237CB50-7582-4597-9753-5773E0FAF665}.Debug|Any CPU.ActiveCfg = Debug
+		{4237CB50-7582-4597-9753-5773E0FAF665}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1EA6CD3F-4185-473E-8D04-8B569BB2EE68}
+	EndGlobalSection
+EndGlobal
