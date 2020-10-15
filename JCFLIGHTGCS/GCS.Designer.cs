@@ -57,8 +57,8 @@
             this.RealTimer = new System.Windows.Forms.Timer(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.label113 = new System.Windows.Forms.Label();
             this.label114 = new System.Windows.Forms.Label();
+            this.label113 = new System.Windows.Forms.Label();
             this.label95 = new System.Windows.Forms.Label();
             this.label94 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -228,6 +228,8 @@
             this.metroProgressBar1 = new MetroFramework.Controls.MetroProgressBar();
             this.metroProgressBar11 = new MetroFramework.Controls.MetroProgressBar();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.label116 = new System.Windows.Forms.Label();
+            this.label117 = new System.Windows.Forms.Label();
             this.button12 = new System.Windows.Forms.Button();
             this.label91 = new System.Windows.Forms.Label();
             this.metroTrackBar1 = new MetroFramework.Controls.MetroTrackBar();
@@ -834,8 +836,8 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.label113);
             this.tabPage1.Controls.Add(this.label114);
+            this.tabPage1.Controls.Add(this.label113);
             this.tabPage1.Controls.Add(this.label95);
             this.tabPage1.Controls.Add(this.label94);
             this.tabPage1.Controls.Add(this.label2);
@@ -858,16 +860,6 @@
             this.tabPage1.Text = "Resumo";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // label113
-            // 
-            this.label113.AutoSize = true;
-            this.label113.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label113.Location = new System.Drawing.Point(17, 493);
-            this.label113.Name = "label113";
-            this.label113.Size = new System.Drawing.Size(145, 16);
-            this.label113.TabIndex = 52;
-            this.label113.Text = "Ping Min/Max:0ms/0ms";
-            // 
             // label114
             // 
             this.label114.AutoSize = true;
@@ -877,6 +869,16 @@
             this.label114.Size = new System.Drawing.Size(177, 20);
             this.label114.TabIndex = 51;
             this.label114.Text = "Ping Da Telemetria:0ms";
+            // 
+            // label113
+            // 
+            this.label113.AutoSize = true;
+            this.label113.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label113.Location = new System.Drawing.Point(17, 493);
+            this.label113.Name = "label113";
+            this.label113.Size = new System.Drawing.Size(145, 16);
+            this.label113.TabIndex = 50;
+            this.label113.Text = "Ping Min/Max:0ms/0ms";
             // 
             // label95
             // 
@@ -1021,7 +1023,7 @@
             this.panel3.Controls.Add(this.label11);
             this.panel3.Controls.Add(this.pictureBox4);
             this.panel3.Controls.Add(this.panel4);
-            this.panel3.Location = new System.Drawing.Point(587, 6);
+            this.panel3.Location = new System.Drawing.Point(818, 6);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(110, 117);
             this.panel3.TabIndex = 39;
@@ -1131,7 +1133,7 @@
             this.panel13.Controls.Add(this.label17);
             this.panel13.Controls.Add(this.pictureBox7);
             this.panel13.Controls.Add(this.panel14);
-            this.panel13.Location = new System.Drawing.Point(819, 6);
+            this.panel13.Location = new System.Drawing.Point(702, 6);
             this.panel13.Name = "panel13";
             this.panel13.Size = new System.Drawing.Size(110, 117);
             this.panel13.TabIndex = 42;
@@ -1316,7 +1318,7 @@
             this.panel7.Controls.Add(this.label14);
             this.panel7.Controls.Add(this.pictureBox5);
             this.panel7.Controls.Add(this.panel8);
-            this.panel7.Location = new System.Drawing.Point(703, 6);
+            this.panel7.Location = new System.Drawing.Point(586, 6);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(110, 117);
             this.panel7.TabIndex = 41;
@@ -3119,6 +3121,8 @@
             // 
             // tabPage6
             // 
+            this.tabPage6.Controls.Add(this.label116);
+            this.tabPage6.Controls.Add(this.label117);
             this.tabPage6.Controls.Add(this.button12);
             this.tabPage6.Controls.Add(this.label91);
             this.tabPage6.Controls.Add(this.metroTrackBar1);
@@ -3153,6 +3157,26 @@
             this.tabPage6.Text = "Voo";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
+            // label116
+            // 
+            this.label116.AutoSize = true;
+            this.label116.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label116.Location = new System.Drawing.Point(208, 399);
+            this.label116.Name = "label116";
+            this.label116.Size = new System.Drawing.Size(63, 24);
+            this.label116.TabIndex = 72;
+            this.label116.Text = "0MAH";
+            // 
+            // label117
+            // 
+            this.label117.AutoSize = true;
+            this.label117.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label117.Location = new System.Drawing.Point(163, 384);
+            this.label117.Name = "label117";
+            this.label117.Size = new System.Drawing.Size(133, 15);
+            this.label117.TabIndex = 71;
+            this.label117.Text = "Total Corrente em Mah";
+            // 
             // button12
             // 
             this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -3168,7 +3192,7 @@
             // 
             this.label91.AutoSize = true;
             this.label91.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label91.Location = new System.Drawing.Point(176, 448);
+            this.label91.Location = new System.Drawing.Point(176, 476);
             this.label91.Name = "label91";
             this.label91.Size = new System.Drawing.Size(91, 15);
             this.label91.TabIndex = 69;
@@ -3177,7 +3201,7 @@
             // metroTrackBar1
             // 
             this.metroTrackBar1.BackColor = System.Drawing.Color.Transparent;
-            this.metroTrackBar1.Location = new System.Drawing.Point(143, 462);
+            this.metroTrackBar1.Location = new System.Drawing.Point(143, 486);
             this.metroTrackBar1.Maximum = 20;
             this.metroTrackBar1.Minimum = 2;
             this.metroTrackBar1.Name = "metroTrackBar1";
@@ -3216,7 +3240,7 @@
             // 
             this.label89.AutoSize = true;
             this.label89.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label89.Location = new System.Drawing.Point(208, 403);
+            this.label89.Location = new System.Drawing.Point(205, 444);
             this.label89.Name = "label89";
             this.label89.Size = new System.Drawing.Size(38, 24);
             this.label89.TabIndex = 66;
@@ -3226,7 +3250,7 @@
             // 
             this.label90.AutoSize = true;
             this.label90.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label90.Location = new System.Drawing.Point(204, 388);
+            this.label90.Location = new System.Drawing.Point(201, 429);
             this.label90.Name = "label90";
             this.label90.Size = new System.Drawing.Size(37, 15);
             this.label90.TabIndex = 65;
@@ -3531,7 +3555,7 @@
             this.groupBox26.Size = new System.Drawing.Size(200, 48);
             this.groupBox26.TabIndex = 35;
             this.groupBox26.TabStop = false;
-            this.groupBox26.Text = "RC BIQUAD LPF";
+            this.groupBox26.Text = "RC (ATTITUDE) LPF";
             // 
             // numericUpDown20
             // 
@@ -4830,13 +4854,15 @@
         private System.Windows.Forms.NumericUpDown numericUpDown18;
         private System.Windows.Forms.NumericUpDown numericUpDown19;
         private System.Windows.Forms.Button button18;
+        private System.Windows.Forms.Label label113;
         private System.Windows.Forms.Label label115;
         private System.Windows.Forms.GroupBox groupBox26;
         private System.Windows.Forms.NumericUpDown numericUpDown20;
         private MetroFramework.Controls.MetroLabel metroLabel23;
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.Label label114;
-        private System.Windows.Forms.Label label113;
+        private System.Windows.Forms.Label label116;
+        private System.Windows.Forms.Label label117;
     }
 }
 

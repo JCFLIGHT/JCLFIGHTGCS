@@ -413,11 +413,7 @@ namespace JCFLIGHTGCS
             serialPort1.PortName = SerialComPort;
             serialPort1.BaudRate = 115200;
             serialPort1.Open();
-            for (int i = 0; i < 300; i++)
-            {
-                SendWayPoints(serialPort1);
-                Thread.Sleep(1);
-            }
+            SendWayPoints(serialPort1);
             serialPort1.Close();
             SerialPort.PortName = SerialComPort;
             SerialPort.BaudRate = 115200;
@@ -970,7 +966,7 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)0x4A;
                     SendBuffer[VectorPointer++] = (byte)0x43;
                     SendBuffer[VectorPointer++] = (byte)0x5D;
-                    SendBuffer[VectorPointer++] = 11;
+                    SendBuffer[VectorPointer++] = 10;
                     SendBuffer[VectorPointer++] = (byte)KEY_WP2;
                     SendBuffer[VectorPointer++] = (byte)(WayPoint2Latitude);
                     SendBuffer[VectorPointer++] = (byte)(WayPoint2Latitude >> 8);
@@ -1030,7 +1026,7 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)0x4A;
                     SendBuffer[VectorPointer++] = (byte)0x43;
                     SendBuffer[VectorPointer++] = (byte)0x5D;
-                    SendBuffer[VectorPointer++] = 11;
+                    SendBuffer[VectorPointer++] = 10;
                     SendBuffer[VectorPointer++] = (byte)KEY_WP3;
                     SendBuffer[VectorPointer++] = (byte)(WayPoint3Latitude);
                     SendBuffer[VectorPointer++] = (byte)(WayPoint3Latitude >> 8);
@@ -1090,7 +1086,7 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)0x4A;
                     SendBuffer[VectorPointer++] = (byte)0x43;
                     SendBuffer[VectorPointer++] = (byte)0x5D;
-                    SendBuffer[VectorPointer++] = 11;
+                    SendBuffer[VectorPointer++] = 10;
                     SendBuffer[VectorPointer++] = (byte)KEY_WP4;
                     SendBuffer[VectorPointer++] = (byte)(WayPoint4Latitude);
                     SendBuffer[VectorPointer++] = (byte)(WayPoint4Latitude >> 8);
@@ -1150,7 +1146,7 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)0x4A;
                     SendBuffer[VectorPointer++] = (byte)0x43;
                     SendBuffer[VectorPointer++] = (byte)0x5D;
-                    SendBuffer[VectorPointer++] = 11;
+                    SendBuffer[VectorPointer++] = 10;
                     SendBuffer[VectorPointer++] = (byte)KEY_WP5;
                     SendBuffer[VectorPointer++] = (byte)(WayPoint5Latitude);
                     SendBuffer[VectorPointer++] = (byte)(WayPoint5Latitude >> 8);
@@ -1210,7 +1206,7 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)0x4A;
                     SendBuffer[VectorPointer++] = (byte)0x43;
                     SendBuffer[VectorPointer++] = (byte)0x5D;
-                    SendBuffer[VectorPointer++] = 11;
+                    SendBuffer[VectorPointer++] = 10;
                     SendBuffer[VectorPointer++] = (byte)KEY_WP6;
                     SendBuffer[VectorPointer++] = (byte)(WayPoint6Latitude);
                     SendBuffer[VectorPointer++] = (byte)(WayPoint6Latitude >> 8);
@@ -1270,7 +1266,7 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)0x4A;
                     SendBuffer[VectorPointer++] = (byte)0x43;
                     SendBuffer[VectorPointer++] = (byte)0x5D;
-                    SendBuffer[VectorPointer++] = 11;
+                    SendBuffer[VectorPointer++] = 10;
                     SendBuffer[VectorPointer++] = (byte)KEY_WP7;
                     SendBuffer[VectorPointer++] = (byte)(WayPoint7Latitude);
                     SendBuffer[VectorPointer++] = (byte)(WayPoint7Latitude >> 8);
@@ -1330,7 +1326,7 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)0x4A;
                     SendBuffer[VectorPointer++] = (byte)0x43;
                     SendBuffer[VectorPointer++] = (byte)0x5D;
-                    SendBuffer[VectorPointer++] = 11;
+                    SendBuffer[VectorPointer++] = 10;
                     SendBuffer[VectorPointer++] = (byte)KEY_WP8;
                     SendBuffer[VectorPointer++] = (byte)(WayPoint8Latitude);
                     SendBuffer[VectorPointer++] = (byte)(WayPoint8Latitude >> 8);
@@ -1390,7 +1386,7 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)0x4A;
                     SendBuffer[VectorPointer++] = (byte)0x43;
                     SendBuffer[VectorPointer++] = (byte)0x5D;
-                    SendBuffer[VectorPointer++] = 11;
+                    SendBuffer[VectorPointer++] = 10;
                     SendBuffer[VectorPointer++] = (byte)KEY_WP9;
                     SendBuffer[VectorPointer++] = (byte)(WayPoint9Latitude);
                     SendBuffer[VectorPointer++] = (byte)(WayPoint9Latitude >> 8);
@@ -1450,7 +1446,7 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)0x4A;
                     SendBuffer[VectorPointer++] = (byte)0x43;
                     SendBuffer[VectorPointer++] = (byte)0x5D;
-                    SendBuffer[VectorPointer++] = 11;
+                    SendBuffer[VectorPointer++] = 10;
                     SendBuffer[VectorPointer++] = (byte)KEY_WP10;
                     SendBuffer[VectorPointer++] = (byte)(WayPoint10Latitude);
                     SendBuffer[VectorPointer++] = (byte)(WayPoint10Latitude >> 8);

@@ -80,12 +80,14 @@ namespace JCFLIGHTGCS
         /// <param name="aircraftRollAngle">The aircraft roll angle in °deg</param
         public void SetAttitudeIndicatorParameters(double aircraftPitchAngle, double aircraftRollAngle)
         {
-            /*PitchAngle = aircraftPitchAngle;
-            RollAngle = aircraftRollAngle * Math.PI / 180;*/
 
             PitchAngle = aircraftRollAngle;
             RollAngle = aircraftPitchAngle * Math.PI / 180;
 
+            /*
+            PitchAngle = aircraftPitchAngle;
+            RollAngle = aircraftRollAngle * Math.PI / 180;
+            */
             this.Refresh();
         }
 
