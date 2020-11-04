@@ -12,7 +12,7 @@ namespace JCFLIGHTGCS
     {
         // Parameters
         double PitchAngle = 0; // Phi
-		double RollAngle = 0; // Theta
+        double RollAngle = 0; // Theta
 
         // Images
         Bitmap bmpCadran = new Bitmap(JCFLIGHTGCS.InstrumentsControls.InstrumentsControlsRessources.Horizon_Background);
@@ -25,10 +25,10 @@ namespace JCFLIGHTGCS
 		private System.ComponentModel.Container components = null;
 
         public AttitudeIndicatorInstrumentControl()
-		{
-			// Double bufferisation
-			SetStyle(ControlStyles.DoubleBuffer | ControlStyles.UserPaint |
-				ControlStyles.AllPaintingInWmPaint, true);
+        {
+            // Double bufferisation
+            SetStyle(ControlStyles.DoubleBuffer | ControlStyles.UserPaint |
+                ControlStyles.AllPaintingInWmPaint, true);
         }
 
         /// <summary>
@@ -58,10 +58,10 @@ namespace JCFLIGHTGCS
             bmpAvion.MakeTransparent(Color.Yellow);
 
             // display Horizon
-            RotateAndTranslate(pe, bmpBoule, RollAngle, 0, ptBoule, (int)(4*PitchAngle), ptRotation, scale);
+            RotateAndTranslate(pe, bmpBoule, RollAngle, 0, ptBoule, (int)(4 * PitchAngle), ptRotation, scale);
 
             // diplay mask
-            Pen maskPen = new Pen(this.BackColor,30*scale);
+            Pen maskPen = new Pen(this.BackColor, 30 * scale);
             pe.Graphics.DrawRectangle(maskPen, 0, 0, bmpCadran.Width * scale, bmpCadran.Height * scale);
 
             // display cadran
@@ -80,16 +80,13 @@ namespace JCFLIGHTGCS
         /// <param name="aircraftRollAngle">The aircraft roll angle in °deg</param
         public void SetAttitudeIndicatorParameters(double aircraftPitchAngle, double aircraftRollAngle)
         {
-
-            PitchAngle = aircraftRollAngle;
-            RollAngle = aircraftPitchAngle * Math.PI / 180;
-
+            PitchAngle = (aircraftRollAngle);
+            RollAngle = (aircraftPitchAngle * Math.PI / 180);
             /*
-            PitchAngle = aircraftPitchAngle;
-            RollAngle = aircraftRollAngle * Math.PI / 180;
+            PitchAngle = -(aircraftPitchAngle);
+            RollAngle = -(aircraftRollAngle * Math.PI / 180);
             */
             this.Refresh();
         }
-
     }
 }

@@ -15,35 +15,37 @@ using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
 using System.Globalization;
 
-
 namespace JCFLIGHTGCS
 {
     public partial class GCS : Form
     {
         SerialPort SerialPort = new SerialPort();
-        string SerialComPort, RxString;
-        string[] JCFLIGHTData = null;
+        string SerialComPort;
         string[] SerialPorts = SerialPort.GetPortNames();
+        static Boolean Error_Received = false;
+        static byte Read_State = 0;
+        static byte OffSet = 0;
+        static byte DataSize = 0;
+        static byte CheckSum = 0;
+        static byte Command;
+        static byte[] InBuffer = new byte[300];
+        static byte[] NumericConvert = new byte[15];
 
-        Int32 TelemetryPing = 0;
-        Int64 Begin;
-        Int64 Begin2;
-        Int64 Begin3;
-        Int16 ThrottleData = 900;
-        Int16 YawData = 1000;
-        Int16 PitchData = 1000;
-        Int16 RollData = 1000;
-        Int16 Aux1Data = 1000;
-        Int16 Aux2Data = 1000;
-        Int16 Aux3Data = 1000;
-        Int16 Aux4Data = 1000;
-        Int16 Aux5Data = 1000;
-        Int16 Aux6Data = 1000;
-        Int16 Aux7Data = 1000;
-        Int16 Aux8Data = 1000;
-        Int16 ReadRoll = 2000;
-        Int16 ReadPitch = 0;
-        Int16 ReadCompass = 0;
+        int ThrottleData = 900;
+        int YawData = 1000;
+        int PitchData = 1000;
+        int RollData = 1000;
+        int Aux1Data = 1000;
+        int Aux2Data = 1000;
+        int Aux3Data = 1000;
+        int Aux4Data = 1000;
+        int Aux5Data = 1000;
+        int Aux6Data = 1000;
+        int Aux7Data = 1000;
+        int Aux8Data = 1000;
+        int ReadRoll = 2000;
+        int ReadPitch = 0;
+        int ReadCompass = 0;
         Int32 SecondsCompass;
         double ReadBarometer = 0;
         double BattVoltage = 0;
@@ -54,7 +56,7 @@ namespace JCFLIGHTGCS
         double Watts = 0;
         double Declination = 00.00;
         double Temperature = 0;
-        double Dist;
+        double HomePointDisctance;
         static double xTimeStamp = 0;
         byte CountAccImage = 0;
         byte CommandArmDisarm = 0;
@@ -65,8 +67,8 @@ namespace JCFLIGHTGCS
         byte FrameMode = 0;
         byte HomePointOK = 0;
         Boolean SmallCompass = false;
-        Boolean RF24Open = false;
-        Boolean RF24OpenPidAndFilters = false;
+        Boolean SerialOpen = false;
+        Boolean PidAndFiltersCommunicationOpen = false;
         Boolean AccNotCalibrated = false;
         string GPSLAT = "0";
         string GPSLONG = "0";
@@ -96,25 +98,11 @@ namespace JCFLIGHTGCS
         static GMapOverlay Routes;
         static GMapRoute Grout;
         List<PointLatLng> Points = new List<PointLatLng>();
-        private List<PointLatLng> TwoPointsDist;
-        private List<PointLatLng> DistanceValid;
         PointLatLng GPS_Position;
         GMapOverlay PositionToRoutes;
 
-        const int KEY_CONFIG1 = 1;
-        const int KEY_CONFIG2 = 2;
-        const int KEY_CONFIG3 = 3;
-        const int KEY_CONFIG4 = 4;
-        const int KEY_CONFIG5 = 5;
-        const int KEY_CONFIG6 = 6;
-        const int KEY_CONFIG7 = 7;
-        const int KEY_CONFIG8 = 8;
-        const int KEY_CONFIG9 = 9;
-
         int CompassHealthCount = 9999999;
         int HeadingCompassPrev = 0;
-        int TelemetryPingMin = 99999;
-        int TelemetryPingMax = 0;
 
         byte ComboBoxIOC = 0;
         byte ComboBoxAltHold = 0;
@@ -165,13 +153,13 @@ namespace JCFLIGHTGCS
 
         byte TPAFactor = 0;
         byte GyroLPF = 0;
-        byte DerivativeLPF;
-        byte RCSmooth;
+        int DerivativeLPF;
+        int RCSmooth;
         byte KalmanState;
-        byte BiAccLPF;
-        byte BiGyroLPF;
-        byte BiAccNotch;
-        byte BiGyroNotch;
+        int BiAccLPF;
+        int BiGyroLPF;
+        int BiAccNotch;
+        int BiGyroNotch;
         byte CompSpeed;
 
         Boolean ItsSafeToUpdate = true;
@@ -188,7 +176,7 @@ namespace JCFLIGHTGCS
             SerialPort.DtrEnable = false;
             SerialPort.ReadBufferSize = 4096;
             foreach (string PortsName in SerialPorts) comboBox7.Items.Add(PortsName);
-            SerialPort.DataReceived += new SerialDataReceivedEventHandler(serialPort1_DataReceived);
+            SerialPort.DataReceived += new SerialDataReceivedEventHandler(SerialPort1_DataReceived);
             circularProgressBar1.Value = 0;
             circularProgressBar2.Value = 0;
             comboBox7.MouseWheel += new MouseEventHandler(comboBox7_MouseWheel);
@@ -197,13 +185,14 @@ namespace JCFLIGHTGCS
 
         private void GCS_Load(object sender, EventArgs e)
         {
-            MyGMap.ShowCenter = false;
-            MyGMap.Manager.Mode = AccessMode.ServerAndCache;
-            MyGMap.Zoom = 5;
+            MyGMap.PolygonsEnabled = true;
             //MAPAS
             //MyGMap.MapProvider = GMapProviders.GoogleMap;
             MyGMap.MapProvider = GMapProviders.GoogleSatelliteMap;
             //MyGMap.MapProvider = GMapProviders.BingHybridMap;
+            MyGMap.ShowCenter = false;
+            MyGMap.Manager.Mode = AccessMode.ServerAndCache;
+            MyGMap.Zoom = 2;
             PositionToRoutes = new GMapOverlay("PositionToRoutes");
             MyGMap.Overlays.Add(PositionToRoutes);
             PositionToRoutes.Markers.Clear();
@@ -428,114 +417,224 @@ namespace JCFLIGHTGCS
             CompassY = ReadPitch;
             CheckCompassState(ReadCompass);
             Edit_Labels_To_Aero();
-            label114.Text = "Ping Da Telemetria:" + TelemetryPing + "ms";
-            if (TelemetryPing != 0)
-            {
-                if (TelemetryPing < TelemetryPingMin) TelemetryPingMin = TelemetryPing;
-                if (TelemetryPing > TelemetryPingMax) TelemetryPingMax = TelemetryPing;
-                label113.Text = "Ping Min/Max:" + TelemetryPingMin + "ms" + "/" + TelemetryPingMax + "ms";
-            }
             UpdateDevices();
             DateTime DateTimeNow = DateTime.UtcNow;
             TimeZoneInfo HRBrasilia = TimeZoneInfo.FindSystemTimeZoneById("E. South America Standard Time");
             label72.Text = Convert.ToString(TimeZoneInfo.ConvertTimeFromUtc(DateTimeNow, HRBrasilia));
         }
 
-        private void serialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        private void SerialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
+            byte c;
+
+            if (SerialPort.IsOpen == false) return;
+
             if (SerialPort.IsOpen == true)
             {
-                if (SerialPort.IsOpen == false) return;
-                RxString = SerialPort.ReadLine();
-                JCFLIGHTData = RxString.Split(',');
-                if (RxString == "") return;
-                if (RxString == "Debug Serial Monitor Para JCFlightGCS\r") return;
-                if (RxString == "POR FAVOR,EXECUTE A TELEMETRIA NO PROGRAMA JCFLIGHTGCS\r") return;
-                if (JCFLIGHTData[2] == "\r" || JCFLIGHTData[35] == "\r" || JCFLIGHTData[60] == "\r") return;
-                if (JCFLIGHTData[2] == null || JCFLIGHTData[35] == null || JCFLIGHTData[60] == null) return;
-                if (JCFLIGHTData[2] == "0" || JCFLIGHTData[35] == "0" || JCFLIGHTData[60] == "0") return;
-                Begin = Convert.ToInt32(JCFLIGHTData[2]);
-                Begin2 = Convert.ToInt32(JCFLIGHTData[35]);
-                Begin3 = Convert.ToInt32(JCFLIGHTData[60]);
-                if (Begin == 4 && Begin2 == 22 && Begin3 == 44)
+                while (SerialPort.BytesToRead > 0)
                 {
-                    if (ItsSafeToUpdate)
+                    c = (byte)SerialPort.ReadByte();
+
+
+                    switch (Read_State)
                     {
-                        IOCDataGuard = Convert.ToByte(JCFLIGHTData[15]);
-                        AltHoldGuard = Convert.ToByte(JCFLIGHTData[29]);
-                        GPSHoldGuard = Convert.ToByte(JCFLIGHTData[30]);
-                        RTHGuard = Convert.ToByte(JCFLIGHTData[31]);
-                        PPMGuard = Convert.ToByte(JCFLIGHTData[32]);
-                        GimbalGuard = Convert.ToByte(JCFLIGHTData[36]);
-                        FrameGuard = Convert.ToByte(JCFLIGHTData[37]);
-                        MotorSpeedGuard = Convert.ToByte(JCFLIGHTData[39]);
-                        ParachuteGuard = Convert.ToByte(JCFLIGHTData[40]);
-                        RthAltitudeGuard = Convert.ToByte(JCFLIGHTData[41]);
-                        OptFlowGuard = Convert.ToByte(JCFLIGHTData[61]);
-                        SonarGuard = Convert.ToByte(JCFLIGHTData[7]);
-                        CompassGuard = Convert.ToByte(JCFLIGHTData[8]);
-                        CompassRotGuard = Convert.ToByte(JCFLIGHTData[11]);
-                        AcroGuard = Convert.ToByte(JCFLIGHTData[33]);
-                        SportGuard = Convert.ToByte(JCFLIGHTData[34]);
-                        AutoFlipGuard = Convert.ToByte(JCFLIGHTData[44]);
-                        AutoGuard = Convert.ToByte(JCFLIGHTData[45]);
-                        ArmDisarmGuard = Convert.ToByte(JCFLIGHTData[49]);
-                        ThrottleData = Convert.ToInt16(JCFLIGHTData[16]);
-                        YawData = Convert.ToInt16(JCFLIGHTData[17]);
-                        PitchData = Convert.ToInt16(JCFLIGHTData[18]);
-                        RollData = Convert.ToInt16(JCFLIGHTData[19]);
-                        Aux1Data = Convert.ToInt16(JCFLIGHTData[20]);
-                        Aux2Data = Convert.ToInt16(JCFLIGHTData[21]);
-                        Aux3Data = Convert.ToInt16(JCFLIGHTData[22]);
-                        Aux4Data = Convert.ToInt16(JCFLIGHTData[28]);
-                        Aux5Data = Convert.ToInt16(JCFLIGHTData[12]);
-                        Aux6Data = Convert.ToInt16(JCFLIGHTData[46]);
-                        Aux7Data = Convert.ToInt16(JCFLIGHTData[47]);
-                        Aux8Data = Convert.ToInt16(JCFLIGHTData[48]);
-                        GPS_NumSat = Convert.ToByte(JCFLIGHTData[4]);
-                        ReadPitch = Convert.ToInt16(JCFLIGHTData[0]);
-                        ReadRoll = Convert.ToInt16(JCFLIGHTData[1]);
-                        ReadCompass = Convert.ToInt16(JCFLIGHTData[9]);
-                        ReadBarometer = Convert.ToDouble(JCFLIGHTData[10]) / 100;
-                        FailSafeDetect = Convert.ToByte(JCFLIGHTData[14]);
-                        BattVoltage = Convert.ToDouble(JCFLIGHTData[3]) / 100;
-                        BattPercentage = Convert.ToByte(JCFLIGHTData[43]);
-                        CommandArmDisarm = Convert.ToByte(JCFLIGHTData[13]);
-                        GPSLAT = Convert.ToString(JCFLIGHTData[23]);
-                        GPSLONG = Convert.ToString(JCFLIGHTData[24]);
-                        HDOP = Convert.ToDouble(JCFLIGHTData[42]) / 100;
-                        Current = Convert.ToDouble(JCFLIGHTData[62]) / 100;
-                        Watts = Convert.ToDouble(JCFLIGHTData[63]) / 10000;
-                        Declination = Convert.ToDouble(JCFLIGHTData[38]) / 100;
-                        FlightMode = Convert.ToByte(JCFLIGHTData[5]);
-                        FrameMode = Convert.ToByte(JCFLIGHTData[39]);
-                        LatitudeHome = Convert.ToString(JCFLIGHTData[26]);
-                        LongitudeHome = Convert.ToString(JCFLIGHTData[27]);
-                        HomePointOK = Convert.ToByte(JCFLIGHTData[25]);
-                        Temperature = Convert.ToByte(JCFLIGHTData[6]);
-                        TelemetryPing = Convert.ToInt32(JCFLIGHTData[50]);
-                        DevicesSum = Convert.ToByte(JCFLIGHTData[68]);
-                        AmperInMah = Convert.ToDouble(JCFLIGHTData[67]) / 1000;
-                        BreakPoint = Convert.ToUInt16(JCFLIGHTData[51]);
-                        TPAFactor = Convert.ToByte(JCFLIGHTData[52]);
-                        GyroLPF = Convert.ToByte(JCFLIGHTData[53]);
-                        DerivativeLPF = Convert.ToByte(JCFLIGHTData[54]);
-                        RCSmooth = Convert.ToByte(JCFLIGHTData[55]);
-                        KalmanState = Convert.ToByte(JCFLIGHTData[56]);
-                        BiAccLPF = Convert.ToByte(JCFLIGHTData[57]);
-                        BiGyroLPF = Convert.ToByte(JCFLIGHTData[58]);
-                        BiAccNotch = Convert.ToByte(JCFLIGHTData[64]);
-                        BiGyroNotch = Convert.ToByte(JCFLIGHTData[65]);
-                        CompSpeed = Convert.ToByte(JCFLIGHTData[66]);
-                        string Model = Convert.ToString(JCFLIGHTData[59]);
-                        //Begin = Begin2 = Begin3 = 0;
+                        case 0:
+                            Read_State = (c == 0x4a) ? (byte)1 : (byte)0;
+                            break;
+
+                        case 1:
+                            Read_State = (c == 0x43) ? (byte)2 : (byte)0;
+                            break;
+
+                        case 2:
+                            if (c == 0x46)
+                            {
+                                Read_State = 3;
+                            }
+                            else if (c == 0x21)
+                            {
+                                Read_State = 6;
+                            }
+                            else
+                            {
+                                Read_State = 0;
+                            }
+                            break;
+
+                        case 3:
+                        case 6:
+                            Error_Received = (Read_State == 6);
+                            DataSize = c;
+                            OffSet = 0;
+                            CheckSum = 0;
+                            CheckSum ^= c;
+                            Read_State = 4;
+                            if (DataSize > 100)
+                            {
+                                Read_State = 0;
+                            }
+
+                            break;
+
+                        case 4:
+                            Command = c;
+                            CheckSum ^= c;
+                            Read_State = 5;
+                            break;
+
+                        case 5:
+                            if (OffSet < DataSize)
+                            {
+                                CheckSum ^= c;
+                                InBuffer[OffSet++] = c;
+                            }
+                            else
+                            {
+                                if (CheckSum == c)
+                                {
+                                    if (!Error_Received)
+                                    {
+                                        Serial_Parse(Command);
+                                    }
+                                }
+                                Read_State = 0;
+                            }
+                            break;
                     }
                 }
             }
         }
 
-        private void ProgressBarControl(Int16 CHThrottle, Int16 CHYaw, Int16 CHPitch, Int16 CHRoll, Int16 CHAux1, Int16 CHAux2,
-       Int16 CHAux3, Int16 CHAux4, Int16 CHAux5, Int16 CHAux6, Int16 CHAux7, Int16 CHAux8)
+        private void Serial_Parse(byte Command)
+        {
+            int ptr;
+            switch (Command)
+            {
+
+                case 7:
+                    ptr = 0;
+                    ReadPitch = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    ReadRoll = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    ReadCompass = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    DevicesSum = (byte)InBuffer[ptr++];
+                    ThrottleData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    YawData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    PitchData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    RollData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    Aux1Data = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    Aux2Data = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    Aux3Data = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    Aux4Data = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    Aux5Data = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    Aux6Data = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    Aux7Data = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    Aux8Data = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    GPS_NumSat = (byte)InBuffer[ptr++];
+                    GPSLAT = Convert.ToString(BitConverter.ToInt32(InBuffer, ptr)); ptr += 4;
+                    GPSLONG = Convert.ToString(BitConverter.ToInt32(InBuffer, ptr)); ptr += 4;
+                    LatitudeHome = Convert.ToString(BitConverter.ToInt32(InBuffer, ptr)); ptr += 4;
+                    LongitudeHome = Convert.ToString(BitConverter.ToInt32(InBuffer, ptr)); ptr += 4;
+                    ReadBarometer = Convert.ToDouble(BitConverter.ToInt32(InBuffer, ptr)) / 100; ptr += 4;
+                    FailSafeDetect = (byte)InBuffer[ptr++];
+                    BattVoltage = Convert.ToDouble(BitConverter.ToInt16(InBuffer, ptr)) / 100; ptr += 2;
+                    BattPercentage = (byte)InBuffer[ptr++];
+                    CommandArmDisarm = (byte)InBuffer[ptr++];
+                    HDOP = Convert.ToDouble(BitConverter.ToInt16(InBuffer, ptr)) / 100; ptr += 2;
+                    Current = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    Watts = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    Declination = Convert.ToDouble(BitConverter.ToInt16(InBuffer, ptr)) / 100; ptr += 2;
+                    FlightMode = (byte)InBuffer[ptr++];
+                    FrameMode = (byte)InBuffer[ptr++];
+                    HomePointOK = (byte)InBuffer[ptr++];
+                    Temperature = (byte)InBuffer[ptr++];
+                    HomePointDisctance = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    AmperInMah = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    break;
+
+                case 8:
+                    ptr = 0;
+                    FrameGuard = (byte)InBuffer[ptr++];
+                    PPMGuard = (byte)InBuffer[ptr++];
+                    GimbalGuard = (byte)InBuffer[ptr++];
+                    ParachuteGuard = (byte)InBuffer[ptr++];
+                    OptFlowGuard = (byte)InBuffer[ptr++];
+                    SonarGuard = (byte)InBuffer[ptr++];
+                    CompassGuard = (byte)InBuffer[ptr++];
+                    CompassRotGuard = (byte)InBuffer[ptr++];
+                    RthAltitudeGuard = (byte)InBuffer[ptr++];
+                    MotorSpeedGuard = (byte)InBuffer[ptr++];
+                    AcroGuard = (byte)InBuffer[ptr++];
+                    AltHoldGuard = (byte)InBuffer[ptr++];
+                    GPSHoldGuard = (byte)InBuffer[ptr++];
+                    IOCDataGuard = (byte)InBuffer[ptr++];
+                    RTHGuard = (byte)InBuffer[ptr++];
+                    SportGuard = (byte)InBuffer[ptr++];
+                    AutoFlipGuard = (byte)InBuffer[ptr++];
+                    AutoGuard = (byte)InBuffer[ptr++];
+                    ArmDisarmGuard = (byte)InBuffer[ptr++];
+                    break;
+
+                case 9:
+                    ptr = 0;
+                    TPAFactor = (byte)InBuffer[ptr++];
+                    BreakPoint = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    GyroLPF = (byte)InBuffer[ptr++];
+                    DerivativeLPF = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    RCSmooth = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    KalmanState = (byte)InBuffer[ptr++];
+                    BiAccLPF = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    BiGyroLPF = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    BiAccNotch = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    BiGyroNotch = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    CompSpeed = (byte)InBuffer[ptr++];
+                    NumericConvert[0] = (byte)InBuffer[ptr++];
+                    NumericConvert[1] = (byte)InBuffer[ptr++];
+                    NumericConvert[2] = (byte)InBuffer[ptr++];
+                    NumericConvert[3] = (byte)InBuffer[ptr++];
+                    NumericConvert[4] = (byte)InBuffer[ptr++];
+                    NumericConvert[5] = (byte)InBuffer[ptr++];
+                    NumericConvert[6] = (byte)InBuffer[ptr++];
+                    NumericConvert[7] = (byte)InBuffer[ptr++];
+                    NumericConvert[8] = (byte)InBuffer[ptr++];
+                    NumericConvert[9] = (byte)InBuffer[ptr++];
+                    NumericConvert[10] = (byte)InBuffer[ptr++];
+                    NumericConvert[11] = (byte)InBuffer[ptr++];
+                    break;
+
+
+            }
+        }
+
+        private void Serial_Write_To_FC(int command)
+        {
+            byte c = 0;
+            byte[] o;
+            o = new byte[10];
+            o[0] = (byte)0x4a;
+            o[1] = (byte)0x43;
+            o[2] = (byte)0x3c;
+            o[3] = (byte)0; c ^= o[3];
+            o[4] = (byte)command; c ^= o[4];
+            o[5] = (byte)c;
+            SerialPort.Write(o, 0, 6);
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            if (SerialPort.IsOpen == false) return;
+            if (SerialPort.BytesToRead == 0)
+            {
+                if (ItsSafeToUpdate)
+                {
+                    Serial_Write_To_FC(7);
+                    Serial_Write_To_FC(8);
+                    Serial_Write_To_FC(9);
+                }
+            }
+        }
+
+        private void ProgressBarControl(int CHThrottle, int CHYaw, int CHPitch, int CHRoll, int CHAux1, int CHAux2,
+   int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
         {
             //CONTROLE DAS BARRAS DE PROGRESSO
             metroProgressBar1.Value = Convert.ToInt16(ValueConverterProgressBar(CHThrottle, 900, 2000, 0, 100));
@@ -565,7 +664,7 @@ namespace JCFLIGHTGCS
             label38.Text = Convert.ToString(CHAux8);
         }
 
-        long ValueConverterProgressBar(Int16 x, Int16 in_min, Int16 in_max, Int16 out_min, Int16 out_max)
+        long ValueConverterProgressBar(int x, int in_min, int in_max, int out_min, int out_max)
         {
             if (x <= 1000) return 0;
             if (x >= 2000) return 100;
@@ -729,29 +828,26 @@ namespace JCFLIGHTGCS
             else HorizonIndicator2.SetAttitudeIndicatorParameters(ReadPitch / 10, -ReadRoll / 10);
             HeadingIndicator2.SetHeadingIndicatorParameters(ReadCompass, SmallCompass);
             circularProgressBar1.Text = Convert.ToString(BattVoltage);
-            circularProgressBar1.Value = BattPercentage;
             circularProgressBar2.Text = Convert.ToString(BattVoltage);
+            BattPercentage = ConstrainByte(BattPercentage, 0, 100);
+            circularProgressBar1.Value = BattPercentage;
             circularProgressBar2.Value = BattPercentage;
             label2.Text = Convert.ToString(BattPercentage + "%");
             label3.Text = Convert.ToString(BattPercentage + "%");
-            if (Begin == 4 && Begin2 == 22 && Begin3 == 44)
+            if (SerialPort.IsOpen == true)
             {
+                Program.WaitUart.Close();
+
                 label4.Text = "Habilitado";
                 label5.Text = "Habilitado";
                 label4.Location = new Point(17, 90);
                 label5.Location = new Point(19, 89);
             }
-            if (SerialPort.IsOpen == true)
-            {
-                if (Begin == 4 && Begin2 == 22 && Begin3 == 44)
-                {
-                    Program.WaitUart.Close();
-                }
-                else
-                {
-                    WaitUart.Refresh();
-                }
-            }
+        }
+
+        byte ConstrainByte(byte amt, byte low, byte high)
+        {
+            return ((amt) < (low) ? (low) : ((amt) > (high) ? (high) : (amt)));
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -761,21 +857,9 @@ namespace JCFLIGHTGCS
             comboBox7.Enabled = true;
             comboBox7.Text = "Selecione";
             SerialPort.Close();
-
-            serialPort1.PortName = SerialComPort;
-            serialPort1.BaudRate = 115200;
-            serialPort1.Open();
-            for (Int32 i = 0; i < 51; i++)
-            {
-                serialPort1.WriteLine("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
-                Thread.Sleep(1);
-            }
-            serialPort1.Close();
-
             if (SerialPort.IsOpen == false)
             {
                 pictureBox9.Image = Properties.Resources.Desconectado;
-                Begin = Begin2 = Begin3 = 0;
                 label4.Text = "Desabilitado";
                 label5.Text = "Desabilitado";
                 label4.Location = new Point(10, 90);
@@ -785,7 +869,6 @@ namespace JCFLIGHTGCS
 
         private void comboBox7_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Boolean Ignore = false;
             SerialComPort = Convert.ToString(comboBox7.SelectedItem);
             try
             {
@@ -803,19 +886,11 @@ namespace JCFLIGHTGCS
                 WaitUart.Refresh();
                 SerialPort.Open();
                 WaitUart.Refresh();
-                for (Int32 i = 0; i < 100; i++)
+
+                for (Int32 i = 0; i < 300; i++)
                 {
                     WaitUart.Refresh();
-                    if (Ignore == false)
-                    {
-                        SerialPort.WriteLine("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
-                        Thread.Sleep(1);
-                    }
-                    if (i == 99)
-                    {
-                        Ignore = true;
-                        SerialPort.WriteLine("RUN LOOP TELEMETRY");
-                    }
+                    Thread.Sleep(10);
                 }
 
                 if (SerialPort.IsOpen == true)
@@ -842,26 +917,19 @@ namespace JCFLIGHTGCS
         {
             CountAccImage = 0;
             SmallCompass = false;
-            if (RF24Open == true)
+
+            if (SerialOpen == true)
             {
-                for (int i = 0; i < 300; i++)
-                {
-                    ExitConfiguration(SerialPort);
-                    Thread.Sleep(1);
-                }
+                Serial_Write_To_FC(14);
+                SerialOpen = false;
             }
-            if (RF24Open == true) RF24Open = false;
             ItsSafeToUpdate = true;
 
-            if (RF24OpenPidAndFilters == true)
+            if (PidAndFiltersCommunicationOpen == true)
             {
-                for (int i = 0; i < 300; i++)
-                {
-                    ExitConfigurationPidAndFilters(SerialPort);
-                    Thread.Sleep(1);
-                }
+                Serial_Write_To_FC(14);
+                PidAndFiltersCommunicationOpen = false;
             }
-            if (RF24OpenPidAndFilters == true) RF24OpenPidAndFilters = false;
 
             tabControl1.SelectTab(tabPage1);
         }
@@ -869,20 +937,16 @@ namespace JCFLIGHTGCS
         private void button2_Click(object sender, EventArgs e)
         {
             CountAccImage = 0;
-            OpenConfigLoad ConfigLoadOpen = new OpenConfigLoad();
+            if (SerialOpen) return;
             if (SerialPort.IsOpen == true)
             {
                 if (CommandArmDisarm == 1)
                 {
-                    MessageBox.Show("Não é possível acessar as Configurações com JCFLIGHT em Voo.");
+                    MessageBox.Show("Não é possível acessar as configurações com a JCFLIGHT em Voo!");
                     return;
                 }
-
                 ItsSafeToUpdate = false;
-
-                ConfigLoadOpen.Show();
-
-                comboBox4.SelectedIndex = IOCDataGuard;
+                comboBox4.SelectedIndex = ((IOCDataGuard > comboBox4.Items.Count) ? 0 : IOCDataGuard);
                 comboBox2.SelectedIndex = AltHoldGuard;
                 comboBox3.SelectedIndex = GPSHoldGuard;
                 comboBox5.SelectedIndex = RTHGuard;
@@ -896,23 +960,16 @@ namespace JCFLIGHTGCS
                 comboBox8.SelectedIndex = AutoFlipGuard;
                 comboBox9.SelectedIndex = AutoGuard;
                 comboBox15.SelectedIndex = OptFlowGuard;
-                comboBox16.SelectedIndex = SonarGuard;
+                comboBox16.SelectedIndex = ((SonarGuard > comboBox16.Items.Count) ? 0 : SonarGuard);
                 comboBox17.SelectedIndex = CompassGuard;
                 comboBox18.SelectedIndex = CompassRotGuard;
                 comboBox19.SelectedIndex = RthAltitudeGuard;
                 comboBox10.SelectedIndex = ArmDisarmGuard;
-
-                for (int i = 0; i < 300; i++)
-                {
-                    ConfigLoadOpen.Refresh();
-                    OpenSendConfiguration(SerialPort);
-                    Thread.Sleep(1);
-                }
-                RF24Open = true;
+                Serial_Write_To_FC(13);
+                SerialOpen = true;
             }
             SmallCompass = false;
             tabControl1.SelectTab(tabPage2);
-            ConfigLoadOpen.Close();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -929,26 +986,18 @@ namespace JCFLIGHTGCS
                 pictureBox21.BackColor = Color.Red;
             }
 
-            if (RF24Open == true)
+            if (SerialOpen == true)
             {
-                for (int i = 0; i < 300; i++)
-                {
-                    ExitConfiguration(SerialPort);
-                    Thread.Sleep(1);
-                }
+                Serial_Write_To_FC(14);
+                SerialOpen = false;
             }
-            if (RF24Open == true) RF24Open = false;
             ItsSafeToUpdate = true;
 
-            if (RF24OpenPidAndFilters == true)
+            if (PidAndFiltersCommunicationOpen == true)
             {
-                for (int i = 0; i < 300; i++)
-                {
-                    ExitConfigurationPidAndFilters(SerialPort);
-                    Thread.Sleep(1);
-                }
+                Serial_Write_To_FC(14);
+                PidAndFiltersCommunicationOpen = false;
             }
-            if (RF24OpenPidAndFilters == true) RF24OpenPidAndFilters = false;
 
             SmallCompass = false;
             tabControl1.SelectTab(tabPage3);
@@ -957,26 +1006,18 @@ namespace JCFLIGHTGCS
         private void button4_Click(object sender, EventArgs e)
         {
             CountAccImage = 0;
-            if (RF24Open == true)
+            if (SerialOpen == true)
             {
-                for (int i = 0; i < 300; i++)
-                {
-                    ExitConfiguration(SerialPort);
-                    Thread.Sleep(1);
-                }
+                Serial_Write_To_FC(14);
+                SerialOpen = false;
             }
-            if (RF24Open == true) RF24Open = false;
             ItsSafeToUpdate = true;
 
-            if (RF24OpenPidAndFilters == true)
+            if (PidAndFiltersCommunicationOpen == true)
             {
-                for (int i = 0; i < 300; i++)
-                {
-                    ExitConfigurationPidAndFilters(SerialPort);
-                    Thread.Sleep(1);
-                }
+                Serial_Write_To_FC(14);
+                PidAndFiltersCommunicationOpen = false;
             }
-            if (RF24OpenPidAndFilters == true) RF24OpenPidAndFilters = false;
 
             SmallCompass = false;
             tabControl1.SelectTab(tabPage4);
@@ -985,26 +1026,18 @@ namespace JCFLIGHTGCS
         private void button5_Click(object sender, EventArgs e)
         {
             CountAccImage = 0;
-            if (RF24Open == true)
+            if (SerialOpen == true)
             {
-                for (int i = 0; i < 300; i++)
-                {
-                    ExitConfiguration(SerialPort);
-                    Thread.Sleep(1);
-                }
+                Serial_Write_To_FC(14);
+                SerialOpen = false;
             }
-            if (RF24Open == true) RF24Open = false;
             ItsSafeToUpdate = true;
 
-            if (RF24OpenPidAndFilters == true)
+            if (PidAndFiltersCommunicationOpen == true)
             {
-                for (int i = 0; i < 300; i++)
-                {
-                    ExitConfigurationPidAndFilters(SerialPort);
-                    Thread.Sleep(1);
-                }
+                Serial_Write_To_FC(14);
+                PidAndFiltersCommunicationOpen = false;
             }
-            if (RF24OpenPidAndFilters == true) RF24OpenPidAndFilters = false;
 
             SmallCompass = false;
             tabControl1.SelectTab(tabPage5);
@@ -1013,26 +1046,18 @@ namespace JCFLIGHTGCS
         private void button6_Click(object sender, EventArgs e)
         {
             CountAccImage = 0;
-            if (RF24Open == true)
+            if (SerialOpen == true)
             {
-                for (int i = 0; i < 300; i++)
-                {
-                    ExitConfiguration(SerialPort);
-                    Thread.Sleep(1);
-                }
+                Serial_Write_To_FC(14);
+                SerialOpen = false;
             }
-            if (RF24Open == true) RF24Open = false;
             ItsSafeToUpdate = true;
 
-            if (RF24OpenPidAndFilters == true)
+            if (PidAndFiltersCommunicationOpen == true)
             {
-                for (int i = 0; i < 300; i++)
-                {
-                    ExitConfigurationPidAndFilters(SerialPort);
-                    Thread.Sleep(1);
-                }
+                Serial_Write_To_FC(14);
+                PidAndFiltersCommunicationOpen = false;
             }
-            if (RF24OpenPidAndFilters == true) RF24OpenPidAndFilters = false;
 
             SmallCompass = true;
             tabControl1.SelectTab(tabPage6);
@@ -1040,114 +1065,56 @@ namespace JCFLIGHTGCS
 
         private void button10_Click(object sender, EventArgs e)
         {
-            /* if ((ReadPitch > 500 && ReadRoll > 500) ||
-                 (ReadPitch < (-500) && ReadRoll < (-500)) ||
-                 (ReadPitch > 500 && ReadRoll < (-500)))
-             {
-                 MessageBox.Show("IMU muito inclinada,refaça novamente!");
-                 return;
-             }*/
-
-            if (SerialPort.IsOpen == true)
+            if (!SerialPort.IsOpen) return;
+            Serial_Write_To_FC(11);
+            CountAccImage++;
+            pictureBox10.BackColor = Color.Green;
+            if (CountAccImage > 1) pictureBox13.BackColor = Color.Green;
+            if (CountAccImage > 2)
             {
-                for (int i = 0; i < 300; i++)
-                {
-                    SendCalibration(SerialPort, 98); //ACELEROMETRO
-                    Thread.Sleep(1);
-                }
-                CountAccImage++;
-                pictureBox10.BackColor = Color.Green;
-                if (CountAccImage > 1) pictureBox13.BackColor = Color.Green;
-                if (CountAccImage > 2)
-                {
-                    if (ReadPitch > 750) pictureBox21.BackColor = Color.Green;
-                    if (ReadPitch < (-750)) pictureBox19.BackColor = Color.Green;
-                    if (ReadRoll > 750) pictureBox17.BackColor = Color.Green;
-                    if (ReadRoll < (-750)) pictureBox15.BackColor = Color.Green;
-                }
+                if (ReadPitch > 750) pictureBox21.BackColor = Color.Green;
+                if (ReadPitch < (-750)) pictureBox19.BackColor = Color.Green;
+                if (ReadRoll > 750) pictureBox17.BackColor = Color.Green;
+                if (ReadRoll < (-750)) pictureBox15.BackColor = Color.Green;
             }
         }
 
-        static Int16 CompassX = 0;
-        static Int16 CompassY = 0;
+        static int CompassX = 0;
+        static int CompassY = 0;
 
-        public static Int16 CompassRoll
+        public static int CompassRoll
         {
             get { return CompassX; }
         }
 
-        public static Int16 CompassPitch
+        public static int CompassPitch
         {
             get { return CompassY; }
         }
 
         private void button11_Click(object sender, EventArgs e)
         {
-            if (SerialPort.IsOpen == true)
-            {
-                for (int i = 0; i < 300; i++)
-                {
-                    SendCalibration(SerialPort, 100); //COMPASS
-                    Thread.Sleep(1);
-                }
-                Compass CompassOpen = new Compass();
-                CompassOpen.Show();
-                if (CompassCalib.Enabled == false) CompassCalib.Enabled = true;
-            }
+            if (!SerialPort.IsOpen) return;
+            Serial_Write_To_FC(12);
+            if (CompassCalib.Enabled == false) CompassCalib.Enabled = true;
+            Compass CompassOpen = new Compass();
+            CompassOpen.Show();
         }
 
         private void GmapAtt_Tick(object sender, EventArgs e)
         {
-            DistanceValid = new List<PointLatLng>();
-            GPS_Position.Lat = double.Parse(GPSLAT) / 10000000;
-            GPS_Position.Lng = double.Parse(GPSLONG) / 10000000;
+            GPS_Position.Lat = double.Parse(GPSLAT) / 10000000.0f;
+            GPS_Position.Lng = double.Parse(GPSLONG) / 10000000.0f;
             HomePointMarkerInMap(double.Parse(LatitudeHome), double.Parse(LongitudeHome));
-            if (GPS_NumSat >= 5 && GPS_Position.Lat != 0 && GPS_Position.Lng != 0 &&
-                GPSLatPrev != GPS_Position.Lat && GPSLonPrev != GPS_Position.Lng)
+            if (GPS_NumSat >= 5 && GPSLatPrev != GPS_Position.Lat &&
+                GPSLonPrev != GPS_Position.Lng && GPS_Position.Lat != 0 && GPS_Position.Lng != 0)
             {
-                if (HomePointOK == 1)
-                {
-                    TwoPointsDist = new List<PointLatLng>();
-                    TwoPointsDist.Add(new PointLatLng(Convert.ToDouble(LatitudeHome) / 10000000, Convert.ToDouble(LongitudeHome) / 10000000));
-                    TwoPointsDist.Add(new PointLatLng(Convert.ToDouble(GPS_Position.Lat), Convert.ToDouble(GPS_Position.Lng)));
-                    Dist = MyGMap.MapProvider.Projection.GetDistance(TwoPointsDist[0], TwoPointsDist[1]) * 1000;
-                    double DistFloat = Convert.ToDouble(Convert.ToInt32(Dist)) / 1000;
-                    if (Dist >= 1000)
-                    {
-                        label74.Location = new Point(190, 32);
-                        label74.Text = DistFloat.ToString(new CultureInfo("en-US")) + "KM";
-                    }
-                    else if (Dist >= 10000)
-                    {
-                        label74.Location = new Point(185, 32);
-                        label74.Text = DistFloat.ToString(new CultureInfo("en-US")) + "KM";
-                    }
-                    else if (Dist >= 100000)
-                    {
-                        label74.Location = new Point(180, 32);
-                        label74.Text = DistFloat.ToString(new CultureInfo("en-US")) + "KM";
-                    }
-                    else
-                    {
-                        label74.Location = new Point(208, 32);
-                        label74.Text = Convert.ToInt32(Dist) + "M";
-                    }
-                }
-                DistanceValid.Add(new PointLatLng(Convert.ToDouble(GPSLatPrev), Convert.ToDouble(GPSLonPrev)));
-                DistanceValid.Add(new PointLatLng(Convert.ToDouble(GPS_Position.Lat), Convert.ToDouble(GPS_Position.Lng)));
-                double Distance = MyGMap.MapProvider.Projection.GetDistance(DistanceValid[0], DistanceValid[1]) * 1000;
-                double Dist1Float = Convert.ToDouble(Convert.ToInt32(Distance));
-                if (Dist1Float <= 1) return; //DISTANCIA ENTRE O PONTO ANTERIOR E O ATUAL É MENOR QUE 1M?SIM...SAIA DA FUNÇÃO
                 PositionToRoutes.Markers.Clear();
                 GPSLatPrev = GPS_Position.Lat;
                 GPSLonPrev = GPS_Position.Lng;
                 if (FrameMode == 0)
                 {
                     PositionToRoutes.Markers.Add(new GMapMarkerQuad(GPS_Position, ReadCompass, 0, 0));
-                }
-                else if (FrameMode == 3 || FrameMode == 4 || FrameMode == 5)
-                {
-                    PositionToRoutes.Markers.Add(new GMapMarkerAero(GPS_Position, ReadCompass, 0, 0));
                 }
                 else if (FrameMode == 1)
                 {
@@ -1156,6 +1123,30 @@ namespace JCFLIGHTGCS
                 else if (FrameMode == 2)
                 {
                     PositionToRoutes.Markers.Add(new GMapMarkerHexaI(GPS_Position, ReadCompass, 0, 0));
+                }
+                else if (FrameMode == 3 || FrameMode == 4 || FrameMode == 5)
+                {
+                    PositionToRoutes.Markers.Add(new GMapMarkerAero(GPS_Position, ReadCompass, 0, 0));
+                }
+                if (HomePointDisctance >= 1000 && HomePointDisctance < 10000)
+                {
+                    label74.Location = new Point(190, 32);
+                    label74.Text = HomePointDisctance.ToString(new CultureInfo("en-US")) + "KM";
+                }
+                else if (HomePointDisctance >= 10000 && HomePointDisctance < 100000)
+                {
+                    label74.Location = new Point(185, 32);
+                    label74.Text = HomePointDisctance.ToString(new CultureInfo("en-US")) + "KM";
+                }
+                else if (HomePointDisctance >= 100000)
+                {
+                    label74.Location = new Point(180, 32);
+                    label74.Text = HomePointDisctance.ToString(new CultureInfo("en-US")) + "KM";
+                }
+                else
+                {
+                    label74.Location = new Point(208, 32);
+                    label74.Text = Convert.ToInt32(HomePointDisctance) + "M";
                 }
                 if (CommandArmDisarm == 1) Grout.Points.Add(GPS_Position);
                 MyGMap.Position = GPS_Position;
@@ -1182,9 +1173,17 @@ namespace JCFLIGHTGCS
                     label83.Text = "ALT-HOLD";
                     break;
 
-                case 3: //SPORT
-                    label83.Location = new Point(177, 252);
-                    label83.Text = "ESPORTE";
+                case 3: //ATAQUE              
+                    if (FrameMode < 3 || FrameMode == 6 || FrameMode == 7)
+                    {
+                        label83.Location = new Point(179, 252);
+                        label83.Text = "ATAQUE";
+                    }
+                    else
+                    {
+                        label83.Location = new Point(172, 252);
+                        label83.Text = "TAKE-OFF";
+                    }
                     break;
 
                 case 4: //GPS-HOLD
@@ -1193,8 +1192,16 @@ namespace JCFLIGHTGCS
                     break;
 
                 case 5: //IOC
-                    label83.Location = new Point(202, 252);
-                    label83.Text = "IOC";
+                    if (FrameMode < 3 || FrameMode == 6 || FrameMode == 7)
+                    {
+                        label83.Location = new Point(202, 252);
+                        label83.Text = "IOC";
+                    }
+                    else
+                    {
+                        label83.Location = new Point(184, 252);
+                        label83.Text = "MANUAL";
+                    }
                     break;
 
                 case 6: //RTH
@@ -1263,7 +1270,7 @@ namespace JCFLIGHTGCS
         {
             _Latitude /= 10000000.0;
             _Longitutude /= 10000000.0;
-            if (GPS_NumSat >= 5)
+            if (GPS_NumSat >= 5 && _Latitude != 0 && _Longitutude != 0)
             {
                 if (HomePointOK == 1)
                 {
@@ -1299,228 +1306,46 @@ namespace JCFLIGHTGCS
 
         private void button8_Click(object sender, EventArgs e)
         {
-            SendConfigLoad SendConfigLoadOpen = new SendConfigLoad();
             if (SerialPort.IsOpen == true)
             {
-                SendConfigLoadOpen.Show();
-
-                for (int i = 0; i < 300; i++)
+                SendConfigurationsToJCFLIHGT(SerialPort, 1);
+                Thread.Sleep(150);
+                Serial_Write_To_FC(16);
+                if (CompassGuard != comboBox17.SelectedIndex)
                 {
-                    SendConfigLoadOpen.Refresh();
-                    SendConfiguration(SerialPort);
-                    Thread.Sleep(1);
-                }
-
-                SendConfigLoadOpen.Close();
-
-                if (MessageBox.Show("É necessario reiciar a JCFLIGHT para aplicar as alterações,deseja reiniciar automaticamete?",
-                    "Reboot Automático", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    RebootLoad RebootLoadOpen = new RebootLoad();
-                    RebootLoadOpen.Show();
-                    for (int i = 0; i < 300; i++)
-                    {
-                        RebootLoadOpen.Refresh();
-                        SendRebootOrClearEEPROM(SerialPort, 10);
-                        Thread.Sleep(1);
-                    }
-                    RebootLoadOpen.Close();
+                    MessageBox.Show("O modelo do Compass foi alterado,para que o mesmo funcione é necessario reiniciar o sistema!");
                 }
             }
         }
 
-        public void SendCalibration(SerialPort serialSerialPort, byte AccOrCompass)
+        private void button9_Click(object sender, EventArgs e)
         {
-            byte[] SendBuffer = new byte[250];
-            int VectorPointer = 0;
-            byte CheckAllBuffers = 0;
-            if (serialSerialPort.IsOpen)
+            if (SerialPort.IsOpen == true)
             {
-                VectorPointer = 0;
-                CheckAllBuffers = 0;
-                SendBuffer[VectorPointer++] = (byte)0x4A;
-                SendBuffer[VectorPointer++] = (byte)0x43;
-                SendBuffer[VectorPointer++] = (byte)0x5D;
-                SendBuffer[VectorPointer++] = 3;
-                SendBuffer[VectorPointer++] = (byte)KEY_CONFIG3;
-                SendBuffer[VectorPointer++] = (byte)AccOrCompass;
-                for (int i = 3; i < VectorPointer; i++) CheckAllBuffers ^= SendBuffer[i];
-                SendBuffer[VectorPointer++] = CheckAllBuffers;
-                serialSerialPort.Write(SendBuffer, 0, VectorPointer);
-            }
-        }
-
-        public void SendRebootOrClearEEPROM(SerialPort serialSerialPort, byte RebootOrClearEEPROM)
-        {
-            byte[] SendBuffer = new byte[250];
-            int VectorPointer = 0;
-            byte CheckAllBuffers = 0;
-            if (serialSerialPort.IsOpen)
-            {
-                VectorPointer = 0;
-                CheckAllBuffers = 0;
-                SendBuffer[VectorPointer++] = (byte)0x4A;
-                SendBuffer[VectorPointer++] = (byte)0x43;
-                SendBuffer[VectorPointer++] = (byte)0x5D;
-                SendBuffer[VectorPointer++] = 3;
-                if (RebootOrClearEEPROM == 100) SendBuffer[VectorPointer++] = (byte)KEY_CONFIG5;
-                if (RebootOrClearEEPROM == 50) SendBuffer[VectorPointer++] = (byte)KEY_CONFIG8;
-                SendBuffer[VectorPointer++] = (byte)RebootOrClearEEPROM;
-                for (int i = 3; i < VectorPointer; i++) CheckAllBuffers ^= SendBuffer[i];
-                SendBuffer[VectorPointer++] = CheckAllBuffers;
-                serialSerialPort.Write(SendBuffer, 0, VectorPointer);
-            }
-        }
-
-        public void SendConfiguration(SerialPort serialSerialPort)
-        {
-            byte[] SendBuffer = new byte[250];
-            int VectorPointer = 0;
-            byte CheckAllBuffers = 0;
-            if (serialSerialPort.IsOpen)
-            {
-                VectorPointer = 0;
-                CheckAllBuffers = 0;
-                SendBuffer[VectorPointer++] = (byte)0x4A;
-                SendBuffer[VectorPointer++] = (byte)0x43;
-                SendBuffer[VectorPointer++] = (byte)0x5D;
-                SendBuffer[VectorPointer++] = 21;
-                SendBuffer[VectorPointer++] = (byte)KEY_CONFIG2;
-                SendBuffer[VectorPointer++] = (byte)ComboBoxIOC;
-                SendBuffer[VectorPointer++] = (byte)ComboBoxAltHold;
-                SendBuffer[VectorPointer++] = (byte)ComboBoxGPSHold;
-                SendBuffer[VectorPointer++] = (byte)ComboBoxRTH;
-                SendBuffer[VectorPointer++] = (byte)ComboBoxPPM;
-                SendBuffer[VectorPointer++] = (byte)ComboBoxGimbal;
-                SendBuffer[VectorPointer++] = (byte)ComboBoxFrame;
-                SendBuffer[VectorPointer++] = (byte)MotorSpeed.Value;
-                SendBuffer[VectorPointer++] = (byte)ComboBoxParachute;
-                SendBuffer[VectorPointer++] = (byte)ComboBoxRthAltitude;
-                SendBuffer[VectorPointer++] = (byte)ComboBoxSPI;
-                SendBuffer[VectorPointer++] = (byte)ComboBoxUART2;
-                SendBuffer[VectorPointer++] = (byte)ComboBoxCompass;
-                SendBuffer[VectorPointer++] = (byte)ComboBoxCompassRot;
-                SendBuffer[VectorPointer++] = (byte)ComboBoxAcro;
-                SendBuffer[VectorPointer++] = (byte)ComboBoxSport;
-                SendBuffer[VectorPointer++] = (byte)ComboBoxAutoFlip;
-                SendBuffer[VectorPointer++] = (byte)ComboBoxAuto;
-                SendBuffer[VectorPointer++] = (byte)ComboBoxArmDisarm;
-                for (int i = 3; i < VectorPointer; i++) CheckAllBuffers ^= SendBuffer[i];
-                SendBuffer[VectorPointer++] = CheckAllBuffers;
-                serialSerialPort.Write(SendBuffer, 0, VectorPointer);
-            }
-        }
-
-        public void SendConfigurationPIDAndFilters(SerialPort serialSerialPort)
-        {
-            byte[] SendBuffer = new byte[250];
-            int VectorPointer = 0;
-            byte CheckAllBuffers = 0;
-            if (serialSerialPort.IsOpen)
-            {
-                VectorPointer = 0;
-                CheckAllBuffers = 0;
-                SendBuffer[VectorPointer++] = (byte)0x4A;
-                SendBuffer[VectorPointer++] = (byte)0x43;
-                SendBuffer[VectorPointer++] = (byte)0x5D;
-                SendBuffer[VectorPointer++] = 13;
-                SendBuffer[VectorPointer++] = (byte)KEY_CONFIG9;
-                SendBuffer[VectorPointer++] = (byte)(Convert.ToUInt16(numericUpDown19.Value));
-                SendBuffer[VectorPointer++] = (byte)(Convert.ToUInt16(numericUpDown19.Value) >> 8);
-                SendBuffer[VectorPointer++] = (byte)(Convert.ToByte(numericUpDown18.Value));
-                SendBuffer[VectorPointer++] = (byte)ComboBoxGyroLPF;
-                SendBuffer[VectorPointer++] = (byte)(Convert.ToByte(numericUpDown14.Value));
-                SendBuffer[VectorPointer++] = (byte)(Convert.ToByte(numericUpDown20.Value));
-                SendBuffer[VectorPointer++] = (byte)ComboBoxKalmanState;
-                SendBuffer[VectorPointer++] = (byte)(Convert.ToByte(numericUpDown13.Value));
-                SendBuffer[VectorPointer++] = (byte)(Convert.ToByte(numericUpDown15.Value));
-                SendBuffer[VectorPointer++] = (byte)(Convert.ToByte(numericUpDown16.Value));
-                SendBuffer[VectorPointer++] = (byte)(Convert.ToByte(numericUpDown17.Value));
-                SendBuffer[VectorPointer++] = (byte)ComboBoxCompSpeed;
-                for (int i = 3; i < VectorPointer; i++) CheckAllBuffers ^= SendBuffer[i];
-                SendBuffer[VectorPointer++] = CheckAllBuffers;
-                serialSerialPort.Write(SendBuffer, 0, VectorPointer);
-            }
-        }
-
-        public void OpenSendConfiguration(SerialPort serialSerialPort)
-        {
-            byte[] SendBuffer = new byte[250];
-            int VectorPointer = 0;
-            byte CheckAllBuffers = 0;
-            if (serialSerialPort.IsOpen)
-            {
-                VectorPointer = 0;
-                CheckAllBuffers = 0;
-                SendBuffer[VectorPointer++] = (byte)0x4A;
-                SendBuffer[VectorPointer++] = (byte)0x43;
-                SendBuffer[VectorPointer++] = (byte)0x5D;
-                SendBuffer[VectorPointer++] = 1;
-                SendBuffer[VectorPointer++] = (byte)KEY_CONFIG1;
-                for (int i = 3; i < VectorPointer; i++) CheckAllBuffers ^= SendBuffer[i];
-                SendBuffer[VectorPointer++] = CheckAllBuffers;
-                serialSerialPort.Write(SendBuffer, 0, VectorPointer);
-            }
-        }
-
-
-        public void OpenSendConfigurationPIDAndFilters(SerialPort serialSerialPort)
-        {
-            byte[] SendBuffer = new byte[250];
-            int VectorPointer = 0;
-            byte CheckAllBuffers = 0;
-            if (serialSerialPort.IsOpen)
-            {
-                VectorPointer = 0;
-                CheckAllBuffers = 0;
-                SendBuffer[VectorPointer++] = (byte)0x4A;
-                SendBuffer[VectorPointer++] = (byte)0x43;
-                SendBuffer[VectorPointer++] = (byte)0x5D;
-                SendBuffer[VectorPointer++] = 1;
-                SendBuffer[VectorPointer++] = (byte)KEY_CONFIG6;
-                for (int i = 3; i < VectorPointer; i++) CheckAllBuffers ^= SendBuffer[i];
-                SendBuffer[VectorPointer++] = CheckAllBuffers;
-                serialSerialPort.Write(SendBuffer, 0, VectorPointer);
-            }
-        }
-
-        public void ExitConfiguration(SerialPort serialSerialPort)
-        {
-            byte[] SendBuffer = new byte[250];
-            int VectorPointer = 0;
-            byte CheckAllBuffers = 0;
-            if (serialSerialPort.IsOpen)
-            {
-                VectorPointer = 0;
-                CheckAllBuffers = 0;
-                SendBuffer[VectorPointer++] = (byte)0x4A;
-                SendBuffer[VectorPointer++] = (byte)0x43;
-                SendBuffer[VectorPointer++] = (byte)0x5D;
-                SendBuffer[VectorPointer++] = 1;
-                SendBuffer[VectorPointer++] = (byte)KEY_CONFIG4;
-                for (int i = 3; i < VectorPointer; i++) CheckAllBuffers ^= SendBuffer[i];
-                SendBuffer[VectorPointer++] = CheckAllBuffers;
-                serialSerialPort.Write(SendBuffer, 0, VectorPointer);
-            }
-        }
-
-        public void ExitConfigurationPidAndFilters(SerialPort serialSerialPort)
-        {
-            byte[] SendBuffer = new byte[250];
-            int VectorPointer = 0;
-            byte CheckAllBuffers = 0;
-            if (serialSerialPort.IsOpen)
-            {
-                VectorPointer = 0;
-                CheckAllBuffers = 0;
-                SendBuffer[VectorPointer++] = (byte)0x4A;
-                SendBuffer[VectorPointer++] = (byte)0x43;
-                SendBuffer[VectorPointer++] = (byte)0x5D;
-                SendBuffer[VectorPointer++] = 1;
-                SendBuffer[VectorPointer++] = (byte)KEY_CONFIG7;
-                for (int i = 3; i < VectorPointer; i++) CheckAllBuffers ^= SendBuffer[i];
-                SendBuffer[VectorPointer++] = CheckAllBuffers;
-                serialSerialPort.Write(SendBuffer, 0, VectorPointer);
+                if (MessageBox.Show("Clicando em 'Sim' todas as configurações feitas aqui serão apagadas,você realmete deseja fazer isso?",
+               "Limpar Configurações", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    Serial_Write_To_FC(17);
+                    comboBox4.SelectedIndex = 0;
+                    comboBox2.SelectedIndex = 0;
+                    comboBox3.SelectedIndex = 0;
+                    comboBox5.SelectedIndex = 0;
+                    comboBox12.SelectedIndex = 0;
+                    comboBox13.SelectedIndex = 0;
+                    comboBox11.SelectedIndex = 0;
+                    MotorSpeed.Value = 0;
+                    comboBox14.SelectedIndex = 0;
+                    comboBox1.SelectedIndex = 0;
+                    comboBox6.SelectedIndex = 0;
+                    comboBox8.SelectedIndex = 0;
+                    comboBox9.SelectedIndex = 0;
+                    comboBox15.SelectedIndex = 0;
+                    comboBox16.SelectedIndex = 0;
+                    comboBox17.SelectedIndex = 0;
+                    comboBox18.SelectedIndex = 0;
+                    comboBox19.SelectedIndex = 0;
+                    comboBox10.SelectedIndex = 0;
+                }
             }
         }
 
@@ -1627,26 +1452,18 @@ namespace JCFLIGHTGCS
         private void button10_Click_1(object sender, EventArgs e)
         {
             CountAccImage = 0;
-            if (RF24Open == true)
+            if (SerialOpen == true)
             {
-                for (int i = 0; i < 300; i++)
-                {
-                    ExitConfiguration(SerialPort);
-                    Thread.Sleep(1);
-                }
+                Serial_Write_To_FC(14);
+                SerialOpen = false;
             }
-            if (RF24Open == true) RF24Open = false;
             ItsSafeToUpdate = true;
 
-            if (RF24OpenPidAndFilters == true)
+            if (PidAndFiltersCommunicationOpen == true)
             {
-                for (int i = 0; i < 300; i++)
-                {
-                    ExitConfigurationPidAndFilters(SerialPort);
-                    Thread.Sleep(1);
-                }
+                Serial_Write_To_FC(14);
+                PidAndFiltersCommunicationOpen = false;
             }
-            if (RF24OpenPidAndFilters == true) RF24OpenPidAndFilters = false;
 
             SmallCompass = false;
             WayPoint WayPointOpen = new WayPoint();
@@ -1669,27 +1486,22 @@ namespace JCFLIGHTGCS
         private void button13_Click(object sender, EventArgs e)
         {
             CountAccImage = 0;
-            if (RF24Open == true)
+            if (PidAndFiltersCommunicationOpen) return;
+            if (SerialOpen == true)
             {
-                for (int i = 0; i < 300; i++)
-                {
-                    ExitConfiguration(SerialPort);
-                    Thread.Sleep(1);
-                }
+                Serial_Write_To_FC(14);
+                SerialOpen = false;
             }
-            if (RF24Open == true) RF24Open = false;
+
             ItsSafeToUpdate = false;
 
-            OpenConfigLoad ConfigLoadOpen = new OpenConfigLoad();
             if (SerialPort.IsOpen == true)
             {
                 if (CommandArmDisarm == 1)
                 {
-                    MessageBox.Show("Não é possível acessar as Configurações com JCFLIGHT em Voo.");
+                    MessageBox.Show("Não é possível acessar as configurações com a JCFLIGHT em Voo!");
                     return;
                 }
-
-                ConfigLoadOpen.Show();
 
                 numericUpDown19.Value = BreakPoint;
                 numericUpDown18.Value = TPAFactor;
@@ -1702,38 +1514,24 @@ namespace JCFLIGHTGCS
                 numericUpDown16.Value = BiAccNotch;
                 numericUpDown17.Value = BiGyroNotch;
                 comboBox22.SelectedIndex = CompSpeed;
-
-                for (int i = 0; i < 300; i++)
-                {
-                    ConfigLoadOpen.Refresh();
-                    OpenSendConfigurationPIDAndFilters(SerialPort);
-                    Thread.Sleep(1);
-                }
-                RF24OpenPidAndFilters = true;
+                numericUpDown1.Value = (decimal)(NumericConvert[0]) / 10;
+                numericUpDown2.Value = (decimal)(NumericConvert[1]) / 1000;
+                numericUpDown3.Value = NumericConvert[2];
+                numericUpDown4.Value = (decimal)(NumericConvert[3]) / 10;
+                numericUpDown5.Value = (decimal)(NumericConvert[4]) / 1000;
+                numericUpDown6.Value = NumericConvert[5];
+                numericUpDown7.Value = (decimal)(NumericConvert[6]) / 10;
+                numericUpDown8.Value = (decimal)(NumericConvert[7]) / 1000;
+                numericUpDown9.Value = NumericConvert[8];
+                numericUpDown10.Value = (decimal)(NumericConvert[9]) / 10;
+                numericUpDown11.Value = (decimal)(NumericConvert[10]) / 100;
+                numericUpDown12.Value = (decimal)(NumericConvert[11]) / 100;
+                Serial_Write_To_FC(13);
+                PidAndFiltersCommunicationOpen = true;
             }
 
             SmallCompass = false;
             tabControl1.SelectTab(tabPage7);
-        }
-
-        private void button9_Click(object sender, EventArgs e)
-        {
-            EraseEEPROM EraseEEPROMOpen = new EraseEEPROM();
-            if (SerialPort.IsOpen == true)
-            {
-                if (MessageBox.Show("Clicando em 'Sim' todas as configurações feitas aqui serão apagadas,você realmete deseja fazer isso?",
-               "Limpar Configurações", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    EraseEEPROMOpen.Show();
-                    for (int i = 0; i < 300; i++)
-                    {
-                        EraseEEPROMOpen.Refresh();
-                        SendRebootOrClearEEPROM(SerialPort, 100);
-                        Thread.Sleep(1);
-                    }
-                    EraseEEPROMOpen.Close();
-                }
-            }
         }
 
         private void button11_Click_1(object sender, EventArgs e)
@@ -1764,7 +1562,7 @@ namespace JCFLIGHTGCS
             RcControllerLPFOpen.ShowDialog();
         }
 
-        private void CheckCompassState(Int16 HeadingCompass)
+        private void CheckCompassState(int HeadingCompass)
         {
             //COMPASS
             if (HeadingCompass != HeadingCompassPrev)
@@ -1883,63 +1681,45 @@ namespace JCFLIGHTGCS
 
         private void button16_Click(object sender, EventArgs e)
         {
-            SendConfigLoad SendConfigLoadOpen = new SendConfigLoad();
             if (SerialPort.IsOpen == true)
             {
-                SendConfigLoadOpen.Show();
-
-                for (int i = 0; i < 300; i++)
-                {
-                    SendConfigLoadOpen.Refresh();
-                    SendConfigurationPIDAndFilters(SerialPort);
-                    Thread.Sleep(1);
-                }
-
-                SendConfigLoadOpen.Close();
-
-                if (MessageBox.Show("É necessario reiciar a JCFLIGHT para aplicar as alterações,deseja reiniciar automaticamete?",
-                    "Reboot Automático", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    RebootLoad RebootLoadOpen = new RebootLoad();
-                    RebootLoadOpen.Show();
-                    for (int i = 0; i < 300; i++)
-                    {
-                        RebootLoadOpen.Refresh();
-                        SendRebootOrClearEEPROM(SerialPort, 10);
-                        Thread.Sleep(1);
-                    }
-                    RebootLoadOpen.Close();
-                }
+                SendConfigurationsToJCFLIHGT(SerialPort, 2);
+                Thread.Sleep(150);
+                Serial_Write_To_FC(19);
             }
         }
 
         private void button17_Click(object sender, EventArgs e)
         {
-            EraseEEPROM EraseEEPROMOpen = new EraseEEPROM();
             if (SerialPort.IsOpen == true)
             {
                 if (MessageBox.Show("Clicando em 'Sim' todas as configurações feitas aqui serão apagadas,você realmete deseja fazer isso?",
                "Limpar Configurações", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    EraseEEPROMOpen.Show();
-                    for (int i = 0; i < 300; i++)
-                    {
-                        EraseEEPROMOpen.Refresh();
-                        SendRebootOrClearEEPROM(SerialPort, 50);
-                        Thread.Sleep(1);
-                    }
+                    Serial_Write_To_FC(20);
+                    numericUpDown1.Value = (decimal)(35) / 10;
+                    numericUpDown2.Value = (decimal)(35) / 1000;
+                    numericUpDown3.Value = 26;
+                    numericUpDown4.Value = (decimal)(35) / 10;
+                    numericUpDown5.Value = (decimal)(35) / 1000;
+                    numericUpDown6.Value = 26;
+                    numericUpDown7.Value = (decimal)(69) / 10;
+                    numericUpDown8.Value = (decimal)(50) / 1000;
+                    numericUpDown9.Value = 0;
+                    numericUpDown10.Value = (decimal)(50) / 10;
+                    numericUpDown11.Value = (decimal)(100) / 100;
+                    numericUpDown12.Value = (decimal)(90) / 100;
                     numericUpDown18.Value = 0;
-                    numericUpDown19.Value = 1000;
+                    numericUpDown19.Value = 1500;
                     comboBox20.SelectedIndex = 0;
-                    numericUpDown14.Value = 0;
-                    numericUpDown20.Value = 0;
+                    numericUpDown14.Value = 40;
+                    numericUpDown20.Value = 50;
                     comboBox21.SelectedIndex = 0;
-                    numericUpDown13.Value = 0;
-                    numericUpDown15.Value = 0;
+                    numericUpDown13.Value = 15;
+                    numericUpDown15.Value = 60;
                     numericUpDown16.Value = 0;
                     numericUpDown17.Value = 0;
                     comboBox22.SelectedIndex = 0;
-                    EraseEEPROMOpen.Close();
                 }
             }
         }
@@ -1991,6 +1771,97 @@ namespace JCFLIGHTGCS
                 label11.Text = "Desabilitado";
             }
 
+        }
+
+        private void GCS_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (SerialPort.IsOpen) SerialPort.Close();
+        }
+
+        public void SendConfigurationsToJCFLIHGT(SerialPort SerialPort, byte ConfigType)
+        {
+            byte[] SendBuffer = new byte[250];
+            int VectorPointer = 0;
+            byte CheckAllBuffers = 0;
+
+            if (SerialPort.IsOpen)
+            {
+                if (ConfigType == 1)
+                {
+                    VectorPointer = 0;
+                    CheckAllBuffers = 0;
+                    SendBuffer[VectorPointer++] = (byte)0x4a;
+                    SendBuffer[VectorPointer++] = (byte)0x43;
+                    SendBuffer[VectorPointer++] = (byte)0x3c;
+                    SendBuffer[VectorPointer++] = 19;
+                    SendBuffer[VectorPointer++] = (byte)15;
+                    SendBuffer[VectorPointer++] = (byte)ComboBoxFrame;
+                    SendBuffer[VectorPointer++] = (byte)ComboBoxPPM;
+                    SendBuffer[VectorPointer++] = (byte)ComboBoxGimbal;
+                    SendBuffer[VectorPointer++] = (byte)ComboBoxParachute;
+                    SendBuffer[VectorPointer++] = (byte)ComboBoxSPI;
+                    SendBuffer[VectorPointer++] = (byte)ComboBoxUART2;
+                    SendBuffer[VectorPointer++] = (byte)ComboBoxCompass;
+                    SendBuffer[VectorPointer++] = (byte)ComboBoxCompassRot;
+                    SendBuffer[VectorPointer++] = (byte)ComboBoxRthAltitude;
+                    SendBuffer[VectorPointer++] = (byte)MotorSpeed.Value;
+                    SendBuffer[VectorPointer++] = (byte)ComboBoxAcro;
+                    SendBuffer[VectorPointer++] = (byte)ComboBoxAltHold;
+                    SendBuffer[VectorPointer++] = (byte)ComboBoxGPSHold;
+                    SendBuffer[VectorPointer++] = (byte)ComboBoxIOC;
+                    SendBuffer[VectorPointer++] = (byte)ComboBoxRTH;
+                    SendBuffer[VectorPointer++] = (byte)ComboBoxSport;
+                    SendBuffer[VectorPointer++] = (byte)ComboBoxAutoFlip;
+                    SendBuffer[VectorPointer++] = (byte)ComboBoxAuto;
+                    SendBuffer[VectorPointer++] = (byte)ComboBoxArmDisarm;
+                    for (int i = 3; i < VectorPointer; i++) CheckAllBuffers ^= SendBuffer[i];
+                    SendBuffer[VectorPointer++] = CheckAllBuffers;
+                    SerialPort.Write(SendBuffer, 0, VectorPointer);
+                }
+                else if (ConfigType == 2)
+                {
+                    VectorPointer = 0;
+                    CheckAllBuffers = 0;
+                    SendBuffer[VectorPointer++] = (byte)0x4a;
+                    SendBuffer[VectorPointer++] = (byte)0x43;
+                    SendBuffer[VectorPointer++] = (byte)0x3c;
+                    SendBuffer[VectorPointer++] = 30;
+                    SendBuffer[VectorPointer++] = (byte)18;
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToByte(numericUpDown18.Value));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown19.Value));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown19.Value) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)ComboBoxGyroLPF;
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown14.Value));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown14.Value) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown20.Value));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown20.Value) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)ComboBoxKalmanState;
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown13.Value));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown13.Value) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown15.Value));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown15.Value) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown16.Value));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown16.Value) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown17.Value));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown17.Value) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)ComboBoxCompSpeed;
+                    SendBuffer[VectorPointer++] = (byte)(numericUpDown1.Value * 10);
+                    SendBuffer[VectorPointer++] = (byte)(numericUpDown2.Value * 1000);
+                    SendBuffer[VectorPointer++] = (byte)numericUpDown3.Value;
+                    SendBuffer[VectorPointer++] = (byte)(numericUpDown4.Value * 10);
+                    SendBuffer[VectorPointer++] = (byte)(numericUpDown5.Value * 1000);
+                    SendBuffer[VectorPointer++] = (byte)numericUpDown6.Value;
+                    SendBuffer[VectorPointer++] = (byte)(numericUpDown7.Value * 10);
+                    SendBuffer[VectorPointer++] = (byte)(numericUpDown8.Value * 1000);
+                    SendBuffer[VectorPointer++] = (byte)numericUpDown9.Value;
+                    SendBuffer[VectorPointer++] = (byte)(numericUpDown10.Value * 10);
+                    SendBuffer[VectorPointer++] = (byte)(numericUpDown11.Value * 100);
+                    SendBuffer[VectorPointer++] = (byte)(numericUpDown12.Value * 100);
+                    for (int i = 3; i < VectorPointer; i++) CheckAllBuffers ^= SendBuffer[i];
+                    SendBuffer[VectorPointer++] = CheckAllBuffers;
+                    SerialPort.Write(SendBuffer, 0, VectorPointer);
+                }
+            }
         }
     }
 }

@@ -1790,7 +1790,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(1038, 785);
+            this.button2.Location = new System.Drawing.Point(1038, 776);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(208, 30);
             this.button2.TabIndex = 137;
@@ -2202,15 +2202,15 @@
             this.label80.AutoSize = true;
             this.label80.Location = new System.Drawing.Point(1047, 721);
             this.label80.Name = "label80";
-            this.label80.Size = new System.Drawing.Size(199, 52);
+            this.label80.Size = new System.Drawing.Size(199, 39);
             this.label80.TabIndex = 161;
-            this.label80.Text = "Após clicar no botão acima,\r\nclique aqui para salvar todos\r\nos dados na memória d" +
-    "a JCFLIGHT,\r\nafim de realizar missões sem usar o GCS.";
+            this.label80.Text = "Clique aqui para salvar todos\r\nos dados na memória da JCFLIGHT,\r\nafim de realizar" +
+    " missões sem usar o GCS.";
             // 
             // label81
             // 
             this.label81.AutoSize = true;
-            this.label81.Location = new System.Drawing.Point(1046, 819);
+            this.label81.Location = new System.Drawing.Point(1046, 809);
             this.label81.Name = "label81";
             this.label81.Size = new System.Drawing.Size(173, 39);
             this.label81.TabIndex = 162;

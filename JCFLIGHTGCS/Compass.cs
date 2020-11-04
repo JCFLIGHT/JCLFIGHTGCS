@@ -11,10 +11,10 @@ namespace JCFLIGHTGCS
 {
     public partial class Compass : Form
     {
-        Int16 MagX = 0;
-        Int16 MagY = 0;
+        int MagX = 0;
+        int MagY = 0;
 
-        Int16 constrain(Int16 amt, Int16 low, Int16 high)
+        int constrain(int amt, int low, int high)
         {
             return ((amt) < (low) ? (low) : ((amt) > (high) ? (high) : (amt)));
         }

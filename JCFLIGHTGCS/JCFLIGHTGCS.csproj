@@ -133,12 +133,6 @@
     <Compile Include="EraseEEPROM.designer.cs">
       <DependentUpon>EraseEEPROM.cs</DependentUpon>
     </Compile>
-    <Compile Include="OpenConfigLoad.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="OpenConfigLoad.Designer.cs">
-      <DependentUpon>OpenConfigLoad.cs</DependentUpon>
-    </Compile>
     <Compile Include="RcControllerLPF.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -150,12 +144,6 @@
     </Compile>
     <Compile Include="RebootLoad.designer.cs">
       <DependentUpon>RebootLoad.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SendConfigLoad.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SendConfigLoad.designer.cs">
-      <DependentUpon>SendConfigLoad.cs</DependentUpon>
     </Compile>
     <Compile Include="LoadConnectUART.cs">
       <SubType>Form</SubType>
@@ -209,17 +197,11 @@
     <EmbeddedResource Include="EraseEEPROM.resx">
       <DependentUpon>EraseEEPROM.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OpenConfigLoad.resx">
-      <DependentUpon>OpenConfigLoad.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="RcControllerLPF.resx">
       <DependentUpon>RcControllerLPF.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RebootLoad.resx">
       <DependentUpon>RebootLoad.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SendConfigLoad.resx">
-      <DependentUpon>SendConfigLoad.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoadConnectUART.resx">
       <DependentUpon>LoadConnectUART.cs</DependentUpon>

@@ -23,9 +23,16 @@ namespace JCFLIGHTGCS
     {
         //SERIAL RX TX
         SerialPort SerialPort = new SerialPort();
-        string SerialComPort, RxString;
-        string[] ArduinoData = null;
+        string SerialComPort;
         string[] SerialPorts = SerialPort.GetPortNames();
+
+        static Boolean Error_Received = false;
+        static byte Read_State = 0;
+        static byte OffSet = 0;
+        static byte DataSize = 0;
+        static byte CheckSum = 0;
+        static byte Command;
+        static byte[] InBuffer = new byte[300];
 
         int CountWP;
         double WPLat;
@@ -85,8 +92,6 @@ namespace JCFLIGHTGCS
 
         Boolean PushLocation = false;
 
-        Int32 FrameType = 0;
-
         double NumSat;
         double VBatt;
         double HDOP = 99.99;
@@ -100,7 +105,6 @@ namespace JCFLIGHTGCS
         GMapOverlay GmapPolygons = new GMapOverlay("Poligonos");
 
         private List<PointLatLng> WPCoordinates;
-        private List<PointLatLng> DistanceValid;
 
         static GMapOverlay GmapRoutes;
         static GMapRoute GMapTack;
@@ -151,7 +155,7 @@ namespace JCFLIGHTGCS
         Int32 WayPoint10Latitude;
         Int32 WayPoint10Longitude;
 
-        Boolean ArmDisarm = false;
+        byte ArmDisarm = 0;
 
         double PrevLatitude;
         double PrevLongitude;
@@ -170,9 +174,7 @@ namespace JCFLIGHTGCS
         public WayPoint()
         {
             InitializeComponent();
-
             MyGmap.PolygonsEnabled = true;
-
             //SERIAL
             SerialPort.DataBits = 8;
             SerialPort.Parity = Parity.None;
@@ -182,50 +184,37 @@ namespace JCFLIGHTGCS
             SerialPort.ReadBufferSize = 4096;
             foreach (string PortsName in SerialPorts) comboBox13.Items.Add(PortsName);
             SerialPort.DataReceived += new SerialDataReceivedEventHandler(serialPort1_DataReceived_1);
-
             pictureBox1.Image = Properties.Resources.Desconectado;
-
             MyGmap.ShowCenter = false;
             MyGmap.Manager.Mode = AccessMode.ServerAndCache;
             //MyGmap.MapProvider = GMapProviders.BingSatelliteMap;
             //MyGmap.MapProvider = GMapProviders.BingHybridMap;
             MyGmap.MapProvider = GMapProviders.GoogleSatelliteMap;
             MyGmap.Zoom = 2;
-
             GmapPositions = new GMapOverlay("GmapPositions");
             MyGmap.Overlays.Add(GmapPositions);
-
             GmapPositions.Markers.Clear();
-
             GmapRoutes = new GMapOverlay("GMapRoutes");
             MyGmap.Overlays.Add(GmapRoutes);
-
-            Pen penRoute = new Pen(Color.Purple, 2);
-
+            Pen penRoute = new Pen(Color.Purple, 3);
             GMapTack = new GMapRoute(LatLngPoints, "GMapTrack");
             GMapTack.Stroke = penRoute;
             GmapRoutes.Routes.Add(GMapTack);
-
             trackBar1.Value = 2;
             trackBar1.Minimum = 2;
             trackBar1.Maximum = 20;
-
             label41.Parent = MyGmap;
             label41.BackColor = Color.Blue;
             label41.ForeColor = Color.White;
-
             label46.Parent = MyGmap;
             label46.BackColor = Color.Blue;
             label46.ForeColor = Color.White;
-
             label47.Parent = MyGmap;
             label47.BackColor = Color.Blue;
             label47.ForeColor = Color.White;
-
             label48.Parent = MyGmap;
             label48.BackColor = Color.Blue;
             label48.ForeColor = Color.White;
-
             comboBox1.MouseWheel += new MouseEventHandler(comboBox1_MouseWheel);
             comboBox2.MouseWheel += new MouseEventHandler(comboBox2_MouseWheel);
             comboBox3.MouseWheel += new MouseEventHandler(comboBox3_MouseWheel);
@@ -409,44 +398,14 @@ namespace JCFLIGHTGCS
         private void button1_Click(object sender, EventArgs e)
         {
             if (SerialPort.IsOpen == false) return;
-            SerialPort.Close();
-            serialPort1.PortName = SerialComPort;
-            serialPort1.BaudRate = 115200;
-            serialPort1.Open();
-            SendWayPoints(serialPort1);
-            serialPort1.Close();
-            SerialPort.PortName = SerialComPort;
-            SerialPort.BaudRate = 115200;
-            SerialPort.DataBits = 8;
-            SerialPort.Parity = Parity.None;
-            SerialPort.StopBits = StopBits.One;
-            SerialPort.Open();
+            SendWayPoints(SerialPort);
         }
 
         private void comboBox13_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Boolean Ignore = false;
             SerialComPort = Convert.ToString(comboBox13.SelectedItem);
             try
             {
-                SerialPort.Close();
-                serialPort1.PortName = SerialComPort;
-                serialPort1.BaudRate = 115200;
-                serialPort1.Open();
-                for (Int32 i = 0; i < 100; i++)
-                {
-                    if (Ignore == false)
-                    {
-                        serialPort1.WriteLine("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
-                        Thread.Sleep(1);
-                    }
-                    if (i == 99)
-                    {
-                        Ignore = true;
-                        serialPort1.WriteLine("RUN LOOP WAYPOINT");
-                    }
-                }
-                serialPort1.Close();
                 SerialPort.PortName = SerialComPort;
                 SerialPort.BaudRate = 115200;
                 SerialPort.DataBits = 8;
@@ -485,84 +444,139 @@ namespace JCFLIGHTGCS
 
         private void serialPort1_DataReceived_1(object sender, SerialDataReceivedEventArgs e)
         {
+            byte c;
+
+            if (SerialPort.IsOpen == false) return;
+
             if (SerialPort.IsOpen == true)
             {
-                if (SerialPort.IsOpen == false) return;
-                RxString = SerialPort.ReadLine();
-                ArduinoData = RxString.Split(',');
-                if (RxString == "") return;
-                if (RxString == "Debug Serial Monitor Para JCFlightGCS\r") return;
-                if (RxString == "POR FAVOR,EXECUTE A TELEMETRIA NO PROGRAMA JCFLIGHTGCS\r") return;
-                if (ArduinoData[0] == "\r") return;
-                if (ArduinoData[0] == null) return;
-                if (ArduinoData[0] == "0") return;
-                Begin = Convert.ToInt32(ArduinoData[0]);
-                if (Begin == 10)
+                while (SerialPort.BytesToRead > 0)
                 {
-                    NumSat = Convert.ToDouble(ArduinoData[1]);
-                    GPSLAT = Convert.ToString(ArduinoData[2]);
-                    GPSLONG = Convert.ToString(ArduinoData[3]);
-                    InitialLat = double.Parse(GPSLAT);
-                    InitialLong = double.Parse(GPSLONG);
-                    if (NumSat >= 5 && InitialLat != 0 && InitialLong != 0) PushLocation = true;
-                    VBatt = Convert.ToDouble(ArduinoData[4]) / 100;
-                    HDOP = Convert.ToDouble(ArduinoData[5]) / 100;
-                    Altitude = Convert.ToDouble(ArduinoData[6]) / 100;
-                    Heading = Convert.ToInt32(ArduinoData[7]);
-                    FrameType = Convert.ToInt32(ArduinoData[8]);
-                    if (FrameType == 1)
-                    {
-                        GmapFrameMode = 1;
-                        ArmDisarm = false;
-                    }
+                    c = (byte)SerialPort.ReadByte();
 
-                    if (FrameType == 2)
+                    switch (Read_State)
                     {
-                        GmapFrameMode = 1;
-                        ArmDisarm = true;
-                    }
+                        case 0:
+                            Read_State = (c == 0x4a) ? (byte)1 : (byte)0;
+                            break;
 
-                    if (FrameType == 3)
-                    {
-                        GmapFrameMode = 2;
-                        ArmDisarm = false;
-                    }
+                        case 1:
+                            Read_State = (c == 0x43) ? (byte)2 : (byte)0;
+                            break;
 
-                    if (FrameType == 4)
-                    {
-                        GmapFrameMode = 2;
-                        ArmDisarm = true;
-                    }
+                        case 2:
+                            if (c == 0x46)
+                            {
+                                Read_State = 3;
+                            }
+                            else if (c == 0x21)
+                            {
+                                Read_State = 6;
+                            }
+                            else
+                            {
+                                Read_State = 0;
+                            }
+                            break;
 
-                    if (FrameType == 5)
-                    {
-                        GmapFrameMode = 3;
-                        ArmDisarm = false;
-                    }
+                        case 3:
+                        case 6:
+                            Error_Received = (Read_State == 6);
+                            DataSize = c;
+                            OffSet = 0;
+                            CheckSum = 0;
+                            CheckSum ^= c;
+                            Read_State = 4;
+                            if (DataSize > 100)
+                            {
+                                Read_State = 0;
+                            }
 
-                    if (FrameType == 6)
-                    {
-                        GmapFrameMode = 3;
-                        ArmDisarm = true;
-                    }
+                            break;
 
-                    if (FrameType == 7)
-                    {
-                        GmapFrameMode = 4;
-                        ArmDisarm = false;
-                    }
+                        case 4:
+                            Command = c;
+                            CheckSum ^= c;
+                            Read_State = 5;
+                            break;
 
-                    if (FrameType == 8)
-                    {
-                        GmapFrameMode = 4;
-                        ArmDisarm = true;
+                        case 5:
+                            if (OffSet < DataSize)
+                            {
+                                CheckSum ^= c;
+                                InBuffer[OffSet++] = c;
+                            }
+                            else
+                            {
+                                if (CheckSum == c)
+                                {
+                                    if (!Error_Received)
+                                    {
+                                        Serial_Parse(Command);
+                                    }
+                                }
+                                Read_State = 0;
+                            }
+                            break;
                     }
                 }
             }
         }
 
+        private void Serial_Parse(byte Command)
+        {
+            int ptr;
+            switch (Command)
+            {
+                case 10:
+                    ptr = 0;
+                    ptr += 4;
+                    Heading = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    ptr += 25;
+                    NumSat = (byte)InBuffer[ptr++];
+                    GPSLAT = Convert.ToString(BitConverter.ToInt32(InBuffer, ptr)); ptr += 4;
+                    GPSLONG = Convert.ToString(BitConverter.ToInt32(InBuffer, ptr)); ptr += 4;
+                    InitialLat = double.Parse(GPSLAT);
+                    InitialLong = double.Parse(GPSLONG);
+                    if (NumSat >= 5 && InitialLat != 0 && InitialLong != 0) PushLocation = true;
+                    ptr += 8;
+                    Altitude = Convert.ToDouble(BitConverter.ToInt32(InBuffer, ptr)) / 100; ptr += 4;
+                    ptr += 1;
+                    VBatt = Convert.ToDouble(BitConverter.ToInt16(InBuffer, ptr)) / 100; ptr += 2;
+                    ptr += 1;
+                    ArmDisarm = (byte)InBuffer[ptr++];
+                    HDOP = Convert.ToDouble(BitConverter.ToInt16(InBuffer, ptr)) / 100; ptr += 2;
+                    ptr += 7;
+                    GmapFrameMode = (byte)InBuffer[ptr++];
+                    ptr += 6;
+                    break;
+            }
+        }
+
+        private void Serial_Write_To_FC(int Command)
+        {
+            byte c = 0;
+            byte[] o;
+            o = new byte[10];
+            o[0] = (byte)0x4a;
+            o[1] = (byte)0x43;
+            o[2] = (byte)0x3c;
+            o[3] = (byte)0; c ^= o[3];
+            o[4] = (byte)Command; c ^= o[4];
+            o[5] = (byte)c;
+            SerialPort.Write(o, 0, 6);
+        }
+
         private void timer2_Tick(object sender, EventArgs e)
         {
+            if (SerialPort.IsOpen)
+            {
+                if (SerialPort.BytesToRead == 0)
+                {
+                    Serial_Write_To_FC(10);
+                }
+            }
+
             WPCoordinates = new List<PointLatLng>();
 
             label41.Text = Convert.ToString("Número de Satélites:" + NumSat.ToString(new CultureInfo("en-US")));
@@ -757,45 +771,32 @@ namespace JCFLIGHTGCS
 
         private void timer3_Tick(object sender, EventArgs e)
         {
-            DistanceValid = new List<PointLatLng>();
             GPS_Position.Lat = double.Parse(GPSLAT) / 10000000;
             GPS_Position.Lng = double.Parse(GPSLONG) / 10000000;
             if (NumSat >= 5 && GPS_Position.Lat != 0 && GPS_Position.Lng != 0 &&
                 PrevLatitude != GPS_Position.Lat && PrevLongitude != GPS_Position.Lng)
             {
-
-                DistanceValid.Add(new PointLatLng(Convert.ToDouble(PrevLatitude), Convert.ToDouble(PrevLongitude)));
-                DistanceValid.Add(new PointLatLng(Convert.ToDouble(GPS_Position.Lat), Convert.ToDouble(GPS_Position.Lng)));
-                double Distance = MyGmap.MapProvider.Projection.GetDistance(DistanceValid[0], DistanceValid[1]) * 1000;
-                double Dist1Float = Convert.ToDouble(Convert.ToInt32(Distance));
-                if (Dist1Float <= 1) return; //DISTANCIA ENTRE O PONTO ANTERIOR E O ATUAL É MENOR QUE 1M?SIM...SAIA DA FUNÇÃO
-
                 GmapPositions.Markers.Clear();
-
                 PrevLatitude = GPS_Position.Lat;
                 PrevLongitude = GPS_Position.Lng;
-
-                if (GmapFrameMode == 1)
+                if (GmapFrameMode == 0)
                 {
                     GmapPositions.Markers.Add(new GMapMarkerQuad(GPS_Position, Heading, 0, 0));
                 }
-                else if (GmapFrameMode == 2)
+                else if (GmapFrameMode == 1)
                 {
                     GmapPositions.Markers.Add(new GMapMarkerHexaX(GPS_Position, Heading, 0, 0));
                 }
-                else if (GmapFrameMode == 3)
+                else if (GmapFrameMode == 2)
                 {
                     GmapPositions.Markers.Add(new GMapMarkerHexaI(GPS_Position, Heading, 0, 0));
                 }
-                else if (GmapFrameMode == 4)
+                else if (GmapFrameMode == 3 || GmapFrameMode == 4 || GmapFrameMode == 5)
                 {
                     GmapPositions.Markers.Add(new GMapMarkerAero(GPS_Position, Heading, 0, 0));
                 }
-                if (ArmDisarm)
-                {
-                    GMapTack.Points.Add(GPS_Position);
-                    MyGmap.Position = GPS_Position;
-                }
+                if (ArmDisarm == 1) GMapTack.Points.Add(GPS_Position);
+                MyGmap.Position = GPS_Position;
                 MyGmap.Invalidate();
             }
         }
@@ -838,76 +839,37 @@ namespace JCFLIGHTGCS
             label77.Text = Convert.ToString("Distância entre P7 - P8: 0M");
             label76.Text = Convert.ToString("Distância entre P8 - P9: 0M");
             label75.Text = Convert.ToString("Distância entre P9 - P10: 0M");
-            SendReset(SerialPort);
+            if (SerialPort.IsOpen == false) return;
+            Serial_Write_To_FC(3);
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            SendSave(SerialPort);
+            if (SerialPort.IsOpen == false) return;
+            Serial_Write_To_FC(4);
         }
 
-        public void SendReset(SerialPort serialSerialPort)
+        public void SendWayPoints(SerialPort SerialPort)
         {
+
             byte[] SendBuffer = new byte[250];
             int VectorPointer = 0;
             byte CheckAllBuffers = 0;
-            if (serialSerialPort.IsOpen)
+
+            if (SerialPort.IsOpen)
             {
                 VectorPointer = 0;
                 CheckAllBuffers = 0;
-                SendBuffer[VectorPointer++] = (byte)0x4A;
-                SendBuffer[VectorPointer++] = (byte)0x43;
-                SendBuffer[VectorPointer++] = (byte)0x5D;
-                SendBuffer[VectorPointer++] = 1;
-                SendBuffer[VectorPointer++] = (byte)KEY_WPReset;
-                for (int i = 3; i < VectorPointer; i++) CheckAllBuffers ^= SendBuffer[i];
-                SendBuffer[VectorPointer++] = CheckAllBuffers;
-                serialSerialPort.Write(SendBuffer, 0, VectorPointer);
-            }
-        }
-
-        public void SendSave(SerialPort serialSerialPort)
-        {
-            byte[] SendBuffer = new byte[250];
-            int VectorPointer = 0;
-            byte CheckAllBuffers = 0;
-            if (serialSerialPort.IsOpen)
-            {
-                VectorPointer = 0;
-                CheckAllBuffers = 0;
-                SendBuffer[VectorPointer++] = (byte)0x4A;
-                SendBuffer[VectorPointer++] = (byte)0x43;
-                SendBuffer[VectorPointer++] = (byte)0x5D;
-                SendBuffer[VectorPointer++] = 1;
-                SendBuffer[VectorPointer++] = (byte)KEY_WPSave;
-                for (int i = 3; i < VectorPointer; i++) CheckAllBuffers ^= SendBuffer[i];
-                SendBuffer[VectorPointer++] = CheckAllBuffers;
-                serialSerialPort.Write(SendBuffer, 0, VectorPointer);
-            }
-        }
-
-        public void SendWayPoints(SerialPort serialSerialPort)
-        {
-
-            byte[] SendBuffer = new byte[250];
-            int VectorPointer = 0;
-            byte CheckAllBuffers = 0;
-
-            if (serialSerialPort.IsOpen)
-            {
                 if (WPLatVect1 != 0 && WPLonVect1 != 0)
                 {
                     WayPoint1Latitude = Convert.ToInt32(WPLatVect1 * 1e7);
                     WayPoint1Longitude = Convert.ToInt32(WPLonVect1 * 1e7);
                     //ENVIA O PRIMEIRO WAYPOINT SE DISPONIVEL
-                    VectorPointer = 0;
-                    CheckAllBuffers = 0;
-                    //COORDENADAS LATITUDE E LONGITUDE
-                    SendBuffer[VectorPointer++] = (byte)0x4A;
+                    SendBuffer[VectorPointer++] = (byte)0x4a;
                     SendBuffer[VectorPointer++] = (byte)0x43;
-                    SendBuffer[VectorPointer++] = (byte)0x5D;
-                    SendBuffer[VectorPointer++] = 11;
-                    SendBuffer[VectorPointer++] = (byte)KEY_WP1;
+                    SendBuffer[VectorPointer++] = (byte)0x3c;
+                    SendBuffer[VectorPointer++] = 55;
+                    SendBuffer[VectorPointer++] = (byte)5;
                     SendBuffer[VectorPointer++] = (byte)(WayPoint1Latitude);
                     SendBuffer[VectorPointer++] = (byte)(WayPoint1Latitude >> 8);
                     SendBuffer[VectorPointer++] = (byte)(WayPoint1Latitude >> 16);
@@ -951,9 +913,14 @@ namespace JCFLIGHTGCS
                     if (Convert.ToString(comboBox2.SelectedItem) == "RTH") SendBuffer[VectorPointer++] = (byte)(4);
                     if (Convert.ToString(comboBox2.SelectedItem) == "TAKEOFF") SendBuffer[VectorPointer++] = (byte)(5);
                     SendBuffer[VectorPointer++] = (byte)(GPSHoldTimed1);
+                }
+
+                if (WPLatVect2 == 0 && WPLonVect2 == 0)
+                {
                     for (int i = 3; i < VectorPointer; i++) CheckAllBuffers ^= SendBuffer[i];
                     SendBuffer[VectorPointer++] = CheckAllBuffers;
-                    serialSerialPort.Write(SendBuffer, 0, VectorPointer);
+                    SerialPort.Write(SendBuffer, 0, VectorPointer);
+                    return;
                 }
 
                 if (WPLatVect2 != 0 && WPLonVect2 != 0)
@@ -961,13 +928,6 @@ namespace JCFLIGHTGCS
                     WayPoint2Latitude = Convert.ToInt32(WPLatVect2 * 1e7);
                     WayPoint2Longitude = Convert.ToInt32(WPLonVect2 * 1e7);
                     //ENVIA O SEGUNDO WAYPOINT SE DISPONIVEL
-                    VectorPointer = 0;
-                    CheckAllBuffers = 0;
-                    SendBuffer[VectorPointer++] = (byte)0x4A;
-                    SendBuffer[VectorPointer++] = (byte)0x43;
-                    SendBuffer[VectorPointer++] = (byte)0x5D;
-                    SendBuffer[VectorPointer++] = 10;
-                    SendBuffer[VectorPointer++] = (byte)KEY_WP2;
                     SendBuffer[VectorPointer++] = (byte)(WayPoint2Latitude);
                     SendBuffer[VectorPointer++] = (byte)(WayPoint2Latitude >> 8);
                     SendBuffer[VectorPointer++] = (byte)(WayPoint2Latitude >> 16);
@@ -1011,9 +971,14 @@ namespace JCFLIGHTGCS
                     if (Convert.ToString(comboBox3.SelectedItem) == "RTH") SendBuffer[VectorPointer++] = (byte)(4);
                     if (Convert.ToString(comboBox3.SelectedItem) == "TAKEOFF") SendBuffer[VectorPointer++] = (byte)(5);
                     SendBuffer[VectorPointer++] = (byte)(GPSHoldTimed2);
+                }
+
+                if (WPLatVect3 == 0 && WPLonVect3 == 0)
+                {
                     for (int i = 3; i < VectorPointer; i++) CheckAllBuffers ^= SendBuffer[i];
                     SendBuffer[VectorPointer++] = CheckAllBuffers;
-                    serialSerialPort.Write(SendBuffer, 0, VectorPointer);
+                    SerialPort.Write(SendBuffer, 0, VectorPointer);
+                    return;
                 }
 
                 if (WPLatVect3 != 0 && WPLonVect3 != 0)
@@ -1021,13 +986,6 @@ namespace JCFLIGHTGCS
                     WayPoint3Latitude = Convert.ToInt32(WPLatVect3 * 1e7);
                     WayPoint3Longitude = Convert.ToInt32(WPLonVect3 * 1e7);
                     //ENVIA O TERCEIRO WAYPOINT SE DISPONIVEL
-                    VectorPointer = 0;
-                    CheckAllBuffers = 0;
-                    SendBuffer[VectorPointer++] = (byte)0x4A;
-                    SendBuffer[VectorPointer++] = (byte)0x43;
-                    SendBuffer[VectorPointer++] = (byte)0x5D;
-                    SendBuffer[VectorPointer++] = 10;
-                    SendBuffer[VectorPointer++] = (byte)KEY_WP3;
                     SendBuffer[VectorPointer++] = (byte)(WayPoint3Latitude);
                     SendBuffer[VectorPointer++] = (byte)(WayPoint3Latitude >> 8);
                     SendBuffer[VectorPointer++] = (byte)(WayPoint3Latitude >> 16);
@@ -1071,9 +1029,14 @@ namespace JCFLIGHTGCS
                     if (Convert.ToString(comboBox5.SelectedItem) == "RTH") SendBuffer[VectorPointer++] = (byte)(4);
                     if (Convert.ToString(comboBox5.SelectedItem) == "TAKEOFF") SendBuffer[VectorPointer++] = (byte)(5);
                     SendBuffer[VectorPointer++] = (byte)(GPSHoldTimed3);
+                }
+
+                if (WPLatVect4 == 0 && WPLonVect4 == 0)
+                {
                     for (int i = 3; i < VectorPointer; i++) CheckAllBuffers ^= SendBuffer[i];
                     SendBuffer[VectorPointer++] = CheckAllBuffers;
-                    serialSerialPort.Write(SendBuffer, 0, VectorPointer);
+                    SerialPort.Write(SendBuffer, 0, VectorPointer);
+                    return;
                 }
 
                 if (WPLatVect4 != 0 && WPLonVect4 != 0)
@@ -1081,13 +1044,6 @@ namespace JCFLIGHTGCS
                     WayPoint4Latitude = Convert.ToInt32(WPLatVect4 * 1e7);
                     WayPoint4Longitude = Convert.ToInt32(WPLonVect4 * 1e7);
                     //ENVIA O QUARTO WAYPOINT SE DISPONIVEL
-                    VectorPointer = 0;
-                    CheckAllBuffers = 0;
-                    SendBuffer[VectorPointer++] = (byte)0x4A;
-                    SendBuffer[VectorPointer++] = (byte)0x43;
-                    SendBuffer[VectorPointer++] = (byte)0x5D;
-                    SendBuffer[VectorPointer++] = 10;
-                    SendBuffer[VectorPointer++] = (byte)KEY_WP4;
                     SendBuffer[VectorPointer++] = (byte)(WayPoint4Latitude);
                     SendBuffer[VectorPointer++] = (byte)(WayPoint4Latitude >> 8);
                     SendBuffer[VectorPointer++] = (byte)(WayPoint4Latitude >> 16);
@@ -1131,9 +1087,14 @@ namespace JCFLIGHTGCS
                     if (Convert.ToString(comboBox7.SelectedItem) == "RTH") SendBuffer[VectorPointer++] = (byte)(4);
                     if (Convert.ToString(comboBox7.SelectedItem) == "TAKEOFF") SendBuffer[VectorPointer++] = (byte)(5);
                     SendBuffer[VectorPointer++] = (byte)(GPSHoldTimed4);
+                }
+
+                if (WPLatVect5 == 0 && WPLonVect5 == 0)
+                {
                     for (int i = 3; i < VectorPointer; i++) CheckAllBuffers ^= SendBuffer[i];
                     SendBuffer[VectorPointer++] = CheckAllBuffers;
-                    serialSerialPort.Write(SendBuffer, 0, VectorPointer);
+                    SerialPort.Write(SendBuffer, 0, VectorPointer);
+                    return;
                 }
 
                 if (WPLatVect5 != 0 && WPLonVect5 != 0)
@@ -1141,13 +1102,6 @@ namespace JCFLIGHTGCS
                     WayPoint5Latitude = Convert.ToInt32(WPLatVect5 * 1e7);
                     WayPoint5Longitude = Convert.ToInt32(WPLonVect5 * 1e7);
                     //ENVIA O QUINTO WAYPOINT SE DISPONIVEL
-                    VectorPointer = 0;
-                    CheckAllBuffers = 0;
-                    SendBuffer[VectorPointer++] = (byte)0x4A;
-                    SendBuffer[VectorPointer++] = (byte)0x43;
-                    SendBuffer[VectorPointer++] = (byte)0x5D;
-                    SendBuffer[VectorPointer++] = 10;
-                    SendBuffer[VectorPointer++] = (byte)KEY_WP5;
                     SendBuffer[VectorPointer++] = (byte)(WayPoint5Latitude);
                     SendBuffer[VectorPointer++] = (byte)(WayPoint5Latitude >> 8);
                     SendBuffer[VectorPointer++] = (byte)(WayPoint5Latitude >> 16);
@@ -1191,23 +1145,29 @@ namespace JCFLIGHTGCS
                     if (Convert.ToString(comboBox9.SelectedItem) == "RTH") SendBuffer[VectorPointer++] = (byte)(4);
                     if (Convert.ToString(comboBox9.SelectedItem) == "TAKEOFF") SendBuffer[VectorPointer++] = (byte)(5);
                     SendBuffer[VectorPointer++] = (byte)(GPSHoldTimed5);
-                    for (int i = 3; i < VectorPointer; i++) CheckAllBuffers ^= SendBuffer[i];
-                    SendBuffer[VectorPointer++] = CheckAllBuffers;
-                    serialSerialPort.Write(SendBuffer, 0, VectorPointer);
                 }
+
+                // if (WPLatVect6 == 0 && WPLonVect6 == 0)
+                // {
+                for (int i = 3; i < VectorPointer; i++) CheckAllBuffers ^= SendBuffer[i];
+                SendBuffer[VectorPointer++] = CheckAllBuffers;
+                SerialPort.Write(SendBuffer, 0, VectorPointer);
+                // return;
+                //}
+
+                VectorPointer = 0;
+                CheckAllBuffers = 0;
 
                 if (WPLatVect6 != 0 && WPLonVect6 != 0)
                 {
                     WayPoint6Latitude = Convert.ToInt32(WPLatVect6 * 1e7);
                     WayPoint6Longitude = Convert.ToInt32(WPLonVect6 * 1e7);
                     //ENVIA O SEXTO WAYPOINT SE DISPONIVEL
-                    VectorPointer = 0;
-                    CheckAllBuffers = 0;
                     SendBuffer[VectorPointer++] = (byte)0x4A;
                     SendBuffer[VectorPointer++] = (byte)0x43;
-                    SendBuffer[VectorPointer++] = (byte)0x5D;
-                    SendBuffer[VectorPointer++] = 10;
-                    SendBuffer[VectorPointer++] = (byte)KEY_WP6;
+                    SendBuffer[VectorPointer++] = (byte)0x3c;
+                    SendBuffer[VectorPointer++] = 55;
+                    SendBuffer[VectorPointer++] = (byte)6;
                     SendBuffer[VectorPointer++] = (byte)(WayPoint6Latitude);
                     SendBuffer[VectorPointer++] = (byte)(WayPoint6Latitude >> 8);
                     SendBuffer[VectorPointer++] = (byte)(WayPoint6Latitude >> 16);
@@ -1251,9 +1211,14 @@ namespace JCFLIGHTGCS
                     if (Convert.ToString(comboBox11.SelectedItem) == "RTH") SendBuffer[VectorPointer++] = (byte)(4);
                     if (Convert.ToString(comboBox11.SelectedItem) == "TAKEOFF") SendBuffer[VectorPointer++] = (byte)(5);
                     SendBuffer[VectorPointer++] = (byte)(GPSHoldTimed6);
+                }
+
+                if (WPLatVect7 == 0 && WPLonVect7 == 0)
+                {
                     for (int i = 3; i < VectorPointer; i++) CheckAllBuffers ^= SendBuffer[i];
                     SendBuffer[VectorPointer++] = CheckAllBuffers;
-                    serialSerialPort.Write(SendBuffer, 0, VectorPointer);
+                    SerialPort.Write(SendBuffer, 0, VectorPointer);
+                    return;
                 }
 
                 if (WPLatVect7 != 0 && WPLonVect7 != 0)
@@ -1261,13 +1226,6 @@ namespace JCFLIGHTGCS
                     WayPoint7Latitude = Convert.ToInt32(WPLatVect7 * 1e7);
                     WayPoint7Longitude = Convert.ToInt32(WPLonVect7 * 1e7);
                     //ENVIA O SETIMO WAYPOINT SE DISPONIVEL
-                    VectorPointer = 0;
-                    CheckAllBuffers = 0;
-                    SendBuffer[VectorPointer++] = (byte)0x4A;
-                    SendBuffer[VectorPointer++] = (byte)0x43;
-                    SendBuffer[VectorPointer++] = (byte)0x5D;
-                    SendBuffer[VectorPointer++] = 10;
-                    SendBuffer[VectorPointer++] = (byte)KEY_WP7;
                     SendBuffer[VectorPointer++] = (byte)(WayPoint7Latitude);
                     SendBuffer[VectorPointer++] = (byte)(WayPoint7Latitude >> 8);
                     SendBuffer[VectorPointer++] = (byte)(WayPoint7Latitude >> 16);
@@ -1311,9 +1269,14 @@ namespace JCFLIGHTGCS
                     if (Convert.ToString(comboBox14.SelectedItem) == "RTH") SendBuffer[VectorPointer++] = (byte)(4);
                     if (Convert.ToString(comboBox14.SelectedItem) == "TAKEOFF") SendBuffer[VectorPointer++] = (byte)(5);
                     SendBuffer[VectorPointer++] = (byte)(GPSHoldTimed7);
+                }
+
+                if (WPLatVect8 == 0 && WPLonVect8 == 0)
+                {
                     for (int i = 3; i < VectorPointer; i++) CheckAllBuffers ^= SendBuffer[i];
                     SendBuffer[VectorPointer++] = CheckAllBuffers;
-                    serialSerialPort.Write(SendBuffer, 0, VectorPointer);
+                    SerialPort.Write(SendBuffer, 0, VectorPointer);
+                    return;
                 }
 
                 if (WPLatVect8 != 0 && WPLonVect8 != 0)
@@ -1321,13 +1284,6 @@ namespace JCFLIGHTGCS
                     WayPoint8Latitude = Convert.ToInt32(WPLatVect8 * 1e7);
                     WayPoint8Longitude = Convert.ToInt32(WPLonVect8 * 1e7);
                     //ENVIA O OITAVO WAYPOINT SE DISPONIVEL
-                    VectorPointer = 0;
-                    CheckAllBuffers = 0;
-                    SendBuffer[VectorPointer++] = (byte)0x4A;
-                    SendBuffer[VectorPointer++] = (byte)0x43;
-                    SendBuffer[VectorPointer++] = (byte)0x5D;
-                    SendBuffer[VectorPointer++] = 10;
-                    SendBuffer[VectorPointer++] = (byte)KEY_WP8;
                     SendBuffer[VectorPointer++] = (byte)(WayPoint8Latitude);
                     SendBuffer[VectorPointer++] = (byte)(WayPoint8Latitude >> 8);
                     SendBuffer[VectorPointer++] = (byte)(WayPoint8Latitude >> 16);
@@ -1371,23 +1327,21 @@ namespace JCFLIGHTGCS
                     if (Convert.ToString(comboBox16.SelectedItem) == "RTH") SendBuffer[VectorPointer++] = (byte)(4);
                     if (Convert.ToString(comboBox16.SelectedItem) == "TAKEOFF") SendBuffer[VectorPointer++] = (byte)(5);
                     SendBuffer[VectorPointer++] = (byte)(GPSHoldTimed8);
-                    for (int i = 3; i < VectorPointer; i++) CheckAllBuffers ^= SendBuffer[i];
-                    SendBuffer[VectorPointer++] = CheckAllBuffers;
-                    serialSerialPort.Write(SendBuffer, 0, VectorPointer);
                 }
 
+                if (WPLatVect9 == 0 && WPLonVect9 == 0)
+                {
+                    for (int i = 3; i < VectorPointer; i++) CheckAllBuffers ^= SendBuffer[i];
+                    SendBuffer[VectorPointer++] = CheckAllBuffers;
+                    SerialPort.Write(SendBuffer, 0, VectorPointer);
+                    return;
+
+                }
                 if (WPLatVect9 != 0 && WPLonVect9 != 0)
                 {
                     WayPoint9Latitude = Convert.ToInt32(WPLatVect9 * 1e7);
                     WayPoint9Longitude = Convert.ToInt32(WPLonVect9 * 1e7);
                     //ENVIA O NONO WAYPOINT SE DISPONIVEL
-                    VectorPointer = 0;
-                    CheckAllBuffers = 0;
-                    SendBuffer[VectorPointer++] = (byte)0x4A;
-                    SendBuffer[VectorPointer++] = (byte)0x43;
-                    SendBuffer[VectorPointer++] = (byte)0x5D;
-                    SendBuffer[VectorPointer++] = 10;
-                    SendBuffer[VectorPointer++] = (byte)KEY_WP9;
                     SendBuffer[VectorPointer++] = (byte)(WayPoint9Latitude);
                     SendBuffer[VectorPointer++] = (byte)(WayPoint9Latitude >> 8);
                     SendBuffer[VectorPointer++] = (byte)(WayPoint9Latitude >> 16);
@@ -1431,9 +1385,14 @@ namespace JCFLIGHTGCS
                     if (Convert.ToString(comboBox18.SelectedItem) == "RTH") SendBuffer[VectorPointer++] = (byte)(4);
                     if (Convert.ToString(comboBox18.SelectedItem) == "TAKEOFF") SendBuffer[VectorPointer++] = (byte)(5);
                     SendBuffer[VectorPointer++] = (byte)(GPSHoldTimed9);
+                }
+
+                if (WPLatVect10 == 0 && WPLonVect10 == 0)
+                {
                     for (int i = 3; i < VectorPointer; i++) CheckAllBuffers ^= SendBuffer[i];
                     SendBuffer[VectorPointer++] = CheckAllBuffers;
-                    serialSerialPort.Write(SendBuffer, 0, VectorPointer);
+                    SerialPort.Write(SendBuffer, 0, VectorPointer);
+                    return;
                 }
 
                 if (WPLatVect10 != 0 && WPLonVect10 != 0)
@@ -1441,13 +1400,6 @@ namespace JCFLIGHTGCS
                     WayPoint10Latitude = Convert.ToInt32(WPLatVect10 * 1e7);
                     WayPoint10Longitude = Convert.ToInt32(WPLonVect10 * 1e7);
                     //ENVIA O NONO WAYPOINT SE DISPONIVEL
-                    VectorPointer = 0;
-                    CheckAllBuffers = 0;
-                    SendBuffer[VectorPointer++] = (byte)0x4A;
-                    SendBuffer[VectorPointer++] = (byte)0x43;
-                    SendBuffer[VectorPointer++] = (byte)0x5D;
-                    SendBuffer[VectorPointer++] = 10;
-                    SendBuffer[VectorPointer++] = (byte)KEY_WP10;
                     SendBuffer[VectorPointer++] = (byte)(WayPoint10Latitude);
                     SendBuffer[VectorPointer++] = (byte)(WayPoint10Latitude >> 8);
                     SendBuffer[VectorPointer++] = (byte)(WayPoint10Latitude >> 16);
@@ -1493,7 +1445,7 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)(GPSHoldTimed10);
                     for (int i = 3; i < VectorPointer; i++) CheckAllBuffers ^= SendBuffer[i];
                     SendBuffer[VectorPointer++] = CheckAllBuffers;
-                    serialSerialPort.Write(SendBuffer, 0, VectorPointer);
+                    SerialPort.Write(SendBuffer, 0, VectorPointer);
                 }
             }
         }
