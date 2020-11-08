@@ -169,6 +169,9 @@ namespace JCFLIGHTGCS
         Boolean State = false;
         Boolean NoticeLarger = true;
 
+        static int PacketsError = 0;
+        static int PacketsReceived = 0;
+
         Form WaitUart = Program.WaitUart;
 
         public GCS()
@@ -496,8 +499,13 @@ namespace JCFLIGHTGCS
                             {
                                 if (!Error_Received)
                                 {
+                                    PacketsReceived++;
                                     Serial_Parse(Command);
                                 }
+                            }
+                            else
+                            {
+                                PacketsError++;
                             }
                             Read_State = 0;
                         }
@@ -632,8 +640,14 @@ namespace JCFLIGHTGCS
                     Serial_Write_To_FC(7);
                     Serial_Write_To_FC(8);
                     Serial_Write_To_FC(9);
+                    label69.Text = "GCS RSSI:" + Convert.ToString(CalculateAverage(PacketsReceived, PacketsError)) + "%";
                 }
             }
+        }
+
+        private static double CalculateAverage(int PR, int PE)
+        {
+            return PR / (PR + (double)PE) * 100;
         }
 
         private void ProgressBarControl(int CHThrottle, int CHYaw, int CHPitch, int CHRoll, int CHAux1, int CHAux2,
@@ -855,7 +869,8 @@ namespace JCFLIGHTGCS
         private void button7_Click(object sender, EventArgs e)
         {
             if (SerialPort.IsOpen == false) return;
-
+            PacketsError = 0;
+            PacketsReceived = 0;
             comboBox7.Enabled = true;
             comboBox7.Text = "Selecione";
             SerialPort.Close();
