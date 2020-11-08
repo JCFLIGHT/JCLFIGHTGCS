@@ -80,18 +80,21 @@ namespace JCFLIGHTGCS
         static Scale cScale;
         static Scale dScale;
         static Scale eScale;
+        static Scale fScale;
 
         GraphPane RollGraph;
         GraphPane PitchGraph;
         GraphPane CompassGraph;
         GraphPane BaroGraph;
         GraphPane TempGraph;
+        GraphPane AccGraph;
 
         static RollingPointPairList RollToGraph;
         static RollingPointPairList PitchToGraph;
         static RollingPointPairList CompassToGraph;
         static RollingPointPairList BaroToGraph;
         static RollingPointPairList TempToGraph;
+        static RollingPointPairList AccToGraph;
 
         GMapOverlay OverlayToHome = new GMapOverlay();
 
@@ -171,6 +174,8 @@ namespace JCFLIGHTGCS
 
         static int PacketsError = 0;
         static int PacketsReceived = 0;
+
+        double GetAccGForce = 0;
 
         Form WaitUart = Program.WaitUart;
 
@@ -279,7 +284,7 @@ namespace JCFLIGHTGCS
             zedGraphControl2.AxisChange();
             //PLOTTER COMPASS
             CompassGraph = zedGraphControl3.GraphPane;
-            CompassGraph.Title.Text = "COMPASS";
+            CompassGraph.Title.Text = "COMPASS (YAW)";
             CompassGraph.XAxis.Title.Text = "";
             CompassGraph.YAxis.Title.Text = "";
             CompassGraph.XAxis.MajorGrid.IsVisible = true;
@@ -373,6 +378,41 @@ namespace JCFLIGHTGCS
             zedGraphControl5.ScrollGrace = 0;
             eScale = zedGraphControl5.GraphPane.XAxis.Scale;
             zedGraphControl5.AxisChange();
+
+
+            //PLOTTER DA FORÇA G NO ACELEROMETRO
+            AccGraph = zedGraphControl6.GraphPane;
+            AccGraph.Title.Text = "FORÇA G NO ACELERÔMETRO";
+            AccGraph.XAxis.Title.Text = "";
+            AccGraph.YAxis.Title.Text = "";
+            AccGraph.XAxis.MajorGrid.IsVisible = true;
+            AccGraph.YAxis.MajorGrid.IsVisible = true;
+            AccGraph.XAxis.Scale.IsVisible = false;
+            AccGraph.YAxis.Scale.FontSpec.FontColor = Color.White;
+            AccGraph.YAxis.Title.FontSpec.FontColor = Color.White;
+            AccGraph.YAxis.MajorTic.IsOpposite = false;
+            AccGraph.YAxis.MinorTic.IsOpposite = false;
+            AccGraph.YAxis.MajorGrid.IsZeroLine = true;
+            AccGraph.YAxis.Scale.Align = AlignP.Inside;
+            AccGraph.YAxis.Scale.IsVisible = false;
+            AccGraph.Chart.Fill = new Fill(Color.DimGray, Color.DarkGray, 45.0f);
+            AccGraph.Fill = new Fill(Color.DimGray, Color.DimGray, 45.0f);
+            AccGraph.Legend.IsVisible = false;
+            AccGraph.XAxis.Scale.IsVisible = false;
+            AccGraph.YAxis.Scale.IsVisible = true;
+            AccGraph.XAxis.Scale.MagAuto = true;
+            AccGraph.YAxis.Scale.MagAuto = false;
+            AccGraph.YAxis.Title.FontSpec.FontColor = Color.White;
+            AccGraph.XAxis.Title.FontSpec.FontColor = Color.White;
+            AccGraph.XAxis.Scale.Min = 0;
+            AccGraph.XAxis.Scale.Max = 300;
+            AccGraph.XAxis.Type = AxisType.Linear;
+            AccToGraph = new RollingPointPairList(300);
+            AccGraph.AddCurve("Força G", AccToGraph, Color.Pink, SymbolType.None);
+            zedGraphControl6.ScrollGrace = 0;
+            fScale = zedGraphControl6.GraphPane.XAxis.Scale;
+            zedGraphControl6.AxisChange();
+
             Thread.Sleep(3000);
             //FECHA O SPLASH SCREEN
             Program.Splash?.Close();
@@ -559,7 +599,8 @@ namespace JCFLIGHTGCS
                     HomePointDisctance = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     AmperInMah = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     CoG = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    Crosstrack = BitConverter.ToInt16(InBuffer, ptr); ptr += 4;
+                    Crosstrack = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    GetAccGForce = Convert.ToDouble(BitConverter.ToInt16(InBuffer, ptr)); ptr += 4;
                     break;
 
                 case 8:
@@ -754,6 +795,7 @@ namespace JCFLIGHTGCS
             CompassToGraph.Add((double)xTimeStamp, ReadCompass);
             BaroToGraph.Add((double)xTimeStamp, ReadBarometer);
             TempToGraph.Add((double)xTimeStamp, Temperature);
+            AccToGraph.Add((double)xTimeStamp, GetAccGForce);
 
             xTimeStamp = xTimeStamp + 1;
 
@@ -792,6 +834,13 @@ namespace JCFLIGHTGCS
                 eScale.Min = eScale.Max - range;
             }
 
+            if (xTimeStamp > fScale.Max)
+            {
+                double range = fScale.Max - fScale.Min;
+                fScale.Max = fScale.Max + 1;
+                fScale.Min = fScale.Max - range;
+            }
+
             zedGraphControl1.AxisChange();
             zedGraphControl1.Invalidate();
             zedGraphControl2.AxisChange();
@@ -802,6 +851,8 @@ namespace JCFLIGHTGCS
             zedGraphControl4.Invalidate();
             zedGraphControl5.AxisChange();
             zedGraphControl5.Invalidate();
+            zedGraphControl6.AxisChange();
+            zedGraphControl6.Invalidate();
 
             MyGMap.MinZoom = 2;
             MyGMap.MaxZoom = 24;
