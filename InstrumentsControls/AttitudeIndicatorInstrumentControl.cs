@@ -25,6 +25,7 @@ namespace JCFLIGHTGCS
         Bitmap bmpDesarm = new Bitmap(JCFLIGHTGCS.InstrumentsControls.InstrumentsControlsRessources.Desarmado);
         Bitmap bmpFailSafe = new Bitmap(JCFLIGHTGCS.InstrumentsControls.InstrumentsControlsRessources.FailSafe);
         Bitmap bmpBankAngle = new Bitmap(JCFLIGHTGCS.InstrumentsControls.InstrumentsControlsRessources.BankAngle);
+        Bitmap bmpIMUBad = new Bitmap(JCFLIGHTGCS.InstrumentsControls.InstrumentsControlsRessources.IMURuim);
 
         private System.ComponentModel.Container components = null;
 
@@ -55,6 +56,7 @@ namespace JCFLIGHTGCS
             bmpDesarm.MakeTransparent(Color.Yellow);
             bmpFailSafe.MakeTransparent(Color.Yellow);
             bmpBankAngle.MakeTransparent(Color.Yellow);
+            bmpIMUBad.MakeTransparent(Color.Yellow);
 
             RotateAndTranslate(pe, bmpBoule, RollAngle, 0, ptBoule, (int)(4 * PitchAngle), ptRotation, scale);
 
@@ -73,6 +75,7 @@ namespace JCFLIGHTGCS
                     if (GetBMPType == 1) pe.Graphics.DrawImage(bmpArm, 90, 110, 120, 80);
                     if (GetBMPType == 2) pe.Graphics.DrawImage(bmpFailSafe, 90, 110, 120, 80);
                     if (GetBMPType == 3) pe.Graphics.DrawImage(bmpBankAngle, 90, 110, 120, 80);
+                    if (GetBMPType == 4) pe.Graphics.DrawImage(bmpIMUBad, 90, 110, 120, 80);
                 }
                 else
                 {
@@ -80,6 +83,7 @@ namespace JCFLIGHTGCS
                     if (GetBMPType == 1) pe.Graphics.DrawImage(bmpArm, 45, 55, 70, 50);
                     if (GetBMPType == 2) pe.Graphics.DrawImage(bmpFailSafe, 45, 55, 70, 50);
                     if (GetBMPType == 3) pe.Graphics.DrawImage(bmpBankAngle, 45, 55, 70, 50);
+                    if (GetBMPType == 4) pe.Graphics.DrawImage(bmpIMUBad, 45, 55, 70, 50);
                 }
             }
         }

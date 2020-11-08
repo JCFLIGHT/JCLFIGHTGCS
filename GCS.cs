@@ -58,7 +58,6 @@ namespace JCFLIGHTGCS
         double Temperature = 0;
         double HomePointDisctance;
         static double xTimeStamp = 0;
-        byte CountAccImage = 0;
         byte CommandArmDisarm = 0;
         byte GPS_NumSat = 0;
         byte FailSafeDetect = 0;
@@ -169,13 +168,15 @@ namespace JCFLIGHTGCS
         Int32 Crosstrack = 0;
 
         Boolean ItsSafeToUpdate = true;
-        Boolean State = false;
+        Boolean ToogleState = false;
         Boolean NoticeLarger = true;
 
         static int PacketsError = 0;
         static int PacketsReceived = 0;
 
         double GetAccGForce = 0;
+
+        byte GetAccCalibFlag = 0;
 
         Form WaitUart = Program.WaitUart;
 
@@ -600,7 +601,8 @@ namespace JCFLIGHTGCS
                     AmperInMah = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     CoG = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     Crosstrack = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    GetAccGForce = Convert.ToDouble(BitConverter.ToInt16(InBuffer, ptr)); ptr += 4;
+                    GetAccGForce = Convert.ToDouble(BitConverter.ToInt16(InBuffer, ptr)) / 100; ptr += 2;
+                    GetAccCalibFlag = (byte)InBuffer[ptr++];
                     break;
 
                 case 8:
@@ -682,6 +684,7 @@ namespace JCFLIGHTGCS
                     Serial_Write_To_FC(8);
                     Serial_Write_To_FC(9);
                     label69.Text = "GCS RSSI:" + Convert.ToString(CalculateAverage(PacketsReceived, PacketsError)) + "%";
+                    UpdateAccImageStatus();
                 }
             }
         }
@@ -983,7 +986,6 @@ namespace JCFLIGHTGCS
 
         private void button1_Click(object sender, EventArgs e)
         {
-            CountAccImage = 0;
             SmallCompass = false;
             NoticeLarger = true;
             if (SerialOpen == true)
@@ -1004,7 +1006,6 @@ namespace JCFLIGHTGCS
 
         private void button2_Click(object sender, EventArgs e)
         {
-            CountAccImage = 0;
             if (SerialOpen) return;
             if (SerialPort.IsOpen == true)
             {
@@ -1042,8 +1043,6 @@ namespace JCFLIGHTGCS
 
         private void button3_Click(object sender, EventArgs e)
         {
-            CountAccImage = 0;
-
             if (AccNotCalibrated)
             {
                 pictureBox10.BackColor = Color.Red;
@@ -1073,7 +1072,6 @@ namespace JCFLIGHTGCS
 
         private void button4_Click(object sender, EventArgs e)
         {
-            CountAccImage = 0;
             if (SerialOpen == true)
             {
                 Serial_Write_To_FC(14);
@@ -1093,7 +1091,6 @@ namespace JCFLIGHTGCS
 
         private void button5_Click(object sender, EventArgs e)
         {
-            CountAccImage = 0;
             if (SerialOpen == true)
             {
                 Serial_Write_To_FC(14);
@@ -1113,7 +1110,6 @@ namespace JCFLIGHTGCS
 
         private void button6_Click(object sender, EventArgs e)
         {
-            CountAccImage = 0;
             NoticeLarger = false;
             if (SerialOpen == true)
             {
@@ -1136,16 +1132,6 @@ namespace JCFLIGHTGCS
         {
             if (!SerialPort.IsOpen) return;
             Serial_Write_To_FC(11);
-            CountAccImage++;
-            pictureBox10.BackColor = Color.Green;
-            if (CountAccImage > 1) pictureBox13.BackColor = Color.Green;
-            if (CountAccImage > 2)
-            {
-                if (ReadPitch > 750) pictureBox21.BackColor = Color.Green;
-                if (ReadPitch < (-750)) pictureBox19.BackColor = Color.Green;
-                if (ReadRoll > 750) pictureBox17.BackColor = Color.Green;
-                if (ReadRoll < (-750)) pictureBox15.BackColor = Color.Green;
-            }
         }
 
         static int CompassX = 0;
@@ -1520,7 +1506,6 @@ namespace JCFLIGHTGCS
 
         private void button10_Click_1(object sender, EventArgs e)
         {
-            CountAccImage = 0;
             if (SerialOpen == true)
             {
                 Serial_Write_To_FC(14);
@@ -1554,7 +1539,6 @@ namespace JCFLIGHTGCS
 
         private void button13_Click(object sender, EventArgs e)
         {
-            CountAccImage = 0;
             if (PidAndFiltersCommunicationOpen) return;
             if (SerialOpen == true)
             {
@@ -1655,12 +1639,6 @@ namespace JCFLIGHTGCS
             {
                 label94.Text = "AHRS:Ruim";
                 label94.ForeColor = Color.Red;
-                pictureBox10.BackColor = Color.Red;
-                pictureBox13.BackColor = Color.Red;
-                pictureBox15.BackColor = Color.Red;
-                pictureBox17.BackColor = Color.Red;
-                pictureBox19.BackColor = Color.Red;
-                pictureBox21.BackColor = Color.Red;
             }
             else
             {
@@ -1936,66 +1914,92 @@ namespace JCFLIGHTGCS
         private void timer3_Tick(object sender, EventArgs e)
         {
             if (SerialPort.IsOpen == false) return;
-            if (!State)
+            if (!ToogleState)
             {
-                if ((ReadRoll > 250 || ReadRoll < (-250)) || (ReadPitch > 250 || ReadPitch < (-250)))
+                if (ReadRoll > 1200)
                 {
-                    HorizonIndicator.SetNoticeInArtificialHorizon(3, NoticeLarger, true);
-                    HorizonIndicator2.SetNoticeInArtificialHorizon(3, NoticeLarger, true);
+                    HorizonIndicator.SetNoticeInArtificialHorizon(4, NoticeLarger, true);
+                    HorizonIndicator2.SetNoticeInArtificialHorizon(4, NoticeLarger, true);
                 }
                 else
                 {
-                    if (FailSafeDetect == 1)
+                    if ((ReadRoll > 250 || ReadRoll < (-250)) || (ReadPitch > 250 || ReadPitch < (-250)))
                     {
-                        HorizonIndicator.SetNoticeInArtificialHorizon(2, NoticeLarger, true);
-                        HorizonIndicator2.SetNoticeInArtificialHorizon(2, NoticeLarger, true);
+                        HorizonIndicator.SetNoticeInArtificialHorizon(3, NoticeLarger, true);
+                        HorizonIndicator2.SetNoticeInArtificialHorizon(3, NoticeLarger, true);
                     }
                     else
                     {
-                        if (CommandArmDisarm == 0)
+                        if (FailSafeDetect == 1)
                         {
-                            HorizonIndicator.SetNoticeInArtificialHorizon(0, NoticeLarger, true);
-                            HorizonIndicator2.SetNoticeInArtificialHorizon(0, NoticeLarger, true);
+                            HorizonIndicator.SetNoticeInArtificialHorizon(2, NoticeLarger, true);
+                            HorizonIndicator2.SetNoticeInArtificialHorizon(2, NoticeLarger, true);
                         }
                         else
                         {
-                            HorizonIndicator.SetNoticeInArtificialHorizon(1, NoticeLarger, true);
-                            HorizonIndicator2.SetNoticeInArtificialHorizon(1, NoticeLarger, true);
+                            if (CommandArmDisarm == 0)
+                            {
+                                HorizonIndicator.SetNoticeInArtificialHorizon(0, NoticeLarger, true);
+                                HorizonIndicator2.SetNoticeInArtificialHorizon(0, NoticeLarger, true);
+                            }
+                            else
+                            {
+                                HorizonIndicator.SetNoticeInArtificialHorizon(1, NoticeLarger, true);
+                                HorizonIndicator2.SetNoticeInArtificialHorizon(1, NoticeLarger, true);
+                            }
                         }
                     }
                 }
-                State = true;
+                ToogleState = true;
             }
             else
             {
-                if ((ReadRoll > 250 || ReadRoll < (-250)) || (ReadPitch > 250 || ReadPitch < (-250)))
+                if (ReadRoll > 1200)
                 {
-                    HorizonIndicator.SetNoticeInArtificialHorizon(3, NoticeLarger, false);
-                    HorizonIndicator2.SetNoticeInArtificialHorizon(3, NoticeLarger, false);
+                    HorizonIndicator.SetNoticeInArtificialHorizon(4, NoticeLarger, false);
+                    HorizonIndicator2.SetNoticeInArtificialHorizon(4, NoticeLarger, false);
                 }
                 else
                 {
-                    if (FailSafeDetect == 1)
+                    if ((ReadRoll > 250 || ReadRoll < (-250)) || (ReadPitch > 250 || ReadPitch < (-250)))
                     {
-                        HorizonIndicator.SetNoticeInArtificialHorizon(2, NoticeLarger, false);
-                        HorizonIndicator2.SetNoticeInArtificialHorizon(2, NoticeLarger, false);
+                        HorizonIndicator.SetNoticeInArtificialHorizon(3, NoticeLarger, false);
+                        HorizonIndicator2.SetNoticeInArtificialHorizon(3, NoticeLarger, false);
                     }
                     else
                     {
-                        if (CommandArmDisarm == 0)
+                        if (FailSafeDetect == 1)
                         {
-                            HorizonIndicator.SetNoticeInArtificialHorizon(0, NoticeLarger, false);
-                            HorizonIndicator2.SetNoticeInArtificialHorizon(0, NoticeLarger, false);
+                            HorizonIndicator.SetNoticeInArtificialHorizon(2, NoticeLarger, false);
+                            HorizonIndicator2.SetNoticeInArtificialHorizon(2, NoticeLarger, false);
                         }
                         else
                         {
-                            HorizonIndicator.SetNoticeInArtificialHorizon(1, NoticeLarger, false);
-                            HorizonIndicator2.SetNoticeInArtificialHorizon(1, NoticeLarger, false);
+                            if (CommandArmDisarm == 0)
+                            {
+                                HorizonIndicator.SetNoticeInArtificialHorizon(0, NoticeLarger, false);
+                                HorizonIndicator2.SetNoticeInArtificialHorizon(0, NoticeLarger, false);
+                            }
+                            else
+                            {
+                                HorizonIndicator.SetNoticeInArtificialHorizon(1, NoticeLarger, false);
+                                HorizonIndicator2.SetNoticeInArtificialHorizon(1, NoticeLarger, false);
+                            }
                         }
                     }
                 }
-                State = false;
+                ToogleState = false;
             }
+        }
+
+        private void UpdateAccImageStatus()
+        {
+            if ((1 & (GetAccCalibFlag >> 0)) > 0) pictureBox10.BackColor = Color.Green;
+            if ((1 & (GetAccCalibFlag >> 1)) > 0) pictureBox13.BackColor = Color.Green;
+            if ((1 & (GetAccCalibFlag >> 2)) > 0) pictureBox19.BackColor = Color.Green;
+            if ((1 & (GetAccCalibFlag >> 3)) > 0) pictureBox21.BackColor = Color.Green;
+            if ((1 & (GetAccCalibFlag >> 4)) > 0) pictureBox17.BackColor = Color.Green;
+            if ((1 & (GetAccCalibFlag >> 5)) > 0) pictureBox15.BackColor = Color.Green;
         }
     }
 }

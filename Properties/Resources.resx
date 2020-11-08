@@ -232,6 +232,9 @@
   <data name="Horizon_GroundSky" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Horizon_GroundSky.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="IMURuim" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\IMURuim.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="JCFLIGHT_GCS_LOGO" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\JCFLIGHT_GCS_LOGO.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

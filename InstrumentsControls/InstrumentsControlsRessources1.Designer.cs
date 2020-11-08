@@ -153,6 +153,16 @@ namespace JCFLIGHTGCS.InstrumentsControls {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap IMURuim {
+            get {
+                object obj = ResourceManager.GetObject("IMURuim", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Maquette_Avion {
             get {
                 object obj = ResourceManager.GetObject("Maquette_Avion", resourceCulture);

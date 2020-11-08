@@ -258,6 +258,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="LogoJCFLIGHTIcon.ico" />
+    <None Include="Resources\IMURuim.bmp" />
     <None Include="Resources\BankAngle.bmp" />
     <None Include="Resources\FailSafe.bmp" />
     <None Include="Resources\Desarmado.bmp" />
