@@ -207,6 +207,7 @@ namespace JCFLIGHTGCS
             MyGMap.ShowCenter = false;
             MyGMap.Manager.Mode = AccessMode.ServerAndCache;
             MyGMap.Zoom = 2;
+            MyGMap.DragButton = MouseButtons.Left;
             PositionToRoutes = new GMapOverlay("PositionToRoutes");
             MyGMap.Overlays.Add(PositionToRoutes);
             PositionToRoutes.Markers.Clear();
