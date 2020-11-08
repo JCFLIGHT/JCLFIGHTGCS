@@ -6,8 +6,8 @@
 
 - Baixe o GCS da JCFLIGHT.
 - Extraia o arquivo ZIP.
-- Abra JCFLIGHTGCS.
-- Procure e abra a pasta BIN,abra a pasta DEBUG e,abra o aplicativo "JCFLIGHTGCS".
+- Abra a pasta "JCFLIGHTGCS".
+- Procure e abra a pasta "BIN",abra a pasta "DEBUG" e,abra o aplicativo "JCFLIGHTGCS".
 
 ## Como construir com o Visual Studio
 

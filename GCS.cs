@@ -1884,46 +1884,63 @@ namespace JCFLIGHTGCS
 
         private void timer3_Tick(object sender, EventArgs e)
         {
+            if (SerialPort.IsOpen == false) return;
             if (!State)
             {
-                if (FailSafeDetect == 1)
+                if ((ReadRoll > 250 || ReadRoll < (-250)) || (ReadPitch > 250 || ReadPitch < (-250)))
                 {
-                    HorizonIndicator.SetNoticeInArtificialHorizon(2, NoticeLarger, true);
-                    HorizonIndicator2.SetNoticeInArtificialHorizon(2, NoticeLarger, true);
+                    HorizonIndicator.SetNoticeInArtificialHorizon(3, NoticeLarger, true);
+                    HorizonIndicator2.SetNoticeInArtificialHorizon(3, NoticeLarger, true);
                 }
                 else
                 {
-                    if (CommandArmDisarm == 0)
+                    if (FailSafeDetect == 1)
                     {
-                        HorizonIndicator.SetNoticeInArtificialHorizon(0, NoticeLarger, true);
-                        HorizonIndicator2.SetNoticeInArtificialHorizon(0, NoticeLarger, true);
+                        HorizonIndicator.SetNoticeInArtificialHorizon(2, NoticeLarger, true);
+                        HorizonIndicator2.SetNoticeInArtificialHorizon(2, NoticeLarger, true);
                     }
                     else
                     {
-                        HorizonIndicator.SetNoticeInArtificialHorizon(1, NoticeLarger, true);
-                        HorizonIndicator2.SetNoticeInArtificialHorizon(1, NoticeLarger, true);
+                        if (CommandArmDisarm == 0)
+                        {
+                            HorizonIndicator.SetNoticeInArtificialHorizon(0, NoticeLarger, true);
+                            HorizonIndicator2.SetNoticeInArtificialHorizon(0, NoticeLarger, true);
+                        }
+                        else
+                        {
+                            HorizonIndicator.SetNoticeInArtificialHorizon(1, NoticeLarger, true);
+                            HorizonIndicator2.SetNoticeInArtificialHorizon(1, NoticeLarger, true);
+                        }
                     }
                 }
                 State = true;
             }
             else
             {
-                if (FailSafeDetect == 1)
+                if ((ReadRoll > 250 || ReadRoll < (-250)) || (ReadPitch > 250 || ReadPitch < (-250)))
                 {
-                    HorizonIndicator.SetNoticeInArtificialHorizon(2, NoticeLarger, false);
-                    HorizonIndicator2.SetNoticeInArtificialHorizon(2, NoticeLarger, false);
+                    HorizonIndicator.SetNoticeInArtificialHorizon(3, NoticeLarger, false);
+                    HorizonIndicator2.SetNoticeInArtificialHorizon(3, NoticeLarger, false);
                 }
                 else
                 {
-                    if (CommandArmDisarm == 0)
+                    if (FailSafeDetect == 1)
                     {
-                        HorizonIndicator.SetNoticeInArtificialHorizon(0, NoticeLarger, false);
-                        HorizonIndicator2.SetNoticeInArtificialHorizon(0, NoticeLarger, false);
+                        HorizonIndicator.SetNoticeInArtificialHorizon(2, NoticeLarger, false);
+                        HorizonIndicator2.SetNoticeInArtificialHorizon(2, NoticeLarger, false);
                     }
                     else
                     {
-                        HorizonIndicator.SetNoticeInArtificialHorizon(1, NoticeLarger, false);
-                        HorizonIndicator2.SetNoticeInArtificialHorizon(1, NoticeLarger, false);
+                        if (CommandArmDisarm == 0)
+                        {
+                            HorizonIndicator.SetNoticeInArtificialHorizon(0, NoticeLarger, false);
+                            HorizonIndicator2.SetNoticeInArtificialHorizon(0, NoticeLarger, false);
+                        }
+                        else
+                        {
+                            HorizonIndicator.SetNoticeInArtificialHorizon(1, NoticeLarger, false);
+                            HorizonIndicator2.SetNoticeInArtificialHorizon(1, NoticeLarger, false);
+                        }
                     }
                 }
                 State = false;

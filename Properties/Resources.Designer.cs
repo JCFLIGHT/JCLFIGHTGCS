@@ -113,6 +113,16 @@ namespace JCFLIGHTGCS.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap BankAngle {
+            get {
+                object obj = ResourceManager.GetObject("BankAngle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Brasil {
             get {
                 object obj = ResourceManager.GetObject("Brasil", resourceCulture);

@@ -276,6 +276,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="LogoJCFLIGHTIcon.ico" />
+    <None Include="Resources\BankAngle.bmp" />
     <None Include="Resources\FailSafe.bmp" />
     <None Include="Resources\Desarmado.bmp" />
     <None Include="Resources\Armado.bmp" />

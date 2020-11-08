@@ -73,6 +73,16 @@ namespace JCFLIGHTGCS.InstrumentsControls {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap BankAngle {
+            get {
+                object obj = ResourceManager.GetObject("BankAngle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Desarmado {
             get {
                 object obj = ResourceManager.GetObject("Desarmado", resourceCulture);
