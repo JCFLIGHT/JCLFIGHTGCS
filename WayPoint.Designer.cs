@@ -168,7 +168,6 @@
             this.label47 = new System.Windows.Forms.Label();
             this.label48 = new System.Windows.Forms.Label();
             this.timer3 = new System.Windows.Forms.Timer(this.components);
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.label49 = new System.Windows.Forms.Label();
             this.label50 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
@@ -187,6 +186,7 @@
             this.label79 = new System.Windows.Forms.Label();
             this.label80 = new System.Windows.Forms.Label();
             this.label81 = new System.Windows.Forms.Label();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox33.SuspendLayout();
@@ -231,9 +231,9 @@
             this.groupBox27.SuspendLayout();
             this.groupBox26.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.groupBox20.SuspendLayout();
             this.groupBox31.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
             // 
             // MyGmap
@@ -256,7 +256,7 @@
             this.MyGmap.PolygonsEnabled = true;
             this.MyGmap.RetryLoadTile = 0;
             this.MyGmap.RoutesEnabled = true;
-            this.MyGmap.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
+            this.MyGmap.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Fractional;
             this.MyGmap.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.MyGmap.ShowTileGridLines = false;
             this.MyGmap.Size = new System.Drawing.Size(980, 477);
@@ -1953,17 +1953,6 @@
             this.timer3.Interval = 1000;
             this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
             // 
-            // trackBar1
-            // 
-            this.trackBar1.LargeChange = 1;
-            this.trackBar1.Location = new System.Drawing.Point(982, -2);
-            this.trackBar1.Maximum = 20;
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBar1.Size = new System.Drawing.Size(45, 477);
-            this.trackBar1.TabIndex = 152;
-            this.trackBar1.TickStyle = System.Windows.Forms.TickStyle.Both;
-            // 
             // label49
             // 
             this.label49.AutoSize = true;
@@ -2217,6 +2206,17 @@
             this.label81.Text = "Limpa todos os parâmetros\r\nrealizados aqui nos GCS e os\r\nparâmetros contidos na J" +
     "CFLIGHT.";
             // 
+            // trackBar1
+            // 
+            this.trackBar1.LargeChange = 1;
+            this.trackBar1.Location = new System.Drawing.Point(982, -2);
+            this.trackBar1.Maximum = 20;
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.trackBar1.Size = new System.Drawing.Size(45, 477);
+            this.trackBar1.TabIndex = 152;
+            this.trackBar1.TickStyle = System.Windows.Forms.TickStyle.Both;
+            // 
             // WayPoint
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2347,11 +2347,11 @@
             this.groupBox26.ResumeLayout(false);
             this.groupBox26.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.groupBox20.ResumeLayout(false);
             this.groupBox20.PerformLayout();
             this.groupBox31.ResumeLayout(false);
             this.groupBox31.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2456,7 +2456,6 @@
         private System.Windows.Forms.Label label47;
         private System.Windows.Forms.Label label48;
         private System.Windows.Forms.Timer timer3;
-        private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.Label label49;
         private System.Windows.Forms.Label label50;
         private System.Windows.Forms.Button button4;
@@ -2515,5 +2514,6 @@
         private System.Windows.Forms.Label label79;
         private System.Windows.Forms.Label label80;
         private System.Windows.Forms.Label label81;
+        private System.Windows.Forms.TrackBar trackBar1;
     }
 }

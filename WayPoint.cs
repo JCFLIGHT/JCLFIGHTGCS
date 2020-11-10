@@ -98,7 +98,7 @@ namespace JCFLIGHTGCS
 
         byte GmapFrameMode = 0;
 
-        GMapOverlay MarkersOverlay = new GMapOverlay("Makers");
+        GMapOverlay MarkersOverlay = new GMapOverlay("Markers");
         GMapOverlay GmapPolygons = new GMapOverlay("Poligonos");
 
         private List<PointLatLng> WPCoordinates;
@@ -648,6 +648,7 @@ namespace JCFLIGHTGCS
                         Serial_Write_To_FC(1);
                         Serial_Write_To_FC(2);
                     }
+
                     Serial_Write_To_FC(7);
 
                     if (ParamsPushed)
@@ -849,7 +850,7 @@ namespace JCFLIGHTGCS
                             GMapRoute FirstPointTrace = new GMapRoute("FirstPointTrace");
                             FirstPointTrace.Clear();
                             GmapPolygons.Clear();
-                            FirstPointTrace.Stroke = new Pen(Color.Orange, 4);
+                            FirstPointTrace.Stroke = new Pen(Color.Violet, 4);
                             FirstPointTrace.Stroke.DashStyle = DashStyle.Dash;
                             if (CountWP2 > 2)
                             {
@@ -1047,7 +1048,7 @@ namespace JCFLIGHTGCS
                 GMapRoute FirstPointTrace = new GMapRoute("FirstPointTrace");
                 FirstPointTrace.Clear();
                 GmapPolygons.Clear();
-                FirstPointTrace.Stroke = new Pen(Color.Orange, 4);
+                FirstPointTrace.Stroke = new Pen(Color.Violet, 4);
                 FirstPointTrace.Stroke.DashStyle = DashStyle.Dash;
                 if (CountWP > 2)
                 {
@@ -2409,3 +2410,4 @@ namespace JCFLIGHTGCS
         }
     }
 }
+

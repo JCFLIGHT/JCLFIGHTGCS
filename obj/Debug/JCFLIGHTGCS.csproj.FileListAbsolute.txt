@@ -130,3 +130,11 @@ C:\Users\Julio Cesar\Desktop\ARDUINO\JCFLIGHT\JCFLIGHTGCS\JCFLIGHTGCS\obj\Debug\
 C:\Users\Julio Cesar\Desktop\ARDUINO\JCFLIGHT\JCFLIGHTGCS\JCFLIGHTGCS\obj\Debug\JCFLIGHTGCS.csproj.CopyComplete
 C:\Users\Julio Cesar\Desktop\ARDUINO\JCFLIGHT\JCFLIGHTGCS\JCFLIGHTGCS\obj\Debug\JCFLIGHTGCS.exe
 C:\Users\Julio Cesar\Desktop\ARDUINO\JCFLIGHT\JCFLIGHTGCS\JCFLIGHTGCS\obj\Debug\JCFLIGHTGCS.pdb
+C:\Users\Julio Cesar\Desktop\ARDUINO\JCFLIGHT\JCFLIGHTGCS\bin\Debug\OpenTK.dll
+C:\Users\Julio Cesar\Desktop\ARDUINO\JCFLIGHT\JCFLIGHTGCS\bin\Debug\OpenTK.GLControl.dll
+C:\Users\Julio Cesar\Desktop\ARDUINO\JCFLIGHT\JCFLIGHTGCS\bin\Debug\OpenTK.pdb
+C:\Users\Julio Cesar\Desktop\ARDUINO\JCFLIGHT\JCFLIGHTGCS\bin\Debug\OpenTK.xml
+C:\Users\Julio Cesar\Desktop\ARDUINO\JCFLIGHT\JCFLIGHTGCS\bin\Debug\OpenTK.GLControl.pdb
+C:\Users\Julio Cesar\Desktop\ARDUINO\JCFLIGHT\JCFLIGHTGCS\bin\Debug\OpenTK.GLControl.xml
+C:\Users\Julio Cesar\Desktop\ARDUINO\JCFLIGHT\JCFLIGHTGCS\bin\Debug\JCFLIGHTGCS.exe.config
+C:\Users\Julio Cesar\Desktop\ARDUINO\JCFLIGHT\JCFLIGHTGCS\bin\Debug\alglib.net.dll

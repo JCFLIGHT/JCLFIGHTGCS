@@ -22,7 +22,7 @@ namespace JCFLIGHTGCS
         SerialPort SerialPort = new SerialPort();
         string SerialComPort;
         string[] SerialPorts = SerialPort.GetPortNames();
-        static Boolean Error_Received = false;
+        static bool Error_Received = false;
         static byte Read_State = 0;
         static byte OffSet = 0;
         static byte DataSize = 0;
@@ -65,10 +65,10 @@ namespace JCFLIGHTGCS
         byte FlightMode = 0;
         byte FrameMode = 0;
         byte HomePointOK = 0;
-        Boolean SmallCompass = false;
-        Boolean SerialOpen = false;
-        Boolean PidAndFiltersCommunicationOpen = false;
-        Boolean AccNotCalibrated = false;
+        bool SmallCompass = false;
+        bool SerialOpen = false;
+        bool PidAndFiltersCommunicationOpen = false;
+        bool AccNotCalibrated = false;
         string GPSLAT = "0";
         string GPSLONG = "0";
         string LatitudeHome = "0";
@@ -167,9 +167,9 @@ namespace JCFLIGHTGCS
         int CoG = 0;
         Int32 Crosstrack = 0;
 
-        Boolean ItsSafeToUpdate = true;
-        Boolean ToogleState = false;
-        Boolean NoticeLarger = true;
+        bool ItsSafeToUpdate = true;
+        bool ToogleState = false;
+        bool NoticeLarger = true;
 
         static int PacketsError = 0;
         static int PacketsReceived = 0;
@@ -463,8 +463,6 @@ namespace JCFLIGHTGCS
 
         private void RealTimer_Tick(object sender, EventArgs e)
         {
-            CompassX = ReadRoll;
-            CompassY = ReadPitch;
             CheckCompassState(ReadCompass);
             Edit_Labels_To_Aero();
             UpdateDevices();
@@ -604,6 +602,9 @@ namespace JCFLIGHTGCS
                     Crosstrack = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     GetAccGForce = Convert.ToDouble(BitConverter.ToInt16(InBuffer, ptr)) / 100; ptr += 2;
                     GetAccCalibFlag = (byte)InBuffer[ptr++];
+                    CompassX = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    CompassY = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    CompassZ = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     break;
 
                 case 8:
@@ -735,6 +736,8 @@ namespace JCFLIGHTGCS
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+
+
             label76.Text = Convert.ToString(GPS_NumSat);
             if (GPS_NumSat < 10) label76.Location = new Point(215, 78);
             else label76.Location = new Point(210, 78);
@@ -1137,6 +1140,7 @@ namespace JCFLIGHTGCS
 
         static int CompassX = 0;
         static int CompassY = 0;
+        static int CompassZ = 0;
 
         public static int CompassRoll
         {
@@ -1148,13 +1152,17 @@ namespace JCFLIGHTGCS
             get { return CompassY; }
         }
 
+        public static int CompassYaw
+        {
+            get { return CompassZ; }
+        }
+
         private void button11_Click(object sender, EventArgs e)
         {
             if (!SerialPort.IsOpen) return;
-            Serial_Write_To_FC(12);
-            if (CompassCalib.Enabled == false) CompassCalib.Enabled = true;
             Compass CompassOpen = new Compass();
             CompassOpen.Show();
+            Serial_Write_To_FC(12);
         }
 
         private void GmapAtt_Tick(object sender, EventArgs e)
@@ -1290,7 +1298,7 @@ namespace JCFLIGHTGCS
             }
         }
 
-        Boolean ResetTimer = false;
+        bool ResetTimer = false;
         byte Hour_Debug = 0;
         int Seconds_Count = 0;
         int Hour_Count = 0;
@@ -1321,7 +1329,7 @@ namespace JCFLIGHTGCS
             }
         }
 
-        Boolean HomePointMarkerOK = false;
+        bool HomePointMarkerOK = false;
         private void HomePointMarkerInMap(double _Latitude, double _Longitutude)
         {
             _Latitude /= 10000000.0;
@@ -1523,19 +1531,6 @@ namespace JCFLIGHTGCS
             SmallCompass = false;
             WayPoint WayPointOpen = new WayPoint();
             WayPointOpen.Show();
-        }
-
-        private void CompassCalib_Tick(object sender, EventArgs e)
-        {
-            SecondsCompass++;
-            label92.Text = "Tempo corrido da Calibração:" + ((SecondsCompass / 60).ToString("00.") + ":" + (SecondsCompass % 60).ToString("00."));
-            if (SecondsCompass / 60 == 1)
-            {
-                SecondsCompass = 0;
-                label92.Text = "Tempo corrido da Calibração:00:00";
-                CompassCalib.Enabled = false;
-                MessageBox.Show("Calibração do Compass concluída!");
-            }
         }
 
         private void button13_Click(object sender, EventArgs e)
