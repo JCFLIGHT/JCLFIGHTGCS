@@ -18,4 +18,4 @@
 ## Como contribuir
 
 - Caso você encontre algum bug,abra um Issue clicando [aqui](https://github.com/JCFLIGHT/JCLFIGHTGCS.git).
-- Caso você deseja enviar alguma melhoria feita no algoritimo,faça um Pull-Request.
+- Caso você deseja enviar alguma melhoria feita para o algoritimo,faça um Pull-Request.

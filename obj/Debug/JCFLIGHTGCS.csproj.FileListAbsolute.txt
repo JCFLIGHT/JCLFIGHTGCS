@@ -137,4 +137,3 @@ C:\Users\Julio Cesar\Desktop\ARDUINO\JCFLIGHT\JCFLIGHTGCS\bin\Debug\OpenTK.xml
 C:\Users\Julio Cesar\Desktop\ARDUINO\JCFLIGHT\JCFLIGHTGCS\bin\Debug\OpenTK.GLControl.pdb
 C:\Users\Julio Cesar\Desktop\ARDUINO\JCFLIGHT\JCFLIGHTGCS\bin\Debug\OpenTK.GLControl.xml
 C:\Users\Julio Cesar\Desktop\ARDUINO\JCFLIGHT\JCFLIGHTGCS\bin\Debug\JCFLIGHTGCS.exe.config
-C:\Users\Julio Cesar\Desktop\ARDUINO\JCFLIGHT\JCFLIGHTGCS\bin\Debug\alglib.net.dll
