@@ -34,6 +34,12 @@
             this.comboBox7 = new System.Windows.Forms.ComboBox();
             this.BarraTitulo = new System.Windows.Forms.Panel();
             this.label72 = new System.Windows.Forms.Label();
+            this.pictureBox9 = new System.Windows.Forms.PictureBox();
+            this.iconminimizar = new System.Windows.Forms.PictureBox();
+            this.maximinizar = new System.Windows.Forms.PictureBox();
+            this.iconmaximizar = new System.Windows.Forms.PictureBox();
+            this.encerrar = new System.Windows.Forms.PictureBox();
+            this.btnlogoInicio = new System.Windows.Forms.PictureBox();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -41,6 +47,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.MenuVertical = new System.Windows.Forms.Panel();
             this.button18 = new System.Windows.Forms.Button();
+            this.button15 = new System.Windows.Forms.Button();
+            this.button14 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
@@ -54,38 +62,48 @@
             this.label94 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.circularProgressBar1 = new CircularProgressBar.CircularProgressBar();
+            this.HorizonIndicator = new JCFLIGHTGCS.AttitudeIndicatorInstrumentControl();
+            this.HeadingIndicator = new JCFLIGHTGCS.HeadingIndicatorInstrumentControl();
             this.panel16 = new System.Windows.Forms.Panel();
             this.label25 = new System.Windows.Forms.Label();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.panel17 = new System.Windows.Forms.Panel();
             this.label26 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label11 = new System.Windows.Forms.Label();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label12 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.panel13 = new System.Windows.Forms.Panel();
             this.label17 = new System.Windows.Forms.Label();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.panel14 = new System.Windows.Forms.Panel();
             this.label18 = new System.Windows.Forms.Label();
             this.panel11 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.panel12 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel9 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel10 = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
             this.label14 = new System.Windows.Forms.Label();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.panel8 = new System.Windows.Forms.Panel();
             this.label16 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label19 = new System.Windows.Forms.Label();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.panel15 = new System.Windows.Forms.Panel();
             this.label71 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -144,11 +162,26 @@
             this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.label23 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
+            this.button9 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.pictureBox22 = new System.Windows.Forms.PictureBox();
             this.label93 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.CompassCalibration = new System.Windows.Forms.Button();
             this.AccCalibration = new System.Windows.Forms.Button();
+            this.pictureBox20 = new System.Windows.Forms.PictureBox();
+            this.pictureBox21 = new System.Windows.Forms.PictureBox();
+            this.pictureBox18 = new System.Windows.Forms.PictureBox();
+            this.pictureBox19 = new System.Windows.Forms.PictureBox();
+            this.pictureBox16 = new System.Windows.Forms.PictureBox();
+            this.pictureBox17 = new System.Windows.Forms.PictureBox();
+            this.pictureBox14 = new System.Windows.Forms.PictureBox();
+            this.pictureBox15 = new System.Windows.Forms.PictureBox();
+            this.pictureBox12 = new System.Windows.Forms.PictureBox();
+            this.pictureBox13 = new System.Windows.Forms.PictureBox();
+            this.pictureBox11 = new System.Windows.Forms.PictureBox();
+            this.pictureBox10 = new System.Windows.Forms.PictureBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.zedGraphControl6 = new ZedGraph.ZedGraphControl();
             this.zedGraphControl5 = new ZedGraph.ZedGraphControl();
@@ -220,6 +253,8 @@
             this.label73 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.circularProgressBar2 = new CircularProgressBar.CircularProgressBar();
+            this.HeadingIndicator2 = new JCFLIGHTGCS.HeadingIndicatorInstrumentControl();
+            this.HorizonIndicator2 = new JCFLIGHTGCS.AttitudeIndicatorInstrumentControl();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.label115 = new System.Windows.Forms.Label();
@@ -302,67 +337,46 @@
             this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.button17 = new System.Windows.Forms.Button();
+            this.button16 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.GmapAtt = new System.Windows.Forms.Timer(this.components);
             this.FlightTimer = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer3 = new System.Windows.Forms.Timer(this.components);
-            this.HorizonIndicator = new JCFLIGHTGCS.AttitudeIndicatorInstrumentControl();
-            this.HeadingIndicator = new JCFLIGHTGCS.HeadingIndicatorInstrumentControl();
-            this.HeadingIndicator2 = new JCFLIGHTGCS.HeadingIndicatorInstrumentControl();
-            this.HorizonIndicator2 = new JCFLIGHTGCS.AttitudeIndicatorInstrumentControl();
-            this.pictureBox8 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.pictureBox22 = new System.Windows.Forms.PictureBox();
-            this.pictureBox20 = new System.Windows.Forms.PictureBox();
-            this.pictureBox21 = new System.Windows.Forms.PictureBox();
-            this.pictureBox18 = new System.Windows.Forms.PictureBox();
-            this.pictureBox19 = new System.Windows.Forms.PictureBox();
-            this.pictureBox16 = new System.Windows.Forms.PictureBox();
-            this.pictureBox17 = new System.Windows.Forms.PictureBox();
-            this.pictureBox14 = new System.Windows.Forms.PictureBox();
-            this.pictureBox15 = new System.Windows.Forms.PictureBox();
-            this.pictureBox12 = new System.Windows.Forms.PictureBox();
-            this.pictureBox13 = new System.Windows.Forms.PictureBox();
-            this.pictureBox11 = new System.Windows.Forms.PictureBox();
-            this.pictureBox10 = new System.Windows.Forms.PictureBox();
-            this.button17 = new System.Windows.Forms.Button();
-            this.button16 = new System.Windows.Forms.Button();
-            this.pictureBox9 = new System.Windows.Forms.PictureBox();
-            this.iconminimizar = new System.Windows.Forms.PictureBox();
-            this.maximinizar = new System.Windows.Forms.PictureBox();
-            this.iconmaximizar = new System.Windows.Forms.PictureBox();
-            this.encerrar = new System.Windows.Forms.PictureBox();
-            this.btnlogoInicio = new System.Windows.Forms.PictureBox();
-            this.button15 = new System.Windows.Forms.Button();
-            this.button14 = new System.Windows.Forms.Button();
             this.BarraTitulo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconminimizar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.maximinizar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconmaximizar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.encerrar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnlogoInicio)).BeginInit();
             this.MenuVertical.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel16.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             this.panel17.SuspendLayout();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.panel4.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel5.SuspendLayout();
             this.panel13.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             this.panel14.SuspendLayout();
             this.panel11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             this.panel12.SuspendLayout();
             this.panel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel10.SuspendLayout();
             this.panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.panel8.SuspendLayout();
             this.panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.panel15.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -378,6 +392,19 @@
             this.groupBox2.SuspendLayout();
             this.groupBox11.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             this.tabPage4.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.tabPage6.SuspendLayout();
@@ -418,33 +445,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iconminimizar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.maximinizar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iconmaximizar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.encerrar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnlogoInicio)).BeginInit();
             this.SuspendLayout();
             // 
             // serialPort1
@@ -516,6 +516,81 @@
             this.label72.Size = new System.Drawing.Size(227, 29);
             this.label72.TabIndex = 5;
             this.label72.Text = "00:00:00 26/07/2020";
+            // 
+            // pictureBox9
+            // 
+            this.pictureBox9.BackColor = System.Drawing.Color.White;
+            this.pictureBox9.Image = global::JCFLIGHTGCS.Properties.Resources.Desconectado;
+            this.pictureBox9.Location = new System.Drawing.Point(938, 51);
+            this.pictureBox9.Name = "pictureBox9";
+            this.pictureBox9.Size = new System.Drawing.Size(93, 72);
+            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox9.TabIndex = 6;
+            this.pictureBox9.TabStop = false;
+            // 
+            // iconminimizar
+            // 
+            this.iconminimizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.iconminimizar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.iconminimizar.Image = global::JCFLIGHTGCS.Properties.Resources.minimazar;
+            this.iconminimizar.Location = new System.Drawing.Point(968, 5);
+            this.iconminimizar.Name = "iconminimizar";
+            this.iconminimizar.Size = new System.Drawing.Size(18, 18);
+            this.iconminimizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.iconminimizar.TabIndex = 4;
+            this.iconminimizar.TabStop = false;
+            this.iconminimizar.Click += new System.EventHandler(this.iconminimizar_Click);
+            // 
+            // maximinizar
+            // 
+            this.maximinizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.maximinizar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.maximinizar.Image = global::JCFLIGHTGCS.Properties.Resources.maxi;
+            this.maximinizar.Location = new System.Drawing.Point(990, 10);
+            this.maximinizar.Name = "maximinizar";
+            this.maximinizar.Size = new System.Drawing.Size(18, 18);
+            this.maximinizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.maximinizar.TabIndex = 3;
+            this.maximinizar.TabStop = false;
+            this.maximinizar.Visible = false;
+            this.maximinizar.Click += new System.EventHandler(this.maximinizar_Click);
+            // 
+            // iconmaximizar
+            // 
+            this.iconmaximizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.iconmaximizar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.iconmaximizar.Image = global::JCFLIGHTGCS.Properties.Resources.maxi;
+            this.iconmaximizar.Location = new System.Drawing.Point(995, 5);
+            this.iconmaximizar.Name = "iconmaximizar";
+            this.iconmaximizar.Size = new System.Drawing.Size(18, 18);
+            this.iconmaximizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.iconmaximizar.TabIndex = 2;
+            this.iconmaximizar.TabStop = false;
+            this.iconmaximizar.Click += new System.EventHandler(this.iconmaximizar_Click);
+            // 
+            // encerrar
+            // 
+            this.encerrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.encerrar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.encerrar.Image = global::JCFLIGHTGCS.Properties.Resources.cerrar;
+            this.encerrar.Location = new System.Drawing.Point(1021, 5);
+            this.encerrar.Name = "encerrar";
+            this.encerrar.Size = new System.Drawing.Size(18, 18);
+            this.encerrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.encerrar.TabIndex = 1;
+            this.encerrar.TabStop = false;
+            this.encerrar.Click += new System.EventHandler(this.encerrar_Click_1);
+            // 
+            // btnlogoInicio
+            // 
+            this.btnlogoInicio.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.btnlogoInicio.Image = ((System.Drawing.Image)(resources.GetObject("btnlogoInicio.Image")));
+            this.btnlogoInicio.Location = new System.Drawing.Point(257, 22);
+            this.btnlogoInicio.Name = "btnlogoInicio";
+            this.btnlogoInicio.Size = new System.Drawing.Size(398, 88);
+            this.btnlogoInicio.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnlogoInicio.TabIndex = 0;
+            this.btnlogoInicio.TabStop = false;
             // 
             // button5
             // 
@@ -640,6 +715,31 @@
             this.button18.UseVisualStyleBackColor = false;
             this.button18.Click += new System.EventHandler(this.button18_Click);
             // 
+            // button15
+            // 
+            this.button15.BackColor = System.Drawing.Color.LimeGreen;
+            this.button15.BackgroundImage = global::JCFLIGHTGCS.Properties.Resources.WhatsApp;
+            this.button15.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button15.Location = new System.Drawing.Point(153, 586);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(76, 61);
+            this.button15.TabIndex = 11;
+            this.button15.UseVisualStyleBackColor = false;
+            this.button15.Click += new System.EventHandler(this.button15_Click);
+            // 
+            // button14
+            // 
+            this.button14.BackColor = System.Drawing.Color.White;
+            this.button14.BackgroundImage = global::JCFLIGHTGCS.Properties.Resources.YouTube;
+            this.button14.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button14.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button14.Location = new System.Drawing.Point(12, 590);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(79, 57);
+            this.button14.TabIndex = 10;
+            this.button14.UseVisualStyleBackColor = false;
+            this.button14.Click += new System.EventHandler(this.button14_Click);
+            // 
             // button13
             // 
             this.button13.BackColor = System.Drawing.Color.YellowGreen;
@@ -670,7 +770,7 @@
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(250, 40);
             this.button11.TabIndex = 8;
-            this.button11.Text = "Manual da Controladora JCFLIGHT";
+            this.button11.Text = "Manual da Controladora de Voo";
             this.button11.UseVisualStyleBackColor = false;
             this.button11.Click += new System.EventHandler(this.button11_Click_1);
             // 
@@ -835,6 +935,24 @@
             this.circularProgressBar1.TextMargin = new System.Windows.Forms.Padding(8, 8, 0, 0);
             this.circularProgressBar1.Value = 68;
             // 
+            // HorizonIndicator
+            // 
+            this.HorizonIndicator.BackColor = System.Drawing.Color.White;
+            this.HorizonIndicator.Location = new System.Drawing.Point(33, 153);
+            this.HorizonIndicator.Name = "HorizonIndicator";
+            this.HorizonIndicator.Size = new System.Drawing.Size(300, 300);
+            this.HorizonIndicator.TabIndex = 3;
+            this.HorizonIndicator.Text = "HorizonIndicator";
+            // 
+            // HeadingIndicator
+            // 
+            this.HeadingIndicator.BackColor = System.Drawing.Color.White;
+            this.HeadingIndicator.Location = new System.Drawing.Point(382, 153);
+            this.HeadingIndicator.Name = "HeadingIndicator";
+            this.HeadingIndicator.Size = new System.Drawing.Size(300, 300);
+            this.HeadingIndicator.TabIndex = 4;
+            this.HeadingIndicator.Text = "HeadingIndicator";
+            // 
             // panel16
             // 
             this.panel16.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -856,6 +974,16 @@
             this.label25.Size = new System.Drawing.Size(105, 18);
             this.label25.TabIndex = 16;
             this.label25.Text = "Desconectado";
+            // 
+            // pictureBox8
+            // 
+            this.pictureBox8.Image = global::JCFLIGHTGCS.Properties.Resources.Radio;
+            this.pictureBox8.Location = new System.Drawing.Point(14, 34);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(80, 53);
+            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox8.TabIndex = 5;
+            this.pictureBox8.TabStop = false;
             // 
             // panel17
             // 
@@ -900,6 +1028,16 @@
             this.label11.Size = new System.Drawing.Size(89, 18);
             this.label11.TabIndex = 16;
             this.label11.Text = "Desabilitado";
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = global::JCFLIGHTGCS.Properties.Resources.UltrassonicSensor;
+            this.pictureBox4.Location = new System.Drawing.Point(14, 34);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(80, 53);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox4.TabIndex = 4;
+            this.pictureBox4.TabStop = false;
             // 
             // panel4
             // 
@@ -946,6 +1084,17 @@
             this.label5.TabIndex = 16;
             this.label5.Text = "Desabilitado";
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.ErrorImage = null;
+            this.pictureBox2.Image = global::JCFLIGHTGCS.Properties.Resources.Gyro;
+            this.pictureBox2.Location = new System.Drawing.Point(15, 34);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(80, 52);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 2;
+            this.pictureBox2.TabStop = false;
+            // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -989,6 +1138,16 @@
             this.label17.Size = new System.Drawing.Size(89, 18);
             this.label17.TabIndex = 16;
             this.label17.Text = "Desabilitado";
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.Image = global::JCFLIGHTGCS.Properties.Resources.OpticalFlow;
+            this.pictureBox7.Location = new System.Drawing.Point(14, 34);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(80, 53);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox7.TabIndex = 5;
+            this.pictureBox7.TabStop = false;
             // 
             // panel14
             // 
@@ -1034,6 +1193,16 @@
             this.label7.TabIndex = 16;
             this.label7.Text = "Desabilitado";
             // 
+            // pictureBox6
+            // 
+            this.pictureBox6.Image = global::JCFLIGHTGCS.Properties.Resources.Compass;
+            this.pictureBox6.Location = new System.Drawing.Point(14, 34);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(80, 53);
+            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox6.TabIndex = 6;
+            this.pictureBox6.TabStop = false;
+            // 
             // panel12
             // 
             this.panel12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -1077,6 +1246,16 @@
             this.label4.Size = new System.Drawing.Size(89, 18);
             this.label4.TabIndex = 1;
             this.label4.Text = "Desabilitado";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::JCFLIGHTGCS.Properties.Resources.Accelerometer;
+            this.pictureBox1.Location = new System.Drawing.Point(13, 34);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(80, 53);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
             // 
             // panel10
             // 
@@ -1145,6 +1324,16 @@
             this.label14.TabIndex = 16;
             this.label14.Text = "Desabilitado";
             // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = global::JCFLIGHTGCS.Properties.Resources.Parachute;
+            this.pictureBox5.Location = new System.Drawing.Point(14, 34);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(80, 53);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox5.TabIndex = 5;
+            this.pictureBox5.TabStop = false;
+            // 
             // panel8
             // 
             this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -1188,6 +1377,17 @@
             this.label19.Size = new System.Drawing.Size(75, 18);
             this.label19.TabIndex = 16;
             this.label19.Text = "Sem Sinal";
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox3.Image = global::JCFLIGHTGCS.Properties.Resources.GPS;
+            this.pictureBox3.Location = new System.Drawing.Point(14, 34);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(80, 53);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 3;
+            this.pictureBox3.TabStop = false;
             // 
             // panel15
             // 
@@ -2171,6 +2371,26 @@
             this.label20.TabIndex = 3;
             this.label20.Text = "Altitude-Hold";
             // 
+            // button9
+            // 
+            this.button9.Image = global::JCFLIGHTGCS.Properties.Resources.DefaultPID;
+            this.button9.Location = new System.Drawing.Point(945, 393);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(75, 66);
+            this.button9.TabIndex = 13;
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
+            // button8
+            // 
+            this.button8.Image = global::JCFLIGHTGCS.Properties.Resources.Save;
+            this.button8.Location = new System.Drawing.Point(842, 393);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(75, 66);
+            this.button8.TabIndex = 12;
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.pictureBox22);
@@ -2197,6 +2417,16 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Calibração dos Sensores";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox22
+            // 
+            this.pictureBox22.Image = global::JCFLIGHTGCS.Properties.Resources.Compass1;
+            this.pictureBox22.Location = new System.Drawing.Point(362, 256);
+            this.pictureBox22.Name = "pictureBox22";
+            this.pictureBox22.Size = new System.Drawing.Size(325, 174);
+            this.pictureBox22.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox22.TabIndex = 17;
+            this.pictureBox22.TabStop = false;
             // 
             // label93
             // 
@@ -2241,6 +2471,120 @@
             this.AccCalibration.Text = "Clique aqui para calibrar o Acelerômetro";
             this.AccCalibration.UseVisualStyleBackColor = true;
             this.AccCalibration.Click += new System.EventHandler(this.button10_Click);
+            // 
+            // pictureBox20
+            // 
+            this.pictureBox20.Image = global::JCFLIGHTGCS.Properties.Resources.CalibAcc6;
+            this.pictureBox20.Location = new System.Drawing.Point(897, 62);
+            this.pictureBox20.Name = "pictureBox20";
+            this.pictureBox20.Size = new System.Drawing.Size(130, 130);
+            this.pictureBox20.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox20.TabIndex = 14;
+            this.pictureBox20.TabStop = false;
+            // 
+            // pictureBox21
+            // 
+            this.pictureBox21.BackColor = System.Drawing.Color.Red;
+            this.pictureBox21.Location = new System.Drawing.Point(887, 51);
+            this.pictureBox21.Name = "pictureBox21";
+            this.pictureBox21.Size = new System.Drawing.Size(150, 150);
+            this.pictureBox21.TabIndex = 13;
+            this.pictureBox21.TabStop = false;
+            // 
+            // pictureBox18
+            // 
+            this.pictureBox18.Image = global::JCFLIGHTGCS.Properties.Resources.CalibAcc5;
+            this.pictureBox18.Location = new System.Drawing.Point(722, 62);
+            this.pictureBox18.Name = "pictureBox18";
+            this.pictureBox18.Size = new System.Drawing.Size(130, 130);
+            this.pictureBox18.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox18.TabIndex = 12;
+            this.pictureBox18.TabStop = false;
+            // 
+            // pictureBox19
+            // 
+            this.pictureBox19.BackColor = System.Drawing.Color.Red;
+            this.pictureBox19.Location = new System.Drawing.Point(712, 51);
+            this.pictureBox19.Name = "pictureBox19";
+            this.pictureBox19.Size = new System.Drawing.Size(150, 150);
+            this.pictureBox19.TabIndex = 11;
+            this.pictureBox19.TabStop = false;
+            // 
+            // pictureBox16
+            // 
+            this.pictureBox16.Image = global::JCFLIGHTGCS.Properties.Resources.CalibAcc4;
+            this.pictureBox16.Location = new System.Drawing.Point(547, 62);
+            this.pictureBox16.Name = "pictureBox16";
+            this.pictureBox16.Size = new System.Drawing.Size(130, 130);
+            this.pictureBox16.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox16.TabIndex = 10;
+            this.pictureBox16.TabStop = false;
+            // 
+            // pictureBox17
+            // 
+            this.pictureBox17.BackColor = System.Drawing.Color.Red;
+            this.pictureBox17.Location = new System.Drawing.Point(537, 51);
+            this.pictureBox17.Name = "pictureBox17";
+            this.pictureBox17.Size = new System.Drawing.Size(150, 150);
+            this.pictureBox17.TabIndex = 9;
+            this.pictureBox17.TabStop = false;
+            // 
+            // pictureBox14
+            // 
+            this.pictureBox14.Image = global::JCFLIGHTGCS.Properties.Resources.CalibAcc3;
+            this.pictureBox14.Location = new System.Drawing.Point(372, 62);
+            this.pictureBox14.Name = "pictureBox14";
+            this.pictureBox14.Size = new System.Drawing.Size(130, 130);
+            this.pictureBox14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox14.TabIndex = 8;
+            this.pictureBox14.TabStop = false;
+            // 
+            // pictureBox15
+            // 
+            this.pictureBox15.BackColor = System.Drawing.Color.Red;
+            this.pictureBox15.Location = new System.Drawing.Point(362, 51);
+            this.pictureBox15.Name = "pictureBox15";
+            this.pictureBox15.Size = new System.Drawing.Size(150, 150);
+            this.pictureBox15.TabIndex = 7;
+            this.pictureBox15.TabStop = false;
+            // 
+            // pictureBox12
+            // 
+            this.pictureBox12.Image = global::JCFLIGHTGCS.Properties.Resources.AccCalib2;
+            this.pictureBox12.Location = new System.Drawing.Point(197, 62);
+            this.pictureBox12.Name = "pictureBox12";
+            this.pictureBox12.Size = new System.Drawing.Size(130, 130);
+            this.pictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox12.TabIndex = 6;
+            this.pictureBox12.TabStop = false;
+            // 
+            // pictureBox13
+            // 
+            this.pictureBox13.BackColor = System.Drawing.Color.Red;
+            this.pictureBox13.Location = new System.Drawing.Point(187, 51);
+            this.pictureBox13.Name = "pictureBox13";
+            this.pictureBox13.Size = new System.Drawing.Size(150, 150);
+            this.pictureBox13.TabIndex = 5;
+            this.pictureBox13.TabStop = false;
+            // 
+            // pictureBox11
+            // 
+            this.pictureBox11.Image = global::JCFLIGHTGCS.Properties.Resources.AccCalib1;
+            this.pictureBox11.Location = new System.Drawing.Point(22, 62);
+            this.pictureBox11.Name = "pictureBox11";
+            this.pictureBox11.Size = new System.Drawing.Size(130, 130);
+            this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox11.TabIndex = 1;
+            this.pictureBox11.TabStop = false;
+            // 
+            // pictureBox10
+            // 
+            this.pictureBox10.BackColor = System.Drawing.Color.Red;
+            this.pictureBox10.Location = new System.Drawing.Point(12, 51);
+            this.pictureBox10.Name = "pictureBox10";
+            this.pictureBox10.Size = new System.Drawing.Size(150, 150);
+            this.pictureBox10.TabIndex = 0;
+            this.pictureBox10.TabStop = false;
             // 
             // tabPage4
             // 
@@ -3104,6 +3448,24 @@
             this.circularProgressBar2.TabIndex = 47;
             this.circularProgressBar2.TextMargin = new System.Windows.Forms.Padding(8, 8, 0, 0);
             this.circularProgressBar2.Value = 68;
+            // 
+            // HeadingIndicator2
+            // 
+            this.HeadingIndicator2.BackColor = System.Drawing.Color.White;
+            this.HeadingIndicator2.Location = new System.Drawing.Point(0, 170);
+            this.HeadingIndicator2.Name = "HeadingIndicator2";
+            this.HeadingIndicator2.Size = new System.Drawing.Size(157, 160);
+            this.HeadingIndicator2.TabIndex = 5;
+            this.HeadingIndicator2.Text = "HeadingIndicator2";
+            // 
+            // HorizonIndicator2
+            // 
+            this.HorizonIndicator2.BackColor = System.Drawing.Color.White;
+            this.HorizonIndicator2.Location = new System.Drawing.Point(0, 6);
+            this.HorizonIndicator2.Name = "HorizonIndicator2";
+            this.HorizonIndicator2.Size = new System.Drawing.Size(157, 158);
+            this.HorizonIndicator2.TabIndex = 4;
+            this.HorizonIndicator2.Text = "HorizonIndicator2";
             // 
             // tabPage7
             // 
@@ -4084,6 +4446,26 @@
             this.numericUpDown1.Size = new System.Drawing.Size(70, 21);
             this.numericUpDown1.TabIndex = 0;
             // 
+            // button17
+            // 
+            this.button17.Image = global::JCFLIGHTGCS.Properties.Resources.DefaultPID;
+            this.button17.Location = new System.Drawing.Point(952, 400);
+            this.button17.Name = "button17";
+            this.button17.Size = new System.Drawing.Size(75, 66);
+            this.button17.TabIndex = 10;
+            this.button17.UseVisualStyleBackColor = true;
+            this.button17.Click += new System.EventHandler(this.button17_Click);
+            // 
+            // button16
+            // 
+            this.button16.Image = global::JCFLIGHTGCS.Properties.Resources.Save;
+            this.button16.Location = new System.Drawing.Point(852, 400);
+            this.button16.Name = "button16";
+            this.button16.Size = new System.Drawing.Size(75, 66);
+            this.button16.TabIndex = 9;
+            this.button16.UseVisualStyleBackColor = true;
+            this.button16.Click += new System.EventHandler(this.button16_Click);
+            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
@@ -4117,388 +4499,6 @@
             this.timer3.Interval = 500;
             this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
             // 
-            // HorizonIndicator
-            // 
-            this.HorizonIndicator.BackColor = System.Drawing.Color.White;
-            this.HorizonIndicator.Location = new System.Drawing.Point(33, 153);
-            this.HorizonIndicator.Name = "HorizonIndicator";
-            this.HorizonIndicator.Size = new System.Drawing.Size(300, 300);
-            this.HorizonIndicator.TabIndex = 3;
-            this.HorizonIndicator.Text = "HorizonIndicator";
-            // 
-            // HeadingIndicator
-            // 
-            this.HeadingIndicator.BackColor = System.Drawing.Color.White;
-            this.HeadingIndicator.Location = new System.Drawing.Point(382, 153);
-            this.HeadingIndicator.Name = "HeadingIndicator";
-            this.HeadingIndicator.Size = new System.Drawing.Size(300, 300);
-            this.HeadingIndicator.TabIndex = 4;
-            this.HeadingIndicator.Text = "HeadingIndicator";
-            // 
-            // HeadingIndicator2
-            // 
-            this.HeadingIndicator2.BackColor = System.Drawing.Color.White;
-            this.HeadingIndicator2.Location = new System.Drawing.Point(0, 170);
-            this.HeadingIndicator2.Name = "HeadingIndicator2";
-            this.HeadingIndicator2.Size = new System.Drawing.Size(157, 160);
-            this.HeadingIndicator2.TabIndex = 5;
-            this.HeadingIndicator2.Text = "HeadingIndicator2";
-            // 
-            // HorizonIndicator2
-            // 
-            this.HorizonIndicator2.BackColor = System.Drawing.Color.White;
-            this.HorizonIndicator2.Location = new System.Drawing.Point(0, 6);
-            this.HorizonIndicator2.Name = "HorizonIndicator2";
-            this.HorizonIndicator2.Size = new System.Drawing.Size(157, 158);
-            this.HorizonIndicator2.TabIndex = 4;
-            this.HorizonIndicator2.Text = "HorizonIndicator2";
-            // 
-            // pictureBox8
-            // 
-            this.pictureBox8.Image = global::JCFLIGHTGCS.Properties.Resources.Radio;
-            this.pictureBox8.Location = new System.Drawing.Point(14, 34);
-            this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(80, 53);
-            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox8.TabIndex = 5;
-            this.pictureBox8.TabStop = false;
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Image = global::JCFLIGHTGCS.Properties.Resources.UltrassonicSensor;
-            this.pictureBox4.Location = new System.Drawing.Point(14, 34);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(80, 53);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox4.TabIndex = 4;
-            this.pictureBox4.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.ErrorImage = null;
-            this.pictureBox2.Image = global::JCFLIGHTGCS.Properties.Resources.Gyro;
-            this.pictureBox2.Location = new System.Drawing.Point(15, 34);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(80, 52);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 2;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox7
-            // 
-            this.pictureBox7.Image = global::JCFLIGHTGCS.Properties.Resources.OpticalFlow;
-            this.pictureBox7.Location = new System.Drawing.Point(14, 34);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(80, 53);
-            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox7.TabIndex = 5;
-            this.pictureBox7.TabStop = false;
-            // 
-            // pictureBox6
-            // 
-            this.pictureBox6.Image = global::JCFLIGHTGCS.Properties.Resources.Compass;
-            this.pictureBox6.Location = new System.Drawing.Point(14, 34);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(80, 53);
-            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox6.TabIndex = 6;
-            this.pictureBox6.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::JCFLIGHTGCS.Properties.Resources.Accelerometer;
-            this.pictureBox1.Location = new System.Drawing.Point(13, 34);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(80, 53);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.Image = global::JCFLIGHTGCS.Properties.Resources.Parachute;
-            this.pictureBox5.Location = new System.Drawing.Point(14, 34);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(80, 53);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox5.TabIndex = 5;
-            this.pictureBox5.TabStop = false;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox3.Image = global::JCFLIGHTGCS.Properties.Resources.GPS;
-            this.pictureBox3.Location = new System.Drawing.Point(14, 34);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(80, 53);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 3;
-            this.pictureBox3.TabStop = false;
-            // 
-            // button9
-            // 
-            this.button9.Image = global::JCFLIGHTGCS.Properties.Resources.DefaultPID;
-            this.button9.Location = new System.Drawing.Point(945, 393);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(75, 66);
-            this.button9.TabIndex = 13;
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
-            // 
-            // button8
-            // 
-            this.button8.Image = global::JCFLIGHTGCS.Properties.Resources.Save;
-            this.button8.Location = new System.Drawing.Point(842, 393);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 66);
-            this.button8.TabIndex = 12;
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
-            // 
-            // pictureBox22
-            // 
-            this.pictureBox22.Image = global::JCFLIGHTGCS.Properties.Resources.Compass1;
-            this.pictureBox22.Location = new System.Drawing.Point(362, 256);
-            this.pictureBox22.Name = "pictureBox22";
-            this.pictureBox22.Size = new System.Drawing.Size(325, 174);
-            this.pictureBox22.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox22.TabIndex = 17;
-            this.pictureBox22.TabStop = false;
-            // 
-            // pictureBox20
-            // 
-            this.pictureBox20.Image = global::JCFLIGHTGCS.Properties.Resources.CalibAcc6;
-            this.pictureBox20.Location = new System.Drawing.Point(897, 62);
-            this.pictureBox20.Name = "pictureBox20";
-            this.pictureBox20.Size = new System.Drawing.Size(130, 130);
-            this.pictureBox20.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox20.TabIndex = 14;
-            this.pictureBox20.TabStop = false;
-            // 
-            // pictureBox21
-            // 
-            this.pictureBox21.BackColor = System.Drawing.Color.Red;
-            this.pictureBox21.Location = new System.Drawing.Point(887, 51);
-            this.pictureBox21.Name = "pictureBox21";
-            this.pictureBox21.Size = new System.Drawing.Size(150, 150);
-            this.pictureBox21.TabIndex = 13;
-            this.pictureBox21.TabStop = false;
-            // 
-            // pictureBox18
-            // 
-            this.pictureBox18.Image = global::JCFLIGHTGCS.Properties.Resources.CalibAcc5;
-            this.pictureBox18.Location = new System.Drawing.Point(722, 62);
-            this.pictureBox18.Name = "pictureBox18";
-            this.pictureBox18.Size = new System.Drawing.Size(130, 130);
-            this.pictureBox18.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox18.TabIndex = 12;
-            this.pictureBox18.TabStop = false;
-            // 
-            // pictureBox19
-            // 
-            this.pictureBox19.BackColor = System.Drawing.Color.Red;
-            this.pictureBox19.Location = new System.Drawing.Point(712, 51);
-            this.pictureBox19.Name = "pictureBox19";
-            this.pictureBox19.Size = new System.Drawing.Size(150, 150);
-            this.pictureBox19.TabIndex = 11;
-            this.pictureBox19.TabStop = false;
-            // 
-            // pictureBox16
-            // 
-            this.pictureBox16.Image = global::JCFLIGHTGCS.Properties.Resources.CalibAcc4;
-            this.pictureBox16.Location = new System.Drawing.Point(547, 62);
-            this.pictureBox16.Name = "pictureBox16";
-            this.pictureBox16.Size = new System.Drawing.Size(130, 130);
-            this.pictureBox16.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox16.TabIndex = 10;
-            this.pictureBox16.TabStop = false;
-            // 
-            // pictureBox17
-            // 
-            this.pictureBox17.BackColor = System.Drawing.Color.Red;
-            this.pictureBox17.Location = new System.Drawing.Point(537, 51);
-            this.pictureBox17.Name = "pictureBox17";
-            this.pictureBox17.Size = new System.Drawing.Size(150, 150);
-            this.pictureBox17.TabIndex = 9;
-            this.pictureBox17.TabStop = false;
-            // 
-            // pictureBox14
-            // 
-            this.pictureBox14.Image = global::JCFLIGHTGCS.Properties.Resources.CalibAcc3;
-            this.pictureBox14.Location = new System.Drawing.Point(372, 62);
-            this.pictureBox14.Name = "pictureBox14";
-            this.pictureBox14.Size = new System.Drawing.Size(130, 130);
-            this.pictureBox14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox14.TabIndex = 8;
-            this.pictureBox14.TabStop = false;
-            // 
-            // pictureBox15
-            // 
-            this.pictureBox15.BackColor = System.Drawing.Color.Red;
-            this.pictureBox15.Location = new System.Drawing.Point(362, 51);
-            this.pictureBox15.Name = "pictureBox15";
-            this.pictureBox15.Size = new System.Drawing.Size(150, 150);
-            this.pictureBox15.TabIndex = 7;
-            this.pictureBox15.TabStop = false;
-            // 
-            // pictureBox12
-            // 
-            this.pictureBox12.Image = global::JCFLIGHTGCS.Properties.Resources.AccCalib2;
-            this.pictureBox12.Location = new System.Drawing.Point(197, 62);
-            this.pictureBox12.Name = "pictureBox12";
-            this.pictureBox12.Size = new System.Drawing.Size(130, 130);
-            this.pictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox12.TabIndex = 6;
-            this.pictureBox12.TabStop = false;
-            // 
-            // pictureBox13
-            // 
-            this.pictureBox13.BackColor = System.Drawing.Color.Red;
-            this.pictureBox13.Location = new System.Drawing.Point(187, 51);
-            this.pictureBox13.Name = "pictureBox13";
-            this.pictureBox13.Size = new System.Drawing.Size(150, 150);
-            this.pictureBox13.TabIndex = 5;
-            this.pictureBox13.TabStop = false;
-            // 
-            // pictureBox11
-            // 
-            this.pictureBox11.Image = global::JCFLIGHTGCS.Properties.Resources.AccCalib1;
-            this.pictureBox11.Location = new System.Drawing.Point(22, 62);
-            this.pictureBox11.Name = "pictureBox11";
-            this.pictureBox11.Size = new System.Drawing.Size(130, 130);
-            this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox11.TabIndex = 1;
-            this.pictureBox11.TabStop = false;
-            // 
-            // pictureBox10
-            // 
-            this.pictureBox10.BackColor = System.Drawing.Color.Red;
-            this.pictureBox10.Location = new System.Drawing.Point(12, 51);
-            this.pictureBox10.Name = "pictureBox10";
-            this.pictureBox10.Size = new System.Drawing.Size(150, 150);
-            this.pictureBox10.TabIndex = 0;
-            this.pictureBox10.TabStop = false;
-            // 
-            // button17
-            // 
-            this.button17.Image = global::JCFLIGHTGCS.Properties.Resources.DefaultPID;
-            this.button17.Location = new System.Drawing.Point(952, 400);
-            this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(75, 66);
-            this.button17.TabIndex = 10;
-            this.button17.UseVisualStyleBackColor = true;
-            this.button17.Click += new System.EventHandler(this.button17_Click);
-            // 
-            // button16
-            // 
-            this.button16.Image = global::JCFLIGHTGCS.Properties.Resources.Save;
-            this.button16.Location = new System.Drawing.Point(852, 400);
-            this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(75, 66);
-            this.button16.TabIndex = 9;
-            this.button16.UseVisualStyleBackColor = true;
-            this.button16.Click += new System.EventHandler(this.button16_Click);
-            // 
-            // pictureBox9
-            // 
-            this.pictureBox9.BackColor = System.Drawing.Color.White;
-            this.pictureBox9.Image = global::JCFLIGHTGCS.Properties.Resources.Desconectado;
-            this.pictureBox9.Location = new System.Drawing.Point(938, 51);
-            this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(93, 72);
-            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox9.TabIndex = 6;
-            this.pictureBox9.TabStop = false;
-            // 
-            // iconminimizar
-            // 
-            this.iconminimizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.iconminimizar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.iconminimizar.Image = global::JCFLIGHTGCS.Properties.Resources.minimazar;
-            this.iconminimizar.Location = new System.Drawing.Point(968, 5);
-            this.iconminimizar.Name = "iconminimizar";
-            this.iconminimizar.Size = new System.Drawing.Size(18, 18);
-            this.iconminimizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.iconminimizar.TabIndex = 4;
-            this.iconminimizar.TabStop = false;
-            this.iconminimizar.Click += new System.EventHandler(this.iconminimizar_Click);
-            // 
-            // maximinizar
-            // 
-            this.maximinizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.maximinizar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.maximinizar.Image = global::JCFLIGHTGCS.Properties.Resources.maxi;
-            this.maximinizar.Location = new System.Drawing.Point(990, 10);
-            this.maximinizar.Name = "maximinizar";
-            this.maximinizar.Size = new System.Drawing.Size(18, 18);
-            this.maximinizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.maximinizar.TabIndex = 3;
-            this.maximinizar.TabStop = false;
-            this.maximinizar.Visible = false;
-            this.maximinizar.Click += new System.EventHandler(this.maximinizar_Click);
-            // 
-            // iconmaximizar
-            // 
-            this.iconmaximizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.iconmaximizar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.iconmaximizar.Image = global::JCFLIGHTGCS.Properties.Resources.maxi;
-            this.iconmaximizar.Location = new System.Drawing.Point(995, 5);
-            this.iconmaximizar.Name = "iconmaximizar";
-            this.iconmaximizar.Size = new System.Drawing.Size(18, 18);
-            this.iconmaximizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.iconmaximizar.TabIndex = 2;
-            this.iconmaximizar.TabStop = false;
-            this.iconmaximizar.Click += new System.EventHandler(this.iconmaximizar_Click);
-            // 
-            // encerrar
-            // 
-            this.encerrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.encerrar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.encerrar.Image = global::JCFLIGHTGCS.Properties.Resources.cerrar;
-            this.encerrar.Location = new System.Drawing.Point(1021, 5);
-            this.encerrar.Name = "encerrar";
-            this.encerrar.Size = new System.Drawing.Size(18, 18);
-            this.encerrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.encerrar.TabIndex = 1;
-            this.encerrar.TabStop = false;
-            this.encerrar.Click += new System.EventHandler(this.encerrar_Click_1);
-            // 
-            // btnlogoInicio
-            // 
-            this.btnlogoInicio.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.btnlogoInicio.Image = ((System.Drawing.Image)(resources.GetObject("btnlogoInicio.Image")));
-            this.btnlogoInicio.Location = new System.Drawing.Point(257, 22);
-            this.btnlogoInicio.Name = "btnlogoInicio";
-            this.btnlogoInicio.Size = new System.Drawing.Size(398, 88);
-            this.btnlogoInicio.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnlogoInicio.TabIndex = 0;
-            this.btnlogoInicio.TabStop = false;
-            // 
-            // button15
-            // 
-            this.button15.BackColor = System.Drawing.Color.LimeGreen;
-            this.button15.BackgroundImage = global::JCFLIGHTGCS.Properties.Resources.WhatsApp;
-            this.button15.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button15.Location = new System.Drawing.Point(153, 586);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(76, 61);
-            this.button15.TabIndex = 11;
-            this.button15.UseVisualStyleBackColor = false;
-            this.button15.Click += new System.EventHandler(this.button15_Click);
-            // 
-            // button14
-            // 
-            this.button14.BackColor = System.Drawing.Color.White;
-            this.button14.BackgroundImage = global::JCFLIGHTGCS.Properties.Resources.YouTube;
-            this.button14.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button14.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button14.Location = new System.Drawing.Point(12, 590);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(79, 57);
-            this.button14.TabIndex = 10;
-            this.button14.UseVisualStyleBackColor = false;
-            this.button14.Click += new System.EventHandler(this.button14_Click);
-            // 
             // GCS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -4517,40 +4517,54 @@
             this.Load += new System.EventHandler(this.GCS_Load);
             this.BarraTitulo.ResumeLayout(false);
             this.BarraTitulo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconminimizar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.maximinizar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconmaximizar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.encerrar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnlogoInicio)).EndInit();
             this.MenuVertical.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.panel16.ResumeLayout(false);
             this.panel16.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             this.panel17.ResumeLayout(false);
             this.panel17.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             this.panel13.ResumeLayout(false);
             this.panel13.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             this.panel14.ResumeLayout(false);
             this.panel14.PerformLayout();
             this.panel11.ResumeLayout(false);
             this.panel11.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             this.panel12.ResumeLayout(false);
             this.panel12.PerformLayout();
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.panel15.ResumeLayout(false);
             this.panel15.PerformLayout();
             this.tabPage2.ResumeLayout(false);
@@ -4571,6 +4585,19 @@
             this.groupBox11.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
@@ -4629,33 +4656,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iconminimizar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.maximinizar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iconmaximizar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.encerrar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnlogoInicio)).EndInit();
             this.ResumeLayout(false);
 
         }
