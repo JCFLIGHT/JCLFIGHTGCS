@@ -45,7 +45,6 @@
             this.metroLabel12 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
             this.metroProgressBar1 = new MetroFramework.Controls.MetroProgressBar();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label92 = new System.Windows.Forms.Label();
             this.CompassCalib = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
@@ -98,7 +97,7 @@
             // 
             this.metroLabel5.AutoSize = true;
             this.metroLabel5.BackColor = System.Drawing.Color.Transparent;
-            this.metroLabel5.Location = new System.Drawing.Point(776, 347);
+            this.metroLabel5.Location = new System.Drawing.Point(773, 319);
             this.metroLabel5.Name = "metroLabel5";
             this.metroLabel5.Size = new System.Drawing.Size(70, 19);
             this.metroLabel5.TabIndex = 6;
@@ -108,7 +107,7 @@
             // 
             this.metroLabel6.AutoSize = true;
             this.metroLabel6.BackColor = System.Drawing.Color.Transparent;
-            this.metroLabel6.Location = new System.Drawing.Point(776, 317);
+            this.metroLabel6.Location = new System.Drawing.Point(773, 289);
             this.metroLabel6.Name = "metroLabel6";
             this.metroLabel6.Size = new System.Drawing.Size(67, 19);
             this.metroLabel6.TabIndex = 5;
@@ -118,7 +117,7 @@
             // 
             this.metroLabel7.AutoSize = true;
             this.metroLabel7.BackColor = System.Drawing.Color.Transparent;
-            this.metroLabel7.Location = new System.Drawing.Point(776, 407);
+            this.metroLabel7.Location = new System.Drawing.Point(773, 379);
             this.metroLabel7.Name = "metroLabel7";
             this.metroLabel7.Size = new System.Drawing.Size(76, 19);
             this.metroLabel7.TabIndex = 8;
@@ -128,7 +127,7 @@
             // 
             this.metroLabel8.AutoSize = true;
             this.metroLabel8.BackColor = System.Drawing.Color.Transparent;
-            this.metroLabel8.Location = new System.Drawing.Point(776, 377);
+            this.metroLabel8.Location = new System.Drawing.Point(773, 349);
             this.metroLabel8.Name = "metroLabel8";
             this.metroLabel8.Size = new System.Drawing.Size(73, 19);
             this.metroLabel8.TabIndex = 7;
@@ -138,7 +137,7 @@
             // 
             this.metroLabel9.AutoSize = true;
             this.metroLabel9.BackColor = System.Drawing.Color.Transparent;
-            this.metroLabel9.Location = new System.Drawing.Point(779, 467);
+            this.metroLabel9.Location = new System.Drawing.Point(776, 439);
             this.metroLabel9.Name = "metroLabel9";
             this.metroLabel9.Size = new System.Drawing.Size(70, 19);
             this.metroLabel9.TabIndex = 10;
@@ -148,7 +147,7 @@
             // 
             this.metroLabel10.AutoSize = true;
             this.metroLabel10.BackColor = System.Drawing.Color.Transparent;
-            this.metroLabel10.Location = new System.Drawing.Point(779, 437);
+            this.metroLabel10.Location = new System.Drawing.Point(776, 409);
             this.metroLabel10.Name = "metroLabel10";
             this.metroLabel10.Size = new System.Drawing.Size(67, 19);
             this.metroLabel10.TabIndex = 9;
@@ -170,7 +169,7 @@
             this.metroLabel12.AutoSize = true;
             this.metroLabel12.BackColor = System.Drawing.Color.Transparent;
             this.metroLabel12.FontWeight = MetroFramework.MetroLabelWeight.Bold;
-            this.metroLabel12.Location = new System.Drawing.Point(776, 287);
+            this.metroLabel12.Location = new System.Drawing.Point(773, 259);
             this.metroLabel12.Name = "metroLabel12";
             this.metroLabel12.Size = new System.Drawing.Size(146, 19);
             this.metroLabel12.TabIndex = 12;
@@ -196,19 +195,6 @@
             this.metroProgressBar1.Size = new System.Drawing.Size(943, 23);
             this.metroProgressBar1.TabIndex = 13;
             // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1.Location = new System.Drawing.Point(776, 550);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(130, 20);
-            this.checkBox1.TabIndex = 14;
-            this.checkBox1.Text = "Auto-Rotação?";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
             // label92
             // 
             this.label92.AutoSize = true;
@@ -231,7 +217,6 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(967, 585);
             this.Controls.Add(this.label92);
-            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.metroProgressBar1);
             this.Controls.Add(this.metroLabel12);
             this.Controls.Add(this.metroLabel11);
@@ -272,7 +257,6 @@
         private MetroFramework.Controls.MetroLabel metroLabel12;
         private MetroFramework.Controls.MetroLabel metroLabel4;
         private MetroFramework.Controls.MetroProgressBar metroProgressBar1;
-        private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Label label92;
         private System.Windows.Forms.Timer CompassCalib;
     }

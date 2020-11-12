@@ -13,23 +13,26 @@ namespace JCFLIGHTGCS
 {
     public partial class Compass : Form
     {
-        static List<Tuple<float, float, float>> datacompass1 = new List<Tuple<float, float, float>>();
-        List<Vector3> points = new List<Vector3>();
-        List<Vector3> aimpoints = new List<Vector3>();
+        static List<Tuple<float, float, float>> DataCompassRegister = new List<Tuple<float, float, float>>();
+        List<Vector3> Points = new List<Vector3>();
+        List<Vector3> AimPoints = new List<Vector3>();
         public Vector3 CenterPoint = new Vector3();
-        Vector3 eye = new Vector3(1, 1, 1);
+        Vector3 Eye = new Vector3(1, 1, 1);
 
-        float rawmx = 0;
-        float rawmy = 0;
-        float rawmz = 0;
+        bool RotateYawData = true;
+        bool Cal_Success = false;
 
-        const float rad2deg = (180.0f / 3.1415926535897932384626433832795f);
-        const float deg2rad = (1.0f / rad2deg);
-        float minx, maxx, miny, maxy, minz, maxz;
-        public float scale = 300;
-        private float yaw;
-
-        public bool rotatewithdata = false;
+        float RawMagX = 0;
+        float RawMagY = 0;
+        float RawMagZ = 0;
+        float MinMagX;
+        float MaxMagX;
+        float MinMagY;
+        float MaxMagY;
+        float MinMagZ;
+        float MaxMagZ;
+        float YawRotation;
+        float PitchRotation;
 
         int SecondsCompass = 0;
 
@@ -39,141 +42,159 @@ namespace JCFLIGHTGCS
             Clear();
             SecondsCompass = 0;
             if (CompassCalib.Enabled == false) CompassCalib.Enabled = true;
-            metroProgressBar1.Value = 0;
+        }
+
+        public void AddPoint(Vector3 VectorPoint)
+        {
+            MinMagX = (float)Math.Min(MinMagX, VectorPoint.X);
+            MaxMagX = (float)Math.Max(MaxMagX, VectorPoint.X);
+            MinMagY = (float)Math.Min(MinMagY, VectorPoint.Y);
+            MaxMagY = (float)Math.Max(MaxMagY, VectorPoint.Y);
+            MinMagZ = (float)Math.Min(MinMagZ, VectorPoint.Z);
+            MaxMagZ = (float)Math.Max(MaxMagZ, VectorPoint.Z);
+            lock (Points)
+            {
+                Points.Add(VectorPoint);
+            }
+            this.Invalidate();
         }
 
         public void Clear()
         {
-            lock (points)
+            lock (Points)
             {
-                points.Clear();
+                Points.Clear();
             }
         }
 
         public void AimClear()
         {
-            lock (aimpoints)
+            lock (AimPoints)
             {
-                aimpoints.Clear();
+                AimPoints.Clear();
             }
         }
 
-        public void AimFor(Vector3 point)
+        public void AimFor(Vector3 VectorPoint)
         {
-            lock (aimpoints)
+            lock (AimPoints)
             {
-                aimpoints.Add(point);
+                AimPoints.Add(VectorPoint);
             }
         }
 
-        private static void setMinorMax(float value, ref float min, ref float max)
+        private static void setMinorMax(float Value, ref float Min, ref float Max)
         {
-            if (value > max)
-                max = value;
-            if (value < min)
-                min = value;
+            if (Value > Max)
+                Max = Value;
+            if (Value < Min)
+                Min = Value;
         }
 
         private void CompassCalib_Tick(object sender, EventArgs e)
         {
             SecondsCompass++;
-            metroProgressBar1.Value++;
             label92.Text = "Tempo corrido da Calibração:" + ((SecondsCompass / 60).ToString("00.") + ":" + (SecondsCompass % 60).ToString("00."));
             if (SecondsCompass / 60 == 1)
             {
                 SecondsCompass = 0;
                 label92.Text = "Tempo corrido da Calibração:00:00";
-                CompassCalib.Enabled = false;
+                Cal_Success = true;
                 MessageBox.Show("Calibração do Compass concluída!");
             }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            rotatewithdata = checkBox1.Checked;
+            if (Cal_Success)
+            {
+                CompassCalib.Enabled = false;
+                metroProgressBar1.Enabled = false;
+                metroProgressBar1.Value = 0;
+                RotateYawData = false;
+                Cal_Success = false;
+            }
 
-            rawmx = GCS.CompassRoll;
-            rawmy = GCS.CompassPitch;
-            rawmz = GCS.CompassYaw;
+            RawMagX = GCS.CompassRoll;
+            RawMagY = GCS.CompassPitch;
+            RawMagZ = GCS.CompassYaw;
 
             metroLabel1.Text = "Compass Roll:" + Convert.ToString(GCS.CompassRoll);
             metroLabel2.Text = "Compass Pitch:" + Convert.ToString(GCS.CompassPitch);
             metroLabel3.Text = "Compass Yaw:" + Convert.ToString(GCS.CompassYaw);
-            metroLabel6.Text = "Roll Min:" + Convert.ToString(minx);
-            metroLabel5.Text = "Roll Max:" + Convert.ToString(maxx);
-            metroLabel8.Text = "Pitch Min:" + Convert.ToString(miny);
-            metroLabel7.Text = "Pitch Max:" + Convert.ToString(maxy);
-            metroLabel10.Text = "Yaw Min:" + Convert.ToString(minz);
-            metroLabel9.Text = "Yaw Max:" + Convert.ToString(maxz);
+            metroLabel6.Text = "Roll Min:" + Convert.ToString(MinMagX);
+            metroLabel5.Text = "Roll Max:" + Convert.ToString(MaxMagX);
+            metroLabel8.Text = "Pitch Min:" + Convert.ToString(MinMagY);
+            metroLabel7.Text = "Pitch Max:" + Convert.ToString(MaxMagY);
+            metroLabel10.Text = "Yaw Min:" + Convert.ToString(MinMagZ);
+            metroLabel9.Text = "Yaw Max:" + Convert.ToString(MaxMagZ);
 
-            datacompass1.Add(new Tuple<float, float, float>(rawmx, rawmy, rawmz));
+            DataCompassRegister.Add(new Tuple<float, float, float>(RawMagX, RawMagY, RawMagZ));
 
-            Vector3 centre = new Vector3();
-            Vector3 point;
+            Vector3 VectorCentre = new Vector3();
+            Vector3 VectorPoint;
 
-            AddPoint(new OpenTK.Vector3(rawmx, rawmy, rawmz));
+            AddPoint(new OpenTK.Vector3(RawMagX, RawMagY, RawMagZ));
             AimClear();
 
-            point = new Vector3(rawmx, rawmy, rawmz) + centre;
+            VectorPoint = new Vector3(RawMagX, RawMagY, RawMagZ) + VectorCentre;
 
-            rawmx = datacompass1[datacompass1.Count - 1].Item1;
-            rawmy = datacompass1[datacompass1.Count - 1].Item2;
-            rawmz = datacompass1[datacompass1.Count - 1].Item3;
+            RawMagX = DataCompassRegister[DataCompassRegister.Count - 1].Item1;
+            RawMagY = DataCompassRegister[DataCompassRegister.Count - 1].Item2;
+            RawMagZ = DataCompassRegister[DataCompassRegister.Count - 1].Item3;
 
-            setMinorMax(rawmx, ref minx, ref maxx);
-            setMinorMax(rawmy, ref miny, ref maxy);
-            setMinorMax(rawmz, ref minz, ref maxz);
+            setMinorMax(RawMagX, ref MinMagX, ref MaxMagX);
+            setMinorMax(RawMagY, ref MinMagY, ref MaxMagY);
+            setMinorMax(RawMagZ, ref MinMagZ, ref MaxMagZ);
 
-            float radius = 0;
-            for (int i = 0; i < datacompass1.Count; i++)
+            float Radius = 0;
+            for (int i = 0; i < DataCompassRegister.Count; i++)
             {
-                point = new Vector3(datacompass1[i].Item1, datacompass1[i].Item2, datacompass1[i].Item3);
-                radius += (float)(point + centre).Length;
+                VectorPoint = new Vector3(DataCompassRegister[i].Item1, DataCompassRegister[i].Item2, DataCompassRegister[i].Item3);
+                Radius += (float)(VectorPoint + VectorCentre).Length;
             }
 
-            radius /= datacompass1.Count;
+            Radius /= DataCompassRegister.Count;
 
-            int pointshit = 0;
-            int factor = 3;
-            int factor2 = 4;
-            float max_distance = radius / 3;
-            for (int j = 0; j <= factor; j++)
+            int Factor = 3;
+            int Factor2 = 4;
+            float MaxDistance = Radius / 3;
+            for (int j = 0; j <= Factor; j++)
             {
-                float theta = (3.1415926535897932384626433832795f * (j + 0.5f)) / factor;
+                float Theta = (3.1415926535897932384626433832795f * (j + 0.5f)) / Factor;
 
-                for (int i = 0; i <= factor2; i++)
+                for (int i = 0; i <= Factor2; i++)
                 {
-                    float phi = (2.0f * 3.1415926535897932384626433832795f * i) / factor2;
+                    float Phi = (2.0f * 3.1415926535897932384626433832795f * i) / Factor2;
 
                     Vector3 point_sphere = new Vector3(
-                        (float)(Math.Sin(theta) * Math.Cos(phi) * radius),
-                        (float)(Math.Sin(theta) * Math.Sin(phi) * radius),
-                        (float)(Math.Cos(theta) * radius)) - centre;
+                        (float)(Math.Sin(Theta) * Math.Cos(Phi) * Radius),
+                        (float)(Math.Sin(Theta) * Math.Sin(Phi) * Radius),
+                        (float)(Math.Cos(Theta) * Radius)) - VectorCentre;
 
-                    bool found = false;
-                    for (int k = 0; k < datacompass1.Count; k++)
+                    bool Found = false;
+                    for (int k = 0; k < DataCompassRegister.Count; k++)
                     {
-                        point = new Vector3(datacompass1[k].Item1, datacompass1[k].Item2, datacompass1[k].Item3);
-                        float d = (point_sphere - point).Length;
-                        if (d < max_distance)
+                        VectorPoint = new Vector3(DataCompassRegister[k].Item1, DataCompassRegister[k].Item2, DataCompassRegister[k].Item3);
+                        float d = (point_sphere - VectorPoint).Length;
+                        if (d < MaxDistance)
                         {
-                            pointshit++;
-                            found = true;
+                            Found = true;
                             break;
                         }
                     }
-                    if (!found)
+                    if (!Found)
                     {
                         AimFor(new OpenTK.Vector3((float)point_sphere.X, (float)point_sphere.Y, (float)point_sphere.Z));
                     }
                 }
             }
-            RemoveOutliers(ref datacompass1);
+            RemoveOutliers(ref DataCompassRegister);
         }
 
-        static void RemoveOutliers(ref List<Tuple<float, float, float>> data)
+        static void RemoveOutliers(ref List<Tuple<float, float, float>> Data)
         {
-            data.Sort(
+            Data.Sort(
                 delegate (Tuple<float, float, float> d1, Tuple<float, float, float> d2)
                 {
                     double ans1 = Math.Sqrt(d1.Item1 * d1.Item1 + d1.Item2 * d1.Item2 + d1.Item3 * d1.Item3);
@@ -186,39 +207,7 @@ namespace JCFLIGHTGCS
                 }
                 );
 
-            data.RemoveRange(data.Count - (data.Count / 16), data.Count / 16);
-        }
-
-        public void AddPoint(Vector3 point)
-        {
-            minx = (float)Math.Min(minx, point.X);
-            maxx = (float)Math.Max(maxx, point.X);
-            miny = (float)Math.Min(miny, point.Y);
-            maxy = (float)Math.Max(maxy, point.Y);
-            minz = (float)Math.Min(minz, point.Z);
-            maxz = (float)Math.Max(maxz, point.Z);
-            lock (points)
-            {
-                points.Add(point);
-            }
-            this.Invalidate();
-        }
-
-        protected override bool ProcessCmdKey(ref System.Windows.Forms.Message msg, System.Windows.Forms.Keys keyData)
-        {
-            if (keyData == System.Windows.Forms.Keys.Left)
-            {
-                yaw += -5 * deg2rad;
-                this.Invalidate();
-                return true;
-            }
-            if (keyData == System.Windows.Forms.Keys.Right)
-            {
-                yaw += 5 * deg2rad;
-                this.Invalidate();
-                return true;
-            }
-            return base.ProcessCmdKey(ref msg, keyData);
+            Data.RemoveRange(Data.Count - (Data.Count / 16), Data.Count / 16);
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -231,41 +220,46 @@ namespace JCFLIGHTGCS
 
             GL.Viewport(100, -100, 600, 600);
 
-            if (rotatewithdata)
-                yaw += 5 * deg2rad;
+            if (RotateYawData)
+            {
+                YawRotation += 5 * (3.1415926535897931f / 180.0f);
+                PitchRotation += -5 * (3.1415926535897931f / 180.0f);
+            }
 
             glControl1.MakeCurrent();
 
             GL.MatrixMode(MatrixMode.Projection);
 
-            float max = Math.Max(Math.Max((maxx - minx) / 2, (maxy - miny) / 2), (maxz - minz) / 2);
+            float Max = Math.Max(Math.Max((MaxMagX - MinMagX) / 2, (MaxMagY - MinMagY) / 2), (MaxMagZ - MinMagZ) / 2);
 
-            if (max < 300)
-                max = 400;
+            if (Max < 300)
+                Max = 400;
 
-            max *= 1.3f;
+            Max *= 1.3f;
 
-            if (points.Count > 0)
+            if (Points.Count > 0)
             {
-                Vector3 current = new Vector3(points[points.Count - 1].X, points[points.Count - 1].Y, points[points.Count - 1].Z);
+                Vector3 current = new Vector3(Points[Points.Count - 1].X, Points[Points.Count - 1].Y, Points[Points.Count - 1].Z);
             }
 
-            OpenTK.Matrix4 projection = OpenTK.Matrix4.CreatePerspectiveFieldOfView((float)(45 * deg2rad), 1f, 0.00001f, 5000.0f);
-            GL.LoadMatrix(ref projection);
+            OpenTK.Matrix4 Projection = OpenTK.Matrix4.CreatePerspectiveFieldOfView((float)(45 * (3.1415926535897931f / 180.0f)), 1f, 0.00001f, 5000.0f);
+            GL.LoadMatrix(ref Projection);
 
-            float eyedist = (float)max * 3;
+            float EyeDistance = (float)Max * 3;
 
-            eye = Vector3.TransformPosition(eye, Matrix4.CreateRotationZ((float)yaw));
+            Eye = Vector3.TransformPosition(Eye, Matrix4.CreateRotationZ((float)YawRotation));
+            Eye = Vector3.TransformPosition(Eye, Matrix4.CreateRotationX((float)PitchRotation));
 
-            yaw = 0;
+            PitchRotation = 0;
+            YawRotation = 0;
 
-            if (float.IsNaN(eye.X))
-                eye = new Vector3(1, 1, 1);
+            if (float.IsNaN(Eye.X))
+                Eye = new Vector3(1, 1, 1);
 
-            eye.Normalize();
+            Eye.Normalize();
 
-            eye *= eyedist;
-            Matrix4 modelview = Matrix4.LookAt(eye.X, eye.Y, eye.Z, 0, 0, 0, 0, 0, 1);
+            Eye *= EyeDistance;
+            Matrix4 modelview = Matrix4.LookAt(Eye.X, Eye.Y, Eye.Z, 0, 0, 0, 0, 0, 1);
             GL.MatrixMode(MatrixMode.Modelview);
             GL.LoadMatrix(ref modelview);
             GL.ClearColor(Color.Black);
@@ -274,63 +268,93 @@ namespace JCFLIGHTGCS
             GL.Begin(PrimitiveType.Lines);
             GL.Color3(Color.FromArgb(0, 0, 255));
             GL.Vertex3(0, 0, 0);
-            GL.Vertex3(0, 0, max);
+            GL.Vertex3(0, 0, Max);
             GL.Color3(Color.FromArgb(0, 255, 0));
             GL.Vertex3(0, 0, 0);
-            GL.Vertex3(0, max, 0);
+            GL.Vertex3(0, Max, 0);
             GL.Color3(Color.FromArgb(255, 0, 0));
             GL.Vertex3(0, 0, 0);
-            GL.Vertex3(max, 0, 0);
+            GL.Vertex3(Max, 0, 0);
             GL.Color3(Color.FromArgb(255, 255, 0));
             GL.Vertex3(0, 0, 0);
-            GL.Vertex3(0, 0, -max);
+            GL.Vertex3(0, 0, -Max);
             GL.Color3(Color.FromArgb(255, 0, 255));
             GL.Vertex3(0, 0, 0);
-            GL.Vertex3(0, -max, 0);
+            GL.Vertex3(0, -Max, 0);
             GL.Color3(Color.FromArgb(0, 255, 255));
             GL.Vertex3(0, 0, 0);
-            GL.Vertex3(-max, 0, 0);
+            GL.Vertex3(-Max, 0, 0);
             GL.End();
             GL.Begin(PrimitiveType.Points);
-            lock (points)
+            lock (Points)
             {
-                foreach (var item in points)
+                foreach (var Item in Points)
                 {
-                    float rangex = maxx - minx;
-                    float rangey = maxy - miny;
-                    float rangez = maxz - minz;
+                    float RangeX = MaxMagX - MinMagX;
+                    float RangeY = MaxMagY - MinMagY;
+                    float RangeZ = MaxMagZ - MinMagZ;
 
-                    int valuex = (int)Math.Abs((((item.X) / rangex) * 254)) & 0xff;
-                    int valuey = (int)Math.Abs((((item.Y) / rangey) * 254)) & 0xff;
-                    int valuez = (int)Math.Abs((((item.Z) / rangez) * 254)) & 0xff;
+                    int ValueX = (int)Math.Abs((((Item.X) / RangeX) * 254)) & 0xff;
+                    int ValueY = (int)Math.Abs((((Item.Y) / RangeY) * 254)) & 0xff;
+                    int ValueZ = (int)Math.Abs((((Item.Z) / RangeZ) * 254)) & 0xff;
 
-                    Color col = Color.FromArgb(valuex, valuey, valuez);
+                    Color GetColor = Color.FromArgb(ValueX, ValueY, ValueZ);
 
-                    GL.Color3(col);
+                    GL.Color3(GetColor);
 
-                    Vector3 vec = new Vector3(item.X, item.Y, item.Z) + CenterPoint;
+                    Vector3 vec = new Vector3(Item.X, Item.Y, Item.Z) + CenterPoint;
 
                     GL.Vertex3(vec);
                 }
-                lock (aimpoints)
+                lock (AimPoints)
                 {
-                    foreach (var aim in aimpoints)
+                    foreach (var Aim in AimPoints)
                     {
                         GL.PointSize(8);
                         GL.Color3(Color.White);
-                        GL.Vertex3(new Vector3(aim.X, aim.Y, aim.Z) + CenterPoint);
+                        GL.Vertex3(new Vector3(Aim.X, Aim.Y, Aim.Z) + CenterPoint);
                     }
                 }
                 GL.End();
                 GL.PointSize(12);
                 GL.Begin(PrimitiveType.Points);
                 GL.Color3(Color.Red);
-                if (points.Count > 0)
-                    GL.Vertex3(new Vector3(points[points.Count - 1].X, points[points.Count - 1].Y, points[points.Count - 1].Z) + CenterPoint);
+                if (Points.Count > 0)
+                    GL.Vertex3(new Vector3(Points[Points.Count - 1].X, Points[Points.Count - 1].Y, Points[Points.Count - 1].Z) + CenterPoint);
             }
             GL.End();
-            Console.WriteLine(Math.Atan2(eye.Y, eye.X));
+            Console.WriteLine(Math.Atan2(Eye.Y, Eye.X));
             glControl1.SwapBuffers();
+        }
+
+        protected override bool ProcessCmdKey(ref System.Windows.Forms.Message Message, System.Windows.Forms.Keys KeyData)
+        {
+            if (RotateYawData) return false;
+            if (KeyData == System.Windows.Forms.Keys.Up)
+            {
+                PitchRotation += -5 * (3.1415926535897931f / 180.0f);
+                this.Invalidate();
+                return true;
+            }
+            if (KeyData == System.Windows.Forms.Keys.Down)
+            {
+                PitchRotation += 5 * (3.1415926535897931f / 180.0f);
+                this.Invalidate();
+                return true;
+            }
+            if (KeyData == System.Windows.Forms.Keys.Left)
+            {
+                YawRotation += -5 * (3.1415926535897931f / 180.0f);
+                this.Invalidate();
+                return true;
+            }
+            if (KeyData == System.Windows.Forms.Keys.Right)
+            {
+                YawRotation += 5 * (3.1415926535897931f / 180.0f);
+                this.Invalidate();
+                return true;
+            }
+            return base.ProcessCmdKey(ref Message, KeyData);
         }
     }
 }
