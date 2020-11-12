@@ -418,6 +418,13 @@ namespace JCFLIGHTGCS
 
         private void iconmaximizar_Click(object sender, EventArgs e)
         {
+            if (this.WindowState == FormWindowState.Maximized)
+            {
+                this.WindowState = FormWindowState.Normal;
+                maximinizar.Visible = false;
+                iconmaximizar.Visible = true;
+                return;
+            }
             this.MaximumSize = Screen.PrimaryScreen.WorkingArea.Size; //NÃO CUBRA A BARRA DE TAREFAS
             this.WindowState = FormWindowState.Maximized;
             maximinizar.Visible = true;
@@ -452,7 +459,6 @@ namespace JCFLIGHTGCS
             if (SerialPort.IsOpen == true)
             {
                 SerialPort.Close();
-                this.Close();
             }
             Application.Exit();
             this.Close();
