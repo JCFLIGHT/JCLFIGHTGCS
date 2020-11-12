@@ -62,8 +62,6 @@
             this.label94 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.circularProgressBar1 = new CircularProgressBar.CircularProgressBar();
-            this.HorizonIndicator = new JCFLIGHTGCS.AttitudeIndicatorInstrumentControl();
-            this.HeadingIndicator = new JCFLIGHTGCS.HeadingIndicatorInstrumentControl();
             this.panel16 = new System.Windows.Forms.Panel();
             this.label25 = new System.Windows.Forms.Label();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
@@ -253,8 +251,6 @@
             this.label73 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.circularProgressBar2 = new CircularProgressBar.CircularProgressBar();
-            this.HeadingIndicator2 = new JCFLIGHTGCS.HeadingIndicatorInstrumentControl();
-            this.HorizonIndicator2 = new JCFLIGHTGCS.AttitudeIndicatorInstrumentControl();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.label115 = new System.Windows.Forms.Label();
@@ -344,6 +340,10 @@
             this.FlightTimer = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer3 = new System.Windows.Forms.Timer(this.components);
+            this.HorizonIndicator = new JCFLIGHTGCS.AttitudeIndicatorInstrumentControl();
+            this.HeadingIndicator = new JCFLIGHTGCS.HeadingIndicatorInstrumentControl();
+            this.HeadingIndicator2 = new JCFLIGHTGCS.HeadingIndicatorInstrumentControl();
+            this.HorizonIndicator2 = new JCFLIGHTGCS.AttitudeIndicatorInstrumentControl();
             this.BarraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconminimizar)).BeginInit();
@@ -934,24 +934,6 @@
             this.circularProgressBar1.TabIndex = 46;
             this.circularProgressBar1.TextMargin = new System.Windows.Forms.Padding(8, 8, 0, 0);
             this.circularProgressBar1.Value = 68;
-            // 
-            // HorizonIndicator
-            // 
-            this.HorizonIndicator.BackColor = System.Drawing.Color.White;
-            this.HorizonIndicator.Location = new System.Drawing.Point(33, 153);
-            this.HorizonIndicator.Name = "HorizonIndicator";
-            this.HorizonIndicator.Size = new System.Drawing.Size(300, 300);
-            this.HorizonIndicator.TabIndex = 3;
-            this.HorizonIndicator.Text = "HorizonIndicator";
-            // 
-            // HeadingIndicator
-            // 
-            this.HeadingIndicator.BackColor = System.Drawing.Color.White;
-            this.HeadingIndicator.Location = new System.Drawing.Point(382, 153);
-            this.HeadingIndicator.Name = "HeadingIndicator";
-            this.HeadingIndicator.Size = new System.Drawing.Size(300, 300);
-            this.HeadingIndicator.TabIndex = 4;
-            this.HeadingIndicator.Text = "HeadingIndicator";
             // 
             // panel16
             // 
@@ -3449,24 +3431,6 @@
             this.circularProgressBar2.TextMargin = new System.Windows.Forms.Padding(8, 8, 0, 0);
             this.circularProgressBar2.Value = 68;
             // 
-            // HeadingIndicator2
-            // 
-            this.HeadingIndicator2.BackColor = System.Drawing.Color.White;
-            this.HeadingIndicator2.Location = new System.Drawing.Point(0, 170);
-            this.HeadingIndicator2.Name = "HeadingIndicator2";
-            this.HeadingIndicator2.Size = new System.Drawing.Size(157, 160);
-            this.HeadingIndicator2.TabIndex = 5;
-            this.HeadingIndicator2.Text = "HeadingIndicator2";
-            // 
-            // HorizonIndicator2
-            // 
-            this.HorizonIndicator2.BackColor = System.Drawing.Color.White;
-            this.HorizonIndicator2.Location = new System.Drawing.Point(0, 6);
-            this.HorizonIndicator2.Name = "HorizonIndicator2";
-            this.HorizonIndicator2.Size = new System.Drawing.Size(157, 158);
-            this.HorizonIndicator2.TabIndex = 4;
-            this.HorizonIndicator2.Text = "HorizonIndicator2";
-            // 
             // tabPage7
             // 
             this.tabPage7.Controls.Add(this.linkLabel2);
@@ -4498,6 +4462,42 @@
             this.timer3.Enabled = true;
             this.timer3.Interval = 500;
             this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
+            // 
+            // HorizonIndicator
+            // 
+            this.HorizonIndicator.BackColor = System.Drawing.Color.White;
+            this.HorizonIndicator.Location = new System.Drawing.Point(33, 153);
+            this.HorizonIndicator.Name = "HorizonIndicator";
+            this.HorizonIndicator.Size = new System.Drawing.Size(300, 300);
+            this.HorizonIndicator.TabIndex = 3;
+            this.HorizonIndicator.Text = "HorizonIndicator";
+            // 
+            // HeadingIndicator
+            // 
+            this.HeadingIndicator.BackColor = System.Drawing.Color.White;
+            this.HeadingIndicator.Location = new System.Drawing.Point(382, 153);
+            this.HeadingIndicator.Name = "HeadingIndicator";
+            this.HeadingIndicator.Size = new System.Drawing.Size(300, 300);
+            this.HeadingIndicator.TabIndex = 4;
+            this.HeadingIndicator.Text = "HeadingIndicator";
+            // 
+            // HeadingIndicator2
+            // 
+            this.HeadingIndicator2.BackColor = System.Drawing.Color.White;
+            this.HeadingIndicator2.Location = new System.Drawing.Point(0, 170);
+            this.HeadingIndicator2.Name = "HeadingIndicator2";
+            this.HeadingIndicator2.Size = new System.Drawing.Size(157, 160);
+            this.HeadingIndicator2.TabIndex = 5;
+            this.HeadingIndicator2.Text = "HeadingIndicator2";
+            // 
+            // HorizonIndicator2
+            // 
+            this.HorizonIndicator2.BackColor = System.Drawing.Color.White;
+            this.HorizonIndicator2.Location = new System.Drawing.Point(0, 6);
+            this.HorizonIndicator2.Name = "HorizonIndicator2";
+            this.HorizonIndicator2.Size = new System.Drawing.Size(157, 158);
+            this.HorizonIndicator2.TabIndex = 4;
+            this.HorizonIndicator2.Text = "HorizonIndicator2";
             // 
             // GCS
             // 

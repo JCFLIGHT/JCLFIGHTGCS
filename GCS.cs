@@ -46,7 +46,6 @@ namespace JCFLIGHTGCS
         int ReadRoll = 2000;
         int ReadPitch = 0;
         int ReadCompass = 0;
-        Int32 SecondsCompass;
         double ReadBarometer = 0;
         double BattVoltage = 0;
         double GPSLatPrev = 0;
@@ -380,8 +379,6 @@ namespace JCFLIGHTGCS
             zedGraphControl5.ScrollGrace = 0;
             eScale = zedGraphControl5.GraphPane.XAxis.Scale;
             zedGraphControl5.AxisChange();
-
-
             //PLOTTER DA FORÇA G NO ACELEROMETRO
             AccGraph = zedGraphControl6.GraphPane;
             AccGraph.Title.Text = "FORÇA G NO ACELERÔMETRO";
@@ -414,7 +411,6 @@ namespace JCFLIGHTGCS
             zedGraphControl6.ScrollGrace = 0;
             fScale = zedGraphControl6.GraphPane.XAxis.Scale;
             zedGraphControl6.AxisChange();
-
             Thread.Sleep(3000);
             //FECHA O SPLASH SCREEN
             Program.Splash?.Close();
@@ -422,6 +418,7 @@ namespace JCFLIGHTGCS
 
         private void iconmaximizar_Click(object sender, EventArgs e)
         {
+            this.MaximumSize = Screen.PrimaryScreen.WorkingArea.Size; //NÃO CUBRA A BARRA DE TAREFAS
             this.WindowState = FormWindowState.Maximized;
             maximinizar.Visible = true;
             iconmaximizar.Visible = true;
