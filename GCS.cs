@@ -1162,10 +1162,10 @@ namespace JCFLIGHTGCS
 
         private void button11_Click(object sender, EventArgs e)
         {
-            //if (!SerialPort.IsOpen) return;
+            if (!SerialPort.IsOpen) return;
             Compass CompassOpen = new Compass();
             CompassOpen.Show();
-            //Serial_Write_To_FC(12);
+            Serial_Write_To_FC(12);
         }
 
         private void GmapAtt_Tick(object sender, EventArgs e)
