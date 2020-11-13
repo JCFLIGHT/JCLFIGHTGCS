@@ -44,9 +44,9 @@
             this.metroLabel11 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel12 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
-            this.metroProgressBar1 = new MetroFramework.Controls.MetroProgressBar();
             this.label92 = new System.Windows.Forms.Label();
             this.CompassCalib = new System.Windows.Forms.Timer(this.components);
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
             // metroLabel1
@@ -55,9 +55,9 @@
             this.metroLabel1.BackColor = System.Drawing.Color.Transparent;
             this.metroLabel1.Location = new System.Drawing.Point(772, 145);
             this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(99, 19);
+            this.metroLabel1.Size = new System.Drawing.Size(85, 19);
             this.metroLabel1.TabIndex = 0;
-            this.metroLabel1.Text = "Compass Roll:0";
+            this.metroLabel1.Text = "Compass X:0";
             // 
             // metroLabel2
             // 
@@ -65,9 +65,9 @@
             this.metroLabel2.BackColor = System.Drawing.Color.Transparent;
             this.metroLabel2.Location = new System.Drawing.Point(772, 175);
             this.metroLabel2.Name = "metroLabel2";
-            this.metroLabel2.Size = new System.Drawing.Size(105, 19);
+            this.metroLabel2.Size = new System.Drawing.Size(85, 19);
             this.metroLabel2.TabIndex = 1;
-            this.metroLabel2.Text = "Compass Pitch:0";
+            this.metroLabel2.Text = "Compass Y:0";
             // 
             // glControl1
             // 
@@ -89,9 +89,9 @@
             this.metroLabel3.BackColor = System.Drawing.Color.Transparent;
             this.metroLabel3.Location = new System.Drawing.Point(772, 205);
             this.metroLabel3.Name = "metroLabel3";
-            this.metroLabel3.Size = new System.Drawing.Size(99, 19);
+            this.metroLabel3.Size = new System.Drawing.Size(85, 19);
             this.metroLabel3.TabIndex = 3;
-            this.metroLabel3.Text = "Compass Yaw:0";
+            this.metroLabel3.Text = "Compass Z:0";
             // 
             // metroLabel5
             // 
@@ -99,9 +99,9 @@
             this.metroLabel5.BackColor = System.Drawing.Color.Transparent;
             this.metroLabel5.Location = new System.Drawing.Point(773, 319);
             this.metroLabel5.Name = "metroLabel5";
-            this.metroLabel5.Size = new System.Drawing.Size(70, 19);
+            this.metroLabel5.Size = new System.Drawing.Size(66, 19);
             this.metroLabel5.TabIndex = 6;
-            this.metroLabel5.Text = "Roll Max:0";
+            this.metroLabel5.Text = "X - Max:0";
             // 
             // metroLabel6
             // 
@@ -109,9 +109,9 @@
             this.metroLabel6.BackColor = System.Drawing.Color.Transparent;
             this.metroLabel6.Location = new System.Drawing.Point(773, 289);
             this.metroLabel6.Name = "metroLabel6";
-            this.metroLabel6.Size = new System.Drawing.Size(67, 19);
+            this.metroLabel6.Size = new System.Drawing.Size(63, 19);
             this.metroLabel6.TabIndex = 5;
-            this.metroLabel6.Text = "Roll Min:0";
+            this.metroLabel6.Text = "X - Min:0";
             // 
             // metroLabel7
             // 
@@ -119,9 +119,9 @@
             this.metroLabel7.BackColor = System.Drawing.Color.Transparent;
             this.metroLabel7.Location = new System.Drawing.Point(773, 379);
             this.metroLabel7.Name = "metroLabel7";
-            this.metroLabel7.Size = new System.Drawing.Size(76, 19);
+            this.metroLabel7.Size = new System.Drawing.Size(66, 19);
             this.metroLabel7.TabIndex = 8;
-            this.metroLabel7.Text = "Pitch Max:0";
+            this.metroLabel7.Text = "Y - Max:0";
             // 
             // metroLabel8
             // 
@@ -129,29 +129,29 @@
             this.metroLabel8.BackColor = System.Drawing.Color.Transparent;
             this.metroLabel8.Location = new System.Drawing.Point(773, 349);
             this.metroLabel8.Name = "metroLabel8";
-            this.metroLabel8.Size = new System.Drawing.Size(73, 19);
+            this.metroLabel8.Size = new System.Drawing.Size(63, 19);
             this.metroLabel8.TabIndex = 7;
-            this.metroLabel8.Text = "Pitch Min:0";
+            this.metroLabel8.Text = "Y - Min:0";
             // 
             // metroLabel9
             // 
             this.metroLabel9.AutoSize = true;
             this.metroLabel9.BackColor = System.Drawing.Color.Transparent;
-            this.metroLabel9.Location = new System.Drawing.Point(776, 439);
+            this.metroLabel9.Location = new System.Drawing.Point(773, 439);
             this.metroLabel9.Name = "metroLabel9";
-            this.metroLabel9.Size = new System.Drawing.Size(70, 19);
+            this.metroLabel9.Size = new System.Drawing.Size(66, 19);
             this.metroLabel9.TabIndex = 10;
-            this.metroLabel9.Text = "Yaw Max:0";
+            this.metroLabel9.Text = "Z - Max:0";
             // 
             // metroLabel10
             // 
             this.metroLabel10.AutoSize = true;
             this.metroLabel10.BackColor = System.Drawing.Color.Transparent;
-            this.metroLabel10.Location = new System.Drawing.Point(776, 409);
+            this.metroLabel10.Location = new System.Drawing.Point(773, 409);
             this.metroLabel10.Name = "metroLabel10";
-            this.metroLabel10.Size = new System.Drawing.Size(67, 19);
+            this.metroLabel10.Size = new System.Drawing.Size(63, 19);
             this.metroLabel10.TabIndex = 9;
-            this.metroLabel10.Text = "Yaw Min:0";
+            this.metroLabel10.Text = "Z - Min:0";
             // 
             // metroLabel11
             // 
@@ -186,15 +186,6 @@
             this.metroLabel4.Text = "Não é necessario criar uma esfera perfeita,se você mover o compass em todas as di" +
     "reções pelo menos quatro vezes já é o suficiente.\r\n";
             // 
-            // metroProgressBar1
-            // 
-            this.metroProgressBar1.Location = new System.Drawing.Point(8, 80);
-            this.metroProgressBar1.Maximum = 60;
-            this.metroProgressBar1.Name = "metroProgressBar1";
-            this.metroProgressBar1.ProgressBarStyle = System.Windows.Forms.ProgressBarStyle.Marquee;
-            this.metroProgressBar1.Size = new System.Drawing.Size(943, 23);
-            this.metroProgressBar1.TabIndex = 13;
-            // 
             // label92
             // 
             this.label92.AutoSize = true;
@@ -210,14 +201,22 @@
             this.CompassCalib.Interval = 1000;
             this.CompassCalib.Tick += new System.EventHandler(this.CompassCalib_Tick);
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(12, 80);
+            this.progressBar1.Maximum = 60;
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(939, 23);
+            this.progressBar1.TabIndex = 19;
+            // 
             // Compass
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(967, 585);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.label92);
-            this.Controls.Add(this.metroProgressBar1);
             this.Controls.Add(this.metroLabel12);
             this.Controls.Add(this.metroLabel11);
             this.Controls.Add(this.metroLabel9);
@@ -256,8 +255,8 @@
         private MetroFramework.Controls.MetroLabel metroLabel11;
         private MetroFramework.Controls.MetroLabel metroLabel12;
         private MetroFramework.Controls.MetroLabel metroLabel4;
-        private MetroFramework.Controls.MetroProgressBar metroProgressBar1;
         private System.Windows.Forms.Label label92;
         private System.Windows.Forms.Timer CompassCalib;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }

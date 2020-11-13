@@ -94,6 +94,7 @@ namespace JCFLIGHTGCS
         private void CompassCalib_Tick(object sender, EventArgs e)
         {
             SecondsCompass++;
+            progressBar1.Value++;
             label92.Text = "Tempo corrido da Calibração:" + ((SecondsCompass / 60).ToString("00.") + ":" + (SecondsCompass % 60).ToString("00."));
             if (SecondsCompass / 60 == 1)
             {
@@ -109,25 +110,26 @@ namespace JCFLIGHTGCS
             if (Cal_Success)
             {
                 CompassCalib.Enabled = false;
-                metroProgressBar1.Enabled = false;
-                metroProgressBar1.Value = 0;
+                progressBar1.Value = 60;
+                label92.Text = "Tempo corrido da Calibração:01:00";
                 RotateYawData = false;
-                Cal_Success = false;
+            }
+            else
+            {
+                RawMagX = GCS.CompassRoll;
+                RawMagY = GCS.CompassPitch;
+                RawMagZ = GCS.CompassYaw;
             }
 
-            RawMagX = GCS.CompassRoll;
-            RawMagY = GCS.CompassPitch;
-            RawMagZ = GCS.CompassYaw;
-
-            metroLabel1.Text = "Compass Roll:" + Convert.ToString(GCS.CompassRoll);
-            metroLabel2.Text = "Compass Pitch:" + Convert.ToString(GCS.CompassPitch);
-            metroLabel3.Text = "Compass Yaw:" + Convert.ToString(GCS.CompassYaw);
-            metroLabel6.Text = "Roll Min:" + Convert.ToString(MinMagX);
-            metroLabel5.Text = "Roll Max:" + Convert.ToString(MaxMagX);
-            metroLabel8.Text = "Pitch Min:" + Convert.ToString(MinMagY);
-            metroLabel7.Text = "Pitch Max:" + Convert.ToString(MaxMagY);
-            metroLabel10.Text = "Yaw Min:" + Convert.ToString(MinMagZ);
-            metroLabel9.Text = "Yaw Max:" + Convert.ToString(MaxMagZ);
+            metroLabel1.Text = "Compass X:" + Convert.ToString(GCS.CompassRoll);
+            metroLabel2.Text = "Compass Y:" + Convert.ToString(GCS.CompassPitch);
+            metroLabel3.Text = "Compass Z:" + Convert.ToString(GCS.CompassYaw);
+            metroLabel6.Text = "X - Min:" + Convert.ToString(MinMagX);
+            metroLabel5.Text = "X - Max:" + Convert.ToString(MaxMagX);
+            metroLabel8.Text = "Y - Min:" + Convert.ToString(MinMagY);
+            metroLabel7.Text = "Y - Max:" + Convert.ToString(MaxMagY);
+            metroLabel10.Text = "Z - Min:" + Convert.ToString(MinMagZ);
+            metroLabel9.Text = "Z - Max:" + Convert.ToString(MaxMagZ);
 
             DataCompassRegister.Add(new Tuple<float, float, float>(RawMagX, RawMagY, RawMagZ));
 
@@ -231,24 +233,14 @@ namespace JCFLIGHTGCS
             GL.MatrixMode(MatrixMode.Projection);
 
             float Max = Math.Max(Math.Max((MaxMagX - MinMagX) / 2, (MaxMagY - MinMagY) / 2), (MaxMagZ - MinMagZ) / 2);
-
-            if (Max < 300)
-                Max = 400;
-
+            if (Max < 300) Max = 400;
             Max *= 1.3f;
-
-            if (Points.Count > 0)
-            {
-                Vector3 current = new Vector3(Points[Points.Count - 1].X, Points[Points.Count - 1].Y, Points[Points.Count - 1].Z);
-            }
 
             OpenTK.Matrix4 Projection = OpenTK.Matrix4.CreatePerspectiveFieldOfView((float)(45 * (3.1415926535897931f / 180.0f)), 1f, 0.00001f, 5000.0f);
             GL.LoadMatrix(ref Projection);
 
-            float EyeDistance = (float)Max * 3;
-
             Eye = Vector3.TransformPosition(Eye, Matrix4.CreateRotationZ((float)YawRotation));
-            Eye = Vector3.TransformPosition(Eye, Matrix4.CreateRotationX((float)PitchRotation));
+            if (Cal_Success) Eye = Vector3.TransformPosition(Eye, Matrix4.CreateRotationX((float)PitchRotation));
 
             PitchRotation = 0;
             YawRotation = 0;
@@ -258,7 +250,7 @@ namespace JCFLIGHTGCS
 
             Eye.Normalize();
 
-            Eye *= EyeDistance;
+            Eye *= 14000;
             Matrix4 modelview = Matrix4.LookAt(Eye.X, Eye.Y, Eye.Z, 0, 0, 0, 0, 0, 1);
             GL.MatrixMode(MatrixMode.Modelview);
             GL.LoadMatrix(ref modelview);
@@ -323,7 +315,6 @@ namespace JCFLIGHTGCS
                     GL.Vertex3(new Vector3(Points[Points.Count - 1].X, Points[Points.Count - 1].Y, Points[Points.Count - 1].Z) + CenterPoint);
             }
             GL.End();
-            Console.WriteLine(Math.Atan2(Eye.Y, Eye.X));
             glControl1.SwapBuffers();
         }
 
