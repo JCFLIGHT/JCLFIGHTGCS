@@ -126,6 +126,7 @@ namespace JCFLIGHTGCS
         byte ComboBoxGyroLPF = 0;
         byte ComboBoxKalmanState = 0;
         byte ComboBoxCompSpeed = 0;
+        byte ComboBoxAutoLand = 0;
 
         byte IOCDataGuard = 0;
         byte AltHoldGuard = 0;
@@ -146,6 +147,7 @@ namespace JCFLIGHTGCS
         byte AutoFlipGuard = 0;
         byte AutoGuard = 0;
         byte ArmDisarmGuard = 0;
+        byte AutoLandGuard = 0;
         byte DevicesSum = 0;
 
         double AmperInMah = 0;
@@ -631,6 +633,7 @@ namespace JCFLIGHTGCS
                     AutoFlipGuard = (byte)InBuffer[ptr++];
                     AutoGuard = (byte)InBuffer[ptr++];
                     ArmDisarmGuard = (byte)InBuffer[ptr++];
+                    AutoLandGuard = (byte)InBuffer[ptr++];
                     break;
 
                 case 9:
@@ -1041,6 +1044,7 @@ namespace JCFLIGHTGCS
                 comboBox18.SelectedIndex = CompassRotGuard;
                 comboBox19.SelectedIndex = RthAltitudeGuard;
                 comboBox10.SelectedIndex = ArmDisarmGuard;
+                comboBox23.SelectedIndex = AutoLandGuard;
                 Serial_Write_To_FC(13);
                 SerialOpen = true;
             }
@@ -1412,6 +1416,7 @@ namespace JCFLIGHTGCS
                     comboBox18.SelectedIndex = 0;
                     comboBox19.SelectedIndex = 0;
                     comboBox10.SelectedIndex = 0;
+                    comboBox23.SelectedIndex = 0;
                 }
             }
         }
@@ -1514,6 +1519,11 @@ namespace JCFLIGHTGCS
         private void comboBox22_SelectedIndexChanged(object sender, EventArgs e)
         {
             ComboBoxCompSpeed = Convert.ToByte(comboBox22.SelectedIndex);
+        }
+
+        private void comboBox23_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBoxAutoLand = Convert.ToByte(comboBox23.SelectedIndex);
         }
 
         private void button10_Click_1(object sender, EventArgs e)
@@ -1668,6 +1678,7 @@ namespace JCFLIGHTGCS
                 comboBox10.Enabled = true;
                 comboBox19.Enabled = true;
                 MotorSpeed.Enabled = true;
+                comboBox23.Enabled = true;
             }
             else if (ComboBoxFrame == 3 || ComboBoxFrame == 4 || ComboBoxFrame == 5) //AERO, ASA-FIXA & V-TAIL
             {
@@ -1689,6 +1700,7 @@ namespace JCFLIGHTGCS
                 comboBox10.Enabled = true;
                 comboBox19.Enabled = true;
                 MotorSpeed.Enabled = true;
+                comboBox23.Enabled = false;
             }
             else if (ComboBoxFrame == 8) //FOGUETE
             {
@@ -1706,6 +1718,7 @@ namespace JCFLIGHTGCS
                 comboBox10.Enabled = false;
                 comboBox19.Enabled = false;
                 MotorSpeed.Enabled = false;
+                comboBox23.Enabled = false;
             }
         }
 
@@ -1839,7 +1852,7 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)0x4a;
                     SendBuffer[VectorPointer++] = (byte)0x43;
                     SendBuffer[VectorPointer++] = (byte)0x3c;
-                    SendBuffer[VectorPointer++] = 19;
+                    SendBuffer[VectorPointer++] = 20;
                     SendBuffer[VectorPointer++] = (byte)15;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxFrame;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxPPM;
@@ -1860,6 +1873,7 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)ComboBoxAutoFlip;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxAuto;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxArmDisarm;
+                    SendBuffer[VectorPointer++] = (byte)ComboBoxAutoLand;
                     for (int i = 3; i < VectorPointer; i++) CheckAllBuffers ^= SendBuffer[i];
                     SendBuffer[VectorPointer++] = CheckAllBuffers;
                     SerialPort.Write(SendBuffer, 0, VectorPointer);

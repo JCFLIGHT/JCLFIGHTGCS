@@ -62,6 +62,8 @@
             this.label94 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.circularProgressBar1 = new CircularProgressBar.CircularProgressBar();
+            this.HorizonIndicator = new JCFLIGHTGCS.AttitudeIndicatorInstrumentControl();
+            this.HeadingIndicator = new JCFLIGHTGCS.HeadingIndicatorInstrumentControl();
             this.panel16 = new System.Windows.Forms.Panel();
             this.label25 = new System.Windows.Forms.Label();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
@@ -251,6 +253,8 @@
             this.label73 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.circularProgressBar2 = new CircularProgressBar.CircularProgressBar();
+            this.HeadingIndicator2 = new JCFLIGHTGCS.HeadingIndicatorInstrumentControl();
+            this.HorizonIndicator2 = new JCFLIGHTGCS.AttitudeIndicatorInstrumentControl();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.label115 = new System.Windows.Forms.Label();
@@ -340,10 +344,9 @@
             this.FlightTimer = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer3 = new System.Windows.Forms.Timer(this.components);
-            this.HorizonIndicator = new JCFLIGHTGCS.AttitudeIndicatorInstrumentControl();
-            this.HeadingIndicator = new JCFLIGHTGCS.HeadingIndicatorInstrumentControl();
-            this.HeadingIndicator2 = new JCFLIGHTGCS.HeadingIndicatorInstrumentControl();
-            this.HorizonIndicator2 = new JCFLIGHTGCS.AttitudeIndicatorInstrumentControl();
+            this.label70 = new System.Windows.Forms.Label();
+            this.comboBox23 = new System.Windows.Forms.ComboBox();
+            this.label92 = new System.Windows.Forms.Label();
             this.BarraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconminimizar)).BeginInit();
@@ -935,6 +938,24 @@
             this.circularProgressBar1.TextMargin = new System.Windows.Forms.Padding(8, 8, 0, 0);
             this.circularProgressBar1.Value = 68;
             // 
+            // HorizonIndicator
+            // 
+            this.HorizonIndicator.BackColor = System.Drawing.Color.White;
+            this.HorizonIndicator.Location = new System.Drawing.Point(33, 153);
+            this.HorizonIndicator.Name = "HorizonIndicator";
+            this.HorizonIndicator.Size = new System.Drawing.Size(300, 300);
+            this.HorizonIndicator.TabIndex = 3;
+            this.HorizonIndicator.Text = "HorizonIndicator";
+            // 
+            // HeadingIndicator
+            // 
+            this.HeadingIndicator.BackColor = System.Drawing.Color.White;
+            this.HeadingIndicator.Location = new System.Drawing.Point(382, 153);
+            this.HeadingIndicator.Name = "HeadingIndicator";
+            this.HeadingIndicator.Size = new System.Drawing.Size(300, 300);
+            this.HeadingIndicator.TabIndex = 4;
+            this.HeadingIndicator.Text = "HeadingIndicator";
+            // 
             // panel16
             // 
             this.panel16.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -1422,7 +1443,7 @@
             // 
             this.label113.AutoSize = true;
             this.label113.ForeColor = System.Drawing.Color.Red;
-            this.label113.Location = new System.Drawing.Point(953, 464);
+            this.label113.Location = new System.Drawing.Point(953, 472);
             this.label113.Name = "label113";
             this.label113.Size = new System.Drawing.Size(61, 39);
             this.label113.TabIndex = 24;
@@ -1432,7 +1453,7 @@
             // 
             this.label114.AutoSize = true;
             this.label114.ForeColor = System.Drawing.Color.Green;
-            this.label114.Location = new System.Drawing.Point(849, 462);
+            this.label114.Location = new System.Drawing.Point(849, 472);
             this.label114.Name = "label114";
             this.label114.Size = new System.Drawing.Size(63, 26);
             this.label114.TabIndex = 23;
@@ -1598,7 +1619,7 @@
             this.groupBox6.Controls.Add(this.label52);
             this.groupBox6.Controls.Add(this.MotorSpeed);
             this.groupBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox6.Location = new System.Drawing.Point(222, 383);
+            this.groupBox6.Location = new System.Drawing.Point(222, 407);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(521, 102);
             this.groupBox6.TabIndex = 11;
@@ -1814,6 +1835,9 @@
             // 
             // groupBox11
             // 
+            this.groupBox11.Controls.Add(this.label70);
+            this.groupBox11.Controls.Add(this.comboBox23);
+            this.groupBox11.Controls.Add(this.label92);
             this.groupBox11.Controls.Add(this.label50);
             this.groupBox11.Controls.Add(this.comboBox10);
             this.groupBox11.Controls.Add(this.label51);
@@ -1844,7 +1868,7 @@
             this.groupBox11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox11.Location = new System.Drawing.Point(365, 6);
             this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(678, 363);
+            this.groupBox11.Size = new System.Drawing.Size(678, 397);
             this.groupBox11.TabIndex = 6;
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "MODOS DE VOO";
@@ -1852,7 +1876,7 @@
             // label50
             // 
             this.label50.AutoSize = true;
-            this.label50.Location = new System.Drawing.Point(287, 329);
+            this.label50.Location = new System.Drawing.Point(287, 332);
             this.label50.Name = "label50";
             this.label50.Size = new System.Drawing.Size(354, 20);
             this.label50.TabIndex = 27;
@@ -1908,7 +1932,7 @@
             // label49
             // 
             this.label49.AutoSize = true;
-            this.label49.Location = new System.Drawing.Point(287, 294);
+            this.label49.Location = new System.Drawing.Point(287, 292);
             this.label49.Name = "label49";
             this.label49.Size = new System.Drawing.Size(298, 20);
             this.label49.TabIndex = 24;
@@ -1917,7 +1941,7 @@
             // label48
             // 
             this.label48.AutoSize = true;
-            this.label48.Location = new System.Drawing.Point(287, 253);
+            this.label48.Location = new System.Drawing.Point(287, 256);
             this.label48.Name = "label48";
             this.label48.Size = new System.Drawing.Size(368, 20);
             this.label48.TabIndex = 23;
@@ -1926,7 +1950,7 @@
             // label47
             // 
             this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(287, 25);
+            this.label47.Location = new System.Drawing.Point(287, 28);
             this.label47.Name = "label47";
             this.label47.Size = new System.Drawing.Size(333, 20);
             this.label47.TabIndex = 22;
@@ -1971,7 +1995,7 @@
             // label42
             // 
             this.label42.AutoSize = true;
-            this.label42.Location = new System.Drawing.Point(287, 63);
+            this.label42.Location = new System.Drawing.Point(287, 66);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(390, 20);
             this.label42.TabIndex = 17;
@@ -2356,7 +2380,7 @@
             // button9
             // 
             this.button9.Image = global::JCFLIGHTGCS.Properties.Resources.DefaultPID;
-            this.button9.Location = new System.Drawing.Point(945, 393);
+            this.button9.Location = new System.Drawing.Point(939, 407);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(75, 66);
             this.button9.TabIndex = 13;
@@ -2366,7 +2390,7 @@
             // button8
             // 
             this.button8.Image = global::JCFLIGHTGCS.Properties.Resources.Save;
-            this.button8.Location = new System.Drawing.Point(842, 393);
+            this.button8.Location = new System.Drawing.Point(842, 407);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(75, 66);
             this.button8.TabIndex = 12;
@@ -3431,6 +3455,24 @@
             this.circularProgressBar2.TextMargin = new System.Windows.Forms.Padding(8, 8, 0, 0);
             this.circularProgressBar2.Value = 68;
             // 
+            // HeadingIndicator2
+            // 
+            this.HeadingIndicator2.BackColor = System.Drawing.Color.White;
+            this.HeadingIndicator2.Location = new System.Drawing.Point(0, 170);
+            this.HeadingIndicator2.Name = "HeadingIndicator2";
+            this.HeadingIndicator2.Size = new System.Drawing.Size(157, 160);
+            this.HeadingIndicator2.TabIndex = 5;
+            this.HeadingIndicator2.Text = "HeadingIndicator2";
+            // 
+            // HorizonIndicator2
+            // 
+            this.HorizonIndicator2.BackColor = System.Drawing.Color.White;
+            this.HorizonIndicator2.Location = new System.Drawing.Point(0, 6);
+            this.HorizonIndicator2.Name = "HorizonIndicator2";
+            this.HorizonIndicator2.Size = new System.Drawing.Size(157, 158);
+            this.HorizonIndicator2.TabIndex = 4;
+            this.HorizonIndicator2.Text = "HorizonIndicator2";
+            // 
             // tabPage7
             // 
             this.tabPage7.Controls.Add(this.linkLabel2);
@@ -4463,41 +4505,61 @@
             this.timer3.Interval = 500;
             this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
             // 
-            // HorizonIndicator
+            // label70
             // 
-            this.HorizonIndicator.BackColor = System.Drawing.Color.White;
-            this.HorizonIndicator.Location = new System.Drawing.Point(33, 153);
-            this.HorizonIndicator.Name = "HorizonIndicator";
-            this.HorizonIndicator.Size = new System.Drawing.Size(300, 300);
-            this.HorizonIndicator.TabIndex = 3;
-            this.HorizonIndicator.Text = "HorizonIndicator";
+            this.label70.AutoSize = true;
+            this.label70.Location = new System.Drawing.Point(287, 368);
+            this.label70.Name = "label70";
+            this.label70.Size = new System.Drawing.Size(232, 20);
+            this.label70.TabIndex = 30;
+            this.label70.Text = "> Realiza um pouso automático";
             // 
-            // HeadingIndicator
+            // comboBox23
             // 
-            this.HeadingIndicator.BackColor = System.Drawing.Color.White;
-            this.HeadingIndicator.Location = new System.Drawing.Point(382, 153);
-            this.HeadingIndicator.Name = "HeadingIndicator";
-            this.HeadingIndicator.Size = new System.Drawing.Size(300, 300);
-            this.HeadingIndicator.TabIndex = 4;
-            this.HeadingIndicator.Text = "HeadingIndicator";
+            this.comboBox23.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox23.FormattingEnabled = true;
+            this.comboBox23.Items.AddRange(new object[] {
+            "NENHUM",
+            "AUX1_BAIXO",
+            "AUX1_MEDIO",
+            "AUX1_ALTO",
+            "AUX2_BAIXO",
+            "AUX2_MEDIO",
+            "AUX2_ALTO",
+            "AUX3_BAIXO",
+            "AUX3_MEDIO",
+            "AUX3_ALTO",
+            "AUX4_BAIXO",
+            "AUX4_MEDIO",
+            "AUX4_ALTO",
+            "AUX5_BAIXO",
+            "AUX5_MEDIO",
+            "AUX5_ALTO",
+            "AUX6_BAIXO",
+            "AUX6_MEDIO",
+            "AUX6_ALTO",
+            "AUX7_BAIXO",
+            "AUX7_MEDIO",
+            "AUX7_ALTO",
+            "AUX8_BAIXO",
+            "AUX8_MEDIO",
+            "AUX8_ALTO"});
+            this.comboBox23.Location = new System.Drawing.Point(143, 365);
+            this.comboBox23.Name = "comboBox23";
+            this.comboBox23.Size = new System.Drawing.Size(138, 24);
+            this.comboBox23.TabIndex = 28;
+            this.comboBox23.Text = "SELECIONE";
+            this.comboBox23.SelectedIndexChanged += new System.EventHandler(this.comboBox23_SelectedIndexChanged);
             // 
-            // HeadingIndicator2
+            // label92
             // 
-            this.HeadingIndicator2.BackColor = System.Drawing.Color.White;
-            this.HeadingIndicator2.Location = new System.Drawing.Point(0, 170);
-            this.HeadingIndicator2.Name = "HeadingIndicator2";
-            this.HeadingIndicator2.Size = new System.Drawing.Size(157, 160);
-            this.HeadingIndicator2.TabIndex = 5;
-            this.HeadingIndicator2.Text = "HeadingIndicator2";
-            // 
-            // HorizonIndicator2
-            // 
-            this.HorizonIndicator2.BackColor = System.Drawing.Color.White;
-            this.HorizonIndicator2.Location = new System.Drawing.Point(0, 6);
-            this.HorizonIndicator2.Name = "HorizonIndicator2";
-            this.HorizonIndicator2.Size = new System.Drawing.Size(157, 158);
-            this.HorizonIndicator2.TabIndex = 4;
-            this.HorizonIndicator2.Text = "HorizonIndicator2";
+            this.label92.AutoSize = true;
+            this.label92.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label92.Location = new System.Drawing.Point(6, 365);
+            this.label92.Name = "label92";
+            this.label92.Size = new System.Drawing.Size(106, 24);
+            this.label92.TabIndex = 29;
+            this.label92.Text = "Auto-Land";
             // 
             // GCS
             // 
@@ -4975,6 +5037,9 @@
         private System.Windows.Forms.Timer timer3;
         private System.Windows.Forms.Label label69;
         private System.Windows.Forms.PictureBox pictureBox22;
+        private System.Windows.Forms.Label label70;
+        private System.Windows.Forms.ComboBox comboBox23;
+        private System.Windows.Forms.Label label92;
     }
 }
 
