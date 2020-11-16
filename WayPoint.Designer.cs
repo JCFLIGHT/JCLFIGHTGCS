@@ -29,7 +29,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WayPoint));
-            this.MyGmap = new GMap.NET.WindowsForms.GMapControl();
+            this.MyGMap = new GMap.NET.WindowsForms.GMapControl();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -187,6 +187,12 @@
             this.label80 = new System.Windows.Forms.Label();
             this.label81 = new System.Windows.Forms.Label();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.DecolarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pousarAquiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.voeParaCáToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tirarFotoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.limparMapaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox33.SuspendLayout();
@@ -234,36 +240,41 @@
             this.groupBox20.SuspendLayout();
             this.groupBox31.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // MyGmap
+            // MyGMap
             // 
-            this.MyGmap.Bearing = 0F;
-            this.MyGmap.CanDragMap = true;
-            this.MyGmap.EmptyTileColor = System.Drawing.Color.Navy;
-            this.MyGmap.GrayScaleMode = false;
-            this.MyGmap.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
-            this.MyGmap.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.MyGmap.LevelsKeepInMemmory = 5;
-            this.MyGmap.Location = new System.Drawing.Point(-1, -2);
-            this.MyGmap.MarkersEnabled = true;
-            this.MyGmap.MaxZoom = 20;
-            this.MyGmap.MinZoom = 2;
-            this.MyGmap.MouseWheelZoomEnabled = false;
-            this.MyGmap.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
-            this.MyGmap.Name = "MyGmap";
-            this.MyGmap.NegativeMode = false;
-            this.MyGmap.PolygonsEnabled = true;
-            this.MyGmap.RetryLoadTile = 0;
-            this.MyGmap.RoutesEnabled = true;
-            this.MyGmap.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Fractional;
-            this.MyGmap.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
-            this.MyGmap.ShowTileGridLines = false;
-            this.MyGmap.Size = new System.Drawing.Size(980, 477);
-            this.MyGmap.TabIndex = 124;
-            this.MyGmap.Zoom = 0D;
-            this.MyGmap.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gmap_MouseClick);
-            this.MyGmap.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MyGmap_MouseMove);
+            this.MyGMap.Bearing = 0F;
+            this.MyGMap.CanDragMap = true;
+            this.MyGMap.EmptyTileColor = System.Drawing.Color.Navy;
+            this.MyGMap.GrayScaleMode = false;
+            this.MyGMap.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
+            this.MyGMap.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.MyGMap.LevelsKeepInMemmory = 5;
+            this.MyGMap.Location = new System.Drawing.Point(-1, -2);
+            this.MyGMap.MarkersEnabled = true;
+            this.MyGMap.MaxZoom = 20;
+            this.MyGMap.MinZoom = 2;
+            this.MyGMap.MouseWheelZoomEnabled = false;
+            this.MyGMap.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
+            this.MyGMap.Name = "MyGMap";
+            this.MyGMap.NegativeMode = false;
+            this.MyGMap.PolygonsEnabled = true;
+            this.MyGMap.RetryLoadTile = 0;
+            this.MyGMap.RoutesEnabled = true;
+            this.MyGMap.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Fractional;
+            this.MyGMap.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
+            this.MyGMap.ShowTileGridLines = false;
+            this.MyGMap.Size = new System.Drawing.Size(980, 477);
+            this.MyGMap.TabIndex = 124;
+            this.MyGMap.Zoom = 0D;
+            this.MyGMap.OnMarkerEnter += new GMap.NET.WindowsForms.MarkerEnter(this.MyGmap_OnMarkerEnter);
+            this.MyGMap.OnMarkerLeave += new GMap.NET.WindowsForms.MarkerLeave(this.MyGmap_OnMarkerLeave);
+            this.MyGMap.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gmap_MouseClick);
+            this.MyGMap.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MyGmap_MouseDown);
+            this.MyGMap.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MyGmap_MouseMove);
+            this.MyGMap.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MyGmap_MouseUp);
             // 
             // timer1
             // 
@@ -1794,7 +1805,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(208, 30);
             this.button2.TabIndex = 137;
-            this.button2.Text = "Apagar Tudo";
+            this.button2.Text = "Apagar parâmetros";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -1853,7 +1864,7 @@
             // 
             this.label42.AutoSize = true;
             this.label42.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label42.Location = new System.Drawing.Point(625, 534);
+            this.label42.Location = new System.Drawing.Point(625, 519);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(234, 24);
             this.label42.TabIndex = 143;
@@ -1863,7 +1874,7 @@
             // 
             this.label43.AutoSize = true;
             this.label43.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label43.Location = new System.Drawing.Point(624, 571);
+            this.label43.Location = new System.Drawing.Point(624, 556);
             this.label43.Name = "label43";
             this.label43.Size = new System.Drawing.Size(234, 24);
             this.label43.TabIndex = 144;
@@ -1873,7 +1884,7 @@
             // 
             this.label44.AutoSize = true;
             this.label44.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label44.Location = new System.Drawing.Point(624, 608);
+            this.label44.Location = new System.Drawing.Point(624, 593);
             this.label44.Name = "label44";
             this.label44.Size = new System.Drawing.Size(234, 24);
             this.label44.TabIndex = 145;
@@ -1883,7 +1894,7 @@
             // 
             this.label45.AutoSize = true;
             this.label45.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label45.Location = new System.Drawing.Point(624, 645);
+            this.label45.Location = new System.Drawing.Point(624, 630);
             this.label45.Name = "label45";
             this.label45.Size = new System.Drawing.Size(234, 24);
             this.label45.TabIndex = 146;
@@ -1893,7 +1904,7 @@
             // 
             this.label40.AutoSize = true;
             this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label40.Location = new System.Drawing.Point(625, 682);
+            this.label40.Location = new System.Drawing.Point(625, 667);
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(234, 24);
             this.label40.TabIndex = 147;
@@ -2140,7 +2151,7 @@
             // 
             this.label76.AutoSize = true;
             this.label76.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label76.Location = new System.Drawing.Point(624, 794);
+            this.label76.Location = new System.Drawing.Point(624, 779);
             this.label76.Name = "label76";
             this.label76.Size = new System.Drawing.Size(234, 24);
             this.label76.TabIndex = 158;
@@ -2150,7 +2161,7 @@
             // 
             this.label77.AutoSize = true;
             this.label77.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label77.Location = new System.Drawing.Point(624, 757);
+            this.label77.Location = new System.Drawing.Point(624, 742);
             this.label77.Name = "label77";
             this.label77.Size = new System.Drawing.Size(234, 24);
             this.label77.TabIndex = 157;
@@ -2160,7 +2171,7 @@
             // 
             this.label78.AutoSize = true;
             this.label78.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label78.Location = new System.Drawing.Point(624, 720);
+            this.label78.Location = new System.Drawing.Point(624, 705);
             this.label78.Name = "label78";
             this.label78.Size = new System.Drawing.Size(234, 24);
             this.label78.TabIndex = 156;
@@ -2170,7 +2181,7 @@
             // 
             this.label75.AutoSize = true;
             this.label75.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label75.Location = new System.Drawing.Point(625, 831);
+            this.label75.Location = new System.Drawing.Point(625, 816);
             this.label75.Name = "label75";
             this.label75.Size = new System.Drawing.Size(244, 24);
             this.label75.TabIndex = 159;
@@ -2217,13 +2228,59 @@
             this.trackBar1.TabIndex = 152;
             this.trackBar1.TickStyle = System.Windows.Forms.TickStyle.Both;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.DecolarToolStripMenuItem,
+            this.pousarAquiToolStripMenuItem,
+            this.voeParaCáToolStripMenuItem,
+            this.tirarFotoToolStripMenuItem,
+            this.limparMapaToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 136);
+            // 
+            // DecolarToolStripMenuItem
+            // 
+            this.DecolarToolStripMenuItem.Name = "DecolarToolStripMenuItem";
+            this.DecolarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.DecolarToolStripMenuItem.Text = "Decolar";
+            this.DecolarToolStripMenuItem.Click += new System.EventHandler(this.DecolarToolStripMenuItem_Click);
+            // 
+            // pousarAquiToolStripMenuItem
+            // 
+            this.pousarAquiToolStripMenuItem.Name = "pousarAquiToolStripMenuItem";
+            this.pousarAquiToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pousarAquiToolStripMenuItem.Text = "Pousar aqui";
+            this.pousarAquiToolStripMenuItem.Click += new System.EventHandler(this.pousarAquiToolStripMenuItem_Click);
+            // 
+            // voeParaCáToolStripMenuItem
+            // 
+            this.voeParaCáToolStripMenuItem.Name = "voeParaCáToolStripMenuItem";
+            this.voeParaCáToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.voeParaCáToolStripMenuItem.Text = "Voe para cá";
+            this.voeParaCáToolStripMenuItem.Click += new System.EventHandler(this.voeParaCáToolStripMenuItem_Click);
+            // 
+            // tirarFotoToolStripMenuItem
+            // 
+            this.tirarFotoToolStripMenuItem.Name = "tirarFotoToolStripMenuItem";
+            this.tirarFotoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.tirarFotoToolStripMenuItem.Text = "Tirar foto";
+            this.tirarFotoToolStripMenuItem.Click += new System.EventHandler(this.tirarFotoToolStripMenuItem_Click);
+            // 
+            // limparMapaToolStripMenuItem
+            // 
+            this.limparMapaToolStripMenuItem.Name = "limparMapaToolStripMenuItem";
+            this.limparMapaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.limparMapaToolStripMenuItem.Text = "Limpar mapa";
+            this.limparMapaToolStripMenuItem.Click += new System.EventHandler(this.limparMapaToolStripMenuItem_Click);
+            // 
             // WayPoint
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1289, 621);
+            this.ClientSize = new System.Drawing.Size(1306, 621);
             this.Controls.Add(this.label81);
             this.Controls.Add(this.label80);
             this.Controls.Add(this.label79);
@@ -2254,7 +2311,7 @@
             this.Controls.Add(this.groupBox10);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.MyGmap);
+            this.Controls.Add(this.MyGMap);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -2352,12 +2409,13 @@
             this.groupBox31.ResumeLayout(false);
             this.groupBox31.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
-        private GMap.NET.WindowsForms.GMapControl MyGmap;
+        private GMap.NET.WindowsForms.GMapControl MyGMap;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
@@ -2515,5 +2573,11 @@
         private System.Windows.Forms.Label label80;
         private System.Windows.Forms.Label label81;
         private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem DecolarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pousarAquiToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tirarFotoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem voeParaCáToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem limparMapaToolStripMenuItem;
     }
 }

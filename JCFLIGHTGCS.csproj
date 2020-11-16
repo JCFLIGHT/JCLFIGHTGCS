@@ -32,6 +32,8 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -271,6 +273,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="LogoJCFLIGHTIcon.ico" />
+    <None Include="Resources\marker_01.png" />
     <None Include="Resources\Compass.jpg" />
     <None Include="Resources\IMURuim.bmp" />
     <None Include="Resources\BankAngle.bmp" />
@@ -313,7 +316,6 @@
     <None Include="Resources\AccCalib2.png" />
     <None Include="Resources\AccCalib1.png" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

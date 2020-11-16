@@ -1137,6 +1137,11 @@ namespace JCFLIGHTGCS
 
             SmallCompass = true;
             tabControl1.SelectTab(tabPage6);
+            if (!Stuff.PingNetwork("pingtest.com"))
+            {
+                MyGMap.Manager.Mode = AccessMode.CacheOnly;
+                MessageBox.Show("Você está sem internet,o mapa irá funcinar em modo cache,partes do mapa não carregados antes com internet podem falhar", "Checagem de conexão com a internet", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void button10_Click(object sender, EventArgs e)
@@ -1363,11 +1368,6 @@ namespace JCFLIGHTGCS
                     OverlayToHome.Markers.Clear();
                 }
             }
-        }
-
-        private void button12_Click(object sender, EventArgs e)
-        {
-            Grout.Points.Clear();
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -2013,6 +2013,56 @@ namespace JCFLIGHTGCS
             if ((1 & (GetAccCalibFlag >> 3)) > 0) pictureBox21.BackColor = Color.Green;
             if ((1 & (GetAccCalibFlag >> 4)) > 0) pictureBox17.BackColor = Color.Green;
             if ((1 & (GetAccCalibFlag >> 5)) > 0) pictureBox15.BackColor = Color.Green;
+        }
+
+        private void limparMapaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Grout.Points.Clear();
+        }
+
+        double Latitude_For_FC = 0;
+        double Longitude_For_FC = 0;
+        private void MyGMap_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                contextMenuStrip1.Show(MousePosition.X, MousePosition.Y);
+                var WayPoint = MyGMap.FromLocalToLatLng(e.X, e.Y);
+                Latitude_For_FC = WayPoint.Lat;
+                Longitude_For_FC = WayPoint.Lng;
+            }
+        }
+
+        private void decolarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Você realmente deseja realizar uma decolagem automática?",
+                       "Decolagem automática", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                //Serial_Write_To_FC(?);
+            }
+        }
+
+        private void pousarAquiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Você realmente deseja realizar um pouso automático?",
+                      "Pouso automático", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                //Serial_Write_To_FC(?);
+            }
+        }
+
+        private void voeParaCáToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Você realmente deseja voar para esse ponto?",
+                     "Avanço automático de ponto", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                //Serial_Write_To_FC(?);
+            }
+        }
+
+        private void tirarFotoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Serial_Write_To_FC(?);
         }
     }
 }

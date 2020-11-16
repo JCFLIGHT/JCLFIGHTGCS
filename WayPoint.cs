@@ -169,12 +169,22 @@ namespace JCFLIGHTGCS
         int CoG = 0;
         Int32 Crosstrack = 0;
 
+        int WPRadius = 200;
+
+        new static bool MouseDown = false;
+        static bool MouseDraging = false;
+        GMapMarkerRect CurrentRectMarker = null;
+        GMarkerGoogle CurrentMarker;
+        PointLatLng Start;
+        GMapMarker Center;
+        static GMapOverlay GMOverlayLiveData;
+
         Form WaitUart = Program.WaitUart;
 
         public WayPoint()
         {
             InitializeComponent();
-            MyGmap.PolygonsEnabled = true;
+            MyGMap.PolygonsEnabled = true;
             //SERIAL
             SerialPort.DataBits = 8;
             SerialPort.Parity = Parity.None;
@@ -185,34 +195,39 @@ namespace JCFLIGHTGCS
             foreach (string PortsName in SerialPorts) comboBox13.Items.Add(PortsName);
             SerialPort.DataReceived += new SerialDataReceivedEventHandler(serialPort1_DataReceived_1);
             pictureBox1.Image = Properties.Resources.Desconectado;
-            MyGmap.ShowCenter = false;
-            MyGmap.Manager.Mode = AccessMode.ServerAndCache;
-            //MyGmap.MapProvider = GMapProviders.BingSatelliteMap;
-            //MyGmap.MapProvider = GMapProviders.BingHybridMap;
-            MyGmap.MapProvider = GMapProviders.GoogleSatelliteMap;
-            MyGmap.Zoom = 2;
+            MyGMap.ShowCenter = false;
+            MyGMap.Manager.Mode = AccessMode.ServerAndCache;
+            //MyGMap.MapProvider = GMapProviders.BingSatelliteMap;
+            //MyGMap.MapProvider = GMapProviders.BingHybridMap;
+            MyGMap.MapProvider = GMapProviders.GoogleSatelliteMap;
+            MyGMap.Zoom = 2;
             GmapPositions = new GMapOverlay("GmapPositions");
-            MyGmap.Overlays.Add(GmapPositions);
+            MyGMap.Overlays.Add(GmapPositions);
             GmapPositions.Markers.Clear();
             GmapRoutes = new GMapOverlay("GMapRoutes");
-            MyGmap.Overlays.Add(GmapRoutes);
+            MyGMap.Overlays.Add(GmapRoutes);
             Pen penRoute = new Pen(Color.Purple, 3);
             GMapTack = new GMapRoute(LatLngPoints, "GMapTrack");
             GMapTack.Stroke = penRoute;
             GmapRoutes.Routes.Add(GMapTack);
+            CurrentMarker = new GMarkerGoogle(MyGMap.Position, GMarkerGoogleType.red);
+            Center = new GMarkerGoogle(MyGMap.Position, GMarkerGoogleType.blue);
+            GMOverlayLiveData = new GMapOverlay("LiveData");
+            MyGMap.Overlays.Add(GMOverlayLiveData);
+            GMOverlayLiveData.Markers.Clear();
             trackBar1.Value = 2;
             trackBar1.Minimum = 2;
             trackBar1.Maximum = 20;
-            label41.Parent = MyGmap;
+            label41.Parent = MyGMap;
             label41.BackColor = Color.Blue;
             label41.ForeColor = Color.White;
-            label46.Parent = MyGmap;
+            label46.Parent = MyGMap;
             label46.BackColor = Color.Blue;
             label46.ForeColor = Color.White;
-            label47.Parent = MyGmap;
+            label47.Parent = MyGMap;
             label47.BackColor = Color.Blue;
             label47.ForeColor = Color.White;
-            label48.Parent = MyGmap;
+            label48.Parent = MyGMap;
             label48.BackColor = Color.Blue;
             label48.ForeColor = Color.White;
             comboBox1.MouseWheel += new MouseEventHandler(comboBox1_MouseWheel);
@@ -239,70 +254,36 @@ namespace JCFLIGHTGCS
             trackBar1.MouseWheel += new MouseEventHandler(trackBar1_MouseWheel);
         }
 
-        Boolean ThisPointEquals = false;
-
-        private void MyGmap_MouseMove(object sender, MouseEventArgs e)
-        {
-            //PREVINE CRIAR 2 WP NA MESMA COORDENADA
-            PointLatLng MousePoint = MyGmap.FromLocalToLatLng(e.X, e.Y);
-
-            ThisPointEquals = true;
-
-            if (MousePoint.Lat == WPLatVect1) return;
-            if (MousePoint.Lng == WPLonVect1) return;
-
-            if (MousePoint.Lat == WPLatVect2) return;
-            if (MousePoint.Lng == WPLonVect2) return;
-
-            if (MousePoint.Lat == WPLatVect3) return;
-            if (MousePoint.Lng == WPLonVect3) return;
-
-            if (MousePoint.Lat == WPLatVect4) return;
-            if (MousePoint.Lng == WPLonVect4) return;
-
-            if (MousePoint.Lat == WPLatVect5) return;
-            if (MousePoint.Lng == WPLonVect5) return;
-
-            if (MousePoint.Lat == WPLatVect6) return;
-            if (MousePoint.Lng == WPLonVect6) return;
-
-            if (MousePoint.Lat == WPLatVect7) return;
-            if (MousePoint.Lng == WPLonVect7) return;
-
-            if (MousePoint.Lat == WPLatVect8) return;
-            if (MousePoint.Lng == WPLonVect8) return;
-
-            if (MousePoint.Lat == WPLatVect9) return;
-            if (MousePoint.Lng == WPLonVect9) return;
-
-            if (MousePoint.Lat == WPLatVect10) return;
-            if (MousePoint.Lng == WPLonVect10) return;
-
-            ThisPointEquals = false;
-        }
-
         private void gmap_MouseClick(object sender, MouseEventArgs e)
         {
-            if (ThisPointEquals) return;
+            if (Control.ModifierKeys != Keys.Control) return;
             if (e.Button == MouseButtons.Left)
             {
                 if (!InvalidWP)
                 {
                     CountWP++;
-                    var WayPoint = MyGmap.FromLocalToLatLng(e.X, e.Y);
+                    var WayPoint = MyGMap.FromLocalToLatLng(e.X, e.Y);
                     WPLat = WayPoint.Lat;
                     WPLon = WayPoint.Lng;
-                    var GMarker = new GMarkerGoogle(WayPoint, GMarkerGoogleType.orange);
-                    GMarker.ToolTip = new GMapToolTip(GMarker);
-                    GMarker.ToolTipMode = MarkerTooltipMode.Always;
-                    GMarker.ToolTipText = $"WP { CountWP}";
+                    PointLatLng ActualPoint = new PointLatLng(WPLat, WPLon);
+                    GMapMarker GMarker = new CreateGMapMarker(ActualPoint, Convert.ToByte(CountWP))
+                    {
+                        Tag = Convert.ToString(CountWP)
+                    };
+                    GMapMarkerRect MarkerRect = new GMapMarkerRect(ActualPoint);
+                    {
+                        MarkerRect.InnerMarker = GMarker;
+                        MarkerRect.WPRadius = (int)WPRadius / 10;
+                        MarkerRect.MainMap = MyGMap;
+                        MarkerRect.Color = Color.Blue;
+                    }
                     MarkersOverlay.Markers.Add(GMarker);
-                    MyGmap.Overlays.Add(MarkersOverlay);
-                    MyGmap.UpdateMarkerLocalPosition(GMarker);
+                    MarkersOverlay.Markers.Add(MarkerRect);
+                    MyGMap.Overlays.Add(MarkersOverlay);
+                    MyGMap.UpdateMarkerLocalPosition(GMarker);
                     GmapPolygons.Polygons.Clear();
                     PrintArea = true;
                 }
-
                 if (CountWP == 1)
                 {
                     label19.Text = Convert.ToString(WPLat);
@@ -387,8 +368,8 @@ namespace JCFLIGHTGCS
             if (DebugMap < 300 && PushLocation)
             {
                 DebugMap++;
-                MyGmap.Position = new PointLatLng(Convert.ToDouble(InitialLat / 10000000.0), Convert.ToDouble(InitialLong / 10000000.0));
-                MyGmap.Zoom = 18;
+                MyGMap.Position = new PointLatLng(Convert.ToDouble(InitialLat / 10000000.0), Convert.ToDouble(InitialLong / 10000000.0));
+                MyGMap.Zoom = 18;
                 trackBar1.Value = 18;
                 timer1.Enabled = false;
                 if (timer1.Enabled == false) DebugMap = 0;
@@ -418,6 +399,12 @@ namespace JCFLIGHTGCS
                 {
                     WaitUart.Refresh();
                     Thread.Sleep(10);
+                }
+
+                if (!Stuff.PingNetwork("pingtest.com"))
+                {
+                    MyGMap.Manager.Mode = AccessMode.CacheOnly;
+                    MessageBox.Show("Você está sem internet,o mapa irá funcinar em modo cache,partes do mapa não carregados antes com internet podem falhar", "Checagem de conexão com a internet", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
                 if (SerialPort.IsOpen == true)
@@ -661,7 +648,7 @@ namespace JCFLIGHTGCS
                             PrintArea2 = true;
                             GPS_Position2.Lat = PushedLatitude[0];
                             GPS_Position2.Lng = PushedLongitude[0];
-                            MyGmap.Zoom = 17;
+                            MyGMap.Zoom = 17;
                             trackBar1.Value = 17;
                         }
 
@@ -674,7 +661,7 @@ namespace JCFLIGHTGCS
                             PrintArea2 = true;
                             GPS_Position2.Lat = PushedLatitude[1];
                             GPS_Position2.Lng = PushedLongitude[1];
-                            Dist1 = MyGmap.MapProvider.Projection.GetDistance(WPCoordinates2[0], WPCoordinates2[1]) * 1000;
+                            Dist1 = MyGMap.MapProvider.Projection.GetDistance(WPCoordinates2[0], WPCoordinates2[1]) * 1000;
                             double Dist1Float = Convert.ToDouble(Convert.ToInt32(Dist1)) / 1000;
                             if (Dist1 >= 1000) label42.Text = "Distância entre P1 - P2: " + Dist1Float.ToString(new CultureInfo("en-US")) + "KM";
                             else label42.Text = "Distância entre P1 - P2: " + Convert.ToInt32(Dist1) + "M";
@@ -690,7 +677,7 @@ namespace JCFLIGHTGCS
                             PrintArea2 = true;
                             GPS_Position2.Lat = PushedLatitude[2];
                             GPS_Position2.Lng = PushedLongitude[2];
-                            Dist2 = MyGmap.MapProvider.Projection.GetDistance(WPCoordinates2[1], WPCoordinates2[2]) * 1000;
+                            Dist2 = MyGMap.MapProvider.Projection.GetDistance(WPCoordinates2[1], WPCoordinates2[2]) * 1000;
                             double Dist2Float = Convert.ToDouble(Convert.ToInt32(Dist2)) / 1000;
                             if (Dist2 >= 1000) label43.Text = "Distância entre P2 - P3: " + Dist2Float.ToString(new CultureInfo("en-US")) + "KM";
                             else label43.Text = "Distância entre P2 - P3: " + Convert.ToInt32(Dist2) + "M";
@@ -707,7 +694,7 @@ namespace JCFLIGHTGCS
                             PrintArea2 = true;
                             GPS_Position2.Lat = PushedLatitude[3];
                             GPS_Position2.Lng = PushedLongitude[3];
-                            Dist3 = MyGmap.MapProvider.Projection.GetDistance(WPCoordinates2[2], WPCoordinates2[3]) * 1000;
+                            Dist3 = MyGMap.MapProvider.Projection.GetDistance(WPCoordinates2[2], WPCoordinates2[3]) * 1000;
                             double Dist3Float = Convert.ToDouble(Convert.ToInt32(Dist3)) / 1000;
                             if (Dist3 >= 1000) label44.Text = "Distância entre P3 - P4: " + Dist3Float.ToString(new CultureInfo("en-US")) + "KM";
                             else label44.Text = "Distância entre P3 - P4: " + Convert.ToInt32(Dist3) + "M";
@@ -725,7 +712,7 @@ namespace JCFLIGHTGCS
                             PrintArea2 = true;
                             GPS_Position2.Lat = PushedLatitude[4];
                             GPS_Position2.Lng = PushedLongitude[4];
-                            Dist4 = MyGmap.MapProvider.Projection.GetDistance(WPCoordinates2[3], WPCoordinates2[4]) * 1000;
+                            Dist4 = MyGMap.MapProvider.Projection.GetDistance(WPCoordinates2[3], WPCoordinates2[4]) * 1000;
                             double Dist4Float = Convert.ToDouble(Convert.ToInt32(Dist4)) / 1000;
                             if (Dist4 >= 1000) label45.Text = "Distância entre P4 - P5: " + Dist4Float.ToString(new CultureInfo("en-US")) + "KM";
                             else label45.Text = "Distância entre P4 - P5: " + Convert.ToInt32(Dist4) + "M";
@@ -744,7 +731,7 @@ namespace JCFLIGHTGCS
                             PrintArea2 = true;
                             GPS_Position2.Lat = PushedLatitude[5];
                             GPS_Position2.Lng = PushedLongitude[5];
-                            Dist5 = MyGmap.MapProvider.Projection.GetDistance(WPCoordinates2[4], WPCoordinates2[5]) * 1000;
+                            Dist5 = MyGMap.MapProvider.Projection.GetDistance(WPCoordinates2[4], WPCoordinates2[5]) * 1000;
                             double Dist5Float = Convert.ToDouble(Convert.ToInt32(Dist5)) / 1000;
                             if (Dist5 >= 1000) label40.Text = "Distância entre P5 - P6: " + Dist5Float.ToString(new CultureInfo("en-US")) + "KM";
                             else label40.Text = "Distância entre P5 - P6: " + Convert.ToInt32(Dist5) + "M";
@@ -764,7 +751,7 @@ namespace JCFLIGHTGCS
                             PrintArea2 = true;
                             GPS_Position2.Lat = PushedLatitude[6];
                             GPS_Position2.Lng = PushedLongitude[6];
-                            Dist6 = MyGmap.MapProvider.Projection.GetDistance(WPCoordinates2[5], WPCoordinates2[6]) * 1000;
+                            Dist6 = MyGMap.MapProvider.Projection.GetDistance(WPCoordinates2[5], WPCoordinates2[6]) * 1000;
                             double Dist6Float = Convert.ToDouble(Convert.ToInt32(Dist6)) / 1000;
                             if (Dist6 >= 1000) label78.Text = "Distância entre P6 - P7: " + Dist6Float.ToString(new CultureInfo("en-US")) + "KM";
                             else label78.Text = "Distância entre P6 - P7: " + Convert.ToInt32(Dist6) + "M";
@@ -785,7 +772,7 @@ namespace JCFLIGHTGCS
                             PrintArea2 = true;
                             GPS_Position2.Lat = PushedLatitude[7];
                             GPS_Position2.Lng = PushedLongitude[7];
-                            Dist7 = MyGmap.MapProvider.Projection.GetDistance(WPCoordinates2[6], WPCoordinates2[7]) * 1000;
+                            Dist7 = MyGMap.MapProvider.Projection.GetDistance(WPCoordinates2[6], WPCoordinates2[7]) * 1000;
                             double Dist7Float = Convert.ToDouble(Convert.ToInt32(Dist7)) / 1000;
                             if (Dist7 >= 1000) label77.Text = "Distância entre P7 - P8: " + Dist7Float.ToString(new CultureInfo("en-US")) + "KM";
                             else label77.Text = "Distância entre P7 - P8: " + Convert.ToInt32(Dist7) + "M";
@@ -807,7 +794,7 @@ namespace JCFLIGHTGCS
                             PrintArea2 = true;
                             GPS_Position2.Lat = PushedLatitude[8];
                             GPS_Position2.Lng = PushedLongitude[8];
-                            Dist8 = MyGmap.MapProvider.Projection.GetDistance(WPCoordinates2[7], WPCoordinates2[8]) * 1000;
+                            Dist8 = MyGMap.MapProvider.Projection.GetDistance(WPCoordinates2[7], WPCoordinates2[8]) * 1000;
                             double Dist8Float = Convert.ToDouble(Convert.ToInt32(Dist8)) / 1000;
                             if (Dist8 >= 1000) label76.Text = "Distância entre P8 - P9: " + Dist8Float.ToString(new CultureInfo("en-US")) + "KM";
                             else label76.Text = "Distância entre P8 - P9: " + Convert.ToInt32(Dist8) + "M";
@@ -830,7 +817,7 @@ namespace JCFLIGHTGCS
                             PrintArea2 = true;
                             GPS_Position2.Lat = PushedLatitude[9];
                             GPS_Position2.Lng = PushedLongitude[9];
-                            Dist9 = MyGmap.MapProvider.Projection.GetDistance(WPCoordinates2[8], WPCoordinates2[9]) * 1000;
+                            Dist9 = MyGMap.MapProvider.Projection.GetDistance(WPCoordinates2[8], WPCoordinates2[9]) * 1000;
                             double Dist9Float = Convert.ToDouble(Convert.ToInt32(Dist9)) / 1000;
                             if (Dist9 >= 1000) label75.Text = "Distância entre P9 - P10: " + Dist9Float.ToString(new CultureInfo("en-US")) + "KM";
                             else label75.Text = "Distância entre P9 - P10: " + Convert.ToInt32(Dist9) + "M";
@@ -839,13 +826,21 @@ namespace JCFLIGHTGCS
                         if (PrintArea2)
                         {
                             CountWP2++;
-                            var GMarker = new GMarkerGoogle(GPS_Position2, GMarkerGoogleType.orange);
-                            GMarker.ToolTip = new GMapToolTip(GMarker);
-                            GMarker.ToolTipMode = MarkerTooltipMode.Always;
-                            GMarker.ToolTipText = $"WP { CountWP2}";
+                            GMapMarker GMarker = new CreateGMapMarker(GPS_Position2, Convert.ToByte(CountWP2))
+                            {
+                                Tag = Convert.ToString(CountWP2)
+                            };
+                            GMapMarkerRect MarkerRect = new GMapMarkerRect(GPS_Position2);
+                            {
+                                MarkerRect.InnerMarker = GMarker;
+                                MarkerRect.WPRadius = (int)WPRadius / 10;
+                                MarkerRect.MainMap = MyGMap;
+                                MarkerRect.Color = Color.Blue;
+                            }
                             MarkersOverlay.Markers.Add(GMarker);
-                            MyGmap.Overlays.Add(MarkersOverlay);
-                            MyGmap.UpdateMarkerLocalPosition(GMarker);
+                            MarkersOverlay.Markers.Add(MarkerRect);
+                            MyGMap.Overlays.Add(MarkersOverlay);
+                            MyGMap.UpdateMarkerLocalPosition(GMarker);
                             GmapPolygons.Polygons.Clear();
                             GMapRoute FirstPointTrace = new GMapRoute("FirstPointTrace");
                             FirstPointTrace.Clear();
@@ -863,7 +858,7 @@ namespace JCFLIGHTGCS
                             for (int a = 0; a < WPCoordinates2.Count; a++) WPLineRoute.Points.Add(WPCoordinates2[a]);
                             GmapPolygons.Routes.Add(FirstPointTrace);
                             GmapPolygons.Routes.Add(WPLineRoute);
-                            MyGmap.Overlays.Add(GmapPolygons);
+                            MyGMap.Overlays.Add(GmapPolygons);
                             PrintArea2 = false;
                         }
                         comboBox1.SelectedIndex = PushedComboBox[0];
@@ -921,7 +916,7 @@ namespace JCFLIGHTGCS
             {
                 WPCoordinates.Add(new PointLatLng(Convert.ToDouble(WPLatVect1), Convert.ToDouble(WPLonVect1)));
                 WPCoordinates.Add(new PointLatLng(Convert.ToDouble(WPLatVect2), Convert.ToDouble(WPLonVect2)));
-                Dist1 = MyGmap.MapProvider.Projection.GetDistance(WPCoordinates[0], WPCoordinates[1]) * 1000;
+                Dist1 = MyGMap.MapProvider.Projection.GetDistance(WPCoordinates[0], WPCoordinates[1]) * 1000;
                 double Dist1Float = Convert.ToDouble(Convert.ToInt32(Dist1)) / 1000;
                 if (Dist1 >= 1000) label42.Text = "Distância entre P1 - P2: " + Dist1Float.ToString(new CultureInfo("en-US")) + "KM";
                 else label42.Text = "Distância entre P1 - P2: " + Convert.ToInt32(Dist1) + "M";
@@ -932,7 +927,7 @@ namespace JCFLIGHTGCS
                 WPCoordinates.Add(new PointLatLng(Convert.ToDouble(WPLatVect1), Convert.ToDouble(WPLonVect1)));
                 WPCoordinates.Add(new PointLatLng(Convert.ToDouble(WPLatVect2), Convert.ToDouble(WPLonVect2)));
                 WPCoordinates.Add(new PointLatLng(Convert.ToDouble(WPLatVect3), Convert.ToDouble(WPLonVect3)));
-                Dist2 = MyGmap.MapProvider.Projection.GetDistance(WPCoordinates[1], WPCoordinates[2]) * 1000;
+                Dist2 = MyGMap.MapProvider.Projection.GetDistance(WPCoordinates[1], WPCoordinates[2]) * 1000;
                 double Dist2Float = Convert.ToDouble(Convert.ToInt32(Dist2)) / 1000;
                 if (Dist2 >= 1000) label43.Text = "Distância entre P2 - P3: " + Dist2Float.ToString(new CultureInfo("en-US")) + "KM";
                 else label43.Text = "Distância entre P2 - P3: " + Convert.ToInt32(Dist2) + "M";
@@ -944,7 +939,7 @@ namespace JCFLIGHTGCS
                 WPCoordinates.Add(new PointLatLng(Convert.ToDouble(WPLatVect2), Convert.ToDouble(WPLonVect2)));
                 WPCoordinates.Add(new PointLatLng(Convert.ToDouble(WPLatVect3), Convert.ToDouble(WPLonVect3)));
                 WPCoordinates.Add(new PointLatLng(Convert.ToDouble(WPLatVect4), Convert.ToDouble(WPLonVect4)));
-                Dist3 = MyGmap.MapProvider.Projection.GetDistance(WPCoordinates[2], WPCoordinates[3]) * 1000;
+                Dist3 = MyGMap.MapProvider.Projection.GetDistance(WPCoordinates[2], WPCoordinates[3]) * 1000;
                 double Dist3Float = Convert.ToDouble(Convert.ToInt32(Dist3)) / 1000;
                 if (Dist3 >= 1000) label44.Text = "Distância entre P3 - P4: " + Dist3Float.ToString(new CultureInfo("en-US")) + "KM";
                 else label44.Text = "Distância entre P3 - P4: " + Convert.ToInt32(Dist3) + "M";
@@ -957,7 +952,7 @@ namespace JCFLIGHTGCS
                 WPCoordinates.Add(new PointLatLng(Convert.ToDouble(WPLatVect3), Convert.ToDouble(WPLonVect3)));
                 WPCoordinates.Add(new PointLatLng(Convert.ToDouble(WPLatVect4), Convert.ToDouble(WPLonVect4)));
                 WPCoordinates.Add(new PointLatLng(Convert.ToDouble(WPLatVect5), Convert.ToDouble(WPLonVect5)));
-                Dist4 = MyGmap.MapProvider.Projection.GetDistance(WPCoordinates[3], WPCoordinates[4]) * 1000;
+                Dist4 = MyGMap.MapProvider.Projection.GetDistance(WPCoordinates[3], WPCoordinates[4]) * 1000;
                 double Dist4Float = Convert.ToDouble(Convert.ToInt32(Dist4)) / 1000;
                 if (Dist4 >= 1000) label45.Text = "Distância entre P4 - P5: " + Dist4Float.ToString(new CultureInfo("en-US")) + "KM";
                 else label45.Text = "Distância entre P4 - P5: " + Convert.ToInt32(Dist4) + "M";
@@ -971,7 +966,7 @@ namespace JCFLIGHTGCS
                 WPCoordinates.Add(new PointLatLng(Convert.ToDouble(WPLatVect4), Convert.ToDouble(WPLonVect4)));
                 WPCoordinates.Add(new PointLatLng(Convert.ToDouble(WPLatVect5), Convert.ToDouble(WPLonVect5)));
                 WPCoordinates.Add(new PointLatLng(Convert.ToDouble(WPLatVect6), Convert.ToDouble(WPLonVect6)));
-                Dist5 = MyGmap.MapProvider.Projection.GetDistance(WPCoordinates[4], WPCoordinates[5]) * 1000;
+                Dist5 = MyGMap.MapProvider.Projection.GetDistance(WPCoordinates[4], WPCoordinates[5]) * 1000;
                 double Dist5Float = Convert.ToDouble(Convert.ToInt32(Dist5)) / 1000;
                 if (Dist5 >= 1000) label40.Text = "Distância entre P5 - P6: " + Dist5Float.ToString(new CultureInfo("en-US")) + "KM";
                 else label40.Text = "Distância entre P5 - P6: " + Convert.ToInt32(Dist5) + "M";
@@ -986,7 +981,7 @@ namespace JCFLIGHTGCS
                 WPCoordinates.Add(new PointLatLng(Convert.ToDouble(WPLatVect5), Convert.ToDouble(WPLonVect5)));
                 WPCoordinates.Add(new PointLatLng(Convert.ToDouble(WPLatVect6), Convert.ToDouble(WPLonVect6)));
                 WPCoordinates.Add(new PointLatLng(Convert.ToDouble(WPLatVect7), Convert.ToDouble(WPLonVect7)));
-                Dist6 = MyGmap.MapProvider.Projection.GetDistance(WPCoordinates[5], WPCoordinates[6]) * 1000;
+                Dist6 = MyGMap.MapProvider.Projection.GetDistance(WPCoordinates[5], WPCoordinates[6]) * 1000;
                 double Dist6Float = Convert.ToDouble(Convert.ToInt32(Dist6)) / 1000;
                 if (Dist6 >= 1000) label78.Text = "Distância entre P6 - P7: " + Dist6Float.ToString(new CultureInfo("en-US")) + "KM";
                 else label78.Text = "Distância entre P6 - P7: " + Convert.ToInt32(Dist6) + "M";
@@ -1002,7 +997,7 @@ namespace JCFLIGHTGCS
                 WPCoordinates.Add(new PointLatLng(Convert.ToDouble(WPLatVect6), Convert.ToDouble(WPLonVect6)));
                 WPCoordinates.Add(new PointLatLng(Convert.ToDouble(WPLatVect7), Convert.ToDouble(WPLonVect7)));
                 WPCoordinates.Add(new PointLatLng(Convert.ToDouble(WPLatVect8), Convert.ToDouble(WPLonVect8)));
-                Dist7 = MyGmap.MapProvider.Projection.GetDistance(WPCoordinates[6], WPCoordinates[7]) * 1000;
+                Dist7 = MyGMap.MapProvider.Projection.GetDistance(WPCoordinates[6], WPCoordinates[7]) * 1000;
                 double Dist7Float = Convert.ToDouble(Convert.ToInt32(Dist7)) / 1000;
                 if (Dist7 >= 1000) label77.Text = "Distância entre P7 - P8: " + Dist7Float.ToString(new CultureInfo("en-US")) + "KM";
                 else label77.Text = "Distância entre P7 - P8: " + Convert.ToInt32(Dist7) + "M";
@@ -1019,7 +1014,7 @@ namespace JCFLIGHTGCS
                 WPCoordinates.Add(new PointLatLng(Convert.ToDouble(WPLatVect7), Convert.ToDouble(WPLonVect7)));
                 WPCoordinates.Add(new PointLatLng(Convert.ToDouble(WPLatVect8), Convert.ToDouble(WPLonVect8)));
                 WPCoordinates.Add(new PointLatLng(Convert.ToDouble(WPLatVect9), Convert.ToDouble(WPLonVect9)));
-                Dist8 = MyGmap.MapProvider.Projection.GetDistance(WPCoordinates[7], WPCoordinates[8]) * 1000;
+                Dist8 = MyGMap.MapProvider.Projection.GetDistance(WPCoordinates[7], WPCoordinates[8]) * 1000;
                 double Dist8Float = Convert.ToDouble(Convert.ToInt32(Dist8)) / 1000;
                 if (Dist8 >= 1000) label76.Text = "Distância entre P8 - P9: " + Dist8Float.ToString(new CultureInfo("en-US")) + "KM";
                 else label76.Text = "Distância entre P8 - P9: " + Convert.ToInt32(Dist8) + "M";
@@ -1037,7 +1032,7 @@ namespace JCFLIGHTGCS
                 WPCoordinates.Add(new PointLatLng(Convert.ToDouble(WPLatVect8), Convert.ToDouble(WPLonVect8)));
                 WPCoordinates.Add(new PointLatLng(Convert.ToDouble(WPLatVect9), Convert.ToDouble(WPLonVect9)));
                 WPCoordinates.Add(new PointLatLng(Convert.ToDouble(WPLatVect10), Convert.ToDouble(WPLonVect10)));
-                Dist9 = MyGmap.MapProvider.Projection.GetDistance(WPCoordinates[8], WPCoordinates[9]) * 1000;
+                Dist9 = MyGMap.MapProvider.Projection.GetDistance(WPCoordinates[8], WPCoordinates[9]) * 1000;
                 double Dist9Float = Convert.ToDouble(Convert.ToInt32(Dist9)) / 1000;
                 if (Dist9 >= 1000) label75.Text = "Distância entre P9 - P10: " + Dist9Float.ToString(new CultureInfo("en-US")) + "KM";
                 else label75.Text = "Distância entre P9 - P10: " + Convert.ToInt32(Dist9) + "M";
@@ -1061,7 +1056,7 @@ namespace JCFLIGHTGCS
                 for (int a = 0; a < WPCoordinates.Count; a++) WPLineRoute.Points.Add(WPCoordinates[a]);
                 GmapPolygons.Routes.Add(FirstPointTrace);
                 GmapPolygons.Routes.Add(WPLineRoute);
-                MyGmap.Overlays.Add(GmapPolygons);
+                MyGMap.Overlays.Add(GmapPolygons);
                 PrintArea = false;
             }
             if (SerialPort.IsOpen)
@@ -1072,7 +1067,7 @@ namespace JCFLIGHTGCS
             {
                 button3.Enabled = false;
             }
-            if (PushLocation) MyGmap.Zoom = trackBar1.Value;
+            if (PushLocation) MyGMap.Zoom = trackBar1.Value;
         }
 
         private void WayPoint_FormClosing(object sender, FormClosingEventArgs e)
@@ -1110,8 +1105,8 @@ namespace JCFLIGHTGCS
                     GmapPositions.Markers.Add(new GMapMarkerAero(GPS_Position, Heading, CoG, Crosstrack));
                 }
                 if (ArmDisarm == 1) GMapTack.Points.Add(GPS_Position);
-                MyGmap.Position = GPS_Position;
-                MyGmap.Invalidate();
+                MyGMap.Position = GPS_Position;
+                MyGMap.Invalidate();
             }
         }
 
@@ -2407,6 +2402,223 @@ namespace JCFLIGHTGCS
         void trackBar1_MouseWheel(object sender, MouseEventArgs e)
         {
             ((HandledMouseEventArgs)e).Handled = true;
+        }
+
+        private void MyGmap_OnMarkerEnter(GMapMarker Item)
+        {
+            if (!MouseDown)
+            {
+                if (Item is GMapMarkerRect)
+                {
+                    GMapMarkerRect MarkerRect = Item as GMapMarkerRect;
+                    MarkerRect.Pen.Color = Color.Red;
+                    MyGMap.Invalidate(false);
+                    CurrentRectMarker = MarkerRect;
+                }
+            }
+        }
+
+        private void MyGmap_OnMarkerLeave(GMapMarker Item)
+        {
+            if (!MouseDown)
+            {
+                if (Item is GMapMarkerRect)
+                {
+                    CurrentRectMarker = null;
+                    GMapMarkerRect MarkerRect = Item as GMapMarkerRect;
+                    MarkerRect.Pen.Color = Color.Blue;
+                    MyGMap.Invalidate(false);
+                }
+            }
+        }
+
+        private void MyGmap_MouseMove(object sender, MouseEventArgs e)
+        {
+            PointLatLng Point = MyGMap.FromLocalToLatLng(e.X, e.Y);
+            CurrentMarker.Position = Point;
+            if (Control.ModifierKeys == Keys.Shift)
+            {
+                MyGMap.DragButton = MouseButtons.Left;
+                return;
+            }
+            else MyGMap.DragButton = MouseButtons.Right;
+            if (e.Button == MouseButtons.Left && MouseDown && Control.ModifierKeys == Keys.None)
+            {
+                MouseDraging = true;
+                if (CurrentRectMarker == null)
+                {
+                    double LatitudeDiff = Start.Lat - Point.Lat;
+                    double LongitudeDiff = Start.Lng - Point.Lng;
+                    MyGMap.Position = new PointLatLng(Center.Position.Lat + LatitudeDiff, Center.Position.Lng + LongitudeDiff);
+                }
+                else
+                {
+                    PointLatLng NewPoint = MyGMap.FromLocalToLatLng(e.X, e.Y);
+                    if (CurrentMarker.IsVisible)
+                    {
+                        CurrentMarker.Position = NewPoint;
+                    }
+                    CurrentRectMarker.Position = NewPoint;
+
+                    if (CurrentRectMarker.InnerMarker != null)
+                    {
+                        CurrentRectMarker.InnerMarker.Position = NewPoint;
+                    }
+                }
+            }
+        }
+
+        private void MyGmap_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                contextMenuStrip1.Show(MousePosition.X, MousePosition.Y);
+            }
+            if (MouseDown)
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    MouseDown = false;
+                }
+                if (MouseDraging)
+                {
+                    if (CurrentRectMarker != null)
+                    {
+                        if (CurrentRectMarker.InnerMarker.Tag.ToString() == "1")
+                        {
+                            label19.Text = Convert.ToString(CurrentMarker.Position.Lat);
+                            label18.Text = Convert.ToString(CurrentMarker.Position.Lng);
+                            WPLatVect1 = CurrentMarker.Position.Lat;
+                            WPLonVect1 = CurrentMarker.Position.Lng;
+                            PrintArea = true;
+                        }
+                        if (CurrentRectMarker.InnerMarker.Tag.ToString() == "2")
+                        {
+                            label20.Text = Convert.ToString(CurrentMarker.Position.Lat);
+                            label16.Text = Convert.ToString(CurrentMarker.Position.Lng);
+                            WPLatVect2 = CurrentMarker.Position.Lat;
+                            WPLonVect2 = CurrentMarker.Position.Lng;
+                            PrintArea = true;
+                        }
+                        if (CurrentRectMarker.InnerMarker.Tag.ToString() == "3")
+                        {
+                            label21.Text = Convert.ToString(CurrentMarker.Position.Lat);
+                            label22.Text = Convert.ToString(CurrentMarker.Position.Lng);
+                            WPLatVect3 = CurrentMarker.Position.Lat;
+                            WPLonVect3 = CurrentMarker.Position.Lng;
+                            PrintArea = true;
+                        }
+                        if (CurrentRectMarker.InnerMarker.Tag.ToString() == "4")
+                        {
+                            label37.Text = Convert.ToString(CurrentMarker.Position.Lat);
+                            label35.Text = Convert.ToString(CurrentMarker.Position.Lng);
+                            WPLatVect4 = CurrentMarker.Position.Lat;
+                            WPLonVect4 = CurrentMarker.Position.Lng;
+                            PrintArea = true;
+                        }
+                        if (CurrentRectMarker.InnerMarker.Tag.ToString() == "5")
+                        {
+                            label30.Text = Convert.ToString(CurrentMarker.Position.Lat);
+                            label26.Text = Convert.ToString(CurrentMarker.Position.Lng);
+                            WPLatVect5 = CurrentMarker.Position.Lat;
+                            WPLonVect5 = CurrentMarker.Position.Lng;
+                            PrintArea = true;
+                        }
+                        if (CurrentRectMarker.InnerMarker.Tag.ToString() == "6")
+                        {
+                            label28.Text = Convert.ToString(CurrentMarker.Position.Lat);
+                            label24.Text = Convert.ToString(CurrentMarker.Position.Lng);
+                            WPLatVect6 = CurrentMarker.Position.Lat;
+                            WPLonVect6 = CurrentMarker.Position.Lng;
+                            PrintArea = true;
+                        }
+                        if (CurrentRectMarker.InnerMarker.Tag.ToString() == "7")
+                        {
+                            label61.Text = Convert.ToString(CurrentMarker.Position.Lat);
+                            label57.Text = Convert.ToString(CurrentMarker.Position.Lng);
+                            WPLatVect7 = CurrentMarker.Position.Lat;
+                            WPLonVect7 = CurrentMarker.Position.Lng;
+                            PrintArea = true;
+                        }
+                        if (CurrentRectMarker.InnerMarker.Tag.ToString() == "8")
+                        {
+                            label70.Text = Convert.ToString(CurrentMarker.Position.Lat);
+                            label63.Text = Convert.ToString(CurrentMarker.Position.Lng);
+                            WPLatVect8 = CurrentMarker.Position.Lat;
+                            WPLonVect8 = CurrentMarker.Position.Lng;
+                            PrintArea = true;
+                        }
+                        if (CurrentRectMarker.InnerMarker.Tag.ToString() == "9")
+                        {
+                            label68.Text = Convert.ToString(CurrentMarker.Position.Lat);
+                            label59.Text = Convert.ToString(CurrentMarker.Position.Lng);
+                            WPLatVect9 = CurrentMarker.Position.Lat;
+                            WPLonVect9 = CurrentMarker.Position.Lng;
+                            PrintArea = true;
+                        }
+                        if (CurrentRectMarker.InnerMarker.Tag.ToString() == "10")
+                        {
+                            label66.Text = Convert.ToString(CurrentMarker.Position.Lat);
+                            label55.Text = Convert.ToString(CurrentMarker.Position.Lng);
+                            WPLatVect10 = CurrentMarker.Position.Lat;
+                            WPLonVect10 = CurrentMarker.Position.Lng;
+                            PrintArea = true;
+                        }
+                    }
+                }
+            }
+            MouseDraging = false;
+        }
+
+        private void MyGmap_MouseDown(object sender, MouseEventArgs e)
+        {
+            Start = MyGMap.FromLocalToLatLng(e.X, e.Y);
+            if (e.Button == MouseButtons.Left && Control.ModifierKeys != Keys.Alt)
+            {
+                MouseDown = true;
+                MouseDraging = false;
+                if (CurrentMarker.IsVisible)
+                {
+                    CurrentMarker.Position = MyGMap.FromLocalToLatLng(e.X, e.Y);
+                }
+            }
+        }
+
+        private void limparMapaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GMapTack.Points.Clear();
+        }
+
+        private void DecolarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Você realmente deseja realizar uma decolagem automática?",
+                      "Decolagem automática", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                //Serial_Write_To_FC(?);
+            }
+        }
+
+        private void pousarAquiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Você realmente deseja realizar um pouso automático?",
+                    "Pouso automático", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                //Serial_Write_To_FC(?);
+            }
+        }
+
+        private void voeParaCáToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Você realmente deseja voar para esse ponto?",
+                                "Avanço automático de ponto", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                //Serial_Write_To_FC(?);
+            }
+        }
+
+        private void tirarFotoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Serial_Write_To_FC(?);
         }
     }
 }

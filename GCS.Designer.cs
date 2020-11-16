@@ -135,6 +135,9 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.comboBox11 = new System.Windows.Forms.ComboBox();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.label70 = new System.Windows.Forms.Label();
+            this.comboBox23 = new System.Windows.Forms.ComboBox();
+            this.label92 = new System.Windows.Forms.Label();
             this.label50 = new System.Windows.Forms.Label();
             this.comboBox10 = new System.Windows.Forms.ComboBox();
             this.label51 = new System.Windows.Forms.Label();
@@ -229,7 +232,6 @@
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.label116 = new System.Windows.Forms.Label();
             this.label117 = new System.Windows.Forms.Label();
-            this.button12 = new System.Windows.Forms.Button();
             this.label91 = new System.Windows.Forms.Label();
             this.metroTrackBar1 = new MetroFramework.Controls.MetroTrackBar();
             this.MyGMap = new GMap.NET.WindowsForms.GMapControl();
@@ -344,9 +346,12 @@
             this.FlightTimer = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer3 = new System.Windows.Forms.Timer(this.components);
-            this.label70 = new System.Windows.Forms.Label();
-            this.comboBox23 = new System.Windows.Forms.ComboBox();
-            this.label92 = new System.Windows.Forms.Label();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.decolarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pousarAquiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.voeParaCáToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tirarFotoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.limparMapaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BarraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconminimizar)).BeginInit();
@@ -448,6 +453,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.panel1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // serialPort1
@@ -1873,6 +1879,62 @@
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "MODOS DE VOO";
             // 
+            // label70
+            // 
+            this.label70.AutoSize = true;
+            this.label70.Location = new System.Drawing.Point(287, 368);
+            this.label70.Name = "label70";
+            this.label70.Size = new System.Drawing.Size(232, 20);
+            this.label70.TabIndex = 30;
+            this.label70.Text = "> Realiza um pouso automático";
+            // 
+            // comboBox23
+            // 
+            this.comboBox23.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox23.FormattingEnabled = true;
+            this.comboBox23.Items.AddRange(new object[] {
+            "NENHUM",
+            "AUX1_BAIXO",
+            "AUX1_MEDIO",
+            "AUX1_ALTO",
+            "AUX2_BAIXO",
+            "AUX2_MEDIO",
+            "AUX2_ALTO",
+            "AUX3_BAIXO",
+            "AUX3_MEDIO",
+            "AUX3_ALTO",
+            "AUX4_BAIXO",
+            "AUX4_MEDIO",
+            "AUX4_ALTO",
+            "AUX5_BAIXO",
+            "AUX5_MEDIO",
+            "AUX5_ALTO",
+            "AUX6_BAIXO",
+            "AUX6_MEDIO",
+            "AUX6_ALTO",
+            "AUX7_BAIXO",
+            "AUX7_MEDIO",
+            "AUX7_ALTO",
+            "AUX8_BAIXO",
+            "AUX8_MEDIO",
+            "AUX8_ALTO"});
+            this.comboBox23.Location = new System.Drawing.Point(143, 365);
+            this.comboBox23.Name = "comboBox23";
+            this.comboBox23.Size = new System.Drawing.Size(138, 24);
+            this.comboBox23.TabIndex = 28;
+            this.comboBox23.Text = "SELECIONE";
+            this.comboBox23.SelectedIndexChanged += new System.EventHandler(this.comboBox23_SelectedIndexChanged);
+            // 
+            // label92
+            // 
+            this.label92.AutoSize = true;
+            this.label92.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label92.Location = new System.Drawing.Point(6, 365);
+            this.label92.Name = "label92";
+            this.label92.Size = new System.Drawing.Size(106, 24);
+            this.label92.TabIndex = 29;
+            this.label92.Text = "Auto-Land";
+            // 
             // label50
             // 
             this.label50.AutoSize = true;
@@ -3119,7 +3181,6 @@
             // 
             this.tabPage6.Controls.Add(this.label116);
             this.tabPage6.Controls.Add(this.label117);
-            this.tabPage6.Controls.Add(this.button12);
             this.tabPage6.Controls.Add(this.label91);
             this.tabPage6.Controls.Add(this.metroTrackBar1);
             this.tabPage6.Controls.Add(this.MyGMap);
@@ -3173,17 +3234,6 @@
             this.label117.TabIndex = 71;
             this.label117.Text = "Total Corrente em Mah";
             // 
-            // button12
-            // 
-            this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button12.Location = new System.Drawing.Point(965, 430);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(75, 56);
-            this.button12.TabIndex = 70;
-            this.button12.Text = "Limpar Mapa";
-            this.button12.UseVisualStyleBackColor = true;
-            this.button12.Click += new System.EventHandler(this.button12_Click);
-            // 
             // label91
             // 
             this.label91.AutoSize = true;
@@ -3230,6 +3280,7 @@
             this.MyGMap.Size = new System.Drawing.Size(745, 485);
             this.MyGMap.TabIndex = 67;
             this.MyGMap.Zoom = 0D;
+            this.MyGMap.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MyGMap_MouseUp);
             // 
             // label89
             // 
@@ -4505,61 +4556,51 @@
             this.timer3.Interval = 500;
             this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
             // 
-            // label70
+            // contextMenuStrip1
             // 
-            this.label70.AutoSize = true;
-            this.label70.Location = new System.Drawing.Point(287, 368);
-            this.label70.Name = "label70";
-            this.label70.Size = new System.Drawing.Size(232, 20);
-            this.label70.TabIndex = 30;
-            this.label70.Text = "> Realiza um pouso automático";
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.decolarToolStripMenuItem,
+            this.pousarAquiToolStripMenuItem,
+            this.voeParaCáToolStripMenuItem,
+            this.tirarFotoToolStripMenuItem,
+            this.limparMapaToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(145, 114);
             // 
-            // comboBox23
+            // decolarToolStripMenuItem
             // 
-            this.comboBox23.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox23.FormattingEnabled = true;
-            this.comboBox23.Items.AddRange(new object[] {
-            "NENHUM",
-            "AUX1_BAIXO",
-            "AUX1_MEDIO",
-            "AUX1_ALTO",
-            "AUX2_BAIXO",
-            "AUX2_MEDIO",
-            "AUX2_ALTO",
-            "AUX3_BAIXO",
-            "AUX3_MEDIO",
-            "AUX3_ALTO",
-            "AUX4_BAIXO",
-            "AUX4_MEDIO",
-            "AUX4_ALTO",
-            "AUX5_BAIXO",
-            "AUX5_MEDIO",
-            "AUX5_ALTO",
-            "AUX6_BAIXO",
-            "AUX6_MEDIO",
-            "AUX6_ALTO",
-            "AUX7_BAIXO",
-            "AUX7_MEDIO",
-            "AUX7_ALTO",
-            "AUX8_BAIXO",
-            "AUX8_MEDIO",
-            "AUX8_ALTO"});
-            this.comboBox23.Location = new System.Drawing.Point(143, 365);
-            this.comboBox23.Name = "comboBox23";
-            this.comboBox23.Size = new System.Drawing.Size(138, 24);
-            this.comboBox23.TabIndex = 28;
-            this.comboBox23.Text = "SELECIONE";
-            this.comboBox23.SelectedIndexChanged += new System.EventHandler(this.comboBox23_SelectedIndexChanged);
+            this.decolarToolStripMenuItem.Name = "decolarToolStripMenuItem";
+            this.decolarToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.decolarToolStripMenuItem.Text = "Decolar";
+            this.decolarToolStripMenuItem.Click += new System.EventHandler(this.decolarToolStripMenuItem_Click);
             // 
-            // label92
+            // pousarAquiToolStripMenuItem
             // 
-            this.label92.AutoSize = true;
-            this.label92.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label92.Location = new System.Drawing.Point(6, 365);
-            this.label92.Name = "label92";
-            this.label92.Size = new System.Drawing.Size(106, 24);
-            this.label92.TabIndex = 29;
-            this.label92.Text = "Auto-Land";
+            this.pousarAquiToolStripMenuItem.Name = "pousarAquiToolStripMenuItem";
+            this.pousarAquiToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.pousarAquiToolStripMenuItem.Text = "Pousar aqui";
+            this.pousarAquiToolStripMenuItem.Click += new System.EventHandler(this.pousarAquiToolStripMenuItem_Click);
+            // 
+            // voeParaCáToolStripMenuItem
+            // 
+            this.voeParaCáToolStripMenuItem.Name = "voeParaCáToolStripMenuItem";
+            this.voeParaCáToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.voeParaCáToolStripMenuItem.Text = "Voe para cá";
+            this.voeParaCáToolStripMenuItem.Click += new System.EventHandler(this.voeParaCáToolStripMenuItem_Click);
+            // 
+            // tirarFotoToolStripMenuItem
+            // 
+            this.tirarFotoToolStripMenuItem.Name = "tirarFotoToolStripMenuItem";
+            this.tirarFotoToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.tirarFotoToolStripMenuItem.Text = "Tirar foto";
+            this.tirarFotoToolStripMenuItem.Click += new System.EventHandler(this.tirarFotoToolStripMenuItem_Click);
+            // 
+            // limparMapaToolStripMenuItem
+            // 
+            this.limparMapaToolStripMenuItem.Name = "limparMapaToolStripMenuItem";
+            this.limparMapaToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.limparMapaToolStripMenuItem.Text = "Limpar mapa";
+            this.limparMapaToolStripMenuItem.Click += new System.EventHandler(this.limparMapaToolStripMenuItem_Click);
             // 
             // GCS
             // 
@@ -4718,6 +4759,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.panel1.ResumeLayout(false);
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -4935,7 +4977,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ComboBox comboBox19;
         private System.Windows.Forms.Timer FlightTimer;
-        private System.Windows.Forms.Button button12;
         private System.Windows.Forms.Label label93;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button11;
@@ -5040,6 +5081,12 @@
         private System.Windows.Forms.Label label70;
         private System.Windows.Forms.ComboBox comboBox23;
         private System.Windows.Forms.Label label92;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem decolarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pousarAquiToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tirarFotoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem limparMapaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem voeParaCáToolStripMenuItem;
     }
 }
 
