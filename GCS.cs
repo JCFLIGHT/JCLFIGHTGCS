@@ -413,6 +413,7 @@ namespace JCFLIGHTGCS
             zedGraphControl6.ScrollGrace = 0;
             fScale = zedGraphControl6.GraphPane.XAxis.Scale;
             zedGraphControl6.AxisChange();
+            Load_Data_Grid();
             Thread.Sleep(3000);
             //FECHA O SPLASH SCREEN
             Program.Splash?.Close();
@@ -1926,7 +1927,12 @@ namespace JCFLIGHTGCS
 
         private void timer3_Tick(object sender, EventArgs e)
         {
-            if (SerialPort.IsOpen == false) return;
+            if (SerialPort.IsOpen == false)
+            {
+                HorizonIndicator.SetNoticeInArtificialHorizon(0, false, false);
+                HorizonIndicator2.SetNoticeInArtificialHorizon(0, false, false);
+                return;
+            }
             if (!ToogleState)
             {
                 if (ReadRoll > 1200)
@@ -2063,6 +2069,97 @@ namespace JCFLIGHTGCS
         private void tirarFotoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //Serial_Write_To_FC(?);
+        }
+
+        private void button19_Click(object sender, EventArgs e)
+        {
+            if (SerialOpen == true)
+            {
+                Serial_Write_To_FC(14);
+                SerialOpen = false;
+            }
+            ItsSafeToUpdate = true;
+            if (PidAndFiltersCommunicationOpen == true)
+            {
+                Serial_Write_To_FC(14);
+                PidAndFiltersCommunicationOpen = false;
+            }
+            SmallCompass = false;
+            HexUpload HexOpen = new HexUpload();
+            HexOpen.Show();
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            if (SerialOpen == true)
+            {
+                Serial_Write_To_FC(14);
+                SerialOpen = false;
+            }
+            ItsSafeToUpdate = true;
+            if (PidAndFiltersCommunicationOpen == true)
+            {
+                Serial_Write_To_FC(14);
+                PidAndFiltersCommunicationOpen = false;
+            }
+            SmallCompass = false;
+            tabControl1.SelectTab(tabPage8);
+        }
+
+        public void Load_Data_Grid()
+        {
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "kP_AHRS";
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "kI_AHRS";
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "kP_Mag";
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "kI_Mag";
+
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AHRS_Aero_Rate";
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AHRS_Aero_Slope";
+
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Servo_Pulso_Minimo";
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Servo_Pulso_Médio";
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Servo_Pulso_Maximo";
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Servo_LPF_CutOff";
+
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AutoLaunch_AHRS_BankAngle";
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AutoLaunch_IMU_BankAngle";
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AutoLaunch_Time_Motor_SpinUp";
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AutoLaunch_Elevador";
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AutoLaunch_Throttle_SpinUp";
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AutoLaunch_Throttle_SpinUp_Tempo";
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AutoLaunch_Abortar";
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AutoLaunch_Throttle_Maximo";
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AutoLaunch_Altitude";
+
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Bateria_Fator_De_Tensão";
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Bateria_Amper_Por_Volt";
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Bateria_Amper_OffSet";
+
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "CrashCheck_IMU_BankAngle";
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "CrashCheck_Tempo";
+
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Fail-Safe_Pulso";
+
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Gimbal_Pulso_Minimo";
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Gimbal_Pulso_Médio";
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Gimbal_Pulso_Maximo";
+
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Land_Check_Acc";
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Land_LPF_CutOff";
+
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "RC_Rate";
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "RC_Expo";
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Roll_Pitch_Rate";
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Yaw_Rate";
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Throttle_Médio";
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Throttle_Exponencial";
+
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Auto_Desarm_Tempo";
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Auto_Desarm_Throttle_Minimo";
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Auto_Desarm_YPR_Minimo";
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Auto_Desarm_YPR_Maximo";
+
+            dataGridView1.Rows[dataGridView1.Rows.Add()].DataGridView.EndEdit();
         }
     }
 }

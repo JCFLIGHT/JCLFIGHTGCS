@@ -137,3 +137,10 @@ C:\Users\Julio Cesar\Desktop\ARDUINO\JCFLIGHT\JCFLIGHTGCS\bin\Debug\OpenTK.xml
 C:\Users\Julio Cesar\Desktop\ARDUINO\JCFLIGHT\JCFLIGHTGCS\bin\Debug\OpenTK.GLControl.pdb
 C:\Users\Julio Cesar\Desktop\ARDUINO\JCFLIGHT\JCFLIGHTGCS\bin\Debug\OpenTK.GLControl.xml
 C:\Users\Julio Cesar\Desktop\ARDUINO\JCFLIGHT\JCFLIGHTGCS\bin\Debug\JCFLIGHTGCS.exe.config
+C:\Users\Julio Cesar\Desktop\ARDUINO\JCFLIGHT\JCFLIGHTGCS\bin\Debug\ArduinoUploader.dll
+C:\Users\Julio Cesar\Desktop\ARDUINO\JCFLIGHT\JCFLIGHTGCS\bin\Debug\IntelHexFormatReader.dll
+C:\Users\Julio Cesar\Desktop\ARDUINO\JCFLIGHT\JCFLIGHTGCS\bin\Debug\Microsoft.Win32.Registry.dll
+C:\Users\Julio Cesar\Desktop\ARDUINO\JCFLIGHT\JCFLIGHTGCS\bin\Debug\RJCP.SerialPortStream.dll
+C:\Users\Julio Cesar\Desktop\ARDUINO\JCFLIGHT\JCFLIGHTGCS\bin\Debug\RJCP.SerialPortStream.pdb
+C:\Users\Julio Cesar\Desktop\ARDUINO\JCFLIGHT\JCFLIGHTGCS\bin\Debug\RJCP.SerialPortStream.xml
+C:\Users\Julio Cesar\Desktop\ARDUINO\JCFLIGHT\JCFLIGHTGCS\obj\Debug\JCFLIGHTGCS.HexUpload.resources

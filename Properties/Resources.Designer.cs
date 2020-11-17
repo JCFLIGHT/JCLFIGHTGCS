@@ -393,6 +393,16 @@ namespace JCFLIGHTGCS.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap HexaDec {
+            get {
+                object obj = ResourceManager.GetObject("HexaDec", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap HexaI {
             get {
                 object obj = ResourceManager.GetObject("HexaI", resourceCulture);
