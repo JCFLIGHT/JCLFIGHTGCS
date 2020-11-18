@@ -43,6 +43,25 @@ namespace JCFLIGHTGCS
         int Aux6Data = 1000;
         int Aux7Data = 1000;
         int Aux8Data = 1000;
+
+        int ThrottleActualData = 900;
+        int YawActualData = 1000;
+        int PitchActualData = 1000;
+        int RollActualData = 1000;
+        int Aux1ActualData = 1000;
+        int Aux2ActualData = 1000;
+        int Aux3ActualData = 1000;
+        int Aux4ActualData = 1000;
+        int Aux5ActualData = 1000;
+        int Aux6ActualData = 1000;
+        int Aux7ActualData = 1000;
+        int Aux8ActualData = 1000;
+
+        int ThrottleAttitudeData = 1000;
+        int YawAttitudeData = 0;
+        int PitchAttitudeData = 0;
+        int RollAttitudeData = 0;
+
         int ReadRoll = 2000;
         int ReadPitch = 0;
         int ReadCompass = 0;
@@ -419,6 +438,8 @@ namespace JCFLIGHTGCS
             Thread.Sleep(3000);
             //FECHA O SPLASH SCREEN
             Program.Splash?.Close();
+            this.MaximumSize = Screen.PrimaryScreen.WorkingArea.Size; //NÃO CUBRA A BARRA DE TAREFAS
+            this.WindowState = FormWindowState.Maximized;
         }
 
         private void iconmaximizar_Click(object sender, EventArgs e)
@@ -665,6 +686,26 @@ namespace JCFLIGHTGCS
                     NumericConvert[10] = (byte)InBuffer[ptr++];
                     NumericConvert[11] = (byte)InBuffer[ptr++];
                     break;
+
+                case 10:
+                    ptr = 0;
+                    ThrottleActualData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    YawActualData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    PitchActualData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    RollActualData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    Aux1ActualData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    Aux2ActualData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    Aux3ActualData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    Aux4ActualData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    Aux5ActualData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    Aux6ActualData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    Aux7ActualData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    Aux8ActualData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    ThrottleAttitudeData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    YawAttitudeData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    PitchAttitudeData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    RollAttitudeData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    break;
             }
         }
 
@@ -694,6 +735,7 @@ namespace JCFLIGHTGCS
                     Serial_Write_To_FC(7);
                     Serial_Write_To_FC(8);
                     Serial_Write_To_FC(9);
+                    Serial_Write_To_FC(10);
                     label69.Text = "GCS RSSI:" + Convert.ToString(CalculateAverage(PacketsReceived, PacketsError)) + "%";
                     UpdateAccImageStatus();
                 }
@@ -709,7 +751,7 @@ namespace JCFLIGHTGCS
    int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
         {
             //CONTROLE DAS BARRAS DE PROGRESSO
-            metroProgressBar1.Value = Convert.ToInt16(ValueConverterProgressBar(CHThrottle, 900, 2000, 0, 100));
+            metroProgressBar1.Value = Convert.ToInt16(ValueConverterProgressBar(CHThrottle, 1000, 2000, 0, 100));
             metroProgressBar2.Value = Convert.ToInt16(ValueConverterProgressBar(CHYaw, 1000, 2000, 0, 100));
             metroProgressBar3.Value = Convert.ToInt16(ValueConverterProgressBar(CHPitch, 1000, 2000, 0, 100));
             metroProgressBar4.Value = Convert.ToInt16(ValueConverterProgressBar(CHRoll, 1000, 2000, 0, 100));
@@ -736,10 +778,55 @@ namespace JCFLIGHTGCS
             label38.Text = Convert.ToString(CHAux8);
         }
 
+        private void ProgressBarControl2(int CHThrottle, int CHYaw, int CHPitch, int CHRoll, int CHAux1, int CHAux2,
+int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
+        {
+            //CONTROLE DAS BARRAS DE PROGRESSO
+            metroProgressBar23.Value = Convert.ToInt16(ValueConverterProgressBar(CHThrottle, 900, 2200, 0, 100));
+            metroProgressBar22.Value = Convert.ToInt16(ValueConverterProgressBar(CHYaw, 900, 2200, 0, 100));
+            metroProgressBar21.Value = Convert.ToInt16(ValueConverterProgressBar(CHPitch, 900, 2200, 0, 100));
+            metroProgressBar20.Value = Convert.ToInt16(ValueConverterProgressBar(CHRoll, 900, 2200, 0, 100));
+            metroProgressBar19.Value = Convert.ToInt16(ValueConverterProgressBar(CHAux1, 900, 2200, 0, 100));
+            metroProgressBar18.Value = Convert.ToInt16(ValueConverterProgressBar(CHAux2, 900, 2200, 0, 100));
+            metroProgressBar17.Value = Convert.ToInt16(ValueConverterProgressBar(CHAux3, 900, 2200, 0, 100));
+            metroProgressBar16.Value = Convert.ToInt16(ValueConverterProgressBar(CHAux4, 900, 2200, 0, 100));
+            metroProgressBar15.Value = Convert.ToInt16(ValueConverterProgressBar(CHAux5, 900, 2200, 0, 100));
+            metroProgressBar14.Value = Convert.ToInt16(ValueConverterProgressBar(CHAux6, 900, 2200, 0, 100));
+            metroProgressBar24.Value = Convert.ToInt16(ValueConverterProgressBar(CHAux7, 900, 2200, 0, 100));
+            metroProgressBar13.Value = Convert.ToInt16(ValueConverterProgressBar(CHAux8, 900, 2200, 0, 100));
+            //LABEL'S
+            label141.Text = Convert.ToString(CHThrottle);
+            label140.Text = Convert.ToString(CHYaw);
+            label139.Text = Convert.ToString(CHPitch);
+            label138.Text = Convert.ToString(CHRoll);
+            label137.Text = Convert.ToString(CHAux1);
+            label136.Text = Convert.ToString(CHAux2);
+            label135.Text = Convert.ToString(CHAux3);
+            label134.Text = Convert.ToString(CHAux4);
+            label133.Text = Convert.ToString(CHAux5);
+            label132.Text = Convert.ToString(CHAux6);
+            label131.Text = Convert.ToString(CHAux7);
+            label130.Text = Convert.ToString(CHAux8);
+        }
+
+        private void ProgressBarControl3(int CHThrottle, int CHYaw, int CHPitch, int CHRoll)
+        {
+            //CONTROLE DAS BARRAS DE PROGRESSO
+            metroProgressBar28.Value = Convert.ToInt16(ValueConverterProgressBar(CHThrottle, 1000, 2000, 0, 100));
+            metroProgressBar27.Value = Convert.ToInt16(ValueConverterProgressBar(CHYaw, -550, 550, 0, 100));
+            metroProgressBar26.Value = Convert.ToInt16(ValueConverterProgressBar(CHPitch, -550, 550, 0, 100));
+            metroProgressBar25.Value = Convert.ToInt16(ValueConverterProgressBar(CHRoll, -550, 550, 0, 100));
+            //LABEL'S
+            label149.Text = Convert.ToString(CHThrottle);
+            label148.Text = Convert.ToString(CHYaw);
+            label147.Text = Convert.ToString(CHPitch);
+            label146.Text = Convert.ToString(CHRoll);
+        }
+
         long ValueConverterProgressBar(int x, int in_min, int in_max, int out_min, int out_max)
         {
-            if (x <= 1000) return 0;
-            if (x >= 2000) return 100;
+            if (x <= in_min) return 0;
+            if (x >= in_max) return 100;
             return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
         }
 
@@ -905,6 +992,9 @@ namespace JCFLIGHTGCS
             }
             ProgressBarControl(ThrottleData, YawData, PitchData, RollData, Aux1Data, Aux2Data, Aux3Data,
                    Aux4Data, Aux5Data, Aux6Data, Aux7Data, Aux8Data);
+            ProgressBarControl2(ThrottleActualData, YawActualData, PitchActualData, RollActualData, Aux1ActualData, Aux2ActualData, Aux3ActualData,
+                   Aux4ActualData, Aux5ActualData, Aux6ActualData, Aux7ActualData, Aux8ActualData);
+            ProgressBarControl3(ThrottleAttitudeData, YawAttitudeData, PitchAttitudeData, RollAttitudeData);
             if (ReadRoll > 1200) HorizonIndicator.SetAttitudeIndicatorParameters(ReadPitch / 10, 0);
             else HorizonIndicator.SetAttitudeIndicatorParameters(ReadPitch / 10, -ReadRoll / 10);
             HeadingIndicator.SetHeadingIndicatorParameters(ReadCompass, SmallCompass);
@@ -1124,35 +1214,37 @@ namespace JCFLIGHTGCS
 
         private void button6_Click(object sender, EventArgs e)
         {
-            if (SerialPort.IsOpen == false)
-            {
+            if (!SerialPort.IsOpen)
                 MessageRead = false;
-                return;
-            }
-            NoticeLarger = false;
-            if (SerialOpen == true)
+            else
             {
-                Serial_Write_To_FC(14);
-                SerialOpen = false;
-            }
-            ItsSafeToUpdate = true;
-
-            if (PidAndFiltersCommunicationOpen == true)
-            {
-                Serial_Write_To_FC(14);
-                PidAndFiltersCommunicationOpen = false;
-            }
-
-            SmallCompass = true;
-            tabControl1.SelectTab(tabPage6);
-            if (!MessageRead)
-            {
-                if (!Stuff.PingNetwork("pingtest.com"))
+                NoticeLarger = false;
+                if (SerialOpen == true)
                 {
-                    MyGMap.Manager.Mode = AccessMode.CacheOnly;
-                    MessageBox.Show("Você está sem internet,o mapa irá funcinar em modo cache,partes do mapa não carregados antes com internet podem falhar", "Checagem de conexão com a internet", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    Serial_Write_To_FC(14);
+                    SerialOpen = false;
                 }
-                MessageRead = true;
+                ItsSafeToUpdate = true;
+
+                if (PidAndFiltersCommunicationOpen == true)
+                {
+                    Serial_Write_To_FC(14);
+                    PidAndFiltersCommunicationOpen = false;
+                }
+                SmallCompass = true;
+            }
+            tabControl1.SelectTab(tabPage6);
+            if (SerialPort.IsOpen)
+            {
+                if (!MessageRead)
+                {
+                    if (!Stuff.PingNetwork("pingtest.com"))
+                    {
+                        MyGMap.Manager.Mode = AccessMode.CacheOnly;
+                        MessageBox.Show("Você está sem internet,o mapa irá funcinar em modo cache,partes do mapa não carregados antes com internet podem falhar", "Checagem de conexão com a internet", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    MessageRead = true;
+                }
             }
         }
 
@@ -2269,7 +2361,7 @@ namespace JCFLIGHTGCS
 
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Auto_Desarm_Throttle_Minimo";
             dataGridView1.Rows[37].Cells[Unidade.Index].Value = "uS";
-            dataGridView1.Rows[37].Cells[Descricao.Index].Value = "Valor minimo do pulso do Throttle para iniciar a contagem do Auto-Desarm";
+            dataGridView1.Rows[37].Cells[Descricao.Index].Value = "Valor maximo do pulso do Throttle para iniciar a contagem do Auto-Desarm";
 
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Auto_Desarm_YPR_Minimo";
             dataGridView1.Rows[38].Cells[Unidade.Index].Value = "uS";
