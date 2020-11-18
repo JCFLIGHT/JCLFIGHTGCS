@@ -28,6 +28,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GCS));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.button7 = new System.Windows.Forms.Button();
             this.label27 = new System.Windows.Forms.Label();
@@ -4584,6 +4585,7 @@
             // 
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -4591,12 +4593,13 @@
             this.Valor,
             this.Unidade,
             this.Descricao});
+            this.dataGridView1.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridView1.Size = new System.Drawing.Size(874, 507);
+            this.dataGridView1.Size = new System.Drawing.Size(912, 507);
             this.dataGridView1.TabIndex = 0;
             // 
             // panel1
@@ -4681,6 +4684,8 @@
             // Parametro
             // 
             this.Parametro.DataPropertyName = "Nenhum";
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Parametro.DefaultCellStyle = dataGridViewCellStyle1;
             this.Parametro.HeaderText = "Parâmetro";
             this.Parametro.Name = "Parametro";
             this.Parametro.ReadOnly = true;
@@ -4699,6 +4704,7 @@
             this.Unidade.Name = "Unidade";
             this.Unidade.ReadOnly = true;
             this.Unidade.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Unidade.Width = 80;
             // 
             // Descricao
             // 
@@ -4706,6 +4712,7 @@
             this.Descricao.Name = "Descricao";
             this.Descricao.ReadOnly = true;
             this.Descricao.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Descricao.Width = 500;
             // 
             // GCS
             // 

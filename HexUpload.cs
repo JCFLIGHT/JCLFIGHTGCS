@@ -107,7 +107,7 @@ namespace JCFLIGHTGCS
                 if (ComPort != null && ComPort.IsOpen) ComPort.Close();
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
