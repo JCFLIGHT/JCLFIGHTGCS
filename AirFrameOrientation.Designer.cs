@@ -237,7 +237,7 @@
             this.MaximizeBox = false;
             this.Name = "AirFrameOrientation";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "AirFrameOrientation";
+            this.Text = "Orientação dos Motores/Servos";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();

@@ -65,6 +65,8 @@
             this.label94 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.circularProgressBar1 = new CircularProgressBar.CircularProgressBar();
+            this.HorizonIndicator = new JCFLIGHTGCS.AttitudeIndicatorInstrumentControl();
+            this.HeadingIndicator = new JCFLIGHTGCS.HeadingIndicatorInstrumentControl();
             this.panel16 = new System.Windows.Forms.Panel();
             this.label25 = new System.Windows.Forms.Label();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
@@ -194,6 +196,21 @@
             this.zedGraphControl1 = new ZedGraph.ZedGraphControl();
             this.zedGraphControl2 = new ZedGraph.ZedGraphControl();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.metroLabel26 = new MetroFramework.Controls.MetroLabel();
+            this.label142 = new System.Windows.Forms.Label();
+            this.label143 = new System.Windows.Forms.Label();
+            this.label144 = new System.Windows.Forms.Label();
+            this.label145 = new System.Windows.Forms.Label();
+            this.label146 = new System.Windows.Forms.Label();
+            this.label147 = new System.Windows.Forms.Label();
+            this.label148 = new System.Windows.Forms.Label();
+            this.label149 = new System.Windows.Forms.Label();
+            this.metroProgressBar25 = new MetroFramework.Controls.MetroProgressBar();
+            this.metroProgressBar26 = new MetroFramework.Controls.MetroProgressBar();
+            this.metroProgressBar27 = new MetroFramework.Controls.MetroProgressBar();
+            this.metroProgressBar28 = new MetroFramework.Controls.MetroProgressBar();
+            this.metroLabel25 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel24 = new MetroFramework.Controls.MetroLabel();
             this.label118 = new System.Windows.Forms.Label();
             this.label119 = new System.Windows.Forms.Label();
             this.label120 = new System.Windows.Forms.Label();
@@ -292,6 +309,8 @@
             this.label73 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.circularProgressBar2 = new CircularProgressBar.CircularProgressBar();
+            this.HeadingIndicator2 = new JCFLIGHTGCS.HeadingIndicatorInstrumentControl();
+            this.HorizonIndicator2 = new JCFLIGHTGCS.AttitudeIndicatorInstrumentControl();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.label115 = new System.Windows.Forms.Label();
@@ -393,25 +412,6 @@
             this.voeParaCáToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tirarFotoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.limparMapaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.metroLabel24 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel25 = new MetroFramework.Controls.MetroLabel();
-            this.HorizonIndicator = new JCFLIGHTGCS.AttitudeIndicatorInstrumentControl();
-            this.HeadingIndicator = new JCFLIGHTGCS.HeadingIndicatorInstrumentControl();
-            this.HeadingIndicator2 = new JCFLIGHTGCS.HeadingIndicatorInstrumentControl();
-            this.HorizonIndicator2 = new JCFLIGHTGCS.AttitudeIndicatorInstrumentControl();
-            this.metroLabel26 = new MetroFramework.Controls.MetroLabel();
-            this.label142 = new System.Windows.Forms.Label();
-            this.label143 = new System.Windows.Forms.Label();
-            this.label144 = new System.Windows.Forms.Label();
-            this.label145 = new System.Windows.Forms.Label();
-            this.label146 = new System.Windows.Forms.Label();
-            this.label147 = new System.Windows.Forms.Label();
-            this.label148 = new System.Windows.Forms.Label();
-            this.label149 = new System.Windows.Forms.Label();
-            this.metroProgressBar25 = new MetroFramework.Controls.MetroProgressBar();
-            this.metroProgressBar26 = new MetroFramework.Controls.MetroProgressBar();
-            this.metroProgressBar27 = new MetroFramework.Controls.MetroProgressBar();
-            this.metroProgressBar28 = new MetroFramework.Controls.MetroProgressBar();
             this.BarraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconminimizar)).BeginInit();
@@ -1042,6 +1042,24 @@
             this.circularProgressBar1.TabIndex = 46;
             this.circularProgressBar1.TextMargin = new System.Windows.Forms.Padding(8, 8, 0, 0);
             this.circularProgressBar1.Value = 68;
+            // 
+            // HorizonIndicator
+            // 
+            this.HorizonIndicator.BackColor = System.Drawing.Color.White;
+            this.HorizonIndicator.Location = new System.Drawing.Point(33, 153);
+            this.HorizonIndicator.Name = "HorizonIndicator";
+            this.HorizonIndicator.Size = new System.Drawing.Size(300, 300);
+            this.HorizonIndicator.TabIndex = 3;
+            this.HorizonIndicator.Text = "HorizonIndicator";
+            // 
+            // HeadingIndicator
+            // 
+            this.HeadingIndicator.BackColor = System.Drawing.Color.White;
+            this.HeadingIndicator.Location = new System.Drawing.Point(382, 153);
+            this.HeadingIndicator.Name = "HeadingIndicator";
+            this.HeadingIndicator.Size = new System.Drawing.Size(300, 300);
+            this.HeadingIndicator.TabIndex = 4;
+            this.HeadingIndicator.Text = "HeadingIndicator";
             // 
             // panel16
             // 
@@ -2973,11 +2991,156 @@
             this.tabPage5.Text = "Rádio Controle";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
+            // metroLabel26
+            // 
+            this.metroLabel26.AutoSize = true;
+            this.metroLabel26.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.metroLabel26.FontWeight = MetroFramework.MetroLabelWeight.Bold;
+            this.metroLabel26.Location = new System.Drawing.Point(130, 419);
+            this.metroLabel26.Name = "metroLabel26";
+            this.metroLabel26.Size = new System.Drawing.Size(111, 25);
+            this.metroLabel26.TabIndex = 122;
+            this.metroLabel26.Text = "RC Attitude";
+            // 
+            // label142
+            // 
+            this.label142.AutoSize = true;
+            this.label142.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label142.Location = new System.Drawing.Point(382, 534);
+            this.label142.Name = "label142";
+            this.label142.Size = new System.Drawing.Size(55, 20);
+            this.label142.TabIndex = 121;
+            this.label142.Text = "ROLL";
+            // 
+            // label143
+            // 
+            this.label143.AutoSize = true;
+            this.label143.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label143.Location = new System.Drawing.Point(381, 505);
+            this.label143.Name = "label143";
+            this.label143.Size = new System.Drawing.Size(61, 20);
+            this.label143.TabIndex = 120;
+            this.label143.Text = "PITCH";
+            // 
+            // label144
+            // 
+            this.label144.AutoSize = true;
+            this.label144.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label144.Location = new System.Drawing.Point(382, 476);
+            this.label144.Name = "label144";
+            this.label144.Size = new System.Drawing.Size(49, 20);
+            this.label144.TabIndex = 119;
+            this.label144.Text = "YAW";
+            // 
+            // label145
+            // 
+            this.label145.AutoSize = true;
+            this.label145.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label145.Location = new System.Drawing.Point(382, 447);
+            this.label145.Name = "label145";
+            this.label145.Size = new System.Drawing.Size(100, 20);
+            this.label145.TabIndex = 118;
+            this.label145.Text = "THROTTLE";
+            // 
+            // label146
+            // 
+            this.label146.AutoSize = true;
+            this.label146.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label146.Location = new System.Drawing.Point(169, 537);
+            this.label146.Name = "label146";
+            this.label146.Size = new System.Drawing.Size(36, 16);
+            this.label146.TabIndex = 117;
+            this.label146.Text = "1000";
+            // 
+            // label147
+            // 
+            this.label147.AutoSize = true;
+            this.label147.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label147.Location = new System.Drawing.Point(169, 508);
+            this.label147.Name = "label147";
+            this.label147.Size = new System.Drawing.Size(36, 16);
+            this.label147.TabIndex = 116;
+            this.label147.Text = "1000";
+            // 
+            // label148
+            // 
+            this.label148.AutoSize = true;
+            this.label148.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label148.Location = new System.Drawing.Point(169, 479);
+            this.label148.Name = "label148";
+            this.label148.Size = new System.Drawing.Size(36, 16);
+            this.label148.TabIndex = 115;
+            this.label148.Text = "1000";
+            // 
+            // label149
+            // 
+            this.label149.AutoSize = true;
+            this.label149.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label149.Location = new System.Drawing.Point(169, 450);
+            this.label149.Name = "label149";
+            this.label149.Size = new System.Drawing.Size(36, 16);
+            this.label149.TabIndex = 114;
+            this.label149.Text = "1000";
+            // 
+            // metroProgressBar25
+            // 
+            this.metroProgressBar25.Location = new System.Drawing.Point(5, 534);
+            this.metroProgressBar25.Name = "metroProgressBar25";
+            this.metroProgressBar25.Size = new System.Drawing.Size(370, 23);
+            this.metroProgressBar25.Style = MetroFramework.MetroColorStyle.Green;
+            this.metroProgressBar25.TabIndex = 113;
+            // 
+            // metroProgressBar26
+            // 
+            this.metroProgressBar26.Location = new System.Drawing.Point(5, 505);
+            this.metroProgressBar26.Name = "metroProgressBar26";
+            this.metroProgressBar26.Size = new System.Drawing.Size(370, 23);
+            this.metroProgressBar26.Style = MetroFramework.MetroColorStyle.Blue;
+            this.metroProgressBar26.TabIndex = 112;
+            // 
+            // metroProgressBar27
+            // 
+            this.metroProgressBar27.Location = new System.Drawing.Point(5, 476);
+            this.metroProgressBar27.Name = "metroProgressBar27";
+            this.metroProgressBar27.Size = new System.Drawing.Size(371, 23);
+            this.metroProgressBar27.Style = MetroFramework.MetroColorStyle.Silver;
+            this.metroProgressBar27.TabIndex = 111;
+            // 
+            // metroProgressBar28
+            // 
+            this.metroProgressBar28.Location = new System.Drawing.Point(5, 447);
+            this.metroProgressBar28.Name = "metroProgressBar28";
+            this.metroProgressBar28.Size = new System.Drawing.Size(371, 23);
+            this.metroProgressBar28.Style = MetroFramework.MetroColorStyle.Yellow;
+            this.metroProgressBar28.TabIndex = 110;
+            // 
+            // metroLabel25
+            // 
+            this.metroLabel25.AutoSize = true;
+            this.metroLabel25.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.metroLabel25.FontWeight = MetroFramework.MetroLabelWeight.Bold;
+            this.metroLabel25.Location = new System.Drawing.Point(675, 5);
+            this.metroLabel25.Name = "metroLabel25";
+            this.metroLabel25.Size = new System.Drawing.Size(139, 25);
+            this.metroLabel25.TabIndex = 109;
+            this.metroLabel25.Text = "Saída do Rádio";
+            // 
+            // metroLabel24
+            // 
+            this.metroLabel24.AutoSize = true;
+            this.metroLabel24.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.metroLabel24.FontWeight = MetroFramework.MetroLabelWeight.Bold;
+            this.metroLabel24.Location = new System.Drawing.Point(106, 5);
+            this.metroLabel24.Name = "metroLabel24";
+            this.metroLabel24.Size = new System.Drawing.Size(159, 25);
+            this.metroLabel24.TabIndex = 108;
+            this.metroLabel24.Text = "Entrada do Rádio";
+            // 
             // label118
             // 
             this.label118.AutoSize = true;
             this.label118.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label118.Location = new System.Drawing.Point(381, 387);
+            this.label118.Location = new System.Drawing.Point(383, 355);
             this.label118.Name = "label118";
             this.label118.Size = new System.Drawing.Size(56, 20);
             this.label118.TabIndex = 107;
@@ -2987,7 +3150,7 @@
             // 
             this.label119.AutoSize = true;
             this.label119.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label119.Location = new System.Drawing.Point(381, 358);
+            this.label119.Location = new System.Drawing.Point(383, 326);
             this.label119.Name = "label119";
             this.label119.Size = new System.Drawing.Size(56, 20);
             this.label119.TabIndex = 106;
@@ -2997,7 +3160,7 @@
             // 
             this.label120.AutoSize = true;
             this.label120.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label120.Location = new System.Drawing.Point(381, 329);
+            this.label120.Location = new System.Drawing.Point(383, 297);
             this.label120.Name = "label120";
             this.label120.Size = new System.Drawing.Size(56, 20);
             this.label120.TabIndex = 105;
@@ -3007,7 +3170,7 @@
             // 
             this.label121.AutoSize = true;
             this.label121.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label121.Location = new System.Drawing.Point(381, 300);
+            this.label121.Location = new System.Drawing.Point(383, 268);
             this.label121.Name = "label121";
             this.label121.Size = new System.Drawing.Size(56, 20);
             this.label121.TabIndex = 104;
@@ -3017,7 +3180,7 @@
             // 
             this.label122.AutoSize = true;
             this.label122.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label122.Location = new System.Drawing.Point(381, 271);
+            this.label122.Location = new System.Drawing.Point(383, 239);
             this.label122.Name = "label122";
             this.label122.Size = new System.Drawing.Size(56, 20);
             this.label122.TabIndex = 103;
@@ -3027,7 +3190,7 @@
             // 
             this.label123.AutoSize = true;
             this.label123.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label123.Location = new System.Drawing.Point(381, 242);
+            this.label123.Location = new System.Drawing.Point(383, 210);
             this.label123.Name = "label123";
             this.label123.Size = new System.Drawing.Size(56, 20);
             this.label123.TabIndex = 102;
@@ -3037,7 +3200,7 @@
             // 
             this.label124.AutoSize = true;
             this.label124.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label124.Location = new System.Drawing.Point(380, 216);
+            this.label124.Location = new System.Drawing.Point(382, 184);
             this.label124.Name = "label124";
             this.label124.Size = new System.Drawing.Size(56, 20);
             this.label124.TabIndex = 101;
@@ -3047,7 +3210,7 @@
             // 
             this.label125.AutoSize = true;
             this.label125.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label125.Location = new System.Drawing.Point(380, 184);
+            this.label125.Location = new System.Drawing.Point(382, 152);
             this.label125.Name = "label125";
             this.label125.Size = new System.Drawing.Size(56, 20);
             this.label125.TabIndex = 100;
@@ -3057,7 +3220,7 @@
             // 
             this.label126.AutoSize = true;
             this.label126.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label126.Location = new System.Drawing.Point(381, 155);
+            this.label126.Location = new System.Drawing.Point(383, 123);
             this.label126.Name = "label126";
             this.label126.Size = new System.Drawing.Size(55, 20);
             this.label126.TabIndex = 99;
@@ -3067,7 +3230,7 @@
             // 
             this.label127.AutoSize = true;
             this.label127.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label127.Location = new System.Drawing.Point(380, 126);
+            this.label127.Location = new System.Drawing.Point(382, 94);
             this.label127.Name = "label127";
             this.label127.Size = new System.Drawing.Size(61, 20);
             this.label127.TabIndex = 98;
@@ -3077,7 +3240,7 @@
             // 
             this.label128.AutoSize = true;
             this.label128.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label128.Location = new System.Drawing.Point(381, 97);
+            this.label128.Location = new System.Drawing.Point(383, 65);
             this.label128.Name = "label128";
             this.label128.Size = new System.Drawing.Size(49, 20);
             this.label128.TabIndex = 97;
@@ -3087,7 +3250,7 @@
             // 
             this.label129.AutoSize = true;
             this.label129.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label129.Location = new System.Drawing.Point(381, 68);
+            this.label129.Location = new System.Drawing.Point(383, 36);
             this.label129.Name = "label129";
             this.label129.Size = new System.Drawing.Size(100, 20);
             this.label129.TabIndex = 96;
@@ -3097,7 +3260,7 @@
             // 
             this.label130.AutoSize = true;
             this.label130.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label130.Location = new System.Drawing.Point(168, 390);
+            this.label130.Location = new System.Drawing.Point(170, 358);
             this.label130.Name = "label130";
             this.label130.Size = new System.Drawing.Size(36, 16);
             this.label130.TabIndex = 95;
@@ -3107,7 +3270,7 @@
             // 
             this.label131.AutoSize = true;
             this.label131.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label131.Location = new System.Drawing.Point(168, 361);
+            this.label131.Location = new System.Drawing.Point(170, 329);
             this.label131.Name = "label131";
             this.label131.Size = new System.Drawing.Size(36, 16);
             this.label131.TabIndex = 94;
@@ -3117,7 +3280,7 @@
             // 
             this.label132.AutoSize = true;
             this.label132.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label132.Location = new System.Drawing.Point(168, 332);
+            this.label132.Location = new System.Drawing.Point(170, 300);
             this.label132.Name = "label132";
             this.label132.Size = new System.Drawing.Size(36, 16);
             this.label132.TabIndex = 93;
@@ -3127,7 +3290,7 @@
             // 
             this.label133.AutoSize = true;
             this.label133.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label133.Location = new System.Drawing.Point(168, 303);
+            this.label133.Location = new System.Drawing.Point(170, 271);
             this.label133.Name = "label133";
             this.label133.Size = new System.Drawing.Size(36, 16);
             this.label133.TabIndex = 92;
@@ -3137,7 +3300,7 @@
             // 
             this.label134.AutoSize = true;
             this.label134.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label134.Location = new System.Drawing.Point(168, 274);
+            this.label134.Location = new System.Drawing.Point(170, 242);
             this.label134.Name = "label134";
             this.label134.Size = new System.Drawing.Size(36, 16);
             this.label134.TabIndex = 91;
@@ -3147,7 +3310,7 @@
             // 
             this.label135.AutoSize = true;
             this.label135.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label135.Location = new System.Drawing.Point(168, 245);
+            this.label135.Location = new System.Drawing.Point(170, 213);
             this.label135.Name = "label135";
             this.label135.Size = new System.Drawing.Size(36, 16);
             this.label135.TabIndex = 90;
@@ -3157,7 +3320,7 @@
             // 
             this.label136.AutoSize = true;
             this.label136.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label136.Location = new System.Drawing.Point(168, 216);
+            this.label136.Location = new System.Drawing.Point(170, 184);
             this.label136.Name = "label136";
             this.label136.Size = new System.Drawing.Size(36, 16);
             this.label136.TabIndex = 89;
@@ -3167,7 +3330,7 @@
             // 
             this.label137.AutoSize = true;
             this.label137.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label137.Location = new System.Drawing.Point(168, 187);
+            this.label137.Location = new System.Drawing.Point(170, 155);
             this.label137.Name = "label137";
             this.label137.Size = new System.Drawing.Size(36, 16);
             this.label137.TabIndex = 88;
@@ -3177,7 +3340,7 @@
             // 
             this.label138.AutoSize = true;
             this.label138.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label138.Location = new System.Drawing.Point(168, 158);
+            this.label138.Location = new System.Drawing.Point(170, 126);
             this.label138.Name = "label138";
             this.label138.Size = new System.Drawing.Size(36, 16);
             this.label138.TabIndex = 87;
@@ -3187,7 +3350,7 @@
             // 
             this.label139.AutoSize = true;
             this.label139.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label139.Location = new System.Drawing.Point(168, 129);
+            this.label139.Location = new System.Drawing.Point(170, 97);
             this.label139.Name = "label139";
             this.label139.Size = new System.Drawing.Size(36, 16);
             this.label139.TabIndex = 86;
@@ -3197,7 +3360,7 @@
             // 
             this.label140.AutoSize = true;
             this.label140.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label140.Location = new System.Drawing.Point(168, 100);
+            this.label140.Location = new System.Drawing.Point(170, 68);
             this.label140.Name = "label140";
             this.label140.Size = new System.Drawing.Size(36, 16);
             this.label140.TabIndex = 85;
@@ -3207,7 +3370,7 @@
             // 
             this.label141.AutoSize = true;
             this.label141.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label141.Location = new System.Drawing.Point(168, 71);
+            this.label141.Location = new System.Drawing.Point(170, 39);
             this.label141.Name = "label141";
             this.label141.Size = new System.Drawing.Size(36, 16);
             this.label141.TabIndex = 84;
@@ -3215,7 +3378,7 @@
             // 
             // metroProgressBar13
             // 
-            this.metroProgressBar13.Location = new System.Drawing.Point(4, 387);
+            this.metroProgressBar13.Location = new System.Drawing.Point(6, 355);
             this.metroProgressBar13.Name = "metroProgressBar13";
             this.metroProgressBar13.Size = new System.Drawing.Size(371, 23);
             this.metroProgressBar13.Style = MetroFramework.MetroColorStyle.Red;
@@ -3223,7 +3386,7 @@
             // 
             // metroProgressBar14
             // 
-            this.metroProgressBar14.Location = new System.Drawing.Point(4, 329);
+            this.metroProgressBar14.Location = new System.Drawing.Point(6, 297);
             this.metroProgressBar14.Name = "metroProgressBar14";
             this.metroProgressBar14.Size = new System.Drawing.Size(371, 23);
             this.metroProgressBar14.Style = MetroFramework.MetroColorStyle.Magenta;
@@ -3231,7 +3394,7 @@
             // 
             // metroProgressBar15
             // 
-            this.metroProgressBar15.Location = new System.Drawing.Point(4, 300);
+            this.metroProgressBar15.Location = new System.Drawing.Point(6, 268);
             this.metroProgressBar15.Name = "metroProgressBar15";
             this.metroProgressBar15.Size = new System.Drawing.Size(371, 23);
             this.metroProgressBar15.Style = MetroFramework.MetroColorStyle.Pink;
@@ -3239,7 +3402,7 @@
             // 
             // metroProgressBar16
             // 
-            this.metroProgressBar16.Location = new System.Drawing.Point(4, 271);
+            this.metroProgressBar16.Location = new System.Drawing.Point(6, 239);
             this.metroProgressBar16.Name = "metroProgressBar16";
             this.metroProgressBar16.Size = new System.Drawing.Size(371, 23);
             this.metroProgressBar16.Style = MetroFramework.MetroColorStyle.Brown;
@@ -3247,7 +3410,7 @@
             // 
             // metroProgressBar17
             // 
-            this.metroProgressBar17.Location = new System.Drawing.Point(4, 242);
+            this.metroProgressBar17.Location = new System.Drawing.Point(6, 210);
             this.metroProgressBar17.Name = "metroProgressBar17";
             this.metroProgressBar17.Size = new System.Drawing.Size(370, 23);
             this.metroProgressBar17.Style = MetroFramework.MetroColorStyle.Orange;
@@ -3255,7 +3418,7 @@
             // 
             // metroProgressBar18
             // 
-            this.metroProgressBar18.Location = new System.Drawing.Point(4, 213);
+            this.metroProgressBar18.Location = new System.Drawing.Point(6, 181);
             this.metroProgressBar18.Name = "metroProgressBar18";
             this.metroProgressBar18.Size = new System.Drawing.Size(370, 23);
             this.metroProgressBar18.Style = MetroFramework.MetroColorStyle.Teal;
@@ -3263,7 +3426,7 @@
             // 
             // metroProgressBar19
             // 
-            this.metroProgressBar19.Location = new System.Drawing.Point(4, 184);
+            this.metroProgressBar19.Location = new System.Drawing.Point(6, 152);
             this.metroProgressBar19.Name = "metroProgressBar19";
             this.metroProgressBar19.Size = new System.Drawing.Size(370, 23);
             this.metroProgressBar19.Style = MetroFramework.MetroColorStyle.Lime;
@@ -3271,7 +3434,7 @@
             // 
             // metroProgressBar20
             // 
-            this.metroProgressBar20.Location = new System.Drawing.Point(4, 155);
+            this.metroProgressBar20.Location = new System.Drawing.Point(6, 123);
             this.metroProgressBar20.Name = "metroProgressBar20";
             this.metroProgressBar20.Size = new System.Drawing.Size(370, 23);
             this.metroProgressBar20.Style = MetroFramework.MetroColorStyle.Green;
@@ -3279,7 +3442,7 @@
             // 
             // metroProgressBar21
             // 
-            this.metroProgressBar21.Location = new System.Drawing.Point(4, 126);
+            this.metroProgressBar21.Location = new System.Drawing.Point(6, 94);
             this.metroProgressBar21.Name = "metroProgressBar21";
             this.metroProgressBar21.Size = new System.Drawing.Size(370, 23);
             this.metroProgressBar21.Style = MetroFramework.MetroColorStyle.Blue;
@@ -3287,7 +3450,7 @@
             // 
             // metroProgressBar22
             // 
-            this.metroProgressBar22.Location = new System.Drawing.Point(4, 97);
+            this.metroProgressBar22.Location = new System.Drawing.Point(6, 65);
             this.metroProgressBar22.Name = "metroProgressBar22";
             this.metroProgressBar22.Size = new System.Drawing.Size(371, 23);
             this.metroProgressBar22.Style = MetroFramework.MetroColorStyle.Silver;
@@ -3295,7 +3458,7 @@
             // 
             // metroProgressBar23
             // 
-            this.metroProgressBar23.Location = new System.Drawing.Point(4, 68);
+            this.metroProgressBar23.Location = new System.Drawing.Point(6, 36);
             this.metroProgressBar23.Name = "metroProgressBar23";
             this.metroProgressBar23.Size = new System.Drawing.Size(371, 23);
             this.metroProgressBar23.Style = MetroFramework.MetroColorStyle.Yellow;
@@ -3303,7 +3466,7 @@
             // 
             // metroProgressBar24
             // 
-            this.metroProgressBar24.Location = new System.Drawing.Point(4, 358);
+            this.metroProgressBar24.Location = new System.Drawing.Point(6, 326);
             this.metroProgressBar24.Name = "metroProgressBar24";
             this.metroProgressBar24.Size = new System.Drawing.Size(371, 23);
             this.metroProgressBar24.Style = MetroFramework.MetroColorStyle.Purple;
@@ -3313,7 +3476,7 @@
             // 
             this.label68.AutoSize = true;
             this.label68.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label68.Location = new System.Drawing.Point(935, 387);
+            this.label68.Location = new System.Drawing.Point(937, 355);
             this.label68.Name = "label68";
             this.label68.Size = new System.Drawing.Size(56, 20);
             this.label68.TabIndex = 71;
@@ -3323,7 +3486,7 @@
             // 
             this.label67.AutoSize = true;
             this.label67.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label67.Location = new System.Drawing.Point(935, 358);
+            this.label67.Location = new System.Drawing.Point(937, 326);
             this.label67.Name = "label67";
             this.label67.Size = new System.Drawing.Size(56, 20);
             this.label67.TabIndex = 70;
@@ -3333,7 +3496,7 @@
             // 
             this.label66.AutoSize = true;
             this.label66.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label66.Location = new System.Drawing.Point(935, 329);
+            this.label66.Location = new System.Drawing.Point(937, 297);
             this.label66.Name = "label66";
             this.label66.Size = new System.Drawing.Size(56, 20);
             this.label66.TabIndex = 69;
@@ -3343,7 +3506,7 @@
             // 
             this.label65.AutoSize = true;
             this.label65.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label65.Location = new System.Drawing.Point(935, 300);
+            this.label65.Location = new System.Drawing.Point(937, 268);
             this.label65.Name = "label65";
             this.label65.Size = new System.Drawing.Size(56, 20);
             this.label65.TabIndex = 68;
@@ -3353,7 +3516,7 @@
             // 
             this.label64.AutoSize = true;
             this.label64.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label64.Location = new System.Drawing.Point(935, 271);
+            this.label64.Location = new System.Drawing.Point(937, 239);
             this.label64.Name = "label64";
             this.label64.Size = new System.Drawing.Size(56, 20);
             this.label64.TabIndex = 67;
@@ -3363,7 +3526,7 @@
             // 
             this.label63.AutoSize = true;
             this.label63.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label63.Location = new System.Drawing.Point(935, 242);
+            this.label63.Location = new System.Drawing.Point(937, 210);
             this.label63.Name = "label63";
             this.label63.Size = new System.Drawing.Size(56, 20);
             this.label63.TabIndex = 66;
@@ -3373,7 +3536,7 @@
             // 
             this.label62.AutoSize = true;
             this.label62.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label62.Location = new System.Drawing.Point(934, 216);
+            this.label62.Location = new System.Drawing.Point(936, 184);
             this.label62.Name = "label62";
             this.label62.Size = new System.Drawing.Size(56, 20);
             this.label62.TabIndex = 65;
@@ -3383,7 +3546,7 @@
             // 
             this.label61.AutoSize = true;
             this.label61.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label61.Location = new System.Drawing.Point(934, 184);
+            this.label61.Location = new System.Drawing.Point(936, 152);
             this.label61.Name = "label61";
             this.label61.Size = new System.Drawing.Size(56, 20);
             this.label61.TabIndex = 64;
@@ -3393,7 +3556,7 @@
             // 
             this.label60.AutoSize = true;
             this.label60.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label60.Location = new System.Drawing.Point(935, 155);
+            this.label60.Location = new System.Drawing.Point(937, 123);
             this.label60.Name = "label60";
             this.label60.Size = new System.Drawing.Size(55, 20);
             this.label60.TabIndex = 63;
@@ -3403,7 +3566,7 @@
             // 
             this.label59.AutoSize = true;
             this.label59.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label59.Location = new System.Drawing.Point(934, 126);
+            this.label59.Location = new System.Drawing.Point(936, 94);
             this.label59.Name = "label59";
             this.label59.Size = new System.Drawing.Size(61, 20);
             this.label59.TabIndex = 62;
@@ -3413,7 +3576,7 @@
             // 
             this.label58.AutoSize = true;
             this.label58.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label58.Location = new System.Drawing.Point(935, 97);
+            this.label58.Location = new System.Drawing.Point(937, 65);
             this.label58.Name = "label58";
             this.label58.Size = new System.Drawing.Size(49, 20);
             this.label58.TabIndex = 61;
@@ -3423,7 +3586,7 @@
             // 
             this.label57.AutoSize = true;
             this.label57.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label57.Location = new System.Drawing.Point(935, 68);
+            this.label57.Location = new System.Drawing.Point(937, 36);
             this.label57.Name = "label57";
             this.label57.Size = new System.Drawing.Size(100, 20);
             this.label57.TabIndex = 60;
@@ -3433,7 +3596,7 @@
             // 
             this.label39.AutoSize = true;
             this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label39.Location = new System.Drawing.Point(722, 390);
+            this.label39.Location = new System.Drawing.Point(724, 358);
             this.label39.Name = "label39";
             this.label39.Size = new System.Drawing.Size(36, 16);
             this.label39.TabIndex = 59;
@@ -3443,7 +3606,7 @@
             // 
             this.label38.AutoSize = true;
             this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label38.Location = new System.Drawing.Point(722, 361);
+            this.label38.Location = new System.Drawing.Point(724, 329);
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(36, 16);
             this.label38.TabIndex = 58;
@@ -3453,7 +3616,7 @@
             // 
             this.label37.AutoSize = true;
             this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.Location = new System.Drawing.Point(722, 332);
+            this.label37.Location = new System.Drawing.Point(724, 300);
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(36, 16);
             this.label37.TabIndex = 57;
@@ -3463,7 +3626,7 @@
             // 
             this.label36.AutoSize = true;
             this.label36.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label36.Location = new System.Drawing.Point(722, 303);
+            this.label36.Location = new System.Drawing.Point(724, 271);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(36, 16);
             this.label36.TabIndex = 56;
@@ -3473,7 +3636,7 @@
             // 
             this.label35.AutoSize = true;
             this.label35.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label35.Location = new System.Drawing.Point(722, 274);
+            this.label35.Location = new System.Drawing.Point(724, 242);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(36, 16);
             this.label35.TabIndex = 55;
@@ -3483,7 +3646,7 @@
             // 
             this.label34.AutoSize = true;
             this.label34.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.Location = new System.Drawing.Point(722, 245);
+            this.label34.Location = new System.Drawing.Point(724, 213);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(36, 16);
             this.label34.TabIndex = 54;
@@ -3493,7 +3656,7 @@
             // 
             this.label33.AutoSize = true;
             this.label33.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.Location = new System.Drawing.Point(722, 216);
+            this.label33.Location = new System.Drawing.Point(724, 184);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(36, 16);
             this.label33.TabIndex = 53;
@@ -3503,7 +3666,7 @@
             // 
             this.label32.AutoSize = true;
             this.label32.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label32.Location = new System.Drawing.Point(722, 187);
+            this.label32.Location = new System.Drawing.Point(724, 155);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(36, 16);
             this.label32.TabIndex = 52;
@@ -3513,7 +3676,7 @@
             // 
             this.label31.AutoSize = true;
             this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(722, 158);
+            this.label31.Location = new System.Drawing.Point(724, 126);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(36, 16);
             this.label31.TabIndex = 51;
@@ -3523,7 +3686,7 @@
             // 
             this.label30.AutoSize = true;
             this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.Location = new System.Drawing.Point(722, 129);
+            this.label30.Location = new System.Drawing.Point(724, 97);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(36, 16);
             this.label30.TabIndex = 50;
@@ -3533,7 +3696,7 @@
             // 
             this.label29.AutoSize = true;
             this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.Location = new System.Drawing.Point(722, 100);
+            this.label29.Location = new System.Drawing.Point(724, 68);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(36, 16);
             this.label29.TabIndex = 49;
@@ -3543,7 +3706,7 @@
             // 
             this.label28.AutoSize = true;
             this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label28.Location = new System.Drawing.Point(722, 71);
+            this.label28.Location = new System.Drawing.Point(724, 39);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(36, 16);
             this.label28.TabIndex = 48;
@@ -3551,7 +3714,7 @@
             // 
             // metroProgressBar12
             // 
-            this.metroProgressBar12.Location = new System.Drawing.Point(558, 387);
+            this.metroProgressBar12.Location = new System.Drawing.Point(560, 355);
             this.metroProgressBar12.Name = "metroProgressBar12";
             this.metroProgressBar12.Size = new System.Drawing.Size(371, 23);
             this.metroProgressBar12.Style = MetroFramework.MetroColorStyle.Red;
@@ -3559,7 +3722,7 @@
             // 
             // metroProgressBar10
             // 
-            this.metroProgressBar10.Location = new System.Drawing.Point(558, 329);
+            this.metroProgressBar10.Location = new System.Drawing.Point(560, 297);
             this.metroProgressBar10.Name = "metroProgressBar10";
             this.metroProgressBar10.Size = new System.Drawing.Size(371, 23);
             this.metroProgressBar10.Style = MetroFramework.MetroColorStyle.Magenta;
@@ -3567,7 +3730,7 @@
             // 
             // metroProgressBar9
             // 
-            this.metroProgressBar9.Location = new System.Drawing.Point(558, 300);
+            this.metroProgressBar9.Location = new System.Drawing.Point(560, 268);
             this.metroProgressBar9.Name = "metroProgressBar9";
             this.metroProgressBar9.Size = new System.Drawing.Size(371, 23);
             this.metroProgressBar9.Style = MetroFramework.MetroColorStyle.Pink;
@@ -3575,7 +3738,7 @@
             // 
             // metroProgressBar8
             // 
-            this.metroProgressBar8.Location = new System.Drawing.Point(558, 271);
+            this.metroProgressBar8.Location = new System.Drawing.Point(560, 239);
             this.metroProgressBar8.Name = "metroProgressBar8";
             this.metroProgressBar8.Size = new System.Drawing.Size(371, 23);
             this.metroProgressBar8.Style = MetroFramework.MetroColorStyle.Brown;
@@ -3583,7 +3746,7 @@
             // 
             // metroProgressBar7
             // 
-            this.metroProgressBar7.Location = new System.Drawing.Point(558, 242);
+            this.metroProgressBar7.Location = new System.Drawing.Point(560, 210);
             this.metroProgressBar7.Name = "metroProgressBar7";
             this.metroProgressBar7.Size = new System.Drawing.Size(370, 23);
             this.metroProgressBar7.Style = MetroFramework.MetroColorStyle.Orange;
@@ -3591,7 +3754,7 @@
             // 
             // metroProgressBar6
             // 
-            this.metroProgressBar6.Location = new System.Drawing.Point(558, 213);
+            this.metroProgressBar6.Location = new System.Drawing.Point(560, 181);
             this.metroProgressBar6.Name = "metroProgressBar6";
             this.metroProgressBar6.Size = new System.Drawing.Size(370, 23);
             this.metroProgressBar6.Style = MetroFramework.MetroColorStyle.Teal;
@@ -3599,7 +3762,7 @@
             // 
             // metroProgressBar5
             // 
-            this.metroProgressBar5.Location = new System.Drawing.Point(558, 184);
+            this.metroProgressBar5.Location = new System.Drawing.Point(560, 152);
             this.metroProgressBar5.Name = "metroProgressBar5";
             this.metroProgressBar5.Size = new System.Drawing.Size(370, 23);
             this.metroProgressBar5.Style = MetroFramework.MetroColorStyle.Lime;
@@ -3607,7 +3770,7 @@
             // 
             // metroProgressBar4
             // 
-            this.metroProgressBar4.Location = new System.Drawing.Point(558, 155);
+            this.metroProgressBar4.Location = new System.Drawing.Point(560, 123);
             this.metroProgressBar4.Name = "metroProgressBar4";
             this.metroProgressBar4.Size = new System.Drawing.Size(370, 23);
             this.metroProgressBar4.Style = MetroFramework.MetroColorStyle.Green;
@@ -3615,7 +3778,7 @@
             // 
             // metroProgressBar3
             // 
-            this.metroProgressBar3.Location = new System.Drawing.Point(558, 126);
+            this.metroProgressBar3.Location = new System.Drawing.Point(560, 94);
             this.metroProgressBar3.Name = "metroProgressBar3";
             this.metroProgressBar3.Size = new System.Drawing.Size(370, 23);
             this.metroProgressBar3.Style = MetroFramework.MetroColorStyle.Blue;
@@ -3623,7 +3786,7 @@
             // 
             // metroProgressBar2
             // 
-            this.metroProgressBar2.Location = new System.Drawing.Point(558, 97);
+            this.metroProgressBar2.Location = new System.Drawing.Point(560, 65);
             this.metroProgressBar2.Name = "metroProgressBar2";
             this.metroProgressBar2.Size = new System.Drawing.Size(371, 23);
             this.metroProgressBar2.Style = MetroFramework.MetroColorStyle.Silver;
@@ -3631,7 +3794,7 @@
             // 
             // metroProgressBar1
             // 
-            this.metroProgressBar1.Location = new System.Drawing.Point(558, 68);
+            this.metroProgressBar1.Location = new System.Drawing.Point(560, 36);
             this.metroProgressBar1.Name = "metroProgressBar1";
             this.metroProgressBar1.Size = new System.Drawing.Size(371, 23);
             this.metroProgressBar1.Style = MetroFramework.MetroColorStyle.Yellow;
@@ -3639,7 +3802,7 @@
             // 
             // metroProgressBar11
             // 
-            this.metroProgressBar11.Location = new System.Drawing.Point(558, 358);
+            this.metroProgressBar11.Location = new System.Drawing.Point(560, 326);
             this.metroProgressBar11.Name = "metroProgressBar11";
             this.metroProgressBar11.Size = new System.Drawing.Size(371, 23);
             this.metroProgressBar11.Style = MetroFramework.MetroColorStyle.Purple;
@@ -3973,6 +4136,24 @@
             this.circularProgressBar2.TabIndex = 47;
             this.circularProgressBar2.TextMargin = new System.Windows.Forms.Padding(8, 8, 0, 0);
             this.circularProgressBar2.Value = 68;
+            // 
+            // HeadingIndicator2
+            // 
+            this.HeadingIndicator2.BackColor = System.Drawing.Color.White;
+            this.HeadingIndicator2.Location = new System.Drawing.Point(0, 170);
+            this.HeadingIndicator2.Name = "HeadingIndicator2";
+            this.HeadingIndicator2.Size = new System.Drawing.Size(157, 160);
+            this.HeadingIndicator2.TabIndex = 5;
+            this.HeadingIndicator2.Text = "HeadingIndicator2";
+            // 
+            // HorizonIndicator2
+            // 
+            this.HorizonIndicator2.BackColor = System.Drawing.Color.White;
+            this.HorizonIndicator2.Location = new System.Drawing.Point(0, 6);
+            this.HorizonIndicator2.Name = "HorizonIndicator2";
+            this.HorizonIndicator2.Size = new System.Drawing.Size(157, 158);
+            this.HorizonIndicator2.TabIndex = 4;
+            this.HorizonIndicator2.Text = "HorizonIndicator2";
             // 
             // tabPage7
             // 
@@ -5115,187 +5296,6 @@
             this.limparMapaToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.limparMapaToolStripMenuItem.Text = "Limpar mapa";
             this.limparMapaToolStripMenuItem.Click += new System.EventHandler(this.limparMapaToolStripMenuItem_Click);
-            // 
-            // metroLabel24
-            // 
-            this.metroLabel24.AutoSize = true;
-            this.metroLabel24.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.metroLabel24.FontWeight = MetroFramework.MetroLabelWeight.Bold;
-            this.metroLabel24.Location = new System.Drawing.Point(106, 5);
-            this.metroLabel24.Name = "metroLabel24";
-            this.metroLabel24.Size = new System.Drawing.Size(159, 25);
-            this.metroLabel24.TabIndex = 108;
-            this.metroLabel24.Text = "Entrada do Rádio";
-            // 
-            // metroLabel25
-            // 
-            this.metroLabel25.AutoSize = true;
-            this.metroLabel25.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.metroLabel25.FontWeight = MetroFramework.MetroLabelWeight.Bold;
-            this.metroLabel25.Location = new System.Drawing.Point(675, 5);
-            this.metroLabel25.Name = "metroLabel25";
-            this.metroLabel25.Size = new System.Drawing.Size(139, 25);
-            this.metroLabel25.TabIndex = 109;
-            this.metroLabel25.Text = "Saída do Rádio";
-            // 
-            // HorizonIndicator
-            // 
-            this.HorizonIndicator.BackColor = System.Drawing.Color.White;
-            this.HorizonIndicator.Location = new System.Drawing.Point(33, 153);
-            this.HorizonIndicator.Name = "HorizonIndicator";
-            this.HorizonIndicator.Size = new System.Drawing.Size(300, 300);
-            this.HorizonIndicator.TabIndex = 3;
-            this.HorizonIndicator.Text = "HorizonIndicator";
-            // 
-            // HeadingIndicator
-            // 
-            this.HeadingIndicator.BackColor = System.Drawing.Color.White;
-            this.HeadingIndicator.Location = new System.Drawing.Point(382, 153);
-            this.HeadingIndicator.Name = "HeadingIndicator";
-            this.HeadingIndicator.Size = new System.Drawing.Size(300, 300);
-            this.HeadingIndicator.TabIndex = 4;
-            this.HeadingIndicator.Text = "HeadingIndicator";
-            // 
-            // HeadingIndicator2
-            // 
-            this.HeadingIndicator2.BackColor = System.Drawing.Color.White;
-            this.HeadingIndicator2.Location = new System.Drawing.Point(0, 170);
-            this.HeadingIndicator2.Name = "HeadingIndicator2";
-            this.HeadingIndicator2.Size = new System.Drawing.Size(157, 160);
-            this.HeadingIndicator2.TabIndex = 5;
-            this.HeadingIndicator2.Text = "HeadingIndicator2";
-            // 
-            // HorizonIndicator2
-            // 
-            this.HorizonIndicator2.BackColor = System.Drawing.Color.White;
-            this.HorizonIndicator2.Location = new System.Drawing.Point(0, 6);
-            this.HorizonIndicator2.Name = "HorizonIndicator2";
-            this.HorizonIndicator2.Size = new System.Drawing.Size(157, 158);
-            this.HorizonIndicator2.TabIndex = 4;
-            this.HorizonIndicator2.Text = "HorizonIndicator2";
-            // 
-            // metroLabel26
-            // 
-            this.metroLabel26.AutoSize = true;
-            this.metroLabel26.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.metroLabel26.FontWeight = MetroFramework.MetroLabelWeight.Bold;
-            this.metroLabel26.Location = new System.Drawing.Point(129, 425);
-            this.metroLabel26.Name = "metroLabel26";
-            this.metroLabel26.Size = new System.Drawing.Size(111, 25);
-            this.metroLabel26.TabIndex = 122;
-            this.metroLabel26.Text = "RC Attitude";
-            // 
-            // label142
-            // 
-            this.label142.AutoSize = true;
-            this.label142.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label142.Location = new System.Drawing.Point(381, 540);
-            this.label142.Name = "label142";
-            this.label142.Size = new System.Drawing.Size(55, 20);
-            this.label142.TabIndex = 121;
-            this.label142.Text = "ROLL";
-            // 
-            // label143
-            // 
-            this.label143.AutoSize = true;
-            this.label143.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label143.Location = new System.Drawing.Point(380, 511);
-            this.label143.Name = "label143";
-            this.label143.Size = new System.Drawing.Size(61, 20);
-            this.label143.TabIndex = 120;
-            this.label143.Text = "PITCH";
-            // 
-            // label144
-            // 
-            this.label144.AutoSize = true;
-            this.label144.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label144.Location = new System.Drawing.Point(381, 482);
-            this.label144.Name = "label144";
-            this.label144.Size = new System.Drawing.Size(49, 20);
-            this.label144.TabIndex = 119;
-            this.label144.Text = "YAW";
-            // 
-            // label145
-            // 
-            this.label145.AutoSize = true;
-            this.label145.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label145.Location = new System.Drawing.Point(381, 453);
-            this.label145.Name = "label145";
-            this.label145.Size = new System.Drawing.Size(100, 20);
-            this.label145.TabIndex = 118;
-            this.label145.Text = "THROTTLE";
-            // 
-            // label146
-            // 
-            this.label146.AutoSize = true;
-            this.label146.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label146.Location = new System.Drawing.Point(168, 543);
-            this.label146.Name = "label146";
-            this.label146.Size = new System.Drawing.Size(36, 16);
-            this.label146.TabIndex = 117;
-            this.label146.Text = "1000";
-            // 
-            // label147
-            // 
-            this.label147.AutoSize = true;
-            this.label147.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label147.Location = new System.Drawing.Point(168, 514);
-            this.label147.Name = "label147";
-            this.label147.Size = new System.Drawing.Size(36, 16);
-            this.label147.TabIndex = 116;
-            this.label147.Text = "1000";
-            // 
-            // label148
-            // 
-            this.label148.AutoSize = true;
-            this.label148.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label148.Location = new System.Drawing.Point(168, 485);
-            this.label148.Name = "label148";
-            this.label148.Size = new System.Drawing.Size(36, 16);
-            this.label148.TabIndex = 115;
-            this.label148.Text = "1000";
-            // 
-            // label149
-            // 
-            this.label149.AutoSize = true;
-            this.label149.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label149.Location = new System.Drawing.Point(168, 456);
-            this.label149.Name = "label149";
-            this.label149.Size = new System.Drawing.Size(36, 16);
-            this.label149.TabIndex = 114;
-            this.label149.Text = "1000";
-            // 
-            // metroProgressBar25
-            // 
-            this.metroProgressBar25.Location = new System.Drawing.Point(4, 540);
-            this.metroProgressBar25.Name = "metroProgressBar25";
-            this.metroProgressBar25.Size = new System.Drawing.Size(370, 23);
-            this.metroProgressBar25.Style = MetroFramework.MetroColorStyle.Green;
-            this.metroProgressBar25.TabIndex = 113;
-            // 
-            // metroProgressBar26
-            // 
-            this.metroProgressBar26.Location = new System.Drawing.Point(4, 511);
-            this.metroProgressBar26.Name = "metroProgressBar26";
-            this.metroProgressBar26.Size = new System.Drawing.Size(370, 23);
-            this.metroProgressBar26.Style = MetroFramework.MetroColorStyle.Blue;
-            this.metroProgressBar26.TabIndex = 112;
-            // 
-            // metroProgressBar27
-            // 
-            this.metroProgressBar27.Location = new System.Drawing.Point(4, 482);
-            this.metroProgressBar27.Name = "metroProgressBar27";
-            this.metroProgressBar27.Size = new System.Drawing.Size(371, 23);
-            this.metroProgressBar27.Style = MetroFramework.MetroColorStyle.Silver;
-            this.metroProgressBar27.TabIndex = 111;
-            // 
-            // metroProgressBar28
-            // 
-            this.metroProgressBar28.Location = new System.Drawing.Point(4, 453);
-            this.metroProgressBar28.Name = "metroProgressBar28";
-            this.metroProgressBar28.Size = new System.Drawing.Size(371, 23);
-            this.metroProgressBar28.Style = MetroFramework.MetroColorStyle.Yellow;
-            this.metroProgressBar28.TabIndex = 110;
             // 
             // GCS
             // 

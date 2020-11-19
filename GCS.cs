@@ -832,8 +832,6 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-
-
             label76.Text = Convert.ToString(GPS_NumSat);
             if (GPS_NumSat < 10) label76.Location = new Point(215, 78);
             else label76.Location = new Point(210, 78);
@@ -2301,13 +2299,13 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
 
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "CrashCheck_IMU_BankAngle";
             dataGridView1.Rows[22].Cells[Unidade.Index].Value = "Radianos";
-            dataGridView1.Rows[22].Cells[Descricao.Index].Value = "Valor da IMU a ser considerado como Crash";
+            dataGridView1.Rows[22].Cells[Descricao.Index].Value = "Ângulo da IMU a ser considerado como Crash";
 
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "CrashCheck_Tempo";
             dataGridView1.Rows[23].Cells[Unidade.Index].Value = "Segundos";
-            dataGridView1.Rows[23].Cells[Descricao.Index].Value = "Tempo minimo para validar o Crash";
+            dataGridView1.Rows[23].Cells[Descricao.Index].Value = "Estouro de tmepo para validar o Crash";
 
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Fail-Safe_Pulso";
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Fail_Safe_Pulso";
             dataGridView1.Rows[24].Cells[Unidade.Index].Value = "US";
             dataGridView1.Rows[24].Cells[Descricao.Index].Value = "Valor minimo do pulso do receptor para ser considerado Fail-Safe";
 
@@ -2357,7 +2355,7 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
 
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Auto_Desarm_Tempo";
             dataGridView1.Rows[36].Cells[Unidade.Index].Value = "Segundos";
-            dataGridView1.Rows[36].Cells[Descricao.Index].Value = "Valor maximo para desarmar a controladora em baixo Throttle";
+            dataGridView1.Rows[36].Cells[Descricao.Index].Value = "Estouro de tempo para desarmar a controladora em baixo Throttle";
 
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Auto_Desarm_Throttle_Minimo";
             dataGridView1.Rows[37].Cells[Unidade.Index].Value = "uS";
@@ -2374,6 +2372,26 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AHRS_Nearness";
             dataGridView1.Rows[40].Cells[Unidade.Index].Value = "uint8_t";
             dataGridView1.Rows[40].Cells[Descricao.Index].Value = "Valor da 'agressividade' de correção do AHRS com base no acelerômetro";
+
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Aero_Com_Rodas";
+            dataGridView1.Rows[41].Cells[Unidade.Index].Value = "Boolean";
+            dataGridView1.Rows[41].Cells[Descricao.Index].Value = "0 - Aeromodelo sem trem de pouso / 1 - Aeromodelo com trem de pouso (Apenas para o AutoLaunch)";
+
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "GPS_Velocidade_De_Navegação";
+            dataGridView1.Rows[42].Cells[Unidade.Index].Value = "CM/S";
+            dataGridView1.Rows[42].Cells[Descricao.Index].Value = "Velocidade maxima de navegação em modo RTH";
+
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "GPS_Radius";
+            dataGridView1.Rows[43].Cells[Unidade.Index].Value = "Metros";
+            dataGridView1.Rows[43].Cells[Descricao.Index].Value = "Raio do ponto para validar o mesmo em modo RTH";
+
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "GPS_Compensação_De_Tilt";
+            dataGridView1.Rows[44].Cells[Unidade.Index].Value = "uint8_t";
+            dataGridView1.Rows[44].Cells[Descricao.Index].Value = "Parâmetro para compensar o rate de navegação em modo GPS";
+
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "GPS_Baud_Rate";
+            dataGridView1.Rows[45].Cells[Unidade.Index].Value = "uint8_t";
+            dataGridView1.Rows[45].Cells[Descricao.Index].Value = "0 - 9600KBPS / 1 - 19200KBPS / 2 - 38400KBPS / 3 - 57600KBPS / 4 - 115200KBPS";
 
             dataGridView1.Rows[dataGridView1.Rows.Add()].DataGridView.EndEdit();
         }

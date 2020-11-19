@@ -205,7 +205,7 @@ namespace JCFLIGHTGCS
             this.MaximizeBox = false;
             this.Name = "HexUpload";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ATUALIZADOR DE FIRMWARE JCFLIGHT";
+            this.Text = "ATUALIZADOR DE FIRMWARE DA JCFLIGHT";
             this.ResumeLayout(false);
             this.PerformLayout();
 
