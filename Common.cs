@@ -125,13 +125,10 @@ namespace JCFLIGHTGCS
             Matrix temp = g.Transform;
             g.TranslateTransform(LocalPosition.X, LocalPosition.Y);
             Image pic = global::JCFLIGHTGCS.Properties.Resources.GmapQuad;
-
             int length = 250;
-            // anti NaN
             g.DrawLine(new Pen(Color.Red, 2), 0.0f, 0.0f, (float)Math.Cos((heading - 90) * deg2rad) * length, (float)Math.Sin((heading - 90) * deg2rad) * length);
             g.DrawLine(new Pen(Color.Black, 2), 0.0f, 0.0f, (float)Math.Cos((cog - 90) * deg2rad) * length, (float)Math.Sin((cog - 90) * deg2rad) * length);
             g.DrawLine(new Pen(Color.Orange, 2), 0.0f, 0.0f, (float)Math.Cos((target - 90) * deg2rad) * length, (float)Math.Sin((target - 90) * deg2rad) * length);
-            // anti NaN
             g.RotateTransform(heading);
             g.DrawImageUnscaled(pic, pic.Width / -2 - 5, pic.Height / -2);
             g.Transform = temp;
@@ -147,13 +144,15 @@ namespace JCFLIGHTGCS
         float heading = 0;
         float cog = -1;
         float target = -1;
+        float radius = -1;
 
-        public GMapMarkerAero(PointLatLng p, float heading, float cog, float target)
+        public GMapMarkerAero(PointLatLng p, float heading, float cog, float target, float radius)
             : base(p)
         {
             this.heading = heading;
             this.cog = cog;
             this.target = target;
+            this.radius = radius;
             Size = SizeSt;
         }
 
@@ -162,13 +161,36 @@ namespace JCFLIGHTGCS
             Matrix temp = g.Transform;
             g.TranslateTransform(LocalPosition.X, LocalPosition.Y);
             Image pic = global::JCFLIGHTGCS.Properties.Resources.GmapAero;
-
             int length = 250;
-            // anti NaN
             g.DrawLine(new Pen(Color.Red, 2), 0.0f, 0.0f, (float)Math.Cos((heading - 90) * deg2rad) * length, (float)Math.Sin((heading - 90) * deg2rad) * length);
             g.DrawLine(new Pen(Color.Black, 2), 0.0f, 0.0f, (float)Math.Cos((cog - 90) * deg2rad) * length, (float)Math.Sin((cog - 90) * deg2rad) * length);
             g.DrawLine(new Pen(Color.Orange, 2), 0.0f, 0.0f, (float)Math.Cos((target - 90) * deg2rad) * length, (float)Math.Sin((target - 90) * deg2rad) * length);
-            // anti NaN
+
+            try
+            {
+
+                float desired_lead_dist = 100;
+                double width = (Overlay.Control.MapProvider.Projection.GetDistance(Overlay.Control.FromLocalToLatLng(0, 0),
+                         Overlay.Control.FromLocalToLatLng(Overlay.Control.Width, 0)) * 1000.0);
+                double m2pixelwidth = Overlay.Control.Width / width;
+                float alpha = (float)(((desired_lead_dist * (float)m2pixelwidth) / radius) * rad2deg);
+                var scaledradius = radius * (float)m2pixelwidth;
+                if (radius < -1 && alpha < -1)
+                {
+                    float p1 = (float)Math.Cos((cog) * deg2rad) * scaledradius + scaledradius;
+                    float p2 = (float)Math.Sin((cog) * deg2rad) * scaledradius + scaledradius;
+                    g.DrawArc(new Pen(Color.HotPink, 2), p1, p2, Math.Abs(scaledradius) * 2, Math.Abs(scaledradius) * 2, cog, alpha);
+                }
+                else if (radius > 1 && alpha > 1)
+                {
+                    float p1 = (float)Math.Cos((cog - 180) * deg2rad) * scaledradius + scaledradius;
+                    float p2 = (float)Math.Sin((cog - 180) * deg2rad) * scaledradius + scaledradius;
+                    g.DrawArc(new Pen(Color.HotPink, 2), -p1, -p2, scaledradius * 2, scaledradius * 2, cog - 180, alpha);
+                }
+            }
+            catch
+            {
+            }
             g.RotateTransform(heading);
             g.DrawImageUnscaled(pic, pic.Width / -2 + 5, pic.Height / -2);
             g.Transform = temp;
@@ -199,13 +221,10 @@ namespace JCFLIGHTGCS
             Matrix temp = g.Transform;
             g.TranslateTransform(LocalPosition.X, LocalPosition.Y);
             Image pic = global::JCFLIGHTGCS.Properties.Resources.HexaX;
-
             int length = 250;
-            // anti NaN
             g.DrawLine(new Pen(Color.Red, 2), 0.0f, 0.0f, (float)Math.Cos((heading - 90) * deg2rad) * length, (float)Math.Sin((heading - 90) * deg2rad) * length);
             g.DrawLine(new Pen(Color.Black, 2), 0.0f, 0.0f, (float)Math.Cos((cog - 90) * deg2rad) * length, (float)Math.Sin((cog - 90) * deg2rad) * length);
             g.DrawLine(new Pen(Color.Orange, 2), 0.0f, 0.0f, (float)Math.Cos((target - 90) * deg2rad) * length, (float)Math.Sin((target - 90) * deg2rad) * length);
-            // anti NaN
             g.RotateTransform(heading);
             g.DrawImageUnscaled(pic, pic.Width / -2 - 4, pic.Height / -2);
             g.Transform = temp;
@@ -236,13 +255,10 @@ namespace JCFLIGHTGCS
             Matrix temp = g.Transform;
             g.TranslateTransform(LocalPosition.X, LocalPosition.Y);
             Image pic = global::JCFLIGHTGCS.Properties.Resources.HexaI;
-
             int length = 250;
-            // anti NaN
             g.DrawLine(new Pen(Color.Red, 2), 0.0f, 0.0f, (float)Math.Cos((heading - 90) * deg2rad) * length, (float)Math.Sin((heading - 90) * deg2rad) * length);
             g.DrawLine(new Pen(Color.Black, 2), 0.0f, 0.0f, (float)Math.Cos((cog - 90) * deg2rad) * length, (float)Math.Sin((cog - 90) * deg2rad) * length);
             g.DrawLine(new Pen(Color.Orange, 2), 0.0f, 0.0f, (float)Math.Cos((target - 90) * deg2rad) * length, (float)Math.Sin((target - 90) * deg2rad) * length);
-            // anti NaN
             g.RotateTransform(heading);
             g.DrawImageUnscaled(pic, pic.Width / -2, pic.Height / -2);
             g.Transform = temp;

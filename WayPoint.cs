@@ -1088,6 +1088,8 @@ namespace JCFLIGHTGCS
                 GmapPositions.Markers.Clear();
                 PrevLatitude = GPS_Position.Lat;
                 PrevLongitude = GPS_Position.Lng;
+                byte TrackLength = 10;
+                if (GMapTack.Points.Count > TrackLength) GMapTack.Points.RemoveRange(0, GMapTack.Points.Count - TrackLength);
                 if (GmapFrameMode == 0)
                 {
                     GmapPositions.Markers.Add(new GMapMarkerQuad(GPS_Position, Heading, CoG, Crosstrack));
@@ -1102,7 +1104,7 @@ namespace JCFLIGHTGCS
                 }
                 else if (GmapFrameMode == 3 || GmapFrameMode == 4 || GmapFrameMode == 5)
                 {
-                    GmapPositions.Markers.Add(new GMapMarkerAero(GPS_Position, Heading, CoG, Crosstrack));
+                    GmapPositions.Markers.Add(new GMapMarkerAero(GPS_Position, Heading, CoG, Crosstrack, 0));
                 }
                 if (ArmDisarm == 1) GMapTack.Points.Add(GPS_Position);
                 MyGMap.Position = GPS_Position;

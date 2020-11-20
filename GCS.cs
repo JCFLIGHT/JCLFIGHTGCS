@@ -1279,6 +1279,11 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
             Serial_Write_To_FC(12);
         }
 
+        public static class MathF
+        {
+            public static Func<double, float> Tan = angleR => (float)Math.Tan(angleR);
+        }
+
         private void GmapAtt_Tick(object sender, EventArgs e)
         {
             GPS_Position.Lat = double.Parse(GPSLAT) / 10000000.0f;
@@ -1290,6 +1295,8 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
                 PositionToRoutes.Markers.Clear();
                 GPSLatPrev = GPS_Position.Lat;
                 GPSLonPrev = GPS_Position.Lng;
+                byte TrackLength = 10;
+                if (Grout.Points.Count > TrackLength) Grout.Points.RemoveRange(0, Grout.Points.Count - TrackLength);
                 if (FrameMode == 0)
                 {
                     PositionToRoutes.Markers.Add(new GMapMarkerQuad(GPS_Position, ReadCompass, CoG, Crosstrack));
@@ -1304,7 +1311,7 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
                 }
                 else if (FrameMode == 3 || FrameMode == 4 || FrameMode == 5)
                 {
-                    PositionToRoutes.Markers.Add(new GMapMarkerAero(GPS_Position, ReadCompass, CoG, Crosstrack));
+                    PositionToRoutes.Markers.Add(new GMapMarkerAero(GPS_Position, ReadCompass, CoG, Crosstrack, 0));
                 }
                 if (HomePointDisctance >= 1000 && HomePointDisctance < 10000)
                 {
@@ -2389,9 +2396,13 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
             dataGridView1.Rows[44].Cells[Unidade.Index].Value = "uint8_t";
             dataGridView1.Rows[44].Cells[Descricao.Index].Value = "Parâmetro para compensar o rate de navegação em modo GPS";
 
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "GPS_RTH_Land";
+            dataGridView1.Rows[45].Cells[Unidade.Index].Value = "Metros";
+            dataGridView1.Rows[45].Cells[Descricao.Index].Value = "Em modo RTH,inicia o Land ao chegar proximo a distância definida aqui";
+
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "GPS_Baud_Rate";
-            dataGridView1.Rows[45].Cells[Unidade.Index].Value = "uint8_t";
-            dataGridView1.Rows[45].Cells[Descricao.Index].Value = "0 - 9600KBPS / 1 - 19200KBPS / 2 - 38400KBPS / 3 - 57600KBPS / 4 - 115200KBPS";
+            dataGridView1.Rows[46].Cells[Unidade.Index].Value = "uint8_t";
+            dataGridView1.Rows[46].Cells[Descricao.Index].Value = "0 - 9600KBPS / 1 - 19200KBPS / 2 - 38400KBPS / 3 - 57600KBPS / 4 - 115200KBPS";
 
             dataGridView1.Rows[dataGridView1.Rows.Add()].DataGridView.EndEdit();
         }
