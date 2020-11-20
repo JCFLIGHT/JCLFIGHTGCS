@@ -1279,11 +1279,6 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
             Serial_Write_To_FC(12);
         }
 
-        public static class MathF
-        {
-            public static Func<double, float> Tan = angleR => (float)Math.Tan(angleR);
-        }
-
         private void GmapAtt_Tick(object sender, EventArgs e)
         {
             GPS_Position.Lat = double.Parse(GPSLAT) / 10000000.0f;
@@ -1311,7 +1306,13 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
                 }
                 else if (FrameMode == 3 || FrameMode == 4 || FrameMode == 5)
                 {
-                    PositionToRoutes.Markers.Add(new GMapMarkerAero(GPS_Position, ReadCompass, CoG, Crosstrack, 0));
+                    int ExpoValue = 0;
+                    int AttitudePitch = ReadPitch / 10;
+                    if (AttitudePitch >= 10 && AttitudePitch < 40) ExpoValue = 150;
+                    if (AttitudePitch >= 40) ExpoValue = 50;
+                    if (AttitudePitch <= -10 && AttitudePitch > -40) ExpoValue = -150;
+                    if (AttitudePitch <= -40) ExpoValue = -50;
+                    PositionToRoutes.Markers.Add(new GMapMarkerAero(GPS_Position, ReadCompass, CoG, Crosstrack, ExpoValue));
                 }
                 if (HomePointDisctance >= 1000 && HomePointDisctance < 10000)
                 {

@@ -165,27 +165,24 @@ namespace JCFLIGHTGCS
             g.DrawLine(new Pen(Color.Red, 2), 0.0f, 0.0f, (float)Math.Cos((heading - 90) * deg2rad) * length, (float)Math.Sin((heading - 90) * deg2rad) * length);
             g.DrawLine(new Pen(Color.Black, 2), 0.0f, 0.0f, (float)Math.Cos((cog - 90) * deg2rad) * length, (float)Math.Sin((cog - 90) * deg2rad) * length);
             g.DrawLine(new Pen(Color.Orange, 2), 0.0f, 0.0f, (float)Math.Cos((target - 90) * deg2rad) * length, (float)Math.Sin((target - 90) * deg2rad) * length);
-
             try
             {
-
                 float desired_lead_dist = 100;
-                double width = (Overlay.Control.MapProvider.Projection.GetDistance(Overlay.Control.FromLocalToLatLng(0, 0),
-                         Overlay.Control.FromLocalToLatLng(Overlay.Control.Width, 0)) * 1000.0);
+                double width = 750;
                 double m2pixelwidth = Overlay.Control.Width / width;
                 float alpha = (float)(((desired_lead_dist * (float)m2pixelwidth) / radius) * rad2deg);
                 var scaledradius = radius * (float)m2pixelwidth;
                 if (radius < -1 && alpha < -1)
                 {
-                    float p1 = (float)Math.Cos((cog) * deg2rad) * scaledradius + scaledradius;
-                    float p2 = (float)Math.Sin((cog) * deg2rad) * scaledradius + scaledradius;
-                    g.DrawArc(new Pen(Color.HotPink, 2), p1, p2, Math.Abs(scaledradius) * 2, Math.Abs(scaledradius) * 2, cog, alpha);
+                    float p1 = (float)Math.Cos((heading) * deg2rad) * scaledradius + scaledradius;
+                    float p2 = (float)Math.Sin((heading) * deg2rad) * scaledradius + scaledradius;
+                    g.DrawArc(new Pen(Color.HotPink, 2), p1, p2, Math.Abs(scaledradius) * 2, Math.Abs(scaledradius) * 2, heading, alpha);
                 }
                 else if (radius > 1 && alpha > 1)
                 {
-                    float p1 = (float)Math.Cos((cog - 180) * deg2rad) * scaledradius + scaledradius;
-                    float p2 = (float)Math.Sin((cog - 180) * deg2rad) * scaledradius + scaledradius;
-                    g.DrawArc(new Pen(Color.HotPink, 2), -p1, -p2, scaledradius * 2, scaledradius * 2, cog - 180, alpha);
+                    float p1 = (float)Math.Cos((heading - 180) * deg2rad) * scaledradius + scaledradius;
+                    float p2 = (float)Math.Sin((heading - 180) * deg2rad) * scaledradius + scaledradius;
+                    g.DrawArc(new Pen(Color.HotPink, 2), -p1, -p2, scaledradius * 2, scaledradius * 2, heading - 180, alpha);
                 }
             }
             catch

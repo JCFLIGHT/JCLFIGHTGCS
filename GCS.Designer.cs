@@ -5230,7 +5230,7 @@
             // GmapAtt
             // 
             this.GmapAtt.Enabled = true;
-            this.GmapAtt.Interval = 2000;
+            this.GmapAtt.Interval = 1000;
             this.GmapAtt.Tick += new System.EventHandler(this.GmapAtt_Tick);
             // 
             // FlightTimer

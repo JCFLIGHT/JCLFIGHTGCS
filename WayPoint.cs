@@ -95,6 +95,7 @@ namespace JCFLIGHTGCS
         double Altitude;
 
         int Heading = 0;
+        int ReadPitch = 0;
 
         byte GmapFrameMode = 0;
 
@@ -580,7 +581,7 @@ namespace JCFLIGHTGCS
 
                 case 7:
                     ptr = 0;
-                    ptr += 4;
+                    ReadPitch = BitConverter.ToInt16(InBuffer, ptr); ptr += 4;
                     Heading = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     ptr += 25;
                     NumSat = (byte)InBuffer[ptr++];
@@ -1104,7 +1105,13 @@ namespace JCFLIGHTGCS
                 }
                 else if (GmapFrameMode == 3 || GmapFrameMode == 4 || GmapFrameMode == 5)
                 {
-                    GmapPositions.Markers.Add(new GMapMarkerAero(GPS_Position, Heading, CoG, Crosstrack, 0));
+                    int ExpoValue = 0;
+                    int AttitudePitch = ReadPitch / 10;
+                    if (AttitudePitch >= 10 && AttitudePitch < 40) ExpoValue = 150;
+                    if (AttitudePitch >= 40) ExpoValue = 50;
+                    if (AttitudePitch <= -10 && AttitudePitch > -40) ExpoValue = -150;
+                    if (AttitudePitch <= -40) ExpoValue = -50;
+                    GmapPositions.Markers.Add(new GMapMarkerAero(GPS_Position, Heading, CoG, Crosstrack, ExpoValue));
                 }
                 if (ArmDisarm == 1) GMapTack.Points.Add(GPS_Position);
                 MyGMap.Position = GPS_Position;
