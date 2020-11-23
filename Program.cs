@@ -6,7 +6,6 @@ namespace JCFLIGHTGCS
 {
     static class Program
     {
-
         public static SplashScreen Splash;
         public static LoadConnectUART WaitUart;
         /// <summary>

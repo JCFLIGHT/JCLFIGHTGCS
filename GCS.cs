@@ -833,54 +833,54 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
         private void timer1_Tick(object sender, EventArgs e)
         {
             label76.Text = Convert.ToString(GPS_NumSat);
-            if (GPS_NumSat < 10) label76.Location = new Point(215, 78);
-            else label76.Location = new Point(210, 78);
+            if (GPS_NumSat < 10) label76.Location = new Point(215, 89);
+            else label76.Location = new Point(210, 89);
             if (HDOP >= 10)
             {
-                label78.Location = new Point(197, 125);
+                label78.Location = new Point(197, 140);
                 label78.Text = HDOP.ToString(new CultureInfo("en-US"));
             }
             else
             {
-                label78.Location = new Point(200, 125);
+                label78.Location = new Point(200, 140);
                 label78.Text = HDOP.ToString(new CultureInfo("en-US"));
             }
             if (ReadBarometer < 1000)
             {
-                label79.Location = new Point(205, 165);
+                label79.Location = new Point(205, 190);
                 label79.Text = ReadBarometer.ToString(new CultureInfo("en-US")) + "M";
             }
             else if (ReadBarometer >= 1000 && ReadBarometer <= 10000)
             {
-                label79.Location = new Point(185, 165);
+                label79.Location = new Point(185, 190);
                 label79.Text = ReadBarometer.ToString(new CultureInfo("en-US")) + "KM";
             }
             else
             {
-                label79.Location = new Point(180, 165);
+                label79.Location = new Point(180, 190);
                 label79.Text = ReadBarometer.ToString(new CultureInfo("en-US")) + "KM";
             }
             label87.Text = Current.ToString(new CultureInfo("en-US")) + "A";
-            if (Current < 10) label87.Location = new Point(208, 355);
-            if (Current >= 10 && Current < 100) label87.Location = new Point(200, 355);
-            if (Current >= 100) label87.Location = new Point(195, 355);
+            if (Current < 10) label87.Location = new Point(208, 404);
+            if (Current >= 10 && Current < 100) label87.Location = new Point(200, 404);
+            if (Current >= 100) label87.Location = new Point(195, 404);
             label116.Text = AmperInMah.ToString(new CultureInfo("en-US")) + "MAH";
-            if (AmperInMah < 0.10f) label116.Location = new Point(200, 399);
-            if (AmperInMah >= 0.10f && AmperInMah < 0.100f) label116.Location = new Point(195, 399);
-            if (AmperInMah >= 0.100f && AmperInMah < 1) label116.Location = new Point(185, 399);
-            if (AmperInMah >= 1 && AmperInMah < 10) label116.Location = new Point(175, 399);
-            if (AmperInMah >= 10) label116.Location = new Point(165, 399);
+            if (AmperInMah < 0.10f) label116.Location = new Point(200, 450);
+            if (AmperInMah >= 0.10f && AmperInMah < 0.100f) label116.Location = new Point(195, 450);
+            if (AmperInMah >= 0.100f && AmperInMah < 1) label116.Location = new Point(185, 450);
+            if (AmperInMah >= 1 && AmperInMah < 10) label116.Location = new Point(175, 450);
+            if (AmperInMah >= 10) label116.Location = new Point(165, 450);
             label89.Text = Watts.ToString(new CultureInfo("en-US")) + "W";
-            if (Watts < 10) label89.Location = new Point(208, 444);
-            if (Watts >= 10 && Watts < 100) label89.Location = new Point(195, 444);
-            if (Watts >= 100) label89.Location = new Point(185, 444);
+            if (Watts < 10) label89.Location = new Point(208, 496);
+            if (Watts >= 10 && Watts < 100) label89.Location = new Point(195, 496);
+            if (Watts >= 100) label89.Location = new Point(185, 496);
             if (Declination != 0) label81.Text = Declination.ToString(new CultureInfo("en-US")) + "°";
-            if (Declination > 0 && Declination < 10) label81.Location = new Point(205, 207);
-            if (Declination > (-10) && Declination < 0) label81.Location = new Point(205, 207);
-            if (Declination >= 10 && Declination < 100) label81.Location = new Point(195, 207);
-            if (Declination <= (-10) && Declination > (-100)) label81.Location = new Point(195, 207);
-            if (Declination >= 100) label81.Location = new Point(190, 207);
-            if (Declination <= (-100)) label81.Location = new Point(190, 207);
+            if (Declination > 0 && Declination < 10) label81.Location = new Point(205, 246);
+            if (Declination > (-10) && Declination < 0) label81.Location = new Point(205, 246);
+            if (Declination >= 10 && Declination < 100) label81.Location = new Point(195, 246);
+            if (Declination <= (-10) && Declination > (-100)) label81.Location = new Point(195, 246);
+            if (Declination >= 100) label81.Location = new Point(190, 246);
+            if (Declination <= (-100)) label81.Location = new Point(190, 246);
             FlightModeToLabel(FlightMode);
             if (ReadRoll > 1200)
             {
@@ -1236,7 +1236,7 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
             {
                 if (!MessageRead)
                 {
-                    if (!Stuff.PingNetwork("pingtest.com"))
+                    if (!PingTest.PingNetwork("pingtest.com"))
                     {
                         MyGMap.Manager.Mode = AccessMode.CacheOnly;
                         MessageBox.Show("Você está sem internet,o mapa irá funcinar em modo cache,partes do mapa não carregados antes com internet podem falhar", "Checagem de conexão com a internet", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -1290,7 +1290,7 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
                 PositionToRoutes.Markers.Clear();
                 GPSLatPrev = GPS_Position.Lat;
                 GPSLonPrev = GPS_Position.Lng;
-                byte TrackLength = 10;
+                byte TrackLength = 200;
                 if (Grout.Points.Count > TrackLength) Grout.Points.RemoveRange(0, Grout.Points.Count - TrackLength);
                 if (FrameMode == 0)
                 {
@@ -1308,10 +1308,10 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
                 {
                     int ExpoValue = 0;
                     int AttitudePitch = ReadPitch / 10;
-                    if (AttitudePitch >= 10 && AttitudePitch < 40) ExpoValue = 150;
-                    if (AttitudePitch >= 40) ExpoValue = 50;
-                    if (AttitudePitch <= -10 && AttitudePitch > -40) ExpoValue = -150;
-                    if (AttitudePitch <= -40) ExpoValue = -50;
+                    if (AttitudePitch >= 10 && AttitudePitch < 25) ExpoValue = 150;
+                    if (AttitudePitch >= 25) ExpoValue = 50;
+                    if (AttitudePitch <= -10 && AttitudePitch > -25) ExpoValue = -150;
+                    if (AttitudePitch <= -25) ExpoValue = -50;
                     PositionToRoutes.Markers.Add(new GMapMarkerAero(GPS_Position, ReadCompass, CoG, Crosstrack, ExpoValue));
                 }
                 if (HomePointDisctance >= 1000 && HomePointDisctance < 10000)
@@ -1345,29 +1345,37 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
             switch (_FlightMode)
             {
                 case 0: //ACRO
-                    label83.Location = new Point(188, 252);
+                    label83.Location = new Point(188, 296);
                     label83.Text = "ACRO";
                     break;
 
                 case 1: //STABILIZE
-                    label83.Location = new Point(174, 252);
+                    label83.Location = new Point(174, 296);
                     label83.Text = "STABILIZE";
                     break;
 
                 case 2: //ALT-HOLD
-                    label83.Location = new Point(175, 252);
-                    label83.Text = "ALT-HOLD";
+                    if (FrameMode < 3 || FrameMode == 6 || FrameMode == 7)
+                    {
+                        label83.Location = new Point(175, 296);
+                        label83.Text = "ALT-HOLD";
+                    }
+                    else
+                    {
+                        label83.Location = new Point(173, 296);
+                        label83.Text = "AUTO-THR";
+                    }
                     break;
 
                 case 3: //ATAQUE              
                     if (FrameMode < 3 || FrameMode == 6 || FrameMode == 7)
                     {
-                        label83.Location = new Point(179, 252);
+                        label83.Location = new Point(179, 296);
                         label83.Text = "ATAQUE";
                     }
                     else
                     {
-                        label83.Location = new Point(172, 252);
+                        label83.Location = new Point(172, 296);
                         label83.Text = "TAKE-OFF";
                     }
                     break;
@@ -1380,41 +1388,41 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
                 case 5: //IOC
                     if (FrameMode < 3 || FrameMode == 6 || FrameMode == 7)
                     {
-                        label83.Location = new Point(202, 252);
+                        label83.Location = new Point(202, 296);
                         label83.Text = "IOC";
                     }
                     else
                     {
-                        label83.Location = new Point(184, 252);
+                        label83.Location = new Point(184, 296);
                         label83.Text = "MANUAL";
                     }
                     break;
 
                 case 6: //RTH
                 case 7:
-                    label83.Location = new Point(200, 252);
+                    label83.Location = new Point(200, 296);
                     label83.Text = "RTH";
                     break;
 
                 case 8: //LAND
                 case 9:
                 case 10:
-                    label83.Location = new Point(192, 252);
+                    label83.Location = new Point(192, 296);
                     label83.Text = "LAND";
                     break;
 
                 case 11: //FLIP
-                    label83.Location = new Point(198, 252);
+                    label83.Location = new Point(198, 296);
                     label83.Text = "FLIP";
                     break;
 
                 case 12: //AUTO
-                    label83.Location = new Point(192, 252);
+                    label83.Location = new Point(192, 296);
                     label83.Text = "AUTO";
                     break;
 
                 case 13: //LANDED
-                    label83.Location = new Point(165, 252);
+                    label83.Location = new Point(165, 296);
                     label83.Text = "ATERRIZADO";
                     break;
             }
@@ -1776,6 +1784,8 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
                 label46.Text = "> Modo Stabilize com Limite maior no Ângulo (55°)";
                 if (groupBox6.Text == "VELOCIDADE INICIAL DO MOTOR AO ARMAR A JCFLIGHT")
                     groupBox6.Text = "VELOCIDADE INICIAL DOS MOTORES AO ARMAR A JCFLIGHT";
+                label20.Text = "Altitude-Hold";
+                label42.Text = "> Retenção de Altitude com base no Barômetro e INS";
                 comboBox1.Enabled = true;
                 comboBox2.Enabled = true;
                 comboBox3.Enabled = true;
@@ -1798,8 +1808,10 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
                 label46.Text = "> Lançamento Automático para Aeros e Asa";
                 if (groupBox6.Text == "VELOCIDADE INICIAL DOS MOTORES AO ARMAR A JCFLIGHT")
                     groupBox6.Text = "VELOCIDADE INICIAL DO MOTOR AO ARMAR A JCFLIGHT";
+                label20.Text = "Auto-Throttle";
+                label42.Text = "> Mantém a velocidade usando o Tubo de Pitot";
                 comboBox1.Enabled = true;
-                comboBox2.Enabled = false;
+                comboBox2.Enabled = true;
                 comboBox3.Enabled = true;
                 comboBox4.Enabled = true;
                 comboBox5.Enabled = true;
@@ -1814,8 +1826,14 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
             }
             else if (ComboBoxFrame == 8) //FOGUETE
             {
+                label22.Text = "IOC";
+                label44.Text = "> Controle de Orientação Inteligente";
+                label23.Text = "Ataque";
+                label46.Text = "> Modo Stabilize com Limite maior no Ângulo (55°)";
                 if (groupBox6.Text == "VELOCIDADE INICIAL DO MOTOR AO ARMAR A JCFLIGHT")
                     groupBox6.Text = "VELOCIDADE INICIAL DOS MOTORES AO ARMAR A JCFLIGHT";
+                label20.Text = "Altitude-Hold";
+                label42.Text = "> Retenção de Altitude com base no Barômetro e INS";
                 comboBox1.Enabled = false;
                 comboBox2.Enabled = false;
                 comboBox3.Enabled = false;
@@ -2041,6 +2059,14 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
                 HorizonIndicator.SetNoticeInArtificialHorizon(0, false, false);
                 HorizonIndicator2.SetNoticeInArtificialHorizon(0, false, false);
                 return;
+            }
+            if (tabControl1.SelectedIndex == 0)
+            {
+                NoticeLarger = true;
+            }
+            if (tabControl1.SelectedIndex == 5)
+            {
+                NoticeLarger = false;
             }
             if (!ToogleState)
             {

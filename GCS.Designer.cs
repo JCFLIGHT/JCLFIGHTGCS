@@ -2588,7 +2588,7 @@
             // pictureBox22
             // 
             this.pictureBox22.Image = global::JCFLIGHTGCS.Properties.Resources.Compass1;
-            this.pictureBox22.Location = new System.Drawing.Point(362, 256);
+            this.pictureBox22.Location = new System.Drawing.Point(362, 316);
             this.pictureBox22.Name = "pictureBox22";
             this.pictureBox22.Size = new System.Drawing.Size(325, 174);
             this.pictureBox22.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -2620,7 +2620,7 @@
             // CompassCalibration
             // 
             this.CompassCalibration.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CompassCalibration.Location = new System.Drawing.Point(22, 436);
+            this.CompassCalibration.Location = new System.Drawing.Point(22, 496);
             this.CompassCalibration.Name = "CompassCalibration";
             this.CompassCalibration.Size = new System.Drawing.Size(1005, 33);
             this.CompassCalibration.TabIndex = 4;
@@ -2777,7 +2777,7 @@
             this.zedGraphControl6.IsEnableVPan = false;
             this.zedGraphControl6.IsEnableVZoom = false;
             this.zedGraphControl6.IsEnableWheelZoom = false;
-            this.zedGraphControl6.Location = new System.Drawing.Point(702, 232);
+            this.zedGraphControl6.Location = new System.Drawing.Point(702, 288);
             this.zedGraphControl6.Name = "zedGraphControl6";
             this.zedGraphControl6.ScrollGrace = 0D;
             this.zedGraphControl6.ScrollMaxX = 0D;
@@ -2798,7 +2798,7 @@
             this.zedGraphControl5.IsEnableVPan = false;
             this.zedGraphControl5.IsEnableVZoom = false;
             this.zedGraphControl5.IsEnableWheelZoom = false;
-            this.zedGraphControl5.Location = new System.Drawing.Point(353, 232);
+            this.zedGraphControl5.Location = new System.Drawing.Point(353, 288);
             this.zedGraphControl5.Name = "zedGraphControl5";
             this.zedGraphControl5.ScrollGrace = 0D;
             this.zedGraphControl5.ScrollMaxX = 0D;
@@ -2819,7 +2819,7 @@
             this.zedGraphControl4.IsEnableVPan = false;
             this.zedGraphControl4.IsEnableVZoom = false;
             this.zedGraphControl4.IsEnableWheelZoom = false;
-            this.zedGraphControl4.Location = new System.Drawing.Point(6, 235);
+            this.zedGraphControl4.Location = new System.Drawing.Point(6, 288);
             this.zedGraphControl4.Name = "zedGraphControl4";
             this.zedGraphControl4.ScrollGrace = 0D;
             this.zedGraphControl4.ScrollMaxX = 0D;
@@ -3849,7 +3849,7 @@
             // 
             this.label116.AutoSize = true;
             this.label116.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label116.Location = new System.Drawing.Point(208, 399);
+            this.label116.Location = new System.Drawing.Point(193, 450);
             this.label116.Name = "label116";
             this.label116.Size = new System.Drawing.Size(63, 24);
             this.label116.TabIndex = 72;
@@ -3859,17 +3859,17 @@
             // 
             this.label117.AutoSize = true;
             this.label117.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label117.Location = new System.Drawing.Point(163, 384);
+            this.label117.Location = new System.Drawing.Point(156, 435);
             this.label117.Name = "label117";
-            this.label117.Size = new System.Drawing.Size(133, 15);
+            this.label117.Size = new System.Drawing.Size(129, 15);
             this.label117.TabIndex = 71;
-            this.label117.Text = "Total Corrente em Mah";
+            this.label117.Text = "Corrente total em Mah";
             // 
             // label91
             // 
             this.label91.AutoSize = true;
             this.label91.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label91.Location = new System.Drawing.Point(176, 476);
+            this.label91.Location = new System.Drawing.Point(176, 527);
             this.label91.Name = "label91";
             this.label91.Size = new System.Drawing.Size(91, 15);
             this.label91.TabIndex = 69;
@@ -3878,7 +3878,7 @@
             // metroTrackBar1
             // 
             this.metroTrackBar1.BackColor = System.Drawing.Color.Transparent;
-            this.metroTrackBar1.Location = new System.Drawing.Point(143, 486);
+            this.metroTrackBar1.Location = new System.Drawing.Point(143, 537);
             this.metroTrackBar1.Maximum = 20;
             this.metroTrackBar1.Name = "metroTrackBar1";
             this.metroTrackBar1.Size = new System.Drawing.Size(149, 23);
@@ -3908,7 +3908,7 @@
             this.MyGMap.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.MyGMap.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.MyGMap.ShowTileGridLines = false;
-            this.MyGMap.Size = new System.Drawing.Size(745, 485);
+            this.MyGMap.Size = new System.Drawing.Size(780, 555);
             this.MyGMap.TabIndex = 67;
             this.MyGMap.Zoom = 0D;
             this.MyGMap.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MyGMap_MouseUp);
@@ -3917,7 +3917,7 @@
             // 
             this.label89.AutoSize = true;
             this.label89.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label89.Location = new System.Drawing.Point(205, 444);
+            this.label89.Location = new System.Drawing.Point(208, 496);
             this.label89.Name = "label89";
             this.label89.Size = new System.Drawing.Size(38, 24);
             this.label89.TabIndex = 66;
@@ -3927,7 +3927,7 @@
             // 
             this.label90.AutoSize = true;
             this.label90.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label90.Location = new System.Drawing.Point(201, 429);
+            this.label90.Location = new System.Drawing.Point(204, 481);
             this.label90.Name = "label90";
             this.label90.Size = new System.Drawing.Size(37, 15);
             this.label90.TabIndex = 65;
@@ -3937,7 +3937,7 @@
             // 
             this.label87.AutoSize = true;
             this.label87.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label87.Location = new System.Drawing.Point(208, 355);
+            this.label87.Location = new System.Drawing.Point(206, 404);
             this.label87.Name = "label87";
             this.label87.Size = new System.Drawing.Size(33, 24);
             this.label87.TabIndex = 64;
@@ -3947,7 +3947,7 @@
             // 
             this.label88.AutoSize = true;
             this.label88.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label88.Location = new System.Drawing.Point(194, 340);
+            this.label88.Location = new System.Drawing.Point(192, 389);
             this.label88.Name = "label88";
             this.label88.Size = new System.Drawing.Size(54, 15);
             this.label88.TabIndex = 63;
@@ -3957,7 +3957,7 @@
             // 
             this.label85.AutoSize = true;
             this.label85.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label85.Location = new System.Drawing.Point(184, 306);
+            this.label85.Location = new System.Drawing.Point(184, 349);
             this.label85.Name = "label85";
             this.label85.Size = new System.Drawing.Size(80, 24);
             this.label85.TabIndex = 62;
@@ -3967,7 +3967,7 @@
             // 
             this.label86.AutoSize = true;
             this.label86.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label86.Location = new System.Drawing.Point(180, 291);
+            this.label86.Location = new System.Drawing.Point(180, 334);
             this.label86.Name = "label86";
             this.label86.Size = new System.Drawing.Size(87, 15);
             this.label86.TabIndex = 61;
@@ -3977,7 +3977,7 @@
             // 
             this.label83.AutoSize = true;
             this.label83.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label83.Location = new System.Drawing.Point(184, 252);
+            this.label83.Location = new System.Drawing.Point(184, 296);
             this.label83.Name = "label83";
             this.label83.Size = new System.Drawing.Size(79, 24);
             this.label83.TabIndex = 60;
@@ -3987,7 +3987,7 @@
             // 
             this.label84.AutoSize = true;
             this.label84.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label84.Location = new System.Drawing.Point(185, 237);
+            this.label84.Location = new System.Drawing.Point(185, 281);
             this.label84.Name = "label84";
             this.label84.Size = new System.Drawing.Size(80, 15);
             this.label84.TabIndex = 59;
@@ -3997,7 +3997,7 @@
             // 
             this.label81.AutoSize = true;
             this.label81.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label81.Location = new System.Drawing.Point(213, 207);
+            this.label81.Location = new System.Drawing.Point(215, 246);
             this.label81.Name = "label81";
             this.label81.Size = new System.Drawing.Size(26, 24);
             this.label81.TabIndex = 58;
@@ -4007,7 +4007,7 @@
             // 
             this.label82.AutoSize = true;
             this.label82.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label82.Location = new System.Drawing.Point(190, 192);
+            this.label82.Location = new System.Drawing.Point(192, 231);
             this.label82.Name = "label82";
             this.label82.Size = new System.Drawing.Size(69, 15);
             this.label82.TabIndex = 57;
@@ -4017,7 +4017,7 @@
             // 
             this.label79.AutoSize = true;
             this.label79.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label79.Location = new System.Drawing.Point(205, 165);
+            this.label79.Location = new System.Drawing.Point(203, 190);
             this.label79.Name = "label79";
             this.label79.Size = new System.Drawing.Size(36, 24);
             this.label79.TabIndex = 56;
@@ -4027,7 +4027,7 @@
             // 
             this.label80.AutoSize = true;
             this.label80.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label80.Location = new System.Drawing.Point(201, 149);
+            this.label80.Location = new System.Drawing.Point(199, 174);
             this.label80.Name = "label80";
             this.label80.Size = new System.Drawing.Size(47, 15);
             this.label80.TabIndex = 55;
@@ -4037,7 +4037,7 @@
             // 
             this.label78.AutoSize = true;
             this.label78.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label78.Location = new System.Drawing.Point(197, 125);
+            this.label78.Location = new System.Drawing.Point(196, 140);
             this.label78.Name = "label78";
             this.label78.Size = new System.Drawing.Size(55, 24);
             this.label78.TabIndex = 54;
@@ -4047,7 +4047,7 @@
             // 
             this.label77.AutoSize = true;
             this.label77.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label77.Location = new System.Drawing.Point(201, 108);
+            this.label77.Location = new System.Drawing.Point(200, 123);
             this.label77.Name = "label77";
             this.label77.Size = new System.Drawing.Size(41, 15);
             this.label77.TabIndex = 53;
@@ -4057,7 +4057,7 @@
             // 
             this.label76.AutoSize = true;
             this.label76.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label76.Location = new System.Drawing.Point(215, 78);
+            this.label76.Location = new System.Drawing.Point(215, 89);
             this.label76.Name = "label76";
             this.label76.Size = new System.Drawing.Size(20, 24);
             this.label76.TabIndex = 52;
@@ -4067,7 +4067,7 @@
             // 
             this.label75.AutoSize = true;
             this.label75.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label75.Location = new System.Drawing.Point(168, 62);
+            this.label75.Location = new System.Drawing.Point(168, 73);
             this.label75.Name = "label75";
             this.label75.Size = new System.Drawing.Size(119, 15);
             this.label75.TabIndex = 51;
@@ -4099,7 +4099,7 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Gainsboro;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(65, 435);
+            this.label3.Location = new System.Drawing.Point(70, 480);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(27, 16);
             this.label3.TabIndex = 48;
@@ -4115,7 +4115,7 @@
             this.circularProgressBar2.InnerColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.circularProgressBar2.InnerMargin = 2;
             this.circularProgressBar2.InnerWidth = -1;
-            this.circularProgressBar2.Location = new System.Drawing.Point(-1, 331);
+            this.circularProgressBar2.Location = new System.Drawing.Point(-1, 373);
             this.circularProgressBar2.MarqueeAnimationSpeed = 2000;
             this.circularProgressBar2.Name = "circularProgressBar2";
             this.circularProgressBar2.OuterColor = System.Drawing.Color.Gray;
@@ -4140,7 +4140,7 @@
             // HeadingIndicator2
             // 
             this.HeadingIndicator2.BackColor = System.Drawing.Color.White;
-            this.HeadingIndicator2.Location = new System.Drawing.Point(0, 170);
+            this.HeadingIndicator2.Location = new System.Drawing.Point(0, 186);
             this.HeadingIndicator2.Name = "HeadingIndicator2";
             this.HeadingIndicator2.Size = new System.Drawing.Size(157, 160);
             this.HeadingIndicator2.TabIndex = 5;

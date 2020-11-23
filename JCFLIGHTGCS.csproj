@@ -193,19 +193,24 @@
     <Compile Include="AirFrameOrientation.Designer.cs">
       <DependentUpon>AirFrameOrientation.cs</DependentUpon>
     </Compile>
-    <Compile Include="Common.cs" />
     <Compile Include="Compass.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Compass.designer.cs">
       <DependentUpon>Compass.cs</DependentUpon>
     </Compile>
+    <Compile Include="CreateGMapMarker.cs" />
     <Compile Include="DerivativeLPF.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DerivativeLPF.Designer.cs">
       <DependentUpon>DerivativeLPF.cs</DependentUpon>
     </Compile>
+    <Compile Include="GMapMarkerAero.cs" />
+    <Compile Include="GMapMarkerHexaI.cs" />
+    <Compile Include="GMapMarkerHexaX.cs" />
+    <Compile Include="GMapMarkerQuad.cs" />
+    <Compile Include="GMapMarkerRect.cs" />
     <Compile Include="HexUpload.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -229,6 +234,7 @@
     <Compile Include="GCS.Designer.cs">
       <DependentUpon>GCS.cs</DependentUpon>
     </Compile>
+    <Compile Include="PingTest.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

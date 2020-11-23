@@ -212,7 +212,7 @@ namespace JCFLIGHTGCS
             GMapTack.Stroke = penRoute;
             GmapRoutes.Routes.Add(GMapTack);
             CurrentMarker = new GMarkerGoogle(MyGMap.Position, GMarkerGoogleType.red);
-            Center = new GMarkerGoogle(MyGMap.Position, GMarkerGoogleType.blue);
+            Center = new GMarkerGoogle(MyGMap.Position, GMarkerGoogleType.white_small);
             GMOverlayLiveData = new GMapOverlay("LiveData");
             MyGMap.Overlays.Add(GMOverlayLiveData);
             GMOverlayLiveData.Markers.Clear();
@@ -276,7 +276,7 @@ namespace JCFLIGHTGCS
                         MarkerRect.InnerMarker = GMarker;
                         MarkerRect.WPRadius = (int)WPRadius / 10;
                         MarkerRect.MainMap = MyGMap;
-                        MarkerRect.Color = Color.Blue;
+                        MarkerRect.Color = Color.White;
                     }
                     MarkersOverlay.Markers.Add(GMarker);
                     MarkersOverlay.Markers.Add(MarkerRect);
@@ -402,7 +402,7 @@ namespace JCFLIGHTGCS
                     Thread.Sleep(10);
                 }
 
-                if (!Stuff.PingNetwork("pingtest.com"))
+                if (!PingTest.PingNetwork("pingtest.com"))
                 {
                     MyGMap.Manager.Mode = AccessMode.CacheOnly;
                     MessageBox.Show("Você está sem internet,o mapa irá funcinar em modo cache,partes do mapa não carregados antes com internet podem falhar", "Checagem de conexão com a internet", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -416,7 +416,7 @@ namespace JCFLIGHTGCS
             }
             catch (Exception)
             {
-                MessageBox.Show("A conexão falhou!Acho que a Porta Serial está aberta em outro programa,verifique se não está aberta na tela principal do GCS.");
+                MessageBox.Show("A conexão falhou!Acho que a Porta Serial está aberta em outro programa,verifique se ela não está aberta na tela principal do GCS.");
             }
         }
 
@@ -836,7 +836,7 @@ namespace JCFLIGHTGCS
                                 MarkerRect.InnerMarker = GMarker;
                                 MarkerRect.WPRadius = (int)WPRadius / 10;
                                 MarkerRect.MainMap = MyGMap;
-                                MarkerRect.Color = Color.Blue;
+                                MarkerRect.Color = Color.White;
                             }
                             MarkersOverlay.Markers.Add(GMarker);
                             MarkersOverlay.Markers.Add(MarkerRect);
@@ -1089,7 +1089,7 @@ namespace JCFLIGHTGCS
                 GmapPositions.Markers.Clear();
                 PrevLatitude = GPS_Position.Lat;
                 PrevLongitude = GPS_Position.Lng;
-                byte TrackLength = 10;
+                byte TrackLength = 200;
                 if (GMapTack.Points.Count > TrackLength) GMapTack.Points.RemoveRange(0, GMapTack.Points.Count - TrackLength);
                 if (GmapFrameMode == 0)
                 {
@@ -1107,10 +1107,10 @@ namespace JCFLIGHTGCS
                 {
                     int ExpoValue = 0;
                     int AttitudePitch = ReadPitch / 10;
-                    if (AttitudePitch >= 10 && AttitudePitch < 40) ExpoValue = 150;
-                    if (AttitudePitch >= 40) ExpoValue = 50;
-                    if (AttitudePitch <= -10 && AttitudePitch > -40) ExpoValue = -150;
-                    if (AttitudePitch <= -40) ExpoValue = -50;
+                    if (AttitudePitch >= 10 && AttitudePitch < 25) ExpoValue = 150;
+                    if (AttitudePitch >= 25) ExpoValue = 50;
+                    if (AttitudePitch <= -10 && AttitudePitch > -25) ExpoValue = -150;
+                    if (AttitudePitch <= -25) ExpoValue = -50;
                     GmapPositions.Markers.Add(new GMapMarkerAero(GPS_Position, Heading, CoG, Crosstrack, ExpoValue));
                 }
                 if (ArmDisarm == 1) GMapTack.Points.Add(GPS_Position);
@@ -2435,7 +2435,7 @@ namespace JCFLIGHTGCS
                 {
                     CurrentRectMarker = null;
                     GMapMarkerRect MarkerRect = Item as GMapMarkerRect;
-                    MarkerRect.Pen.Color = Color.Blue;
+                    MarkerRect.Pen.Color = Color.White;
                     MyGMap.Invalidate(false);
                 }
             }

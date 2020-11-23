@@ -85,7 +85,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LoadConnectUART";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Abrindo conexão serial";
+            this.Text = "JCFLIGHT GCS";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LoadConnectUART_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();

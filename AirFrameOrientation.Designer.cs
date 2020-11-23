@@ -237,7 +237,7 @@
             this.MaximizeBox = false;
             this.Name = "AirFrameOrientation";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Orientação dos Motores/Servos";
+            this.Text = "JCFLIGHT GCS";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();

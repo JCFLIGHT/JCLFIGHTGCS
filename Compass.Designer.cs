@@ -234,7 +234,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Compass";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Referência de Calibração do Compass";
+            this.Text = "JCFLIGHT GCS";
             this.ResumeLayout(false);
             this.PerformLayout();
 
