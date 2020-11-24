@@ -2063,10 +2063,12 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
             if (tabControl1.SelectedIndex == 0)
             {
                 NoticeLarger = true;
+                SmallCompass = false;
             }
             if (tabControl1.SelectedIndex == 5)
             {
                 NoticeLarger = false;
+                SmallCompass = true;
             }
             if (!ToogleState)
             {
