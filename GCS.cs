@@ -1786,6 +1786,8 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
                     groupBox6.Text = "VELOCIDADE INICIAL DOS MOTORES AO ARMAR A JCFLIGHT";
                 label20.Text = "Altitude-Hold";
                 label42.Text = "> Retenção de Altitude com base no Barômetro e INS";
+                label21.Text = "GPS-Hold";
+                label43.Text = "> Retenção de Posição com base no GPS e INS";
                 comboBox1.Enabled = true;
                 comboBox2.Enabled = true;
                 comboBox3.Enabled = true;
@@ -1810,6 +1812,8 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
                     groupBox6.Text = "VELOCIDADE INICIAL DO MOTOR AO ARMAR A JCFLIGHT";
                 label20.Text = "Auto-Throttle";
                 label42.Text = "> Mantém a velocidade usando o Tubo de Pitot";
+                label21.Text = "GPS-Hold";
+                label43.Text = "> Mantém a posição do Aero fazendo um círculo";
                 comboBox1.Enabled = true;
                 comboBox2.Enabled = true;
                 comboBox3.Enabled = true;
@@ -1834,6 +1838,8 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
                     groupBox6.Text = "VELOCIDADE INICIAL DOS MOTORES AO ARMAR A JCFLIGHT";
                 label20.Text = "Altitude-Hold";
                 label42.Text = "> Retenção de Altitude com base no Barômetro e INS";
+                label21.Text = "GPS-Hold";
+                label43.Text = "> Retenção de Posição com base no GPS e INS";
                 comboBox1.Enabled = false;
                 comboBox2.Enabled = false;
                 comboBox3.Enabled = false;
