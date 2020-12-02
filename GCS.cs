@@ -1212,11 +1212,12 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
 
         private void button6_Click(object sender, EventArgs e)
         {
+            SmallCompass = true;
+            NoticeLarger = false;
             if (!SerialPort.IsOpen)
                 MessageRead = false;
             else
             {
-                NoticeLarger = false;
                 if (SerialOpen == true)
                 {
                     Serial_Write_To_FC(14);
@@ -1229,7 +1230,6 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
                     Serial_Write_To_FC(14);
                     PidAndFiltersCommunicationOpen = false;
                 }
-                SmallCompass = true;
             }
             tabControl1.SelectTab(tabPage6);
             if (SerialPort.IsOpen)
@@ -2438,6 +2438,22 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "GPS_Baud_Rate";
             dataGridView1.Rows[46].Cells[Unidade.Index].Value = "uint8_t";
             dataGridView1.Rows[46].Cells[Descricao.Index].Value = "0 - 9600KBPS / 1 - 19200KBPS / 2 - 38400KBPS / 3 - 57600KBPS / 4 - 115200KBPS";
+
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Tipo_de_AirSpeed";
+            dataGridView1.Rows[47].Cells[Unidade.Index].Value = "uint8_t";
+            dataGridView1.Rows[47].Cells[Descricao.Index].Value = " 0 - NENHUM / 1 - ANALÓGICO / 2 - I2C";
+
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AirSpeed_Amostras";
+            dataGridView1.Rows[48].Cells[Unidade.Index].Value = "uint8_t";
+            dataGridView1.Rows[48].Cells[Descricao.Index].Value = "Número de amostras para calibrar o AirSpeed";
+
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AirSpeed_Fator";
+            dataGridView1.Rows[49].Cells[Unidade.Index].Value = "uint8_t";
+            dataGridView1.Rows[49].Cells[Descricao.Index].Value = "Fator para converter a pressão em velocidade";
+
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AirSpeed_Pino_ADC";
+            dataGridView1.Rows[50].Cells[Unidade.Index].Value = "uint8_t";
+            dataGridView1.Rows[50].Cells[Descricao.Index].Value = "Pino ADC que está conectado o AirSpeed";
 
             dataGridView1.Rows[dataGridView1.Rows.Add()].DataGridView.EndEdit();
         }
