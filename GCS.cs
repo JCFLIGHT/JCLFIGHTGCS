@@ -200,6 +200,9 @@ namespace JCFLIGHTGCS
 
         bool MessageRead = false;
 
+        byte MemoryRamUsedPercent = 0;
+        int MemoryRamUsed = 0;
+
         Form WaitUart = Program.WaitUart;
 
         public GCS()
@@ -705,6 +708,8 @@ namespace JCFLIGHTGCS
                     YawAttitudeData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     PitchAttitudeData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     RollAttitudeData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    MemoryRamUsed = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    MemoryRamUsedPercent = (byte)InBuffer[ptr++];
                     break;
             }
         }
@@ -881,6 +886,9 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
             if (Declination <= (-10) && Declination > (-100)) label81.Location = new Point(195, 246);
             if (Declination >= 100) label81.Location = new Point(190, 246);
             if (Declination <= (-100)) label81.Location = new Point(190, 246);
+            label150.Text = MemoryRamUsedPercent + "%";
+            metroProgressBar29.Value = MemoryRamUsedPercent;
+            label151.Text = "Memoria Ram Livre:" + MemoryRamUsed + "KB de 8192KB";
             FlightModeToLabel(FlightMode);
             if (ReadRoll > 1200)
             {
