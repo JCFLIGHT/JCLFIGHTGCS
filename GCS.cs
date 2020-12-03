@@ -2283,19 +2283,19 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
             dataGridView1.Rows[5].Cells[Unidade.Index].Value = "Float";
             dataGridView1.Rows[5].Cells[Descricao.Index].Value = "Igual o 'AHRS_Aero_Rate',porém,realiza o corte aos poucos de forma mais suave";
 
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Servo_Pulso_Minimo";
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Servos_Pulso_Minimo";
             dataGridView1.Rows[6].Cells[Unidade.Index].Value = "US";
             dataGridView1.Rows[6].Cells[Descricao.Index].Value = "Valor do pulso PWM minimo aplicado ao servos";
 
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Servo_Pulso_Médio";
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Servos_Pulso_Médio";
             dataGridView1.Rows[7].Cells[Unidade.Index].Value = "US";
             dataGridView1.Rows[7].Cells[Descricao.Index].Value = "Valor do pulso PWM médio aplicado ao servos";
 
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Servo_Pulso_Maximo";
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Servos_Pulso_Maximo";
             dataGridView1.Rows[8].Cells[Unidade.Index].Value = "US";
             dataGridView1.Rows[8].Cells[Descricao.Index].Value = "Valor do pulso PWM maximo aplicado ao servos";
 
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Servo_LPF_CutOff";
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Servos_LPF_CutOff";
             dataGridView1.Rows[9].Cells[Unidade.Index].Value = "Hz";
             dataGridView1.Rows[9].Cells[Descricao.Index].Value = "Frequência de corte do Filtro-Passa-Baixa para os servos";
 
@@ -2307,7 +2307,7 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
             dataGridView1.Rows[11].Cells[Unidade.Index].Value = "Graus";
             dataGridView1.Rows[11].Cells[Descricao.Index].Value = "Ângulo na IMU para considerar que o AutoLaunch deve iniciar";
 
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AutoLaunch_Time_Motor_SpinUp";
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AutoLaunch_Dispara_Motor_Tempo";
             dataGridView1.Rows[12].Cells[Unidade.Index].Value = "MS";
             dataGridView1.Rows[12].Cells[Descricao.Index].Value = "Tempo para iniciar o motor após o status de lançado";
 
@@ -2353,7 +2353,7 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
 
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "CrashCheck_Tempo";
             dataGridView1.Rows[23].Cells[Unidade.Index].Value = "Segundos";
-            dataGridView1.Rows[23].Cells[Descricao.Index].Value = "Estouro de tmepo para validar o Crash";
+            dataGridView1.Rows[23].Cells[Descricao.Index].Value = "Estouro de tempo para validar o Crash";
 
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Fail_Safe_Pulso";
             dataGridView1.Rows[24].Cells[Unidade.Index].Value = "US";
