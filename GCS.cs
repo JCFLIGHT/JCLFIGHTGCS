@@ -133,6 +133,7 @@ namespace JCFLIGHTGCS
         byte ComboBoxFrame = 0;
         byte ComboBoxParachute = 0;
         byte ComboBoxRthAltitude = 0;
+        byte ComboBoxSafeBtn = 0;
         byte ComboBoxSPI = 0;
         byte ComboBoxUART2 = 0;
         byte ComboBoxCompass = 0;
@@ -167,6 +168,7 @@ namespace JCFLIGHTGCS
         byte AutoGuard = 0;
         byte ArmDisarmGuard = 0;
         byte AutoLandGuard = 0;
+        byte SafeBtnGuard = 0;
         byte DevicesSum = 0;
 
         double AmperInMah = 0;
@@ -661,6 +663,7 @@ namespace JCFLIGHTGCS
                     AutoGuard = (byte)InBuffer[ptr++];
                     ArmDisarmGuard = (byte)InBuffer[ptr++];
                     AutoLandGuard = (byte)InBuffer[ptr++];
+                    SafeBtnGuard = (byte)InBuffer[ptr++];
                     break;
 
                 case 9:
@@ -1142,6 +1145,7 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
                 comboBox17.SelectedIndex = CompassGuard;
                 comboBox18.SelectedIndex = CompassRotGuard;
                 comboBox19.SelectedIndex = RthAltitudeGuard;
+                comboBox24.SelectedIndex = SafeBtnGuard;
                 comboBox10.SelectedIndex = ArmDisarmGuard;
                 comboBox23.SelectedIndex = AutoLandGuard;
                 Serial_Write_To_FC(13);
@@ -1543,6 +1547,7 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
                     comboBox19.SelectedIndex = 0;
                     comboBox10.SelectedIndex = 0;
                     comboBox23.SelectedIndex = 0;
+                    comboBox24.SelectedIndex = 0;
                 }
             }
         }
@@ -1625,6 +1630,11 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
         private void comboBox19_SelectedIndexChanged(object sender, EventArgs e)
         {
             ComboBoxRthAltitude = Convert.ToByte(comboBox19.SelectedIndex);
+        }
+
+        private void comboBox24_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBoxSafeBtn = Convert.ToByte(comboBox24.SelectedIndex);
         }
 
         private void comboBox10_SelectedIndexChanged(object sender, EventArgs e)
@@ -1994,7 +2004,7 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
                     SendBuffer[VectorPointer++] = (byte)0x4a;
                     SendBuffer[VectorPointer++] = (byte)0x43;
                     SendBuffer[VectorPointer++] = (byte)0x3c;
-                    SendBuffer[VectorPointer++] = 20;
+                    SendBuffer[VectorPointer++] = 21;
                     SendBuffer[VectorPointer++] = (byte)15;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxFrame;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxPPM;
@@ -2016,6 +2026,7 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
                     SendBuffer[VectorPointer++] = (byte)ComboBoxAuto;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxArmDisarm;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxAutoLand;
+                    SendBuffer[VectorPointer++] = (byte)ComboBoxSafeBtn;
                     for (int i = 3; i < VectorPointer; i++) CheckAllBuffers ^= SendBuffer[i];
                     SendBuffer[VectorPointer++] = CheckAllBuffers;
                     SerialPort.Write(SendBuffer, 0, VectorPointer);
