@@ -2474,6 +2474,10 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
             dataGridView1.Rows[50].Cells[Unidade.Index].Value = "uint8_t";
             dataGridView1.Rows[50].Cells[Descricao.Index].Value = "Pino ADC que está conectado o AirSpeed";
 
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AutoLaunch_Velocidade";
+            dataGridView1.Rows[51].Cells[Unidade.Index].Value = "CM/S";
+            dataGridView1.Rows[51].Cells[Descricao.Index].Value = "Velocidade da IMU para validar o AutoLaunch";
+
             dataGridView1.Rows[dataGridView1.Rows.Add()].DataGridView.EndEdit();
         }
     }
