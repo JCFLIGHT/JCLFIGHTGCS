@@ -495,6 +495,84 @@ namespace JCFLIGHTGCS
             this.Close();
         }
 
+        public delegate bool ProcessCmdKeyHandler(ref Message msg, Keys keyData);
+        public event ProcessCmdKeyHandler ProcessCmdKeyCallback;
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == (Keys.F1))
+            {
+                button1_Click(null, null);
+                return true;
+            }
+            if (keyData == (Keys.F2))
+            {
+                button6_Click(null, null);
+                return true;
+            }
+            if (keyData == (Keys.F3))
+            {
+                button2_Click(null, null);
+                return true;
+            }
+            if (keyData == (Keys.F4))
+            {
+                button3_Click(null, null);
+                return true;
+            }
+            if (keyData == (Keys.F5))
+            {
+                button4_Click(null, null);
+                return true;
+            }
+            if (keyData == (Keys.F6))
+            {
+                button5_Click(null, null);
+                return true;
+            }
+            if (keyData == (Keys.F7))
+            {
+                button10_Click_1(null, null);
+                return true;
+            }
+            if (keyData == (Keys.F8))
+            {
+                button13_Click(null, null);
+                return true;
+            }
+            if (keyData == (Keys.F9))
+            {
+                button12_Click(null, null);
+                return true;
+            }
+            if (keyData == (Keys.F10))
+            {
+                button19_Click(null, null);
+                return true;
+            }
+            if (keyData == (Keys.F11))
+            {
+                button18_Click(null, null);
+                return true;
+            }
+            if (keyData == (Keys.F12))
+            {
+                button11_Click(null, null);
+                return true;
+            }
+            if (keyData == (Keys.Control | Keys.P))
+            {
+                MessageBox.Show("opa");
+                return true;
+            }
+
+            if (ProcessCmdKeyCallback != null)
+            {
+                return ProcessCmdKeyCallback(ref msg, keyData);
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
         private void RealTimer_Tick(object sender, EventArgs e)
         {
             CheckCompassState(ReadCompass);

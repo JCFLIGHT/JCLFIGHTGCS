@@ -113,6 +113,8 @@
             this.panel15 = new System.Windows.Forms.Panel();
             this.label71 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.groupBox27 = new System.Windows.Forms.GroupBox();
+            this.comboBox24 = new System.Windows.Forms.ComboBox();
             this.label113 = new System.Windows.Forms.Label();
             this.label114 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -415,8 +417,6 @@
             this.voeParaCáToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tirarFotoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.limparMapaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupBox27 = new System.Windows.Forms.GroupBox();
-            this.comboBox24 = new System.Windows.Forms.ComboBox();
             this.BarraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconminimizar)).BeginInit();
@@ -452,6 +452,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.panel15.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.groupBox27.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox10.SuspendLayout();
             this.groupBox9.SuspendLayout();
@@ -521,7 +522,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
-            this.groupBox27.SuspendLayout();
             this.SuspendLayout();
             // 
             // serialPort1
@@ -1584,6 +1584,31 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Configurações";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // groupBox27
+            // 
+            this.groupBox27.Controls.Add(this.comboBox24);
+            this.groupBox27.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox27.Location = new System.Drawing.Point(222, 75);
+            this.groupBox27.Name = "groupBox27";
+            this.groupBox27.Size = new System.Drawing.Size(142, 60);
+            this.groupBox27.TabIndex = 25;
+            this.groupBox27.TabStop = false;
+            this.groupBox27.Text = "SAFE BTN.";
+            // 
+            // comboBox24
+            // 
+            this.comboBox24.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox24.FormattingEnabled = true;
+            this.comboBox24.Items.AddRange(new object[] {
+            "DESATIVADO",
+            "ATIVADO"});
+            this.comboBox24.Location = new System.Drawing.Point(6, 28);
+            this.comboBox24.Name = "comboBox24";
+            this.comboBox24.Size = new System.Drawing.Size(125, 24);
+            this.comboBox24.TabIndex = 0;
+            this.comboBox24.Text = "SELECIONE";
+            this.comboBox24.SelectedIndexChanged += new System.EventHandler(this.comboBox24_SelectedIndexChanged);
             // 
             // label113
             // 
@@ -5338,31 +5363,6 @@
             this.limparMapaToolStripMenuItem.Text = "Limpar mapa";
             this.limparMapaToolStripMenuItem.Click += new System.EventHandler(this.limparMapaToolStripMenuItem_Click);
             // 
-            // groupBox27
-            // 
-            this.groupBox27.Controls.Add(this.comboBox24);
-            this.groupBox27.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox27.Location = new System.Drawing.Point(222, 75);
-            this.groupBox27.Name = "groupBox27";
-            this.groupBox27.Size = new System.Drawing.Size(142, 60);
-            this.groupBox27.TabIndex = 25;
-            this.groupBox27.TabStop = false;
-            this.groupBox27.Text = "SAFE BTN.";
-            // 
-            // comboBox24
-            // 
-            this.comboBox24.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox24.FormattingEnabled = true;
-            this.comboBox24.Items.AddRange(new object[] {
-            "DESATIVADO",
-            "ATIVADO"});
-            this.comboBox24.Location = new System.Drawing.Point(6, 28);
-            this.comboBox24.Name = "comboBox24";
-            this.comboBox24.Size = new System.Drawing.Size(125, 24);
-            this.comboBox24.TabIndex = 0;
-            this.comboBox24.Text = "SELECIONE";
-            this.comboBox24.SelectedIndexChanged += new System.EventHandler(this.comboBox24_SelectedIndexChanged);
-            // 
             // GCS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -5433,6 +5433,7 @@
             this.panel15.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.groupBox27.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox10.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
@@ -5523,7 +5524,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
-            this.groupBox27.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

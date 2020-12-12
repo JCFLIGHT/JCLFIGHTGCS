@@ -257,7 +257,7 @@ namespace JCFLIGHTGCS
 
         private void gmap_MouseClick(object sender, MouseEventArgs e)
         {
-            if (Control.ModifierKeys != Keys.Control) return;
+            if (ModifierKeys != Keys.Control) return;
             if (e.Button == MouseButtons.Left)
             {
                 if (!InvalidWP)
@@ -2445,13 +2445,13 @@ namespace JCFLIGHTGCS
         {
             PointLatLng Point = MyGMap.FromLocalToLatLng(e.X, e.Y);
             CurrentMarker.Position = Point;
-            if (Control.ModifierKeys == Keys.Shift)
+            if (ModifierKeys == Keys.Shift)
             {
                 MyGMap.DragButton = MouseButtons.Left;
                 return;
             }
             else MyGMap.DragButton = MouseButtons.Right;
-            if (e.Button == MouseButtons.Left && MouseDown && Control.ModifierKeys == Keys.None)
+            if (e.Button == MouseButtons.Left && MouseDown && ModifierKeys == Keys.None)
             {
                 MouseDraging = true;
                 if (CurrentRectMarker == null)
@@ -2582,7 +2582,7 @@ namespace JCFLIGHTGCS
         private void MyGmap_MouseDown(object sender, MouseEventArgs e)
         {
             Start = MyGMap.FromLocalToLatLng(e.X, e.Y);
-            if (e.Button == MouseButtons.Left && Control.ModifierKeys != Keys.Alt)
+            if (e.Button == MouseButtons.Left && ModifierKeys != Keys.Alt)
             {
                 MouseDown = true;
                 MouseDraging = false;
