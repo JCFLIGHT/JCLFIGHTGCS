@@ -149,3 +149,4 @@ C:\Users\Julio Cesar\Desktop\ARDUINO\JCFLIGHT\JCFLIGHTGCS\bin\Debug\System.Secur
 C:\Users\Julio Cesar\Desktop\ARDUINO\JCFLIGHT\JCFLIGHTGCS\bin\Debug\Microsoft.Win32.Registry.xml
 C:\Users\Julio Cesar\Desktop\ARDUINO\JCFLIGHT\JCFLIGHTGCS\bin\Debug\System.Security.AccessControl.xml
 C:\Users\Julio Cesar\Desktop\ARDUINO\JCFLIGHT\JCFLIGHTGCS\bin\Debug\System.Security.Principal.Windows.xml
+C:\Users\Julio Cesar\Desktop\ARDUINO\JCFLIGHT\JCFLIGHTGCS\obj\Debug\JCFLIGHTGCS.BoardInfo.resources
