@@ -2367,6 +2367,10 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
             dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "Float";
             dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Ganho Integral para correção da estimativa de direção do Yaw";
 
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AHRS_Nearness";
+            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "uint8_t";
+            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor da 'agressividade' de correção do AHRS com base no acelerômetro";
+
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Servos_Pulso_Minimo";
             dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "US";
             dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor do pulso PWM minimo aplicado ao servos";
@@ -2461,11 +2465,11 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
 
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Land_Check_Acc";
             dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "M/S^2";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor da aceleração na IMU";
+            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor da aceleração da IMU";
 
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Land_LPF_CutOff";
             dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "Hz";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor da frequêcnia de corte da aceleração da IMU";
+            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor da frequêcnia de corte da aceleração da IMU (Por Favor,não altere)";
 
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "RC_Rate";
             dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "uint8_t";
@@ -2507,33 +2511,29 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
             dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "uS";
             dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor maximo tolerado nos canais Yaw,Pitch e Roll para validar o Auto-Desarm";
 
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AHRS_Nearness";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "uint8_t";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor da 'agressividade' de correção do AHRS com base no acelerômetro";
-
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Aero_Com_Rodas";
             dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "Boolean";
             dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "0 - Aeromodelo sem trem de pouso / 1 - Aeromodelo com trem de pouso (Apenas para o AutoLaunch)";
+
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "GPS_Baud_Rate";
+            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "uint8_t";
+            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "0 - 9600KBPS / 1 - 19200KBPS / 2 - 38400KBPS / 3 - 57600KBPS / 4 - 115200KBPS";
 
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "GPS_Velocidade_De_Navegação";
             dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "CM/S";
             dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Velocidade maxima de navegação em modo RTH";
 
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "GPS_Radius";
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "GPS_WP_Radius";
             dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "Metros";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Raio do ponto para validar o mesmo em modo RTH";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "GPS_Compensação_De_Tilt";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "uint8_t";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Parâmetro para compensar o rate de navegação em modo GPS";
+            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Raio do ponto para validar o mesmo em modo WayPoint e RTH";
 
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "GPS_RTH_Land";
             dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "Metros";
             dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Em modo RTH,inicia o Land ao chegar proximo a distância definida aqui";
 
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "GPS_Baud_Rate";
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "GPS_Compensação_De_Tilt";
             dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "uint8_t";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "0 - 9600KBPS / 1 - 19200KBPS / 2 - 38400KBPS / 3 - 57600KBPS / 4 - 115200KBPS";
+            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Parâmetro para compensar o rate de navegação em modo GPS";
 
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Tipo_de_AirSpeed";
             dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "uint8_t";
@@ -2546,10 +2546,6 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AirSpeed_Fator";
             dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "uint8_t";
             dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Fator para converter a pressão em velocidade";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AirSpeed_Pino_ADC";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "uint8_t";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Pino ADC que está conectado o AirSpeed";
 
             dataGridView1.Rows[dataGridView1.Rows.Add()].DataGridView.EndEdit();
         }
