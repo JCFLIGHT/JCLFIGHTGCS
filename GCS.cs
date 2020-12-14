@@ -2367,14 +2367,6 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
             dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "Float";
             dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Ganho Integral para correção da estimativa de direção do Yaw";
 
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AHRS_Aero_Rate";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "Float";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Se o valor desse parâmetro for atingido o AHRS não irá mais utilizar o Acelerômetro";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AHRS_Aero_Slope";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "Float";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Igual o 'AHRS_Aero_Rate',porém,realiza o corte aos poucos de forma mais suave";
-
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Servos_Pulso_Minimo";
             dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "US";
             dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor do pulso PWM minimo aplicado ao servos";
