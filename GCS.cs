@@ -2544,7 +2544,7 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
             dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Número de amostras para calibrar o AirSpeed";
 
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AirSpeed_Fator";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "uint8_t";
+            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "uint16_t";
             dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Fator para converter a pressão em velocidade";
 
             dataGridView1.Rows[dataGridView1.Rows.Add()].DataGridView.EndEdit();
