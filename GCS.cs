@@ -2395,7 +2395,7 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
             dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "CM/S";
             dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Velocidade da IMU para validar o AutoLaunch";
 
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AutoLaunch_Dispara_Motor_Tempo";
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AutoLaunch_Dispara_Motor";
             dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "MS";
             dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Tempo para iniciar o motor após o status de lançado";
 
