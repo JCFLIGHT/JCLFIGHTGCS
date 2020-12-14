@@ -2371,6 +2371,18 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
             dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "uint8_t";
             dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor da 'agressividade' de correção do AHRS com base no acelerômetro";
 
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Acc_Ajuste_Roll";
+            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "int16_t";
+            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor de ajuste positivo ou negativo no eixo Roll(X) do acelerômetro";
+
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Acc_Ajuste_Pitch";
+            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "int16_t";
+            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor de ajuste positivo ou negativo no eixo Pitch(Y) do acelerômetro";
+
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Acc_Ajuste_Yaw";
+            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "int16_t";
+            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor de ajuste positivo ou negativo no eixo Yaw(Z) do acelerômetro";
+
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Servos_Pulso_Minimo";
             dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "US";
             dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor do pulso PWM minimo aplicado ao servos";
