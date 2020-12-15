@@ -212,6 +212,7 @@
     <Compile Include="DerivativeLPF.Designer.cs">
       <DependentUpon>DerivativeLPF.cs</DependentUpon>
     </Compile>
+    <Compile Include="GetValues.cs" />
     <Compile Include="GMapMarkerAero.cs" />
     <Compile Include="GMapMarkerHexaI.cs" />
     <Compile Include="GMapMarkerHexaX.cs" />

@@ -116,14 +116,14 @@ namespace JCFLIGHTGCS
             }
             else
             {
-                RawMagX = GCS.CompassRoll;
-                RawMagY = GCS.CompassPitch;
-                RawMagZ = GCS.CompassYaw;
+                RawMagX = GetValues.CompassRoll;
+                RawMagY = GetValues.CompassPitch;
+                RawMagZ = GetValues.CompassYaw;
             }
 
-            metroLabel1.Text = "Compass X:" + Convert.ToString(GCS.CompassRoll);
-            metroLabel2.Text = "Compass Y:" + Convert.ToString(GCS.CompassPitch);
-            metroLabel3.Text = "Compass Z:" + Convert.ToString(GCS.CompassYaw);
+            metroLabel1.Text = "Compass X:" + Convert.ToString(GetValues.CompassRoll);
+            metroLabel2.Text = "Compass Y:" + Convert.ToString(GetValues.CompassPitch);
+            metroLabel3.Text = "Compass Z:" + Convert.ToString(GetValues.CompassYaw);
             metroLabel6.Text = "X - Min:" + Convert.ToString(MinMagX);
             metroLabel5.Text = "X - Max:" + Convert.ToString(MaxMagX);
             metroLabel8.Text = "Y - Min:" + Convert.ToString(MinMagY);

@@ -207,9 +207,7 @@ namespace JCFLIGHTGCS
 
         int GridCounter = 0;
 
-        static int CompassX = 0;
-        static int CompassY = 0;
-        static int CompassZ = 0;
+
 
         Form WaitUart = Program.WaitUart;
 
@@ -681,9 +679,9 @@ namespace JCFLIGHTGCS
 
                 case 7:
                     ptr = 0;
-                    ReadPitch = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    ReadRoll = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    ReadCompass = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    GetValues.ReadAttitudePitch = ReadPitch = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    GetValues.ReadAttitudeRoll = ReadRoll = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    GetValues.ReadAttitudeYaw = ReadCompass = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     DevicesSum = (byte)InBuffer[ptr++];
                     ThrottleData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     YawData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
@@ -702,28 +700,28 @@ namespace JCFLIGHTGCS
                     GPSLONG = Convert.ToString(BitConverter.ToInt32(InBuffer, ptr)); ptr += 4;
                     LatitudeHome = Convert.ToString(BitConverter.ToInt32(InBuffer, ptr)); ptr += 4;
                     LongitudeHome = Convert.ToString(BitConverter.ToInt32(InBuffer, ptr)); ptr += 4;
-                    ReadBarometer = Convert.ToDouble(BitConverter.ToInt32(InBuffer, ptr)) / 100; ptr += 4;
+                    GetValues.ReadBarometer = ReadBarometer = Convert.ToDouble(BitConverter.ToInt32(InBuffer, ptr)) / 100; ptr += 4;
                     FailSafeDetect = (byte)InBuffer[ptr++];
-                    BattVoltage = Convert.ToDouble(BitConverter.ToInt16(InBuffer, ptr)) / 100; ptr += 2;
-                    BattPercentage = (byte)InBuffer[ptr++];
+                    GetValues.ReadBattVoltage = BattVoltage = Convert.ToDouble(BitConverter.ToInt16(InBuffer, ptr)) / 100; ptr += 2;
+                    GetValues.ReadBattPercentage = BattPercentage = (byte)InBuffer[ptr++];
                     CommandArmDisarm = (byte)InBuffer[ptr++];
                     HDOP = Convert.ToDouble(BitConverter.ToInt16(InBuffer, ptr)) / 100; ptr += 2;
-                    Current = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    Watts = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    GetValues.ReadBattCurrent = Current = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    GetValues.ReadBattWatts = Watts = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     Declination = Convert.ToDouble(BitConverter.ToInt16(InBuffer, ptr)) / 100; ptr += 2;
                     FlightMode = (byte)InBuffer[ptr++];
                     FrameMode = (byte)InBuffer[ptr++];
                     HomePointOK = (byte)InBuffer[ptr++];
-                    Temperature = (byte)InBuffer[ptr++];
+                    GetValues.ReadTemperature = Temperature = (byte)InBuffer[ptr++];
                     HomePointDisctance = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     AmperInMah = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    CoG = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    GetValues.ReadGroundCourse = CoG = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     Crosstrack = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     GetAccGForce = Convert.ToDouble(BitConverter.ToInt16(InBuffer, ptr)) / 100; ptr += 2;
                     GetAccCalibFlag = (byte)InBuffer[ptr++];
-                    CompassX = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    CompassY = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    CompassZ = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    GetValues.CompassX = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    GetValues.CompassY = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    GetValues.CompassZ = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     break;
 
                 case 8:
@@ -1347,21 +1345,6 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
         {
             if (!SerialPort.IsOpen) return;
             Serial_Write_To_FC(11);
-        }
-
-        public static int CompassRoll
-        {
-            get { return CompassX; }
-        }
-
-        public static int CompassPitch
-        {
-            get { return CompassY; }
-        }
-
-        public static int CompassYaw
-        {
-            get { return CompassZ; }
         }
 
         private void button11_Click(object sender, EventArgs e)
