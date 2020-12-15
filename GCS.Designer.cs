@@ -28,7 +28,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GCS));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.button7 = new System.Windows.Forms.Button();
             this.label27 = new System.Windows.Forms.Label();
@@ -176,6 +176,8 @@
             this.button9 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label153 = new System.Windows.Forms.Label();
+            this.label152 = new System.Windows.Forms.Label();
             this.pictureBox22 = new System.Windows.Forms.PictureBox();
             this.label93 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -417,8 +419,8 @@
             this.voeParaCáToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tirarFotoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.limparMapaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label152 = new System.Windows.Forms.Label();
-            this.label153 = new System.Windows.Forms.Label();
+            this.groupBox28 = new System.Windows.Forms.GroupBox();
+            this.comboBox25 = new System.Windows.Forms.ComboBox();
             this.BarraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconminimizar)).BeginInit();
@@ -524,6 +526,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
+            this.groupBox28.SuspendLayout();
             this.SuspendLayout();
             // 
             // serialPort1
@@ -1563,6 +1566,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.groupBox28);
             this.tabPage2.Controls.Add(this.groupBox27);
             this.tabPage2.Controls.Add(this.label113);
             this.tabPage2.Controls.Add(this.label114);
@@ -1640,7 +1644,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(219, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(142, 65);
+            this.groupBox1.Size = new System.Drawing.Size(143, 65);
             this.groupBox1.TabIndex = 20;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "RTH ALTITUDE";
@@ -2656,6 +2660,27 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Calibração dos Sensores";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // label153
+            // 
+            this.label153.AutoSize = true;
+            this.label153.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label153.Location = new System.Drawing.Point(9, 297);
+            this.label153.Name = "label153";
+            this.label153.Size = new System.Drawing.Size(467, 13);
+            this.label153.TabIndex = 19;
+            this.label153.Text = "Gire o Compass em vários sentidos para fazer a calibração,você tem 60 segundos pa" +
+    "ra fazer isso.";
+            // 
+            // label152
+            // 
+            this.label152.AutoSize = true;
+            this.label152.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label152.Location = new System.Drawing.Point(6, 266);
+            this.label152.Name = "label152";
+            this.label152.Size = new System.Drawing.Size(303, 31);
+            this.label152.TabIndex = 18;
+            this.label152.Text = "Calibração do Compass";
             // 
             // pictureBox22
             // 
@@ -5260,8 +5285,8 @@
             // Parametro
             // 
             this.Parametro.DataPropertyName = "Nenhum";
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Parametro.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Parametro.DefaultCellStyle = dataGridViewCellStyle3;
             this.Parametro.HeaderText = "Parâmetro";
             this.Parametro.Name = "Parametro";
             this.Parametro.ReadOnly = true;
@@ -5369,26 +5394,31 @@
             this.limparMapaToolStripMenuItem.Text = "Limpar mapa";
             this.limparMapaToolStripMenuItem.Click += new System.EventHandler(this.limparMapaToolStripMenuItem_Click);
             // 
-            // label152
+            // groupBox28
             // 
-            this.label152.AutoSize = true;
-            this.label152.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label152.Location = new System.Drawing.Point(6, 266);
-            this.label152.Name = "label152";
-            this.label152.Size = new System.Drawing.Size(303, 31);
-            this.label152.TabIndex = 18;
-            this.label152.Text = "Calibração do Compass";
+            this.groupBox28.Controls.Add(this.comboBox25);
+            this.groupBox28.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox28.Location = new System.Drawing.Point(219, 75);
+            this.groupBox28.Name = "groupBox28";
+            this.groupBox28.Size = new System.Drawing.Size(143, 60);
+            this.groupBox28.TabIndex = 26;
+            this.groupBox28.TabStop = false;
+            this.groupBox28.Text = "TUBO DE PITOT";
             // 
-            // label153
+            // comboBox25
             // 
-            this.label153.AutoSize = true;
-            this.label153.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label153.Location = new System.Drawing.Point(9, 297);
-            this.label153.Name = "label153";
-            this.label153.Size = new System.Drawing.Size(467, 13);
-            this.label153.TabIndex = 19;
-            this.label153.Text = "Gire o Compass em vários sentidos para fazer a calibração,você tem 60 segundos pa" +
-    "ra fazer isso.";
+            this.comboBox25.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox25.FormattingEnabled = true;
+            this.comboBox25.Items.AddRange(new object[] {
+            "NENHUM",
+            "ANALÓGICO",
+            "I2C"});
+            this.comboBox25.Location = new System.Drawing.Point(6, 28);
+            this.comboBox25.Name = "comboBox25";
+            this.comboBox25.Size = new System.Drawing.Size(125, 24);
+            this.comboBox25.TabIndex = 0;
+            this.comboBox25.Text = "SELECIONE";
+            this.comboBox25.SelectedIndexChanged += new System.EventHandler(this.comboBox25_SelectedIndexChanged);
             // 
             // GCS
             // 
@@ -5551,6 +5581,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
+            this.groupBox28.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -5944,6 +5975,8 @@
         private System.Windows.Forms.ComboBox comboBox24;
         private System.Windows.Forms.Label label153;
         private System.Windows.Forms.Label label152;
+        private System.Windows.Forms.GroupBox groupBox28;
+        private System.Windows.Forms.ComboBox comboBox25;
     }
 }
 

@@ -43,7 +43,6 @@ namespace JCFLIGHTGCS
         int Aux6Data = 1000;
         int Aux7Data = 1000;
         int Aux8Data = 1000;
-
         int ThrottleActualData = 900;
         int YawActualData = 1000;
         int PitchActualData = 1000;
@@ -56,15 +55,14 @@ namespace JCFLIGHTGCS
         int Aux6ActualData = 1000;
         int Aux7ActualData = 1000;
         int Aux8ActualData = 1000;
-
         int ThrottleAttitudeData = 1000;
         int YawAttitudeData = 0;
         int PitchAttitudeData = 0;
         int RollAttitudeData = 0;
-
         int ReadRoll = 2000;
         int ReadPitch = 0;
         int ReadCompass = 0;
+
         double ReadBarometer = 0;
         double BattVoltage = 0;
         double GPSLatPrev = 0;
@@ -134,6 +132,7 @@ namespace JCFLIGHTGCS
         byte ComboBoxParachute = 0;
         byte ComboBoxRthAltitude = 0;
         byte ComboBoxSafeBtn = 0;
+        byte ComboBoxAirSpeed = 0;
         byte ComboBoxSPI = 0;
         byte ComboBoxUART2 = 0;
         byte ComboBoxCompass = 0;
@@ -147,7 +146,6 @@ namespace JCFLIGHTGCS
         byte ComboBoxKalmanState = 0;
         byte ComboBoxCompSpeed = 0;
         byte ComboBoxAutoLand = 0;
-
         byte IOCDataGuard = 0;
         byte AltHoldGuard = 0;
         byte GPSHoldGuard = 0;
@@ -169,6 +167,7 @@ namespace JCFLIGHTGCS
         byte ArmDisarmGuard = 0;
         byte AutoLandGuard = 0;
         byte SafeBtnGuard = 0;
+        byte AirSpeedGuard = 0;
         byte DevicesSum = 0;
 
         double AmperInMah = 0;
@@ -747,6 +746,7 @@ namespace JCFLIGHTGCS
                     ArmDisarmGuard = (byte)InBuffer[ptr++];
                     AutoLandGuard = (byte)InBuffer[ptr++];
                     SafeBtnGuard = (byte)InBuffer[ptr++];
+                    AirSpeedGuard = (byte)InBuffer[ptr++];
                     break;
 
                 case 9:
@@ -796,6 +796,21 @@ namespace JCFLIGHTGCS
                     RollAttitudeData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     MemoryRamUsed = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     MemoryRamUsedPercent = (byte)InBuffer[ptr++];
+                    GetValues.AccNotFilteredX = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    GetValues.AccNotFilteredY = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    GetValues.AccNotFilteredZ = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    GetValues.AccFilteredX = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    GetValues.AccFilteredY = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    GetValues.AccFilteredZ = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    GetValues.GyroNotFilteredX = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    GetValues.GyroNotFilteredY = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    GetValues.GyroNotFilteredZ = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    GetValues.GyroFilteredX = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    GetValues.GyroFilteredY = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    GetValues.GyroFilteredZ = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    GetValues.ReadGroundSpeed = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    GetValues.ReadI2CError = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    GetValues.ReadAirSpeed = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     break;
             }
         }
@@ -1229,6 +1244,7 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
                 comboBox18.SelectedIndex = CompassRotGuard;
                 comboBox19.SelectedIndex = RthAltitudeGuard;
                 comboBox24.SelectedIndex = SafeBtnGuard;
+                comboBox25.SelectedIndex = AirSpeedGuard;
                 comboBox10.SelectedIndex = ArmDisarmGuard;
                 comboBox23.SelectedIndex = AutoLandGuard;
                 Serial_Write_To_FC(13);
@@ -1701,6 +1717,11 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
             ComboBoxSafeBtn = Convert.ToByte(comboBox24.SelectedIndex);
         }
 
+        private void comboBox25_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBoxAirSpeed = Convert.ToByte(comboBox25.SelectedIndex);
+        }
+
         private void comboBox10_SelectedIndexChanged(object sender, EventArgs e)
         {
             ComboBoxArmDisarm = Convert.ToByte(comboBox10.SelectedIndex);
@@ -2068,7 +2089,7 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
                     SendBuffer[VectorPointer++] = (byte)0x4a;
                     SendBuffer[VectorPointer++] = (byte)0x43;
                     SendBuffer[VectorPointer++] = (byte)0x3c;
-                    SendBuffer[VectorPointer++] = 21;
+                    SendBuffer[VectorPointer++] = 22;
                     SendBuffer[VectorPointer++] = (byte)15;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxFrame;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxPPM;
@@ -2091,6 +2112,7 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
                     SendBuffer[VectorPointer++] = (byte)ComboBoxArmDisarm;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxAutoLand;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxSafeBtn;
+                    SendBuffer[VectorPointer++] = (byte)ComboBoxAirSpeed;
                     for (int i = 3; i < VectorPointer; i++) CheckAllBuffers ^= SendBuffer[i];
                     SendBuffer[VectorPointer++] = CheckAllBuffers;
                     SerialPort.Write(SendBuffer, 0, VectorPointer);
@@ -2529,10 +2551,6 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "GPS_Compensação_De_Tilt";
             dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "uint8_t";
             dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Parâmetro para compensar o rate de navegação em modo GPS";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Tipo_de_AirSpeed";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "uint8_t";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = " 0 - NENHUM / 1 - ANALÓGICO / 2 - I2C";
 
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AirSpeed_Amostras";
             dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "uint8_t";
