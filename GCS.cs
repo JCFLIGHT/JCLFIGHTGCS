@@ -178,6 +178,7 @@ namespace JCFLIGHTGCS
         byte GyroLPF = 0;
         int DerivativeLPF;
         int RCSmooth;
+        int ServosLPF;
         byte KalmanState;
         int BiAccLPF;
         int BiGyroLPF;
@@ -774,6 +775,7 @@ namespace JCFLIGHTGCS
                     NumericConvert[9] = (byte)InBuffer[ptr++];
                     NumericConvert[10] = (byte)InBuffer[ptr++];
                     NumericConvert[11] = (byte)InBuffer[ptr++];
+                    ServosLPF = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     break;
 
                 case 10:
@@ -1791,6 +1793,7 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
                 comboBox20.SelectedIndex = GyroLPF;
                 numericUpDown14.Value = DerivativeLPF;
                 numericUpDown20.Value = RCSmooth;
+                numericUpDown21.Value = ServosLPF;
                 comboBox21.SelectedIndex = KalmanState;
                 numericUpDown13.Value = BiAccLPF;
                 numericUpDown15.Value = BiGyroLPF;
@@ -2010,6 +2013,7 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
                     comboBox20.SelectedIndex = 0;
                     numericUpDown14.Value = 40;
                     numericUpDown20.Value = 50;
+                    numericUpDown21.Value = 50;
                     comboBox21.SelectedIndex = 0;
                     numericUpDown13.Value = 15;
                     numericUpDown15.Value = 60;
@@ -2124,7 +2128,7 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
                     SendBuffer[VectorPointer++] = (byte)0x4a;
                     SendBuffer[VectorPointer++] = (byte)0x43;
                     SendBuffer[VectorPointer++] = (byte)0x3c;
-                    SendBuffer[VectorPointer++] = 30;
+                    SendBuffer[VectorPointer++] = 32;
                     SendBuffer[VectorPointer++] = (byte)18;
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToByte(numericUpDown18.Value));
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown19.Value));
@@ -2156,6 +2160,8 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
                     SendBuffer[VectorPointer++] = (byte)(numericUpDown10.Value * 10);
                     SendBuffer[VectorPointer++] = (byte)(numericUpDown11.Value * 100);
                     SendBuffer[VectorPointer++] = (byte)(numericUpDown12.Value * 100);
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown21.Value));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown21.Value) >> 8);
                     for (int i = 3; i < VectorPointer; i++) CheckAllBuffers ^= SendBuffer[i];
                     SendBuffer[VectorPointer++] = CheckAllBuffers;
                     SerialPort.Write(SendBuffer, 0, VectorPointer);
@@ -2399,10 +2405,6 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Servos_Pulso_Maximo";
             dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "US";
             dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor do pulso PWM maximo aplicado ao servos";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Servos_LPF_CutOff";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "Hz";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Frequência de corte do Filtro-Passa-Baixa para os servos";
 
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AutoLaunch_AHRS_BankAngle";
             dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "Radianos";
