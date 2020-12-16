@@ -33,8 +33,8 @@ namespace JCFLIGHTGCS
         public void CreateChart(ZedGraphControl ZedGraph)
         {
             GraphPane Pane = ZedGraph.GraphPane;
-            Pane.Title.Text = "";
-            Pane.XAxis.Title.Text = "Tempo";
+            Pane.Title.Text = "Analisador Gráfico";
+            Pane.XAxis.Title.Text = "";
             Pane.YAxis.Title.Text = "Valor";
             LineItem Curve;
             Curve = Pane.AddCurve("Vazio", Chart1, Color.Red, SymbolType.None);
@@ -50,13 +50,13 @@ namespace JCFLIGHTGCS
             Pane.YAxis.MinorTic.IsOpposite = false;
             Pane.YAxis.MajorGrid.IsZeroLine = true;
             Pane.YAxis.Scale.Align = AlignP.Inside;
-            Pane.Chart.Fill = new Fill(Color.DimGray, Color.DarkGray, 45.0f);
+            Pane.Chart.Fill = new Fill(Color.Black, Color.Black, 45.0f);
             Pane.Fill = new Fill(Color.DimGray, Color.DimGray, 45.0f);
             Pane.Legend.Fill = new Fill(Color.DimGray, Color.DimGray, 0);
             Pane.Legend.FontSpec.FontColor = Color.White;
             foreach (LineItem li in Pane.CurveList)
             {
-                li.Line.Width = 2;
+                li.Line.Width = 1;
             }
             Pane.XAxis.MajorTic.Color = Color.White;
             Pane.XAxis.MinorTic.Color = Color.White;
@@ -68,10 +68,11 @@ namespace JCFLIGHTGCS
             Pane.YAxis.Title.FontSpec.FontColor = Color.White;
             Pane.XAxis.Scale.FontSpec.FontColor = Color.White;
             Pane.XAxis.Title.FontSpec.FontColor = Color.White;
-            Pane.Legend.Fill = new ZedGraph.Fill(Color.FromArgb(0x85, 0x84, 0x83));
+            Pane.Legend.Fill = new Fill(Color.FromArgb(0x85, 0x84, 0x83));
             Pane.Legend.Position = LegendPos.TopCenter;
             Pane.XAxis.Scale.Min = 0;
             Pane.XAxis.Scale.Max = 300;
+            Pane.XAxis.Type = AxisType.Linear;
             Scale = zedGraphControl1.GraphPane.XAxis.Scale;
             try
             { zedGraphControl1.AxisChange(); }
