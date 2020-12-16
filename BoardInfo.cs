@@ -27,16 +27,20 @@ namespace JCFLIGHTGCS
         public BoardInfo()
         {
             InitializeComponent();
+        }
+
+        private void BoardInfo_Load(object sender, EventArgs e)
+        {
             CreateChart(zedGraphControl1);
         }
 
         public void CreateChart(ZedGraphControl ZedGraph)
         {
             GraphPane Pane = ZedGraph.GraphPane;
+            LineItem Curve;
             Pane.Title.Text = "Analisador Gráfico";
             Pane.XAxis.Title.Text = "";
             Pane.YAxis.Title.Text = "Valor";
-            LineItem Curve;
             Curve = Pane.AddCurve("Vazio", Chart1, Color.Red, SymbolType.None);
             Curve = Pane.AddCurve("Vazio", Chart2, Color.LightGreen, SymbolType.None);
             Curve = Pane.AddCurve("Vazio", Chart3, Color.LightBlue, SymbolType.None);
@@ -52,7 +56,7 @@ namespace JCFLIGHTGCS
             Pane.YAxis.Scale.Align = AlignP.Inside;
             Pane.Chart.Fill = new Fill(Color.Black, Color.Black, 45.0f);
             Pane.Fill = new Fill(Color.DimGray, Color.DimGray, 45.0f);
-            Pane.Legend.Fill = new Fill(Color.DimGray, Color.DimGray, 0);
+            Pane.Legend.Fill = new Fill(Color.White, Color.White, 0);
             Pane.Legend.FontSpec.FontColor = Color.White;
             foreach (LineItem li in Pane.CurveList)
             {
@@ -81,7 +85,6 @@ namespace JCFLIGHTGCS
 
         private void Graphit()
         {
-
             GraphPane Pane = zedGraphControl1.GraphPane;
 
             TimeStamp = TimeStamp + 1;

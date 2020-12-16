@@ -559,7 +559,7 @@
             // timer1
             // 
             this.timer1.Enabled = true;
-            this.timer1.Interval = 1;
+            this.timer1.Interval = 2;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // checkBox24
@@ -747,6 +747,7 @@
             this.Name = "BoardInfo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "JCFLIGHT GCS";
+            this.Load += new System.EventHandler(this.BoardInfo_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
