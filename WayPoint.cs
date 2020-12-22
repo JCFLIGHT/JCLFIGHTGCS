@@ -207,7 +207,7 @@ namespace JCFLIGHTGCS
             GmapPositions.Markers.Clear();
             GmapRoutes = new GMapOverlay("GMapRoutes");
             MyGMap.Overlays.Add(GmapRoutes);
-            Pen penRoute = new Pen(Color.Purple, 3);
+            Pen penRoute = new Pen(Color.Purple, 5);
             GMapTack = new GMapRoute(LatLngPoints, "GMapTrack");
             GMapTack.Stroke = penRoute;
             GmapRoutes.Routes.Add(GMapTack);

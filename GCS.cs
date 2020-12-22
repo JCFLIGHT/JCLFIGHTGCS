@@ -207,7 +207,14 @@ namespace JCFLIGHTGCS
 
         int GridCounter = 0;
 
-
+        public string[] GetString1;
+        public string[] GetString2;
+        public string[] GetString3;
+        public string[] GetString4;
+        public string[] GetString5;
+        public string[] GetString6;
+        Boolean StringsChecked = false;
+        int DecodeString = 0;
 
         Form WaitUart = Program.WaitUart;
 
@@ -244,7 +251,7 @@ namespace JCFLIGHTGCS
             PositionToRoutes.Markers.Clear();
             Routes = new GMapOverlay("Routes");
             MyGMap.Overlays.Add(Routes);
-            Pen PenRoute = new Pen(Color.Purple, 3);
+            Pen PenRoute = new Pen(Color.Purple, 5);
             Grout = new GMapRoute(Points, "Track");
             Grout.Stroke = PenRoute;
             Routes.Routes.Add(Grout);
@@ -449,6 +456,8 @@ namespace JCFLIGHTGCS
             Program.Splash?.Close();
             this.MaximumSize = Screen.PrimaryScreen.WorkingArea.Size; //NÃO CUBRA A BARRA DE TAREFAS
             this.WindowState = FormWindowState.Maximized;
+            maximinizar.Visible = true;
+            iconmaximizar.Visible = true;
         }
 
         private void iconmaximizar_Click(object sender, EventArgs e)
@@ -495,8 +504,7 @@ namespace JCFLIGHTGCS
             {
                 SerialPort.Close();
             }
-            Application.Exit();
-            this.Close();
+            Environment.Exit(0);
         }
 
         public delegate bool ProcessCmdKeyHandler(ref Message msg, Keys keyData);
@@ -706,15 +714,15 @@ namespace JCFLIGHTGCS
                     GetValues.ReadBattPercentage = BattPercentage = (byte)InBuffer[ptr++];
                     CommandArmDisarm = (byte)InBuffer[ptr++];
                     HDOP = Convert.ToDouble(BitConverter.ToInt16(InBuffer, ptr)) / 100; ptr += 2;
-                    GetValues.ReadBattCurrent = Current = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    GetValues.ReadBattWatts = Watts = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    GetValues.ReadBattCurrent = Current = (double)BitConverter.ToInt16(InBuffer, ptr) / 1000.0; ptr += 2;
+                    GetValues.ReadBattWatts = Watts = (double)BitConverter.ToInt32(InBuffer, ptr) / 1000.0; ptr += 4;
                     Declination = Convert.ToDouble(BitConverter.ToInt16(InBuffer, ptr)) / 100; ptr += 2;
                     FlightMode = (byte)InBuffer[ptr++];
                     FrameMode = (byte)InBuffer[ptr++];
                     HomePointOK = (byte)InBuffer[ptr++];
                     GetValues.ReadTemperature = Temperature = (byte)InBuffer[ptr++];
                     HomePointDisctance = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    AmperInMah = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    AmperInMah = (double)BitConverter.ToInt16(InBuffer, ptr) / 1000.0; ptr += 2;
                     GetValues.ReadGroundCourse = CoG = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     Crosstrack = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     GetAccGForce = Convert.ToDouble(BitConverter.ToInt16(InBuffer, ptr)) / 100; ptr += 2;
@@ -814,6 +822,91 @@ namespace JCFLIGHTGCS
                     GetValues.ReadI2CError = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     GetValues.ReadAirSpeed = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     break;
+
+                case 21:
+                    DecodeString = 20;
+                    while (DecodeString > 0)
+                    {
+                        ptr = 0;
+                        StringBuilder builder = new StringBuilder();
+                        while (ptr < DataSize) builder.Append((char)InBuffer[ptr++]);
+                        builder.Remove(builder.Length - 1, 1);
+                        GetString1 = new string[builder.ToString().Split(';').Length];
+                        GetString1 = builder.ToString().Split(';');
+                        DecodeString = DecodeString - 1;
+                    }
+                    break;
+
+                case 22:
+                    DecodeString = 20;
+                    while (DecodeString > 0)
+                    {
+                        ptr = 0;
+                        StringBuilder builder = new StringBuilder();
+                        while (ptr < DataSize) builder.Append((char)InBuffer[ptr++]);
+                        builder.Remove(builder.Length - 1, 1);
+                        GetString2 = new string[builder.ToString().Split(';').Length];
+                        GetString2 = builder.ToString().Split(';');
+                        DecodeString = DecodeString - 1;
+                    }
+                    break;
+
+                case 23:
+                    DecodeString = 20;
+                    while (DecodeString > 0)
+                    {
+                        ptr = 0;
+                        StringBuilder builder = new StringBuilder();
+                        while (ptr < DataSize) builder.Append((char)InBuffer[ptr++]);
+                        builder.Remove(builder.Length - 1, 1);
+                        GetString3 = new string[builder.ToString().Split(';').Length];
+                        GetString3 = builder.ToString().Split(';');
+                        DecodeString = DecodeString - 1;
+                    }
+                    break;
+
+                case 24:
+                    DecodeString = 20;
+                    while (DecodeString > 0)
+                    {
+                        ptr = 0;
+                        StringBuilder builder = new StringBuilder();
+                        while (ptr < DataSize) builder.Append((char)InBuffer[ptr++]);
+                        builder.Remove(builder.Length - 1, 1);
+                        GetString4 = new string[builder.ToString().Split(';').Length];
+                        GetString4 = builder.ToString().Split(';');
+                        DecodeString = DecodeString - 1;
+                    }
+                    break;
+
+                case 25:
+                    DecodeString = 20;
+                    while (DecodeString > 0)
+                    {
+                        ptr = 0;
+                        StringBuilder builder = new StringBuilder();
+                        while (ptr < DataSize) builder.Append((char)InBuffer[ptr++]);
+                        builder.Remove(builder.Length - 1, 1);
+                        GetString5 = new string[builder.ToString().Split(';').Length];
+                        GetString5 = builder.ToString().Split(';');
+                        DecodeString = DecodeString - 1;
+                    }
+                    break;
+
+                case 26:
+                    DecodeString = 20;
+                    while (DecodeString > 0)
+                    {
+                        ptr = 0;
+                        StringBuilder builder = new StringBuilder();
+                        while (ptr < DataSize) builder.Append((char)InBuffer[ptr++]);
+                        builder.Remove(builder.Length - 1, 1);
+                        GetString6 = new string[builder.ToString().Split(';').Length];
+                        GetString6 = builder.ToString().Split(';');
+                        DecodeString = DecodeString - 1;
+                    }
+                    break;
+
             }
         }
 
@@ -846,8 +939,41 @@ namespace JCFLIGHTGCS
                     Serial_Write_To_FC(10);
                     label69.Text = "GCS RSSI:" + Convert.ToString(CalculateAverage(PacketsReceived, PacketsError)) + "%";
                     UpdateAccImageStatus();
+                    GetBuildOfBoard();
                 }
             }
+        }
+
+        private void GetBuildOfBoard()
+        {
+            if (!StringsChecked)
+            {
+                Serial_Write_To_FC(21);
+                Serial_Write_To_FC(22);
+                Serial_Write_To_FC(23);
+                Serial_Write_To_FC(24);
+                Serial_Write_To_FC(25);
+                Serial_Write_To_FC(26);
+                StringsChecked = true;
+            }
+
+            if (GetString1 != null)
+                GetValues.GetPlatformName = GetString1[0];
+
+            if (GetString2 != null)
+                GetValues.GetFirwareName = GetString2[0];
+
+            if (GetString3 != null)
+                GetValues.GetFirwareVersion = GetString3[0];
+
+            if (GetString4 != null)
+                GetValues.GetCompilerVersion = GetString4[0];
+
+            if (GetString5 != null)
+                GetValues.GetBuildDate = GetString5[0];
+
+            if (GetString6 != null)
+                GetValues.GetBuildTime = GetString6[0];
         }
 
         private static double CalculateAverage(int PR, int PE)
@@ -856,7 +982,7 @@ namespace JCFLIGHTGCS
         }
 
         private void ProgressBarControl(int CHThrottle, int CHYaw, int CHPitch, int CHRoll, int CHAux1, int CHAux2,
-   int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
+        int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
         {
             //CONTROLE DAS BARRAS DE PROGRESSO
             metroProgressBar1.Value = Convert.ToInt16(ValueConverterProgressBar(CHThrottle, 1000, 2000, 0, 100));
@@ -887,7 +1013,7 @@ namespace JCFLIGHTGCS
         }
 
         private void ProgressBarControl2(int CHThrottle, int CHYaw, int CHPitch, int CHRoll, int CHAux1, int CHAux2,
-int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
+        int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
         {
             //CONTROLE DAS BARRAS DE PROGRESSO
             metroProgressBar23.Value = Convert.ToInt16(ValueConverterProgressBar(CHThrottle, 900, 2200, 0, 100));
@@ -969,9 +1095,9 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
                 label79.Text = ReadBarometer.ToString(new CultureInfo("en-US")) + "KM";
             }
             label87.Text = Current.ToString(new CultureInfo("en-US")) + "A";
-            if (Current < 10) label87.Location = new Point(208, 404);
-            if (Current >= 10 && Current < 100) label87.Location = new Point(200, 404);
-            if (Current >= 100) label87.Location = new Point(195, 404);
+            if (Current < 10) label87.Location = new Point(200, 404);
+            if (Current >= 10 && Current < 100) label87.Location = new Point(195, 404);
+            if (Current >= 100) label87.Location = new Point(185, 404);
             label116.Text = AmperInMah.ToString(new CultureInfo("en-US")) + "MAH";
             if (AmperInMah < 0.10f) label116.Location = new Point(200, 450);
             if (AmperInMah >= 0.10f && AmperInMah < 0.100f) label116.Location = new Point(195, 450);
@@ -1352,7 +1478,7 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
                     if (!PingTest.PingNetwork("pingtest.com"))
                     {
                         MyGMap.Manager.Mode = AccessMode.CacheOnly;
-                        MessageBox.Show("Você está sem internet,o mapa irá funcinar em modo cache,partes do mapa não carregados antes com internet podem falhar", "Checagem de conexão com a internet", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Você está sem internet,o mapa irá funcinar em modo cache,partes do mapa não carregados antes com internet podem falhar.", "Teste de conexão com a internet", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                     MessageRead = true;
                 }
@@ -1596,7 +1722,7 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
                 Serial_Write_To_FC(16);
                 if (CompassGuard != comboBox17.SelectedIndex)
                 {
-                    MessageBox.Show("O modelo do Compass foi alterado,para que o mesmo funcione é necessario reiniciar o sistema!");
+                    MessageBox.Show("O modelo do Compass foi alterado,para que o mesmo funcione é necessario reiniciar a controladora de voo!");
                 }
             }
         }
@@ -1997,10 +2123,10 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
                 {
                     Serial_Write_To_FC(20);
                     numericUpDown1.Value = (decimal)(35) / 10;
-                    numericUpDown2.Value = (decimal)(35) / 1000;
+                    numericUpDown2.Value = (decimal)(25) / 1000;
                     numericUpDown3.Value = 26;
                     numericUpDown4.Value = (decimal)(35) / 10;
-                    numericUpDown5.Value = (decimal)(35) / 1000;
+                    numericUpDown5.Value = (decimal)(25) / 1000;
                     numericUpDown6.Value = 26;
                     numericUpDown7.Value = (decimal)(69) / 10;
                     numericUpDown8.Value = (decimal)(50) / 1000;
@@ -2076,6 +2202,7 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
         private void GCS_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (SerialPort.IsOpen) SerialPort.Close();
+            Environment.Exit(0);
         }
 
         public void SendConfigurationsToJCFLIHGT(SerialPort SerialPort, byte ConfigType)
@@ -2339,7 +2466,7 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
                 PidAndFiltersCommunicationOpen = false;
             }
             SmallCompass = false;
-            HexUpload HexOpen = new HexUpload();
+            FirmwareUpdate HexOpen = new FirmwareUpdate();
             HexOpen.Show();
         }
 
@@ -2405,6 +2532,22 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Servos_Pulso_Maximo";
             dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "US";
             dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor do pulso PWM maximo aplicado ao servos";
+
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Servo1_Direção";
+            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "boolean";
+            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "0 - Não invertido / 1 - Invertido";
+
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Servo2_Direção";
+            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "boolean";
+            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "0 - Não invertido / 1 - Invertido";
+
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Servo3_Direção";
+            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "boolean";
+            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "0 - Não invertido / 1 - Invertido";
+
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Servo4_Direção";
+            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "boolean";
+            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "0 - Não invertido / 1 - Invertido";
 
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AutoLaunch_AHRS_BankAngle";
             dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "Radianos";
@@ -2513,6 +2656,18 @@ int CHAux3, int CHAux4, int CHAux5, int CHAux6, int CHAux7, int CHAux8)
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Throttle_Exponencial";
             dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "uint8_t";
             dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor do Exponencial do canal Throttle para o PID Dinâmico";
+
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Throttle_Iddle_Fator";
+            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "uint8_t";
+            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor do ganho do Thottle ao calcular o maximo e minimo";
+
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Throttle_Maximo";
+            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "uS";
+            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor maximo do Throttle aplicado ao PID";
+
+            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Throttle_Fator";
+            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "uint8_t";
+            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor do ganho do Thottle para o PID";
 
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Auto_Desarm_Tempo";
             dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "Segundos";

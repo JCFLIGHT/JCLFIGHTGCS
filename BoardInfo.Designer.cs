@@ -41,9 +41,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
@@ -91,6 +88,7 @@
             this.label30 = new System.Windows.Forms.Label();
             this.checkBox28 = new System.Windows.Forms.CheckBox();
             this.label31 = new System.Windows.Forms.Label();
+            this.descriptions1 = new JCFLIGHTGCS.Descriptions();
             this.SuspendLayout();
             // 
             // zedGraphControl1
@@ -207,36 +205,6 @@
             this.label11.Size = new System.Drawing.Size(91, 15);
             this.label11.TabIndex = 11;
             this.label11.Text = "Altitude(Baro):0";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(10, 9);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(93, 15);
-            this.label12.TabIndex = 12;
-            this.label12.Text = "IMU:MPU-6050";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(10, 24);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(122, 15);
-            this.label13.TabIndex = 13;
-            this.label13.Text = "Compass:HMC-5883";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(10, 39);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(119, 15);
-            this.label14.TabIndex = 14;
-            this.label14.Text = "Barômetro:MS-5611";
             // 
             // label15
             // 
@@ -676,12 +644,21 @@
             this.label31.TabIndex = 61;
             this.label31.Text = "Temperatura (Baro):0";
             // 
+            // descriptions1
+            // 
+            this.descriptions1.BackColor = System.Drawing.Color.White;
+            this.descriptions1.Location = new System.Drawing.Point(12, 7);
+            this.descriptions1.Name = "descriptions1";
+            this.descriptions1.Size = new System.Drawing.Size(672, 51);
+            this.descriptions1.TabIndex = 63;
+            // 
             // BoardInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1306, 621);
+            this.Controls.Add(this.descriptions1);
             this.Controls.Add(this.checkBox28);
             this.Controls.Add(this.label31);
             this.Controls.Add(this.checkBox25);
@@ -728,9 +705,6 @@
             this.Controls.Add(this.label18);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.label15);
-            this.Controls.Add(this.label14);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
@@ -766,9 +740,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label18;
@@ -816,5 +787,6 @@
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.CheckBox checkBox28;
         private System.Windows.Forms.Label label31;
+        private Descriptions descriptions1;
     }
 }

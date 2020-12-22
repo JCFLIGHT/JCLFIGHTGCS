@@ -212,13 +212,19 @@
     <Compile Include="DerivativeLPF.Designer.cs">
       <DependentUpon>DerivativeLPF.cs</DependentUpon>
     </Compile>
+    <Compile Include="Descriptions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Descriptions.Designer.cs">
+      <DependentUpon>Descriptions.cs</DependentUpon>
+    </Compile>
     <Compile Include="GetValues.cs" />
     <Compile Include="GMapMarkerAero.cs" />
     <Compile Include="GMapMarkerHexaI.cs" />
     <Compile Include="GMapMarkerHexaX.cs" />
     <Compile Include="GMapMarkerQuad.cs" />
     <Compile Include="GMapMarkerRect.cs" />
-    <Compile Include="HexUpload.cs">
+    <Compile Include="FirmwareUpdate.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="InstrumentsControls\InstrumentsControlsRessources1.Designer.cs">
@@ -291,8 +297,11 @@
     <EmbeddedResource Include="DerivativeLPF.resx">
       <DependentUpon>DerivativeLPF.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HexUpload.resx">
-      <DependentUpon>HexUpload.cs</DependentUpon>
+    <EmbeddedResource Include="Descriptions.resx">
+      <DependentUpon>Descriptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FirmwareUpdate.resx">
+      <DependentUpon>FirmwareUpdate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InstrumentsControls\InstrumentsControlsRessources.resx">
       <SubType>Designer</SubType>
@@ -362,7 +371,6 @@
   <ItemGroup>
     <None Include="Resources\Radio.jpg" />
     <None Include="Resources\Parachute.png" />
-    <None Include="Resources\OpticalFlow.jpg" />
     <None Include="Resources\minimazar.png" />
     <None Include="Resources\maxi.png" />
     <None Include="Resources\JCFLIGHT_GCS_LOGO.png" />
@@ -424,7 +432,6 @@
     <None Include="Resources\Brasil.png" />
     <None Include="Resources\GmapQuad.png" />
     <None Include="Resources\GmapAero.png" />
-    <None Include="Resources\UltrassonicSensor.jpg" />
     <None Include="Resources\CalibAcc6.png" />
     <None Include="Resources\CalibAcc5.png" />
     <None Include="Resources\CalibAcc4.png" />

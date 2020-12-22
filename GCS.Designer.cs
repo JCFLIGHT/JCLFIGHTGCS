@@ -28,7 +28,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GCS));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.button7 = new System.Windows.Forms.Button();
             this.label27 = new System.Windows.Forms.Label();
@@ -113,6 +113,8 @@
             this.panel15 = new System.Windows.Forms.Panel();
             this.label71 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.groupBox28 = new System.Windows.Forms.GroupBox();
+            this.comboBox25 = new System.Windows.Forms.ComboBox();
             this.groupBox27 = new System.Windows.Forms.GroupBox();
             this.comboBox24 = new System.Windows.Forms.ComboBox();
             this.label113 = new System.Windows.Forms.Label();
@@ -319,6 +321,10 @@
             this.HeadingIndicator2 = new JCFLIGHTGCS.HeadingIndicatorInstrumentControl();
             this.HorizonIndicator2 = new JCFLIGHTGCS.AttitudeIndicatorInstrumentControl();
             this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.label154 = new System.Windows.Forms.Label();
+            this.groupBox29 = new System.Windows.Forms.GroupBox();
+            this.numericUpDown21 = new System.Windows.Forms.NumericUpDown();
+            this.metroLabel27 = new MetroFramework.Controls.MetroLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.label115 = new System.Windows.Forms.Label();
             this.groupBox26 = new System.Windows.Forms.GroupBox();
@@ -419,12 +425,6 @@
             this.voeParaCáToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tirarFotoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.limparMapaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupBox28 = new System.Windows.Forms.GroupBox();
-            this.comboBox25 = new System.Windows.Forms.ComboBox();
-            this.label154 = new System.Windows.Forms.Label();
-            this.groupBox29 = new System.Windows.Forms.GroupBox();
-            this.numericUpDown21 = new System.Windows.Forms.NumericUpDown();
-            this.metroLabel27 = new MetroFramework.Controls.MetroLabel();
             this.BarraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconminimizar)).BeginInit();
@@ -460,6 +460,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.panel15.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.groupBox28.SuspendLayout();
             this.groupBox27.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox10.SuspendLayout();
@@ -491,6 +492,8 @@
             this.tabPage5.SuspendLayout();
             this.tabPage6.SuspendLayout();
             this.tabPage7.SuspendLayout();
+            this.groupBox29.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown21)).BeginInit();
             this.groupBox26.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown20)).BeginInit();
             this.groupBox25.SuspendLayout();
@@ -530,9 +533,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
-            this.groupBox28.SuspendLayout();
-            this.groupBox29.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown21)).BeginInit();
             this.SuspendLayout();
             // 
             // serialPort1
@@ -1596,6 +1596,32 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Configurações";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // groupBox28
+            // 
+            this.groupBox28.Controls.Add(this.comboBox25);
+            this.groupBox28.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox28.Location = new System.Drawing.Point(219, 75);
+            this.groupBox28.Name = "groupBox28";
+            this.groupBox28.Size = new System.Drawing.Size(143, 60);
+            this.groupBox28.TabIndex = 26;
+            this.groupBox28.TabStop = false;
+            this.groupBox28.Text = "TUBO DE PITOT";
+            // 
+            // comboBox25
+            // 
+            this.comboBox25.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox25.FormattingEnabled = true;
+            this.comboBox25.Items.AddRange(new object[] {
+            "NENHUM",
+            "ANALÓGICO",
+            "I2C"});
+            this.comboBox25.Location = new System.Drawing.Point(6, 28);
+            this.comboBox25.Name = "comboBox25";
+            this.comboBox25.Size = new System.Drawing.Size(125, 24);
+            this.comboBox25.TabIndex = 0;
+            this.comboBox25.Text = "SELECIONE";
+            this.comboBox25.SelectedIndexChanged += new System.EventHandler(this.comboBox25_SelectedIndexChanged);
             // 
             // groupBox27
             // 
@@ -4306,6 +4332,48 @@
             this.tabPage7.Text = "PID";
             this.tabPage7.UseVisualStyleBackColor = true;
             // 
+            // label154
+            // 
+            this.label154.AutoSize = true;
+            this.label154.Location = new System.Drawing.Point(212, 519);
+            this.label154.Name = "label154";
+            this.label154.Size = new System.Drawing.Size(114, 13);
+            this.label154.TabIndex = 39;
+            this.label154.Text = "(50HZ POR PADRÃO)";
+            // 
+            // groupBox29
+            // 
+            this.groupBox29.Controls.Add(this.numericUpDown21);
+            this.groupBox29.Controls.Add(this.metroLabel27);
+            this.groupBox29.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox29.Location = new System.Drawing.Point(6, 502);
+            this.groupBox29.Name = "groupBox29";
+            this.groupBox29.Size = new System.Drawing.Size(200, 48);
+            this.groupBox29.TabIndex = 38;
+            this.groupBox29.TabStop = false;
+            this.groupBox29.Text = "SERVOS LPF";
+            // 
+            // numericUpDown21
+            // 
+            this.numericUpDown21.Location = new System.Drawing.Point(124, 20);
+            this.numericUpDown21.Maximum = new decimal(new int[] {
+            32700,
+            0,
+            0,
+            0});
+            this.numericUpDown21.Name = "numericUpDown21";
+            this.numericUpDown21.Size = new System.Drawing.Size(70, 21);
+            this.numericUpDown21.TabIndex = 4;
+            // 
+            // metroLabel27
+            // 
+            this.metroLabel27.AutoSize = true;
+            this.metroLabel27.Location = new System.Drawing.Point(6, 20);
+            this.metroLabel27.Name = "metroLabel27";
+            this.metroLabel27.Size = new System.Drawing.Size(65, 19);
+            this.metroLabel27.TabIndex = 3;
+            this.metroLabel27.Text = "Valor (Hz)";
+            // 
             // linkLabel2
             // 
             this.linkLabel2.AutoSize = true;
@@ -5293,8 +5361,8 @@
             // Parametro
             // 
             this.Parametro.DataPropertyName = "Nenhum";
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Parametro.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Parametro.DefaultCellStyle = dataGridViewCellStyle1;
             this.Parametro.HeaderText = "Parâmetro";
             this.Parametro.Name = "Parametro";
             this.Parametro.ReadOnly = true;
@@ -5402,74 +5470,6 @@
             this.limparMapaToolStripMenuItem.Text = "Limpar mapa";
             this.limparMapaToolStripMenuItem.Click += new System.EventHandler(this.limparMapaToolStripMenuItem_Click);
             // 
-            // groupBox28
-            // 
-            this.groupBox28.Controls.Add(this.comboBox25);
-            this.groupBox28.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox28.Location = new System.Drawing.Point(219, 75);
-            this.groupBox28.Name = "groupBox28";
-            this.groupBox28.Size = new System.Drawing.Size(143, 60);
-            this.groupBox28.TabIndex = 26;
-            this.groupBox28.TabStop = false;
-            this.groupBox28.Text = "TUBO DE PITOT";
-            // 
-            // comboBox25
-            // 
-            this.comboBox25.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox25.FormattingEnabled = true;
-            this.comboBox25.Items.AddRange(new object[] {
-            "NENHUM",
-            "ANALÓGICO",
-            "I2C"});
-            this.comboBox25.Location = new System.Drawing.Point(6, 28);
-            this.comboBox25.Name = "comboBox25";
-            this.comboBox25.Size = new System.Drawing.Size(125, 24);
-            this.comboBox25.TabIndex = 0;
-            this.comboBox25.Text = "SELECIONE";
-            this.comboBox25.SelectedIndexChanged += new System.EventHandler(this.comboBox25_SelectedIndexChanged);
-            // 
-            // label154
-            // 
-            this.label154.AutoSize = true;
-            this.label154.Location = new System.Drawing.Point(212, 519);
-            this.label154.Name = "label154";
-            this.label154.Size = new System.Drawing.Size(114, 13);
-            this.label154.TabIndex = 39;
-            this.label154.Text = "(50HZ POR PADRÃO)";
-            // 
-            // groupBox29
-            // 
-            this.groupBox29.Controls.Add(this.numericUpDown21);
-            this.groupBox29.Controls.Add(this.metroLabel27);
-            this.groupBox29.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox29.Location = new System.Drawing.Point(6, 502);
-            this.groupBox29.Name = "groupBox29";
-            this.groupBox29.Size = new System.Drawing.Size(200, 48);
-            this.groupBox29.TabIndex = 38;
-            this.groupBox29.TabStop = false;
-            this.groupBox29.Text = "SERVOS LPF";
-            // 
-            // numericUpDown21
-            // 
-            this.numericUpDown21.Location = new System.Drawing.Point(124, 20);
-            this.numericUpDown21.Maximum = new decimal(new int[] {
-            32700,
-            0,
-            0,
-            0});
-            this.numericUpDown21.Name = "numericUpDown21";
-            this.numericUpDown21.Size = new System.Drawing.Size(70, 21);
-            this.numericUpDown21.TabIndex = 4;
-            // 
-            // metroLabel27
-            // 
-            this.metroLabel27.AutoSize = true;
-            this.metroLabel27.Location = new System.Drawing.Point(6, 20);
-            this.metroLabel27.Name = "metroLabel27";
-            this.metroLabel27.Size = new System.Drawing.Size(65, 19);
-            this.metroLabel27.TabIndex = 3;
-            this.metroLabel27.Text = "Valor (Hz)";
-            // 
             // GCS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -5540,6 +5540,7 @@
             this.panel15.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.groupBox28.ResumeLayout(false);
             this.groupBox27.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox10.ResumeLayout(false);
@@ -5577,6 +5578,9 @@
             this.tabPage6.PerformLayout();
             this.tabPage7.ResumeLayout(false);
             this.tabPage7.PerformLayout();
+            this.groupBox29.ResumeLayout(false);
+            this.groupBox29.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown21)).EndInit();
             this.groupBox26.ResumeLayout(false);
             this.groupBox26.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown20)).EndInit();
@@ -5631,10 +5635,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
-            this.groupBox28.ResumeLayout(false);
-            this.groupBox29.ResumeLayout(false);
-            this.groupBox29.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown21)).EndInit();
             this.ResumeLayout(false);
 
         }

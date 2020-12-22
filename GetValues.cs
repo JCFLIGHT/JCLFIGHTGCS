@@ -8,6 +8,13 @@ namespace JCFLIGHTGCS
 {
     class GetValues
     {
+        public static string GetPlatformName;
+        public static string GetFirwareName;
+        public static string GetFirwareVersion;
+        public static string GetCompilerVersion;
+        public static string GetBuildDate;
+        public static string GetBuildTime;
+
         public static int AccNotFilteredX = 0;
         public static int AccNotFilteredY = 0;
         public static int AccNotFilteredZ = 0;
