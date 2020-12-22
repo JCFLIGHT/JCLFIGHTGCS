@@ -1601,7 +1601,7 @@ namespace JCFLIGHTGCS
                     break;
 
                 case 4: //GPS-HOLD
-                    label83.Location = new Point(175, 252);
+                    label83.Location = new Point(175, 296);
                     label83.Text = "GPS-HOLD";
                     break;
 
