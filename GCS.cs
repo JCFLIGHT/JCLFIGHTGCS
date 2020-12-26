@@ -2643,7 +2643,7 @@ namespace JCFLIGHTGCS
 
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Roll_Pitch_Rate";
             dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "uint8_t";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor do Rate dos canais Pitch e Roll para PID Dinâmico";
+            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor do Rate dos canais Pitch e Roll para o PID Dinâmico";
 
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Yaw_Rate";
             dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "uint8_t";

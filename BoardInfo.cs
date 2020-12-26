@@ -22,7 +22,7 @@ namespace JCFLIGHTGCS
 
         static double TimeStamp = 0;
 
-        new static Scale Scale;
+        static Scale aScale;
 
         public BoardInfo()
         {
@@ -77,7 +77,7 @@ namespace JCFLIGHTGCS
             Pane.XAxis.Scale.Min = 0;
             Pane.XAxis.Scale.Max = 300;
             Pane.XAxis.Type = AxisType.Linear;
-            Scale = zedGraphControl1.GraphPane.XAxis.Scale;
+            aScale = zedGraphControl1.GraphPane.XAxis.Scale;
             try
             { zedGraphControl1.AxisChange(); }
             catch { }
@@ -89,11 +89,11 @@ namespace JCFLIGHTGCS
 
             TimeStamp = TimeStamp + 1;
 
-            if (TimeStamp > Scale.Max)
+            if (TimeStamp > aScale.Max)
             {
-                double range = Scale.Max - Scale.Min;
-                Scale.Max = Scale.Max + 1;
-                Scale.Min = Scale.Max - range;
+                double range = aScale.Max - aScale.Min;
+                aScale.Max = aScale.Max + 1;
+                aScale.Min = aScale.Max - range;
             }
 
             try
