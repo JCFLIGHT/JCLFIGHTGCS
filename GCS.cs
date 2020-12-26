@@ -600,7 +600,11 @@ namespace JCFLIGHTGCS
         {
             byte CheckState;
 
-            if (SerialPort.IsOpen == false) return;
+            try
+            {
+                if (SerialPort.IsOpen == false) return;
+            }
+            catch { }
 
             while (SerialPort.BytesToRead > 0)
             {
@@ -928,7 +932,12 @@ namespace JCFLIGHTGCS
 
         private void timer2_Tick(object sender, EventArgs e)
         {
-            if (SerialPort.IsOpen == false) return;
+            try
+            {
+                if (SerialPort.IsOpen == false) return;
+            }
+            catch { }
+
             if (SerialPort.BytesToRead == 0)
             {
                 if (ItsSafeToUpdate)
