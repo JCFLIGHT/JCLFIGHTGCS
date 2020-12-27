@@ -1341,13 +1341,11 @@ namespace JCFLIGHTGCS
                 SerialOpen = false;
             }
             ItsSafeToUpdate = true;
-
             if (PidAndFiltersCommunicationOpen == true)
             {
                 Serial_Write_To_FC(14);
                 PidAndFiltersCommunicationOpen = false;
             }
-
             tabControl1.SelectTab(tabPage1);
         }
 
@@ -1731,7 +1729,18 @@ namespace JCFLIGHTGCS
                 Serial_Write_To_FC(16);
                 if (CompassGuard != comboBox17.SelectedIndex)
                 {
-                    MessageBox.Show("O modelo do Compass foi alterado,para que o mesmo funcione é necessario reiniciar a controladora de voo!");
+                    if (MessageBox.Show("O modelo do Compass foi alterado,para que o mesmo funcione é necessario reiniciar a controladora de voo.Você deseja reiniciar automaticamente agora?",
+                    "Reboot", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        Serial_Write_To_FC(28);
+                        SmallCompass = false;
+                        NoticeLarger = true;
+                        SerialOpen = false;
+                        SerialPort.Close();
+                        comboBox7_SelectedIndexChanged(null, null);
+                        tabControl1.SelectTab(tabPage1);
+                        ItsSafeToUpdate = true;
+                    }
                 }
             }
         }
