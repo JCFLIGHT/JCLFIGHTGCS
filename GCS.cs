@@ -213,6 +213,7 @@ namespace JCFLIGHTGCS
         public string[] GetString4;
         public string[] GetString5;
         public string[] GetString6;
+        public string[] GetString7;
         Boolean StringsChecked = false;
         int DecodeString = 0;
 
@@ -602,7 +603,11 @@ namespace JCFLIGHTGCS
 
             try
             {
-                if (SerialPort.IsOpen == false) return;
+                if (SerialPort.IsOpen == false)
+                {
+                    CheckState = 0;
+                    return;
+                }
             }
             catch { }
 
@@ -911,6 +916,20 @@ namespace JCFLIGHTGCS
                     }
                     break;
 
+                case 27:
+                    DecodeString = 20;
+                    while (DecodeString > 0)
+                    {
+                        ptr = 0;
+                        StringBuilder builder = new StringBuilder();
+                        while (ptr < DataSize) builder.Append((char)InBuffer[ptr++]);
+                        builder.Remove(builder.Length - 1, 1);
+                        GetString7 = new string[builder.ToString().Split(';').Length];
+                        GetString7 = builder.ToString().Split(';');
+                        DecodeString = DecodeString - 1;
+                    }
+                    break;
+
             }
         }
 
@@ -947,6 +966,7 @@ namespace JCFLIGHTGCS
                     Serial_Write_To_FC(9);
                     Serial_Write_To_FC(10);
                     label69.Text = "GCS RSSI:" + Convert.ToString(CalculateAverage(PacketsReceived, PacketsError)) + "%";
+                    if (GetString7 != null) GetValues.PreArmMessage = GetString7[0];
                     UpdateAccImageStatus();
                     GetBuildOfBoard();
                 }
@@ -1661,6 +1681,19 @@ namespace JCFLIGHTGCS
         int Hour_Count = 0;
         private void FlightTimer_Tick(object sender, EventArgs e)
         {
+            try
+            {
+                if (SerialPort.IsOpen == false) return;
+            }
+            catch { }
+
+            if (SerialPort.BytesToRead == 0)
+            {
+                if (ItsSafeToUpdate)
+                {
+                    Serial_Write_To_FC(27);
+                }
+            }
             if (CommandArmDisarm == 1)
             {
                 if (ResetTimer)

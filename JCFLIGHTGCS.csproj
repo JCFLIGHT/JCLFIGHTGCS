@@ -248,6 +248,12 @@
       <DependentUpon>GCS.cs</DependentUpon>
     </Compile>
     <Compile Include="PingTest.cs" />
+    <Compile Include="PreArmNotification.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PreArmNotification.Designer.cs">
+      <DependentUpon>PreArmNotification.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -311,6 +317,9 @@
     <EmbeddedResource Include="GCS.resx">
       <SubType>Designer</SubType>
       <DependentUpon>GCS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PreArmNotification.resx">
+      <DependentUpon>PreArmNotification.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RcControllerLPF.resx">
       <DependentUpon>RcControllerLPF.cs</DependentUpon>

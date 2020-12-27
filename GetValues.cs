@@ -14,6 +14,7 @@ namespace JCFLIGHTGCS
         public static string GetCompilerVersion;
         public static string GetBuildDate;
         public static string GetBuildTime;
+        public static string PreArmMessage;
 
         public static int AccNotFilteredX = 0;
         public static int AccNotFilteredY = 0;
