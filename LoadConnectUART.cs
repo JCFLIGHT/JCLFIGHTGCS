@@ -23,12 +23,6 @@ namespace JCFLIGHTGCS
             if (progressBar1.Value < 100) progressBar1.Value += 1;
             if (progressBar1.Value == 100)
             {
-                /*if (Flag == 2 && progressBar1.Value == 100)
-                {
-                    this.Close();
-                }
-                Flag += 1;*/
-
                 progressBar1.Value = 0;
             }
         }

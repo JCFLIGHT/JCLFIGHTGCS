@@ -8,6 +8,7 @@ namespace JCFLIGHTGCS
     {
         public static SplashScreen Splash;
         public static LoadConnectUART WaitUart;
+        public static Reboot RebootBoard;
         /// <summary>
         /// Point d'entrée principal de l'application.
         /// </summary>
@@ -18,6 +19,7 @@ namespace JCFLIGHTGCS
             Application.SetCompatibleTextRenderingDefault(false);
             Splash = new SplashScreen();
             WaitUart = new LoadConnectUART();
+            RebootBoard = new Reboot();
             Splash.Show();
             Application.DoEvents();
             Application.DoEvents();

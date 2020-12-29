@@ -201,6 +201,7 @@ namespace JCFLIGHTGCS
         byte GetAccCalibFlag = 0;
 
         bool MessageRead = false;
+        bool Reboot = false;
 
         byte MemoryRamUsedPercent = 0;
         int MemoryRamUsed = 0;
@@ -218,6 +219,7 @@ namespace JCFLIGHTGCS
         int DecodeString = 0;
 
         Form WaitUart = Program.WaitUart;
+        Form RebootBoard = Program.RebootBoard;
 
         public GCS()
         {
@@ -1274,7 +1276,15 @@ namespace JCFLIGHTGCS
             label3.Text = Convert.ToString(BattPercentage + "%");
             if (SerialPort.IsOpen == true)
             {
-                Program.WaitUart.Close();
+                if (Reboot)
+                {
+                    Program.RebootBoard.Close();
+                    Reboot = false;
+                }
+                else
+                {
+                    Program.WaitUart.Close();
+                }
                 label4.Text = "Habilitado";
                 label5.Text = "Habilitado";
                 label4.Location = new Point(17, 90);
@@ -1310,24 +1320,80 @@ namespace JCFLIGHTGCS
             SerialComPort = Convert.ToString(comboBox7.SelectedItem);
             try
             {
-                Program.WaitUart.Show();
-                WaitUart.Refresh();
+                if (!Reboot)
+                {
+                    Program.WaitUart.Show();
+                    WaitUart.Refresh();
+                }
+                else
+                {
+                    Program.RebootBoard.Show();
+                    RebootBoard.Refresh();
+                }
                 SerialPort.PortName = SerialComPort;
-                WaitUart.Refresh();
-                SerialPort.BaudRate = 115200;
-                WaitUart.Refresh();
-                SerialPort.DataBits = 8;
-                WaitUart.Refresh();
-                SerialPort.Parity = Parity.None;
-                WaitUart.Refresh();
-                SerialPort.StopBits = StopBits.One;
-                WaitUart.Refresh();
-                SerialPort.Open();
-                WaitUart.Refresh();
-
-                for (Int32 i = 0; i < 300; i++)
+                if (!Reboot)
                 {
                     WaitUart.Refresh();
+                }
+                else
+                {
+                    RebootBoard.Refresh();
+                }
+                SerialPort.BaudRate = 115200;
+                if (!Reboot)
+                {
+                    WaitUart.Refresh();
+                }
+                else
+                {
+                    RebootBoard.Refresh();
+                }
+                SerialPort.DataBits = 8;
+                if (!Reboot)
+                {
+                    WaitUart.Refresh();
+                }
+                else
+                {
+                    RebootBoard.Refresh();
+                }
+                SerialPort.Parity = Parity.None;
+                if (!Reboot)
+                {
+                    WaitUart.Refresh();
+                }
+                else
+                {
+                    RebootBoard.Refresh();
+                }
+                SerialPort.StopBits = StopBits.One;
+                if (!Reboot)
+                {
+                    WaitUart.Refresh();
+                }
+                else
+                {
+                    RebootBoard.Refresh();
+                }
+                SerialPort.Open();
+                if (!Reboot)
+                {
+                    WaitUart.Refresh();
+                }
+                else
+                {
+                    RebootBoard.Refresh();
+                }
+                for (Int32 i = 0; i < 300; i++)
+                {
+                    if (!Reboot)
+                    {
+                        WaitUart.Refresh();
+                    }
+                    else
+                    {
+                        RebootBoard.Refresh();
+                    }
                     Thread.Sleep(10);
                 }
 
@@ -1341,6 +1407,8 @@ namespace JCFLIGHTGCS
             {
                 MessageBox.Show("Conexão falhou! " + ex);
                 Program.WaitUart.Close();
+                Program.RebootBoard.Close();
+                Reboot = false;
             }
         }
 
@@ -1770,6 +1838,7 @@ namespace JCFLIGHTGCS
                         NoticeLarger = true;
                         SerialOpen = false;
                         SerialPort.Close();
+                        Reboot = true;
                         comboBox7_SelectedIndexChanged(null, null);
                         tabControl1.SelectTab(tabPage1);
                         ItsSafeToUpdate = true;
