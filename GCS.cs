@@ -2140,6 +2140,11 @@ namespace JCFLIGHTGCS
                 label42.Text = "> Retenção de Altitude com base no Barômetro e INS";
                 label21.Text = "GPS-Hold";
                 label43.Text = "> Retenção de Posição com base no GPS e INS";
+                label24.Text = "Auto-Flip";
+                label48.Text ="> Realiza Flips Automáticos de 180° no Pitch e Roll";
+
+                label92.Text = "Auto-Land";
+                label70.Text = "> Realiza um pouso automático";
                 comboBox1.Enabled = true;
                 comboBox2.Enabled = true;
                 comboBox3.Enabled = true;
@@ -2164,8 +2169,13 @@ namespace JCFLIGHTGCS
                     groupBox6.Text = "VELOCIDADE INICIAL DO MOTOR AO ARMAR A JCFLIGHT";
                 label20.Text = "Auto-Throttle";
                 label42.Text = "> Mantém a velocidade usando o Tubo de Pitot";
-                label21.Text = "GPS-Hold";
-                label43.Text = "> Mantém a posição do Aero fazendo um círculo";
+                label21.Text = "Cruise";
+                label43.Text = "> Mantém a posição e altitude do Aero em linha reta";
+                label24.Text = "Turn-Coord.";
+                label48.Text = "> ";
+
+                label92.Text = "Auto-Círculo";
+                label70.Text = "> Mantém a posição e altitude do Aero em círculo";    
                 comboBox1.Enabled = true;
                 comboBox2.Enabled = true;
                 comboBox3.Enabled = true;
@@ -2173,12 +2183,12 @@ namespace JCFLIGHTGCS
                 comboBox5.Enabled = true;
                 comboBox6.Enabled = true;
                 comboBox7.Enabled = true;
-                comboBox8.Enabled = false;
+                comboBox8.Enabled = true;
                 comboBox9.Enabled = true;
                 comboBox10.Enabled = true;
                 comboBox19.Enabled = true;
                 MotorSpeed.Enabled = true;
-                comboBox23.Enabled = false;
+                comboBox23.Enabled = true;
             }
             else if (ComboBoxFrame == 8) //FOGUETE
             {
@@ -2192,6 +2202,9 @@ namespace JCFLIGHTGCS
                 label42.Text = "> Retenção de Altitude com base no Barômetro e INS";
                 label21.Text = "GPS-Hold";
                 label43.Text = "> Retenção de Posição com base no GPS e INS";
+
+                label92.Text = "Auto-Land";
+                label70.Text = "> Realiza um pouso automático";
                 comboBox1.Enabled = false;
                 comboBox2.Enabled = false;
                 comboBox3.Enabled = false;
