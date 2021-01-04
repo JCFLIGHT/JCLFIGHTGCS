@@ -75,7 +75,7 @@ namespace JCFLIGHTGCS
         double HomePointDisctance;
         static double xTimeStamp = 0;
         byte CommandArmDisarm = 0;
-        byte GPS_NumSat = 0;
+        int GPS_NumSat = 0;
         byte FailSafeDetect = 0;
         byte BattPercentage = 0;
         byte FlightMode = 0;
@@ -168,7 +168,7 @@ namespace JCFLIGHTGCS
         byte AutoLandGuard = 0;
         byte SafeBtnGuard = 0;
         byte AirSpeedGuard = 0;
-        byte DevicesSum = 0;
+        int DevicesSum = 0;
 
         double AmperInMah = 0;
 
@@ -192,6 +192,9 @@ namespace JCFLIGHTGCS
         bool ItsSafeToUpdate = true;
         bool ToogleState = false;
         bool NoticeLarger = true;
+        bool BlinkInitialCode = false;
+
+        int ProtocolType = 0;
 
         static int PacketsError = 0;
         static int PacketsReceived = 0;
@@ -607,7 +610,6 @@ namespace JCFLIGHTGCS
             {
                 if (SerialPort.IsOpen == false)
                 {
-                    CheckState = 0;
                     return;
                 }
             }
@@ -620,7 +622,20 @@ namespace JCFLIGHTGCS
                 switch (Read_State)
                 {
                     case 0:
-                        Read_State = (CheckState == 0x4a) ? (byte)1 : (byte)0;
+                        if (CheckState == 0x4a) //AVR E STM32
+                        {
+                            ProtocolType = 1;
+                            Read_State = 1;
+                        }
+                        else if (CheckState == 0x4c) //ESP32
+                        {
+                            ProtocolType = 2;
+                            Read_State = 1;
+                        }
+                        else
+                        {
+                            Read_State = 0;
+                        }
                         break;
 
                     case 1:
@@ -650,11 +665,14 @@ namespace JCFLIGHTGCS
                         CheckSum = 0;
                         CheckSum ^= CheckState;
                         Read_State = 4;
-                        if (DataSize > 100)
+                        if (DataSize > 254 && ProtocolType == 2)
                         {
                             Read_State = 0;
                         }
-
+                        else if (DataSize > 100 && ProtocolType == 1)
+                        {
+                            Read_State = 0;
+                        }
                         break;
 
                     case 4:
@@ -698,75 +716,153 @@ namespace JCFLIGHTGCS
 
                 case 7:
                     ptr = 0;
-                    GetValues.ReadAttitudePitch = ReadPitch = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    GetValues.ReadAttitudeRoll = ReadRoll = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    GetValues.ReadAttitudeYaw = ReadCompass = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    DevicesSum = (byte)InBuffer[ptr++];
-                    ThrottleData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    YawData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    PitchData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    RollData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    Aux1Data = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    Aux2Data = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    Aux3Data = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    Aux4Data = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    Aux5Data = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    Aux6Data = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    Aux7Data = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    Aux8Data = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    GPS_NumSat = (byte)InBuffer[ptr++];
-                    GPSLAT = Convert.ToString(BitConverter.ToInt32(InBuffer, ptr)); ptr += 4;
-                    GPSLONG = Convert.ToString(BitConverter.ToInt32(InBuffer, ptr)); ptr += 4;
-                    LatitudeHome = Convert.ToString(BitConverter.ToInt32(InBuffer, ptr)); ptr += 4;
-                    LongitudeHome = Convert.ToString(BitConverter.ToInt32(InBuffer, ptr)); ptr += 4;
-                    GetValues.ReadBarometer = ReadBarometer = Convert.ToDouble(BitConverter.ToInt32(InBuffer, ptr)) / 100; ptr += 4;
-                    FailSafeDetect = (byte)InBuffer[ptr++];
-                    GetValues.ReadBattVoltage = BattVoltage = Convert.ToDouble(BitConverter.ToInt16(InBuffer, ptr)) / 100; ptr += 2;
-                    GetValues.ReadBattPercentage = BattPercentage = (byte)InBuffer[ptr++];
-                    CommandArmDisarm = (byte)InBuffer[ptr++];
-                    HDOP = Convert.ToDouble(BitConverter.ToInt16(InBuffer, ptr)) / 100; ptr += 2;
-                    GetValues.ReadBattCurrent = Current = (double)BitConverter.ToInt16(InBuffer, ptr) / 1000.0; ptr += 2;
-                    GetValues.ReadBattWatts = Watts = (double)BitConverter.ToInt32(InBuffer, ptr) / 1000.0; ptr += 4;
-                    Declination = Convert.ToDouble(BitConverter.ToInt16(InBuffer, ptr)) / 100; ptr += 2;
-                    FlightMode = (byte)InBuffer[ptr++];
-                    FrameMode = (byte)InBuffer[ptr++];
-                    HomePointOK = (byte)InBuffer[ptr++];
-                    GetValues.ReadTemperature = Temperature = (byte)InBuffer[ptr++];
-                    HomePointDisctance = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    AmperInMah = (double)BitConverter.ToInt16(InBuffer, ptr) / 1000.0; ptr += 2;
-                    GetValues.ReadGroundCourse = CoG = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    Crosstrack = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    GetAccGForce = Convert.ToDouble(BitConverter.ToInt16(InBuffer, ptr)) / 100; ptr += 2;
-                    GetAccCalibFlag = (byte)InBuffer[ptr++];
-                    GetValues.CompassX = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    GetValues.CompassY = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    GetValues.CompassZ = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    if (ProtocolType == 2) //ESP32
+                    {
+                        GetValues.ReadAttitudePitch = ReadPitch = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        GetValues.ReadAttitudeRoll = ReadRoll = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        GetValues.ReadAttitudeYaw = ReadCompass = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        DevicesSum = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        ThrottleData = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        YawData = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        PitchData = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        RollData = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        Aux1Data = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        Aux2Data = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        Aux3Data = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        Aux4Data = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        Aux5Data = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        Aux6Data = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        Aux7Data = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        Aux8Data = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        GPS_NumSat = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        GPSLAT = Convert.ToString(BitConverter.ToInt32(InBuffer, ptr)); ptr += 4;
+                        GPSLONG = Convert.ToString(BitConverter.ToInt32(InBuffer, ptr)); ptr += 4;
+                        LatitudeHome = Convert.ToString(BitConverter.ToInt32(InBuffer, ptr)); ptr += 4;
+                        LongitudeHome = Convert.ToString(BitConverter.ToInt32(InBuffer, ptr)); ptr += 4;
+                        GetValues.ReadBarometer = ReadBarometer = Convert.ToDouble(BitConverter.ToInt32(InBuffer, ptr)) / 100; ptr += 4;
+                        FailSafeDetect = (byte)BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        GetValues.ReadBattVoltage = BattVoltage = Convert.ToDouble(BitConverter.ToInt32(InBuffer, ptr)) / 100; ptr += 4;
+                        GetValues.ReadBattPercentage = BattPercentage = Convert.ToByte(BitConverter.ToInt32(InBuffer, ptr)); ptr += 4;
+                        CommandArmDisarm = Convert.ToByte(BitConverter.ToInt32(InBuffer, ptr)); ptr += 4;
+                        HDOP = Convert.ToDouble(BitConverter.ToInt32(InBuffer, ptr)) / 100; ptr += 4;
+                        GetValues.ReadBattCurrent = Current = (double)BitConverter.ToInt32(InBuffer, ptr) / 1000.0; ptr += 4;
+                        GetValues.ReadBattWatts = Watts = (double)BitConverter.ToInt32(InBuffer, ptr) / 1000.0; ptr += 4;
+                        Declination = Convert.ToDouble(BitConverter.ToInt32(InBuffer, ptr)) / 100; ptr += 4;
+                        FlightMode = (byte)BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        FrameMode = (byte)BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        HomePointOK = (byte)BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        GetValues.ReadTemperature = Temperature = (byte)BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        HomePointDisctance = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        AmperInMah = (double)BitConverter.ToInt32(InBuffer, ptr) / 1000.0; ptr += 4;
+                        GetValues.ReadGroundCourse = CoG = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        Crosstrack = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        GetAccGForce = Convert.ToDouble(BitConverter.ToInt32(InBuffer, ptr)) / 100; ptr += 4;
+                        GetAccCalibFlag = (byte)BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        GetValues.CompassX = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        GetValues.CompassY = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        GetValues.CompassZ = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                    }
+                    else if (ProtocolType == 1)
+                    {
+
+                        GetValues.ReadAttitudePitch = ReadPitch = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        GetValues.ReadAttitudeRoll = ReadRoll = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        GetValues.ReadAttitudeYaw = ReadCompass = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        DevicesSum = (byte)InBuffer[ptr++];
+                        ThrottleData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        YawData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        PitchData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        RollData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        Aux1Data = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        Aux2Data = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        Aux3Data = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        Aux4Data = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        Aux5Data = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        Aux6Data = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        Aux7Data = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        Aux8Data = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        GPS_NumSat = (byte)InBuffer[ptr++];
+                        GPSLAT = Convert.ToString(BitConverter.ToInt32(InBuffer, ptr)); ptr += 4;
+                        GPSLONG = Convert.ToString(BitConverter.ToInt32(InBuffer, ptr)); ptr += 4;
+                        LatitudeHome = Convert.ToString(BitConverter.ToInt32(InBuffer, ptr)); ptr += 4;
+                        LongitudeHome = Convert.ToString(BitConverter.ToInt32(InBuffer, ptr)); ptr += 4;
+                        GetValues.ReadBarometer = ReadBarometer = Convert.ToDouble(BitConverter.ToInt32(InBuffer, ptr)) / 100; ptr += 4;
+                        FailSafeDetect = (byte)InBuffer[ptr++];
+                        GetValues.ReadBattVoltage = BattVoltage = Convert.ToDouble(BitConverter.ToInt16(InBuffer, ptr)) / 100; ptr += 2;
+                        GetValues.ReadBattPercentage = BattPercentage = (byte)InBuffer[ptr++];
+                        CommandArmDisarm = (byte)InBuffer[ptr++];
+                        HDOP = Convert.ToDouble(BitConverter.ToInt16(InBuffer, ptr)) / 100; ptr += 2;
+                        GetValues.ReadBattCurrent = Current = (double)BitConverter.ToInt16(InBuffer, ptr) / 1000.0; ptr += 2;
+                        GetValues.ReadBattWatts = Watts = (double)BitConverter.ToInt32(InBuffer, ptr) / 1000.0; ptr += 4;
+                        Declination = Convert.ToDouble(BitConverter.ToInt16(InBuffer, ptr)) / 100; ptr += 2;
+                        FlightMode = (byte)InBuffer[ptr++];
+                        FrameMode = (byte)InBuffer[ptr++];
+                        HomePointOK = (byte)InBuffer[ptr++];
+                        GetValues.ReadTemperature = Temperature = (byte)InBuffer[ptr++];
+                        HomePointDisctance = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        AmperInMah = (double)BitConverter.ToInt16(InBuffer, ptr) / 1000.0; ptr += 2;
+                        GetValues.ReadGroundCourse = CoG = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        Crosstrack = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        GetAccGForce = Convert.ToDouble(BitConverter.ToInt16(InBuffer, ptr)) / 100; ptr += 2;
+                        GetAccCalibFlag = (byte)InBuffer[ptr++];
+                        GetValues.CompassX = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        GetValues.CompassY = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        GetValues.CompassZ = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    }
                     break;
 
                 case 8:
                     ptr = 0;
-                    FrameGuard = (byte)InBuffer[ptr++];
-                    PPMGuard = (byte)InBuffer[ptr++];
-                    GimbalGuard = (byte)InBuffer[ptr++];
-                    ParachuteGuard = (byte)InBuffer[ptr++];
-                    OptFlowGuard = (byte)InBuffer[ptr++];
-                    SonarGuard = (byte)InBuffer[ptr++];
-                    CompassGuard = (byte)InBuffer[ptr++];
-                    CompassRotGuard = (byte)InBuffer[ptr++];
-                    RthAltitudeGuard = (byte)InBuffer[ptr++];
-                    MotorSpeedGuard = (byte)InBuffer[ptr++];
-                    AcroGuard = (byte)InBuffer[ptr++];
-                    AltHoldGuard = (byte)InBuffer[ptr++];
-                    GPSHoldGuard = (byte)InBuffer[ptr++];
-                    IOCDataGuard = (byte)InBuffer[ptr++];
-                    RTHGuard = (byte)InBuffer[ptr++];
-                    SportGuard = (byte)InBuffer[ptr++];
-                    AutoFlipGuard = (byte)InBuffer[ptr++];
-                    AutoGuard = (byte)InBuffer[ptr++];
-                    ArmDisarmGuard = (byte)InBuffer[ptr++];
-                    AutoLandGuard = (byte)InBuffer[ptr++];
-                    SafeBtnGuard = (byte)InBuffer[ptr++];
-                    AirSpeedGuard = (byte)InBuffer[ptr++];
+                    if (ProtocolType == 1)
+                    {
+                        FrameGuard = (byte)InBuffer[ptr++];
+                        PPMGuard = (byte)InBuffer[ptr++];
+                        GimbalGuard = (byte)InBuffer[ptr++];
+                        ParachuteGuard = (byte)InBuffer[ptr++];
+                        OptFlowGuard = (byte)InBuffer[ptr++];
+                        SonarGuard = (byte)InBuffer[ptr++];
+                        CompassGuard = (byte)InBuffer[ptr++];
+                        CompassRotGuard = (byte)InBuffer[ptr++];
+                        RthAltitudeGuard = (byte)InBuffer[ptr++];
+                        MotorSpeedGuard = (byte)InBuffer[ptr++];
+                        AcroGuard = (byte)InBuffer[ptr++];
+                        AltHoldGuard = (byte)InBuffer[ptr++];
+                        GPSHoldGuard = (byte)InBuffer[ptr++];
+                        IOCDataGuard = (byte)InBuffer[ptr++];
+                        RTHGuard = (byte)InBuffer[ptr++];
+                        SportGuard = (byte)InBuffer[ptr++];
+                        AutoFlipGuard = (byte)InBuffer[ptr++];
+                        AutoGuard = (byte)InBuffer[ptr++];
+                        ArmDisarmGuard = (byte)InBuffer[ptr++];
+                        AutoLandGuard = (byte)InBuffer[ptr++];
+                        SafeBtnGuard = (byte)InBuffer[ptr++];
+                        AirSpeedGuard = (byte)InBuffer[ptr++];
+                    }
+                    else if (ProtocolType == 2)
+                    {
+                        FrameGuard = (byte)BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        PPMGuard = (byte)BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        GimbalGuard = (byte)BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        ParachuteGuard = (byte)BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        OptFlowGuard = (byte)BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        SonarGuard = (byte)BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        CompassGuard = (byte)BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        CompassRotGuard = (byte)BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        RthAltitudeGuard = (byte)BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        MotorSpeedGuard = (byte)BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        AcroGuard = (byte)BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        AltHoldGuard = (byte)BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        GPSHoldGuard = (byte)BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        IOCDataGuard = (byte)BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        RTHGuard = (byte)BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        SportGuard = (byte)BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        AutoFlipGuard = (byte)BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        AutoGuard = (byte)BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        ArmDisarmGuard = (byte)BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        AutoLandGuard = (byte)BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        SafeBtnGuard = (byte)BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        AirSpeedGuard = (byte)BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                    }
                     break;
 
                 case 9:
@@ -799,39 +895,78 @@ namespace JCFLIGHTGCS
 
                 case 10:
                     ptr = 0;
-                    ThrottleActualData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    YawActualData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    PitchActualData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    RollActualData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    Aux1ActualData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    Aux2ActualData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    Aux3ActualData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    Aux4ActualData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    Aux5ActualData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    Aux6ActualData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    Aux7ActualData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    Aux8ActualData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    ThrottleAttitudeData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    YawAttitudeData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    PitchAttitudeData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    RollAttitudeData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    MemoryRamUsed = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    MemoryRamUsedPercent = (byte)InBuffer[ptr++];
-                    GetValues.AccNotFilteredX = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    GetValues.AccNotFilteredY = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    GetValues.AccNotFilteredZ = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    GetValues.AccFilteredX = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    GetValues.AccFilteredY = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    GetValues.AccFilteredZ = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    GetValues.GyroNotFilteredX = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    GetValues.GyroNotFilteredY = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    GetValues.GyroNotFilteredZ = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    GetValues.GyroFilteredX = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    GetValues.GyroFilteredY = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    GetValues.GyroFilteredZ = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    GetValues.ReadGroundSpeed = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    GetValues.ReadI2CError = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    GetValues.ReadAirSpeed = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    if (ProtocolType == 1)
+                    {
+                        ThrottleActualData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        YawActualData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        PitchActualData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        RollActualData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        Aux1ActualData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        Aux2ActualData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        Aux3ActualData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        Aux4ActualData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        Aux5ActualData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        Aux6ActualData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        Aux7ActualData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        Aux8ActualData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        ThrottleAttitudeData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        YawAttitudeData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        PitchAttitudeData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        RollAttitudeData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        MemoryRamUsed = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        MemoryRamUsedPercent = (byte)InBuffer[ptr++];
+                        GetValues.AccNotFilteredX = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        GetValues.AccNotFilteredY = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        GetValues.AccNotFilteredZ = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        GetValues.AccFilteredX = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        GetValues.AccFilteredY = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        GetValues.AccFilteredZ = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        GetValues.GyroNotFilteredX = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        GetValues.GyroNotFilteredY = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        GetValues.GyroNotFilteredZ = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        GetValues.GyroFilteredX = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        GetValues.GyroFilteredY = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        GetValues.GyroFilteredZ = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        GetValues.ReadGroundSpeed = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        GetValues.ReadI2CError = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                        GetValues.ReadAirSpeed = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    }
+                    else if (ProtocolType == 2)
+                    {
+                        ThrottleActualData = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        YawActualData = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        PitchActualData = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        RollActualData = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        Aux1ActualData = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        Aux2ActualData = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        Aux3ActualData = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        Aux4ActualData = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        Aux5ActualData = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        Aux6ActualData = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        Aux7ActualData = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        Aux8ActualData = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        ThrottleAttitudeData = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        YawAttitudeData = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        PitchAttitudeData = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        RollAttitudeData = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        MemoryRamUsed = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        MemoryRamUsedPercent = (byte)BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        GetValues.AccNotFilteredX = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        GetValues.AccNotFilteredY = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        GetValues.AccNotFilteredZ = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        GetValues.AccFilteredX = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        GetValues.AccFilteredY = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        GetValues.AccFilteredZ = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        GetValues.GyroNotFilteredX = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        GetValues.GyroNotFilteredY = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        GetValues.GyroNotFilteredZ = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        GetValues.GyroFilteredX = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        GetValues.GyroFilteredY = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        GetValues.GyroFilteredZ = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        GetValues.ReadGroundSpeed = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        GetValues.ReadI2CError = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                        GetValues.ReadAirSpeed = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
+                    }
                     break;
 
                 case 21:
@@ -937,10 +1072,30 @@ namespace JCFLIGHTGCS
 
         private void Serial_Write_To_FC(int Command)
         {
+            if (SerialPort.IsOpen == false) return;
             byte CheckSum = 0;
             byte[] Buffer;
             Buffer = new byte[10];
-            Buffer[0] = (byte)0x4a;
+            if (ProtocolType == 0)
+            {
+                if (!BlinkInitialCode)
+                {
+                    Buffer[0] = (byte)0x4a;
+                }
+                else
+                {
+                    Buffer[0] = (byte)0x4c;
+                }
+                BlinkInitialCode = !BlinkInitialCode;
+            }
+            else if (ProtocolType == 1)
+            {
+                Buffer[0] = (byte)0x4a;
+            }
+            else if (ProtocolType == 2)
+            {
+                Buffer[0] = (byte)0x4c;
+            }
             Buffer[1] = (byte)0x43;
             Buffer[2] = (byte)0x3c;
             Buffer[3] = (byte)0;
@@ -950,12 +1105,17 @@ namespace JCFLIGHTGCS
             Buffer[5] = (byte)CheckSum;
             SerialPort.Write(Buffer, 0, 6);
         }
-
+        byte next = 0;
         private void timer2_Tick(object sender, EventArgs e)
         {
             try
             {
-                if (SerialPort.IsOpen == false) return;
+                if (SerialPort.IsOpen == false)
+                {
+                    BlinkInitialCode = false;
+                    ProtocolType = 0;
+                    return;
+                }
             }
             catch { }
 
@@ -1299,12 +1459,13 @@ namespace JCFLIGHTGCS
 
         private void button7_Click(object sender, EventArgs e)
         {
-            if (SerialPort.IsOpen == false) return;
+            if (!SerialPort.IsOpen) return;
+            SerialPort.DiscardInBuffer();
+            SerialPort.Close();
             PacketsError = 0;
             PacketsReceived = 0;
             comboBox7.Enabled = true;
             comboBox7.Text = "Selecione";
-            SerialPort.Close();
             if (SerialPort.IsOpen == false)
             {
                 pictureBox9.Image = Properties.Resources.Desconectado;
@@ -2141,7 +2302,7 @@ namespace JCFLIGHTGCS
                 label21.Text = "GPS-Hold";
                 label43.Text = "> Retenção de Posição com base no GPS e INS";
                 label24.Text = "Auto-Flip";
-                label48.Text ="> Realiza Flips Automáticos de 180° no Pitch e Roll";
+                label48.Text = "> Realiza Flips Automáticos de 180° no Pitch e Roll";
 
                 label92.Text = "Auto-Land";
                 label70.Text = "> Realiza um pouso automático";
@@ -2175,7 +2336,7 @@ namespace JCFLIGHTGCS
                 label48.Text = "> ";
 
                 label92.Text = "Auto-Círculo";
-                label70.Text = "> Mantém a posição e altitude do Aero em círculo";    
+                label70.Text = "> Mantém a posição e altitude do Aero em círculo";
                 comboBox1.Enabled = true;
                 comboBox2.Enabled = true;
                 comboBox3.Enabled = true;
@@ -2350,7 +2511,8 @@ namespace JCFLIGHTGCS
                 {
                     VectorPointer = 0;
                     CheckAllBuffers = 0;
-                    SendBuffer[VectorPointer++] = (byte)0x4a;
+                    if (ProtocolType == 1) SendBuffer[VectorPointer++] = (byte)0x4a;
+                    else if (ProtocolType == 2) SendBuffer[VectorPointer++] = (byte)0x4c;
                     SendBuffer[VectorPointer++] = (byte)0x43;
                     SendBuffer[VectorPointer++] = (byte)0x3c;
                     SendBuffer[VectorPointer++] = 22;
@@ -2385,7 +2547,8 @@ namespace JCFLIGHTGCS
                 {
                     VectorPointer = 0;
                     CheckAllBuffers = 0;
-                    SendBuffer[VectorPointer++] = (byte)0x4a;
+                    if (ProtocolType == 1) SendBuffer[VectorPointer++] = (byte)0x4a;
+                    else if (ProtocolType == 2) SendBuffer[VectorPointer++] = (byte)0x4c;
                     SendBuffer[VectorPointer++] = (byte)0x43;
                     SendBuffer[VectorPointer++] = (byte)0x3c;
                     SendBuffer[VectorPointer++] = 32;
