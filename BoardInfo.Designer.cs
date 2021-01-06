@@ -649,7 +649,7 @@
             this.descriptions1.BackColor = System.Drawing.Color.White;
             this.descriptions1.Location = new System.Drawing.Point(12, 7);
             this.descriptions1.Name = "descriptions1";
-            this.descriptions1.Size = new System.Drawing.Size(672, 51);
+            this.descriptions1.Size = new System.Drawing.Size(811, 51);
             this.descriptions1.TabIndex = 63;
             // 
             // BoardInfo
