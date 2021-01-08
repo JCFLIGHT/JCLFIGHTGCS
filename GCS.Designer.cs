@@ -28,7 +28,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GCS));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.button7 = new System.Windows.Forms.Button();
             this.label27 = new System.Windows.Forms.Label();
@@ -47,6 +47,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.MenuVertical = new System.Windows.Forms.Panel();
+            this.preArmNotification1 = new JCFLIGHTGCS.PreArmNotification();
             this.button19 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
             this.button18 = new System.Windows.Forms.Button();
@@ -68,6 +69,8 @@
             this.button14 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.circularProgressBar1 = new CircularProgressBar.CircularProgressBar();
+            this.HorizonIndicator = new JCFLIGHTGCS.AttitudeIndicatorInstrumentControl();
+            this.HeadingIndicator = new JCFLIGHTGCS.HeadingIndicatorInstrumentControl();
             this.panel16 = new System.Windows.Forms.Panel();
             this.label25 = new System.Windows.Forms.Label();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
@@ -316,6 +319,8 @@
             this.label73 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.circularProgressBar2 = new CircularProgressBar.CircularProgressBar();
+            this.HeadingIndicator2 = new JCFLIGHTGCS.HeadingIndicatorInstrumentControl();
+            this.HorizonIndicator2 = new JCFLIGHTGCS.AttitudeIndicatorInstrumentControl();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.label154 = new System.Windows.Forms.Label();
             this.groupBox29 = new System.Windows.Forms.GroupBox();
@@ -360,7 +365,6 @@
             this.numericUpDown13 = new System.Windows.Forms.NumericUpDown();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label103 = new System.Windows.Forms.Label();
-            this.label102 = new System.Windows.Forms.Label();
             this.label101 = new System.Windows.Forms.Label();
             this.groupBox18 = new System.Windows.Forms.GroupBox();
             this.metroLabel10 = new MetroFramework.Controls.MetroLabel();
@@ -421,11 +425,6 @@
             this.voeParaCáToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tirarFotoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.limparMapaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.HorizonIndicator = new JCFLIGHTGCS.AttitudeIndicatorInstrumentControl();
-            this.HeadingIndicator = new JCFLIGHTGCS.HeadingIndicatorInstrumentControl();
-            this.HeadingIndicator2 = new JCFLIGHTGCS.HeadingIndicatorInstrumentControl();
-            this.HorizonIndicator2 = new JCFLIGHTGCS.AttitudeIndicatorInstrumentControl();
-            this.preArmNotification1 = new JCFLIGHTGCS.PreArmNotification();
             this.BarraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconminimizar)).BeginInit();
@@ -788,6 +787,13 @@
             this.MenuVertical.Size = new System.Drawing.Size(250, 710);
             this.MenuVertical.TabIndex = 7;
             // 
+            // preArmNotification1
+            // 
+            this.preArmNotification1.Location = new System.Drawing.Point(2, 0);
+            this.preArmNotification1.Name = "preArmNotification1";
+            this.preArmNotification1.Size = new System.Drawing.Size(247, 123);
+            this.preArmNotification1.TabIndex = 9;
+            // 
             // button19
             // 
             this.button19.BackColor = System.Drawing.Color.YellowGreen;
@@ -1094,6 +1100,24 @@
             this.circularProgressBar1.TabIndex = 46;
             this.circularProgressBar1.TextMargin = new System.Windows.Forms.Padding(8, 8, 0, 0);
             this.circularProgressBar1.Value = 68;
+            // 
+            // HorizonIndicator
+            // 
+            this.HorizonIndicator.BackColor = System.Drawing.Color.White;
+            this.HorizonIndicator.Location = new System.Drawing.Point(33, 153);
+            this.HorizonIndicator.Name = "HorizonIndicator";
+            this.HorizonIndicator.Size = new System.Drawing.Size(300, 300);
+            this.HorizonIndicator.TabIndex = 3;
+            this.HorizonIndicator.Text = "HorizonIndicator";
+            // 
+            // HeadingIndicator
+            // 
+            this.HeadingIndicator.BackColor = System.Drawing.Color.White;
+            this.HeadingIndicator.Location = new System.Drawing.Point(382, 153);
+            this.HeadingIndicator.Name = "HeadingIndicator";
+            this.HeadingIndicator.Size = new System.Drawing.Size(300, 300);
+            this.HeadingIndicator.TabIndex = 4;
+            this.HeadingIndicator.Text = "HeadingIndicator";
             // 
             // panel16
             // 
@@ -2129,9 +2153,9 @@
             this.label50.AutoSize = true;
             this.label50.Location = new System.Drawing.Point(287, 332);
             this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(354, 20);
+            this.label50.Size = new System.Drawing.Size(251, 20);
             this.label50.TabIndex = 27;
-            this.label50.Text = "> Arma e Desarma a Controladora via Chave Aux";
+            this.label50.Text = "> Arma e Desarma a Controladora";
             // 
             // comboBox10
             // 
@@ -4250,6 +4274,24 @@
             this.circularProgressBar2.TextMargin = new System.Windows.Forms.Padding(8, 8, 0, 0);
             this.circularProgressBar2.Value = 68;
             // 
+            // HeadingIndicator2
+            // 
+            this.HeadingIndicator2.BackColor = System.Drawing.Color.White;
+            this.HeadingIndicator2.Location = new System.Drawing.Point(0, 186);
+            this.HeadingIndicator2.Name = "HeadingIndicator2";
+            this.HeadingIndicator2.Size = new System.Drawing.Size(157, 160);
+            this.HeadingIndicator2.TabIndex = 5;
+            this.HeadingIndicator2.Text = "HeadingIndicator2";
+            // 
+            // HorizonIndicator2
+            // 
+            this.HorizonIndicator2.BackColor = System.Drawing.Color.White;
+            this.HorizonIndicator2.Location = new System.Drawing.Point(0, 6);
+            this.HorizonIndicator2.Name = "HorizonIndicator2";
+            this.HorizonIndicator2.Size = new System.Drawing.Size(157, 158);
+            this.HorizonIndicator2.TabIndex = 4;
+            this.HorizonIndicator2.Text = "HorizonIndicator2";
+            // 
             // tabPage7
             // 
             this.tabPage7.Controls.Add(this.label154);
@@ -4275,7 +4317,6 @@
             this.tabPage7.Controls.Add(this.groupBox19);
             this.tabPage7.Controls.Add(this.linkLabel1);
             this.tabPage7.Controls.Add(this.label103);
-            this.tabPage7.Controls.Add(this.label102);
             this.tabPage7.Controls.Add(this.label101);
             this.tabPage7.Controls.Add(this.groupBox18);
             this.tabPage7.Controls.Add(this.groupBox17);
@@ -4399,18 +4440,18 @@
             this.label112.AutoSize = true;
             this.label112.Location = new System.Drawing.Point(212, 306);
             this.label112.Name = "label112";
-            this.label112.Size = new System.Drawing.Size(330, 13);
+            this.label112.Size = new System.Drawing.Size(232, 13);
             this.label112.TabIndex = 34;
-            this.label112.Text = "(NÃO MEXA AQUI SE VOCÊ ESTIVER USANDO QUAD OU HEXA)";
+            this.label112.Text = "(1500 POR PADRÃO PARA MULTIROTORES)";
             // 
             // label111
             // 
             this.label111.AutoSize = true;
             this.label111.Location = new System.Drawing.Point(212, 294);
             this.label111.Name = "label111";
-            this.label111.Size = new System.Drawing.Size(427, 13);
+            this.label111.Size = new System.Drawing.Size(317, 13);
             this.label111.TabIndex = 33;
-            this.label111.Text = "(INICIA A ATENUAÇÃO A PARTIR DO VALOR DEFINIDO AQUI)  (1500 POR PADRÃO)";
+            this.label111.Text = "(INICIA A ATENUAÇÃO A PARTIR DO VALOR DEFINIDO AQUI)";
             // 
             // label110
             // 
@@ -4740,7 +4781,7 @@
             // 
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel1.Location = new System.Drawing.Point(211, 426);
+            this.linkLabel1.Location = new System.Drawing.Point(212, 426);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(294, 13);
             this.linkLabel1.TabIndex = 18;
@@ -4751,20 +4792,11 @@
             // label103
             // 
             this.label103.AutoSize = true;
-            this.label103.Location = new System.Drawing.Point(211, 413);
+            this.label103.Location = new System.Drawing.Point(212, 413);
             this.label103.Name = "label103";
             this.label103.Size = new System.Drawing.Size(371, 13);
             this.label103.TabIndex = 17;
             this.label103.Text = "(VALIDO APENAS PARA OS EIXOS PITCH E ROLL / 40HZ POR PADRÃO)";
-            // 
-            // label102
-            // 
-            this.label102.AutoSize = true;
-            this.label102.Location = new System.Drawing.Point(211, 400);
-            this.label102.Name = "label102";
-            this.label102.Size = new System.Drawing.Size(417, 13);
-            this.label102.TabIndex = 16;
-            this.label102.Text = "(0 (ZERO) É A MESMA COISA QUE SEM FILTRO NO TERMO DERIVATIVO DO PID)";
             // 
             // label101
             // 
@@ -5327,8 +5359,8 @@
             // Parametro
             // 
             this.Parametro.DataPropertyName = "Nenhum";
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Parametro.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Parametro.DefaultCellStyle = dataGridViewCellStyle3;
             this.Parametro.HeaderText = "Parâmetro";
             this.Parametro.Name = "Parametro";
             this.Parametro.ReadOnly = true;
@@ -5435,49 +5467,6 @@
             this.limparMapaToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.limparMapaToolStripMenuItem.Text = "Limpar mapa";
             this.limparMapaToolStripMenuItem.Click += new System.EventHandler(this.limparMapaToolStripMenuItem_Click);
-            // 
-            // HorizonIndicator
-            // 
-            this.HorizonIndicator.BackColor = System.Drawing.Color.White;
-            this.HorizonIndicator.Location = new System.Drawing.Point(33, 153);
-            this.HorizonIndicator.Name = "HorizonIndicator";
-            this.HorizonIndicator.Size = new System.Drawing.Size(300, 300);
-            this.HorizonIndicator.TabIndex = 3;
-            this.HorizonIndicator.Text = "HorizonIndicator";
-            // 
-            // HeadingIndicator
-            // 
-            this.HeadingIndicator.BackColor = System.Drawing.Color.White;
-            this.HeadingIndicator.Location = new System.Drawing.Point(382, 153);
-            this.HeadingIndicator.Name = "HeadingIndicator";
-            this.HeadingIndicator.Size = new System.Drawing.Size(300, 300);
-            this.HeadingIndicator.TabIndex = 4;
-            this.HeadingIndicator.Text = "HeadingIndicator";
-            // 
-            // HeadingIndicator2
-            // 
-            this.HeadingIndicator2.BackColor = System.Drawing.Color.White;
-            this.HeadingIndicator2.Location = new System.Drawing.Point(0, 186);
-            this.HeadingIndicator2.Name = "HeadingIndicator2";
-            this.HeadingIndicator2.Size = new System.Drawing.Size(157, 160);
-            this.HeadingIndicator2.TabIndex = 5;
-            this.HeadingIndicator2.Text = "HeadingIndicator2";
-            // 
-            // HorizonIndicator2
-            // 
-            this.HorizonIndicator2.BackColor = System.Drawing.Color.White;
-            this.HorizonIndicator2.Location = new System.Drawing.Point(0, 6);
-            this.HorizonIndicator2.Name = "HorizonIndicator2";
-            this.HorizonIndicator2.Size = new System.Drawing.Size(157, 158);
-            this.HorizonIndicator2.TabIndex = 4;
-            this.HorizonIndicator2.Text = "HorizonIndicator2";
-            // 
-            // preArmNotification1
-            // 
-            this.preArmNotification1.Location = new System.Drawing.Point(2, 0);
-            this.preArmNotification1.Name = "preArmNotification1";
-            this.preArmNotification1.Size = new System.Drawing.Size(247, 123);
-            this.preArmNotification1.TabIndex = 9;
             // 
             // GCS
             // 
@@ -5896,7 +5885,6 @@
         private System.Windows.Forms.Button button16;
         private System.Windows.Forms.Label label100;
         private System.Windows.Forms.Label label99;
-        private System.Windows.Forms.Label label102;
         private System.Windows.Forms.Label label101;
         private System.Windows.Forms.GroupBox groupBox18;
         private MetroFramework.Controls.MetroLabel metroLabel10;

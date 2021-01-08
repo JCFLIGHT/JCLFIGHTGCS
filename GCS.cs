@@ -625,7 +625,7 @@ namespace JCFLIGHTGCS
                 switch (Read_State)
                 {
                     case 0:
-                        if (CheckState == 0x4a) //AVR E STM32
+                        if (CheckState == 0x4a)
                         {
                             Read_State = 1;
                         }
@@ -1000,7 +1000,19 @@ namespace JCFLIGHTGCS
             }
 
             if (GetString1 != null)
+            {
                 GetValues.GetPlatformName = GetString1[0];
+                if (GetValues.GetPlatformName == "AVR")
+                {
+                    numericUpDown16.Enabled = false;
+                    numericUpDown17.Enabled = false;
+                }
+                else
+                {
+                    numericUpDown16.Enabled = true;
+                    numericUpDown17.Enabled = true;
+                }
+            }
 
             if (GetString2 != null)
                 GetValues.GetFirwareName = GetString2[0];
@@ -2154,7 +2166,6 @@ namespace JCFLIGHTGCS
                 label43.Text = "> Retenção de Posição com base no GPS e INS";
                 label24.Text = "Auto-Flip";
                 label48.Text = "> Realiza Flips Automáticos de 180° no Pitch e Roll";
-
                 label92.Text = "Auto-Land";
                 label70.Text = "> Realiza um pouso automático";
                 comboBox1.Enabled = true;
@@ -2184,8 +2195,7 @@ namespace JCFLIGHTGCS
                 label21.Text = "Cruise";
                 label43.Text = "> Mantém a posição e altitude do Aero em linha reta";
                 label24.Text = "Turn-Coord.";
-                label48.Text = "> ";
-
+                label48.Text = "> Giro em torno do proprio eixo em relação ao solo";
                 label92.Text = "Auto-Círculo";
                 label70.Text = "> Mantém a posição e altitude do Aero em círculo";
                 comboBox1.Enabled = true;
@@ -2214,7 +2224,6 @@ namespace JCFLIGHTGCS
                 label42.Text = "> Retenção de Altitude com base no Barômetro e INS";
                 label21.Text = "GPS-Hold";
                 label43.Text = "> Retenção de Posição com base no GPS e INS";
-
                 label92.Text = "Auto-Land";
                 label70.Text = "> Realiza um pouso automático";
                 comboBox1.Enabled = false;
