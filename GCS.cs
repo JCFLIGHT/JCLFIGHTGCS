@@ -191,7 +191,6 @@ namespace JCFLIGHTGCS
 
         bool ItsSafeToUpdate = true;
         bool ToogleState = false;
-        bool NoticeLarger = true;
 
         static int PacketsError = 0;
         static int PacketsReceived = 0;
@@ -773,7 +772,7 @@ namespace JCFLIGHTGCS
                     ArmDisarmGuard = (byte)InBuffer[ptr++];
                     AutoLandGuard = (byte)InBuffer[ptr++];
                     SafeBtnGuard = (byte)InBuffer[ptr++];
-                    AirSpeedGuard = (byte)InBuffer[ptr++];
+                    GetValues.AirSpeedEnabled = AirSpeedGuard = (byte)InBuffer[ptr++];
                     break;
 
                 case 9:
@@ -978,8 +977,6 @@ namespace JCFLIGHTGCS
                     Serial_Write_To_FC(8);
                     Serial_Write_To_FC(9);
                     Serial_Write_To_FC(10);
-                    label69.Text = "GCS RSSI:" + Convert.ToString(CalculateAverage(PacketsReceived, PacketsError)) + "%";
-                    if (GetString7 != null) GetValues.PreArmMessage = GetString7[0];
                     UpdateAccImageStatus();
                     GetBuildOfBoard();
                 }
@@ -1004,11 +1001,15 @@ namespace JCFLIGHTGCS
                 GetValues.GetPlatformName = GetString1[0];
                 if (GetValues.GetPlatformName == "AVR")
                 {
+                    numericUpDown13.Enabled = false;
+                    numericUpDown15.Enabled = false;
                     numericUpDown16.Enabled = false;
                     numericUpDown17.Enabled = false;
                 }
                 else
                 {
+                    numericUpDown13.Enabled = true;
+                    numericUpDown15.Enabled = true;
                     numericUpDown16.Enabled = true;
                     numericUpDown17.Enabled = true;
                 }
@@ -1028,6 +1029,9 @@ namespace JCFLIGHTGCS
 
             if (GetString6 != null)
                 GetValues.GetBuildTime = GetString6[0];
+
+            if (GetString7 != null)
+                GetValues.PreArmMessage = GetString7[0];
         }
 
         private static double CalculateAverage(int PR, int PE)
@@ -1280,15 +1284,42 @@ namespace JCFLIGHTGCS
                 label19.Text = "Núm.Sats:" + Convert.ToString(GPS_NumSat);
             }
             ProgressBarControl(ThrottleData, YawData, PitchData, RollData, Aux1Data, Aux2Data, Aux3Data,
-                   Aux4Data, Aux5Data, Aux6Data, Aux7Data, Aux8Data);
+                Aux4Data, Aux5Data, Aux6Data, Aux7Data, Aux8Data);
             ProgressBarControl2(ThrottleActualData, YawActualData, PitchActualData, RollActualData, Aux1ActualData, Aux2ActualData, Aux3ActualData,
                    Aux4ActualData, Aux5ActualData, Aux6ActualData, Aux7ActualData, Aux8ActualData);
             ProgressBarControl3(ThrottleAttitudeData, YawAttitudeData, PitchAttitudeData, RollAttitudeData);
-            if (ReadRoll > 1200) HorizonIndicator.SetAttitudeIndicatorParameters(ReadPitch / 10, 0);
-            else HorizonIndicator.SetAttitudeIndicatorParameters(ReadPitch / 10, -ReadRoll / 10);
+
+            if (ReadRoll > 1200)
+            {
+                hud1.roll = 0;
+                hud1.pitch = 0;
+            }
+            else
+            {
+                hud1.roll = -ReadPitch / 10;
+                hud1.pitch = -ReadRoll / 10;
+            }
+            hud1.status = CommandArmDisarm;
+            hud1.failsafe = FailSafeDetect == 1 ? true : false;
+            hud1.imuhealty = ReadRoll > 1200 && serialPort1.IsOpen ? true : false;
+            hud1.linkqualitygcs = (float)CalculateAverage(PacketsReceived, PacketsError);
+
+            if (ReadRoll > 1200)
+            {
+                hudsmall1.roll = 0;
+                hudsmall1.pitch = 0;
+            }
+            else
+            {
+                hudsmall1.roll = -ReadPitch / 10;
+                hudsmall1.pitch = -ReadRoll / 10;
+            }
+            hudsmall1.status = CommandArmDisarm;
+            hudsmall1.failsafe = FailSafeDetect == 1 ? true : false;
+            hudsmall1.imuhealty = ReadRoll > 1200 && serialPort1.IsOpen ? true : false;
+            hudsmall1.linkqualitygcs = (float)CalculateAverage(PacketsReceived, PacketsError);
+
             HeadingIndicator.SetHeadingIndicatorParameters(ReadCompass, SmallCompass);
-            if (ReadRoll > 1200) HorizonIndicator2.SetAttitudeIndicatorParameters(-ReadPitch / 10, 0);
-            else HorizonIndicator2.SetAttitudeIndicatorParameters(ReadPitch / 10, -ReadRoll / 10);
             HeadingIndicator2.SetHeadingIndicatorParameters(ReadCompass, SmallCompass);
             circularProgressBar1.Text = Convert.ToString(BattVoltage);
             circularProgressBar2.Text = Convert.ToString(BattVoltage);
@@ -1446,7 +1477,6 @@ namespace JCFLIGHTGCS
         private void button1_Click(object sender, EventArgs e)
         {
             SmallCompass = false;
-            NoticeLarger = true;
             if (SerialOpen == true)
             {
                 Serial_Write_To_FC(14);
@@ -1571,7 +1601,6 @@ namespace JCFLIGHTGCS
         private void button6_Click(object sender, EventArgs e)
         {
             SmallCompass = true;
-            NoticeLarger = false;
             if (!SerialPort.IsOpen)
                 MessageRead = false;
             else
@@ -1859,7 +1888,6 @@ namespace JCFLIGHTGCS
                     {
                         Serial_Write_To_FC(28);
                         SmallCompass = false;
-                        NoticeLarger = true;
                         SerialOpen = false;
                         SerialPort.Close();
                         Reboot = true;
@@ -2454,95 +2482,15 @@ namespace JCFLIGHTGCS
         {
             if (SerialPort.IsOpen == false)
             {
-                HorizonIndicator.SetNoticeInArtificialHorizon(0, false, false);
-                HorizonIndicator2.SetNoticeInArtificialHorizon(0, false, false);
                 return;
             }
             if (tabControl1.SelectedIndex == 0)
             {
-                NoticeLarger = true;
                 SmallCompass = false;
             }
             if (tabControl1.SelectedIndex == 5)
             {
-                NoticeLarger = false;
                 SmallCompass = true;
-            }
-            if (!ToogleState)
-            {
-                if (ReadRoll > 1200)
-                {
-                    HorizonIndicator.SetNoticeInArtificialHorizon(4, NoticeLarger, true);
-                    HorizonIndicator2.SetNoticeInArtificialHorizon(4, NoticeLarger, true);
-                }
-                else
-                {
-                    if ((ReadRoll > 250 || ReadRoll < (-250)) || (ReadPitch > 250 || ReadPitch < (-250)))
-                    {
-                        HorizonIndicator.SetNoticeInArtificialHorizon(3, NoticeLarger, true);
-                        HorizonIndicator2.SetNoticeInArtificialHorizon(3, NoticeLarger, true);
-                    }
-                    else
-                    {
-                        if (FailSafeDetect == 1)
-                        {
-                            HorizonIndicator.SetNoticeInArtificialHorizon(2, NoticeLarger, true);
-                            HorizonIndicator2.SetNoticeInArtificialHorizon(2, NoticeLarger, true);
-                        }
-                        else
-                        {
-                            if (CommandArmDisarm == 0)
-                            {
-                                HorizonIndicator.SetNoticeInArtificialHorizon(0, NoticeLarger, true);
-                                HorizonIndicator2.SetNoticeInArtificialHorizon(0, NoticeLarger, true);
-                            }
-                            else
-                            {
-                                HorizonIndicator.SetNoticeInArtificialHorizon(1, NoticeLarger, true);
-                                HorizonIndicator2.SetNoticeInArtificialHorizon(1, NoticeLarger, true);
-                            }
-                        }
-                    }
-                }
-                ToogleState = true;
-            }
-            else
-            {
-                if (ReadRoll > 1200)
-                {
-                    HorizonIndicator.SetNoticeInArtificialHorizon(4, NoticeLarger, false);
-                    HorizonIndicator2.SetNoticeInArtificialHorizon(4, NoticeLarger, false);
-                }
-                else
-                {
-                    if ((ReadRoll > 250 || ReadRoll < (-250)) || (ReadPitch > 250 || ReadPitch < (-250)))
-                    {
-                        HorizonIndicator.SetNoticeInArtificialHorizon(3, NoticeLarger, false);
-                        HorizonIndicator2.SetNoticeInArtificialHorizon(3, NoticeLarger, false);
-                    }
-                    else
-                    {
-                        if (FailSafeDetect == 1)
-                        {
-                            HorizonIndicator.SetNoticeInArtificialHorizon(2, NoticeLarger, false);
-                            HorizonIndicator2.SetNoticeInArtificialHorizon(2, NoticeLarger, false);
-                        }
-                        else
-                        {
-                            if (CommandArmDisarm == 0)
-                            {
-                                HorizonIndicator.SetNoticeInArtificialHorizon(0, NoticeLarger, false);
-                                HorizonIndicator2.SetNoticeInArtificialHorizon(0, NoticeLarger, false);
-                            }
-                            else
-                            {
-                                HorizonIndicator.SetNoticeInArtificialHorizon(1, NoticeLarger, false);
-                                HorizonIndicator2.SetNoticeInArtificialHorizon(1, NoticeLarger, false);
-                            }
-                        }
-                    }
-                }
-                ToogleState = false;
             }
         }
 

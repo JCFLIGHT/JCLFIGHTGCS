@@ -28,7 +28,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GCS));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.button7 = new System.Windows.Forms.Button();
             this.label27 = new System.Windows.Forms.Label();
@@ -59,17 +59,16 @@
             this.RealTimer = new System.Windows.Forms.Timer(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.hud1 = new JCFLIGHTGCS.HUD();
             this.label151 = new System.Windows.Forms.Label();
             this.label150 = new System.Windows.Forms.Label();
             this.metroProgressBar29 = new MetroFramework.Controls.MetroProgressBar();
-            this.label69 = new System.Windows.Forms.Label();
             this.label95 = new System.Windows.Forms.Label();
             this.label94 = new System.Windows.Forms.Label();
             this.button15 = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.circularProgressBar1 = new CircularProgressBar.CircularProgressBar();
-            this.HorizonIndicator = new JCFLIGHTGCS.AttitudeIndicatorInstrumentControl();
             this.HeadingIndicator = new JCFLIGHTGCS.HeadingIndicatorInstrumentControl();
             this.panel16 = new System.Windows.Forms.Panel();
             this.label25 = new System.Windows.Forms.Label();
@@ -294,6 +293,7 @@
             this.metroProgressBar1 = new MetroFramework.Controls.MetroProgressBar();
             this.metroProgressBar11 = new MetroFramework.Controls.MetroProgressBar();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.hudsmall1 = new JCFLIGHTGCS.HUDSMALL();
             this.label116 = new System.Windows.Forms.Label();
             this.label117 = new System.Windows.Forms.Label();
             this.label91 = new System.Windows.Forms.Label();
@@ -320,7 +320,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.circularProgressBar2 = new CircularProgressBar.CircularProgressBar();
             this.HeadingIndicator2 = new JCFLIGHTGCS.HeadingIndicatorInstrumentControl();
-            this.HorizonIndicator2 = new JCFLIGHTGCS.AttitudeIndicatorInstrumentControl();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.label154 = new System.Windows.Forms.Label();
             this.groupBox29 = new System.Windows.Forms.GroupBox();
@@ -943,17 +942,16 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.hud1);
             this.tabPage1.Controls.Add(this.label151);
             this.tabPage1.Controls.Add(this.label150);
             this.tabPage1.Controls.Add(this.metroProgressBar29);
-            this.tabPage1.Controls.Add(this.label69);
             this.tabPage1.Controls.Add(this.label95);
             this.tabPage1.Controls.Add(this.label94);
             this.tabPage1.Controls.Add(this.button15);
             this.tabPage1.Controls.Add(this.button14);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.circularProgressBar1);
-            this.tabPage1.Controls.Add(this.HorizonIndicator);
             this.tabPage1.Controls.Add(this.HeadingIndicator);
             this.tabPage1.Controls.Add(this.panel16);
             this.tabPage1.Controls.Add(this.panel3);
@@ -971,6 +969,28 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Resumo";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // hud1
+            // 
+            this.hud1.bgimage = null;
+            this.hud1.datetime = new System.DateTime(((long)(0)));
+            this.hud1.failsafe = false;
+            this.hud1.hudcolor = System.Drawing.Color.White;
+            this.hud1.imuhealty = false;
+            this.hud1.linkqualitygcs = 0F;
+            this.hud1.Location = new System.Drawing.Point(39, 153);
+            this.hud1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.hud1.messagetime = new System.DateTime(((long)(0)));
+            this.hud1.Name = "hud1";
+            this.hud1.pitch = 0F;
+            this.hud1.roll = 0F;
+            this.hud1.Russian = false;
+            this.hud1.Size = new System.Drawing.Size(300, 300);
+            this.hud1.skyColor1 = System.Drawing.Color.Blue;
+            this.hud1.skyColor2 = System.Drawing.Color.LightBlue;
+            this.hud1.status = 0;
+            this.hud1.streamjpg = ((System.IO.MemoryStream)(resources.GetObject("hud1.streamjpg")));
+            this.hud1.TabIndex = 54;
             // 
             // label151
             // 
@@ -1000,16 +1020,6 @@
             this.metroProgressBar29.Style = MetroFramework.MetroColorStyle.Red;
             this.metroProgressBar29.TabIndex = 51;
             this.metroProgressBar29.Tag = "";
-            // 
-            // label69
-            // 
-            this.label69.AutoSize = true;
-            this.label69.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label69.Location = new System.Drawing.Point(46, 474);
-            this.label69.Name = "label69";
-            this.label69.Size = new System.Drawing.Size(114, 20);
-            this.label69.TabIndex = 50;
-            this.label69.Text = "GCS RSSI:0%";
             // 
             // label95
             // 
@@ -1100,15 +1110,6 @@
             this.circularProgressBar1.TabIndex = 46;
             this.circularProgressBar1.TextMargin = new System.Windows.Forms.Padding(8, 8, 0, 0);
             this.circularProgressBar1.Value = 68;
-            // 
-            // HorizonIndicator
-            // 
-            this.HorizonIndicator.BackColor = System.Drawing.Color.White;
-            this.HorizonIndicator.Location = new System.Drawing.Point(33, 153);
-            this.HorizonIndicator.Name = "HorizonIndicator";
-            this.HorizonIndicator.Size = new System.Drawing.Size(300, 300);
-            this.HorizonIndicator.TabIndex = 3;
-            this.HorizonIndicator.Text = "HorizonIndicator";
             // 
             // HeadingIndicator
             // 
@@ -3947,6 +3948,7 @@
             // 
             // tabPage6
             // 
+            this.tabPage6.Controls.Add(this.hudsmall1);
             this.tabPage6.Controls.Add(this.label116);
             this.tabPage6.Controls.Add(this.label117);
             this.tabPage6.Controls.Add(this.label91);
@@ -3973,7 +3975,6 @@
             this.tabPage6.Controls.Add(this.label3);
             this.tabPage6.Controls.Add(this.circularProgressBar2);
             this.tabPage6.Controls.Add(this.HeadingIndicator2);
-            this.tabPage6.Controls.Add(this.HorizonIndicator2);
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
@@ -3981,6 +3982,27 @@
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Voo";
             this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // hudsmall1
+            // 
+            this.hudsmall1.bgimage = null;
+            this.hudsmall1.datetime = new System.DateTime(((long)(0)));
+            this.hudsmall1.failsafe = false;
+            this.hudsmall1.hudcolor = System.Drawing.Color.White;
+            this.hudsmall1.imuhealty = false;
+            this.hudsmall1.linkqualitygcs = 0F;
+            this.hudsmall1.Location = new System.Drawing.Point(0, 6);
+            this.hudsmall1.messagetime = new System.DateTime(((long)(0)));
+            this.hudsmall1.Name = "hudsmall1";
+            this.hudsmall1.pitch = 0F;
+            this.hudsmall1.roll = 0F;
+            this.hudsmall1.Russian = false;
+            this.hudsmall1.Size = new System.Drawing.Size(157, 158);
+            this.hudsmall1.skyColor1 = System.Drawing.Color.Blue;
+            this.hudsmall1.skyColor2 = System.Drawing.Color.LightBlue;
+            this.hudsmall1.status = 0;
+            this.hudsmall1.streamjpg = ((System.IO.MemoryStream)(resources.GetObject("hudsmall1.streamjpg")));
+            this.hudsmall1.TabIndex = 73;
             // 
             // label116
             // 
@@ -4282,15 +4304,6 @@
             this.HeadingIndicator2.Size = new System.Drawing.Size(157, 160);
             this.HeadingIndicator2.TabIndex = 5;
             this.HeadingIndicator2.Text = "HeadingIndicator2";
-            // 
-            // HorizonIndicator2
-            // 
-            this.HorizonIndicator2.BackColor = System.Drawing.Color.White;
-            this.HorizonIndicator2.Location = new System.Drawing.Point(0, 6);
-            this.HorizonIndicator2.Name = "HorizonIndicator2";
-            this.HorizonIndicator2.Size = new System.Drawing.Size(157, 158);
-            this.HorizonIndicator2.TabIndex = 4;
-            this.HorizonIndicator2.Text = "HorizonIndicator2";
             // 
             // tabPage7
             // 
@@ -5359,8 +5372,8 @@
             // Parametro
             // 
             this.Parametro.DataPropertyName = "Nenhum";
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Parametro.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Parametro.DefaultCellStyle = dataGridViewCellStyle1;
             this.Parametro.HeaderText = "Parâmetro";
             this.Parametro.Name = "Parametro";
             this.Parametro.ReadOnly = true;
@@ -5661,7 +5674,6 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Label label2;
         private CircularProgressBar.CircularProgressBar circularProgressBar1;
-        private AttitudeIndicatorInstrumentControl HorizonIndicator;
         private HeadingIndicatorInstrumentControl HeadingIndicator;
         private System.Windows.Forms.Panel panel16;
         private System.Windows.Forms.Label label25;
@@ -5813,7 +5825,6 @@
         private System.Windows.Forms.Label label3;
         private CircularProgressBar.CircularProgressBar circularProgressBar2;
         private HeadingIndicatorInstrumentControl HeadingIndicator2;
-        private AttitudeIndicatorInstrumentControl HorizonIndicator2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label79;
         private System.Windows.Forms.Label label80;
@@ -5938,7 +5949,6 @@
         private System.Windows.Forms.Label label113;
         private System.Windows.Forms.Label label114;
         private System.Windows.Forms.Timer timer3;
-        private System.Windows.Forms.Label label69;
         private System.Windows.Forms.PictureBox pictureBox22;
         private System.Windows.Forms.Label label70;
         private System.Windows.Forms.ComboBox comboBox23;
@@ -6032,6 +6042,8 @@
         private System.Windows.Forms.NumericUpDown numericUpDown21;
         private MetroFramework.Controls.MetroLabel metroLabel27;
         private PreArmNotification preArmNotification1;
+        private HUD hud1;
+        private HUDSMALL hudsmall1;
     }
 }
 

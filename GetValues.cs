@@ -44,5 +44,6 @@ namespace JCFLIGHTGCS
         public static int ReadI2CError = 0;
         public static int ReadGroundSpeed = 0;
         public static int ReadGroundCourse = 0;
+        public static int AirSpeedEnabled = 0;
     }
 }
