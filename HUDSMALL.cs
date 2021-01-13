@@ -1097,8 +1097,10 @@ namespace JCFLIGHTGCS
                     speed = GetValues.ReadGroundSpeed;
                 }
 
+                speed /= 27.778f;
+
                 graphicsObject.ResetTransform();
-                drawstring("Fuselagem Veloc:" + speed.ToString("0.0") + "m/s", font, fontsize + 1, _whiteBrush, 1, scrollbg.Bottom + 25);
+                drawstring("Fuselagem Veloc:" + speed.ToString("0.0") + "KM", font, fontsize + 1, _whiteBrush, 1, scrollbg.Bottom + 25);
 
                 if (float.IsNaN(_linkqualitygcs)) _linkqualitygcs = 0;
                 if (_linkqualitygcs >= 10 && _linkqualitygcs < 100)

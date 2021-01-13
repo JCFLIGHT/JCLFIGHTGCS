@@ -168,6 +168,9 @@ namespace JCFLIGHTGCS
         byte AutoLandGuard = 0;
         byte SafeBtnGuard = 0;
         byte AirSpeedGuard = 0;
+        int AccRollAdjustGuard = 0;
+        int AccPitchAdjustGuard = 0;
+        int AccYawAdjustGuard = 0;
         int DevicesSum = 0;
 
         double AmperInMah = 0;
@@ -190,7 +193,6 @@ namespace JCFLIGHTGCS
         Int32 Crosstrack = 0;
 
         bool ItsSafeToUpdate = true;
-        bool ToogleState = false;
 
         static int PacketsError = 0;
         static int PacketsReceived = 0;
@@ -614,10 +616,11 @@ namespace JCFLIGHTGCS
 
             while (SerialPort.BytesToRead > 0)
             {
-                if (SerialPort.IsOpen == false)
+                try
                 {
-                    return;
+                    if (SerialPort.IsOpen == false) break;
                 }
+                catch { }
 
                 CheckState = (byte)SerialPort.ReadByte();
 
@@ -773,6 +776,9 @@ namespace JCFLIGHTGCS
                     AutoLandGuard = (byte)InBuffer[ptr++];
                     SafeBtnGuard = (byte)InBuffer[ptr++];
                     GetValues.AirSpeedEnabled = AirSpeedGuard = (byte)InBuffer[ptr++];
+                    AccRollAdjustGuard = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    AccPitchAdjustGuard = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    AccYawAdjustGuard = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     break;
 
                 case 9:
@@ -943,7 +949,6 @@ namespace JCFLIGHTGCS
 
         private void Serial_Write_To_FC(int Command)
         {
-            if (SerialPort.IsOpen == false) return;
             byte CheckSum = 0;
             byte[] Buffer;
             Buffer = new byte[10];
@@ -1321,6 +1326,7 @@ namespace JCFLIGHTGCS
 
             HeadingIndicator.SetHeadingIndicatorParameters(ReadCompass, SmallCompass);
             HeadingIndicator2.SetHeadingIndicatorParameters(ReadCompass, SmallCompass);
+
             circularProgressBar1.Text = Convert.ToString(BattVoltage);
             circularProgressBar2.Text = Convert.ToString(BattVoltage);
             BattPercentage = ConstrainByte(BattPercentage, 0, 100);
@@ -1522,6 +1528,9 @@ namespace JCFLIGHTGCS
                 comboBox19.SelectedIndex = RthAltitudeGuard;
                 comboBox24.SelectedIndex = SafeBtnGuard;
                 comboBox25.SelectedIndex = AirSpeedGuard;
+                numericUpDown22.Value = AccRollAdjustGuard;
+                numericUpDown23.Value = AccPitchAdjustGuard;
+                numericUpDown24.Value = AccYawAdjustGuard;
                 comboBox10.SelectedIndex = ArmDisarmGuard;
                 comboBox23.SelectedIndex = AutoLandGuard;
                 Serial_Write_To_FC(13);
@@ -1730,7 +1739,7 @@ namespace JCFLIGHTGCS
                     }
                     else
                     {
-                        label83.Location = new Point(173, 296);
+                        label83.Location = new Point(175, 296);
                         label83.Text = "AUTO-THR";
                     }
                     break;
@@ -1749,8 +1758,16 @@ namespace JCFLIGHTGCS
                     break;
 
                 case 4: //GPS-HOLD
-                    label83.Location = new Point(175, 296);
-                    label83.Text = "GPS-HOLD";
+                    if (FrameMode < 3 || FrameMode == 6 || FrameMode == 7)
+                    {
+                        label83.Location = new Point(175, 296);
+                        label83.Text = "GPS-HOLD";
+                    }
+                    else
+                    {
+                        label83.Location = new Point(184, 296);
+                        label83.Text = "CRUISE";
+                    }
                     break;
 
                 case 5: //IOC
@@ -1780,8 +1797,16 @@ namespace JCFLIGHTGCS
                     break;
 
                 case 11: //FLIP
-                    label83.Location = new Point(198, 296);
-                    label83.Text = "FLIP";
+                    if (FrameMode < 3 || FrameMode == 6 || FrameMode == 7)
+                    {
+                        label83.Location = new Point(198, 296);
+                        label83.Text = "FLIP";
+                    }
+                    else
+                    {
+                        label83.Location = new Point(162, 296);
+                        label83.Text = "TURN-COORD";
+                    }
                     break;
 
                 case 12: //AUTO
@@ -2069,15 +2094,6 @@ namespace JCFLIGHTGCS
 
         private void button13_Click(object sender, EventArgs e)
         {
-            if (PidAndFiltersCommunicationOpen) return;
-            if (SerialOpen == true)
-            {
-                Serial_Write_To_FC(14);
-                SerialOpen = false;
-            }
-
-            ItsSafeToUpdate = false;
-
             if (SerialPort.IsOpen == true)
             {
                 if (CommandArmDisarm == 1)
@@ -2085,7 +2101,16 @@ namespace JCFLIGHTGCS
                     MessageBox.Show("Não é possível acessar as configurações com a JCFLIGHT em Voo!");
                     return;
                 }
-
+            }
+            if (PidAndFiltersCommunicationOpen) return;
+            if (SerialOpen == true)
+            {
+                Serial_Write_To_FC(14);
+                SerialOpen = false;
+            }
+            ItsSafeToUpdate = false;
+            if (SerialPort.IsOpen == true)
+            {
                 numericUpDown19.Value = BreakPoint;
                 numericUpDown18.Value = TPAFactor;
                 comboBox20.SelectedIndex = GyroLPF;
@@ -2113,7 +2138,6 @@ namespace JCFLIGHTGCS
                 Serial_Write_To_FC(13);
                 PidAndFiltersCommunicationOpen = true;
             }
-
             SmallCompass = false;
             tabControl1.SelectTab(tabPage7);
         }
@@ -2327,6 +2351,9 @@ namespace JCFLIGHTGCS
                     numericUpDown15.Value = 60;
                     numericUpDown16.Value = 0;
                     numericUpDown17.Value = 0;
+                    numericUpDown22.Value = 0;
+                    numericUpDown23.Value = 0;
+                    numericUpDown24.Value = 0;
                     comboBox22.SelectedIndex = 0;
                 }
             }
@@ -2402,7 +2429,7 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)0x4a;
                     SendBuffer[VectorPointer++] = (byte)0x43;
                     SendBuffer[VectorPointer++] = (byte)0x3c;
-                    SendBuffer[VectorPointer++] = 22;
+                    SendBuffer[VectorPointer++] = 28;
                     SendBuffer[VectorPointer++] = (byte)15;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxFrame;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxPPM;
@@ -2426,6 +2453,12 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)ComboBoxAutoLand;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxSafeBtn;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxAirSpeed;
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown22.Value));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown22.Value) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown23.Value));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown23.Value) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown24.Value));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown24.Value) >> 8);
                     for (int i = 3; i < VectorPointer; i++) CheckAllBuffers ^= SendBuffer[i];
                     SendBuffer[VectorPointer++] = CheckAllBuffers;
                     SerialPort.Write(SendBuffer, 0, VectorPointer);
@@ -2610,18 +2643,6 @@ namespace JCFLIGHTGCS
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AHRS_Nearness";
             dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "uint8_t";
             dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor da 'agressividade' de correção do AHRS com base no acelerômetro";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Acc_Ajuste_Roll";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "int16_t";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor de ajuste positivo ou negativo no eixo Roll(X) do acelerômetro";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Acc_Ajuste_Pitch";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "int16_t";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor de ajuste positivo ou negativo no eixo Pitch(Y) do acelerômetro";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Acc_Ajuste_Yaw";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "int16_t";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor de ajuste positivo ou negativo no eixo Yaw(Z) do acelerômetro";
 
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Servos_Pulso_Minimo";
             dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "US";
