@@ -1301,8 +1301,8 @@ namespace JCFLIGHTGCS
             }
             else
             {
-                hud1.roll = -ReadPitch / 10;
-                hud1.pitch = -ReadRoll / 10;
+                hud1.roll = -ReadRoll / 10;
+                hud1.pitch = -ReadPitch / 10;
             }
             hud1.status = CommandArmDisarm;
             hud1.failsafe = FailSafeDetect == 1 ? true : false;
@@ -1316,8 +1316,8 @@ namespace JCFLIGHTGCS
             }
             else
             {
-                hudsmall1.roll = -ReadPitch / 10;
-                hudsmall1.pitch = -ReadRoll / 10;
+                hudsmall1.roll = -ReadRoll / 10;
+                hudsmall1.pitch = -ReadPitch / 10;
             }
             hudsmall1.status = CommandArmDisarm;
             hudsmall1.failsafe = FailSafeDetect == 1 ? true : false;
