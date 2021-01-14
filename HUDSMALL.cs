@@ -1136,7 +1136,7 @@ namespace JCFLIGHTGCS
                 }
                 else
                 {
-                    if ((this._roll > 25 || this._roll < (-25)) || (this._pitch > 25 || this._pitch < (-25)))
+                    if (this._roll > 35 || this._roll < (-35))
                     {
                         drawstring("Bank-Angle", font, fontsize + 5, (SolidBrush)Brushes.Red, -75, halfheight / -1);
                         statuslast = status;
