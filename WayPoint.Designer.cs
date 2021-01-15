@@ -271,6 +271,7 @@
             this.MyGMap.Zoom = 0D;
             this.MyGMap.OnMarkerEnter += new GMap.NET.WindowsForms.MarkerEnter(this.MyGmap_OnMarkerEnter);
             this.MyGMap.OnMarkerLeave += new GMap.NET.WindowsForms.MarkerLeave(this.MyGmap_OnMarkerLeave);
+            this.MyGMap.Load += new System.EventHandler(this.MyGMap_Load);
             this.MyGMap.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gmap_MouseClick);
             this.MyGMap.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MyGmap_MouseDown);
             this.MyGMap.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MyGmap_MouseMove);
@@ -2237,40 +2238,40 @@
             this.tirarFotoToolStripMenuItem,
             this.limparMapaToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 136);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(145, 114);
             // 
             // DecolarToolStripMenuItem
             // 
             this.DecolarToolStripMenuItem.Name = "DecolarToolStripMenuItem";
-            this.DecolarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.DecolarToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.DecolarToolStripMenuItem.Text = "Decolar";
             this.DecolarToolStripMenuItem.Click += new System.EventHandler(this.DecolarToolStripMenuItem_Click);
             // 
             // pousarAquiToolStripMenuItem
             // 
             this.pousarAquiToolStripMenuItem.Name = "pousarAquiToolStripMenuItem";
-            this.pousarAquiToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pousarAquiToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.pousarAquiToolStripMenuItem.Text = "Pousar aqui";
             this.pousarAquiToolStripMenuItem.Click += new System.EventHandler(this.pousarAquiToolStripMenuItem_Click);
             // 
             // voeParaCáToolStripMenuItem
             // 
             this.voeParaCáToolStripMenuItem.Name = "voeParaCáToolStripMenuItem";
-            this.voeParaCáToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.voeParaCáToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.voeParaCáToolStripMenuItem.Text = "Voe para cá";
             this.voeParaCáToolStripMenuItem.Click += new System.EventHandler(this.voeParaCáToolStripMenuItem_Click);
             // 
             // tirarFotoToolStripMenuItem
             // 
             this.tirarFotoToolStripMenuItem.Name = "tirarFotoToolStripMenuItem";
-            this.tirarFotoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.tirarFotoToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.tirarFotoToolStripMenuItem.Text = "Tirar foto";
             this.tirarFotoToolStripMenuItem.Click += new System.EventHandler(this.tirarFotoToolStripMenuItem_Click);
             // 
             // limparMapaToolStripMenuItem
             // 
             this.limparMapaToolStripMenuItem.Name = "limparMapaToolStripMenuItem";
-            this.limparMapaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.limparMapaToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.limparMapaToolStripMenuItem.Text = "Limpar mapa";
             this.limparMapaToolStripMenuItem.Click += new System.EventHandler(this.limparMapaToolStripMenuItem_Click);
             // 
@@ -2314,7 +2315,6 @@
             this.Controls.Add(this.MyGMap);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
             this.Name = "WayPoint";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "JCFLIGHT WAYPOINT";

@@ -581,9 +581,36 @@ namespace JCFLIGHTGCS
 
                 case 7:
                     ptr = 0;
-                    ReadPitch = BitConverter.ToInt16(InBuffer, ptr); ptr += 4;
+                    ReadPitch = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    //ReadRoll = BitConverter.ToInt16(InBuffer, ptr);
+                    ptr += 2;
                     Heading = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    ptr += 25;
+                    //DevicesSum = (byte)InBuffer[ptr++];
+                    ptr += 1;
+                    //ThrottleData = BitConverter.ToInt16(InBuffer, ptr);
+                    ptr += 2;
+                    //YawData = BitConverter.ToInt16(InBuffer, ptr); 
+                    ptr += 2;
+                    //PitchData = BitConverter.ToInt16(InBuffer, ptr);
+                    ptr += 2;
+                    //RollData = BitConverter.ToInt16(InBuffer, ptr); 
+                    ptr += 2;
+                    //Aux1Data = BitConverter.ToInt16(InBuffer, ptr);
+                    ptr += 2;
+                    //Aux2Data = BitConverter.ToInt16(InBuffer, ptr);
+                    ptr += 2;
+                    //Aux3Data = BitConverter.ToInt16(InBuffer, ptr);
+                    ptr += 2;
+                    //Aux4Data = BitConverter.ToInt16(InBuffer, ptr); 
+                    ptr += 2;
+                    //Aux5Data = BitConverter.ToInt16(InBuffer, ptr);
+                    ptr += 2;
+                    //Aux6Data = BitConverter.ToInt16(InBuffer, ptr);
+                    ptr += 2;
+                    //Aux7Data = BitConverter.ToInt16(InBuffer, ptr); 
+                    ptr += 2;
+                    //Aux8Data = BitConverter.ToInt16(InBuffer, ptr);
+                    ptr += 2;
                     NumSat = (byte)InBuffer[ptr++];
                     GPSLAT = Convert.ToString(BitConverter.ToInt32(InBuffer, ptr)); ptr += 4;
                     GPSLONG = Convert.ToString(BitConverter.ToInt32(InBuffer, ptr)); ptr += 4;
@@ -597,7 +624,7 @@ namespace JCFLIGHTGCS
                     ptr += 1;
                     ArmDisarm = (byte)InBuffer[ptr++];
                     HDOP = Convert.ToDouble(BitConverter.ToInt16(InBuffer, ptr)) / 100; ptr += 2;
-                    ptr += 7;
+                    ptr += 9;
                     GmapFrameMode = (byte)InBuffer[ptr++];
                     ptr += 6;
                     CoG = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
@@ -1081,8 +1108,8 @@ namespace JCFLIGHTGCS
 
         private void timer3_Tick(object sender, EventArgs e)
         {
-            GPS_Position.Lat = double.Parse(GPSLAT) / 10000000;
-            GPS_Position.Lng = double.Parse(GPSLONG) / 10000000;
+            GPS_Position.Lat = double.Parse(GPSLAT) / 10000000.0f;
+            GPS_Position.Lng = double.Parse(GPSLONG) / 10000000.0f;
             if (NumSat >= 5 && GPS_Position.Lat != 0 && GPS_Position.Lng != 0 &&
                 PrevLatitude != GPS_Position.Lat && PrevLongitude != GPS_Position.Lng)
             {
@@ -2628,6 +2655,13 @@ namespace JCFLIGHTGCS
         private void tirarFotoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //Serial_Write_To_FC(?);
+        }
+
+        private void MyGMap_Load(object sender, EventArgs e)
+        {
+            this.MaximumSize = Screen.PrimaryScreen.WorkingArea.Size; //NÃO CUBRA A BARRA DE TAREFAS
+            this.WindowState = FormWindowState.Maximized;
+            MaximizeBox = false;
         }
     }
 }
