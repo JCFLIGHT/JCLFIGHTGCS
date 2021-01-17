@@ -1508,6 +1508,11 @@ namespace JCFLIGHTGCS
                     return;
                 }
                 ItsSafeToUpdate = false;
+                if (PidAndFiltersCommunicationOpen == true)
+                {
+                    Serial_Write_To_FC(14);
+                    PidAndFiltersCommunicationOpen = false;
+                }
                 comboBox4.SelectedIndex = ((IOCDataGuard > comboBox4.Items.Count) ? 0 : IOCDataGuard);
                 comboBox2.SelectedIndex = AltHoldGuard;
                 comboBox3.SelectedIndex = GPSHoldGuard;
