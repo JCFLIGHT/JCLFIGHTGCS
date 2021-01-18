@@ -24,7 +24,22 @@ namespace JCFLIGHTGCS
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (GetValues.PreArmMessage != null) label2.Text = GetValues.PreArmMessage;
+            if (GetValues.PreArmMessage == "Erro:Giroscopio ruim")
+            {
+                label2.Text = "Erro:Giroscópio ruim";
+            }
+            else if (GetValues.PreArmMessage == "Erro:O switch nao foi ativado para o modo safe")
+            {
+                label2.Text = "Erro:O switch não foi ativado para o modo safe";
+            }
+            else if (GetValues.PreArmMessage == "Erro:Barometro ruim")
+            {
+                label2.Text = "Erro:Barômetro ruim";
+            }
+            else if (GetValues.PreArmMessage != null)
+            {
+                label2.Text = GetValues.PreArmMessage;
+            }
         }
     }
 }
