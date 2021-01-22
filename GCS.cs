@@ -113,11 +113,12 @@ namespace JCFLIGHTGCS
 
         GMapOverlay OverlayToHome = new GMapOverlay();
 
-        static GMapOverlay Routes;
         static GMapRoute Grout;
+        static GMapOverlay Routes;
+        static GMapOverlay AirportsOverlay;
+        GMapOverlay PositionToRoutes;
         List<PointLatLng> Points = new List<PointLatLng>();
         PointLatLng GPS_Position;
-        GMapOverlay PositionToRoutes;
 
         int CompassHealthCount = 9999999;
         int HeadingCompassPrev = 0;
@@ -203,11 +204,19 @@ namespace JCFLIGHTGCS
 
         bool MessageRead = false;
         bool Reboot = false;
+        bool SmallFlightData = false;
+        bool ForceNewLocationToLabels = false;
+        bool HomePointMarkerOK = false;
+        bool ResetTimer = false;
+        byte Hour_Debug = 0;
+        int Seconds_Count = 0;
+        int Hour_Count = 0;
 
         byte MemoryRamUsedPercent = 0;
         int MemoryRamUsed = 0;
 
         int GridCounter = 0;
+        int AirportsCountTime = 0;
 
         public string[] GetString1;
         public string[] GetString2;
@@ -259,9 +268,8 @@ namespace JCFLIGHTGCS
             Grout = new GMapRoute(Points, "Track");
             Grout.Stroke = PenRoute;
             Routes.Routes.Add(Grout);
-            metroTrackBar1.Value = 2;
-            metroTrackBar1.Minimum = 2;
-            metroTrackBar1.Maximum = 20;
+            AirportsOverlay = new GMapOverlay("AirportsOverlay");
+            MyGMap.Overlays.Add(AirportsOverlay);
             //PLOTTER ROLL
             RollGraph = zedGraphControl1.GraphPane;
             RollGraph.Title.Text = "ATTITUDE ROLL";
@@ -462,6 +470,20 @@ namespace JCFLIGHTGCS
             this.WindowState = FormWindowState.Maximized;
             maximinizar.Visible = true;
             iconmaximizar.Visible = true;
+            preArmNotification2.Visible = false;
+            HUD2.Visible = false;
+            label159.BackColor = Color.Blue;
+            label159.ForeColor = Color.Red;
+            label156.BackColor = Color.Blue;
+            label156.ForeColor = Color.White;
+            label160.BackColor = Color.Blue;
+            label160.ForeColor = Color.Orange;
+            label157.BackColor = Color.Blue;
+            label157.ForeColor = Color.White;
+            label158.BackColor = Color.Blue;
+            label158.ForeColor = Color.White;
+            Airports.ReadOurairports(Settings.GetRunningDirectory() + "airports.csv");
+            Airports.checkdups = true;
         }
 
         private void iconmaximizar_Click(object sender, EventArgs e)
@@ -475,6 +497,15 @@ namespace JCFLIGHTGCS
             }
             this.MaximumSize = Screen.PrimaryScreen.WorkingArea.Size; //NÃO CUBRA A BARRA DE TAREFAS
             this.WindowState = FormWindowState.Maximized;
+            if (!ForceNewLocationToLabels)
+            {
+                MyGMap.Width = 800;
+                MyGMap.Height = 555;
+            }
+            else
+            {
+                MyGMap.Size = new Size(850, 555);
+            }
             maximinizar.Visible = true;
             iconmaximizar.Visible = true;
         }
@@ -482,6 +513,15 @@ namespace JCFLIGHTGCS
         private void maximinizar_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Normal;
+            if (!ForceNewLocationToLabels)
+            {
+                MyGMap.Width = 740;
+                MyGMap.Height = 555;
+            }
+            else
+            {
+                MyGMap.Size = new Size(790, 555);
+            }
             maximinizar.Visible = false;
             iconmaximizar.Visible = true;
         }
@@ -620,7 +660,7 @@ namespace JCFLIGHTGCS
                 {
                     if (SerialPort.IsOpen == false) break;
                 }
-                catch { }
+                catch (UnauthorizedAccessException) { }
 
                 CheckState = (byte)SerialPort.ReadByte();
 
@@ -1130,54 +1170,246 @@ namespace JCFLIGHTGCS
         private void timer1_Tick(object sender, EventArgs e)
         {
             label76.Text = Convert.ToString(GPS_NumSat);
-            if (GPS_NumSat < 10) label76.Location = new Point(215, 89);
-            else label76.Location = new Point(210, 89);
+            if (GPS_NumSat < 10)
+            {
+                if (!ForceNewLocationToLabels)
+                {
+                    label76.Location = new Point(215, 89);
+                }
+                else
+                {
+                    label76.Location = new Point(415, 89);
+                }
+            }
+            else
+            {
+                if (!ForceNewLocationToLabels)
+                {
+                    label76.Location = new Point(210, 89);
+                }
+                else
+                {
+                    label76.Location = new Point(410, 89);
+                }
+            }
             if (HDOP >= 10)
             {
-                label78.Location = new Point(197, 140);
+                if (!ForceNewLocationToLabels)
+                {
+                    label78.Location = new Point(197, 140);
+                }
+                else
+                {
+                    label78.Location = new Point(397, 140);
+                }
                 label78.Text = HDOP.ToString(new CultureInfo("en-US"));
             }
             else
             {
-                label78.Location = new Point(200, 140);
+                if (!ForceNewLocationToLabels)
+                {
+                    label78.Location = new Point(200, 140);
+                }
+                else
+                {
+                    label78.Location = new Point(400, 140);
+                }
                 label78.Text = HDOP.ToString(new CultureInfo("en-US"));
             }
             if (ReadBarometer < 1000)
             {
-                label79.Location = new Point(205, 190);
+                if (!ForceNewLocationToLabels)
+                {
+                    label79.Location = new Point(205, 190);
+                }
+                else
+                {
+                    label79.Location = new Point(405, 190);
+                }
                 label79.Text = ReadBarometer.ToString(new CultureInfo("en-US")) + "M";
             }
             else if (ReadBarometer >= 1000 && ReadBarometer <= 10000)
             {
-                label79.Location = new Point(185, 190);
+                if (!ForceNewLocationToLabels)
+                {
+                    label79.Location = new Point(185, 190);
+                }
+                else
+                {
+                    label79.Location = new Point(385, 190);
+                }
                 label79.Text = ReadBarometer.ToString(new CultureInfo("en-US")) + "KM";
             }
             else
             {
-                label79.Location = new Point(180, 190);
+                if (!ForceNewLocationToLabels)
+                {
+                    label79.Location = new Point(180, 190);
+                }
+                else
+                {
+                    label79.Location = new Point(380, 190);
+                }
                 label79.Text = ReadBarometer.ToString(new CultureInfo("en-US")) + "KM";
             }
             label87.Text = Current.ToString(new CultureInfo("en-US")) + "A";
-            if (Current < 10) label87.Location = new Point(200, 404);
-            if (Current >= 10 && Current < 100) label87.Location = new Point(195, 404);
-            if (Current >= 100) label87.Location = new Point(185, 404);
+            if (Current < 10)
+            {
+                if (!ForceNewLocationToLabels)
+                {
+                    label87.Location = new Point(200, 404);
+                }
+                else
+                {
+                    label87.Location = new Point(400, 404);
+                }
+            }
+            if (Current >= 10 && Current < 100)
+            {
+                if (!ForceNewLocationToLabels)
+                {
+                    label87.Location = new Point(195, 404);
+                }
+                else
+                {
+                    label87.Location = new Point(395, 404);
+                }
+            }
+            if (Current >= 100)
+            {
+                if (!ForceNewLocationToLabels)
+                {
+                    label87.Location = new Point(185, 404);
+                }
+                else
+                {
+                    label87.Location = new Point(385, 404);
+                }
+            }
             label116.Text = AmperInMah.ToString(new CultureInfo("en-US")) + "MAH";
-            if (AmperInMah < 0.10f) label116.Location = new Point(200, 450);
-            if (AmperInMah >= 0.10f && AmperInMah < 0.100f) label116.Location = new Point(195, 450);
-            if (AmperInMah >= 0.100f && AmperInMah < 1) label116.Location = new Point(185, 450);
-            if (AmperInMah >= 1 && AmperInMah < 10) label116.Location = new Point(175, 450);
-            if (AmperInMah >= 10) label116.Location = new Point(165, 450);
+            if (AmperInMah < 0.10f)
+            {
+                if (!ForceNewLocationToLabels)
+                {
+                    label116.Location = new Point(200, 450);
+                }
+                else
+                {
+                    label116.Location = new Point(400, 450);
+                }
+            }
+            if (AmperInMah >= 0.10f && AmperInMah < 0.100f)
+            {
+                if (!ForceNewLocationToLabels)
+                {
+                    label116.Location = new Point(195, 450);
+                }
+                else
+                {
+                    label116.Location = new Point(395, 450);
+                }
+            }
+            if (AmperInMah >= 0.100f && AmperInMah < 1)
+            {
+                if (!ForceNewLocationToLabels)
+                {
+                    label116.Location = new Point(185, 450);
+                }
+                else
+                {
+                    label116.Location = new Point(385, 450);
+                }
+            }
+            if (AmperInMah >= 1 && AmperInMah < 10)
+            {
+                if (!ForceNewLocationToLabels)
+                {
+                    label116.Location = new Point(175, 450);
+                }
+                else
+                {
+                    label116.Location = new Point(375, 450);
+                }
+            }
+            if (AmperInMah >= 10)
+            {
+                if (!ForceNewLocationToLabels)
+                {
+                    label116.Location = new Point(165, 450);
+                }
+                else
+                {
+                    label116.Location = new Point(365, 450);
+                }
+            }
             label89.Text = Watts.ToString(new CultureInfo("en-US")) + "W";
-            if (Watts < 10) label89.Location = new Point(208, 496);
-            if (Watts >= 10 && Watts < 100) label89.Location = new Point(195, 496);
-            if (Watts >= 100) label89.Location = new Point(185, 496);
+            if (Watts < 10)
+            {
+                if (!ForceNewLocationToLabels)
+                {
+                    label89.Location = new Point(208, 496);
+                }
+                else
+                {
+                    label89.Location = new Point(408, 496);
+                }
+            }
+            if (Watts >= 10 && Watts < 100)
+            {
+                if (!ForceNewLocationToLabels)
+                {
+                    label89.Location = new Point(195, 496);
+                }
+                else
+                {
+                    label89.Location = new Point(395, 496);
+                }
+            }
+            if (Watts >= 100)
+            {
+                if (!ForceNewLocationToLabels)
+                {
+                    label89.Location = new Point(185, 496);
+                }
+                else
+                {
+                    label89.Location = new Point(385, 496);
+                }
+            }
             if (Declination != 0) label81.Text = Declination.ToString(new CultureInfo("en-US")) + "°";
-            if (Declination > 0 && Declination < 10) label81.Location = new Point(205, 246);
-            if (Declination > (-10) && Declination < 0) label81.Location = new Point(205, 246);
-            if (Declination >= 10 && Declination < 100) label81.Location = new Point(195, 246);
-            if (Declination <= (-10) && Declination > (-100)) label81.Location = new Point(195, 246);
-            if (Declination >= 100) label81.Location = new Point(190, 246);
-            if (Declination <= (-100)) label81.Location = new Point(190, 246);
+            if ((Declination > 0 && Declination < 10) || (Declination > (-10) && Declination < 0))
+            {
+                if (!ForceNewLocationToLabels)
+                {
+                    label81.Location = new Point(205, 246);
+                }
+                else
+                {
+                    label81.Location = new Point(405, 246);
+                }
+            }
+            if ((Declination >= 10 && Declination < 100) || (Declination <= (-10) && Declination > (-100)))
+            {
+                if (!ForceNewLocationToLabels)
+                {
+                    label81.Location = new Point(195, 246);
+                }
+                else
+                {
+                    label81.Location = new Point(395, 246);
+                }
+            }
+            if ((Declination >= 100) || (Declination <= (-100)))
+            {
+                if (!ForceNewLocationToLabels)
+                {
+                    label81.Location = new Point(190, 246);
+                }
+                else
+                {
+                    label81.Location = new Point(390, 246);
+                }
+            }
             label150.Text = MemoryRamUsedPercent + "%";
             metroProgressBar29.Value = MemoryRamUsedPercent;
             label151.Text = "Memoria Ram Livre:" + MemoryRamUsed + "KB de 8192KB";
@@ -1257,7 +1489,7 @@ namespace JCFLIGHTGCS
 
             MyGMap.MinZoom = 2;
             MyGMap.MaxZoom = 24;
-            MyGMap.Zoom = metroTrackBar1.Value;
+            //MyGMap.Zoom = (double)metroTrackBar1.Value / 10;
 
             if (FailSafeDetect == 0)
             {
@@ -1296,33 +1528,50 @@ namespace JCFLIGHTGCS
 
             if (ReadRoll > 1200)
             {
-                hud1.roll = 0;
-                hud1.pitch = 0;
+                HUD1.roll = 0;
+                HUD1.pitch = 0;
             }
             else
             {
-                hud1.roll = -ReadRoll / 10;
-                hud1.pitch = ReadPitch / 10;
+                HUD1.roll = -ReadRoll / 10;
+                HUD1.pitch = ReadPitch / 10;
             }
-            hud1.status = CommandArmDisarm;
-            hud1.failsafe = FailSafeDetect == 1 ? true : false;
-            hud1.imuhealty = ReadRoll > 1200 && serialPort1.IsOpen ? true : false;
-            hud1.linkqualitygcs = (float)CalculateAverage(PacketsReceived, PacketsError);
+            HUD1.status = CommandArmDisarm == 0 ? false : true;
+            HUD1.failsafe = FailSafeDetect == 1 ? true : false;
+            HUD1.imuhealty = ReadRoll > 1200 && serialPort1.IsOpen ? true : false;
+            HUD1.linkqualitygcs = (float)CalculateAverage(PacketsReceived, PacketsError);
+            HUD1.AHRSHorizontalVariance = HorizontalVariance();
 
             if (ReadRoll > 1200)
             {
-                hudsmall1.roll = 0;
-                hudsmall1.pitch = 0;
+                HUD2.roll = 0;
+                HUD2.pitch = 0;
             }
             else
             {
-                hudsmall1.roll = -ReadRoll / 10;
-                hudsmall1.pitch = ReadPitch / 10;
+                HUD2.roll = -ReadRoll / 10;
+                HUD2.pitch = ReadPitch / 10;
             }
-            hudsmall1.status = CommandArmDisarm;
-            hudsmall1.failsafe = FailSafeDetect == 1 ? true : false;
-            hudsmall1.imuhealty = ReadRoll > 1200 && serialPort1.IsOpen ? true : false;
-            hudsmall1.linkqualitygcs = (float)CalculateAverage(PacketsReceived, PacketsError);
+            HUD2.status = CommandArmDisarm == 0 ? false : true;
+            HUD2.failsafe = FailSafeDetect == 1 ? true : false;
+            HUD2.imuhealty = ReadRoll > 1200 && serialPort1.IsOpen ? true : false;
+            HUD2.linkqualitygcs = (float)CalculateAverage(PacketsReceived, PacketsError);
+            HUD2.AHRSHorizontalVariance = HorizontalVariance();
+
+            if (ReadRoll > 1200)
+            {
+                HUDSMALL1.roll = 0;
+                HUDSMALL1.pitch = 0;
+            }
+            else
+            {
+                HUDSMALL1.roll = -ReadRoll / 10;
+                HUDSMALL1.pitch = ReadPitch / 10;
+            }
+            HUDSMALL1.status = CommandArmDisarm;
+            HUDSMALL1.failsafe = FailSafeDetect == 1 ? true : false;
+            HUDSMALL1.imuhealty = ReadRoll > 1200 && serialPort1.IsOpen ? true : false;
+            HUDSMALL1.linkqualitygcs = (float)CalculateAverage(PacketsReceived, PacketsError);
 
             HeadingIndicator.SetHeadingIndicatorParameters(ReadCompass, SmallCompass);
             HeadingIndicator2.SetHeadingIndicatorParameters(ReadCompass, SmallCompass);
@@ -1334,6 +1583,14 @@ namespace JCFLIGHTGCS
             circularProgressBar2.Value = BattPercentage;
             label2.Text = Convert.ToString(BattPercentage + "%");
             label3.Text = Convert.ToString(BattPercentage + "%");
+            if (!ForceNewLocationToLabels)
+            {
+                label3.Location = new Point(65, 480);
+            }
+            else
+            {
+                label3.Location = new Point(235, 480);
+            }
             if (SerialPort.IsOpen == true)
             {
                 if (Reboot)
@@ -1672,6 +1929,8 @@ namespace JCFLIGHTGCS
                 PositionToRoutes.Markers.Clear();
                 GPSLatPrev = GPS_Position.Lat;
                 GPSLonPrev = GPS_Position.Lng;
+                label157.Text = Convert.ToString("Lat:" + GPS_Position.Lat);
+                label158.Text = Convert.ToString("Lng:" + GPS_Position.Lng);
                 byte TrackLength = 200;
                 if (Grout.Points.Count > TrackLength) Grout.Points.RemoveRange(0, Grout.Points.Count - TrackLength);
                 if (FrameMode == 0)
@@ -1689,35 +1948,67 @@ namespace JCFLIGHTGCS
                 else if (FrameMode == 3 || FrameMode == 4 || FrameMode == 5)
                 {
                     int ExpoValue = 0;
-                    int AttitudePitch = ReadPitch / 10;
-                    if (AttitudePitch >= 10 && AttitudePitch < 25) ExpoValue = 150;
-                    if (AttitudePitch >= 25) ExpoValue = 50;
-                    if (AttitudePitch <= -10 && AttitudePitch > -25) ExpoValue = -150;
-                    if (AttitudePitch <= -25) ExpoValue = -50;
+                    int AttitudeRoll = -ReadRoll / 10;
+                    if (AttitudeRoll >= 10 && AttitudeRoll < 35) ExpoValue = 150;
+                    if (AttitudeRoll >= 35) ExpoValue = 50;
+                    if (AttitudeRoll <= -10 && AttitudeRoll > -35) ExpoValue = -150;
+                    if (AttitudeRoll <= -35) ExpoValue = -50;
                     PositionToRoutes.Markers.Add(new GMapMarkerAero(GPS_Position, ReadCompass, CoG, Crosstrack, ExpoValue));
                 }
                 if (HomePointDisctance >= 1000 && HomePointDisctance < 10000)
                 {
-                    label74.Location = new Point(190, 32);
+                    if (!ForceNewLocationToLabels)
+                    {
+                        label74.Location = new Point(190, 32);
+                    }
+                    else
+                    {
+                        label74.Location = new Point(390, 32);
+                    }
                     label74.Text = HomePointDisctance.ToString(new CultureInfo("en-US")) + "KM";
                 }
                 else if (HomePointDisctance >= 10000 && HomePointDisctance < 100000)
                 {
-                    label74.Location = new Point(185, 32);
+                    if (!ForceNewLocationToLabels)
+                    {
+                        label74.Location = new Point(185, 32);
+                    }
+                    else
+                    {
+                        label74.Location = new Point(385, 32);
+                    }
                     label74.Text = HomePointDisctance.ToString(new CultureInfo("en-US")) + "KM";
                 }
                 else if (HomePointDisctance >= 100000)
                 {
-                    label74.Location = new Point(180, 32);
+                    if (!ForceNewLocationToLabels)
+                    {
+                        label74.Location = new Point(180, 32);
+                    }
+                    else
+                    {
+                        label74.Location = new Point(380, 32);
+                    }
                     label74.Text = HomePointDisctance.ToString(new CultureInfo("en-US")) + "KM";
                 }
                 else
                 {
-                    label74.Location = new Point(208, 32);
+                    if (!ForceNewLocationToLabels)
+                    {
+                        label74.Location = new Point(208, 32);
+                    }
+                    else
+                    {
+                        label74.Location = new Point(408, 32);
+                    }
                     label74.Text = Convert.ToInt32(HomePointDisctance) + "M";
                 }
+
                 if (CommandArmDisarm == 1) Grout.Points.Add(GPS_Position);
-                MyGMap.Position = GPS_Position;
+                if (checkBox1.Checked == true)
+                {
+                    MyGMap.Position = GPS_Position;
+                }
                 MyGMap.Invalidate();
             }
         }
@@ -1727,24 +2018,37 @@ namespace JCFLIGHTGCS
             switch (_FlightMode)
             {
                 case 0: //ACRO
-                    label83.Location = new Point(188, 296);
+                    if (!ForceNewLocationToLabels)
+                    {
+                        label83.Location = new Point(188, 296);
+                    }
+                    else
+                    {
+                        label83.Location = new Point(388, 296);
+                    }
                     label83.Text = "ACRO";
                     break;
 
                 case 1: //STABILIZE
-                    label83.Location = new Point(174, 296);
+                    if (!ForceNewLocationToLabels)
+                    {
+                        label83.Location = new Point(174, 296);
+                    }
+                    else
+                    {
+                        label83.Location = new Point(374, 296);
+                    }
                     label83.Text = "STABILIZE";
                     break;
 
                 case 2: //ALT-HOLD
+                    label83.Location = new Point(175, 296);
                     if (FrameMode < 3 || FrameMode == 6 || FrameMode == 7)
                     {
-                        label83.Location = new Point(175, 296);
                         label83.Text = "ALT-HOLD";
                     }
                     else
                     {
-                        label83.Location = new Point(175, 296);
                         label83.Text = "AUTO-THR";
                     }
                     break;
@@ -1752,12 +2056,26 @@ namespace JCFLIGHTGCS
                 case 3: //ATAQUE              
                     if (FrameMode < 3 || FrameMode == 6 || FrameMode == 7)
                     {
-                        label83.Location = new Point(179, 296);
+                        if (!ForceNewLocationToLabels)
+                        {
+                            label83.Location = new Point(179, 296);
+                        }
+                        else
+                        {
+                            label83.Location = new Point(379, 296);
+                        }
                         label83.Text = "ATAQUE";
                     }
                     else
                     {
-                        label83.Location = new Point(172, 296);
+                        if (!ForceNewLocationToLabels)
+                        {
+                            label83.Location = new Point(172, 296);
+                        }
+                        else
+                        {
+                            label83.Location = new Point(372, 296);
+                        }
                         label83.Text = "TAKE-OFF";
                     }
                     break;
@@ -1765,12 +2083,26 @@ namespace JCFLIGHTGCS
                 case 4: //GPS-HOLD
                     if (FrameMode < 3 || FrameMode == 6 || FrameMode == 7)
                     {
-                        label83.Location = new Point(175, 296);
+                        if (!ForceNewLocationToLabels)
+                        {
+                            label83.Location = new Point(175, 296);
+                        }
+                        else
+                        {
+                            label83.Location = new Point(375, 296);
+                        }
                         label83.Text = "GPS-HOLD";
                     }
                     else
                     {
-                        label83.Location = new Point(184, 296);
+                        if (!ForceNewLocationToLabels)
+                        {
+                            label83.Location = new Point(184, 296);
+                        }
+                        else
+                        {
+                            label83.Location = new Point(384, 296);
+                        }
                         label83.Text = "CRUISE";
                     }
                     break;
@@ -1778,60 +2110,135 @@ namespace JCFLIGHTGCS
                 case 5: //IOC
                     if (FrameMode < 3 || FrameMode == 6 || FrameMode == 7)
                     {
-                        label83.Location = new Point(202, 296);
+                        if (!ForceNewLocationToLabels)
+                        {
+                            label83.Location = new Point(202, 296);
+                        }
+                        else
+                        {
+                            label83.Location = new Point(402, 296);
+                        }
                         label83.Text = "IOC";
                     }
                     else
                     {
-                        label83.Location = new Point(184, 296);
+                        if (!ForceNewLocationToLabels)
+                        {
+                            label83.Location = new Point(184, 296);
+                        }
+                        else
+                        {
+                            label83.Location = new Point(384, 296);
+                        }
                         label83.Text = "MANUAL";
                     }
                     break;
 
                 case 6: //RTH
                 case 7:
-                    label83.Location = new Point(200, 296);
+                    if (!ForceNewLocationToLabels)
+                    {
+                        label83.Location = new Point(200, 296);
+                    }
+                    else
+                    {
+                        label83.Location = new Point(400, 296);
+                    }
                     label83.Text = "RTH";
                     break;
 
                 case 8: //LAND
                 case 9:
                 case 10:
-                    label83.Location = new Point(192, 296);
+                    if (!ForceNewLocationToLabels)
+                    {
+                        label83.Location = new Point(192, 296);
+                    }
+                    else
+                    {
+                        label83.Location = new Point(392, 296);
+                    }
                     label83.Text = "LAND";
                     break;
 
                 case 11: //FLIP
                     if (FrameMode < 3 || FrameMode == 6 || FrameMode == 7)
                     {
-                        label83.Location = new Point(198, 296);
+                        if (!ForceNewLocationToLabels)
+                        {
+                            label83.Location = new Point(198, 296);
+                        }
+                        else
+                        {
+                            label83.Location = new Point(398, 296);
+                        }
                         label83.Text = "FLIP";
                     }
                     else
                     {
-                        label83.Location = new Point(162, 296);
+                        if (!ForceNewLocationToLabels)
+                        {
+                            label83.Location = new Point(162, 296);
+                        }
+                        else
+                        {
+                            label83.Location = new Point(362, 296);
+                        }
                         label83.Text = "TURN-COORD";
                     }
                     break;
 
                 case 12: //AUTO
-                    label83.Location = new Point(192, 296);
+                    if (!ForceNewLocationToLabels)
+                    {
+                        label83.Location = new Point(192, 296);
+                    }
+                    else
+                    {
+                        label83.Location = new Point(392, 296);
+                    }
                     label83.Text = "AUTO";
                     break;
 
                 case 13: //LANDED
-                    label83.Location = new Point(165, 296);
+                    if (!ForceNewLocationToLabels)
+                    {
+                        label83.Location = new Point(165, 296);
+                    }
+                    else
+                    {
+                        label83.Location = new Point(365, 296);
+                    }
                     label83.Text = "ATERRIZADO";
                     break;
             }
         }
 
-        bool ResetTimer = false;
-        byte Hour_Debug = 0;
-        int Seconds_Count = 0;
-        int Hour_Count = 0;
         private void FlightTimer_Tick(object sender, EventArgs e)
         {
+            if (AirportsCountTime >= 5)
+            {
+                AirportsOverlay.Markers.Clear();
+                foreach (var item in Airports.getAirports(MyGMap.Position).ToArray())
+                {
+                    try
+                    {
+                        AirportsOverlay.Markers.Add(new GMapMarkerAirport(item)
+                        {
+                            ToolTipText = item.Tag,
+                            ToolTipMode = MarkerTooltipMode.OnMouseOver
+                        });
+                    }
+                    catch (Exception)
+                    {
+                    }
+                }
+                AirportsCountTime = 0;
+            }
+            else
+            {
+                AirportsCountTime += 1;
+            }
             try
             {
                 if (SerialPort.IsOpen == false) return;
@@ -1870,7 +2277,6 @@ namespace JCFLIGHTGCS
             }
         }
 
-        bool HomePointMarkerOK = false;
         private void HomePointMarkerInMap(double _Latitude, double _Longitutude)
         {
             _Latitude /= 10000000.0;
@@ -2163,18 +2569,6 @@ namespace JCFLIGHTGCS
             //System.Diagnostics.Process.Start("https://www.youtube.com/channel/UC6kk7H1CiaPVv4iKVGS9GsA/featured");
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            DerivativeLPF DerivativeLPFOpen = new DerivativeLPF();
-            DerivativeLPFOpen.ShowDialog();
-        }
-
-        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            RcControllerLPF RcControllerLPFOpen = new RcControllerLPF();
-            RcControllerLPFOpen.ShowDialog();
-        }
-
         private void CheckCompassState(int HeadingCompass)
         {
             //COMPASS
@@ -2183,7 +2577,10 @@ namespace JCFLIGHTGCS
                 CompassHealthCount = 0;
                 HeadingCompassPrev = HeadingCompass;
             }
-            else CompassHealthCount++;
+            else
+            {
+                CompassHealthCount++;
+            }
             if (CompassHealthCount >= 4000) //4 SEGUNDOS
             {
                 label95.Text = "Compass:Ruim";
@@ -2846,6 +3243,142 @@ namespace JCFLIGHTGCS
             dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Fator para converter a pressão em velocidade";
 
             dataGridView1.Rows[dataGridView1.Rows.Add()].DataGridView.EndEdit();
+        }
+
+        private void button20_Click(object sender, EventArgs e)
+        {
+            if (SmallFlightData)
+            {
+                button20.Text = "Ampliar Tudo";
+                button20.Location = new Point(19, 540);
+                if (this.WindowState == FormWindowState.Normal)
+                {
+                    MyGMap.Size = new Size(740, 555);
+                }
+                else
+                {
+                    MyGMap.Size = new Size(800, 555);
+                }
+                HeadingIndicator2.Location = new Point(0, 186);
+                circularProgressBar2.Location = new Point(0, 373);
+                btnlogoInicio.Location = new Point(257, 22);
+                panel18.Location = new Point(819, 38);
+                label72.Location = new Point(5, 98);
+                panel1.Location = new Point(250, 137);
+                preArmNotification2.Visible = false;
+                MyGMap.Location = new Point(298, 6);
+                label73.Location = new Point(170, 16);
+                label74.Location = new Point(208, 32);
+                label75.Location = new Point(168, 73);
+                label76.Location = new Point(215, 89);
+                label77.Location = new Point(200, 123);
+                label78.Location = new Point(196, 140);
+                label80.Location = new Point(199, 174);
+                label79.Location = new Point(203, 190);
+                label82.Location = new Point(192, 231);
+                label81.Location = new Point(215, 246);
+                label84.Location = new Point(185, 281);
+                label83.Location = new Point(184, 296);
+                label86.Location = new Point(180, 334);
+                label85.Location = new Point(184, 349);
+                label88.Location = new Point(192, 389);
+                label87.Location = new Point(206, 404);
+                label117.Location = new Point(156, 435);
+                label116.Location = new Point(193, 450);
+                label90.Location = new Point(204, 481);
+                label89.Location = new Point(208, 496);
+                label91.Location = new Point(176, 527);
+                metroTrackBar1.Location = new Point(143, 537);
+                MenuVertical.Width = 249;
+                MenuVertical.Height = 710;
+                ForceNewLocationToLabels = false;
+                HUDSMALL1.Visible = true;
+                HUD2.Visible = false;
+            }
+            else
+            {
+                button20.Text = "Diminuir";
+                button20.Location = new Point(120, 540);
+                if (this.WindowState == FormWindowState.Normal)
+                {
+                    MyGMap.Size = new Size(790, 555);
+                }
+                else
+                {
+                    MyGMap.Size = new Size(850, 555);
+                }
+                HeadingIndicator2.Location = new Point(0, 379);
+                circularProgressBar2.Location = new Point(170, 373);
+                btnlogoInicio.Location = new Point(514, 22);
+                panel18.Location = new Point(1065, 38);
+                label72.Location = new Point(250, 98);
+                panel1.Location = new Point(0, 137);
+                preArmNotification2.Visible = true;
+                preArmNotification2.Location = new Point(2, 0);
+                MyGMap.Location = new Point(450, 6);
+                MyGMap.Location = new Point(498, 6);
+                label73.Location = new Point(370, 16);
+                label74.Location = new Point(408, 32);
+                label75.Location = new Point(368, 73);
+                label76.Location = new Point(415, 89);
+                label77.Location = new Point(400, 123);
+                label78.Location = new Point(396, 140);
+                label80.Location = new Point(399, 174);
+                label79.Location = new Point(403, 190);
+                label82.Location = new Point(392, 231);
+                label81.Location = new Point(415, 246);
+                label84.Location = new Point(385, 281);
+                label83.Location = new Point(384, 296);
+                label86.Location = new Point(380, 334);
+                label85.Location = new Point(384, 349);
+                label88.Location = new Point(392, 389);
+                label87.Location = new Point(406, 404);
+                label117.Location = new Point(356, 435);
+                label116.Location = new Point(393, 450);
+                label90.Location = new Point(404, 481);
+                label89.Location = new Point(408, 496);
+                label91.Location = new Point(376, 527);
+                metroTrackBar1.Location = new Point(343, 537);
+                MenuVertical.Width = 0;
+                MenuVertical.Height = 710;
+                ForceNewLocationToLabels = true;
+                HUDSMALL1.Visible = false;
+                HUD2.Visible = true;
+            }
+            SmallFlightData = !SmallFlightData;
+        }
+
+        bool HorizontalVariance()
+        {
+            return false;
+        }
+
+        private void MyGMap_OnMapZoomChanged()
+        {
+            metroTrackBar1.Value = (int)(MyGMap.Zoom * 10);
+        }
+
+        private void MyGMap_Resize(object sender, EventArgs e)
+        {
+            MyGMap.Zoom = MyGMap.Zoom + 0.01;
+        }
+
+        private void metroTrackBar1_Scroll(object sender, ScrollEventArgs e)
+        {
+            try
+            {
+                if (MyGMap.MaxZoom + 1 == (double)(metroTrackBar1.Value / 10))
+                {
+                    MyGMap.Zoom = (double)(metroTrackBar1.Value / 10) - 0.1;
+                }
+                else
+                {
+                    MyGMap.Zoom = (double)(metroTrackBar1.Value / 10);
+                }
+            }
+            catch
+            {
+            }
         }
     }
 }

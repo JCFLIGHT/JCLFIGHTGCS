@@ -113,26 +113,6 @@ namespace JCFLIGHTGCS.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Armado {
-            get {
-                object obj = ResourceManager.GetObject("Armado", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap BankAngle {
-            get {
-                object obj = ResourceManager.GetObject("BankAngle", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Brasil {
             get {
                 object obj = ResourceManager.GetObject("Brasil", resourceCulture);
@@ -233,89 +213,9 @@ namespace JCFLIGHTGCS.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Derivative10Hz {
-            get {
-                object obj = ResourceManager.GetObject("Derivative10Hz", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Derivative15Hz {
-            get {
-                object obj = ResourceManager.GetObject("Derivative15Hz", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Derivative20Hz {
-            get {
-                object obj = ResourceManager.GetObject("Derivative20Hz", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Derivative25Hz {
-            get {
-                object obj = ResourceManager.GetObject("Derivative25Hz", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Derivative30Hz {
-            get {
-                object obj = ResourceManager.GetObject("Derivative30Hz", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Derivative5Hz {
-            get {
-                object obj = ResourceManager.GetObject("Derivative5Hz", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Desarmado {
-            get {
-                object obj = ResourceManager.GetObject("Desarmado", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Desconectado {
             get {
                 object obj = ResourceManager.GetObject("Desconectado", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap FailSafe {
-            get {
-                object obj = ResourceManager.GetObject("FailSafe", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -453,36 +353,6 @@ namespace JCFLIGHTGCS.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Horizon_Background {
-            get {
-                object obj = ResourceManager.GetObject("Horizon_Background", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Horizon_GroundSky {
-            get {
-                object obj = ResourceManager.GetObject("Horizon_GroundSky", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap IMURuim {
-            get {
-                object obj = ResourceManager.GetObject("IMURuim", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap JCFLIGHT_GCS_LOGO {
             get {
                 object obj = ResourceManager.GetObject("JCFLIGHT_GCS_LOGO", resourceCulture);
@@ -496,16 +366,6 @@ namespace JCFLIGHTGCS.Properties {
         internal static System.Drawing.Bitmap logo {
             get {
                 object obj = ResourceManager.GetObject("logo", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Maquette_Avion {
-            get {
-                object obj = ResourceManager.GetObject("Maquette_Avion", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -576,36 +436,6 @@ namespace JCFLIGHTGCS.Properties {
         internal static System.Drawing.Bitmap Radio {
             get {
                 object obj = ResourceManager.GetObject("Radio", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap RC_LPF_40HZ {
-            get {
-                object obj = ResourceManager.GetObject("RC_LPF_40HZ", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap RC_LPF_50HZ {
-            get {
-                object obj = ResourceManager.GetObject("RC_LPF_50HZ", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap RC_LPF_80HZ {
-            get {
-                object obj = ResourceManager.GetObject("RC_LPF_80HZ", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

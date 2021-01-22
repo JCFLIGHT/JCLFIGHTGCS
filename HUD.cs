@@ -7,6 +7,7 @@ using System.IO;
 using System.Drawing.Imaging;
 using System.Collections;
 using System.Drawing.Drawing2D;
+using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using SvgNet.SvgGdi;
 
@@ -14,11 +15,12 @@ using SvgNet.SvgGdi;
 
 namespace JCFLIGHTGCS
 {
-    public partial class HUD : UserControl
+    public class HUD : GLControl
     {
-
         private object streamlock = new object();
+
         private MemoryStream _streamjpg = new MemoryStream();
+
         public MemoryStream streamjpg
         {
             get
@@ -37,9 +39,12 @@ namespace JCFLIGHTGCS
             }
         }
 
+        private DateTime textureResetDateTime = DateTime.Now;
+
+        /// <summary>
+        /// this is to reduce cpu usage
+        /// </summary>
         public bool streamjpgenable = false;
-        public bool HoldInvalidation = false;
-        public bool Russian { get; set; }
 
         private class character
         {
@@ -58,7 +63,7 @@ namespace JCFLIGHTGCS
 
         [Browsable(false)] public bool npotSupported { get; private set; }
 
-        [System.ComponentModel.Browsable(true), DefaultValue(true)]
+        [Browsable(true), DefaultValue(true)]
         public bool bgon { get; set; }
 
         private static ImageCodecInfo ici = GetImageCodec("image/jpeg");
@@ -69,15 +74,10 @@ namespace JCFLIGHTGCS
         public HUD()
         {
             InitializeComponent();
-
             opengl = bgon = true;
-
             this.Name = "Hud";
-
-            eps.Param[0] = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, 50L);
-
+            eps.Param[0] = new EncoderParameter(Encoder.Quality, 50L);
             objBitmap.MakeTransparent();
-
             graphicsObject = this;
             graphicsObjectGDIP = new GdiGraphics(Graphics.FromImage(objBitmap));
         }
@@ -87,7 +87,7 @@ namespace JCFLIGHTGCS
         private float _linkqualitygcs = 0;
         private DateTime _datetime;
 
-        [System.ComponentModel.Browsable(true), System.ComponentModel.Category("Values")]
+        [Browsable(true), Category("Values")]
         public float roll
         {
             get { return _roll; }
@@ -101,7 +101,7 @@ namespace JCFLIGHTGCS
             }
         }
 
-        [System.ComponentModel.Browsable(true), System.ComponentModel.Category("Values")]
+        [Browsable(true), Category("Values")]
         public float pitch
         {
             get { return _pitch; }
@@ -115,7 +115,7 @@ namespace JCFLIGHTGCS
             }
         }
 
-        [System.ComponentModel.Browsable(true), System.ComponentModel.Category("Values")]
+        [Browsable(true), Category("Values")]
         public float linkqualitygcs
         {
             get { return _linkqualitygcs; }
@@ -129,7 +129,7 @@ namespace JCFLIGHTGCS
             }
         }
 
-        [System.ComponentModel.Browsable(true), System.ComponentModel.Category("Values")]
+        [Browsable(true), Category("Values")]
         public DateTime datetime
         {
             get { return _datetime; }
@@ -146,19 +146,19 @@ namespace JCFLIGHTGCS
             }
         }
 
-        [System.ComponentModel.Browsable(true), System.ComponentModel.Category("Values")]
+        [Browsable(true), Category("Values")]
         public bool imuhealty { get; set; }
 
-        [System.ComponentModel.Browsable(true), System.ComponentModel.Category("Values")]
+        [Browsable(true), Category("Values")]
         public bool failsafe { get; set; }
 
-        [System.ComponentModel.Browsable(true), System.ComponentModel.Category("Values")]
-        public int status { get; set; }
+        [Browsable(true), Category("Values")]
+        public bool AHRSHorizontalVariance { get; set; }
 
-        [System.ComponentModel.Browsable(true), System.ComponentModel.Category("Values")]
-        public DateTime messagetime { get; set; }
+        [Browsable(true), Category("Values")]
+        public bool status { get; set; }
 
-        private int statuslast = 0;
+        private bool statuslast = false;
         private DateTime armedtimer = DateTime.MinValue;
 
         public struct Custom
@@ -220,12 +220,18 @@ namespace JCFLIGHTGCS
         private Color _skyColor2 = Color.LightBlue;
         private Color _groundColor1 = Color.FromArgb(0x9b, 0xb8, 0x24);
         private Color _groundColor2 = Color.FromArgb(0x41, 0x4f, 0x07);
+
         private Color _hudcolor = Color.White;
         private Pen _whitePen = new Pen(Color.White, 2);
         private readonly SolidBrush _whiteBrush = new SolidBrush(Color.White);
+
         private static readonly SolidBrush SolidBrush = new SolidBrush(Color.FromArgb(0x55, 0xff, 0xff, 0xff));
-        private static readonly SolidBrush SlightlyTransparentWhiteBrush = new SolidBrush(Color.FromArgb(220, 255, 255, 255));
+
+        private static readonly SolidBrush SlightlyTransparentWhiteBrush =
+            new SolidBrush(Color.FromArgb(220, 255, 255, 255));
+
         private static readonly SolidBrush AltGroundBrush = new SolidBrush(Color.FromArgb(100, Color.BurlyWood));
+
         private readonly object _bgimagelock = new object();
 
         public Image bgimage
@@ -250,39 +256,43 @@ namespace JCFLIGHTGCS
         }
 
         private Image _bgimage;
+
+        // move these global as they rarely change - reduce GC
         private Font font = new Font("Font", 10);
+
         public Bitmap objBitmap = new Bitmap(1024, 1024, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
         private int count = 0;
         private DateTime countdate = DateTime.Now;
         private HUD graphicsObject;
         private IGraphics graphicsObjectGDIP;
+
         private DateTime starttime = DateTime.MinValue;
 
-        private System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HUD));
+        private System.ComponentModel.ComponentResourceManager resources =
+            new System.ComponentModel.ComponentResourceManager(typeof(HUD));
+
+
 
         public override void Refresh()
         {
-            if (!ThisReallyVisible())
-            {
-            }
             using (Graphics gg = this.CreateGraphics())
             {
                 OnPaint(new PaintEventArgs(gg, this.ClientRectangle));
             }
         }
 
+        /// <summary>
+        /// Override to prevent offscreen drawing the control - mono mac
+        /// </summary>
         public new void Invalidate()
         {
-            if (HoldInvalidation)
-                return;
-
-            if (!ThisReallyVisible())
-            {
-            }
-
             base.Invalidate();
         }
 
+        /// <summary>
+        /// this is to fix a mono off screen drawing issue
+        /// </summary>
+        /// <returns></returns>
         public bool ThisReallyVisible()
         {
             return this.Visible;
@@ -294,9 +304,8 @@ namespace JCFLIGHTGCS
             {
                 try
                 {
-
+                    OpenTK.Graphics.GraphicsMode test = this.GraphicsMode;
                     int[] viewPort = new int[4];
-
                     GL.GetInteger(GetPName.Viewport, viewPort);
                     GL.MatrixMode(MatrixMode.Projection);
                     GL.LoadIdentity();
@@ -307,7 +316,6 @@ namespace JCFLIGHTGCS
                     GL.Disable(EnableCap.DepthTest);
                     GL.BlendFunc(BlendingFactor.SrcAlpha, BlendingFactor.OneMinusSrcAlpha);
                     GL.Enable(EnableCap.Blend);
-
                     string versionString = GL.GetString(StringName.Version);
                     string majorString = versionString.Split(' ')[0];
                     var v = new Version(majorString);
@@ -334,7 +342,6 @@ namespace JCFLIGHTGCS
                     GL.Enable(EnableCap.LineSmooth);
                     GL.Enable(EnableCap.PointSmooth);
                     GL.Disable(EnableCap.PolygonSmooth);
-
                 }
                 catch (Exception)
                 {
@@ -347,7 +354,6 @@ namespace JCFLIGHTGCS
 
         protected override void OnPaint(PaintEventArgs e)
         {
-
             if (!started)
                 return;
 
@@ -367,13 +373,24 @@ namespace JCFLIGHTGCS
                 return;
             }
 
+            // force texture reset
+            if (textureResetDateTime.Hour != DateTime.Now.Hour)
+            {
+                textureResetDateTime = DateTime.Now;
+                doResize();
+            }
+
             lock (this)
             {
+
                 if (inOnPaint)
                 {
+
                     return;
                 }
+
                 inOnPaint = true;
+
             }
 
             starttime = DateTime.Now;
@@ -383,8 +400,12 @@ namespace JCFLIGHTGCS
 
                 if (opengl)
                 {
-                    if (DateTime.Now.Second % 5 == 0) glControl1.MakeCurrent();
+                    // make this gl window and thread current
+                    if (!Context.IsCurrent || DateTime.Now.Second % 5 == 0)
+                        MakeCurrent();
+
                     GL.Clear(ClearBufferMask.ColorBufferBit);
+
                 }
 
                 doPaint();
@@ -392,16 +413,21 @@ namespace JCFLIGHTGCS
                 if (!opengl)
                 {
                     e.Graphics.DrawImageUnscaled(objBitmap, 0, 0);
+
+                    //File.WriteAllText("hud.svg", graphicsObjectGDIP.WriteSVGString());
                 }
                 else if (opengl)
                 {
-                    glControl1.SwapBuffers();
-                    glControl1.MakeCurrent();
+                    this.SwapBuffers();
+
+                    // free from this thread
+                    Context.MakeCurrent(null);
                 }
 
             }
             catch (Exception)
             {
+
             }
 
             count++;
@@ -411,7 +437,10 @@ namespace JCFLIGHTGCS
             if (DateTime.Now.Second != countdate.Second)
             {
                 countdate = DateTime.Now;
-                if ((huddrawtime / count) > 1000) opengl = false;
+                Console.WriteLine("HUD " + count + " hz drawtime " + (huddrawtime / count) + " gl " + opengl);
+                if ((huddrawtime / count) > 1000)
+                    opengl = false;
+
                 count = 0;
                 huddrawtime = 0;
             }
@@ -532,15 +561,18 @@ namespace JCFLIGHTGCS
                 if (_texture[textureno] == null)
                     _texture[textureno] = new character();
 
+                // If the image is already a bitmap and we support NPOT textures then simply use it.
                 if (npotSupported && img is Bitmap)
                 {
                     _texture[textureno].bitmap = (Bitmap)img;
                 }
                 else
                 {
+                    // Otherwise we have to resize img to be POT.
                     _texture[textureno].bitmap = ResizeImage(img, 512, 512);
                 }
 
+                // generate the texture
                 if (_texture[textureno].gltextureid == 0)
                 {
                     GL.GenTextures(1, out _texture[textureno].gltextureid);
@@ -553,28 +585,41 @@ namespace JCFLIGHTGCS
                     ImageLockMode.ReadOnly,
                     System.Drawing.Imaging.PixelFormat.Format32bppArgb);
 
+                // create the texture type/dimensions
                 if (_texture[textureno].width != _texture[textureno].bitmap.Width)
                 {
-                    GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, data.Width, data.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, data.Scan0);
+                    GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, data.Width, data.Height, 0,
+                        OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, data.Scan0);
 
                     _texture[textureno].width = data.Width;
                 }
                 else
                 {
-                    GL.TexSubImage2D(TextureTarget.Texture2D, 0, 0, 0, data.Width, data.Height, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, data.Scan0);
+                    GL.TexSubImage2D(TextureTarget.Texture2D, 0, 0, 0, data.Width, data.Height,
+                        OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, data.Scan0);
                 }
 
                 _texture[textureno].bitmap.UnlockBits(data);
 
                 bool polySmoothEnabled = GL.IsEnabled(EnableCap.PolygonSmooth);
-                if (polySmoothEnabled) GL.Disable(EnableCap.PolygonSmooth);
+                if (polySmoothEnabled)
+                    GL.Disable(EnableCap.PolygonSmooth);
+
                 GL.Enable(EnableCap.Texture2D);
+
                 GL.BindTexture(TextureTarget.Texture2D, _texture[textureno].gltextureid);
-                GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Linear);
-                GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Linear);
-                GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapS, (int)TextureWrapMode.ClampToEdge);
-                GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapT, (int)TextureWrapMode.ClampToEdge);
+
+                GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter,
+                    (int)TextureMinFilter.Linear);
+                GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter,
+                    (int)TextureMagFilter.Linear);
+                GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapS,
+                    (int)TextureWrapMode.ClampToEdge);
+                GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapT,
+                    (int)TextureWrapMode.ClampToEdge);
+
                 GL.Begin(PrimitiveType.TriangleStrip);
+
                 GL.TexCoord2(0.0f, 0.0f);
                 GL.Vertex2(x, y);
                 GL.TexCoord2(0.0f, 1.0f);
@@ -583,9 +628,13 @@ namespace JCFLIGHTGCS
                 GL.Vertex2(x + width, y);
                 GL.TexCoord2(1.0f, 1.0f);
                 GL.Vertex2(x + width, y + height);
+
                 GL.End();
+
                 GL.Disable(EnableCap.Texture2D);
-                if (polySmoothEnabled) GL.Enable(EnableCap.PolygonSmooth);
+
+                if (polySmoothEnabled)
+                    GL.Enable(EnableCap.PolygonSmooth);
             }
             else
             {
@@ -641,13 +690,11 @@ namespace JCFLIGHTGCS
                     GL.Enable(EnableCap.StencilTest);
                     GL.Disable(EnableCap.CullFace);
                     GL.ClearStencil(0);
-
                     GL.ColorMask(false, false, false, false);
                     GL.Clear(ClearBufferMask.StencilBufferBit);
                     GL.DepthMask(false);
                     GL.StencilFunc(StencilFunction.Always, 0, 0xff);
                     GL.StencilOp(StencilOp.Invert, StencilOp.Invert, StencilOp.Invert);
-
                     GL.Begin(PrimitiveType.TriangleFan);
                     GL.Color4(((SolidBrush)brushh).Color);
                     GL.Vertex2(0, 0);
@@ -655,15 +702,11 @@ namespace JCFLIGHTGCS
                     {
                         GL.Vertex2(pnt.X, pnt.Y);
                     }
-
                     GL.End();
-
                     GL.ColorMask(true, true, true, true);
                     GL.DepthMask(true);
-
                     GL.StencilFunc(StencilFunction.Equal, 1, 1);
                     GL.StencilOp(StencilOp.Keep, StencilOp.Keep, StencilOp.Keep);
-
                     GL.Begin(PrimitiveType.TriangleFan);
                     GL.Color4(((SolidBrush)brushh).Color);
                     GL.Vertex2(0, 0);
@@ -671,9 +714,7 @@ namespace JCFLIGHTGCS
                     {
                         GL.Vertex2(pnt.X, pnt.Y);
                     }
-
                     GL.End();
-
                     GL.Disable(EnableCap.StencilTest);
                 }
                 else
@@ -854,6 +895,31 @@ namespace JCFLIGHTGCS
             }
         }
 
+        public void DrawRectangle(Pen penn, RectangleF rect)
+        {
+            DrawRectangle(penn, rect.X, rect.Y, rect.Width, rect.Height);
+        }
+
+        public void DrawRectangle(Pen penn, double x1, double y1, double width, double height)
+        {
+
+            if (opengl)
+            {
+                GL.LineWidth(penn.Width);
+                GL.Color4(penn.Color);
+
+                GL.Begin(PrimitiveType.LineLoop);
+                GL.Vertex2(x1, y1);
+                GL.Vertex2(x1 + width, y1);
+                GL.Vertex2(x1 + width, y1 + height);
+                GL.Vertex2(x1, y1 + height);
+                GL.End();
+            }
+            else
+            {
+                graphicsObjectGDIP.DrawRectangle(penn, (float)x1, (float)y1, (float)width, (float)height);
+            }
+        }
 
         public void DrawLine(Pen penn, double x1, double y1, double x2, double y2)
         {
@@ -931,6 +997,12 @@ namespace JCFLIGHTGCS
 
                 float _roll = this._roll;
 
+                if (float.IsNaN(_roll) || float.IsNaN(_pitch))
+                {
+                    _roll = 0;
+                    _pitch = 0;
+                }
+
                 graphicsObject.TranslateTransform(this.Width / 2, this.Height / 2);
 
                 graphicsObject.RotateTransform(-_roll);
@@ -947,15 +1019,18 @@ namespace JCFLIGHTGCS
 
                 this._whiteBrush.Color = this._whitePen.Color;
 
+                // Reset pens
                 this._blackPen.Width = 2;
                 this._greenPen.Width = 2;
                 this._redPen.Width = 2;
 
                 this._whitePen.Color = _hudcolor;
 
+                // draw sky
                 if (bgon == true)
                 {
-                    RectangleF bg = new RectangleF(-halfwidth * 2, -halfheight * 2, this.Width * 2, halfheight * 2 + pitchoffset);
+                    RectangleF bg = new RectangleF(-halfwidth * 2, -halfheight * 2, this.Width * 2,
+                        halfheight * 2 + pitchoffset);
 
                     if (bg.Height != 0)
                     {
@@ -965,6 +1040,7 @@ namespace JCFLIGHTGCS
                             graphicsObject.FillRectangle(linearBrush, bg);
                         }
                     }
+                    // draw ground
 
                     bg = new RectangleF(-halfwidth * 2, pitchoffset, this.Width * 2, halfheight * 2 - pitchoffset);
 
@@ -979,7 +1055,9 @@ namespace JCFLIGHTGCS
                         }
                     }
 
-                    graphicsObject.DrawLine(this._whitePen, -halfwidth * 2, pitchoffset + 0, halfwidth * 2, pitchoffset + 0);
+                    //draw centerline
+                    graphicsObject.DrawLine(this._whitePen, -halfwidth * 2, pitchoffset + 0, halfwidth * 2,
+                        pitchoffset + 0);
                 }
 
                 graphicsObject.ResetTransform();
@@ -988,11 +1066,14 @@ namespace JCFLIGHTGCS
 
                 graphicsObject.RotateTransform(-_roll);
 
+                //draw pitch           
+
                 int lengthshort = this.Width / 14;
                 int lengthlong = this.Width / 10;
 
                 for (int a = -90; a <= 90; a += 5)
                 {
+                    // limit to 40 degrees
                     if (a >= _pitch - 29 && a <= _pitch + 20)
                     {
                         if (a % 10 == 0)
@@ -1025,20 +1106,20 @@ namespace JCFLIGHTGCS
 
                 graphicsObject.ResetTransform();
 
-                graphicsObject.TranslateTransform(this.Width / 2, this.Height / 2);
+                // draw roll ind needle
 
-                /////////////////////////
+                graphicsObject.TranslateTransform(this.Width / 2, this.Height / 2);
 
                 lengthlong = this.Height / 66;
 
-                int extra = (int)(this.Height / 17.0 * 4.9f);
+                int extra = (int)(this.Height / 15.0 * 4.9f);
 
                 int lengthlongex = lengthlong + 2;
 
                 Point[] pointlist = new Point[3];
-                pointlist[0] = new Point(0, -lengthlongex * 2 - extra + 2);
-                pointlist[1] = new Point(-lengthlongex, -lengthlongex - extra + 2);
-                pointlist[2] = new Point(lengthlongex, -lengthlongex - extra + 2);
+                pointlist[0] = new Point(0, -lengthlongex * 2 - extra);
+                pointlist[1] = new Point(-lengthlongex, -lengthlongex - extra);
+                pointlist[2] = new Point(lengthlongex, -lengthlongex - extra);
 
                 this._redPen.Width = 2;
 
@@ -1053,74 +1134,80 @@ namespace JCFLIGHTGCS
                     graphicsObject.ResetTransform();
                     graphicsObject.TranslateTransform(this.Width / 2, this.Height / 2);
                     graphicsObject.RotateTransform(a - _roll);
-
                     drawstring(String.Format("{0,2}", Math.Abs(a)), font, fontsize, _whiteBrush, 0 - 6 - fontoffset, -lengthlong * 8 - extra);
-
                     graphicsObject.DrawLine(this._whitePen, 0, -lengthlong * 3 - extra, 0, -lengthlong * 3 - extra - lengthlong);
                 }
 
                 graphicsObject.ResetTransform();
                 graphicsObject.TranslateTransform(this.Width / 2, this.Height / 2);
 
-                RectangleF arcrect = new RectangleF(-lengthlong * 3 - extra, -lengthlong * 3 - extra,
-                    (extra + lengthlong * 3) * 2f, (extra + lengthlong * 3) * 2f);
+                // draw roll ind
+                RectangleF arcrect = new RectangleF(-lengthlong * 3 - extra, -lengthlong * 3 - extra, (extra + lengthlong * 3) * 2f, (extra + lengthlong * 3) * 2f);
 
                 graphicsObject.DrawArc(this._whitePen, arcrect, 180 + 30 + -_roll, 120);
 
                 graphicsObject.ResetTransform();
 
+                //draw centre / current att
+
                 graphicsObject.TranslateTransform(this.Width / 2, this.Height / 2);
 
-                ///////////////////////
+                graphicsObject.RotateTransform(_roll / 10);
 
                 Rectangle centercircle = new Rectangle(-halfwidth / 2, -halfwidth / 2, halfwidth, halfwidth);
 
                 using (Pen redtemp = new Pen(Color.FromArgb(200, this._redPen.Color.R, this._redPen.Color.G, this._redPen.Color.B), 4.0f))
                 {
+                    // left
                     graphicsObject.DrawLine(redtemp, centercircle.Left - halfwidth / 5, 0, centercircle.Left, 0);
+                    // right
                     graphicsObject.DrawLine(redtemp, centercircle.Right, 0, centercircle.Right + halfwidth / 5, 0);
+                    // center point
                     graphicsObject.DrawLine(redtemp, 0 - 1, 0, centercircle.Right - halfwidth / 3,
                         0 + halfheight / 10);
                     graphicsObject.DrawLine(redtemp, 0 + 1, 0, centercircle.Left + halfwidth / 3,
                         0 + halfheight / 10);
                 }
 
+                graphicsObject.ResetTransform();
+
                 Rectangle scrollbg = new Rectangle(0, halfheight - halfheight / 2, this.Width / 10, this.Height / 2);
 
-                float speed = 0;
+                scrollbg = new Rectangle(this.Width - this.Width / 10, halfheight - halfheight / 2, this.Width / 10, this.Height / 2);
+
+                float velspeed = 0;
 
                 if (GetValues.AirSpeedEnabled > 0)
                 {
-                    speed = GetValues.ReadAirSpeed;
+                    velspeed = GetValues.ReadAirSpeed;
                 }
                 else
                 {
-                    speed = GetValues.ReadGroundSpeed;
+                    velspeed = GetValues.ReadGroundSpeed;
                 }
 
-                speed /= 27.778f;
+                velspeed /= 27.778f;
 
-                graphicsObject.ResetTransform();
-                drawstring("FuselagemVel:" + speed.ToString("0.0") + "KM/h", font, fontsize, _whiteBrush, 1, scrollbg.Bottom + 45);
+                drawstring("FuselagemVel:" + velspeed.ToString("0.0") + "KM/h", font, fontsize, _whiteBrush, 1, scrollbg.Bottom + 45);
 
                 if (float.IsNaN(_linkqualitygcs)) _linkqualitygcs = 0;
                 if (_linkqualitygcs >= 10 && _linkqualitygcs < 100)
                 {
-                    graphicsObject.DrawLine(this._greenPen, 285, scrollbg.Top - (int)(fontsize * 2.2) - 2 - 35, 285, scrollbg.Top - (int)(fontsize) - 2 - 40);
-                    graphicsObject.DrawLine(this._greenPen, 290, scrollbg.Top - (int)(fontsize * 2.2) - 2 - 30, 290, scrollbg.Top - (int)(fontsize) - 2 - 40);
-                    drawstring(_linkqualitygcs.ToString("0") + "%", font, fontsize, _whiteBrush, 245, scrollbg.Top - (int)(fontsize * 2.2) - 2 - 43);
+                    graphicsObject.DrawLine(this._greenPen, 335, scrollbg.Top - (int)(fontsize * 2.2) - 2 - 35, 335, scrollbg.Top - (int)(fontsize) - 2 - 40);
+                    graphicsObject.DrawLine(this._greenPen, 340, scrollbg.Top - (int)(fontsize * 2.2) - 2 - 30, 340, scrollbg.Top - (int)(fontsize) - 2 - 40);
+                    drawstring(_linkqualitygcs.ToString("0") + "%", font, fontsize, _whiteBrush, 290, scrollbg.Top - (int)(fontsize * 2.2) - 2 - 43);
                 }
                 else if (_linkqualitygcs < 10)
                 {
-                    graphicsObject.DrawLine(this._greenPen, 290, scrollbg.Top - (int)(fontsize * 2.2) - 2 - 30, 290, scrollbg.Top - (int)(fontsize) - 2 - 40);
-                    drawstring(_linkqualitygcs.ToString("0") + "%", font, fontsize, _whiteBrush, 250, scrollbg.Top - (int)(fontsize * 2.2) - 2 - 43);
+                    graphicsObject.DrawLine(this._greenPen, 340, scrollbg.Top - (int)(fontsize * 2.2) - 2 - 30, 340, scrollbg.Top - (int)(fontsize) - 2 - 40);
+                    drawstring(_linkqualitygcs.ToString("0") + "%", font, fontsize, _whiteBrush, 295, scrollbg.Top - (int)(fontsize * 2.2) - 2 - 43);
                 }
                 else
                 {
-                    graphicsObject.DrawLine(this._greenPen, 280, scrollbg.Top - (int)(fontsize * 2.2) - 2 - 40, 280, scrollbg.Top - (int)(fontsize) - 2 - 40);
-                    graphicsObject.DrawLine(this._greenPen, 285, scrollbg.Top - (int)(fontsize * 2.2) - 2 - 35, 285, scrollbg.Top - (int)(fontsize) - 2 - 40);
-                    graphicsObject.DrawLine(this._greenPen, 290, scrollbg.Top - (int)(fontsize * 2.2) - 2 - 30, 290, scrollbg.Top - (int)(fontsize) - 2 - 40);
-                    drawstring(_linkqualitygcs.ToString("0") + "%", font, fontsize, _whiteBrush, 235, scrollbg.Top - (int)(fontsize * 2.2) - 2 - 43);
+                    graphicsObject.DrawLine(this._greenPen, 330, scrollbg.Top - (int)(fontsize * 2.2) - 2 - 40, 330, scrollbg.Top - (int)(fontsize) - 2 - 40);
+                    graphicsObject.DrawLine(this._greenPen, 335, scrollbg.Top - (int)(fontsize * 2.2) - 2 - 35, 335, scrollbg.Top - (int)(fontsize) - 2 - 40);
+                    graphicsObject.DrawLine(this._greenPen, 340, scrollbg.Top - (int)(fontsize * 2.2) - 2 - 30, 340, scrollbg.Top - (int)(fontsize) - 2 - 40);
+                    drawstring(_linkqualitygcs.ToString("0") + "%", font, fontsize, _whiteBrush, 285, scrollbg.Top - (int)(fontsize * 2.2) - 2 - 43);
                 }
 
                 graphicsObject.TranslateTransform(this.Width / 2, this.Height / 2);
@@ -1130,42 +1217,46 @@ namespace JCFLIGHTGCS
                     armedtimer = DateTime.Now;
                 }
 
-                if (imuhealty == true)
+                if (this._roll > 45 || this._roll < (-45))
                 {
-                    drawstring("IMU não calibrada", font, fontsize + 10, (SolidBrush)Brushes.Red, -140, halfheight / -1);
+                    drawstring("Bank-Angle", font, fontsize + 15, (SolidBrush)Brushes.Red, -85, halfheight / -3);
                     statuslast = status;
                 }
                 else
                 {
-                    if (this._roll > 35 || this._roll < (-35))
+                    if (status == false)
                     {
-                        drawstring("Bank-Angle", font, fontsize + 15, (SolidBrush)Brushes.Red, -140, halfheight / -1);
+                        drawstring("Desarmado", font, fontsize + 15, (SolidBrush)Brushes.Red, -75, halfheight / -3);
                         statuslast = status;
                     }
-                    else
+                    else if (status == true)
                     {
-                        if (failsafe == true)
+                        if ((armedtimer.AddSeconds(8) > DateTime.Now))
                         {
-                            drawstring("Fail-Safe", font, fontsize + 15, (SolidBrush)Brushes.Red, -140, halfheight / -1);
+                            drawstring("Armado", font, fontsize + 15, (SolidBrush)Brushes.Red, -55, halfheight / -3);
                             statuslast = status;
                         }
-                        else
-                        {
-                            if (status == 0)
-                            {
-                                drawstring("Desarmado", font, fontsize + 15, (SolidBrush)Brushes.Red, -140, halfheight / -1);
-                                statuslast = status;
-                            }
-                            else if (status == 1)
-                            {
-                                if ((armedtimer.AddSeconds(8) > DateTime.Now))
-                                {
-                                    drawstring("Armado", font, fontsize + 15, (SolidBrush)Brushes.Red, -140, halfheight / -1);
-                                    statuslast = status;
-                                }
-                            }
-                        }
                     }
+                }
+
+                if (imuhealty == true)
+                {
+                    drawstring("IMU não calibrada", font, fontsize + 10, (SolidBrush)Brushes.Red, -110, 40);
+                    statuslast = status;
+                }
+                else
+                {
+                    if (failsafe == true)
+                    {
+                        drawstring("Fail-Safe", font, fontsize + 20, (SolidBrush)Brushes.Red, -75, 40);
+                        statuslast = status;
+                    }
+                }
+
+                if (AHRSHorizontalVariance == true)
+                {
+                    drawstring("Erro de variância na Pos.Horiz.", font, fontsize + 2, (SolidBrush)Brushes.Red, -132, 70);
+                    statuslast = status;
                 }
 
                 graphicsObject.ResetTransform();
@@ -1200,10 +1291,10 @@ namespace JCFLIGHTGCS
             {
                 if (ici.MimeType == mimetype) return ici;
             }
-
             return null;
         }
 
+        // Returns a System.Drawing.Bitmap with the contents of the current framebuffer
         public Bitmap GrabScreenshot()
         {
             if (OpenTK.Graphics.GraphicsContext.CurrentContext == null)
@@ -1221,8 +1312,39 @@ namespace JCFLIGHTGCS
             return bmp;
         }
 
+        /// <summary>
+        /// pen for drawstring
+        /// </summary>
         private readonly Pen _p = new Pen(Color.FromArgb(0x26, 0x27, 0x28), 2f);
 
+        /// <summary>
+        /// pth for drawstring
+        /// </summary>
+        private readonly GraphicsPath pth = new GraphicsPath();
+
+        float calcsize(string text, Font font, float fontsize, SolidBrush brush, int targetwidth)
+        {
+            float size = 0;
+            foreach (char cha in text)
+            {
+                int charno = (int)cha;
+                int charid = charno ^ (int)(fontsize * 1000) ^ brush.Color.ToArgb();
+
+                if (!charDict.ContainsKey(charid))
+                {
+                    size += fontsize;
+                }
+                else
+                {
+                    size += charDict[charid].width;
+                }
+            }
+
+            if (size > targetwidth && size > 3)
+                return calcsize(text, font, fontsize - 1, brush, targetwidth);
+
+            return fontsize;
+        }
         void drawstring(string text, Font font, float fontsize, SolidBrush brush, float x, float y)
         {
             if (!opengl)
@@ -1252,8 +1374,12 @@ namespace JCFLIGHTGCS
 
                     charDict[charid].bitmap.MakeTransparent(Color.Transparent);
 
-                    float maxx = this.Width / 150;
+                    //charbitmaptexid
 
+                    float maxx = this.Width / 150; // for space
+
+
+                    // create bitmap
                     using (var gfx = Graphics.FromImage(charDict[charid].bitmap))
                     {
                         var pth = new GraphicsPath();
@@ -1268,7 +1394,10 @@ namespace JCFLIGHTGCS
 
                         gfx.DrawPath(this._p, pth);
 
+                        //Draw the face
+
                         gfx.FillPath(brush, pth);
+
 
                         if (pth.PointCount > 0)
                         {
@@ -1285,32 +1414,42 @@ namespace JCFLIGHTGCS
 
                     charDict[charid].width = (int)(maxx + 2);
 
+                    // create texture
                     int textureId;
                     GL.TexEnv(TextureEnvTarget.TextureEnv, TextureEnvParameter.TextureEnvMode,
-                        (float)TextureEnvModeCombine.Replace);
+                        (float)TextureEnvModeCombine.Replace); //Important, or wrong color on some computers
+
                     Bitmap bitmap = charDict[charid].bitmap;
                     GL.GenTextures(1, out textureId);
                     GL.BindTexture(TextureTarget.Texture2D, textureId);
+
                     BitmapData data = bitmap.LockBits(new System.Drawing.Rectangle(0, 0, bitmap.Width, bitmap.Height),
                         ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+
                     GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, data.Width, data.Height, 0,
                         OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, data.Scan0);
+
                     GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter,
                         (int)TextureMinFilter.Linear);
                     GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter,
                         (int)TextureMagFilter.Linear);
+
                     GL.Flush();
                     bitmap.UnlockBits(data);
+
                     charDict[charid].gltextureid = textureId;
                 }
 
                 float scale = 1.0f;
 
+                // dont draw spaces
                 if (cha != ' ')
                 {
                     GL.BlendFunc(BlendingFactor.SrcAlpha, BlendingFactor.OneMinusSrcAlpha);
+
                     GL.Enable(EnableCap.Texture2D);
                     GL.BindTexture(TextureTarget.Texture2D, charDict[charid].gltextureid);
+
                     GL.Begin(PrimitiveType.TriangleFan);
                     GL.TexCoord2(0, 0);
                     GL.Vertex2(x, y);
@@ -1350,25 +1489,27 @@ namespace JCFLIGHTGCS
                     };
 
                     charDict[charid].bitmap.MakeTransparent(Color.Transparent);
-                    float maxx = this.Width / 150;
 
+                    //charbitmaptexid
+
+                    float maxx = this.Width / 150; // for space
+
+
+                    // create bitmap
                     using (var gfx = Graphics.FromImage(charDict[charid].bitmap))
                     {
                         var pth = new GraphicsPath();
 
                         if (text != null)
-                            pth.AddString(cha + "", font.FontFamily, 0, fontsize + 5, new Point((int)0, (int)0),
-                                StringFormat.GenericTypographic);
+                            pth.AddString(cha + "", font.FontFamily, 0, fontsize + 5, new Point((int)0, (int)0), StringFormat.GenericTypographic);
 
                         charDict[charid].pth = pth;
-
                         gfx.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-
                         gfx.DrawPath(this._p, pth);
 
+                        //Draw the face
+
                         gfx.FillPath(brush, pth);
-
-
                         if (pth.PointCount > 0)
                         {
                             foreach (PointF pnt in pth.PathPoints)
@@ -1381,7 +1522,6 @@ namespace JCFLIGHTGCS
                             }
                         }
                     }
-
                     charDict[charid].width = (int)(maxx + 2);
                 }
                 float scale = 1.0f;
@@ -1389,13 +1529,8 @@ namespace JCFLIGHTGCS
                 {
                     DrawImage(charDict[charid].bitmap, (int)x, (int)y, charDict[charid].bitmap.Width, charDict[charid].bitmap.Height, charDict[charid].gltextureid);
                 }
-                else
-                {
-
-                }
                 x += charDict[charid].width * scale;
             }
-
         }
 
         protected override void OnHandleCreated(EventArgs e)
@@ -1428,20 +1563,17 @@ namespace JCFLIGHTGCS
             }
         }
 
+        public void doResize()
+        {
+            OnResize(EventArgs.Empty);
+        }
+
         protected override void OnResize(EventArgs e)
         {
             if (DesignMode || !IsHandleCreated || !started)
                 return;
 
             base.OnResize(e);
-
-            int ht = (int)(this.Width / 1.333f);
-            if (ht >= this.Height + 5 || ht <= this.Height - 5)
-            {
-                this.Height = ht;
-                return;
-            }
-
 
             graphicsObjectGDIP = new GdiGraphics(Graphics.FromImage(objBitmap));
 
@@ -1485,7 +1617,7 @@ namespace JCFLIGHTGCS
             {
                 if (opengl)
                 {
-                    glControl1.MakeCurrent();
+                    MakeCurrent();
                     GL.MatrixMode(MatrixMode.Projection);
                     GL.LoadIdentity();
                     GL.Ortho(0, Width, Height, 0, -1, 1);
@@ -1497,12 +1629,46 @@ namespace JCFLIGHTGCS
             catch
             {
             }
+
             Refresh();
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        [Browsable(false)]
+        public new bool VSync
         {
-            this.Invalidate();
+            get
+            {
+                try
+                {
+                    return base.VSync;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+            set
+            {
+                try
+                {
+                    base.VSync = value;
+                }
+                catch
+                {
+                }
+            }
+        }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // HUD
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.Name = "HUD";
+            this.ResumeLayout(false);
+
         }
     }
 }

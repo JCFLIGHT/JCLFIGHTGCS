@@ -95,7 +95,7 @@ namespace JCFLIGHTGCS
         double Altitude;
 
         int Heading = 0;
-        int ReadPitch = 0;
+        int ReadRoll = 0;
 
         byte GmapFrameMode = 0;
 
@@ -581,8 +581,9 @@ namespace JCFLIGHTGCS
 
                 case 7:
                     ptr = 0;
-                    ReadPitch = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    //ReadRoll = BitConverter.ToInt16(InBuffer, ptr);
+                    //ReadPitch = BitConverter.ToInt16(InBuffer, ptr); 
+                    ptr += 2;
+                    ReadRoll = BitConverter.ToInt16(InBuffer, ptr); 
                     ptr += 2;
                     Heading = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     //DevicesSum = (byte)InBuffer[ptr++];
@@ -652,6 +653,10 @@ namespace JCFLIGHTGCS
 
         private void timer2_Tick(object sender, EventArgs e)
         {
+            if (WindowState == FormWindowState.Maximized)
+            {
+                this.MaximumSize = Screen.PrimaryScreen.WorkingArea.Size; //NÃO CUBRA A BARRA DE TAREFAS
+            }
             WPCoordinates2 = new List<PointLatLng>();
             if (SerialPort.IsOpen)
             {
@@ -1133,15 +1138,18 @@ namespace JCFLIGHTGCS
                 else if (GmapFrameMode == 3 || GmapFrameMode == 4 || GmapFrameMode == 5)
                 {
                     int ExpoValue = 0;
-                    int AttitudePitch = ReadPitch / 10;
-                    if (AttitudePitch >= 10 && AttitudePitch < 25) ExpoValue = 150;
-                    if (AttitudePitch >= 25) ExpoValue = 50;
-                    if (AttitudePitch <= -10 && AttitudePitch > -25) ExpoValue = -150;
-                    if (AttitudePitch <= -25) ExpoValue = -50;
+                    int AttitudeRoll = -ReadRoll / 10;
+                    if (AttitudeRoll >= 10 && AttitudeRoll < 35) ExpoValue = 150;
+                    if (AttitudeRoll >= 35) ExpoValue = 50;
+                    if (AttitudeRoll <= -10 && AttitudeRoll > -35) ExpoValue = -150;
+                    if (AttitudeRoll <= -35) ExpoValue = -50;
                     GmapPositions.Markers.Add(new GMapMarkerAero(GPS_Position, Heading, CoG, Crosstrack, ExpoValue));
                 }
                 if (ArmDisarm == 1) GMapTack.Points.Add(GPS_Position);
-                MyGMap.Position = GPS_Position;
+                if (checkBox1.Checked == true)
+                {
+                    MyGMap.Position = GPS_Position;
+                }
                 MyGMap.Invalidate();
             }
         }
@@ -2661,7 +2669,6 @@ namespace JCFLIGHTGCS
         {
             this.MaximumSize = Screen.PrimaryScreen.WorkingArea.Size; //NÃO CUBRA A BARRA DE TAREFAS
             this.WindowState = FormWindowState.Maximized;
-            MaximizeBox = false;
         }
     }
 }

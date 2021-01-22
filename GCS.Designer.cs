@@ -28,14 +28,16 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GCS));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.button7 = new System.Windows.Forms.Button();
             this.label27 = new System.Windows.Forms.Label();
             this.comboBox7 = new System.Windows.Forms.ComboBox();
             this.BarraTitulo = new System.Windows.Forms.Panel();
-            this.label72 = new System.Windows.Forms.Label();
+            this.preArmNotification2 = new JCFLIGHTGCS.PreArmNotification();
+            this.panel18 = new System.Windows.Forms.Panel();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
+            this.label72 = new System.Windows.Forms.Label();
             this.iconminimizar = new System.Windows.Forms.PictureBox();
             this.maximinizar = new System.Windows.Forms.PictureBox();
             this.iconmaximizar = new System.Windows.Forms.PictureBox();
@@ -59,7 +61,7 @@
             this.RealTimer = new System.Windows.Forms.Timer(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.hud1 = new JCFLIGHTGCS.HUD();
+            this.HUD1 = new JCFLIGHTGCS.HUD();
             this.label151 = new System.Windows.Forms.Label();
             this.label150 = new System.Windows.Forms.Label();
             this.metroProgressBar29 = new MetroFramework.Controls.MetroProgressBar();
@@ -113,6 +115,13 @@
             this.panel15 = new System.Windows.Forms.Panel();
             this.label71 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.groupBox30 = new System.Windows.Forms.GroupBox();
+            this.numericUpDown24 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown23 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown22 = new System.Windows.Forms.NumericUpDown();
+            this.label155 = new System.Windows.Forms.Label();
+            this.label102 = new System.Windows.Forms.Label();
+            this.label69 = new System.Windows.Forms.Label();
             this.groupBox28 = new System.Windows.Forms.GroupBox();
             this.comboBox25 = new System.Windows.Forms.ComboBox();
             this.groupBox27 = new System.Windows.Forms.GroupBox();
@@ -293,7 +302,14 @@
             this.metroProgressBar1 = new MetroFramework.Controls.MetroProgressBar();
             this.metroProgressBar11 = new MetroFramework.Controls.MetroProgressBar();
             this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.hudsmall1 = new JCFLIGHTGCS.HUDSMALL();
+            this.label158 = new System.Windows.Forms.Label();
+            this.label157 = new System.Windows.Forms.Label();
+            this.label160 = new System.Windows.Forms.Label();
+            this.label156 = new System.Windows.Forms.Label();
+            this.label159 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.HUD2 = new JCFLIGHTGCS.HUD();
+            this.button20 = new System.Windows.Forms.Button();
             this.label116 = new System.Windows.Forms.Label();
             this.label117 = new System.Windows.Forms.Label();
             this.label91 = new System.Windows.Forms.Label();
@@ -319,6 +335,7 @@
             this.label73 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.circularProgressBar2 = new CircularProgressBar.CircularProgressBar();
+            this.HUDSMALL1 = new JCFLIGHTGCS.HUDSMALL();
             this.HeadingIndicator2 = new JCFLIGHTGCS.HeadingIndicatorInstrumentControl();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.label154 = new System.Windows.Forms.Label();
@@ -424,14 +441,10 @@
             this.voeParaCáToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tirarFotoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.limparMapaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupBox30 = new System.Windows.Forms.GroupBox();
-            this.label69 = new System.Windows.Forms.Label();
-            this.label102 = new System.Windows.Forms.Label();
-            this.label155 = new System.Windows.Forms.Label();
-            this.numericUpDown22 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown23 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown24 = new System.Windows.Forms.NumericUpDown();
+            this.carregarWPsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.limparWPsDoMapaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BarraTitulo.SuspendLayout();
+            this.panel18.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconminimizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maximinizar)).BeginInit();
@@ -466,6 +479,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.panel15.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.groupBox30.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown24)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown23)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown22)).BeginInit();
             this.groupBox28.SuspendLayout();
             this.groupBox27.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -539,10 +556,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
-            this.groupBox30.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown22)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown23)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown24)).BeginInit();
             this.SuspendLayout();
             // 
             // serialPort1
@@ -554,7 +567,7 @@
             // button7
             // 
             this.button7.BackColor = System.Drawing.Color.White;
-            this.button7.Location = new System.Drawing.Point(814, 99);
+            this.button7.Location = new System.Drawing.Point(8, 58);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(121, 24);
             this.button7.TabIndex = 8;
@@ -566,7 +579,7 @@
             // 
             this.label27.AutoSize = true;
             this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.Location = new System.Drawing.Point(825, 46);
+            this.label27.Location = new System.Drawing.Point(19, 5);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(91, 20);
             this.label27.TabIndex = 7;
@@ -576,7 +589,7 @@
             // 
             this.comboBox7.BackColor = System.Drawing.Color.White;
             this.comboBox7.FormattingEnabled = true;
-            this.comboBox7.Location = new System.Drawing.Point(814, 69);
+            this.comboBox7.Location = new System.Drawing.Point(8, 28);
             this.comboBox7.Name = "comboBox7";
             this.comboBox7.Size = new System.Drawing.Size(121, 21);
             this.comboBox7.TabIndex = 5;
@@ -587,22 +600,49 @@
             // BarraTitulo
             // 
             this.BarraTitulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.BarraTitulo.Controls.Add(this.preArmNotification2);
+            this.BarraTitulo.Controls.Add(this.panel18);
             this.BarraTitulo.Controls.Add(this.label72);
-            this.BarraTitulo.Controls.Add(this.button7);
-            this.BarraTitulo.Controls.Add(this.label27);
-            this.BarraTitulo.Controls.Add(this.pictureBox9);
-            this.BarraTitulo.Controls.Add(this.comboBox7);
             this.BarraTitulo.Controls.Add(this.iconminimizar);
             this.BarraTitulo.Controls.Add(this.maximinizar);
             this.BarraTitulo.Controls.Add(this.iconmaximizar);
             this.BarraTitulo.Controls.Add(this.encerrar);
             this.BarraTitulo.Controls.Add(this.btnlogoInicio);
             this.BarraTitulo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.BarraTitulo.Location = new System.Drawing.Point(250, 0);
+            this.BarraTitulo.Location = new System.Drawing.Point(249, 0);
             this.BarraTitulo.Name = "BarraTitulo";
-            this.BarraTitulo.Size = new System.Drawing.Size(1050, 128);
+            this.BarraTitulo.Size = new System.Drawing.Size(1051, 128);
             this.BarraTitulo.TabIndex = 8;
             this.BarraTitulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BarraTitulo_MouseDown);
+            // 
+            // preArmNotification2
+            // 
+            this.preArmNotification2.Location = new System.Drawing.Point(3, 3);
+            this.preArmNotification2.Name = "preArmNotification2";
+            this.preArmNotification2.Size = new System.Drawing.Size(247, 123);
+            this.preArmNotification2.TabIndex = 10;
+            // 
+            // panel18
+            // 
+            this.panel18.Controls.Add(this.pictureBox9);
+            this.panel18.Controls.Add(this.comboBox7);
+            this.panel18.Controls.Add(this.button7);
+            this.panel18.Controls.Add(this.label27);
+            this.panel18.Location = new System.Drawing.Point(819, 38);
+            this.panel18.Name = "panel18";
+            this.panel18.Size = new System.Drawing.Size(229, 85);
+            this.panel18.TabIndex = 9;
+            // 
+            // pictureBox9
+            // 
+            this.pictureBox9.BackColor = System.Drawing.Color.White;
+            this.pictureBox9.Image = global::JCFLIGHTGCS.Properties.Resources.Desconectado;
+            this.pictureBox9.Location = new System.Drawing.Point(132, 10);
+            this.pictureBox9.Name = "pictureBox9";
+            this.pictureBox9.Size = new System.Drawing.Size(93, 72);
+            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox9.TabIndex = 6;
+            this.pictureBox9.TabStop = false;
             // 
             // label72
             // 
@@ -615,23 +655,12 @@
             this.label72.TabIndex = 5;
             this.label72.Text = "00:00:00 26/07/2020";
             // 
-            // pictureBox9
-            // 
-            this.pictureBox9.BackColor = System.Drawing.Color.White;
-            this.pictureBox9.Image = global::JCFLIGHTGCS.Properties.Resources.Desconectado;
-            this.pictureBox9.Location = new System.Drawing.Point(938, 51);
-            this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(93, 72);
-            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox9.TabIndex = 6;
-            this.pictureBox9.TabStop = false;
-            // 
             // iconminimizar
             // 
             this.iconminimizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.iconminimizar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.iconminimizar.Image = global::JCFLIGHTGCS.Properties.Resources.minimazar;
-            this.iconminimizar.Location = new System.Drawing.Point(968, 5);
+            this.iconminimizar.Location = new System.Drawing.Point(968, 3);
             this.iconminimizar.Name = "iconminimizar";
             this.iconminimizar.Size = new System.Drawing.Size(18, 18);
             this.iconminimizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -644,7 +673,7 @@
             this.maximinizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.maximinizar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.maximinizar.Image = global::JCFLIGHTGCS.Properties.Resources.maxi;
-            this.maximinizar.Location = new System.Drawing.Point(990, 10);
+            this.maximinizar.Location = new System.Drawing.Point(990, 8);
             this.maximinizar.Name = "maximinizar";
             this.maximinizar.Size = new System.Drawing.Size(18, 18);
             this.maximinizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -658,7 +687,7 @@
             this.iconmaximizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.iconmaximizar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.iconmaximizar.Image = global::JCFLIGHTGCS.Properties.Resources.maxi;
-            this.iconmaximizar.Location = new System.Drawing.Point(995, 5);
+            this.iconmaximizar.Location = new System.Drawing.Point(995, 3);
             this.iconmaximizar.Name = "iconmaximizar";
             this.iconmaximizar.Size = new System.Drawing.Size(18, 18);
             this.iconmaximizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -671,7 +700,7 @@
             this.encerrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.encerrar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.encerrar.Image = global::JCFLIGHTGCS.Properties.Resources.cerrar;
-            this.encerrar.Location = new System.Drawing.Point(1021, 5);
+            this.encerrar.Location = new System.Drawing.Point(1021, 3);
             this.encerrar.Name = "encerrar";
             this.encerrar.Size = new System.Drawing.Size(18, 18);
             this.encerrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -794,7 +823,7 @@
             this.MenuVertical.Dock = System.Windows.Forms.DockStyle.Left;
             this.MenuVertical.Location = new System.Drawing.Point(0, 0);
             this.MenuVertical.Name = "MenuVertical";
-            this.MenuVertical.Size = new System.Drawing.Size(250, 710);
+            this.MenuVertical.Size = new System.Drawing.Size(249, 710);
             this.MenuVertical.TabIndex = 7;
             // 
             // preArmNotification1
@@ -953,7 +982,7 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.hud1);
+            this.tabPage1.Controls.Add(this.HUD1);
             this.tabPage1.Controls.Add(this.label151);
             this.tabPage1.Controls.Add(this.label150);
             this.tabPage1.Controls.Add(this.metroProgressBar29);
@@ -981,27 +1010,28 @@
             this.tabPage1.Text = "Resumo";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // hud1
+            // HUD1
             // 
-            this.hud1.bgimage = null;
-            this.hud1.datetime = new System.DateTime(((long)(0)));
-            this.hud1.failsafe = false;
-            this.hud1.hudcolor = System.Drawing.Color.White;
-            this.hud1.imuhealty = false;
-            this.hud1.linkqualitygcs = 0F;
-            this.hud1.Location = new System.Drawing.Point(39, 153);
-            this.hud1.Margin = new System.Windows.Forms.Padding(9, 12, 9, 12);
-            this.hud1.messagetime = new System.DateTime(((long)(0)));
-            this.hud1.Name = "hud1";
-            this.hud1.pitch = 0F;
-            this.hud1.roll = 0F;
-            this.hud1.Russian = false;
-            this.hud1.Size = new System.Drawing.Size(300, 300);
-            this.hud1.skyColor1 = System.Drawing.Color.Blue;
-            this.hud1.skyColor2 = System.Drawing.Color.LightBlue;
-            this.hud1.status = 0;
-            this.hud1.streamjpg = ((System.IO.MemoryStream)(resources.GetObject("hud1.streamjpg")));
-            this.hud1.TabIndex = 54;
+            this.HUD1.AHRSHorizontalVariance = false;
+            this.HUD1.BackColor = System.Drawing.Color.Black;
+            this.HUD1.bgimage = null;
+            this.HUD1.datetime = new System.DateTime(((long)(0)));
+            this.HUD1.failsafe = false;
+            this.HUD1.hudcolor = System.Drawing.Color.White;
+            this.HUD1.imuhealty = false;
+            this.HUD1.linkqualitygcs = 0F;
+            this.HUD1.Location = new System.Drawing.Point(7, 153);
+            this.HUD1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.HUD1.Name = "HUD1";
+            this.HUD1.pitch = 0F;
+            this.HUD1.roll = 0F;
+            this.HUD1.Size = new System.Drawing.Size(341, 300);
+            this.HUD1.skyColor1 = System.Drawing.Color.Blue;
+            this.HUD1.skyColor2 = System.Drawing.Color.LightBlue;
+            this.HUD1.status = false;
+            this.HUD1.streamjpg = ((System.IO.MemoryStream)(resources.GetObject("HUD1.streamjpg")));
+            this.HUD1.TabIndex = 54;
+            this.HUD1.VSync = false;
             // 
             // label151
             // 
@@ -1048,7 +1078,7 @@
             this.label94.AutoSize = true;
             this.label94.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label94.ForeColor = System.Drawing.Color.Red;
-            this.label94.Location = new System.Drawing.Point(140, 132);
+            this.label94.Location = new System.Drawing.Point(129, 132);
             this.label94.Name = "label94";
             this.label94.Size = new System.Drawing.Size(88, 18);
             this.label94.TabIndex = 48;
@@ -1398,7 +1428,7 @@
             this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(21, 5);
+            this.label1.Location = new System.Drawing.Point(21, 2);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(73, 18);
             this.label1.TabIndex = 15;
@@ -1617,6 +1647,106 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Configurações";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // groupBox30
+            // 
+            this.groupBox30.Controls.Add(this.numericUpDown24);
+            this.groupBox30.Controls.Add(this.numericUpDown23);
+            this.groupBox30.Controls.Add(this.numericUpDown22);
+            this.groupBox30.Controls.Add(this.label155);
+            this.groupBox30.Controls.Add(this.label102);
+            this.groupBox30.Controls.Add(this.label69);
+            this.groupBox30.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox30.Location = new System.Drawing.Point(219, 143);
+            this.groupBox30.Name = "groupBox30";
+            this.groupBox30.Size = new System.Drawing.Size(143, 115);
+            this.groupBox30.TabIndex = 30;
+            this.groupBox30.TabStop = false;
+            this.groupBox30.Text = "ACC AJUSTE";
+            // 
+            // numericUpDown24
+            // 
+            this.numericUpDown24.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericUpDown24.Location = new System.Drawing.Point(75, 81);
+            this.numericUpDown24.Maximum = new decimal(new int[] {
+            800,
+            0,
+            0,
+            0});
+            this.numericUpDown24.Minimum = new decimal(new int[] {
+            800,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDown24.Name = "numericUpDown24";
+            this.numericUpDown24.Size = new System.Drawing.Size(62, 26);
+            this.numericUpDown24.TabIndex = 32;
+            // 
+            // numericUpDown23
+            // 
+            this.numericUpDown23.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericUpDown23.Location = new System.Drawing.Point(75, 51);
+            this.numericUpDown23.Maximum = new decimal(new int[] {
+            800,
+            0,
+            0,
+            0});
+            this.numericUpDown23.Minimum = new decimal(new int[] {
+            800,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDown23.Name = "numericUpDown23";
+            this.numericUpDown23.Size = new System.Drawing.Size(62, 26);
+            this.numericUpDown23.TabIndex = 32;
+            // 
+            // numericUpDown22
+            // 
+            this.numericUpDown22.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericUpDown22.Location = new System.Drawing.Point(75, 21);
+            this.numericUpDown22.Maximum = new decimal(new int[] {
+            800,
+            0,
+            0,
+            0});
+            this.numericUpDown22.Minimum = new decimal(new int[] {
+            800,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDown22.Name = "numericUpDown22";
+            this.numericUpDown22.Size = new System.Drawing.Size(62, 26);
+            this.numericUpDown22.TabIndex = 31;
+            // 
+            // label155
+            // 
+            this.label155.AutoSize = true;
+            this.label155.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label155.Location = new System.Drawing.Point(8, 83);
+            this.label155.Name = "label155";
+            this.label155.Size = new System.Drawing.Size(40, 20);
+            this.label155.TabIndex = 31;
+            this.label155.Text = "Yaw";
+            // 
+            // label102
+            // 
+            this.label102.AutoSize = true;
+            this.label102.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label102.Location = new System.Drawing.Point(8, 53);
+            this.label102.Name = "label102";
+            this.label102.Size = new System.Drawing.Size(44, 20);
+            this.label102.TabIndex = 31;
+            this.label102.Text = "Pitch";
+            // 
+            // label69
+            // 
+            this.label69.AutoSize = true;
+            this.label69.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label69.Location = new System.Drawing.Point(8, 25);
+            this.label69.Name = "label69";
+            this.label69.Size = new System.Drawing.Size(36, 20);
+            this.label69.TabIndex = 30;
+            this.label69.Text = "Roll";
             // 
             // groupBox28
             // 
@@ -3970,7 +4100,14 @@
             // 
             // tabPage6
             // 
-            this.tabPage6.Controls.Add(this.hudsmall1);
+            this.tabPage6.Controls.Add(this.label158);
+            this.tabPage6.Controls.Add(this.label157);
+            this.tabPage6.Controls.Add(this.label160);
+            this.tabPage6.Controls.Add(this.label156);
+            this.tabPage6.Controls.Add(this.label159);
+            this.tabPage6.Controls.Add(this.checkBox1);
+            this.tabPage6.Controls.Add(this.HUD2);
+            this.tabPage6.Controls.Add(this.button20);
             this.tabPage6.Controls.Add(this.label116);
             this.tabPage6.Controls.Add(this.label117);
             this.tabPage6.Controls.Add(this.label91);
@@ -3996,6 +4133,7 @@
             this.tabPage6.Controls.Add(this.label73);
             this.tabPage6.Controls.Add(this.label3);
             this.tabPage6.Controls.Add(this.circularProgressBar2);
+            this.tabPage6.Controls.Add(this.HUDSMALL1);
             this.tabPage6.Controls.Add(this.HeadingIndicator2);
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
@@ -4005,26 +4143,113 @@
             this.tabPage6.Text = "Voo";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
-            // hudsmall1
+            // label158
             // 
-            this.hudsmall1.bgimage = null;
-            this.hudsmall1.datetime = new System.DateTime(((long)(0)));
-            this.hudsmall1.failsafe = false;
-            this.hudsmall1.hudcolor = System.Drawing.Color.White;
-            this.hudsmall1.imuhealty = false;
-            this.hudsmall1.linkqualitygcs = 0F;
-            this.hudsmall1.Location = new System.Drawing.Point(0, 6);
-            this.hudsmall1.messagetime = new System.DateTime(((long)(0)));
-            this.hudsmall1.Name = "hudsmall1";
-            this.hudsmall1.pitch = 0F;
-            this.hudsmall1.roll = 0F;
-            this.hudsmall1.Russian = false;
-            this.hudsmall1.Size = new System.Drawing.Size(157, 158);
-            this.hudsmall1.skyColor1 = System.Drawing.Color.Blue;
-            this.hudsmall1.skyColor2 = System.Drawing.Color.LightBlue;
-            this.hudsmall1.status = 0;
-            this.hudsmall1.streamjpg = ((System.IO.MemoryStream)(resources.GetObject("hudsmall1.streamjpg")));
-            this.hudsmall1.TabIndex = 73;
+            this.label158.AutoSize = true;
+            this.label158.BackColor = System.Drawing.Color.Transparent;
+            this.label158.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label158.ForeColor = System.Drawing.Color.Black;
+            this.label158.Location = new System.Drawing.Point(757, 520);
+            this.label158.Name = "label158";
+            this.label158.Size = new System.Drawing.Size(40, 16);
+            this.label158.TabIndex = 153;
+            this.label158.Text = "Lng:0";
+            // 
+            // label157
+            // 
+            this.label157.AutoSize = true;
+            this.label157.BackColor = System.Drawing.Color.Transparent;
+            this.label157.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label157.ForeColor = System.Drawing.Color.Black;
+            this.label157.Location = new System.Drawing.Point(613, 520);
+            this.label157.Name = "label157";
+            this.label157.Size = new System.Drawing.Size(36, 16);
+            this.label157.TabIndex = 152;
+            this.label157.Text = "Lat:0";
+            // 
+            // label160
+            // 
+            this.label160.AutoSize = true;
+            this.label160.BackColor = System.Drawing.Color.Transparent;
+            this.label160.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label160.ForeColor = System.Drawing.Color.Black;
+            this.label160.Location = new System.Drawing.Point(849, 539);
+            this.label160.Name = "label160";
+            this.label160.Size = new System.Drawing.Size(91, 16);
+            this.label160.TabIndex = 151;
+            this.label160.Text = "GPS Heading";
+            // 
+            // label156
+            // 
+            this.label156.AutoSize = true;
+            this.label156.BackColor = System.Drawing.Color.Transparent;
+            this.label156.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label156.ForeColor = System.Drawing.Color.Black;
+            this.label156.Location = new System.Drawing.Point(726, 539);
+            this.label156.Name = "label156";
+            this.label156.Size = new System.Drawing.Size(117, 16);
+            this.label156.TabIndex = 150;
+            this.label156.Text = "GPS Track (Preto)";
+            // 
+            // label159
+            // 
+            this.label159.AutoSize = true;
+            this.label159.BackColor = System.Drawing.Color.Transparent;
+            this.label159.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label159.ForeColor = System.Drawing.Color.Black;
+            this.label159.Location = new System.Drawing.Point(613, 539);
+            this.label159.Name = "label159";
+            this.label159.Size = new System.Drawing.Size(107, 16);
+            this.label159.TabIndex = 149;
+            this.label159.Text = "Attitude Heading";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.BackColor = System.Drawing.Color.Blue;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.ForeColor = System.Drawing.Color.White;
+            this.checkBox1.Location = new System.Drawing.Point(946, 538);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(89, 17);
+            this.checkBox1.TabIndex = 79;
+            this.checkBox1.Text = "Auto-Posição";
+            this.checkBox1.UseVisualStyleBackColor = false;
+            // 
+            // HUD2
+            // 
+            this.HUD2.AHRSHorizontalVariance = false;
+            this.HUD2.BackColor = System.Drawing.Color.Black;
+            this.HUD2.bgimage = null;
+            this.HUD2.datetime = new System.DateTime(((long)(0)));
+            this.HUD2.failsafe = false;
+            this.HUD2.hudcolor = System.Drawing.Color.White;
+            this.HUD2.imuhealty = false;
+            this.HUD2.linkqualitygcs = 0F;
+            this.HUD2.Location = new System.Drawing.Point(0, 6);
+            this.HUD2.Name = "HUD2";
+            this.HUD2.pitch = 0F;
+            this.HUD2.roll = 0F;
+            this.HUD2.Size = new System.Drawing.Size(360, 360);
+            this.HUD2.skyColor1 = System.Drawing.Color.Blue;
+            this.HUD2.skyColor2 = System.Drawing.Color.LightBlue;
+            this.HUD2.status = false;
+            this.HUD2.streamjpg = ((System.IO.MemoryStream)(resources.GetObject("HUD2.streamjpg")));
+            this.HUD2.TabIndex = 75;
+            this.HUD2.VSync = false;
+            // 
+            // button20
+            // 
+            this.button20.BackColor = System.Drawing.Color.Transparent;
+            this.button20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button20.Location = new System.Drawing.Point(19, 540);
+            this.button20.Name = "button20";
+            this.button20.Size = new System.Drawing.Size(109, 25);
+            this.button20.TabIndex = 74;
+            this.button20.Text = "Ampliar Tudo";
+            this.button20.UseVisualStyleBackColor = false;
+            this.button20.Click += new System.EventHandler(this.button20_Click);
             // 
             // label116
             // 
@@ -4060,12 +4285,14 @@
             // 
             this.metroTrackBar1.BackColor = System.Drawing.Color.Transparent;
             this.metroTrackBar1.Location = new System.Drawing.Point(143, 537);
-            this.metroTrackBar1.Maximum = 20;
+            this.metroTrackBar1.Maximum = 240;
+            this.metroTrackBar1.Minimum = 20;
             this.metroTrackBar1.Name = "metroTrackBar1";
             this.metroTrackBar1.Size = new System.Drawing.Size(149, 23);
             this.metroTrackBar1.TabIndex = 68;
             this.metroTrackBar1.Text = "metroTrackBar1";
-            this.metroTrackBar1.Value = 2;
+            this.metroTrackBar1.Value = 20;
+            this.metroTrackBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.metroTrackBar1_Scroll);
             // 
             // MyGMap
             // 
@@ -4079,20 +4306,22 @@
             this.MyGMap.MarkersEnabled = true;
             this.MyGMap.MaxZoom = 20;
             this.MyGMap.MinZoom = 2;
-            this.MyGMap.MouseWheelZoomEnabled = false;
+            this.MyGMap.MouseWheelZoomEnabled = true;
             this.MyGMap.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
             this.MyGMap.Name = "MyGMap";
             this.MyGMap.NegativeMode = false;
             this.MyGMap.PolygonsEnabled = true;
             this.MyGMap.RetryLoadTile = 0;
             this.MyGMap.RoutesEnabled = true;
-            this.MyGMap.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
+            this.MyGMap.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Fractional;
             this.MyGMap.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.MyGMap.ShowTileGridLines = false;
-            this.MyGMap.Size = new System.Drawing.Size(780, 555);
+            this.MyGMap.Size = new System.Drawing.Size(800, 555);
             this.MyGMap.TabIndex = 67;
             this.MyGMap.Zoom = 0D;
+            this.MyGMap.OnMapZoomChanged += new GMap.NET.MapZoomChanged(this.MyGMap_OnMapZoomChanged);
             this.MyGMap.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MyGMap_MouseUp);
+            this.MyGMap.Resize += new System.EventHandler(this.MyGMap_Resize);
             // 
             // label89
             // 
@@ -4318,6 +4547,27 @@
             this.circularProgressBar2.TextMargin = new System.Windows.Forms.Padding(8, 8, 0, 0);
             this.circularProgressBar2.Value = 68;
             // 
+            // HUDSMALL1
+            // 
+            this.HUDSMALL1.bgimage = null;
+            this.HUDSMALL1.datetime = new System.DateTime(((long)(0)));
+            this.HUDSMALL1.failsafe = false;
+            this.HUDSMALL1.hudcolor = System.Drawing.Color.White;
+            this.HUDSMALL1.imuhealty = false;
+            this.HUDSMALL1.linkqualitygcs = 0F;
+            this.HUDSMALL1.Location = new System.Drawing.Point(0, 6);
+            this.HUDSMALL1.messagetime = new System.DateTime(((long)(0)));
+            this.HUDSMALL1.Name = "HUDSMALL1";
+            this.HUDSMALL1.pitch = 0F;
+            this.HUDSMALL1.roll = 0F;
+            this.HUDSMALL1.Russian = false;
+            this.HUDSMALL1.Size = new System.Drawing.Size(157, 158);
+            this.HUDSMALL1.skyColor1 = System.Drawing.Color.Blue;
+            this.HUDSMALL1.skyColor2 = System.Drawing.Color.LightBlue;
+            this.HUDSMALL1.status = 0;
+            this.HUDSMALL1.streamjpg = null;
+            this.HUDSMALL1.TabIndex = 73;
+            // 
             // HeadingIndicator2
             // 
             this.HeadingIndicator2.BackColor = System.Drawing.Color.White;
@@ -4426,7 +4676,6 @@
             this.linkLabel2.TabIndex = 37;
             this.linkLabel2.TabStop = true;
             this.linkLabel2.Text = "CLIQUE AQUI PARA VISUALIZAR EXEMPLOS DO FILTRO";
-            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
             // 
             // label115
             // 
@@ -4822,7 +5071,6 @@
             this.linkLabel1.TabIndex = 18;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "CLIQUE AQUI PARA VISUALIZAR EXEMPLOS DO FILTRO";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // label103
             // 
@@ -5394,8 +5642,8 @@
             // Parametro
             // 
             this.Parametro.DataPropertyName = "Nenhum";
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Parametro.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Parametro.DefaultCellStyle = dataGridViewCellStyle7;
             this.Parametro.HeaderText = "Parâmetro";
             this.Parametro.Name = "Parametro";
             this.Parametro.ReadOnly = true;
@@ -5436,7 +5684,7 @@
             // GmapAtt
             // 
             this.GmapAtt.Enabled = true;
-            this.GmapAtt.Interval = 1000;
+            this.GmapAtt.Interval = 200;
             this.GmapAtt.Tick += new System.EventHandler(this.GmapAtt_Tick);
             // 
             // FlightTimer
@@ -5464,144 +5712,58 @@
             this.pousarAquiToolStripMenuItem,
             this.voeParaCáToolStripMenuItem,
             this.tirarFotoToolStripMenuItem,
-            this.limparMapaToolStripMenuItem});
+            this.limparMapaToolStripMenuItem,
+            this.carregarWPsToolStripMenuItem,
+            this.limparWPsDoMapaToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(145, 114);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(199, 158);
             // 
             // decolarToolStripMenuItem
             // 
             this.decolarToolStripMenuItem.Name = "decolarToolStripMenuItem";
-            this.decolarToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.decolarToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
             this.decolarToolStripMenuItem.Text = "Decolar";
             this.decolarToolStripMenuItem.Click += new System.EventHandler(this.decolarToolStripMenuItem_Click);
             // 
             // pousarAquiToolStripMenuItem
             // 
             this.pousarAquiToolStripMenuItem.Name = "pousarAquiToolStripMenuItem";
-            this.pousarAquiToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.pousarAquiToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
             this.pousarAquiToolStripMenuItem.Text = "Pousar aqui";
             this.pousarAquiToolStripMenuItem.Click += new System.EventHandler(this.pousarAquiToolStripMenuItem_Click);
             // 
             // voeParaCáToolStripMenuItem
             // 
             this.voeParaCáToolStripMenuItem.Name = "voeParaCáToolStripMenuItem";
-            this.voeParaCáToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.voeParaCáToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
             this.voeParaCáToolStripMenuItem.Text = "Voe para cá";
             this.voeParaCáToolStripMenuItem.Click += new System.EventHandler(this.voeParaCáToolStripMenuItem_Click);
             // 
             // tirarFotoToolStripMenuItem
             // 
             this.tirarFotoToolStripMenuItem.Name = "tirarFotoToolStripMenuItem";
-            this.tirarFotoToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.tirarFotoToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
             this.tirarFotoToolStripMenuItem.Text = "Tirar foto";
             this.tirarFotoToolStripMenuItem.Click += new System.EventHandler(this.tirarFotoToolStripMenuItem_Click);
             // 
             // limparMapaToolStripMenuItem
             // 
             this.limparMapaToolStripMenuItem.Name = "limparMapaToolStripMenuItem";
-            this.limparMapaToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
-            this.limparMapaToolStripMenuItem.Text = "Limpar mapa";
+            this.limparMapaToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.limparMapaToolStripMenuItem.Text = "Limpar a rota do UAV";
             this.limparMapaToolStripMenuItem.Click += new System.EventHandler(this.limparMapaToolStripMenuItem_Click);
             // 
-            // groupBox30
+            // carregarWPsToolStripMenuItem
             // 
-            this.groupBox30.Controls.Add(this.numericUpDown24);
-            this.groupBox30.Controls.Add(this.numericUpDown23);
-            this.groupBox30.Controls.Add(this.numericUpDown22);
-            this.groupBox30.Controls.Add(this.label155);
-            this.groupBox30.Controls.Add(this.label102);
-            this.groupBox30.Controls.Add(this.label69);
-            this.groupBox30.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox30.Location = new System.Drawing.Point(219, 143);
-            this.groupBox30.Name = "groupBox30";
-            this.groupBox30.Size = new System.Drawing.Size(143, 115);
-            this.groupBox30.TabIndex = 30;
-            this.groupBox30.TabStop = false;
-            this.groupBox30.Text = "ACC AJUSTE";
+            this.carregarWPsToolStripMenuItem.Name = "carregarWPsToolStripMenuItem";
+            this.carregarWPsToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.carregarWPsToolStripMenuItem.Text = "Carregar WP\'s no mapa";
             // 
-            // label69
+            // limparWPsDoMapaToolStripMenuItem
             // 
-            this.label69.AutoSize = true;
-            this.label69.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label69.Location = new System.Drawing.Point(8, 25);
-            this.label69.Name = "label69";
-            this.label69.Size = new System.Drawing.Size(36, 20);
-            this.label69.TabIndex = 30;
-            this.label69.Text = "Roll";
-            // 
-            // label102
-            // 
-            this.label102.AutoSize = true;
-            this.label102.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label102.Location = new System.Drawing.Point(8, 53);
-            this.label102.Name = "label102";
-            this.label102.Size = new System.Drawing.Size(44, 20);
-            this.label102.TabIndex = 31;
-            this.label102.Text = "Pitch";
-            // 
-            // label155
-            // 
-            this.label155.AutoSize = true;
-            this.label155.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label155.Location = new System.Drawing.Point(8, 83);
-            this.label155.Name = "label155";
-            this.label155.Size = new System.Drawing.Size(40, 20);
-            this.label155.TabIndex = 31;
-            this.label155.Text = "Yaw";
-            // 
-            // numericUpDown22
-            // 
-            this.numericUpDown22.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown22.Location = new System.Drawing.Point(75, 21);
-            this.numericUpDown22.Maximum = new decimal(new int[] {
-            800,
-            0,
-            0,
-            0});
-            this.numericUpDown22.Minimum = new decimal(new int[] {
-            800,
-            0,
-            0,
-            -2147483648});
-            this.numericUpDown22.Name = "numericUpDown22";
-            this.numericUpDown22.Size = new System.Drawing.Size(62, 26);
-            this.numericUpDown22.TabIndex = 31;
-            // 
-            // numericUpDown23
-            // 
-            this.numericUpDown23.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown23.Location = new System.Drawing.Point(75, 51);
-            this.numericUpDown23.Maximum = new decimal(new int[] {
-            800,
-            0,
-            0,
-            0});
-            this.numericUpDown23.Minimum = new decimal(new int[] {
-            800,
-            0,
-            0,
-            -2147483648});
-            this.numericUpDown23.Name = "numericUpDown23";
-            this.numericUpDown23.Size = new System.Drawing.Size(62, 26);
-            this.numericUpDown23.TabIndex = 32;
-            // 
-            // numericUpDown24
-            // 
-            this.numericUpDown24.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown24.Location = new System.Drawing.Point(75, 81);
-            this.numericUpDown24.Maximum = new decimal(new int[] {
-            800,
-            0,
-            0,
-            0});
-            this.numericUpDown24.Minimum = new decimal(new int[] {
-            800,
-            0,
-            0,
-            -2147483648});
-            this.numericUpDown24.Name = "numericUpDown24";
-            this.numericUpDown24.Size = new System.Drawing.Size(62, 26);
-            this.numericUpDown24.TabIndex = 32;
+            this.limparWPsDoMapaToolStripMenuItem.Name = "limparWPsDoMapaToolStripMenuItem";
+            this.limparWPsDoMapaToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.limparWPsDoMapaToolStripMenuItem.Text = "Limpar WP\'s do mapa";
             // 
             // GCS
             // 
@@ -5621,6 +5783,8 @@
             this.Load += new System.EventHandler(this.GCS_Load);
             this.BarraTitulo.ResumeLayout(false);
             this.BarraTitulo.PerformLayout();
+            this.panel18.ResumeLayout(false);
+            this.panel18.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconminimizar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.maximinizar)).EndInit();
@@ -5673,6 +5837,11 @@
             this.panel15.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.groupBox30.ResumeLayout(false);
+            this.groupBox30.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown24)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown23)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown22)).EndInit();
             this.groupBox28.ResumeLayout(false);
             this.groupBox27.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
@@ -5768,11 +5937,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
-            this.groupBox30.ResumeLayout(false);
-            this.groupBox30.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown22)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown23)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown24)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -6169,8 +6333,7 @@
         private System.Windows.Forms.NumericUpDown numericUpDown21;
         private MetroFramework.Controls.MetroLabel metroLabel27;
         private PreArmNotification preArmNotification1;
-        private HUDSMALL hudsmall1;
-        private HUD hud1;
+        private HUDSMALL HUDSMALL1;
         private System.Windows.Forms.GroupBox groupBox30;
         private System.Windows.Forms.NumericUpDown numericUpDown24;
         private System.Windows.Forms.NumericUpDown numericUpDown23;
@@ -6178,6 +6341,19 @@
         private System.Windows.Forms.Label label155;
         private System.Windows.Forms.Label label102;
         private System.Windows.Forms.Label label69;
+        private System.Windows.Forms.Button button20;
+        private System.Windows.Forms.Panel panel18;
+        private HUD HUD1;
+        private HUD HUD2;
+        private PreArmNotification preArmNotification2;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Label label160;
+        private System.Windows.Forms.Label label156;
+        private System.Windows.Forms.Label label159;
+        private System.Windows.Forms.ToolStripMenuItem carregarWPsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem limparWPsDoMapaToolStripMenuItem;
+        private System.Windows.Forms.Label label158;
+        private System.Windows.Forms.Label label157;
     }
 }
 

@@ -130,12 +130,6 @@
   <data name="AirPlane_Orientation" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AirPlane_Orientation.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Armado" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Armado.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="BankAngle" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\BankAngle.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Brasil" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Brasil.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -166,32 +160,8 @@
   <data name="DefaultPID" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DefaultPID.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Derivative10Hz" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Derivative10Hz.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Derivative15Hz" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Derivative15Hz.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Derivative20Hz" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Derivative20Hz.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Derivative25Hz" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Derivative25Hz.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Derivative30Hz" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Derivative30Hz.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Derivative5Hz" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Derivative5Hz.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Desarmado" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Desarmado.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Desconectado" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Desconectado.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="FailSafe" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\FailSafe.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="FixedWing_Orientation" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\FixedWing_Orientation.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -232,23 +202,11 @@
   <data name="HexaX_Orientation" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\HexaX_Orientation.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Horizon_Background" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Horizon_Background.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Horizon_GroundSky" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Horizon_GroundSky.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="IMURuim" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\IMURuim.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="JCFLIGHT_GCS_LOGO" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\JCFLIGHT_GCS_LOGO.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Maquette_Avion" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Maquette_Avion.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="marker_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\marker_01.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -270,15 +228,6 @@
   </data>
   <data name="Radio" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Radio.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="RC_LPF_40HZ" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\RC_LPF_40HZ.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="RC_LPF_50HZ" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\RC_LPF_50HZ.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="RC_LPF_80HZ" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\RC_LPF_80HZ.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Save" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Save.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

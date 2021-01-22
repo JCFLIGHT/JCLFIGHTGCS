@@ -63,46 +63,6 @@ namespace JCFLIGHTGCS.InstrumentsControls {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Armado {
-            get {
-                object obj = ResourceManager.GetObject("Armado", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap BankAngle {
-            get {
-                object obj = ResourceManager.GetObject("BankAngle", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Desarmado {
-            get {
-                object obj = ResourceManager.GetObject("Desarmado", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap FailSafe {
-            get {
-                object obj = ResourceManager.GetObject("FailSafe", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap HeadingIndicator_Aircraft {
             get {
                 object obj = ResourceManager.GetObject("HeadingIndicator_Aircraft", resourceCulture);
@@ -126,46 +86,6 @@ namespace JCFLIGHTGCS.InstrumentsControls {
         internal static System.Drawing.Bitmap HeadingWeel {
             get {
                 object obj = ResourceManager.GetObject("HeadingWeel", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Horizon_Background {
-            get {
-                object obj = ResourceManager.GetObject("Horizon_Background", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Horizon_GroundSky {
-            get {
-                object obj = ResourceManager.GetObject("Horizon_GroundSky", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap IMURuim {
-            get {
-                object obj = ResourceManager.GetObject("IMURuim", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Maquette_Avion {
-            get {
-                object obj = ResourceManager.GetObject("Maquette_Avion", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

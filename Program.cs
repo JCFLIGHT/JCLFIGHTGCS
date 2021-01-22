@@ -9,9 +9,6 @@ namespace JCFLIGHTGCS
         public static SplashScreen Splash;
         public static LoadConnectUART WaitUart;
         public static Reboot RebootBoard;
-        /// <summary>
-        /// Point d'entrée principal de l'application.
-        /// </summary>
         [STAThread]
         static void Main()
         {

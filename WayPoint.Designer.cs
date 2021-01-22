@@ -193,6 +193,7 @@
             this.voeParaCáToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tirarFotoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.limparMapaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox33.SuspendLayout();
@@ -1917,7 +1918,7 @@
             this.label41.BackColor = System.Drawing.Color.Transparent;
             this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label41.ForeColor = System.Drawing.Color.Black;
-            this.label41.Location = new System.Drawing.Point(354, 451);
+            this.label41.Location = new System.Drawing.Point(346, 451);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(140, 16);
             this.label41.TabIndex = 148;
@@ -1929,7 +1930,7 @@
             this.label46.BackColor = System.Drawing.Color.Transparent;
             this.label46.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label46.ForeColor = System.Drawing.Color.Black;
-            this.label46.Location = new System.Drawing.Point(511, 451);
+            this.label46.Location = new System.Drawing.Point(492, 451);
             this.label46.Name = "label46";
             this.label46.Size = new System.Drawing.Size(163, 16);
             this.label46.TabIndex = 149;
@@ -1941,7 +1942,7 @@
             this.label47.BackColor = System.Drawing.Color.Transparent;
             this.label47.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label47.ForeColor = System.Drawing.Color.Black;
-            this.label47.Location = new System.Drawing.Point(690, 451);
+            this.label47.Location = new System.Drawing.Point(661, 451);
             this.label47.Name = "label47";
             this.label47.Size = new System.Drawing.Size(81, 16);
             this.label47.TabIndex = 150;
@@ -1953,7 +1954,7 @@
             this.label48.BackColor = System.Drawing.Color.Transparent;
             this.label48.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label48.ForeColor = System.Drawing.Color.Black;
-            this.label48.Location = new System.Drawing.Point(786, 451);
+            this.label48.Location = new System.Drawing.Point(748, 451);
             this.label48.Name = "label48";
             this.label48.Size = new System.Drawing.Size(73, 16);
             this.label48.TabIndex = 151;
@@ -2275,6 +2276,20 @@
             this.limparMapaToolStripMenuItem.Text = "Limpar mapa";
             this.limparMapaToolStripMenuItem.Click += new System.EventHandler(this.limparMapaToolStripMenuItem_Click);
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.BackColor = System.Drawing.Color.Blue;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.ForeColor = System.Drawing.Color.White;
+            this.checkBox1.Location = new System.Drawing.Point(866, 450);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(89, 17);
+            this.checkBox1.TabIndex = 163;
+            this.checkBox1.Text = "Auto-Posição";
+            this.checkBox1.UseVisualStyleBackColor = false;
+            // 
             // WayPoint
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2282,6 +2297,7 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1306, 621);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.label81);
             this.Controls.Add(this.label80);
             this.Controls.Add(this.label79);
@@ -2579,5 +2595,6 @@
         private System.Windows.Forms.ToolStripMenuItem tirarFotoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem voeParaCáToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem limparMapaToolStripMenuItem;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
