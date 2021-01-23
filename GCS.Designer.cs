@@ -28,7 +28,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GCS));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.button7 = new System.Windows.Forms.Button();
             this.label27 = new System.Windows.Forms.Label();
@@ -1013,24 +1013,25 @@
             // HUD1
             // 
             this.HUD1.AHRSHorizontalVariance = false;
+            this.HUD1.ARMStatus = false;
             this.HUD1.BackColor = System.Drawing.Color.Black;
             this.HUD1.bgimage = null;
-            this.HUD1.datetime = new System.DateTime(((long)(0)));
-            this.HUD1.failsafe = false;
+            this.HUD1.FailSafe = false;
             this.HUD1.hudcolor = System.Drawing.Color.White;
-            this.HUD1.imuhealty = false;
-            this.HUD1.linkqualitygcs = 0F;
+            this.HUD1.IMUHealty = false;
+            this.HUD1.LinkQualityGCS = 0F;
             this.HUD1.Location = new System.Drawing.Point(7, 153);
             this.HUD1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.HUD1.Name = "HUD1";
-            this.HUD1.pitch = 0F;
-            this.HUD1.roll = 0F;
+            this.HUD1.Pitch = 0F;
+            this.HUD1.Roll = 0F;
             this.HUD1.Size = new System.Drawing.Size(341, 300);
             this.HUD1.skyColor1 = System.Drawing.Color.Blue;
             this.HUD1.skyColor2 = System.Drawing.Color.LightBlue;
-            this.HUD1.status = false;
             this.HUD1.streamjpg = ((System.IO.MemoryStream)(resources.GetObject("HUD1.streamjpg")));
             this.HUD1.TabIndex = 54;
+            this.HUD1.ThrottleSafe = false;
+            this.HUD1.VelSpeed = 0F;
             this.HUD1.VSync = false;
             // 
             // label151
@@ -4220,23 +4221,24 @@
             // HUD2
             // 
             this.HUD2.AHRSHorizontalVariance = false;
+            this.HUD2.ARMStatus = false;
             this.HUD2.BackColor = System.Drawing.Color.Black;
             this.HUD2.bgimage = null;
-            this.HUD2.datetime = new System.DateTime(((long)(0)));
-            this.HUD2.failsafe = false;
+            this.HUD2.FailSafe = false;
             this.HUD2.hudcolor = System.Drawing.Color.White;
-            this.HUD2.imuhealty = false;
-            this.HUD2.linkqualitygcs = 0F;
+            this.HUD2.IMUHealty = false;
+            this.HUD2.LinkQualityGCS = 0F;
             this.HUD2.Location = new System.Drawing.Point(0, 6);
             this.HUD2.Name = "HUD2";
-            this.HUD2.pitch = 0F;
-            this.HUD2.roll = 0F;
+            this.HUD2.Pitch = 0F;
+            this.HUD2.Roll = 0F;
             this.HUD2.Size = new System.Drawing.Size(360, 360);
             this.HUD2.skyColor1 = System.Drawing.Color.Blue;
             this.HUD2.skyColor2 = System.Drawing.Color.LightBlue;
-            this.HUD2.status = false;
             this.HUD2.streamjpg = ((System.IO.MemoryStream)(resources.GetObject("HUD2.streamjpg")));
             this.HUD2.TabIndex = 75;
+            this.HUD2.ThrottleSafe = false;
+            this.HUD2.VelSpeed = 0F;
             this.HUD2.VSync = false;
             // 
             // button20
@@ -5642,8 +5644,8 @@
             // Parametro
             // 
             this.Parametro.DataPropertyName = "Nenhum";
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Parametro.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Parametro.DefaultCellStyle = dataGridViewCellStyle1;
             this.Parametro.HeaderText = "Parâmetro";
             this.Parametro.Name = "Parametro";
             this.Parametro.ReadOnly = true;

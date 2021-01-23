@@ -1528,35 +1528,39 @@ namespace JCFLIGHTGCS
 
             if (ReadRoll > 1200)
             {
-                HUD1.roll = 0;
-                HUD1.pitch = 0;
+                HUD1.Roll = 0;
+                HUD1.Pitch = 0;
             }
             else
             {
-                HUD1.roll = -ReadRoll / 10;
-                HUD1.pitch = ReadPitch / 10;
+                HUD1.Roll = -ReadRoll / 10;
+                HUD1.Pitch = ReadPitch / 10;
             }
-            HUD1.status = CommandArmDisarm == 0 ? false : true;
-            HUD1.failsafe = FailSafeDetect == 1 ? true : false;
-            HUD1.imuhealty = ReadRoll > 1200 && serialPort1.IsOpen ? true : false;
-            HUD1.linkqualitygcs = (float)CalculateAverage(PacketsReceived, PacketsError);
+            HUD1.ARMStatus = CommandArmDisarm == 0 ? false : true;
+            HUD1.FailSafe = FailSafeDetect == 1 ? true : false;
+            HUD1.IMUHealty = ReadRoll > 1200 && serialPort1.IsOpen ? true : false;
+            HUD1.LinkQualityGCS = (float)CalculateAverage(PacketsReceived, PacketsError);
             HUD1.AHRSHorizontalVariance = HorizontalVariance();
+            HUD1.ThrottleSafe = ThrottleActualData > 1250 ? true : false;
+            HUD1.VelSpeed = GetValues.AirSpeedEnabled > 0 ? GetValues.ReadAirSpeed : GetValues.ReadGroundSpeed;
 
             if (ReadRoll > 1200)
             {
-                HUD2.roll = 0;
-                HUD2.pitch = 0;
+                HUD2.Roll = 0;
+                HUD2.Pitch = 0;
             }
             else
             {
-                HUD2.roll = -ReadRoll / 10;
-                HUD2.pitch = ReadPitch / 10;
+                HUD2.Roll = -ReadRoll / 10;
+                HUD2.Pitch = ReadPitch / 10;
             }
-            HUD2.status = CommandArmDisarm == 0 ? false : true;
-            HUD2.failsafe = FailSafeDetect == 1 ? true : false;
-            HUD2.imuhealty = ReadRoll > 1200 && serialPort1.IsOpen ? true : false;
-            HUD2.linkqualitygcs = (float)CalculateAverage(PacketsReceived, PacketsError);
+            HUD2.ARMStatus = CommandArmDisarm == 0 ? false : true;
+            HUD2.FailSafe = FailSafeDetect == 1 ? true : false;
+            HUD2.IMUHealty = ReadRoll > 1200 && serialPort1.IsOpen ? true : false;
+            HUD2.LinkQualityGCS = (float)CalculateAverage(PacketsReceived, PacketsError);
             HUD2.AHRSHorizontalVariance = HorizontalVariance();
+            HUD2.ThrottleSafe = ThrottleActualData > 1250 ? true : false;
+            HUD2.VelSpeed = GetValues.AirSpeedEnabled > 0 ? GetValues.ReadAirSpeed : GetValues.ReadGroundSpeed;
 
             if (ReadRoll > 1200)
             {

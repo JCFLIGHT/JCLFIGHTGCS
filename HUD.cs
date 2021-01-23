@@ -82,83 +82,131 @@ namespace JCFLIGHTGCS
             graphicsObjectGDIP = new GdiGraphics(Graphics.FromImage(objBitmap));
         }
 
-        private float _roll = 0;
-        private float _pitch = 0;
-        private float _linkqualitygcs = 0;
-        private DateTime _datetime;
+        private bool StatusLast = false;
+        private float _Roll = 0;
+        private float _Pitch = 0;
+        private float _LinkQualityGCS = 0;
+        private float _VelSpeed = 0;
+        private bool _ThrottleSafe = false;
+        private bool _IMUHealty = false;
+        private bool _FailSafe = false;
+        private bool _ARMStatus = false;
 
         [Browsable(true), Category("Values")]
-        public float roll
+        public float Roll
         {
-            get { return _roll; }
+            get { return _Roll; }
             set
             {
-                if (_roll != value)
+                if (_Roll != value)
                 {
-                    _roll = value;
+                    _Roll = value;
                     this.Invalidate();
                 }
             }
         }
 
         [Browsable(true), Category("Values")]
-        public float pitch
+        public float Pitch
         {
-            get { return _pitch; }
+            get { return _Pitch; }
             set
             {
-                if (_pitch != value)
+                if (_Pitch != value)
                 {
-                    _pitch = value;
+                    _Pitch = value;
                     this.Invalidate();
                 }
             }
         }
 
         [Browsable(true), Category("Values")]
-        public float linkqualitygcs
+        public float LinkQualityGCS
         {
-            get { return _linkqualitygcs; }
+            get { return _LinkQualityGCS; }
             set
             {
-                if (_linkqualitygcs != value)
+                if (_LinkQualityGCS != value)
                 {
-                    _linkqualitygcs = value;
+                    _LinkQualityGCS = value;
                     this.Invalidate();
                 }
             }
         }
 
         [Browsable(true), Category("Values")]
-        public DateTime datetime
+        public float VelSpeed
         {
-            get { return _datetime; }
+            get { return _VelSpeed; }
             set
             {
-                if (_datetime.Hour == value.Hour && _datetime.Minute == value.Minute &&
-                    _datetime.Second == value.Second)
-                    return;
-                if (_datetime != value)
+                if (_VelSpeed != value)
                 {
-                    _datetime = value;
+                    _VelSpeed = value;
                     this.Invalidate();
                 }
             }
         }
 
         [Browsable(true), Category("Values")]
-        public bool imuhealty { get; set; }
+        public bool IMUHealty
+        {
+            get { return _IMUHealty; }
+            set
+            {
+                if (_IMUHealty != value)
+                {
+                    _IMUHealty = value;
+                    this.Invalidate();
+                }
+            }
+        }
 
         [Browsable(true), Category("Values")]
-        public bool failsafe { get; set; }
+        public bool FailSafe
+        {
+            get { return _FailSafe; }
+            set
+            {
+                if (_FailSafe != value)
+                {
+                    _FailSafe = value;
+                    this.Invalidate();
+                }
+            }
+        }
 
         [Browsable(true), Category("Values")]
         public bool AHRSHorizontalVariance { get; set; }
 
         [Browsable(true), Category("Values")]
-        public bool status { get; set; }
+        public bool ThrottleSafe
+        {
+            get { return _ThrottleSafe; }
+            set
+            {
+                if (_ThrottleSafe != value)
+                {
+                    _ThrottleSafe = value;
+                    this.Invalidate();
+                }
+            }
+        }
 
-        private bool statuslast = false;
+        [Browsable(true), Category("Values")]
+        public bool ARMStatus
+        {
+            get { return _ARMStatus; }
+            set
+            {
+                if (_ARMStatus != value)
+                {
+                    _ARMStatus = value;
+                    this.Invalidate();
+                }
+            }
+        }
+
         private DateTime armedtimer = DateTime.MinValue;
 
         public struct Custom
@@ -268,10 +316,7 @@ namespace JCFLIGHTGCS
 
         private DateTime starttime = DateTime.MinValue;
 
-        private System.ComponentModel.ComponentResourceManager resources =
-            new System.ComponentModel.ComponentResourceManager(typeof(HUD));
-
-
+        private System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HUD));
 
         public override void Refresh()
         {
@@ -995,24 +1040,24 @@ namespace JCFLIGHTGCS
                     bgon = true;
                 }
 
-                float _roll = this._roll;
+                float _Roll = this._Roll;
 
-                if (float.IsNaN(_roll) || float.IsNaN(_pitch))
+                if (float.IsNaN(_Roll) || float.IsNaN(_Pitch))
                 {
-                    _roll = 0;
-                    _pitch = 0;
+                    _Roll = 0;
+                    _Pitch = 0;
                 }
 
                 graphicsObject.TranslateTransform(this.Width / 2, this.Height / 2);
 
-                graphicsObject.RotateTransform(-_roll);
+                graphicsObject.RotateTransform(-_Roll);
 
                 int fontsize = this.Height / 30;
                 int fontoffset = fontsize - 10;
 
                 float every5deg = -this.Height / 65;
 
-                float pitchoffset = -_pitch * every5deg;
+                float pitchoffset = -_Pitch * every5deg;
 
                 int halfwidth = this.Width / 2;
                 int halfheight = this.Height / 2;
@@ -1064,7 +1109,7 @@ namespace JCFLIGHTGCS
 
                 graphicsObject.TranslateTransform(this.Width / 2, this.Height / 2);
 
-                graphicsObject.RotateTransform(-_roll);
+                graphicsObject.RotateTransform(-_Roll);
 
                 //draw pitch           
 
@@ -1074,7 +1119,7 @@ namespace JCFLIGHTGCS
                 for (int a = -90; a <= 90; a += 5)
                 {
                     // limit to 40 degrees
-                    if (a >= _pitch - 29 && a <= _pitch + 20)
+                    if (a >= _Pitch - 29 && a <= _Pitch + 20)
                     {
                         if (a % 10 == 0)
                         {
@@ -1133,7 +1178,7 @@ namespace JCFLIGHTGCS
                 {
                     graphicsObject.ResetTransform();
                     graphicsObject.TranslateTransform(this.Width / 2, this.Height / 2);
-                    graphicsObject.RotateTransform(a - _roll);
+                    graphicsObject.RotateTransform(a - _Roll);
                     drawstring(String.Format("{0,2}", Math.Abs(a)), font, fontsize, _whiteBrush, 0 - 6 - fontoffset, -lengthlong * 8 - extra);
                     graphicsObject.DrawLine(this._whitePen, 0, -lengthlong * 3 - extra, 0, -lengthlong * 3 - extra - lengthlong);
                 }
@@ -1144,7 +1189,7 @@ namespace JCFLIGHTGCS
                 // draw roll ind
                 RectangleF arcrect = new RectangleF(-lengthlong * 3 - extra, -lengthlong * 3 - extra, (extra + lengthlong * 3) * 2f, (extra + lengthlong * 3) * 2f);
 
-                graphicsObject.DrawArc(this._whitePen, arcrect, 180 + 30 + -_roll, 120);
+                graphicsObject.DrawArc(this._whitePen, arcrect, 180 + 30 + -_Roll, 120);
 
                 graphicsObject.ResetTransform();
 
@@ -1152,7 +1197,7 @@ namespace JCFLIGHTGCS
 
                 graphicsObject.TranslateTransform(this.Width / 2, this.Height / 2);
 
-                graphicsObject.RotateTransform(_roll / 10);
+                graphicsObject.RotateTransform(_Roll / 10);
 
                 Rectangle centercircle = new Rectangle(-halfwidth / 2, -halfwidth / 2, halfwidth, halfwidth);
 
@@ -1177,86 +1222,87 @@ namespace JCFLIGHTGCS
 
                 float velspeed = 0;
 
-                if (GetValues.AirSpeedEnabled > 0)
-                {
-                    velspeed = GetValues.ReadAirSpeed;
-                }
-                else
-                {
-                    velspeed = GetValues.ReadGroundSpeed;
-                }
+                velspeed = _VelSpeed;
 
                 velspeed /= 27.778f;
 
                 drawstring("FuselagemVel:" + velspeed.ToString("0.0") + "KM/h", font, fontsize, _whiteBrush, 1, scrollbg.Bottom + 45);
 
-                if (float.IsNaN(_linkqualitygcs)) _linkqualitygcs = 0;
-                if (_linkqualitygcs >= 10 && _linkqualitygcs < 100)
+                if (float.IsNaN(_LinkQualityGCS)) _LinkQualityGCS = 0;
+                if (_LinkQualityGCS >= 10 && _LinkQualityGCS < 100)
                 {
                     graphicsObject.DrawLine(this._greenPen, 335, scrollbg.Top - (int)(fontsize * 2.2) - 2 - 35, 335, scrollbg.Top - (int)(fontsize) - 2 - 40);
                     graphicsObject.DrawLine(this._greenPen, 340, scrollbg.Top - (int)(fontsize * 2.2) - 2 - 30, 340, scrollbg.Top - (int)(fontsize) - 2 - 40);
-                    drawstring(_linkqualitygcs.ToString("0") + "%", font, fontsize, _whiteBrush, 290, scrollbg.Top - (int)(fontsize * 2.2) - 2 - 43);
+                    drawstring(_LinkQualityGCS.ToString("0") + "%", font, fontsize, _whiteBrush, 290, scrollbg.Top - (int)(fontsize * 2.2) - 2 - 43);
                 }
-                else if (_linkqualitygcs < 10)
+                else if (_LinkQualityGCS < 10)
                 {
                     graphicsObject.DrawLine(this._greenPen, 340, scrollbg.Top - (int)(fontsize * 2.2) - 2 - 30, 340, scrollbg.Top - (int)(fontsize) - 2 - 40);
-                    drawstring(_linkqualitygcs.ToString("0") + "%", font, fontsize, _whiteBrush, 295, scrollbg.Top - (int)(fontsize * 2.2) - 2 - 43);
+                    drawstring(_LinkQualityGCS.ToString("0") + "%", font, fontsize, _whiteBrush, 295, scrollbg.Top - (int)(fontsize * 2.2) - 2 - 43);
                 }
                 else
                 {
                     graphicsObject.DrawLine(this._greenPen, 330, scrollbg.Top - (int)(fontsize * 2.2) - 2 - 40, 330, scrollbg.Top - (int)(fontsize) - 2 - 40);
                     graphicsObject.DrawLine(this._greenPen, 335, scrollbg.Top - (int)(fontsize * 2.2) - 2 - 35, 335, scrollbg.Top - (int)(fontsize) - 2 - 40);
                     graphicsObject.DrawLine(this._greenPen, 340, scrollbg.Top - (int)(fontsize * 2.2) - 2 - 30, 340, scrollbg.Top - (int)(fontsize) - 2 - 40);
-                    drawstring(_linkqualitygcs.ToString("0") + "%", font, fontsize, _whiteBrush, 285, scrollbg.Top - (int)(fontsize * 2.2) - 2 - 43);
+                    drawstring(_LinkQualityGCS.ToString("0") + "%", font, fontsize, _whiteBrush, 285, scrollbg.Top - (int)(fontsize * 2.2) - 2 - 43);
                 }
 
                 graphicsObject.TranslateTransform(this.Width / 2, this.Height / 2);
 
-                if (status != statuslast)
+                if (_ARMStatus != StatusLast)
                 {
                     armedtimer = DateTime.Now;
                 }
 
-                if (this._roll > 45 || this._roll < (-45))
+                if (this._Roll > 45 || this._Roll < (-45))
                 {
                     drawstring("Bank-Angle", font, fontsize + 15, (SolidBrush)Brushes.Red, -85, halfheight / -3);
-                    statuslast = status;
+                    StatusLast = _ARMStatus;
                 }
                 else
                 {
-                    if (status == false)
+                    if (_ARMStatus == false)
                     {
+                        if (!_ThrottleSafe)
+                        {
+                            drawstring("Throttle safe para armar", font, fontsize + 2, (SolidBrush)Brushes.Red, -132, 85);
+                        }
+                        else
+                        {
+                            drawstring("Throttle acima do limite para armar", font, fontsize + 2, (SolidBrush)Brushes.Red, -125, 85);
+                        }
                         drawstring("Desarmado", font, fontsize + 15, (SolidBrush)Brushes.Red, -75, halfheight / -3);
-                        statuslast = status;
+                        StatusLast = _ARMStatus;
                     }
-                    else if (status == true)
+                    else if (_ARMStatus == true)
                     {
                         if ((armedtimer.AddSeconds(8) > DateTime.Now))
                         {
                             drawstring("Armado", font, fontsize + 15, (SolidBrush)Brushes.Red, -55, halfheight / -3);
-                            statuslast = status;
+                            StatusLast = _ARMStatus;
                         }
                     }
                 }
 
-                if (imuhealty == true)
+                if (_IMUHealty == true)
                 {
                     drawstring("IMU não calibrada", font, fontsize + 10, (SolidBrush)Brushes.Red, -110, 40);
-                    statuslast = status;
+                    StatusLast = _ARMStatus;
                 }
                 else
                 {
-                    if (failsafe == true)
+                    if (_FailSafe == true)
                     {
                         drawstring("Fail-Safe", font, fontsize + 20, (SolidBrush)Brushes.Red, -75, 40);
-                        statuslast = status;
+                        StatusLast = _ARMStatus;
                     }
                 }
 
                 if (AHRSHorizontalVariance == true)
                 {
                     drawstring("Erro de variância na Pos.Horiz.", font, fontsize + 2, (SolidBrush)Brushes.Red, -132, 70);
-                    statuslast = status;
+                    StatusLast = _ARMStatus;
                 }
 
                 graphicsObject.ResetTransform();
