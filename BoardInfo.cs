@@ -32,6 +32,7 @@ namespace JCFLIGHTGCS
         private void BoardInfo_Load(object sender, EventArgs e)
         {
             CreateChart(zedGraphControl1);
+            zedGraphControl1.Refresh();
         }
 
         public void CreateChart(ZedGraphControl ZedGraph)

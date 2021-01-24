@@ -103,7 +103,6 @@ namespace JCFLIGHTGCS
         GMapOverlay GmapPolygons = new GMapOverlay("Poligonos");
 
         private List<PointLatLng> WPCoordinates;
-        private List<PointLatLng> WPCoordinates2;
 
         static GMapOverlay GmapRoutes;
         static GMapRoute GMapTack;
@@ -157,8 +156,8 @@ namespace JCFLIGHTGCS
         byte GPSHoldTimed9 = 1;
         byte GPSHoldTimed10 = 1;
 
-        double[] PushedLatitude = new double[10];
-        double[] PushedLongitude = new double[10];
+        double[] PushedLatitude = new double[100];
+        double[] PushedLongitude = new double[100];
         byte[] PushedComboBox = new byte[30];
         Boolean ParamsPushed = false;
         Boolean PrintArea2 = false;
@@ -583,7 +582,7 @@ namespace JCFLIGHTGCS
                     ptr = 0;
                     //ReadPitch = BitConverter.ToInt16(InBuffer, ptr); 
                     ptr += 2;
-                    ReadRoll = BitConverter.ToInt16(InBuffer, ptr); 
+                    ReadRoll = BitConverter.ToInt16(InBuffer, ptr);
                     ptr += 2;
                     Heading = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     //DevicesSum = (byte)InBuffer[ptr++];
@@ -657,7 +656,7 @@ namespace JCFLIGHTGCS
             {
                 this.MaximumSize = Screen.PrimaryScreen.WorkingArea.Size; //NÃO CUBRA A BARRA DE TAREFAS
             }
-            WPCoordinates2 = new List<PointLatLng>();
+            List<PointLatLng> WPCoordinatesToPush = new List<PointLatLng>();
             if (SerialPort.IsOpen)
             {
                 Program.WaitUart.Close();
@@ -677,7 +676,7 @@ namespace JCFLIGHTGCS
                         {
                             label19.Text = Convert.ToString(PushedLatitude[0]);
                             label18.Text = Convert.ToString(PushedLongitude[0]);
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[0]), Convert.ToDouble(PushedLongitude[0])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[0]), Convert.ToDouble(PushedLongitude[0])));
                             PrintArea2 = true;
                             GPS_Position2.Lat = PushedLatitude[0];
                             GPS_Position2.Lng = PushedLongitude[0];
@@ -689,12 +688,12 @@ namespace JCFLIGHTGCS
                         {
                             label20.Text = Convert.ToString(PushedLatitude[1]);
                             label16.Text = Convert.ToString(PushedLongitude[1]);
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[0]), Convert.ToDouble(PushedLongitude[0])));
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[1]), Convert.ToDouble(PushedLongitude[1])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[0]), Convert.ToDouble(PushedLongitude[0])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[1]), Convert.ToDouble(PushedLongitude[1])));
                             PrintArea2 = true;
                             GPS_Position2.Lat = PushedLatitude[1];
                             GPS_Position2.Lng = PushedLongitude[1];
-                            Dist1 = MyGMap.MapProvider.Projection.GetDistance(WPCoordinates2[0], WPCoordinates2[1]) * 1000;
+                            Dist1 = MyGMap.MapProvider.Projection.GetDistance(WPCoordinatesToPush[0], WPCoordinatesToPush[1]) * 1000;
                             double Dist1Float = Convert.ToDouble(Convert.ToInt32(Dist1)) / 1000;
                             if (Dist1 >= 1000) label42.Text = "Distância entre P1 - P2: " + Dist1Float.ToString(new CultureInfo("en-US")) + "KM";
                             else label42.Text = "Distância entre P1 - P2: " + Convert.ToInt32(Dist1) + "M";
@@ -704,13 +703,13 @@ namespace JCFLIGHTGCS
                         {
                             label21.Text = Convert.ToString(PushedLatitude[2]);
                             label22.Text = Convert.ToString(PushedLongitude[2]);
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[0]), Convert.ToDouble(PushedLongitude[0])));
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[1]), Convert.ToDouble(PushedLongitude[1])));
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[2]), Convert.ToDouble(PushedLongitude[2])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[0]), Convert.ToDouble(PushedLongitude[0])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[1]), Convert.ToDouble(PushedLongitude[1])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[2]), Convert.ToDouble(PushedLongitude[2])));
                             PrintArea2 = true;
                             GPS_Position2.Lat = PushedLatitude[2];
                             GPS_Position2.Lng = PushedLongitude[2];
-                            Dist2 = MyGMap.MapProvider.Projection.GetDistance(WPCoordinates2[1], WPCoordinates2[2]) * 1000;
+                            Dist2 = MyGMap.MapProvider.Projection.GetDistance(WPCoordinatesToPush[1], WPCoordinatesToPush[2]) * 1000;
                             double Dist2Float = Convert.ToDouble(Convert.ToInt32(Dist2)) / 1000;
                             if (Dist2 >= 1000) label43.Text = "Distância entre P2 - P3: " + Dist2Float.ToString(new CultureInfo("en-US")) + "KM";
                             else label43.Text = "Distância entre P2 - P3: " + Convert.ToInt32(Dist2) + "M";
@@ -720,14 +719,14 @@ namespace JCFLIGHTGCS
                         {
                             label37.Text = Convert.ToString(PushedLatitude[3]);
                             label35.Text = Convert.ToString(PushedLongitude[3]);
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[0]), Convert.ToDouble(PushedLongitude[0])));
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[1]), Convert.ToDouble(PushedLongitude[1])));
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[2]), Convert.ToDouble(PushedLongitude[2])));
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[3]), Convert.ToDouble(PushedLongitude[3])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[0]), Convert.ToDouble(PushedLongitude[0])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[1]), Convert.ToDouble(PushedLongitude[1])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[2]), Convert.ToDouble(PushedLongitude[2])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[3]), Convert.ToDouble(PushedLongitude[3])));
                             PrintArea2 = true;
                             GPS_Position2.Lat = PushedLatitude[3];
                             GPS_Position2.Lng = PushedLongitude[3];
-                            Dist3 = MyGMap.MapProvider.Projection.GetDistance(WPCoordinates2[2], WPCoordinates2[3]) * 1000;
+                            Dist3 = MyGMap.MapProvider.Projection.GetDistance(WPCoordinatesToPush[2], WPCoordinatesToPush[3]) * 1000;
                             double Dist3Float = Convert.ToDouble(Convert.ToInt32(Dist3)) / 1000;
                             if (Dist3 >= 1000) label44.Text = "Distância entre P3 - P4: " + Dist3Float.ToString(new CultureInfo("en-US")) + "KM";
                             else label44.Text = "Distância entre P3 - P4: " + Convert.ToInt32(Dist3) + "M";
@@ -737,15 +736,15 @@ namespace JCFLIGHTGCS
                         {
                             label30.Text = Convert.ToString(PushedLatitude[4]);
                             label26.Text = Convert.ToString(PushedLongitude[4]);
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[0]), Convert.ToDouble(PushedLongitude[0])));
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[1]), Convert.ToDouble(PushedLongitude[1])));
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[2]), Convert.ToDouble(PushedLongitude[2])));
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[3]), Convert.ToDouble(PushedLongitude[3])));
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[4]), Convert.ToDouble(PushedLongitude[4])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[0]), Convert.ToDouble(PushedLongitude[0])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[1]), Convert.ToDouble(PushedLongitude[1])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[2]), Convert.ToDouble(PushedLongitude[2])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[3]), Convert.ToDouble(PushedLongitude[3])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[4]), Convert.ToDouble(PushedLongitude[4])));
                             PrintArea2 = true;
                             GPS_Position2.Lat = PushedLatitude[4];
                             GPS_Position2.Lng = PushedLongitude[4];
-                            Dist4 = MyGMap.MapProvider.Projection.GetDistance(WPCoordinates2[3], WPCoordinates2[4]) * 1000;
+                            Dist4 = MyGMap.MapProvider.Projection.GetDistance(WPCoordinatesToPush[3], WPCoordinatesToPush[4]) * 1000;
                             double Dist4Float = Convert.ToDouble(Convert.ToInt32(Dist4)) / 1000;
                             if (Dist4 >= 1000) label45.Text = "Distância entre P4 - P5: " + Dist4Float.ToString(new CultureInfo("en-US")) + "KM";
                             else label45.Text = "Distância entre P4 - P5: " + Convert.ToInt32(Dist4) + "M";
@@ -755,16 +754,16 @@ namespace JCFLIGHTGCS
                         {
                             label28.Text = Convert.ToString(PushedLatitude[5]);
                             label24.Text = Convert.ToString(PushedLongitude[5]);
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[0]), Convert.ToDouble(PushedLongitude[0])));
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[1]), Convert.ToDouble(PushedLongitude[1])));
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[2]), Convert.ToDouble(PushedLongitude[2])));
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[3]), Convert.ToDouble(PushedLongitude[3])));
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[4]), Convert.ToDouble(PushedLongitude[4])));
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[5]), Convert.ToDouble(PushedLongitude[5])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[0]), Convert.ToDouble(PushedLongitude[0])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[1]), Convert.ToDouble(PushedLongitude[1])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[2]), Convert.ToDouble(PushedLongitude[2])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[3]), Convert.ToDouble(PushedLongitude[3])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[4]), Convert.ToDouble(PushedLongitude[4])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[5]), Convert.ToDouble(PushedLongitude[5])));
                             PrintArea2 = true;
                             GPS_Position2.Lat = PushedLatitude[5];
                             GPS_Position2.Lng = PushedLongitude[5];
-                            Dist5 = MyGMap.MapProvider.Projection.GetDistance(WPCoordinates2[4], WPCoordinates2[5]) * 1000;
+                            Dist5 = MyGMap.MapProvider.Projection.GetDistance(WPCoordinatesToPush[4], WPCoordinatesToPush[5]) * 1000;
                             double Dist5Float = Convert.ToDouble(Convert.ToInt32(Dist5)) / 1000;
                             if (Dist5 >= 1000) label40.Text = "Distância entre P5 - P6: " + Dist5Float.ToString(new CultureInfo("en-US")) + "KM";
                             else label40.Text = "Distância entre P5 - P6: " + Convert.ToInt32(Dist5) + "M";
@@ -774,17 +773,17 @@ namespace JCFLIGHTGCS
                         {
                             label61.Text = Convert.ToString(PushedLatitude[6]);
                             label57.Text = Convert.ToString(PushedLongitude[6]);
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[0]), Convert.ToDouble(PushedLongitude[0])));
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[1]), Convert.ToDouble(PushedLongitude[1])));
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[2]), Convert.ToDouble(PushedLongitude[2])));
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[3]), Convert.ToDouble(PushedLongitude[3])));
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[4]), Convert.ToDouble(PushedLongitude[4])));
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[5]), Convert.ToDouble(PushedLongitude[5])));
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[6]), Convert.ToDouble(PushedLongitude[6])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[0]), Convert.ToDouble(PushedLongitude[0])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[1]), Convert.ToDouble(PushedLongitude[1])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[2]), Convert.ToDouble(PushedLongitude[2])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[3]), Convert.ToDouble(PushedLongitude[3])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[4]), Convert.ToDouble(PushedLongitude[4])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[5]), Convert.ToDouble(PushedLongitude[5])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[6]), Convert.ToDouble(PushedLongitude[6])));
                             PrintArea2 = true;
                             GPS_Position2.Lat = PushedLatitude[6];
                             GPS_Position2.Lng = PushedLongitude[6];
-                            Dist6 = MyGMap.MapProvider.Projection.GetDistance(WPCoordinates2[5], WPCoordinates2[6]) * 1000;
+                            Dist6 = MyGMap.MapProvider.Projection.GetDistance(WPCoordinatesToPush[5], WPCoordinatesToPush[6]) * 1000;
                             double Dist6Float = Convert.ToDouble(Convert.ToInt32(Dist6)) / 1000;
                             if (Dist6 >= 1000) label78.Text = "Distância entre P6 - P7: " + Dist6Float.ToString(new CultureInfo("en-US")) + "KM";
                             else label78.Text = "Distância entre P6 - P7: " + Convert.ToInt32(Dist6) + "M";
@@ -794,18 +793,18 @@ namespace JCFLIGHTGCS
                         {
                             label70.Text = Convert.ToString(PushedLatitude[7]);
                             label63.Text = Convert.ToString(PushedLongitude[7]);
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[0]), Convert.ToDouble(PushedLongitude[0])));
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[1]), Convert.ToDouble(PushedLongitude[1])));
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[2]), Convert.ToDouble(PushedLongitude[2])));
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[3]), Convert.ToDouble(PushedLongitude[3])));
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[4]), Convert.ToDouble(PushedLongitude[4])));
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[5]), Convert.ToDouble(PushedLongitude[5])));
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[6]), Convert.ToDouble(PushedLongitude[6])));
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[7]), Convert.ToDouble(PushedLongitude[7])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[0]), Convert.ToDouble(PushedLongitude[0])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[1]), Convert.ToDouble(PushedLongitude[1])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[2]), Convert.ToDouble(PushedLongitude[2])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[3]), Convert.ToDouble(PushedLongitude[3])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[4]), Convert.ToDouble(PushedLongitude[4])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[5]), Convert.ToDouble(PushedLongitude[5])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[6]), Convert.ToDouble(PushedLongitude[6])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[7]), Convert.ToDouble(PushedLongitude[7])));
                             PrintArea2 = true;
                             GPS_Position2.Lat = PushedLatitude[7];
                             GPS_Position2.Lng = PushedLongitude[7];
-                            Dist7 = MyGMap.MapProvider.Projection.GetDistance(WPCoordinates2[6], WPCoordinates2[7]) * 1000;
+                            Dist7 = MyGMap.MapProvider.Projection.GetDistance(WPCoordinatesToPush[6], WPCoordinatesToPush[7]) * 1000;
                             double Dist7Float = Convert.ToDouble(Convert.ToInt32(Dist7)) / 1000;
                             if (Dist7 >= 1000) label77.Text = "Distância entre P7 - P8: " + Dist7Float.ToString(new CultureInfo("en-US")) + "KM";
                             else label77.Text = "Distância entre P7 - P8: " + Convert.ToInt32(Dist7) + "M";
@@ -815,19 +814,19 @@ namespace JCFLIGHTGCS
                         {
                             label68.Text = Convert.ToString(PushedLatitude[8]);
                             label59.Text = Convert.ToString(PushedLongitude[8]);
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[0]), Convert.ToDouble(PushedLongitude[0])));
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[1]), Convert.ToDouble(PushedLongitude[1])));
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[2]), Convert.ToDouble(PushedLongitude[2])));
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[3]), Convert.ToDouble(PushedLongitude[3])));
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[4]), Convert.ToDouble(PushedLongitude[4])));
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[5]), Convert.ToDouble(PushedLongitude[5])));
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[6]), Convert.ToDouble(PushedLongitude[6])));
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[7]), Convert.ToDouble(PushedLongitude[7])));
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[8]), Convert.ToDouble(PushedLongitude[8])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[0]), Convert.ToDouble(PushedLongitude[0])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[1]), Convert.ToDouble(PushedLongitude[1])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[2]), Convert.ToDouble(PushedLongitude[2])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[3]), Convert.ToDouble(PushedLongitude[3])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[4]), Convert.ToDouble(PushedLongitude[4])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[5]), Convert.ToDouble(PushedLongitude[5])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[6]), Convert.ToDouble(PushedLongitude[6])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[7]), Convert.ToDouble(PushedLongitude[7])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[8]), Convert.ToDouble(PushedLongitude[8])));
                             PrintArea2 = true;
                             GPS_Position2.Lat = PushedLatitude[8];
                             GPS_Position2.Lng = PushedLongitude[8];
-                            Dist8 = MyGMap.MapProvider.Projection.GetDistance(WPCoordinates2[7], WPCoordinates2[8]) * 1000;
+                            Dist8 = MyGMap.MapProvider.Projection.GetDistance(WPCoordinatesToPush[7], WPCoordinatesToPush[8]) * 1000;
                             double Dist8Float = Convert.ToDouble(Convert.ToInt32(Dist8)) / 1000;
                             if (Dist8 >= 1000) label76.Text = "Distância entre P8 - P9: " + Dist8Float.ToString(new CultureInfo("en-US")) + "KM";
                             else label76.Text = "Distância entre P8 - P9: " + Convert.ToInt32(Dist8) + "M";
@@ -837,20 +836,20 @@ namespace JCFLIGHTGCS
                         {
                             label66.Text = Convert.ToString(PushedLatitude[9]);
                             label55.Text = Convert.ToString(PushedLongitude[9]);
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[0]), Convert.ToDouble(PushedLongitude[0])));
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[1]), Convert.ToDouble(PushedLongitude[1])));
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[2]), Convert.ToDouble(PushedLongitude[2])));
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[3]), Convert.ToDouble(PushedLongitude[3])));
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[4]), Convert.ToDouble(PushedLongitude[4])));
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[5]), Convert.ToDouble(PushedLongitude[5])));
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[6]), Convert.ToDouble(PushedLongitude[6])));
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[7]), Convert.ToDouble(PushedLongitude[7])));
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[8]), Convert.ToDouble(PushedLongitude[8])));
-                            WPCoordinates2.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[9]), Convert.ToDouble(PushedLongitude[9])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[0]), Convert.ToDouble(PushedLongitude[0])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[1]), Convert.ToDouble(PushedLongitude[1])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[2]), Convert.ToDouble(PushedLongitude[2])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[3]), Convert.ToDouble(PushedLongitude[3])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[4]), Convert.ToDouble(PushedLongitude[4])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[5]), Convert.ToDouble(PushedLongitude[5])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[6]), Convert.ToDouble(PushedLongitude[6])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[7]), Convert.ToDouble(PushedLongitude[7])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[8]), Convert.ToDouble(PushedLongitude[8])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[9]), Convert.ToDouble(PushedLongitude[9])));
                             PrintArea2 = true;
                             GPS_Position2.Lat = PushedLatitude[9];
                             GPS_Position2.Lng = PushedLongitude[9];
-                            Dist9 = MyGMap.MapProvider.Projection.GetDistance(WPCoordinates2[8], WPCoordinates2[9]) * 1000;
+                            Dist9 = MyGMap.MapProvider.Projection.GetDistance(WPCoordinatesToPush[8], WPCoordinatesToPush[9]) * 1000;
                             double Dist9Float = Convert.ToDouble(Convert.ToInt32(Dist9)) / 1000;
                             if (Dist9 >= 1000) label75.Text = "Distância entre P9 - P10: " + Dist9Float.ToString(new CultureInfo("en-US")) + "KM";
                             else label75.Text = "Distância entre P9 - P10: " + Convert.ToInt32(Dist9) + "M";
@@ -882,13 +881,13 @@ namespace JCFLIGHTGCS
                             FirstPointTrace.Stroke.DashStyle = DashStyle.Dash;
                             if (CountWP2 > 2)
                             {
-                                FirstPointTrace.Points.Add(WPCoordinates2[0]);
-                                FirstPointTrace.Points.Add(WPCoordinates2[WPCoordinates2.Count - 1]);
+                                FirstPointTrace.Points.Add(WPCoordinatesToPush[0]);
+                                FirstPointTrace.Points.Add(WPCoordinatesToPush[WPCoordinatesToPush.Count - 1]);
                             }
                             GMapRoute WPLineRoute = new GMapRoute("WPLineRoute");
                             WPLineRoute.Stroke = new Pen(Color.Green, 4);
                             WPLineRoute.Stroke.DashStyle = DashStyle.Custom;
-                            for (int a = 0; a < WPCoordinates2.Count; a++) WPLineRoute.Points.Add(WPCoordinates2[a]);
+                            for (int a = 0; a < WPCoordinatesToPush.Count; a++) WPLineRoute.Points.Add(WPCoordinatesToPush[a]);
                             GmapPolygons.Routes.Add(FirstPointTrace);
                             GmapPolygons.Routes.Add(WPLineRoute);
                             MyGMap.Overlays.Add(GmapPolygons);

@@ -14,6 +14,7 @@ using GMap.NET.MapProviders;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
 using System.Globalization;
+using System.Drawing.Drawing2D;
 
 namespace JCFLIGHTGCS
 {
@@ -227,6 +228,19 @@ namespace JCFLIGHTGCS
         public string[] GetString7;
         Boolean StringsChecked = false;
         int DecodeString = 0;
+
+        double[] PushedLatitude = new double[100];
+        double[] PushedLongitude = new double[100];
+        Boolean ParamsPushed = false;
+        Boolean PrintArea2 = false;
+        Boolean BlockPushParams = false;
+        Boolean SafeToPushParams = false;
+        byte CountWP2 = 0;
+        byte CountToBlock = 0;
+        int WPRadius = 200;
+        PointLatLng GPS_Position2;
+        GMapOverlay MarkersOverlay = new GMapOverlay("Markers");
+        GMapOverlay GmapPolygons = new GMapOverlay("Poligonos");
 
         Form WaitUart = Program.WaitUart;
         Form RebootBoard = Program.RebootBoard;
@@ -463,9 +477,6 @@ namespace JCFLIGHTGCS
             fScale = zedGraphControl6.GraphPane.XAxis.Scale;
             zedGraphControl6.AxisChange();
             Load_Data_Grid();
-            Thread.Sleep(3000);
-            //FECHA O SPLASH SCREEN
-            Program.Splash?.Close();
             this.MaximumSize = Screen.PrimaryScreen.WorkingArea.Size; //NÃO CUBRA A BARRA DE TAREFAS
             this.WindowState = FormWindowState.Maximized;
             maximinizar.Visible = true;
@@ -484,6 +495,9 @@ namespace JCFLIGHTGCS
             label158.ForeColor = Color.White;
             Airports.ReadOurairports(Settings.GetRunningDirectory() + "airports.csv");
             Airports.checkdups = true;
+            this.ResumeLayout();
+            //FECHA O SPLASH SCREEN
+            Program.Splash?.Close();
         }
 
         private void iconmaximizar_Click(object sender, EventArgs e)
@@ -639,6 +653,7 @@ namespace JCFLIGHTGCS
             DateTime DateTimeNow = DateTime.UtcNow;
             TimeZoneInfo HRBrasilia = TimeZoneInfo.FindSystemTimeZoneById("E. South America Standard Time");
             label72.Text = Convert.ToString(TimeZoneInfo.ConvertTimeFromUtc(DateTimeNow, HRBrasilia));
+            PushWayPointCoordinatesOfFlightController();
         }
 
         private void SerialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e)
@@ -744,6 +759,33 @@ namespace JCFLIGHTGCS
             int ptr;
             switch (Command)
             {
+                case 1:
+                    ptr = 0;
+                    if (!ParamsPushed)
+                    {
+                        PushedLatitude[0] = Convert.ToDouble(BitConverter.ToInt32(InBuffer, ptr) / 1e7); ptr += 4;
+                        PushedLatitude[1] = Convert.ToDouble(BitConverter.ToInt32(InBuffer, ptr) / 1e7); ptr += 4;
+                        PushedLatitude[2] = Convert.ToDouble(BitConverter.ToInt32(InBuffer, ptr) / 1e7); ptr += 4;
+                        PushedLatitude[3] = Convert.ToDouble(BitConverter.ToInt32(InBuffer, ptr) / 1e7); ptr += 4;
+                        PushedLatitude[4] = Convert.ToDouble(BitConverter.ToInt32(InBuffer, ptr) / 1e7); ptr += 4;
+                        PushedLatitude[5] = Convert.ToDouble(BitConverter.ToInt32(InBuffer, ptr) / 1e7); ptr += 4;
+                        PushedLatitude[6] = Convert.ToDouble(BitConverter.ToInt32(InBuffer, ptr) / 1e7); ptr += 4;
+                        PushedLatitude[7] = Convert.ToDouble(BitConverter.ToInt32(InBuffer, ptr) / 1e7); ptr += 4;
+                        PushedLatitude[8] = Convert.ToDouble(BitConverter.ToInt32(InBuffer, ptr) / 1e7); ptr += 4;
+                        PushedLatitude[9] = Convert.ToDouble(BitConverter.ToInt32(InBuffer, ptr) / 1e7); ptr += 4;
+                        PushedLongitude[0] = Convert.ToDouble(BitConverter.ToInt32(InBuffer, ptr) / 1e7); ptr += 4;
+                        PushedLongitude[1] = Convert.ToDouble(BitConverter.ToInt32(InBuffer, ptr) / 1e7); ptr += 4;
+                        PushedLongitude[2] = Convert.ToDouble(BitConverter.ToInt32(InBuffer, ptr) / 1e7); ptr += 4;
+                        PushedLongitude[3] = Convert.ToDouble(BitConverter.ToInt32(InBuffer, ptr) / 1e7); ptr += 4;
+                        PushedLongitude[4] = Convert.ToDouble(BitConverter.ToInt32(InBuffer, ptr) / 1e7); ptr += 4;
+                        PushedLongitude[5] = Convert.ToDouble(BitConverter.ToInt32(InBuffer, ptr) / 1e7); ptr += 4;
+                        PushedLongitude[6] = Convert.ToDouble(BitConverter.ToInt32(InBuffer, ptr) / 1e7); ptr += 4;
+                        PushedLongitude[7] = Convert.ToDouble(BitConverter.ToInt32(InBuffer, ptr) / 1e7); ptr += 4;
+                        PushedLongitude[8] = Convert.ToDouble(BitConverter.ToInt32(InBuffer, ptr) / 1e7); ptr += 4;
+                        PushedLongitude[9] = Convert.ToDouble(BitConverter.ToInt32(InBuffer, ptr) / 1e7); ptr += 4;
+                    }
+                    if (!BlockPushParams) ParamsPushed = true;
+                    break;
 
                 case 7:
                     ptr = 0;
@@ -3383,6 +3425,251 @@ namespace JCFLIGHTGCS
             catch
             {
             }
+        }
+
+        private void carregarWPsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SafeToPushParams = true;
+            BlockPushParams = false;
+            ParamsPushed = false;
+            PrintArea2 = false;
+            CountToBlock = 0;
+            CountWP2 = 0;
+            GPS_Position2.Lat = 0;
+            GPS_Position2.Lng = 0;
+        }
+
+        private void limparWPsDoMapaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MarkersOverlay.Markers.Clear();
+            GmapPolygons.Polygons.Clear();
+            GmapPolygons.Clear();
+            for (int i = 0; i < 100; i++)
+            {
+                PushedLatitude[i] = 0;
+                PushedLongitude[i] = 0;
+            }
+            SafeToPushParams = false;
+            BlockPushParams = false;
+            ParamsPushed = false;
+            PrintArea2 = false;
+            CountToBlock = 0;
+            CountWP2 = 0;
+            GPS_Position2.Lat = 0;
+            GPS_Position2.Lng = 0;
+        }
+
+        private void PushWayPointCoordinatesOfFlightController()
+        {
+            if (!SafeToPushParams) return;
+            List<PointLatLng> WPCoordinatesToPush = new List<PointLatLng>();
+            if (SerialPort.IsOpen)
+            {
+                Program.WaitUart.Close();
+                if (SerialPort.BytesToRead == 0)
+                {
+                    if (!ParamsPushed)
+                    {
+                        Serial_Write_To_FC(1);
+                    }
+
+                    if (ParamsPushed)
+                    {
+                        if (PushedLatitude[0] != 0 && PushedLongitude[0] != 0 && !PrintArea2 && CountWP2 == 0)
+                        {
+                            label19.Text = Convert.ToString(PushedLatitude[0]);
+                            label18.Text = Convert.ToString(PushedLongitude[0]);
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[0]), Convert.ToDouble(PushedLongitude[0])));
+                            PrintArea2 = true;
+                            GPS_Position2.Lat = PushedLatitude[0];
+                            GPS_Position2.Lng = PushedLongitude[0];
+                        }
+
+                        if (PushedLatitude[1] != 0 && PushedLongitude[1] != 0 && !PrintArea2 && CountWP2 == 1)
+                        {
+                            label20.Text = Convert.ToString(PushedLatitude[1]);
+                            label16.Text = Convert.ToString(PushedLongitude[1]);
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[0]), Convert.ToDouble(PushedLongitude[0])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[1]), Convert.ToDouble(PushedLongitude[1])));
+                            PrintArea2 = true;
+                            GPS_Position2.Lat = PushedLatitude[1];
+                            GPS_Position2.Lng = PushedLongitude[1];
+                        }
+
+                        if (PushedLatitude[2] != 0 && PushedLongitude[2] != 0 && !PrintArea2 && CountWP2 == 2)
+                        {
+                            label21.Text = Convert.ToString(PushedLatitude[2]);
+                            label22.Text = Convert.ToString(PushedLongitude[2]);
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[0]), Convert.ToDouble(PushedLongitude[0])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[1]), Convert.ToDouble(PushedLongitude[1])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[2]), Convert.ToDouble(PushedLongitude[2])));
+                            PrintArea2 = true;
+                            GPS_Position2.Lat = PushedLatitude[2];
+                            GPS_Position2.Lng = PushedLongitude[2];
+                        }
+
+                        if (PushedLatitude[3] != 0 && PushedLongitude[3] != 0 && !PrintArea2 && CountWP2 == 3)
+                        {
+                            label37.Text = Convert.ToString(PushedLatitude[3]);
+                            label35.Text = Convert.ToString(PushedLongitude[3]);
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[0]), Convert.ToDouble(PushedLongitude[0])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[1]), Convert.ToDouble(PushedLongitude[1])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[2]), Convert.ToDouble(PushedLongitude[2])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[3]), Convert.ToDouble(PushedLongitude[3])));
+                            PrintArea2 = true;
+                            GPS_Position2.Lat = PushedLatitude[3];
+                            GPS_Position2.Lng = PushedLongitude[3];
+                        }
+
+                        if (PushedLatitude[4] != 0 && PushedLongitude[4] != 0 && !PrintArea2 && CountWP2 == 4)
+                        {
+                            label30.Text = Convert.ToString(PushedLatitude[4]);
+                            label26.Text = Convert.ToString(PushedLongitude[4]);
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[0]), Convert.ToDouble(PushedLongitude[0])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[1]), Convert.ToDouble(PushedLongitude[1])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[2]), Convert.ToDouble(PushedLongitude[2])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[3]), Convert.ToDouble(PushedLongitude[3])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[4]), Convert.ToDouble(PushedLongitude[4])));
+                            PrintArea2 = true;
+                            GPS_Position2.Lat = PushedLatitude[4];
+                            GPS_Position2.Lng = PushedLongitude[4];
+                        }
+
+                        if (PushedLatitude[5] != 0 && PushedLongitude[5] != 0 && !PrintArea2 && CountWP2 == 5)
+                        {
+                            label28.Text = Convert.ToString(PushedLatitude[5]);
+                            label24.Text = Convert.ToString(PushedLongitude[5]);
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[0]), Convert.ToDouble(PushedLongitude[0])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[1]), Convert.ToDouble(PushedLongitude[1])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[2]), Convert.ToDouble(PushedLongitude[2])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[3]), Convert.ToDouble(PushedLongitude[3])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[4]), Convert.ToDouble(PushedLongitude[4])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[5]), Convert.ToDouble(PushedLongitude[5])));
+                            PrintArea2 = true;
+                            GPS_Position2.Lat = PushedLatitude[5];
+                            GPS_Position2.Lng = PushedLongitude[5];
+                        }
+
+                        if (PushedLatitude[6] != 0 && PushedLongitude[6] != 0 && !PrintArea2 && CountWP2 == 6)
+                        {
+                            label61.Text = Convert.ToString(PushedLatitude[6]);
+                            label57.Text = Convert.ToString(PushedLongitude[6]);
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[0]), Convert.ToDouble(PushedLongitude[0])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[1]), Convert.ToDouble(PushedLongitude[1])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[2]), Convert.ToDouble(PushedLongitude[2])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[3]), Convert.ToDouble(PushedLongitude[3])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[4]), Convert.ToDouble(PushedLongitude[4])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[5]), Convert.ToDouble(PushedLongitude[5])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[6]), Convert.ToDouble(PushedLongitude[6])));
+                            PrintArea2 = true;
+                            GPS_Position2.Lat = PushedLatitude[6];
+                            GPS_Position2.Lng = PushedLongitude[6];
+                        }
+
+                        if (PushedLatitude[7] != 0 && PushedLongitude[7] != 0 && !PrintArea2 && CountWP2 == 7)
+                        {
+                            label70.Text = Convert.ToString(PushedLatitude[7]);
+                            label63.Text = Convert.ToString(PushedLongitude[7]);
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[0]), Convert.ToDouble(PushedLongitude[0])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[1]), Convert.ToDouble(PushedLongitude[1])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[2]), Convert.ToDouble(PushedLongitude[2])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[3]), Convert.ToDouble(PushedLongitude[3])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[4]), Convert.ToDouble(PushedLongitude[4])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[5]), Convert.ToDouble(PushedLongitude[5])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[6]), Convert.ToDouble(PushedLongitude[6])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[7]), Convert.ToDouble(PushedLongitude[7])));
+                            PrintArea2 = true;
+                            GPS_Position2.Lat = PushedLatitude[7];
+                            GPS_Position2.Lng = PushedLongitude[7];
+                        }
+
+                        if (PushedLatitude[8] != 0 && PushedLongitude[8] != 0 && !PrintArea2 && CountWP2 == 8)
+                        {
+                            label68.Text = Convert.ToString(PushedLatitude[8]);
+                            label59.Text = Convert.ToString(PushedLongitude[8]);
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[0]), Convert.ToDouble(PushedLongitude[0])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[1]), Convert.ToDouble(PushedLongitude[1])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[2]), Convert.ToDouble(PushedLongitude[2])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[3]), Convert.ToDouble(PushedLongitude[3])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[4]), Convert.ToDouble(PushedLongitude[4])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[5]), Convert.ToDouble(PushedLongitude[5])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[6]), Convert.ToDouble(PushedLongitude[6])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[7]), Convert.ToDouble(PushedLongitude[7])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[8]), Convert.ToDouble(PushedLongitude[8])));
+                            PrintArea2 = true;
+                            GPS_Position2.Lat = PushedLatitude[8];
+                            GPS_Position2.Lng = PushedLongitude[8];
+                        }
+
+                        if (PushedLatitude[9] != 0 && PushedLongitude[9] != 0 && !PrintArea2 && CountWP2 == 9)
+                        {
+                            label66.Text = Convert.ToString(PushedLatitude[9]);
+                            label55.Text = Convert.ToString(PushedLongitude[9]);
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[0]), Convert.ToDouble(PushedLongitude[0])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[1]), Convert.ToDouble(PushedLongitude[1])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[2]), Convert.ToDouble(PushedLongitude[2])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[3]), Convert.ToDouble(PushedLongitude[3])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[4]), Convert.ToDouble(PushedLongitude[4])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[5]), Convert.ToDouble(PushedLongitude[5])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[6]), Convert.ToDouble(PushedLongitude[6])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[7]), Convert.ToDouble(PushedLongitude[7])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[8]), Convert.ToDouble(PushedLongitude[8])));
+                            WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[9]), Convert.ToDouble(PushedLongitude[9])));
+                            PrintArea2 = true;
+                            GPS_Position2.Lat = PushedLatitude[9];
+                            GPS_Position2.Lng = PushedLongitude[9];
+                        }
+
+                        if (PrintArea2)
+                        {
+                            CountWP2++;
+                            GMapMarker GMarker = new CreateGMapMarker(GPS_Position2, Convert.ToByte(CountWP2))
+                            {
+                                Tag = Convert.ToString(CountWP2)
+                            };
+                            GMapMarkerRect MarkerRect = new GMapMarkerRect(GPS_Position2);
+                            {
+                                MarkerRect.InnerMarker = GMarker;
+                                MarkerRect.WPRadius = (int)WPRadius / 10;
+                                MarkerRect.MainMap = MyGMap;
+                                MarkerRect.Color = Color.White;
+                            }
+                            MarkersOverlay.Markers.Add(GMarker);
+                            MarkersOverlay.Markers.Add(MarkerRect);
+                            MyGMap.Overlays.Add(MarkersOverlay);
+                            MyGMap.UpdateMarkerLocalPosition(GMarker);
+                            GmapPolygons.Polygons.Clear();
+                            GMapRoute FirstPointTrace = new GMapRoute("FirstPointTrace");
+                            FirstPointTrace.Clear();
+                            GmapPolygons.Clear();
+                            FirstPointTrace.Stroke = new Pen(Color.Violet, 4);
+                            FirstPointTrace.Stroke.DashStyle = DashStyle.Dash;
+                            if (CountWP2 > 2)
+                            {
+                                FirstPointTrace.Points.Add(WPCoordinatesToPush[0]);
+                                FirstPointTrace.Points.Add(WPCoordinatesToPush[WPCoordinatesToPush.Count - 1]);
+                            }
+                            GMapRoute WPLineRoute = new GMapRoute("WPLineRoute");
+                            WPLineRoute.Stroke = new Pen(Color.Green, 4);
+                            WPLineRoute.Stroke.DashStyle = DashStyle.Custom;
+                            for (int a = 0; a < WPCoordinatesToPush.Count; a++) WPLineRoute.Points.Add(WPCoordinatesToPush[a]);
+                            GmapPolygons.Routes.Add(FirstPointTrace);
+                            GmapPolygons.Routes.Add(WPLineRoute);
+                            MyGMap.Overlays.Add(GmapPolygons);
+                            PrintArea2 = false;
+                        }
+                        CountToBlock++;
+                        if (CountToBlock > 80)
+                        {
+                            SafeToPushParams = false;
+                            BlockPushParams = true;
+                            ParamsPushed = false;
+                            CountToBlock = 151;
+                        }
+                    }
+                }
+            }
+
         }
     }
 }
