@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<LOGFORMAT>
+  <JCFLIGHT>
+    <IMU>
+      <F0>Horario Registrado</F0>
+      <F1>Acc X</F1>
+      <F2>Acc Y</F2>
+      <F3>Acc Z</F3>
+      <F4>Gyro X</F4>
+      <F5>Gyro Y</F5>
+      <F6>Gyro Z</F6>
+    </IMU>
+
+    <ATTITUDE>
+      <F0>Horario Registrado</F0>
+      <F1>Attitude Pitch</F1>
+      <F2>Attitude Roll</F2>
+      <F3>Attitude Heading</F3>
+      <F4>Modo de Voo</F4>
+    </ATTITUDE>
+
+    <RADIO>
+      <F0>Horario Registrado</F0>
+      <F1>Throttle</F1>
+      <F2>Pitch</F2>
+      <F3>Roll</F3>
+      <F4>Yaw</F4>
+      <F5>Aux1</F5>
+      <F6>Aux2</F6>
+      <F7>Aux3</F7>
+      <F8>Aux4</F8>
+      <F9>Aux5</F9>
+      <F10>Aux6</F10>
+      <F11>Aux7</F11>
+      <F12>Aux8</F12>
+    </RADIO>
+
+    <MAG>
+      <F0>Horario Registrado</F0>
+      <F1>Mag X</F1>
+      <F2>Mag Y</F2>
+      <F3>Mag Z</F3>
+    </MAG>
+
+</JCFLIGHT>
+</LOGFORMAT>

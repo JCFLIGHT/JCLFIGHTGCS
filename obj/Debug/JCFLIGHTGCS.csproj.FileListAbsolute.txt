@@ -232,3 +232,5 @@ C:\Users\Julio Cesar\Desktop\Projetos\JCFLIGHT\JCFLIGHTGCS\obj\Debug\JCFLIGHTGCS
 C:\Users\Julio Cesar\Desktop\Projetos\JCFLIGHT\JCFLIGHTGCS\obj\Debug\JCFLIGHTGCS.exe
 C:\Users\Julio Cesar\Desktop\Projetos\JCFLIGHT\JCFLIGHTGCS\obj\Debug\JCFLIGHTGCS.pdb
 C:\Users\Julio Cesar\Desktop\Projetos\JCFLIGHT\JCFLIGHTGCS\obj\Debug\JCFLIGHTGCS.csprojAssemblyReference.cache
+C:\Users\Julio Cesar\Desktop\Projetos\JCFLIGHT\JCFLIGHTGCS\obj\Debug\JCFLIGHTGCS.BlackBoxAnalyser.resources
+C:\Users\Julio Cesar\Desktop\Projetos\JCFLIGHT\JCFLIGHTGCS\bin\Debug\BlackBoxFields.xml

@@ -482,7 +482,6 @@ namespace JCFLIGHTGCS
             if (DateTime.Now.Second != countdate.Second)
             {
                 countdate = DateTime.Now;
-                Console.WriteLine("HUD " + count + " hz drawtime " + (huddrawtime / count) + " gl " + opengl);
                 if ((huddrawtime / count) > 1000)
                     opengl = false;
 

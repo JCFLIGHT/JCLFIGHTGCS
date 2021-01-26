@@ -61,6 +61,7 @@
             this.RealTimer = new System.Windows.Forms.Timer(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button23 = new System.Windows.Forms.Button();
             this.button22 = new System.Windows.Forms.Button();
             this.button21 = new System.Windows.Forms.Button();
             this.HUD1 = new JCFLIGHTGCS.HUD();
@@ -985,6 +986,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.button23);
             this.tabPage1.Controls.Add(this.button22);
             this.tabPage1.Controls.Add(this.button21);
             this.tabPage1.Controls.Add(this.HUD1);
@@ -1015,26 +1017,35 @@
             this.tabPage1.Text = "Resumo";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // button23
+            // 
+            this.button23.BackColor = System.Drawing.Color.Cyan;
+            this.button23.Location = new System.Drawing.Point(595, 468);
+            this.button23.Name = "button23";
+            this.button23.Size = new System.Drawing.Size(100, 96);
+            this.button23.TabIndex = 57;
+            this.button23.Text = "Analisar o conteúdo da Caixa-Preta";
+            this.button23.UseVisualStyleBackColor = false;
+            this.button23.Click += new System.EventHandler(this.button23_Click);
+            // 
             // button22
             // 
-            this.button22.BackColor = System.Drawing.Color.Gold;
-            this.button22.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button22.Location = new System.Drawing.Point(556, 475);
+            this.button22.BackColor = System.Drawing.Color.Yellow;
+            this.button22.Location = new System.Drawing.Point(484, 469);
             this.button22.Name = "button22";
-            this.button22.Size = new System.Drawing.Size(94, 83);
+            this.button22.Size = new System.Drawing.Size(100, 96);
             this.button22.TabIndex = 56;
-            this.button22.Text = "Reproduzir o Conteúdo da Caixa-Preta";
+            this.button22.Text = "Simular o conteúdo da Caixa-Preta";
             this.button22.UseVisualStyleBackColor = false;
             // 
             // button21
             // 
             this.button21.BackColor = System.Drawing.Color.Lime;
-            this.button21.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button21.Location = new System.Drawing.Point(414, 475);
+            this.button21.Location = new System.Drawing.Point(373, 468);
             this.button21.Name = "button21";
-            this.button21.Size = new System.Drawing.Size(94, 83);
+            this.button21.Size = new System.Drawing.Size(100, 96);
             this.button21.TabIndex = 55;
-            this.button21.Text = "Iniciar Gravação da Caixa-Preta";
+            this.button21.Text = "Iniciar gravação da Caixa-Preta";
             this.button21.UseVisualStyleBackColor = false;
             this.button21.Click += new System.EventHandler(this.button21_Click);
             // 
@@ -1066,7 +1077,7 @@
             // 
             this.label151.AutoSize = true;
             this.label151.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label151.Location = new System.Drawing.Point(46, 496);
+            this.label151.Location = new System.Drawing.Point(16, 490);
             this.label151.Name = "label151";
             this.label151.Size = new System.Drawing.Size(262, 20);
             this.label151.TabIndex = 53;
@@ -1076,7 +1087,7 @@
             // 
             this.label150.AutoSize = true;
             this.label150.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label150.Location = new System.Drawing.Point(165, 520);
+            this.label150.Location = new System.Drawing.Point(135, 514);
             this.label150.Name = "label150";
             this.label150.Size = new System.Drawing.Size(33, 20);
             this.label150.TabIndex = 52;
@@ -1084,7 +1095,7 @@
             // 
             // metroProgressBar29
             // 
-            this.metroProgressBar29.Location = new System.Drawing.Point(50, 519);
+            this.metroProgressBar29.Location = new System.Drawing.Point(20, 513);
             this.metroProgressBar29.Name = "metroProgressBar29";
             this.metroProgressBar29.Size = new System.Drawing.Size(283, 23);
             this.metroProgressBar29.Style = MetroFramework.MetroColorStyle.Red;
@@ -1118,9 +1129,9 @@
             this.button15.BackColor = System.Drawing.Color.LimeGreen;
             this.button15.BackgroundImage = global::JCFLIGHTGCS.Properties.Resources.WhatsApp;
             this.button15.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button15.Location = new System.Drawing.Point(964, 508);
+            this.button15.Location = new System.Drawing.Point(964, 496);
             this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(79, 57);
+            this.button15.Size = new System.Drawing.Size(79, 69);
             this.button15.TabIndex = 11;
             this.button15.UseVisualStyleBackColor = false;
             this.button15.Click += new System.EventHandler(this.button15_Click);
@@ -1131,9 +1142,9 @@
             this.button14.BackgroundImage = global::JCFLIGHTGCS.Properties.Resources.YouTube;
             this.button14.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button14.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button14.Location = new System.Drawing.Point(862, 508);
+            this.button14.Location = new System.Drawing.Point(862, 496);
             this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(79, 57);
+            this.button14.Size = new System.Drawing.Size(79, 69);
             this.button14.TabIndex = 10;
             this.button14.UseVisualStyleBackColor = false;
             this.button14.Click += new System.EventHandler(this.button14_Click);
@@ -6396,9 +6407,10 @@
         private System.Windows.Forms.ToolStripMenuItem limparWPsDoMapaToolStripMenuItem;
         private System.Windows.Forms.Label label158;
         private System.Windows.Forms.Label label157;
+        private System.Windows.Forms.Label label161;
+        private System.Windows.Forms.Button button23;
         private System.Windows.Forms.Button button22;
         private System.Windows.Forms.Button button21;
-        private System.Windows.Forms.Label label161;
     }
 }
 

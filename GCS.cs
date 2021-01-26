@@ -5,7 +5,6 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using System.IO;
 using System.IO.Ports;
 using System.Threading;
 using ZedGraph;
@@ -16,6 +15,7 @@ using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
 using System.Globalization;
 using System.Drawing.Drawing2D;
+using System.IO;
 
 namespace JCFLIGHTGCS
 {
@@ -119,8 +119,11 @@ namespace JCFLIGHTGCS
         static GMapOverlay Routes;
         static GMapOverlay AirportsOverlay;
         GMapOverlay PositionToRoutes;
+        GMapOverlay MarkersOverlay = new GMapOverlay("Markers");
+        GMapOverlay GmapPolygons = new GMapOverlay("Poligonos");
         List<PointLatLng> Points = new List<PointLatLng>();
         PointLatLng GPS_Position;
+        PointLatLng GPS_Position2;
 
         int CompassHealthCount = 9999999;
         int HeadingCompassPrev = 0;
@@ -239,9 +242,6 @@ namespace JCFLIGHTGCS
         byte CountWP2 = 0;
         byte CountToBlock = 0;
         int WPRadius = 200;
-        PointLatLng GPS_Position2;
-        GMapOverlay MarkersOverlay = new GMapOverlay("Markers");
-        GMapOverlay GmapPolygons = new GMapOverlay("Poligonos");
 
         StreamWriter BlackBoxStream;
         static bool BlackBoxRunning = false;
@@ -3685,25 +3685,22 @@ namespace JCFLIGHTGCS
                     }
                 }
             }
-
         }
 
         private void button21_Click(object sender, EventArgs e)
         {
-            if (BlackBoxRunning) //FECHAR CAIXA-PRETA
+            if (BlackBoxRunning)
             {
-
                 CloseBlackBoxData();
-                button21.Text = "Iniciar Gravação da Caixa-Preta";
+                button21.Text = "Iniciar gravação da Caixa-Preta";
                 button21.BackColor = Color.Lime;
-
             }
             else
             {
                 RunBlackBoxData();
                 if (BlackBoxRunning)
                 {
-                    button21.Text = "Parar Gravação da Caixa-Preta";
+                    button21.Text = "Parar gravação da Caixa-Preta";
                     button21.BackColor = Color.Red;
                 }
             }
@@ -3713,17 +3710,17 @@ namespace JCFLIGHTGCS
         {
             try
             {
-                BlackBoxStream = new StreamWriter(Directory.GetCurrentDirectory() + "\\CaixaPreta" + "\\JCFLIGHT CAIXAPRETA" + String.Format(" - {0:dd MM yyyy - hh mm}.log", DateTime.Now));
+                BlackBoxStream = new StreamWriter(Directory.GetCurrentDirectory() + "\\Caixa Preta" + "\\JCFLIGHT CAIXAPRETA" + String.Format(" - {0:dd MM yyyy - hh mm}.log", DateTime.Now));
             }
             catch
             {
-                MessageBox.Show("Não foi possivel encontrar a pasta" + Directory.GetCurrentDirectory() + "\\CaixaPreta" + "\\JCFLIGHT_CAIXAPRETA" + String.Format("-{0:yyyyMMdd-hhmm}.log", DateTime.Now), "Erro ao tentar abrir", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Não foi possivel encontrar a pasta" + Directory.GetCurrentDirectory() + "\\Caixa Preta" + "\\JCFLIGHT_CAIXAPRETA" + String.Format("-{0:yyyyMMdd-hhmm}.log", DateTime.Now), "Erro ao tentar abrir", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             if (BlackBoxStream != null)
             {
                 BlackBoxRunning = true;
-                BlackBoxStream.WriteLine("JCFLIGHT CAIXAPRETA - Iniciada em:{0}", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
+                BlackBoxStream.WriteLine("JCFLIGHT CAIXAPRETA - Iniciada em:{0}", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff"));
             }
         }
 
@@ -3737,11 +3734,17 @@ namespace JCFLIGHTGCS
 
         void UpdateBlackBoxData()
         {
-            BlackBoxStream.Write("GTIME,{0},{1}", DateTime.Now.ToString("HH:mm:ss"), DateTime.Now.ToString("dd/MM/yyyy"));
-            BlackBoxStream.WriteLine("");
-            BlackBoxStream.WriteLine("GRAW,{0},{1},{2},{3},{4},{5}", GetValues.AccFilteredX, GetValues.AccFilteredY, GetValues.AccFilteredZ, GetValues.GyroFilteredX, GetValues.GyroFilteredY, GetValues.GyroFilteredZ);
-            BlackBoxStream.WriteLine("GATT,{0},{1},{2},{3}", ReadRoll > 1200 ? 0 : ReadRoll, ReadPitch, ReadCompass, label83.Text);
-            BlackBoxStream.WriteLine("GRCC,{0},{1},{2},{3},{4},{5},{6},{7}", ThrottleData, PitchData, RollData, YawData, Aux1Data, Aux2Data, Aux3Data, Aux4Data, Aux5Data, Aux6Data, Aux7Data, Aux8Data);
+            BlackBoxStream.WriteLine("IMU,{0},{1},{2},{3},{4},{5},{6}", DateTime.Now.ToString("HH:mm:ss.fff"), GetValues.AccFilteredX, GetValues.AccFilteredY, GetValues.AccFilteredZ, GetValues.GyroFilteredX, GetValues.GyroFilteredY, GetValues.GyroFilteredZ);
+            BlackBoxStream.WriteLine("MAG,{0},{1},{2},{3}", DateTime.Now.ToString("HH:mm:ss.fff"), GetValues.CompassX, GetValues.CompassY, GetValues.CompassZ);
+            BlackBoxStream.WriteLine("ATTITUDE,{0},{1},{2},{3},{4}", DateTime.Now.ToString("HH:mm:ss.fff"), ReadRoll > 1200 ? 0 : ReadRoll, ReadPitch, ReadCompass, label83.Text);
+            BlackBoxStream.WriteLine("RADIO,{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12}", DateTime.Now.ToString("HH:mm:ss.fff"), ThrottleData, PitchData, RollData, YawData, Aux1Data, Aux2Data, Aux3Data, Aux4Data, Aux5Data, Aux6Data, Aux7Data, Aux8Data);
+        }
+
+        private void button23_Click(object sender, EventArgs e)
+        {
+            BlackBoxAnalyser BlackBox = new BlackBoxAnalyser();
+            BlackBox.ShowDialog();
+            BlackBox.Dispose();
         }
     }
 }
