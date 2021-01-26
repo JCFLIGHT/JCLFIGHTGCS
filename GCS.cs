@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
 using System.IO.Ports;
 using System.Threading;
 using ZedGraph;
@@ -241,6 +242,9 @@ namespace JCFLIGHTGCS
         PointLatLng GPS_Position2;
         GMapOverlay MarkersOverlay = new GMapOverlay("Markers");
         GMapOverlay GmapPolygons = new GMapOverlay("Poligonos");
+
+        StreamWriter BlackBoxStream;
+        static bool BlackBoxRunning = false;
 
         Form WaitUart = Program.WaitUart;
         Form RebootBoard = Program.RebootBoard;
@@ -654,6 +658,18 @@ namespace JCFLIGHTGCS
             TimeZoneInfo HRBrasilia = TimeZoneInfo.FindSystemTimeZoneById("E. South America Standard Time");
             label72.Text = Convert.ToString(TimeZoneInfo.ConvertTimeFromUtc(DateTimeNow, HRBrasilia));
             PushWayPointCoordinatesOfFlightController();
+            if (BlackBoxRunning && BlackBoxStream.BaseStream != null)
+            {
+                UpdateBlackBoxData();
+            }
+            label161.Text = "Valor Calculado:" + ValueConverterMotorSpeed(MotorSpeed.Value, 0, 100, 900, 1500) + "uS";
+        }
+
+        int ValueConverterMotorSpeed(int x, int srcMin, int srcMax, int destMin, int destMax)
+        {
+            int a = ((int)destMax - (int)destMin) * ((int)x - (int)srcMin);
+            int b = (int)srcMax - (int)srcMin;
+            return ((a / b) + destMin);
         }
 
         private void SerialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e)
@@ -3670,6 +3686,62 @@ namespace JCFLIGHTGCS
                 }
             }
 
+        }
+
+        private void button21_Click(object sender, EventArgs e)
+        {
+            if (BlackBoxRunning) //FECHAR CAIXA-PRETA
+            {
+
+                CloseBlackBoxData();
+                button21.Text = "Iniciar Gravação da Caixa-Preta";
+                button21.BackColor = Color.Lime;
+
+            }
+            else
+            {
+                RunBlackBoxData();
+                if (BlackBoxRunning)
+                {
+                    button21.Text = "Parar Gravação da Caixa-Preta";
+                    button21.BackColor = Color.Red;
+                }
+            }
+        }
+
+        void RunBlackBoxData()
+        {
+            try
+            {
+                BlackBoxStream = new StreamWriter(Directory.GetCurrentDirectory() + "\\CaixaPreta" + "\\JCFLIGHT CAIXAPRETA" + String.Format(" - {0:dd MM yyyy - hh mm}.log", DateTime.Now));
+            }
+            catch
+            {
+                MessageBox.Show("Não foi possivel encontrar a pasta" + Directory.GetCurrentDirectory() + "\\CaixaPreta" + "\\JCFLIGHT_CAIXAPRETA" + String.Format("-{0:yyyyMMdd-hhmm}.log", DateTime.Now), "Erro ao tentar abrir", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            if (BlackBoxStream != null)
+            {
+                BlackBoxRunning = true;
+                BlackBoxStream.WriteLine("JCFLIGHT CAIXAPRETA - Iniciada em:{0}", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
+            }
+        }
+
+        void CloseBlackBoxData()
+        {
+            BlackBoxStream.Flush();
+            BlackBoxStream.Close();
+            BlackBoxStream.Dispose();
+            BlackBoxRunning = false;
+        }
+
+        void UpdateBlackBoxData()
+        {
+            BlackBoxStream.Write("GTIME,{0},{1}", DateTime.Now.ToString("HH:mm:ss"), DateTime.Now.ToString("dd/MM/yyyy"));
+            BlackBoxStream.WriteLine("");
+            BlackBoxStream.WriteLine("GRAW,{0},{1},{2},{3},{4},{5}", GetValues.AccFilteredX, GetValues.AccFilteredY, GetValues.AccFilteredZ, GetValues.GyroFilteredX, GetValues.GyroFilteredY, GetValues.GyroFilteredZ);
+            BlackBoxStream.WriteLine("GATT,{0},{1},{2},{3}", ReadRoll > 1200 ? 0 : ReadRoll, ReadPitch, ReadCompass, label83.Text);
+            BlackBoxStream.WriteLine("GRCC,{0},{1},{2},{3},{4},{5},{6},{7}", ThrottleData, PitchData, RollData, YawData, Aux1Data, Aux2Data, Aux3Data, Aux4Data, Aux5Data, Aux6Data, Aux7Data, Aux8Data);
         }
     }
 }
