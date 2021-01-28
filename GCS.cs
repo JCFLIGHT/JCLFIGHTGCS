@@ -250,7 +250,10 @@ namespace JCFLIGHTGCS
         byte YawRate = 0;
         int RadioMin = 1000;
         int RadioMax = 2000;
-        bool RadioInConfig = false;
+        int AHThrottleRover;
+        byte AHDeadZone;
+        byte AHSafeAltitude;
+        byte AHMinVelVertical;
 
         StreamWriter BlackBoxStream;
         static bool BlackBoxRunning = false;
@@ -674,11 +677,8 @@ namespace JCFLIGHTGCS
             label161.Text = "Valor Calculado:" + ValueConverterMotorSpeed(MotorSpeed.Value, 0, 100, 900, 1500) + "uS";
             throttleExpo1.SetRCExpoParameters((double)ThrottleMiddle / 100, (double)ThrottleExpo / 100, ThrottleData);
             rcExpo1.SetRCExpoParameters((double)RCRate / 100, (double)RcExpo / 100);
-            if (RadioInConfig)
-            {
-                throttleExpo2.SetRCExpoParameters((double)numericUpDown25.Value, (double)numericUpDown26.Value, ThrottleData);
-                rcExpo2.SetRCExpoParameters((double)numericUpDown27.Value, (double)numericUpDown28.Value);
-            }
+            throttleExpo2.SetRCExpoParameters((double)numericUpDown25.Value, (double)numericUpDown26.Value, ThrottleData);
+            rcExpo2.SetRCExpoParameters((double)numericUpDown27.Value, (double)numericUpDown28.Value);
         }
 
         int ValueConverterMotorSpeed(int x, int srcMin, int srcMax, int destMin, int destMax)
@@ -902,6 +902,10 @@ namespace JCFLIGHTGCS
                     YawRate = (byte)InBuffer[ptr++];
                     RadioMin = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     RadioMax = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    AHThrottleRover = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    AHDeadZone = (byte)InBuffer[ptr++];
+                    AHSafeAltitude = (byte)InBuffer[ptr++];
+                    AHMinVelVertical = (byte)InBuffer[ptr++];
                     break;
 
                 case 9:
@@ -2940,7 +2944,7 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)0x4a;
                     SendBuffer[VectorPointer++] = (byte)0x43;
                     SendBuffer[VectorPointer++] = (byte)0x3c;
-                    SendBuffer[VectorPointer++] = 39;
+                    SendBuffer[VectorPointer++] = 44;
                     SendBuffer[VectorPointer++] = (byte)15;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxFrame;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxPPM;
@@ -2981,6 +2985,11 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown35.Value) >> 8);
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown36.Value));
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown36.Value) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown31.Value));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown31.Value) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)numericUpDown32.Value;
+                    SendBuffer[VectorPointer++] = (byte)numericUpDown33.Value;
+                    SendBuffer[VectorPointer++] = (byte)numericUpDown34.Value;
                     for (int i = 3; i < VectorPointer; i++) CheckAllBuffers ^= SendBuffer[i];
                     SendBuffer[VectorPointer++] = CheckAllBuffers;
                     SerialPort.Write(SendBuffer, 0, VectorPointer);
@@ -3850,13 +3859,15 @@ namespace JCFLIGHTGCS
             numericUpDown30.Value = (decimal)YawRate / 100;
             numericUpDown35.Value = RadioMin < 800 ? 1000 : RadioMin;
             numericUpDown36.Value = RadioMax < 1500 ? 2000 : RadioMax;
-            RadioInConfig = true;
+            numericUpDown31.Value = AHThrottleRover < 1000 ? 1000 : AHThrottleRover;
+            numericUpDown32.Value = AHDeadZone;
+            numericUpDown33.Value = AHSafeAltitude;
+            numericUpDown34.Value = AHMinVelVertical < 30 ? 30 : AHMinVelVertical;
         }
 
         private void button25_Click(object sender, EventArgs e)
         {
             panel19.Visible = false;
-            RadioInConfig = false;
             SmallCompass = false;
             if (SerialOpen == true)
             {
