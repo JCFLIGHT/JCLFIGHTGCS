@@ -228,10 +228,6 @@ namespace JCFLIGHTGCS
 
         private void Graphit_Click(object sender, EventArgs e)
         {
-
-            double prvTimestamp = 0;
-
-
             if (dataGridView1.RowCount == 0 || dataGridView1.ColumnCount == 0)
             {
                 MessageBox.Show("Arquivo invalido!");
@@ -269,7 +265,6 @@ namespace JCFLIGHTGCS
 
                 if (datarow.Cells[0].Value.ToString() == type)
                 {
-                    prvTimestamp = timestamp;
                     try
                     {
                         double value = double.Parse(datarow.Cells[col].Value.ToString(), new System.Globalization.CultureInfo("en-US"));

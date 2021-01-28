@@ -1131,35 +1131,35 @@ namespace JCFLIGHTGCS
 
                 if (imuhealty == true)
                 {
-                    drawstring("IMU não calibrada", font, fontsize + 1, (SolidBrush)Brushes.Red, -75, halfheight / -1);
+                    drawstring("IMU não calibrada", font, fontsize + 1, (SolidBrush)Brushes.Red, -75, 20);
                     statuslast = status;
                 }
                 else
                 {
                     if (this._roll > 35 || this._roll < (-35))
                     {
-                        drawstring("Bank-Angle", font, fontsize + 5, (SolidBrush)Brushes.Red, -75, halfheight / -1);
+                        drawstring("Bank-Angle", font, fontsize + 5, (SolidBrush)Brushes.Red, -75, 20);
                         statuslast = status;
                     }
                     else
                     {
                         if (failsafe == true)
                         {
-                            drawstring("Fail-Safe", font, fontsize + 5, (SolidBrush)Brushes.Red, -75, halfheight / -1);
+                            drawstring("Fail-Safe", font, fontsize + 5, (SolidBrush)Brushes.Red, -75, 20);
                             statuslast = status;
                         }
                         else
                         {
                             if (status == 0)
                             {
-                                drawstring("Desarmado", font, fontsize + 5, (SolidBrush)Brushes.Red, -75, halfheight / -1);
+                                drawstring("Desarmado", font, fontsize + 5, (SolidBrush)Brushes.Red, -75, 20);
                                 statuslast = status;
                             }
                             else if (status == 1)
                             {
                                 if ((armedtimer.AddSeconds(8) > DateTime.Now))
                                 {
-                                    drawstring("Armado", font, fontsize + 5, (SolidBrush)Brushes.Red, -75, halfheight / -1);
+                                    drawstring("Armado", font, fontsize + 5, (SolidBrush)Brushes.Red, -75, 20);
                                     statuslast = status;
                                 }
                             }

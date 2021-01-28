@@ -63,6 +63,16 @@ namespace JCFLIGHTGCS.InstrumentsControls {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ExpoGraph {
+            get {
+                object obj = ResourceManager.GetObject("ExpoGraph", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap HeadingIndicator_Aircraft {
             get {
                 object obj = ResourceManager.GetObject("HeadingIndicator_Aircraft", resourceCulture);
