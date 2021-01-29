@@ -1620,7 +1620,7 @@ namespace JCFLIGHTGCS
             }
             else
             {
-                HUD1.Roll = -ReadRoll / 10;
+                HUD1.Roll = ReadRoll / 10;
                 HUD1.Pitch = ReadPitch / 10;
             }
             HUD1.ARMStatus = CommandArmDisarm == 0 ? false : true;
@@ -1638,7 +1638,7 @@ namespace JCFLIGHTGCS
             }
             else
             {
-                HUD2.Roll = -ReadRoll / 10;
+                HUD2.Roll = ReadRoll / 10;
                 HUD2.Pitch = ReadPitch / 10;
             }
             HUD2.ARMStatus = CommandArmDisarm == 0 ? false : true;
@@ -1656,7 +1656,7 @@ namespace JCFLIGHTGCS
             }
             else
             {
-                HUDSMALL1.roll = -ReadRoll / 10;
+                HUDSMALL1.roll = ReadRoll / 10;
                 HUDSMALL1.pitch = ReadPitch / 10;
             }
             HUDSMALL1.status = CommandArmDisarm;
