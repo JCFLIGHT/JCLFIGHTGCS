@@ -31,8 +31,10 @@ namespace JCFLIGHTGCS
 
         private void BoardInfo_Load(object sender, EventArgs e)
         {
+            TimeStamp = 0;
             CreateChart(zedGraphControl1);
             zedGraphControl1.Refresh();
+            zedGraphControl1.Invalidate();
         }
 
         public void CreateChart(ZedGraphControl ZedGraph)
@@ -86,8 +88,6 @@ namespace JCFLIGHTGCS
 
         private void Graphit()
         {
-            GraphPane Pane = zedGraphControl1.GraphPane;
-
             TimeStamp = TimeStamp + 1;
 
             if (TimeStamp > aScale.Max)
