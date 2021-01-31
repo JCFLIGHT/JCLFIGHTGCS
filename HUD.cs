@@ -1286,7 +1286,7 @@ namespace JCFLIGHTGCS
 
                 if (_IMUHealty == true)
                 {
-                    drawstring("IMU não calibrada", font, fontsize + 10, (SolidBrush)Brushes.Red, -110, 40);
+                    drawstring("IMU não calibrada", font, fontsize + 10, (SolidBrush)Brushes.Red, -130, 40);
                     StatusLast = _ARMStatus;
                 }
                 else

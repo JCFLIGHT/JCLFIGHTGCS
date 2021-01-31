@@ -579,6 +579,8 @@ namespace JCFLIGHTGCS
                 SerialPort.DiscardInBuffer();
                 SerialPort.Close();
             }
+            MyGMap.Dispose();
+            MyGMap.Invalidate();
             this.Close();
         }
 
@@ -701,6 +703,9 @@ namespace JCFLIGHTGCS
             }
             catch { }
 
+
+
+
             while (SerialPort.BytesToRead > 0)
             {
                 try
@@ -709,7 +714,14 @@ namespace JCFLIGHTGCS
                 }
                 catch (UnauthorizedAccessException) { }
 
-                CheckState = (byte)SerialPort.ReadByte();
+                if (SerialPort.BytesToRead == 0)
+                {
+                    break;
+                }
+                else
+                {
+                    CheckState = (byte)SerialPort.ReadByte();
+                }
 
                 switch (Read_State)
                 {
@@ -1501,6 +1513,7 @@ namespace JCFLIGHTGCS
             metroProgressBar29.Value = MemoryRamUsedPercent;
             label151.Text = "Memoria Ram Livre:" + MemoryRamUsed + "KB de 8192KB";
             FlightModeToLabel(FlightMode);
+
             if (ReadRoll > 1200)
             {
                 AccNotCalibrated = true;
@@ -1625,7 +1638,7 @@ namespace JCFLIGHTGCS
             }
             HUD1.ARMStatus = CommandArmDisarm == 0 ? false : true;
             HUD1.FailSafe = FailSafeDetect == 1 ? true : false;
-            HUD1.IMUHealty = ReadRoll > 1200 && serialPort1.IsOpen ? true : false;
+            HUD1.IMUHealty = ReadRoll > 1200 && SerialPort.IsOpen ? true : false;
             HUD1.LinkQualityGCS = (float)CalculateAverage(PacketsReceived, PacketsError);
             HUD1.AHRSHorizontalVariance = HorizontalVariance();
             HUD1.ThrottleSafe = ThrottleActualData > 1250 ? true : false;
@@ -1643,7 +1656,7 @@ namespace JCFLIGHTGCS
             }
             HUD2.ARMStatus = CommandArmDisarm == 0 ? false : true;
             HUD2.FailSafe = FailSafeDetect == 1 ? true : false;
-            HUD2.IMUHealty = ReadRoll > 1200 && serialPort1.IsOpen ? true : false;
+            HUD2.IMUHealty = ReadRoll > 1200 && SerialPort.IsOpen ? true : false;
             HUD2.LinkQualityGCS = (float)CalculateAverage(PacketsReceived, PacketsError);
             HUD2.AHRSHorizontalVariance = HorizontalVariance();
             HUD2.ThrottleSafe = ThrottleActualData > 1250 ? true : false;
@@ -1661,7 +1674,7 @@ namespace JCFLIGHTGCS
             }
             HUDSMALL1.status = CommandArmDisarm;
             HUDSMALL1.failsafe = FailSafeDetect == 1 ? true : false;
-            HUDSMALL1.imuhealty = ReadRoll > 1200 && serialPort1.IsOpen ? true : false;
+            HUDSMALL1.imuhealty = ReadRoll > 1200 && SerialPort.IsOpen ? true : false;
             HUDSMALL1.linkqualitygcs = (float)CalculateAverage(PacketsReceived, PacketsError);
 
             HeadingIndicator.SetHeadingIndicatorParameters(ReadCompass, SmallCompass);
