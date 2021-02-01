@@ -1742,6 +1742,7 @@ namespace JCFLIGHTGCS
             SerialPort.Close();
             PacketsError = 0;
             PacketsReceived = 0;
+            StringsChecked = false;
             comboBox7.Enabled = true;
             comboBox7.Text = "Selecione";
             if (SerialPort.IsOpen == false)
