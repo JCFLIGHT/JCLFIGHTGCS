@@ -62,6 +62,7 @@ namespace JCFLIGHTGCS
         int ReadRoll = 2000;
         int ReadPitch = 0;
         int ReadCompass = 0;
+        byte CPULoad = 0;
 
         double ReadBarometer = 0;
         double BattVoltage = 0;
@@ -257,6 +258,8 @@ namespace JCFLIGHTGCS
 
         StreamWriter BlackBoxStream;
         static bool BlackBoxRunning = false;
+
+        string RamMemString = "8192KB";
 
         Form WaitUart = Program.WaitUart;
         Form RebootBoard = Program.RebootBoard;
@@ -703,9 +706,6 @@ namespace JCFLIGHTGCS
             }
             catch { }
 
-
-
-
             while (SerialPort.BytesToRead > 0)
             {
                 try
@@ -983,6 +983,7 @@ namespace JCFLIGHTGCS
                     GetValues.ReadGroundSpeed = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     GetValues.ReadI2CError = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     GetValues.ReadAirSpeed = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    CPULoad = (byte)InBuffer[ptr++];
                     break;
 
                 case 21:
@@ -1137,7 +1138,6 @@ namespace JCFLIGHTGCS
                 Serial_Write_To_FC(24);
                 Serial_Write_To_FC(25);
                 Serial_Write_To_FC(26);
-                StringsChecked = true;
             }
 
             if (GetString1 != null)
@@ -1149,13 +1149,15 @@ namespace JCFLIGHTGCS
                     numericUpDown15.Enabled = false;
                     numericUpDown16.Enabled = false;
                     numericUpDown17.Enabled = false;
+                    RamMemString = "8192KB";
                 }
-                else
+                else if (GetValues.GetPlatformName == "ESP32")
                 {
                     numericUpDown13.Enabled = true;
                     numericUpDown15.Enabled = true;
                     numericUpDown16.Enabled = true;
                     numericUpDown17.Enabled = true;
+                    RamMemString = "327680KB";
                 }
             }
 
@@ -1175,7 +1177,10 @@ namespace JCFLIGHTGCS
                 GetValues.GetBuildTime = GetString6[0];
 
             if (GetString7 != null)
+            {
                 GetValues.PreArmMessage = GetString7[0];
+                StringsChecked = true;
+            }
         }
 
         private static double CalculateAverage(int PR, int PE)
@@ -1511,7 +1516,19 @@ namespace JCFLIGHTGCS
             }
             label150.Text = MemoryRamUsedPercent + "%";
             metroProgressBar29.Value = MemoryRamUsedPercent;
-            label151.Text = "Memoria Ram Livre:" + MemoryRamUsed + "KB de 8192KB";
+            if (MemoryRamUsedPercent <= 50)
+            {
+                metroProgressBar29.Style = MetroFramework.MetroColorStyle.Green;
+            }
+            else if (MemoryRamUsedPercent > 50 && MemoryRamUsedPercent < 90)
+            {
+                metroProgressBar29.Style = MetroFramework.MetroColorStyle.Yellow;
+            }
+            else
+            {
+                metroProgressBar29.Style = MetroFramework.MetroColorStyle.Red;
+            }
+            label151.Text = "Memoria Ram Livre:" + MemoryRamUsed + "KB de " + RamMemString;
             FlightModeToLabel(FlightMode);
 
             if (ReadRoll > 1200)
@@ -3068,6 +3085,20 @@ namespace JCFLIGHTGCS
             if (tabControl1.SelectedIndex == 5)
             {
                 SmallCompass = true;
+            }
+            label184.Text = CPULoad.ToString() + "%";
+            metroProgressBar30.Value = CPULoad;
+            if (CPULoad <= 50)
+            {
+                metroProgressBar30.Style = MetroFramework.MetroColorStyle.Green;
+            }
+            else if (CPULoad > 50 && CPULoad < 90)
+            {
+                metroProgressBar30.Style = MetroFramework.MetroColorStyle.Yellow;
+            }
+            else
+            {
+                metroProgressBar30.Style = MetroFramework.MetroColorStyle.Red;
             }
         }
 
