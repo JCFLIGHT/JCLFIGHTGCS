@@ -1159,6 +1159,14 @@ namespace JCFLIGHTGCS
                     numericUpDown17.Enabled = true;
                     RamMemString = "327680KB";
                 }
+                else if (GetValues.GetPlatformName == "STM32")
+                {
+                    numericUpDown13.Enabled = true;
+                    numericUpDown15.Enabled = true;
+                    numericUpDown16.Enabled = true;
+                    numericUpDown17.Enabled = true;
+                    RamMemString = "131072KB";
+                }
             }
 
             if (GetString2 != null)
@@ -1273,6 +1281,48 @@ namespace JCFLIGHTGCS
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+
+            if (numericUpDown38.Value == 5)
+            {
+                timer2.Interval = 200;
+            }
+            else if (numericUpDown38.Value == 10)
+            {
+                timer2.Interval = 100;
+            }
+            else if (numericUpDown38.Value == 15)
+            {
+                timer2.Interval = 66;
+            }
+            else if (numericUpDown38.Value == 20)
+            {
+                timer2.Interval = 50;
+            }
+            else if (numericUpDown38.Value == 25)
+            {
+                timer2.Interval = 40;
+            }
+            else if (numericUpDown38.Value == 30)
+            {
+                timer2.Interval = 33;
+            }
+            else if (numericUpDown38.Value == 35)
+            {
+                timer2.Interval = 28;
+            }
+            else if (numericUpDown38.Value == 40)
+            {
+                timer2.Interval = 25;
+            }
+            else if (numericUpDown38.Value == 45)
+            {
+                timer2.Interval = 22;
+            }
+            else if (numericUpDown38.Value == 50)
+            {
+                timer2.Interval = 20;
+            }
+
             label76.Text = Convert.ToString(GPS_NumSat);
             if (GPS_NumSat < 10)
             {
@@ -1856,7 +1906,7 @@ namespace JCFLIGHTGCS
         {
             comboBox7.Items.Clear();
             SerialPorts = SerialPort.GetPortNames();
-            foreach (string s in SerialPorts) comboBox7.Items.Add(s);
+            foreach (string PortsAvailable in SerialPorts) comboBox7.Items.Add(PortsAvailable);
         }
 
         private void button1_Click(object sender, EventArgs e)
