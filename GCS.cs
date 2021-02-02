@@ -303,6 +303,7 @@ namespace JCFLIGHTGCS
             Routes.Routes.Add(Grout);
             AirportsOverlay = new GMapOverlay("AirportsOverlay");
             MyGMap.Overlays.Add(AirportsOverlay);
+            MyGMap.Invalidate(false);
             //PLOTTER ROLL
             RollGraph = zedGraphControl1.GraphPane;
             RollGraph.Title.Text = "ATTITUDE ROLL";
@@ -514,6 +515,12 @@ namespace JCFLIGHTGCS
             label158.ForeColor = Color.White;
             Airports.ReadOurairports(Settings.GetRunningDirectory() + "airports.csv");
             Airports.checkdups = true;
+            if (!GCSSettings.Read_From_XML(Settings.GetRunningDirectory() + "GCSSettings.xml"))
+            {
+                MessageBox.Show("Error ao ler o arquivo de configuração do GCS.");
+            }
+            timer2.Interval = GCSSettings.GCSRate;
+            numericUpDown38.Value = GCSSettings.GCSFrequency;
             this.ResumeLayout();
             //FECHA O SPLASH SCREEN
             Program.Splash?.Close();
@@ -1170,19 +1177,30 @@ namespace JCFLIGHTGCS
             }
 
             if (GetString2 != null)
+            {
                 GetValues.GetFirwareName = GetString2[0];
+            }
 
             if (GetString3 != null)
+            {
                 GetValues.GetFirwareVersion = GetString3[0];
+            }
 
             if (GetString4 != null)
+            {
+
                 GetValues.GetCompilerVersion = GetString4[0];
+            }
 
             if (GetString5 != null)
+            {
                 GetValues.GetBuildDate = GetString5[0];
+            }
 
             if (GetString6 != null)
+            {
                 GetValues.GetBuildTime = GetString6[0];
+            }
 
             if (GetString7 != null)
             {
@@ -1284,43 +1302,63 @@ namespace JCFLIGHTGCS
 
             if (numericUpDown38.Value == 5)
             {
-                timer2.Interval = 200;
+                GCSSettings.GCSRate = timer2.Interval = 200;
+                GCSSettings.GCSFrequency = (byte)numericUpDown38.Value;
+                GCSSettings.Save_To_XML(Settings.GetRunningDirectory() + "GCSSettings.xml");
             }
             else if (numericUpDown38.Value == 10)
             {
-                timer2.Interval = 100;
+                GCSSettings.GCSRate = timer2.Interval = 100;
+                GCSSettings.GCSFrequency = (byte)numericUpDown38.Value;
+                GCSSettings.Save_To_XML(Settings.GetRunningDirectory() + "GCSSettings.xml");
             }
             else if (numericUpDown38.Value == 15)
             {
-                timer2.Interval = 66;
+                GCSSettings.GCSRate = timer2.Interval = 66;
+                GCSSettings.GCSFrequency = (byte)numericUpDown38.Value;
+                GCSSettings.Save_To_XML(Settings.GetRunningDirectory() + "GCSSettings.xml");
             }
             else if (numericUpDown38.Value == 20)
             {
-                timer2.Interval = 50;
+                GCSSettings.GCSRate = timer2.Interval = 50;
+                GCSSettings.GCSFrequency = (byte)numericUpDown38.Value;
+                GCSSettings.Save_To_XML(Settings.GetRunningDirectory() + "GCSSettings.xml");
             }
             else if (numericUpDown38.Value == 25)
             {
-                timer2.Interval = 40;
+                GCSSettings.GCSRate = timer2.Interval = 40;
+                GCSSettings.GCSFrequency = (byte)numericUpDown38.Value;
+                GCSSettings.Save_To_XML(Settings.GetRunningDirectory() + "GCSSettings.xml");
             }
             else if (numericUpDown38.Value == 30)
             {
-                timer2.Interval = 33;
+                GCSSettings.GCSRate = timer2.Interval = 33;
+                GCSSettings.GCSFrequency = (byte)numericUpDown38.Value;
+                GCSSettings.Save_To_XML(Settings.GetRunningDirectory() + "GCSSettings.xml");
             }
             else if (numericUpDown38.Value == 35)
             {
-                timer2.Interval = 28;
+                GCSSettings.GCSRate = timer2.Interval = 28;
+                GCSSettings.GCSFrequency = (byte)numericUpDown38.Value;
+                GCSSettings.Save_To_XML(Settings.GetRunningDirectory() + "GCSSettings.xml");
             }
             else if (numericUpDown38.Value == 40)
             {
-                timer2.Interval = 25;
+                GCSSettings.GCSRate = timer2.Interval = 25;
+                GCSSettings.GCSFrequency = (byte)numericUpDown38.Value;
+                GCSSettings.Save_To_XML(Settings.GetRunningDirectory() + "GCSSettings.xml");
             }
             else if (numericUpDown38.Value == 45)
             {
-                timer2.Interval = 22;
+                GCSSettings.GCSRate = timer2.Interval = 22;
+                GCSSettings.GCSFrequency = (byte)numericUpDown38.Value;
+                GCSSettings.Save_To_XML(Settings.GetRunningDirectory() + "GCSSettings.xml");
             }
             else if (numericUpDown38.Value == 50)
             {
-                timer2.Interval = 20;
+                GCSSettings.GCSRate = timer2.Interval = 20;
+                GCSSettings.GCSFrequency = (byte)numericUpDown38.Value;
+                GCSSettings.Save_To_XML(Settings.GetRunningDirectory() + "GCSSettings.xml");
             }
 
             label76.Text = Convert.ToString(GPS_NumSat);

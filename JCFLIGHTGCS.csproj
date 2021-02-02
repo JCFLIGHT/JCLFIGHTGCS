@@ -255,6 +255,7 @@
     <Compile Include="Descriptions.Designer.cs">
       <DependentUpon>Descriptions.cs</DependentUpon>
     </Compile>
+    <Compile Include="GCSSettings.cs" />
     <Compile Include="GetValues.cs" />
     <Compile Include="GMapMarkerAero.cs" />
     <Compile Include="GMapMarkerAirport.cs" />
@@ -455,6 +456,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="BlackBoxFields.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GCSSettings.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="LogoJCFLIGHTIcon.ico" />
