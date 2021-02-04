@@ -255,6 +255,37 @@ namespace JCFLIGHTGCS
         byte AHDeadZone;
         byte AHSafeAltitude;
         byte AHMinVelVertical;
+        int ThrottleMin;
+        int YawMin;
+        int PitchMin;
+        int RollMin;
+        int ThrottleMax;
+        int YawMax;
+        int PitchMax;
+        int RollMax;
+        byte ThrottleDeadZone;
+        byte YawDeadZone;
+        byte PitchDeadZone;
+        byte RollDeadZone;
+        byte ChannelsReverse;
+        byte ServosReverse;
+        int Servo1Min;
+        int Servo2Min;
+        int Servo3Min;
+        int Servo4Min;
+        int Servo1Med;
+        int Servo2Med;
+        int Servo3Med;
+        int Servo4Med;
+        int Servo1Max;
+        int Servo2Max;
+        int Servo3Max;
+        int Servo4Max;
+        int Servo1Rate;
+        int Servo2Rate;
+        int Servo3Rate;
+        int Servo4Rate;
+        int FailSafeValue;
 
         StreamWriter BlackBoxStream;
         static bool BlackBoxRunning = false;
@@ -686,14 +717,14 @@ namespace JCFLIGHTGCS
             {
                 UpdateBlackBoxData();
             }
-            label161.Text = "Valor Calculado:" + ValueConverterMotorSpeed(MotorSpeed.Value, 0, 100, 900, 1500) + "uS";
+            label161.Text = "Valor Calculado:" + ValueConverter(MotorSpeed.Value, 0, 100, 900, 1500) + "uS";
             throttleExpo1.SetRCExpoParameters((double)ThrottleMiddle / 100, (double)ThrottleExpo / 100, ThrottleData);
             rcExpo1.SetRCExpoParameters((double)RCRate / 100, (double)RcExpo / 100);
             throttleExpo2.SetRCExpoParameters((double)numericUpDown25.Value, (double)numericUpDown26.Value, ThrottleData);
             rcExpo2.SetRCExpoParameters((double)numericUpDown27.Value, (double)numericUpDown28.Value);
         }
 
-        int ValueConverterMotorSpeed(int x, int srcMin, int srcMax, int destMin, int destMax)
+        int ValueConverter(int x, int srcMin, int srcMax, int destMin, int destMax)
         {
             int a = ((int)destMax - (int)destMin) * ((int)x - (int)srcMin);
             int b = (int)srcMax - (int)srcMin;
@@ -912,19 +943,6 @@ namespace JCFLIGHTGCS
                     AccRollAdjustGuard = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     AccPitchAdjustGuard = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     AccYawAdjustGuard = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    ThrottleMiddle = (byte)InBuffer[ptr++];
-                    ThrottleExpo = (byte)InBuffer[ptr++];
-                    RCRate = (byte)InBuffer[ptr++];
-                    RcExpo = (byte)InBuffer[ptr++];
-                    RollRate = (byte)InBuffer[ptr++];
-                    PitchRate = (byte)InBuffer[ptr++];
-                    YawRate = (byte)InBuffer[ptr++];
-                    RadioMin = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    RadioMax = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    AHThrottleRover = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    AHDeadZone = (byte)InBuffer[ptr++];
-                    AHSafeAltitude = (byte)InBuffer[ptr++];
-                    AHMinVelVertical = (byte)InBuffer[ptr++];
                     break;
 
                 case 9:
@@ -1091,6 +1109,53 @@ namespace JCFLIGHTGCS
                     }
                     break;
 
+                case 30:
+                    ptr = 0;
+                    ThrottleMiddle = (byte)InBuffer[ptr++];
+                    ThrottleExpo = (byte)InBuffer[ptr++];
+                    RCRate = (byte)InBuffer[ptr++];
+                    RcExpo = (byte)InBuffer[ptr++];
+                    RollRate = (byte)InBuffer[ptr++];
+                    PitchRate = (byte)InBuffer[ptr++];
+                    YawRate = (byte)InBuffer[ptr++];
+                    RadioMin = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    RadioMax = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    AHThrottleRover = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    AHDeadZone = (byte)InBuffer[ptr++];
+                    AHSafeAltitude = (byte)InBuffer[ptr++];
+                    AHMinVelVertical = (byte)InBuffer[ptr++];
+                    ThrottleMin = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    YawMin = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    PitchMin = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    RollMin = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    ThrottleMax = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    YawMax = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    PitchMax = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    RollMax = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    ThrottleDeadZone = (byte)InBuffer[ptr++];
+                    YawDeadZone = (byte)InBuffer[ptr++];
+                    PitchDeadZone = (byte)InBuffer[ptr++];
+                    RollDeadZone = (byte)InBuffer[ptr++];
+                    ChannelsReverse = (byte)InBuffer[ptr++];
+                    Servo1Rate = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    Servo2Rate = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    Servo3Rate = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    Servo4Rate = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    ServosReverse = (byte)InBuffer[ptr++];
+                    Servo1Min = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    Servo2Min = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    Servo3Min = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    Servo4Min = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    Servo1Med = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    Servo2Med = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    Servo3Med = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    Servo4Med = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    Servo1Max = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    Servo2Max = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    Servo3Max = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    Servo4Max = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    FailSafeValue = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    break;
             }
         }
 
@@ -1129,8 +1194,10 @@ namespace JCFLIGHTGCS
                     Serial_Write_To_FC(8);
                     Serial_Write_To_FC(9);
                     Serial_Write_To_FC(10);
+                    Serial_Write_To_FC(30);
                     UpdateAccImageStatus();
                     GetBuildOfBoard();
+                    UpdateComboBoxSum();
                 }
             }
         }
@@ -1694,7 +1761,6 @@ namespace JCFLIGHTGCS
 
             MyGMap.MinZoom = 2;
             MyGMap.MaxZoom = 24;
-            //MyGMap.Zoom = (double)metroTrackBar1.Value / 10;
 
             if (FailSafeDetect == 0)
             {
@@ -1743,7 +1809,7 @@ namespace JCFLIGHTGCS
             }
             HUD1.ARMStatus = CommandArmDisarm == 0 ? false : true;
             HUD1.FailSafe = FailSafeDetect == 1 ? true : false;
-            HUD1.IMUHealty = ReadRoll > 1200 && SerialPort.IsOpen ? true : false;
+            HUD1.IMUHealty = GetAccCalibFlag != 63 && SerialPort.IsOpen ? true : false;
             HUD1.LinkQualityGCS = (float)CalculateAverage(PacketsReceived, PacketsError);
             HUD1.AHRSHorizontalVariance = HorizontalVariance();
             HUD1.ThrottleSafe = ThrottleActualData > 1250 ? true : false;
@@ -1761,7 +1827,7 @@ namespace JCFLIGHTGCS
             }
             HUD2.ARMStatus = CommandArmDisarm == 0 ? false : true;
             HUD2.FailSafe = FailSafeDetect == 1 ? true : false;
-            HUD2.IMUHealty = ReadRoll > 1200 && SerialPort.IsOpen ? true : false;
+            HUD2.IMUHealty = GetAccCalibFlag != 63 && SerialPort.IsOpen ? true : false;
             HUD2.LinkQualityGCS = (float)CalculateAverage(PacketsReceived, PacketsError);
             HUD2.AHRSHorizontalVariance = HorizontalVariance();
             HUD2.ThrottleSafe = ThrottleActualData > 1250 ? true : false;
@@ -1779,7 +1845,7 @@ namespace JCFLIGHTGCS
             }
             HUDSMALL1.status = CommandArmDisarm;
             HUDSMALL1.failsafe = FailSafeDetect == 1 ? true : false;
-            HUDSMALL1.imuhealty = ReadRoll > 1200 && SerialPort.IsOpen ? true : false;
+            HUDSMALL1.imuhealty = GetAccCalibFlag != 63 && SerialPort.IsOpen ? true : false;
             HUDSMALL1.linkqualitygcs = (float)CalculateAverage(PacketsReceived, PacketsError);
 
             HeadingIndicator.SetHeadingIndicatorParameters(ReadCompass, SmallCompass);
@@ -1950,25 +2016,8 @@ namespace JCFLIGHTGCS
         private void button1_Click(object sender, EventArgs e)
         {
             SmallCompass = false;
-            if (SerialOpen == true)
-            {
-                Serial_Write_To_FC(14);
-                SerialOpen = false;
-            }
-            ItsSafeToUpdate = true;
-            if (PidAndFiltersCommunicationOpen == true)
-            {
-                Serial_Write_To_FC(14);
-                PidAndFiltersCommunicationOpen = false;
-            }
-            tabControl1.SelectTab(tabPage1);
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
             if (SerialPort.IsOpen == true)
             {
-                SmallCompass = false;
                 if (SerialOpen == true)
                 {
                     Serial_Write_To_FC(14);
@@ -1981,6 +2030,11 @@ namespace JCFLIGHTGCS
                     PidAndFiltersCommunicationOpen = false;
                 }
             }
+            tabControl1.SelectTab(tabPage1);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
             if (SerialPort.IsOpen == true)
             {
                 if (CommandArmDisarm == 1)
@@ -1994,6 +2048,8 @@ namespace JCFLIGHTGCS
                     Serial_Write_To_FC(14);
                     PidAndFiltersCommunicationOpen = false;
                 }
+                Serial_Write_To_FC(13);
+                SerialOpen = true;
                 comboBox4.SelectedIndex = ((IOCDataGuard > comboBox4.Items.Count) ? 0 : IOCDataGuard);
                 comboBox2.SelectedIndex = AltHoldGuard;
                 comboBox3.SelectedIndex = GPSHoldGuard;
@@ -2019,15 +2075,6 @@ namespace JCFLIGHTGCS
                 numericUpDown24.Value = AccYawAdjustGuard;
                 comboBox10.SelectedIndex = ArmDisarmGuard;
                 comboBox23.SelectedIndex = AutoLandGuard;
-                numericUpDown25.Value = (decimal)ThrottleMiddle / 100;
-                numericUpDown26.Value = (decimal)ThrottleExpo / 100;
-                numericUpDown27.Value = (decimal)RCRate / 100;
-                numericUpDown28.Value = (decimal)RcExpo / 100;
-                numericUpDown29.Value = (decimal)RollRate / 100;
-                numericUpDown37.Value = (decimal)PitchRate / 100;
-                numericUpDown30.Value = (decimal)YawRate / 100;
-                Serial_Write_To_FC(13);
-                SerialOpen = true;
             }
             SmallCompass = false;
             tabControl1.SelectTab(tabPage2);
@@ -2044,68 +2091,7 @@ namespace JCFLIGHTGCS
                 pictureBox19.BackColor = Color.Red;
                 pictureBox21.BackColor = Color.Red;
             }
-
-            if (SerialOpen == true)
-            {
-                Serial_Write_To_FC(14);
-                SerialOpen = false;
-            }
-            ItsSafeToUpdate = true;
-
-            if (PidAndFiltersCommunicationOpen == true)
-            {
-                Serial_Write_To_FC(14);
-                PidAndFiltersCommunicationOpen = false;
-            }
-
-            SmallCompass = false;
-            tabControl1.SelectTab(tabPage3);
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            if (SerialOpen == true)
-            {
-                Serial_Write_To_FC(14);
-                SerialOpen = false;
-            }
-            ItsSafeToUpdate = true;
-
-            if (PidAndFiltersCommunicationOpen == true)
-            {
-                Serial_Write_To_FC(14);
-                PidAndFiltersCommunicationOpen = false;
-            }
-
-            SmallCompass = false;
-            tabControl1.SelectTab(tabPage4);
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            if (SerialOpen == true)
-            {
-                Serial_Write_To_FC(14);
-                SerialOpen = false;
-            }
-            ItsSafeToUpdate = true;
-
-            if (PidAndFiltersCommunicationOpen == true)
-            {
-                Serial_Write_To_FC(14);
-                PidAndFiltersCommunicationOpen = false;
-            }
-            button25_Click(null, null);
-            SmallCompass = false;
-            tabControl1.SelectTab(tabPage5);
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-            SmallCompass = true;
-            if (!SerialPort.IsOpen)
-                MessageRead = false;
-            else
+            if (SerialPort.IsOpen == true)
             {
                 if (SerialOpen == true)
                 {
@@ -2118,6 +2104,75 @@ namespace JCFLIGHTGCS
                 {
                     Serial_Write_To_FC(14);
                     PidAndFiltersCommunicationOpen = false;
+                }
+            }
+            SmallCompass = false;
+            tabControl1.SelectTab(tabPage3);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (SerialPort.IsOpen == true)
+            {
+                if (SerialOpen == true)
+                {
+                    Serial_Write_To_FC(14);
+                    SerialOpen = false;
+                }
+                ItsSafeToUpdate = true;
+
+                if (PidAndFiltersCommunicationOpen == true)
+                {
+                    Serial_Write_To_FC(14);
+                    PidAndFiltersCommunicationOpen = false;
+                }
+            }
+            SmallCompass = false;
+            tabControl1.SelectTab(tabPage4);
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (SerialPort.IsOpen == true)
+            {
+                if (SerialOpen == true)
+                {
+                    Serial_Write_To_FC(14);
+                    SerialOpen = false;
+                }
+                ItsSafeToUpdate = true;
+
+                if (PidAndFiltersCommunicationOpen == true)
+                {
+                    Serial_Write_To_FC(14);
+                    PidAndFiltersCommunicationOpen = false;
+                }
+            }
+            SmallCompass = false;
+            tabControl1.SelectTab(tabPage5);
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            SmallCompass = true;
+            if (SerialPort.IsOpen == true)
+            {
+                if (!SerialPort.IsOpen)
+                    MessageRead = false;
+                else
+                {
+                    if (SerialOpen == true)
+                    {
+                        Serial_Write_To_FC(14);
+                        SerialOpen = false;
+                    }
+                    ItsSafeToUpdate = true;
+
+                    if (PidAndFiltersCommunicationOpen == true)
+                    {
+                        Serial_Write_To_FC(14);
+                        PidAndFiltersCommunicationOpen = false;
+                    }
                 }
             }
             button20_Click(null, null);
@@ -2537,11 +2592,6 @@ namespace JCFLIGHTGCS
             }
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ComboBoxAcro = Convert.ToByte(comboBox1.SelectedIndex);
-        }
-
         private void button8_Click(object sender, EventArgs e)
         {
             if (SerialPort.IsOpen == true)
@@ -2598,6 +2648,11 @@ namespace JCFLIGHTGCS
                     comboBox24.SelectedIndex = 0;
                 }
             }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBoxAcro = Convert.ToByte(comboBox1.SelectedIndex);
         }
 
         private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
@@ -2744,16 +2799,19 @@ namespace JCFLIGHTGCS
                     MessageBox.Show("Não é possível acessar as configurações com a JCFLIGHT em Voo!");
                     return;
                 }
-            }
-            if (PidAndFiltersCommunicationOpen) return;
-            if (SerialOpen == true)
-            {
-                Serial_Write_To_FC(14);
-                SerialOpen = false;
-            }
-            ItsSafeToUpdate = false;
-            if (SerialPort.IsOpen == true)
-            {
+
+                if (PidAndFiltersCommunicationOpen) return;
+                if (SerialOpen == true)
+                {
+                    Serial_Write_To_FC(14);
+                    SerialOpen = false;
+                }
+                ItsSafeToUpdate = false;
+                if (SerialPort.IsOpen == true)
+                {
+                    Serial_Write_To_FC(13);
+                    PidAndFiltersCommunicationOpen = true;
+                }
                 numericUpDown19.Value = BreakPoint;
                 numericUpDown18.Value = TPAFactor;
                 comboBox20.SelectedIndex = GyroLPF;
@@ -2778,8 +2836,6 @@ namespace JCFLIGHTGCS
                 numericUpDown10.Value = (decimal)(NumericConvert[9]) / 10;
                 numericUpDown11.Value = (decimal)(NumericConvert[10]) / 100;
                 numericUpDown12.Value = (decimal)(NumericConvert[11]) / 100;
-                Serial_Write_To_FC(13);
-                PidAndFiltersCommunicationOpen = true;
             }
             SmallCompass = false;
             tabControl1.SelectTab(tabPage7);
@@ -2995,7 +3051,6 @@ namespace JCFLIGHTGCS
 
         void UpdateDevices()
         {
-
             if ((DevicesSum & 1) > 0)
             {
                 label7.Location = new Point(18, 90);
@@ -3039,7 +3094,81 @@ namespace JCFLIGHTGCS
                 label11.Location = new Point(11, 90);
                 label11.Text = "Desabilitado";
             }
+        }
 
+        void UpdateComboBoxSum()
+        {
+            if ((ChannelsReverse & 1) > 0)
+            {
+                checkBox2.Checked = true;
+            }
+            else
+            {
+                checkBox2.Checked = false;
+            }
+
+            if ((ChannelsReverse & 2) > 0)
+            {
+                checkBox3.Checked = true;
+            }
+            else
+            {
+                checkBox3.Checked = false;
+            }
+
+            if ((ChannelsReverse & 4) > 0)
+            {
+                checkBox4.Checked = true;
+            }
+            else
+            {
+                checkBox4.Checked = false;
+            }
+
+            if ((ChannelsReverse & 8) > 0)
+            {
+                checkBox5.Checked = true;
+            }
+            else
+            {
+                checkBox5.Checked = false;
+            }
+
+            if ((ServosReverse & 1) > 0)
+            {
+                checkBox9.Checked = true;
+            }
+            else
+            {
+                checkBox9.Checked = false;
+            }
+
+            if ((ServosReverse & 2) > 0)
+            {
+                checkBox8.Checked = true;
+            }
+            else
+            {
+                checkBox8.Checked = false;
+            }
+
+            if ((ServosReverse & 4) > 0)
+            {
+                checkBox7.Checked = true;
+            }
+            else
+            {
+                checkBox7.Checked = false;
+            }
+
+            if ((ServosReverse & 8) > 0)
+            {
+                checkBox6.Checked = true;
+            }
+            else
+            {
+                checkBox6.Checked = false;
+            }
         }
 
         private void GCS_FormClosing(object sender, FormClosingEventArgs e)
@@ -3063,7 +3192,7 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)0x4a;
                     SendBuffer[VectorPointer++] = (byte)0x43;
                     SendBuffer[VectorPointer++] = (byte)0x3c;
-                    SendBuffer[VectorPointer++] = 44;
+                    SendBuffer[VectorPointer++] = 28;
                     SendBuffer[VectorPointer++] = (byte)15;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxFrame;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxPPM;
@@ -3093,22 +3222,6 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown23.Value) >> 8);
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown24.Value));
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown24.Value) >> 8);
-                    SendBuffer[VectorPointer++] = (byte)(numericUpDown25.Value * 100);
-                    SendBuffer[VectorPointer++] = (byte)(numericUpDown26.Value * 100);
-                    SendBuffer[VectorPointer++] = (byte)(numericUpDown27.Value * 100);
-                    SendBuffer[VectorPointer++] = (byte)(numericUpDown28.Value * 100);
-                    SendBuffer[VectorPointer++] = (byte)(numericUpDown29.Value * 100);
-                    SendBuffer[VectorPointer++] = (byte)(numericUpDown37.Value * 100);
-                    SendBuffer[VectorPointer++] = (byte)(numericUpDown30.Value * 100);
-                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown35.Value));
-                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown35.Value) >> 8);
-                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown36.Value));
-                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown36.Value) >> 8);
-                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown31.Value));
-                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown31.Value) >> 8);
-                    SendBuffer[VectorPointer++] = (byte)numericUpDown32.Value;
-                    SendBuffer[VectorPointer++] = (byte)numericUpDown33.Value;
-                    SendBuffer[VectorPointer++] = (byte)numericUpDown34.Value;
                     for (int i = 3; i < VectorPointer; i++) CheckAllBuffers ^= SendBuffer[i];
                     SendBuffer[VectorPointer++] = CheckAllBuffers;
                     SerialPort.Write(SendBuffer, 0, VectorPointer);
@@ -3154,6 +3267,104 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)(numericUpDown12.Value * 100);
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown21.Value));
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown21.Value) >> 8);
+                    for (int i = 3; i < VectorPointer; i++) CheckAllBuffers ^= SendBuffer[i];
+                    SendBuffer[VectorPointer++] = CheckAllBuffers;
+                    SerialPort.Write(SendBuffer, 0, VectorPointer);
+                }
+                else if (ConfigType == 3)
+                {
+                    VectorPointer = 0;
+                    CheckAllBuffers = 0;
+                    SendBuffer[VectorPointer++] = (byte)0x4a;
+                    SendBuffer[VectorPointer++] = (byte)0x43;
+                    SendBuffer[VectorPointer++] = (byte)0x3c;
+                    SendBuffer[VectorPointer++] = 39;
+                    SendBuffer[VectorPointer++] = (byte)31;
+                    SendBuffer[VectorPointer++] = (byte)(numericUpDown25.Value * 100);
+                    SendBuffer[VectorPointer++] = (byte)(numericUpDown26.Value * 100);
+                    SendBuffer[VectorPointer++] = (byte)(numericUpDown27.Value * 100);
+                    SendBuffer[VectorPointer++] = (byte)(numericUpDown28.Value * 100);
+                    SendBuffer[VectorPointer++] = (byte)(numericUpDown29.Value * 100);
+                    SendBuffer[VectorPointer++] = (byte)(numericUpDown37.Value * 100);
+                    SendBuffer[VectorPointer++] = (byte)(numericUpDown30.Value * 100);
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown35.Value));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown35.Value) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown36.Value));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown36.Value) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown31.Value));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown31.Value) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)numericUpDown32.Value;
+                    SendBuffer[VectorPointer++] = (byte)numericUpDown33.Value;
+                    SendBuffer[VectorPointer++] = (byte)numericUpDown34.Value;
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown62.Value));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown62.Value) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown61.Value));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown61.Value) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown60.Value));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown60.Value) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown59.Value));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown59.Value) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown58.Value));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown58.Value) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown57.Value));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown57.Value) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown56.Value));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown56.Value) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown55.Value));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown55.Value) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)numericUpDown66.Value;
+                    SendBuffer[VectorPointer++] = (byte)numericUpDown65.Value;
+                    SendBuffer[VectorPointer++] = (byte)numericUpDown64.Value;
+                    SendBuffer[VectorPointer++] = (byte)numericUpDown63.Value;
+                    SendBuffer[VectorPointer++] = (byte)GetChannelsReverse();
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown67.Value));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown67.Value) >> 8);
+                    for (int i = 3; i < VectorPointer; i++) CheckAllBuffers ^= SendBuffer[i];
+                    SendBuffer[VectorPointer++] = CheckAllBuffers;
+                    SerialPort.Write(SendBuffer, 0, VectorPointer);
+                }
+                else if (ConfigType == 4)
+                {
+                    VectorPointer = 0;
+                    CheckAllBuffers = 0;
+                    SendBuffer[VectorPointer++] = (byte)0x4a;
+                    SendBuffer[VectorPointer++] = (byte)0x43;
+                    SendBuffer[VectorPointer++] = (byte)0x3c;
+                    SendBuffer[VectorPointer++] = 33;
+                    SendBuffer[VectorPointer++] = (byte)33;
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown54.Value));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown54.Value) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown53.Value));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown53.Value) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown52.Value));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown52.Value) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown51.Value));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown51.Value) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)GetServosReverse();
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown41.Value));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown41.Value) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown39.Value));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown39.Value) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown40.Value));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown40.Value) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown42.Value));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown42.Value) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown43.Value));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown43.Value) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown44.Value));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown44.Value) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown45.Value));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown45.Value) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown46.Value));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown46.Value) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown50.Value));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown50.Value) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown49.Value));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown49.Value) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown48.Value));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown48.Value) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown47.Value));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown47.Value) >> 8);
                     for (int i = 3; i < VectorPointer; i++) CheckAllBuffers ^= SendBuffer[i];
                     SendBuffer[VectorPointer++] = CheckAllBuffers;
                     SerialPort.Write(SendBuffer, 0, VectorPointer);
@@ -3271,16 +3482,19 @@ namespace JCFLIGHTGCS
 
         private void button12_Click(object sender, EventArgs e)
         {
-            if (SerialOpen == true)
+            if (SerialPort.IsOpen == true)
             {
-                Serial_Write_To_FC(14);
-                SerialOpen = false;
-            }
-            ItsSafeToUpdate = true;
-            if (PidAndFiltersCommunicationOpen == true)
-            {
-                Serial_Write_To_FC(14);
-                PidAndFiltersCommunicationOpen = false;
+                if (SerialOpen == true)
+                {
+                    Serial_Write_To_FC(14);
+                    SerialOpen = false;
+                }
+                ItsSafeToUpdate = true;
+                if (PidAndFiltersCommunicationOpen == true)
+                {
+                    Serial_Write_To_FC(14);
+                    PidAndFiltersCommunicationOpen = false;
+                }
             }
             SmallCompass = false;
             tabControl1.SelectTab(tabPage8);
@@ -3305,7 +3519,7 @@ namespace JCFLIGHTGCS
             dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Ganho Integral para correção da estimativa de direção do Yaw";
 
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AHRS_Nearness";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "uint8_t";
+            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "byte";
             dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor da 'agressividade' de correção do AHRS com base no acelerômetro";
 
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Servos_Pulso_Minimo";
@@ -3357,7 +3571,7 @@ namespace JCFLIGHTGCS
             dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Inclinação no Pitch (Elevator) ao fazer o AutoLaunch";
 
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AutoLaunch_Throttle_SpinUp";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "uint16_t";
+            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "uint";
             dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor de incrimentação no Throttle para Aeros com rodas";
 
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AutoLaunch_Throttle_SpinUp_Tempo";
@@ -3421,7 +3635,7 @@ namespace JCFLIGHTGCS
             dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor da frequêcnia de corte da aceleração da IMU (Por Favor,não altere)";
 
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Throttle_Iddle_Fator";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "uint8_t";
+            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "byte";
             dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor do ganho do Thottle ao calcular o maximo e minimo";
 
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Throttle_Maximo";
@@ -3429,7 +3643,7 @@ namespace JCFLIGHTGCS
             dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor maximo do Throttle aplicado ao PID";
 
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Throttle_Fator";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "uint8_t";
+            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "byte";
             dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor do ganho do Thottle para o PID";
 
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Auto_Desarm_Tempo";
@@ -3453,7 +3667,7 @@ namespace JCFLIGHTGCS
             dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "0 - Aeromodelo sem trem de pouso / 1 - Aeromodelo com trem de pouso (Apenas para o AutoLaunch)";
 
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "GPS_Baud_Rate";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "uint8_t";
+            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "byte";
             dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "0 - 9600KBPS / 1 - 19200KBPS / 2 - 38400KBPS / 3 - 57600KBPS / 4 - 115200KBPS";
 
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "GPS_Velocidade_De_Navegação";
@@ -3469,15 +3683,15 @@ namespace JCFLIGHTGCS
             dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Em modo RTH,inicia o Land ao chegar proximo a distância definida aqui";
 
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "GPS_Compensação_De_Tilt";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "uint8_t";
+            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "byte";
             dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Parâmetro para compensar o rate de navegação em modo GPS";
 
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AirSpeed_Amostras";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "uint8_t";
+            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "byte";
             dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Número de amostras para calibrar o AirSpeed";
 
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AirSpeed_Fator";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "uint16_t";
+            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "uint";
             dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Fator para converter a pressão em velocidade";
 
             dataGridView1.Rows[dataGridView1.Rows.Add()].DataGridView.EndEdit();
@@ -3927,7 +4141,70 @@ namespace JCFLIGHTGCS
         {
             if (SerialPort.IsOpen == true)
             {
-                SmallCompass = false;
+                if (CommandArmDisarm == 1)
+                {
+                    MessageBox.Show("Não é possível acessar as configurações com a JCFLIGHT em Voo!");
+                    return;
+                }
+                ItsSafeToUpdate = false;
+                if (PidAndFiltersCommunicationOpen == true)
+                {
+                    Serial_Write_To_FC(14);
+                    PidAndFiltersCommunicationOpen = false;
+                }
+                Serial_Write_To_FC(13);
+                SerialOpen = true;
+                numericUpDown25.Value = Convert.ToDecimal(ThrottleMiddle) / 100;
+                numericUpDown26.Value = Convert.ToDecimal(ThrottleExpo) / 100;
+                numericUpDown27.Value = Convert.ToDecimal(RCRate) / 100;
+                numericUpDown28.Value = Convert.ToDecimal(RcExpo) / 100;
+                numericUpDown29.Value = Convert.ToDecimal(RollRate) / 100;
+                numericUpDown37.Value = Convert.ToDecimal(PitchRate) / 100;
+                numericUpDown30.Value = Convert.ToDecimal(YawRate) / 100;
+                numericUpDown35.Value = RadioMin < 800 ? 1000 : RadioMin;
+                numericUpDown36.Value = RadioMax < 1500 ? 2000 : RadioMax;
+                numericUpDown31.Value = AHThrottleRover < 1000 ? 1000 : AHThrottleRover;
+                numericUpDown32.Value = AHDeadZone;
+                numericUpDown33.Value = AHSafeAltitude;
+                numericUpDown34.Value = AHMinVelVertical < 30 ? 30 : AHMinVelVertical;
+                numericUpDown62.Value = ThrottleMin < 800 ? 800 : ThrottleMin;
+                numericUpDown61.Value = YawMin < 800 ? 800 : YawMin;
+                numericUpDown60.Value = PitchMin < 800 ? 800 : PitchMin;
+                numericUpDown59.Value = RollMin < 800 ? 800 : RollMin;
+                numericUpDown58.Value = ThrottleMax < 800 ? 800 : ThrottleMax;
+                numericUpDown57.Value = YawMax < 800 ? 800 : YawMax;
+                numericUpDown56.Value = PitchMax < 800 ? 800 : PitchMax;
+                numericUpDown55.Value = RollMax < 800 ? 800 : RollMax;
+                numericUpDown66.Value = ThrottleDeadZone;
+                numericUpDown65.Value = YawDeadZone;
+                numericUpDown64.Value = PitchDeadZone;
+                numericUpDown63.Value = RollDeadZone;
+                numericUpDown41.Value = Servo1Min < 400 ? 400 : Servo1Min;
+                numericUpDown39.Value = Servo2Min < 400 ? 400 : Servo2Min;
+                numericUpDown40.Value = Servo3Min < 400 ? 400 : Servo3Min;
+                numericUpDown42.Value = Servo4Min < 400 ? 400 : Servo4Min;
+                numericUpDown43.Value = Servo1Med < 1000 ? 1000 : Servo1Med;
+                numericUpDown44.Value = Servo2Med < 1000 ? 1000 : Servo2Med;
+                numericUpDown45.Value = Servo3Med < 1000 ? 1000 : Servo3Med;
+                numericUpDown46.Value = Servo4Med < 1000 ? 1000 : Servo4Med;
+                numericUpDown50.Value = Servo1Max < 1000 ? 1000 : Servo1Max;
+                numericUpDown49.Value = Servo2Max < 1000 ? 1000 : Servo2Max;
+                numericUpDown48.Value = Servo3Max < 1000 ? 1000 : Servo3Max;
+                numericUpDown47.Value = Servo4Max < 1000 ? 1000 : Servo4Max;
+                numericUpDown54.Value = Servo1Rate;
+                numericUpDown53.Value = Servo2Rate;
+                numericUpDown52.Value = Servo3Rate;
+                numericUpDown51.Value = Servo4Rate;
+                numericUpDown67.Value = FailSafeValue < 800 ? 800 : FailSafeValue;
+            }
+            SmallCompass = false;
+            panel19.Visible = true;
+        }
+
+        private void button25_Click(object sender, EventArgs e)
+        {
+            if (SerialPort.IsOpen == true)
+            {
                 if (SerialOpen == true)
                 {
                     Serial_Write_To_FC(14);
@@ -3940,79 +4217,8 @@ namespace JCFLIGHTGCS
                     PidAndFiltersCommunicationOpen = false;
                 }
             }
-            if (SerialPort.IsOpen == true)
-            {
-                if (CommandArmDisarm == 1)
-                {
-                    MessageBox.Show("Não é possível acessar as configurações com a JCFLIGHT em Voo!");
-                    return;
-                }
-                ItsSafeToUpdate = false;
-                if (PidAndFiltersCommunicationOpen == true)
-                {
-                    Serial_Write_To_FC(14);
-                    PidAndFiltersCommunicationOpen = false;
-                }
-                comboBox4.SelectedIndex = ((IOCDataGuard > comboBox4.Items.Count) ? 0 : IOCDataGuard);
-                comboBox2.SelectedIndex = AltHoldGuard;
-                comboBox3.SelectedIndex = GPSHoldGuard;
-                comboBox5.SelectedIndex = RTHGuard;
-                comboBox12.SelectedIndex = PPMGuard;
-                comboBox13.SelectedIndex = GimbalGuard;
-                comboBox11.SelectedIndex = FrameGuard;
-                MotorSpeed.Value = MotorSpeedGuard;
-                comboBox14.SelectedIndex = ParachuteGuard;
-                comboBox1.SelectedIndex = AcroGuard;
-                comboBox6.SelectedIndex = SportGuard;
-                comboBox8.SelectedIndex = AutoFlipGuard;
-                comboBox9.SelectedIndex = AutoGuard;
-                comboBox15.SelectedIndex = OptFlowGuard;
-                comboBox16.SelectedIndex = ((SonarGuard > comboBox16.Items.Count) ? 0 : SonarGuard);
-                comboBox17.SelectedIndex = CompassGuard;
-                comboBox18.SelectedIndex = CompassRotGuard;
-                comboBox19.SelectedIndex = RthAltitudeGuard;
-                comboBox24.SelectedIndex = SafeBtnGuard;
-                comboBox25.SelectedIndex = AirSpeedGuard;
-                numericUpDown22.Value = AccRollAdjustGuard;
-                numericUpDown23.Value = AccPitchAdjustGuard;
-                numericUpDown24.Value = AccYawAdjustGuard;
-                comboBox10.SelectedIndex = ArmDisarmGuard;
-                comboBox23.SelectedIndex = AutoLandGuard;
-                Serial_Write_To_FC(13);
-                SerialOpen = true;
-            }
-            SmallCompass = false;
-            panel19.Visible = true;
-            numericUpDown25.Value = (decimal)ThrottleMiddle / 100;
-            numericUpDown26.Value = (decimal)ThrottleExpo / 100;
-            numericUpDown27.Value = (decimal)RCRate / 100;
-            numericUpDown28.Value = (decimal)RcExpo / 100;
-            numericUpDown29.Value = (decimal)RollRate / 100;
-            numericUpDown37.Value = (decimal)PitchRate / 100;
-            numericUpDown30.Value = (decimal)YawRate / 100;
-            numericUpDown35.Value = RadioMin < 800 ? 1000 : RadioMin;
-            numericUpDown36.Value = RadioMax < 1500 ? 2000 : RadioMax;
-            numericUpDown31.Value = AHThrottleRover < 1000 ? 1000 : AHThrottleRover;
-            numericUpDown32.Value = AHDeadZone;
-            numericUpDown33.Value = AHSafeAltitude;
-            numericUpDown34.Value = AHMinVelVertical < 30 ? 30 : AHMinVelVertical;
-        }
-
-        private void button25_Click(object sender, EventArgs e)
-        {
             panel19.Visible = false;
             SmallCompass = false;
-            if (SerialOpen == true)
-            {
-                Serial_Write_To_FC(14);
-                SerialOpen = false;
-            }
-            ItsSafeToUpdate = true;
-            if (PidAndFiltersCommunicationOpen == true)
-            {
-                Serial_Write_To_FC(14);
-                PidAndFiltersCommunicationOpen = false;
-            }
         }
 
         private void button26_Click(object sender, EventArgs e)
@@ -4025,6 +4231,7 @@ namespace JCFLIGHTGCS
                     Serial_Write_To_FC(29);
                     numericUpDown35.Value = 1100;
                     numericUpDown36.Value = 1900;
+                    numericUpDown67.Value = 975;
                     numericUpDown25.Value = (decimal)0.50;
                     numericUpDown26.Value = (decimal)0.35;
                     numericUpDown27.Value = (decimal)0.70;
@@ -4036,13 +4243,75 @@ namespace JCFLIGHTGCS
                     numericUpDown32.Value = 70;
                     numericUpDown33.Value = 5;
                     numericUpDown34.Value = 30;
+                    numericUpDown62.Value = 1050;
+                    numericUpDown61.Value = 1050;
+                    numericUpDown60.Value = 1050;
+                    numericUpDown59.Value = 1050;
+                    numericUpDown58.Value = 1950;
+                    numericUpDown57.Value = 1950;
+                    numericUpDown56.Value = 1950;
+                    numericUpDown55.Value = 1950;
+                    numericUpDown66.Value = 45;
+                    numericUpDown65.Value = 45;
+                    numericUpDown64.Value = 45;
+                    numericUpDown63.Value = 45;
+                    checkBox2.Checked = false;
+                    checkBox3.Checked = false;
+                    checkBox4.Checked = false;
+                    checkBox5.Checked = false;
+                    checkBox6.Checked = false;
+                    checkBox7.Checked = false;
+                    checkBox8.Checked = false;
+                    checkBox9.Checked = false;
+                    numericUpDown51.Value = 100;
+                    numericUpDown52.Value = 100;
+                    numericUpDown53.Value = 100;
+                    numericUpDown54.Value = 100;
+                    numericUpDown41.Value = 1000;
+                    numericUpDown39.Value = 1000;
+                    numericUpDown40.Value = 1000;
+                    numericUpDown42.Value = 1000;
+                    numericUpDown43.Value = 1500;
+                    numericUpDown44.Value = 1500;
+                    numericUpDown45.Value = 1500;
+                    numericUpDown46.Value = 1500;
+                    numericUpDown50.Value = 2000;
+                    numericUpDown49.Value = 2000;
+                    numericUpDown48.Value = 2000;
+                    numericUpDown47.Value = 2000;
                 }
             }
         }
 
         private void button27_Click(object sender, EventArgs e)
         {
-            button8_Click(null, null);
+            if (SerialPort.IsOpen == true)
+            {
+                SendConfigurationsToJCFLIHGT(SerialPort, 3);
+                Thread.Sleep(250);
+                SendConfigurationsToJCFLIHGT(SerialPort, 4);
+                Thread.Sleep(250);
+                Serial_Write_To_FC(32);
+            }
         }
+
+        byte GetChannelsReverse()
+        {
+            int CheckDevices = Convert.ToByte(checkBox2.Checked) |
+                Convert.ToByte(checkBox3.Checked) << 1 |
+               Convert.ToByte(checkBox4.Checked) << 2 |
+               Convert.ToByte(checkBox5.Checked) << 3;
+            return Convert.ToByte(CheckDevices);
+        }
+
+        byte GetServosReverse()
+        {
+            int CheckDevices = Convert.ToByte(checkBox9.Checked) |
+                Convert.ToByte(checkBox8.Checked) << 1 |
+               Convert.ToByte(checkBox7.Checked) << 2 |
+               Convert.ToByte(checkBox6.Checked) << 3;
+            return Convert.ToByte(CheckDevices);
+        }
+
     }
 }
