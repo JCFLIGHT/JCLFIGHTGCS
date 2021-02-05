@@ -3518,38 +3518,6 @@ namespace JCFLIGHTGCS
             dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "Float";
             dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Ganho Integral para correção da estimativa de direção do Yaw";
 
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AHRS_Nearness";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "byte";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor da 'agressividade' de correção do AHRS com base no acelerômetro";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Servos_Pulso_Minimo";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "US";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor do pulso PWM minimo aplicado ao servos";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Servos_Pulso_Médio";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "US";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor do pulso PWM médio aplicado ao servos";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Servos_Pulso_Maximo";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "US";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor do pulso PWM maximo aplicado ao servos";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Servo1_Direção";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "boolean";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "0 - Não invertido / 1 - Invertido";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Servo2_Direção";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "boolean";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "0 - Não invertido / 1 - Invertido";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Servo3_Direção";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "boolean";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "0 - Não invertido / 1 - Invertido";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Servo4_Direção";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "boolean";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "0 - Não invertido / 1 - Invertido";
-
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AutoLaunch_AHRS_BankAngle";
             dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "Radianos";
             dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Ângulo no AHRS para considerar que o AutoLaunch deve iniciar";
@@ -3609,10 +3577,6 @@ namespace JCFLIGHTGCS
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "CrashCheck_Tempo";
             dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "Segundos";
             dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Estouro de tempo para validar o Crash";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Fail_Safe_Pulso";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "US";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor minimo do pulso do receptor para ser considerado Fail-Safe";
 
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Gimbal_Pulso_Minimo";
             dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "US";
