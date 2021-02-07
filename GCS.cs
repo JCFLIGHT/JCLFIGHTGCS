@@ -2598,7 +2598,7 @@ namespace JCFLIGHTGCS
                     SerialPort.Close();
                     Reboot = true;
                     comboBox7_SelectedIndexChanged(null, null);
-                    tabControl1.SelectTab(tabPage1);
+                    button1_Click(null, null);
                     ItsSafeToUpdate = true;
                 }
             }
@@ -2993,7 +2993,7 @@ namespace JCFLIGHTGCS
                     SerialPort.Close();
                     Reboot = true;
                     comboBox7_SelectedIndexChanged(null, null);
-                    tabControl1.SelectTab(tabPage1);
+                    button1_Click(null, null);
                     ItsSafeToUpdate = true;
                 }
             }
@@ -4225,7 +4225,7 @@ namespace JCFLIGHTGCS
                     SerialPort.Close();
                     Reboot = true;
                     comboBox7_SelectedIndexChanged(null, null);
-                    tabControl1.SelectTab(tabPage1);
+                    button1_Click(null, null);
                     ItsSafeToUpdate = true;
                 }
             }

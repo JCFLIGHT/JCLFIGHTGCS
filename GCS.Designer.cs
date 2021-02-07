@@ -915,7 +915,7 @@
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button5.ForeColor = System.Drawing.Color.White;
             this.button5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button5.Location = new System.Drawing.Point(0, 358);
+            this.button5.Location = new System.Drawing.Point(0, 312);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(250, 40);
             this.button5.TabIndex = 5;
@@ -932,7 +932,7 @@
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.ForeColor = System.Drawing.Color.White;
             this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.Location = new System.Drawing.Point(0, 312);
+            this.button4.Location = new System.Drawing.Point(0, 404);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(250, 40);
             this.button4.TabIndex = 4;
@@ -949,7 +949,7 @@
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.Color.White;
             this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(0, 266);
+            this.button3.Location = new System.Drawing.Point(0, 220);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(250, 40);
             this.button3.TabIndex = 3;
@@ -966,7 +966,7 @@
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.White;
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(0, 220);
+            this.button2.Location = new System.Drawing.Point(0, 266);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(250, 40);
             this.button2.TabIndex = 2;
@@ -995,6 +995,7 @@
             // 
             this.MenuVertical.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.MenuVertical.Controls.Add(this.preArmNotification1);
+            this.MenuVertical.Controls.Add(this.button3);
             this.MenuVertical.Controls.Add(this.button19);
             this.MenuVertical.Controls.Add(this.button12);
             this.MenuVertical.Controls.Add(this.button18);
@@ -1004,7 +1005,6 @@
             this.MenuVertical.Controls.Add(this.button6);
             this.MenuVertical.Controls.Add(this.button5);
             this.MenuVertical.Controls.Add(this.button4);
-            this.MenuVertical.Controls.Add(this.button3);
             this.MenuVertical.Controls.Add(this.button2);
             this.MenuVertical.Controls.Add(this.button1);
             this.MenuVertical.Dock = System.Windows.Forms.DockStyle.Left;
@@ -1090,7 +1090,7 @@
             this.button13.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button13.ForeColor = System.Drawing.Color.White;
             this.button13.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button13.Location = new System.Drawing.Point(0, 450);
+            this.button13.Location = new System.Drawing.Point(0, 358);
             this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(250, 40);
             this.button13.TabIndex = 9;
@@ -1107,7 +1107,7 @@
             this.button10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button10.ForeColor = System.Drawing.Color.White;
             this.button10.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button10.Location = new System.Drawing.Point(0, 404);
+            this.button10.Location = new System.Drawing.Point(0, 450);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(250, 40);
             this.button10.TabIndex = 7;
