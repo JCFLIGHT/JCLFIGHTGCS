@@ -158,7 +158,6 @@ namespace JCFLIGHTGCS
         byte PPMGuard = 0;
         byte GimbalGuard = 0;
         byte FrameGuard = 0;
-        byte MotorSpeedGuard = 0;
         byte ParachuteGuard = 0;
         byte RthAltitudeGuard = 0;
         byte OptFlowGuard = 0;
@@ -717,18 +716,10 @@ namespace JCFLIGHTGCS
             {
                 UpdateBlackBoxData();
             }
-            label161.Text = "Valor Calculado:" + ValueConverter(MotorSpeed.Value, 0, 100, 900, 1500) + "uS";
             throttleExpo1.SetRCExpoParameters((double)ThrottleMiddle / 100, (double)ThrottleExpo / 100, ThrottleData);
             rcExpo1.SetRCExpoParameters((double)RCRate / 100, (double)RcExpo / 100);
             throttleExpo2.SetRCExpoParameters((double)numericUpDown25.Value, (double)numericUpDown26.Value, ThrottleData);
             rcExpo2.SetRCExpoParameters((double)numericUpDown27.Value, (double)numericUpDown28.Value);
-        }
-
-        int ValueConverter(int x, int srcMin, int srcMax, int destMin, int destMax)
-        {
-            int a = ((int)destMax - (int)destMin) * ((int)x - (int)srcMin);
-            int b = (int)srcMax - (int)srcMin;
-            return ((a / b) + destMin);
         }
 
         private void SerialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e)
@@ -927,7 +918,6 @@ namespace JCFLIGHTGCS
                     CompassGuard = (byte)InBuffer[ptr++];
                     CompassRotGuard = (byte)InBuffer[ptr++];
                     RthAltitudeGuard = (byte)InBuffer[ptr++];
-                    MotorSpeedGuard = (byte)InBuffer[ptr++];
                     AcroGuard = (byte)InBuffer[ptr++];
                     AltHoldGuard = (byte)InBuffer[ptr++];
                     GPSHoldGuard = (byte)InBuffer[ptr++];
@@ -1219,24 +1209,18 @@ namespace JCFLIGHTGCS
                 GetValues.GetPlatformName = GetString1[0];
                 if (GetValues.GetPlatformName == "AVR")
                 {
-                    numericUpDown13.Enabled = false;
-                    numericUpDown15.Enabled = false;
                     numericUpDown16.Enabled = false;
                     numericUpDown17.Enabled = false;
                     RamMemString = "8192KB";
                 }
                 else if (GetValues.GetPlatformName == "ESP32")
                 {
-                    numericUpDown13.Enabled = true;
-                    numericUpDown15.Enabled = true;
                     numericUpDown16.Enabled = true;
                     numericUpDown17.Enabled = true;
                     RamMemString = "327680KB";
                 }
                 else if (GetValues.GetPlatformName == "STM32")
                 {
-                    numericUpDown13.Enabled = true;
-                    numericUpDown15.Enabled = true;
                     numericUpDown16.Enabled = true;
                     numericUpDown17.Enabled = true;
                     RamMemString = "131072KB";
@@ -2057,7 +2041,6 @@ namespace JCFLIGHTGCS
                 comboBox12.SelectedIndex = PPMGuard;
                 comboBox13.SelectedIndex = GimbalGuard;
                 comboBox11.SelectedIndex = FrameGuard;
-                MotorSpeed.Value = MotorSpeedGuard;
                 comboBox14.SelectedIndex = ParachuteGuard;
                 comboBox1.SelectedIndex = AcroGuard;
                 comboBox6.SelectedIndex = SportGuard;
@@ -2133,6 +2116,7 @@ namespace JCFLIGHTGCS
 
         private void button5_Click(object sender, EventArgs e)
         {
+            button25_Click(null, null);
             if (SerialPort.IsOpen == true)
             {
                 if (SerialOpen == true)
@@ -2141,7 +2125,6 @@ namespace JCFLIGHTGCS
                     SerialOpen = false;
                 }
                 ItsSafeToUpdate = true;
-
                 if (PidAndFiltersCommunicationOpen == true)
                 {
                     Serial_Write_To_FC(14);
@@ -2599,20 +2582,17 @@ namespace JCFLIGHTGCS
                 SendConfigurationsToJCFLIHGT(SerialPort, 1);
                 Thread.Sleep(150);
                 Serial_Write_To_FC(16);
-                if (CompassGuard != comboBox17.SelectedIndex)
+                if (MessageBox.Show("Para aplicar as configurações é necessario reiniciar a controladora de voo.Você deseja reiniciar automaticamente agora?",
+                             "Reboot", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    if (MessageBox.Show("O modelo do Compass foi alterado,para que o mesmo funcione é necessario reiniciar a controladora de voo.Você deseja reiniciar automaticamente agora?",
-                    "Reboot", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        Serial_Write_To_FC(28);
-                        SmallCompass = false;
-                        SerialOpen = false;
-                        SerialPort.Close();
-                        Reboot = true;
-                        comboBox7_SelectedIndexChanged(null, null);
-                        tabControl1.SelectTab(tabPage1);
-                        ItsSafeToUpdate = true;
-                    }
+                    Serial_Write_To_FC(28);
+                    SmallCompass = false;
+                    SerialOpen = false;
+                    SerialPort.Close();
+                    Reboot = true;
+                    comboBox7_SelectedIndexChanged(null, null);
+                    tabControl1.SelectTab(tabPage1);
+                    ItsSafeToUpdate = true;
                 }
             }
         }
@@ -2632,7 +2612,6 @@ namespace JCFLIGHTGCS
                     comboBox12.SelectedIndex = 0;
                     comboBox13.SelectedIndex = 0;
                     comboBox11.SelectedIndex = 0;
-                    MotorSpeed.Value = 0;
                     comboBox14.SelectedIndex = 0;
                     comboBox1.SelectedIndex = 0;
                     comboBox6.SelectedIndex = 0;
@@ -2900,8 +2879,6 @@ namespace JCFLIGHTGCS
                 label44.Text = "> Controle de Orientação Inteligente";
                 label23.Text = "Ataque";
                 label46.Text = "> Modo Stabilize com Limite maior no Ângulo (55°)";
-                if (groupBox6.Text == "VELOCIDADE INICIAL DO MOTOR AO ARMAR A JCFLIGHT")
-                    groupBox6.Text = "VELOCIDADE INICIAL DOS MOTORES AO ARMAR A JCFLIGHT";
                 label20.Text = "Altitude-Hold";
                 label42.Text = "> Retenção de Altitude com base no Barômetro e INS";
                 label21.Text = "GPS-Hold";
@@ -2921,7 +2898,6 @@ namespace JCFLIGHTGCS
                 comboBox9.Enabled = true;
                 comboBox10.Enabled = true;
                 comboBox19.Enabled = true;
-                MotorSpeed.Enabled = true;
                 comboBox23.Enabled = true;
             }
             else if (ComboBoxFrame == 3 || ComboBoxFrame == 4 || ComboBoxFrame == 5) //AERO, ASA-FIXA & V-TAIL
@@ -2930,16 +2906,14 @@ namespace JCFLIGHTGCS
                 label44.Text = "> Servos independentes do controlador PID";
                 label23.Text = "Auto-TakeOff";
                 label46.Text = "> Lançamento Automático para Aeros e Asa";
-                if (groupBox6.Text == "VELOCIDADE INICIAL DOS MOTORES AO ARMAR A JCFLIGHT")
-                    groupBox6.Text = "VELOCIDADE INICIAL DO MOTOR AO ARMAR A JCFLIGHT";
                 label20.Text = "Auto-Throttle";
                 label42.Text = "> Mantém a velocidade usando o Tubo de Pitot";
                 label21.Text = "Cruise";
-                label43.Text = "> Mantém a posição e altitude do Aero em linha reta";
+                label43.Text = "> Mantém a posição e a altitude do Aero em linha reta";
                 label24.Text = "Turn-Coord.";
                 label48.Text = "> Giro em torno do proprio eixo em relação ao solo";
                 label92.Text = "Auto-Círculo";
-                label70.Text = "> Mantém a posição e altitude do Aero em círculo";
+                label70.Text = "> Mantém a posição e a altitude do Aero em círculo";
                 comboBox1.Enabled = true;
                 comboBox2.Enabled = true;
                 comboBox3.Enabled = true;
@@ -2951,7 +2925,6 @@ namespace JCFLIGHTGCS
                 comboBox9.Enabled = true;
                 comboBox10.Enabled = true;
                 comboBox19.Enabled = true;
-                MotorSpeed.Enabled = true;
                 comboBox23.Enabled = true;
             }
             else if (ComboBoxFrame == 8) //FOGUETE
@@ -2960,8 +2933,6 @@ namespace JCFLIGHTGCS
                 label44.Text = "> Controle de Orientação Inteligente";
                 label23.Text = "Ataque";
                 label46.Text = "> Modo Stabilize com Limite maior no Ângulo (55°)";
-                if (groupBox6.Text == "VELOCIDADE INICIAL DO MOTOR AO ARMAR A JCFLIGHT")
-                    groupBox6.Text = "VELOCIDADE INICIAL DOS MOTORES AO ARMAR A JCFLIGHT";
                 label20.Text = "Altitude-Hold";
                 label42.Text = "> Retenção de Altitude com base no Barômetro e INS";
                 label21.Text = "GPS-Hold";
@@ -2979,7 +2950,6 @@ namespace JCFLIGHTGCS
                 comboBox9.Enabled = false;
                 comboBox10.Enabled = false;
                 comboBox19.Enabled = false;
-                MotorSpeed.Enabled = false;
                 comboBox23.Enabled = false;
             }
         }
@@ -3007,6 +2977,18 @@ namespace JCFLIGHTGCS
                 SendConfigurationsToJCFLIHGT(SerialPort, 2);
                 Thread.Sleep(150);
                 Serial_Write_To_FC(19);
+                if (MessageBox.Show("Para aplicar as configurações é necessario reiniciar a controladora de voo.Você deseja reiniciar automaticamente agora?",
+             "Reboot", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    Serial_Write_To_FC(28);
+                    SmallCompass = false;
+                    SerialOpen = false;
+                    SerialPort.Close();
+                    Reboot = true;
+                    comboBox7_SelectedIndexChanged(null, null);
+                    tabControl1.SelectTab(tabPage1);
+                    ItsSafeToUpdate = true;
+                }
             }
         }
 
@@ -3192,7 +3174,7 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)0x4a;
                     SendBuffer[VectorPointer++] = (byte)0x43;
                     SendBuffer[VectorPointer++] = (byte)0x3c;
-                    SendBuffer[VectorPointer++] = 28;
+                    SendBuffer[VectorPointer++] = 27;
                     SendBuffer[VectorPointer++] = (byte)15;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxFrame;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxPPM;
@@ -3203,7 +3185,6 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)ComboBoxCompass;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxCompassRot;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxRthAltitude;
-                    SendBuffer[VectorPointer++] = (byte)MotorSpeed.Value;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxAcro;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxAltHold;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxGPSHold;
@@ -3598,14 +3579,6 @@ namespace JCFLIGHTGCS
             dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "Hz";
             dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor da frequêcnia de corte da aceleração da IMU (Por Favor,não altere)";
 
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Throttle_Iddle_Fator";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "byte";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor do ganho do Thottle ao calcular o maximo e minimo";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Throttle_Maximo";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "uS";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor maximo do Throttle aplicado ao PID";
-
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Throttle_Fator";
             dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "byte";
             dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor do ganho do Thottle para o PID";
@@ -3648,7 +3621,7 @@ namespace JCFLIGHTGCS
 
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "GPS_Compensação_De_Tilt";
             dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "byte";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Parâmetro para compensar o rate de navegação em modo GPS";
+            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Parâmetro para compensar o rate de navegação em modo WayPoint e RTH";
 
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AirSpeed_Amostras";
             dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "byte";
@@ -3847,8 +3820,6 @@ namespace JCFLIGHTGCS
                     {
                         if (PushedLatitude[0] != 0 && PushedLongitude[0] != 0 && !PrintArea2 && CountWP2 == 0)
                         {
-                            label19.Text = Convert.ToString(PushedLatitude[0]);
-                            label18.Text = Convert.ToString(PushedLongitude[0]);
                             WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[0]), Convert.ToDouble(PushedLongitude[0])));
                             PrintArea2 = true;
                             GPS_Position2.Lat = PushedLatitude[0];
@@ -3857,8 +3828,6 @@ namespace JCFLIGHTGCS
 
                         if (PushedLatitude[1] != 0 && PushedLongitude[1] != 0 && !PrintArea2 && CountWP2 == 1)
                         {
-                            label20.Text = Convert.ToString(PushedLatitude[1]);
-                            label16.Text = Convert.ToString(PushedLongitude[1]);
                             WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[0]), Convert.ToDouble(PushedLongitude[0])));
                             WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[1]), Convert.ToDouble(PushedLongitude[1])));
                             PrintArea2 = true;
@@ -3868,8 +3837,6 @@ namespace JCFLIGHTGCS
 
                         if (PushedLatitude[2] != 0 && PushedLongitude[2] != 0 && !PrintArea2 && CountWP2 == 2)
                         {
-                            label21.Text = Convert.ToString(PushedLatitude[2]);
-                            label22.Text = Convert.ToString(PushedLongitude[2]);
                             WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[0]), Convert.ToDouble(PushedLongitude[0])));
                             WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[1]), Convert.ToDouble(PushedLongitude[1])));
                             WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[2]), Convert.ToDouble(PushedLongitude[2])));
@@ -3880,8 +3847,6 @@ namespace JCFLIGHTGCS
 
                         if (PushedLatitude[3] != 0 && PushedLongitude[3] != 0 && !PrintArea2 && CountWP2 == 3)
                         {
-                            label37.Text = Convert.ToString(PushedLatitude[3]);
-                            label35.Text = Convert.ToString(PushedLongitude[3]);
                             WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[0]), Convert.ToDouble(PushedLongitude[0])));
                             WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[1]), Convert.ToDouble(PushedLongitude[1])));
                             WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[2]), Convert.ToDouble(PushedLongitude[2])));
@@ -3893,8 +3858,6 @@ namespace JCFLIGHTGCS
 
                         if (PushedLatitude[4] != 0 && PushedLongitude[4] != 0 && !PrintArea2 && CountWP2 == 4)
                         {
-                            label30.Text = Convert.ToString(PushedLatitude[4]);
-                            label26.Text = Convert.ToString(PushedLongitude[4]);
                             WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[0]), Convert.ToDouble(PushedLongitude[0])));
                             WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[1]), Convert.ToDouble(PushedLongitude[1])));
                             WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[2]), Convert.ToDouble(PushedLongitude[2])));
@@ -3907,8 +3870,6 @@ namespace JCFLIGHTGCS
 
                         if (PushedLatitude[5] != 0 && PushedLongitude[5] != 0 && !PrintArea2 && CountWP2 == 5)
                         {
-                            label28.Text = Convert.ToString(PushedLatitude[5]);
-                            label24.Text = Convert.ToString(PushedLongitude[5]);
                             WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[0]), Convert.ToDouble(PushedLongitude[0])));
                             WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[1]), Convert.ToDouble(PushedLongitude[1])));
                             WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[2]), Convert.ToDouble(PushedLongitude[2])));
@@ -3922,8 +3883,6 @@ namespace JCFLIGHTGCS
 
                         if (PushedLatitude[6] != 0 && PushedLongitude[6] != 0 && !PrintArea2 && CountWP2 == 6)
                         {
-                            label61.Text = Convert.ToString(PushedLatitude[6]);
-                            label57.Text = Convert.ToString(PushedLongitude[6]);
                             WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[0]), Convert.ToDouble(PushedLongitude[0])));
                             WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[1]), Convert.ToDouble(PushedLongitude[1])));
                             WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[2]), Convert.ToDouble(PushedLongitude[2])));
@@ -3938,8 +3897,6 @@ namespace JCFLIGHTGCS
 
                         if (PushedLatitude[7] != 0 && PushedLongitude[7] != 0 && !PrintArea2 && CountWP2 == 7)
                         {
-                            label70.Text = Convert.ToString(PushedLatitude[7]);
-                            label63.Text = Convert.ToString(PushedLongitude[7]);
                             WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[0]), Convert.ToDouble(PushedLongitude[0])));
                             WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[1]), Convert.ToDouble(PushedLongitude[1])));
                             WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[2]), Convert.ToDouble(PushedLongitude[2])));
@@ -3955,8 +3912,6 @@ namespace JCFLIGHTGCS
 
                         if (PushedLatitude[8] != 0 && PushedLongitude[8] != 0 && !PrintArea2 && CountWP2 == 8)
                         {
-                            label68.Text = Convert.ToString(PushedLatitude[8]);
-                            label59.Text = Convert.ToString(PushedLongitude[8]);
                             WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[0]), Convert.ToDouble(PushedLongitude[0])));
                             WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[1]), Convert.ToDouble(PushedLongitude[1])));
                             WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[2]), Convert.ToDouble(PushedLongitude[2])));
@@ -3973,8 +3928,6 @@ namespace JCFLIGHTGCS
 
                         if (PushedLatitude[9] != 0 && PushedLongitude[9] != 0 && !PrintArea2 && CountWP2 == 9)
                         {
-                            label66.Text = Convert.ToString(PushedLatitude[9]);
-                            label55.Text = Convert.ToString(PushedLongitude[9]);
                             WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[0]), Convert.ToDouble(PushedLongitude[0])));
                             WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[1]), Convert.ToDouble(PushedLongitude[1])));
                             WPCoordinatesToPush.Add(new PointLatLng(Convert.ToDouble(PushedLatitude[2]), Convert.ToDouble(PushedLongitude[2])));
@@ -4256,6 +4209,18 @@ namespace JCFLIGHTGCS
                 SendConfigurationsToJCFLIHGT(SerialPort, 4);
                 Thread.Sleep(250);
                 Serial_Write_To_FC(32);
+                if (MessageBox.Show("Para aplicar as configurações é necessario reiniciar a controladora de voo.Você deseja reiniciar automaticamente agora?",
+                  "Reboot", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    Serial_Write_To_FC(28);
+                    SmallCompass = false;
+                    SerialOpen = false;
+                    SerialPort.Close();
+                    Reboot = true;
+                    comboBox7_SelectedIndexChanged(null, null);
+                    tabControl1.SelectTab(tabPage1);
+                    ItsSafeToUpdate = true;
+                }
             }
         }
 
