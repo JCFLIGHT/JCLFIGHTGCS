@@ -309,7 +309,6 @@
             this.button26 = new System.Windows.Forms.Button();
             this.button27 = new System.Windows.Forms.Button();
             this.groupBox35 = new System.Windows.Forms.GroupBox();
-            this.label239 = new System.Windows.Forms.Label();
             this.label177 = new System.Windows.Forms.Label();
             this.numericUpDown35 = new System.Windows.Forms.NumericUpDown();
             this.label178 = new System.Windows.Forms.Label();
@@ -4895,7 +4894,6 @@
             // 
             // groupBox35
             // 
-            this.groupBox35.Controls.Add(this.label239);
             this.groupBox35.Controls.Add(this.label177);
             this.groupBox35.Controls.Add(this.numericUpDown35);
             this.groupBox35.Controls.Add(this.label178);
@@ -4903,20 +4901,10 @@
             this.groupBox35.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox35.Location = new System.Drawing.Point(9, 23);
             this.groupBox35.Name = "groupBox35";
-            this.groupBox35.Size = new System.Drawing.Size(283, 118);
+            this.groupBox35.Size = new System.Drawing.Size(283, 90);
             this.groupBox35.TabIndex = 143;
             this.groupBox35.TabStop = false;
-            this.groupBox35.Text = "Attitude Rádio";
-            // 
-            // label239
-            // 
-            this.label239.AutoSize = true;
-            this.label239.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label239.Location = new System.Drawing.Point(6, 82);
-            this.label239.Name = "label239";
-            this.label239.Size = new System.Drawing.Size(235, 30);
-            this.label239.TabIndex = 137;
-            this.label239.Text = "Não é necessário considerar o \r\nFail-Safe para configurar o Mínimo.";
+            this.groupBox35.Text = "RC Attitude";
             // 
             // label177
             // 
@@ -5248,7 +5236,7 @@
             this.groupBox32.Controls.Add(this.label167);
             this.groupBox32.Controls.Add(this.numericUpDown27);
             this.groupBox32.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox32.Location = new System.Drawing.Point(8, 366);
+            this.groupBox32.Location = new System.Drawing.Point(9, 363);
             this.groupBox32.Name = "groupBox32";
             this.groupBox32.Size = new System.Drawing.Size(256, 200);
             this.groupBox32.TabIndex = 140;
@@ -5323,7 +5311,7 @@
             this.groupBox31.Controls.Add(this.throttleExpo2);
             this.groupBox31.Controls.Add(this.label165);
             this.groupBox31.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox31.Location = new System.Drawing.Point(9, 143);
+            this.groupBox31.Location = new System.Drawing.Point(9, 126);
             this.groupBox31.Name = "groupBox31";
             this.groupBox31.Size = new System.Drawing.Size(256, 221);
             this.groupBox31.TabIndex = 139;
@@ -8799,7 +8787,6 @@
         private System.Windows.Forms.CheckBox checkBox9;
         private System.Windows.Forms.Label label179;
         private System.Windows.Forms.NumericUpDown numericUpDown67;
-        private System.Windows.Forms.Label label239;
     }
 }
 
