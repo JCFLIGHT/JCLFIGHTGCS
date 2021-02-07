@@ -2312,7 +2312,14 @@ namespace JCFLIGHTGCS
                     break;
 
                 case 2: //ALT-HOLD
-                    label83.Location = new Point(175, 296);
+                    if (!ForceNewLocationToLabels)
+                    {
+                        label83.Location = new Point(175, 296);
+                    }
+                    else
+                    {
+                        label83.Location = new Point(375, 296);
+                    }
                     if (FrameMode < 3 || FrameMode == 6 || FrameMode == 7)
                     {
                         label83.Text = "ALT-HOLD";
