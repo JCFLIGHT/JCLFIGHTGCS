@@ -2378,9 +2378,9 @@ namespace JCFLIGHTGCS
                         }
                         else
                         {
-                            label83.Location = new Point(384, 296);
+                            label83.Location = new Point(382, 296);
                         }
-                        label83.Text = "CRUISE";
+                        label83.Text = "CÍRCULO";
                     }
                     break;
 
@@ -2427,15 +2427,30 @@ namespace JCFLIGHTGCS
                 case 8: //LAND
                 case 9:
                 case 10:
-                    if (!ForceNewLocationToLabels)
+                    if (FrameMode < 3 || FrameMode == 6 || FrameMode == 7)
                     {
-                        label83.Location = new Point(192, 296);
+                        if (!ForceNewLocationToLabels)
+                        {
+                            label83.Location = new Point(192, 296);
+                        }
+                        else
+                        {
+                            label83.Location = new Point(392, 296);
+                        }
+                        label83.Text = "LAND";
                     }
                     else
                     {
-                        label83.Location = new Point(392, 296);
+                        if (!ForceNewLocationToLabels)
+                        {
+                            label83.Location = new Point(188, 296);
+                        }
+                        else
+                        {
+                            label83.Location = new Point(388, 296);
+                        }
+                        label83.Text = "CRUISE";
                     }
-                    label83.Text = "LAND";
                     break;
 
                 case 11: //FLIP
@@ -2915,12 +2930,12 @@ namespace JCFLIGHTGCS
                 label46.Text = "> Lançamento Automático para Aeros e Asa";
                 label20.Text = "Auto-Throttle";
                 label42.Text = "> Mantém a velocidade usando o Tubo de Pitot";
-                label21.Text = "Cruise";
-                label43.Text = "> Mantém a posição e a altitude do Aero em linha reta";
+                label21.Text = "Auto-Círculo";
+                label43.Text = "> Mantém a posição e a altitude do Aero em círculo";
                 label24.Text = "Turn-Coord.";
                 label48.Text = "> Giro em torno do proprio eixo em relação ao solo";
-                label92.Text = "Auto-Círculo";
-                label70.Text = "> Mantém a posição e a altitude do Aero em círculo";
+                label92.Text = "Cruise";
+                label70.Text = "> Mantém a posição e a altitude do Aero em linha reta";
                 comboBox1.Enabled = true;
                 comboBox2.Enabled = true;
                 comboBox3.Enabled = true;
