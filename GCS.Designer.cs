@@ -321,12 +321,9 @@
             this.label175 = new System.Windows.Forms.Label();
             this.label174 = new System.Windows.Forms.Label();
             this.label176 = new System.Windows.Forms.Label();
-            this.label173 = new System.Windows.Forms.Label();
             this.numericUpDown34 = new System.Windows.Forms.NumericUpDown();
             this.label172 = new System.Windows.Forms.Label();
             this.numericUpDown33 = new System.Windows.Forms.NumericUpDown();
-            this.label170 = new System.Windows.Forms.Label();
-            this.numericUpDown31 = new System.Windows.Forms.NumericUpDown();
             this.label171 = new System.Windows.Forms.Label();
             this.numericUpDown32 = new System.Windows.Forms.NumericUpDown();
             this.groupBox33 = new System.Windows.Forms.GroupBox();
@@ -694,7 +691,6 @@
             this.groupBox34.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown34)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown33)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown31)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown32)).BeginInit();
             this.groupBox33.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown37)).BeginInit();
@@ -3778,7 +3774,7 @@
             this.groupBox40.Controls.Add(this.label209);
             this.groupBox40.Controls.Add(this.numericUpDown66);
             this.groupBox40.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox40.Location = new System.Drawing.Point(474, 313);
+            this.groupBox40.Location = new System.Drawing.Point(474, 300);
             this.groupBox40.Name = "groupBox40";
             this.groupBox40.Size = new System.Drawing.Size(176, 136);
             this.groupBox40.TabIndex = 151;
@@ -3904,7 +3900,7 @@
             this.groupBox39.Controls.Add(this.checkBox3);
             this.groupBox39.Controls.Add(this.checkBox2);
             this.groupBox39.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox39.Location = new System.Drawing.Point(474, 453);
+            this.groupBox39.Location = new System.Drawing.Point(474, 439);
             this.groupBox39.Name = "groupBox39";
             this.groupBox39.Size = new System.Drawing.Size(176, 113);
             this.groupBox39.TabIndex = 150;
@@ -3986,7 +3982,7 @@
             this.groupBox38.Controls.Add(this.label234);
             this.groupBox38.Controls.Add(this.numericUpDown62);
             this.groupBox38.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox38.Location = new System.Drawing.Point(271, 311);
+            this.groupBox38.Location = new System.Drawing.Point(271, 297);
             this.groupBox38.Name = "groupBox38";
             this.groupBox38.Size = new System.Drawing.Size(199, 255);
             this.groupBox38.TabIndex = 149;
@@ -5024,18 +5020,15 @@
             this.groupBox34.Controls.Add(this.label175);
             this.groupBox34.Controls.Add(this.label174);
             this.groupBox34.Controls.Add(this.label176);
-            this.groupBox34.Controls.Add(this.label173);
             this.groupBox34.Controls.Add(this.numericUpDown34);
             this.groupBox34.Controls.Add(this.label172);
             this.groupBox34.Controls.Add(this.numericUpDown33);
-            this.groupBox34.Controls.Add(this.label170);
-            this.groupBox34.Controls.Add(this.numericUpDown31);
             this.groupBox34.Controls.Add(this.label171);
             this.groupBox34.Controls.Add(this.numericUpDown32);
             this.groupBox34.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox34.Location = new System.Drawing.Point(314, 155);
             this.groupBox34.Name = "groupBox34";
-            this.groupBox34.Size = new System.Drawing.Size(286, 154);
+            this.groupBox34.Size = new System.Drawing.Size(286, 124);
             this.groupBox34.TabIndex = 142;
             this.groupBox34.TabStop = false;
             this.groupBox34.Text = "Altitude-Hold";
@@ -5044,7 +5037,7 @@
             // 
             this.label175.AutoSize = true;
             this.label175.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label175.Location = new System.Drawing.Point(243, 127);
+            this.label175.Location = new System.Drawing.Point(240, 95);
             this.label175.Name = "label175";
             this.label175.Size = new System.Drawing.Size(43, 16);
             this.label175.TabIndex = 146;
@@ -5054,7 +5047,7 @@
             // 
             this.label174.AutoSize = true;
             this.label174.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label174.Location = new System.Drawing.Point(248, 97);
+            this.label174.Location = new System.Drawing.Point(245, 65);
             this.label174.Name = "label174";
             this.label174.Size = new System.Drawing.Size(20, 16);
             this.label174.TabIndex = 143;
@@ -5064,26 +5057,16 @@
             // 
             this.label176.AutoSize = true;
             this.label176.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label176.Location = new System.Drawing.Point(2, 125);
+            this.label176.Location = new System.Drawing.Point(-1, 93);
             this.label176.Name = "label176";
             this.label176.Size = new System.Drawing.Size(120, 16);
             this.label176.TabIndex = 144;
             this.label176.Text = "Vel. Vertical Min";
             // 
-            // label173
-            // 
-            this.label173.AutoSize = true;
-            this.label173.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label173.Location = new System.Drawing.Point(248, 29);
-            this.label173.Name = "label173";
-            this.label173.Size = new System.Drawing.Size(26, 16);
-            this.label173.TabIndex = 139;
-            this.label173.Text = "uS";
-            // 
             // numericUpDown34
             // 
             this.numericUpDown34.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown34.Location = new System.Drawing.Point(122, 123);
+            this.numericUpDown34.Location = new System.Drawing.Point(119, 91);
             this.numericUpDown34.Minimum = new decimal(new int[] {
             30,
             0,
@@ -5102,7 +5085,7 @@
             // 
             this.label172.AutoSize = true;
             this.label172.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label172.Location = new System.Drawing.Point(2, 94);
+            this.label172.Location = new System.Drawing.Point(-1, 62);
             this.label172.Name = "label172";
             this.label172.Size = new System.Drawing.Size(96, 16);
             this.label172.TabIndex = 137;
@@ -5111,7 +5094,7 @@
             // numericUpDown33
             // 
             this.numericUpDown33.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown33.Location = new System.Drawing.Point(122, 92);
+            this.numericUpDown33.Location = new System.Drawing.Point(119, 60);
             this.numericUpDown33.Maximum = new decimal(new int[] {
             10,
             0,
@@ -5121,44 +5104,11 @@
             this.numericUpDown33.Size = new System.Drawing.Size(120, 22);
             this.numericUpDown33.TabIndex = 138;
             // 
-            // label170
-            // 
-            this.label170.AutoSize = true;
-            this.label170.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label170.Location = new System.Drawing.Point(2, 29);
-            this.label170.Name = "label170";
-            this.label170.Size = new System.Drawing.Size(107, 16);
-            this.label170.TabIndex = 136;
-            this.label170.Text = "Throttle Hover";
-            // 
-            // numericUpDown31
-            // 
-            this.numericUpDown31.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown31.Location = new System.Drawing.Point(122, 27);
-            this.numericUpDown31.Maximum = new decimal(new int[] {
-            2000,
-            0,
-            0,
-            0});
-            this.numericUpDown31.Minimum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.numericUpDown31.Name = "numericUpDown31";
-            this.numericUpDown31.Size = new System.Drawing.Size(120, 22);
-            this.numericUpDown31.TabIndex = 133;
-            this.numericUpDown31.Value = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            // 
             // label171
             // 
             this.label171.AutoSize = true;
             this.label171.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label171.Location = new System.Drawing.Point(2, 60);
+            this.label171.Location = new System.Drawing.Point(-1, 28);
             this.label171.Name = "label171";
             this.label171.Size = new System.Drawing.Size(86, 16);
             this.label171.TabIndex = 134;
@@ -5167,7 +5117,7 @@
             // numericUpDown32
             // 
             this.numericUpDown32.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown32.Location = new System.Drawing.Point(122, 58);
+            this.numericUpDown32.Location = new System.Drawing.Point(119, 26);
             this.numericUpDown32.Name = "numericUpDown32";
             this.numericUpDown32.Size = new System.Drawing.Size(120, 22);
             this.numericUpDown32.TabIndex = 135;
@@ -8153,7 +8103,6 @@
             this.groupBox34.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown34)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown33)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown31)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown32)).EndInit();
             this.groupBox33.ResumeLayout(false);
             this.groupBox33.PerformLayout();
@@ -8657,12 +8606,9 @@
         private System.Windows.Forms.Label label175;
         private System.Windows.Forms.Label label174;
         private System.Windows.Forms.Label label176;
-        private System.Windows.Forms.Label label173;
         private System.Windows.Forms.NumericUpDown numericUpDown34;
         private System.Windows.Forms.Label label172;
         private System.Windows.Forms.NumericUpDown numericUpDown33;
-        private System.Windows.Forms.Label label170;
-        private System.Windows.Forms.NumericUpDown numericUpDown31;
         private System.Windows.Forms.Label label171;
         private System.Windows.Forms.NumericUpDown numericUpDown32;
         private System.Windows.Forms.GroupBox groupBox33;

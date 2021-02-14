@@ -250,7 +250,6 @@ namespace JCFLIGHTGCS
         byte YawRate = 0;
         int RadioMin = 1000;
         int RadioMax = 2000;
-        int AHThrottleRover;
         byte AHDeadZone;
         byte AHSafeAltitude;
         byte AHMinVelVertical;
@@ -1110,7 +1109,6 @@ namespace JCFLIGHTGCS
                     YawRate = (byte)InBuffer[ptr++];
                     RadioMin = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     RadioMax = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    AHThrottleRover = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     AHDeadZone = (byte)InBuffer[ptr++];
                     AHSafeAltitude = (byte)InBuffer[ptr++];
                     AHMinVelVertical = (byte)InBuffer[ptr++];
@@ -2183,6 +2181,11 @@ namespace JCFLIGHTGCS
         private void button11_Click(object sender, EventArgs e)
         {
             if (!SerialPort.IsOpen) return;
+            if ((DevicesSum & 1) == 0)
+            {
+                MessageBox.Show("Compass não encontrado no barramento I2C da controladora de voo.");
+                return;
+            }
             Compass CompassOpen = new Compass();
             CompassOpen.Show();
             Serial_Write_To_FC(12);
@@ -3281,7 +3284,7 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)0x4a;
                     SendBuffer[VectorPointer++] = (byte)0x43;
                     SendBuffer[VectorPointer++] = (byte)0x3c;
-                    SendBuffer[VectorPointer++] = 39;
+                    SendBuffer[VectorPointer++] = 37;
                     SendBuffer[VectorPointer++] = (byte)31;
                     SendBuffer[VectorPointer++] = (byte)(numericUpDown25.Value * 100);
                     SendBuffer[VectorPointer++] = (byte)(numericUpDown26.Value * 100);
@@ -3294,8 +3297,6 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown35.Value) >> 8);
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown36.Value));
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown36.Value) >> 8);
-                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown31.Value));
-                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown31.Value) >> 8);
                     SendBuffer[VectorPointer++] = (byte)numericUpDown32.Value;
                     SendBuffer[VectorPointer++] = (byte)numericUpDown33.Value;
                     SendBuffer[VectorPointer++] = (byte)numericUpDown34.Value;
@@ -4102,7 +4103,6 @@ namespace JCFLIGHTGCS
                 numericUpDown30.Value = Convert.ToDecimal(YawRate) / 100;
                 numericUpDown35.Value = RadioMin < 800 ? 1000 : RadioMin;
                 numericUpDown36.Value = RadioMax < 1500 ? 2000 : RadioMax;
-                numericUpDown31.Value = AHThrottleRover < 1000 ? 1000 : AHThrottleRover;
                 numericUpDown32.Value = AHDeadZone;
                 numericUpDown33.Value = AHSafeAltitude;
                 numericUpDown34.Value = AHMinVelVertical < 30 ? 30 : AHMinVelVertical;
@@ -4178,7 +4178,6 @@ namespace JCFLIGHTGCS
                     numericUpDown29.Value = 0;
                     numericUpDown37.Value = 0;
                     numericUpDown30.Value = 0;
-                    numericUpDown31.Value = 1500;
                     numericUpDown32.Value = 70;
                     numericUpDown33.Value = 5;
                     numericUpDown34.Value = 30;
