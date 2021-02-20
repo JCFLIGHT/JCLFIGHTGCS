@@ -165,6 +165,7 @@ namespace JCFLIGHTGCS
         PointLatLng GPS_Position2;
         byte CountToBlock = 0;
         Boolean BlockPushParams = false;
+        Boolean MessageRead = false;
 
         int CoG = 0;
         Int32 Crosstrack = 0;
@@ -365,6 +366,15 @@ namespace JCFLIGHTGCS
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            if (!MessageRead)
+            {
+                if (!PingTest.PingNetwork("pingtest.com"))
+                {
+                    MessageRead = true;
+                    MyGMap.Manager.Mode = AccessMode.CacheOnly;
+                    MessageBox.Show("Você está sem internet,o mapa irá funcinar em modo cache,partes do mapa não carregados antes com internet podem falhar", "Checagem de conexão com a internet", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
             if (DebugMap < 300 && PushLocation)
             {
                 DebugMap++;
@@ -401,12 +411,6 @@ namespace JCFLIGHTGCS
                     Thread.Sleep(10);
                 }
 
-                if (!PingTest.PingNetwork("pingtest.com"))
-                {
-                    MyGMap.Manager.Mode = AccessMode.CacheOnly;
-                    MessageBox.Show("Você está sem internet,o mapa irá funcinar em modo cache,partes do mapa não carregados antes com internet podem falhar", "Checagem de conexão com a internet", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-
                 if (SerialPort.IsOpen == true)
                 {
                     comboBox13.Enabled = false;
@@ -430,6 +434,7 @@ namespace JCFLIGHTGCS
         {
             CountWP2 = 0;
             ParamsPushed = false;
+            MessageRead = false;
             comboBox13.Enabled = true;
             comboBox13.Text = "Selecione";
             SerialPort.Close();

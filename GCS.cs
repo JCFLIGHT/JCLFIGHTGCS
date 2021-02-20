@@ -2651,6 +2651,18 @@ namespace JCFLIGHTGCS
                     comboBox23.SelectedIndex = 0;
                     comboBox24.SelectedIndex = 0;
                 }
+                if (MessageBox.Show("Para aplicar as configurações é necessario reiniciar a controladora de voo.Você deseja reiniciar automaticamente agora?",
+              "Reboot", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    Serial_Write_To_FC(28);
+                    SmallCompass = false;
+                    SerialOpen = false;
+                    SerialPort.Close();
+                    Reboot = true;
+                    comboBox7_SelectedIndexChanged(null, null);
+                    button1_Click(null, null);
+                    ItsSafeToUpdate = true;
+                }
             }
         }
 
@@ -2936,7 +2948,7 @@ namespace JCFLIGHTGCS
                 label21.Text = "Auto-Círculo";
                 label43.Text = "> Mantém a posição e a altitude do Aero em círculo";
                 label24.Text = "Turn-Coord.";
-                label48.Text = "> Giro em torno do proprio eixo em relação ao solo";
+                label48.Text = "> Ajusta os servos com base na Veloc. e Inclinação";
                 label92.Text = "Cruise";
                 label70.Text = "> Mantém a posição e a altitude do Aero em linha reta";
                 comboBox1.Enabled = true;
@@ -3052,6 +3064,18 @@ namespace JCFLIGHTGCS
                     numericUpDown23.Value = 0;
                     numericUpDown24.Value = 0;
                     comboBox22.SelectedIndex = 0;
+                }
+                if (MessageBox.Show("Para aplicar as configurações é necessario reiniciar a controladora de voo.Você deseja reiniciar automaticamente agora?",
+              "Reboot", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    Serial_Write_To_FC(28);
+                    SmallCompass = false;
+                    SerialOpen = false;
+                    SerialPort.Close();
+                    Reboot = true;
+                    comboBox7_SelectedIndexChanged(null, null);
+                    button1_Click(null, null);
+                    ItsSafeToUpdate = true;
                 }
             }
         }
@@ -4168,12 +4192,12 @@ namespace JCFLIGHTGCS
                "Limpar Configurações", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     Serial_Write_To_FC(29);
-                    numericUpDown35.Value = 1100;
+                    numericUpDown35.Value = 1000;
                     numericUpDown36.Value = 1900;
                     numericUpDown67.Value = 975;
                     numericUpDown25.Value = (decimal)0.50;
-                    numericUpDown26.Value = (decimal)0.35;
-                    numericUpDown27.Value = (decimal)0.70;
+                    numericUpDown26.Value = (decimal)0.00;
+                    numericUpDown27.Value = (decimal)0.90;
                     numericUpDown28.Value = (decimal)0.65;
                     numericUpDown29.Value = 0;
                     numericUpDown37.Value = 0;
@@ -4217,6 +4241,18 @@ namespace JCFLIGHTGCS
                     numericUpDown49.Value = 2000;
                     numericUpDown48.Value = 2000;
                     numericUpDown47.Value = 2000;
+                }
+                if (MessageBox.Show("Para aplicar as configurações é necessario reiniciar a controladora de voo.Você deseja reiniciar automaticamente agora?",
+              "Reboot", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    Serial_Write_To_FC(28);
+                    SmallCompass = false;
+                    SerialOpen = false;
+                    SerialPort.Close();
+                    Reboot = true;
+                    comboBox7_SelectedIndexChanged(null, null);
+                    button1_Click(null, null);
+                    ItsSafeToUpdate = true;
                 }
             }
         }
