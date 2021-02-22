@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<GCSPARAMETERS>
+    <GCSFrequency Valor = "10" />
+    <GCSRate Valor = "100" />
+</GCSPARAMETERS>
