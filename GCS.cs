@@ -2221,7 +2221,7 @@ namespace JCFLIGHTGCS
                 else if (FrameMode == 3 || FrameMode == 4 || FrameMode == 5)
                 {
                     int ExpoValue = 0;
-                    int AttitudeRoll = ReadRoll / 10;
+                    int AttitudeRoll = -ReadRoll / 10;
                     if (AttitudeRoll >= 10 && AttitudeRoll < 35) ExpoValue = 150;
                     if (AttitudeRoll >= 35) ExpoValue = 50;
                     if (AttitudeRoll <= -10 && AttitudeRoll > -35) ExpoValue = -150;
