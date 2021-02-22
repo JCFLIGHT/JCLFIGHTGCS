@@ -1668,7 +1668,7 @@ namespace JCFLIGHTGCS
             label151.Text = "Memoria Ram Livre:" + MemoryRamUsed + "KB de " + RamMemString;
             FlightModeToLabel(FlightMode);
 
-            if (ReadRoll > 1200)
+            if (Math.Abs(ReadRoll) > 1200)
             {
                 AccNotCalibrated = true;
                 RollToGraph.Add((double)xTimeStamp, 0);
@@ -1676,7 +1676,7 @@ namespace JCFLIGHTGCS
             else
             {
                 AccNotCalibrated = false;
-                RollToGraph.Add((double)xTimeStamp, ReadRoll);
+                RollToGraph.Add((double)xTimeStamp, -ReadRoll);
             }
             PitchToGraph.Add((double)xTimeStamp, ReadPitch);
             CompassToGraph.Add((double)xTimeStamp, ReadCompass);
@@ -1779,14 +1779,14 @@ namespace JCFLIGHTGCS
                    Aux4ActualData, Aux5ActualData, Aux6ActualData, Aux7ActualData, Aux8ActualData);
             ProgressBarControl3(ThrottleAttitudeData, YawAttitudeData, PitchAttitudeData, RollAttitudeData);
 
-            if (ReadRoll > 1200)
+            if (Math.Abs(ReadRoll) > 1200)
             {
                 HUD1.Roll = 0;
                 HUD1.Pitch = 0;
             }
             else
             {
-                HUD1.Roll = ReadRoll / 10;
+                HUD1.Roll = -ReadRoll / 10;
                 HUD1.Pitch = ReadPitch / 10;
             }
             HUD1.ARMStatus = CommandArmDisarm == 0 ? false : true;
@@ -1797,14 +1797,14 @@ namespace JCFLIGHTGCS
             HUD1.ThrottleSafe = ThrottleActualData > 1250 ? true : false;
             HUD1.VelSpeed = GetValues.AirSpeedEnabled > 0 ? GetValues.ReadAirSpeed : GetValues.ReadGroundSpeed;
 
-            if (ReadRoll > 1200)
+            if (Math.Abs(ReadRoll) > 1200)
             {
                 HUD2.Roll = 0;
                 HUD2.Pitch = 0;
             }
             else
             {
-                HUD2.Roll = ReadRoll / 10;
+                HUD2.Roll = -ReadRoll / 10;
                 HUD2.Pitch = ReadPitch / 10;
             }
             HUD2.ARMStatus = CommandArmDisarm == 0 ? false : true;
@@ -1815,14 +1815,14 @@ namespace JCFLIGHTGCS
             HUD2.ThrottleSafe = ThrottleActualData > 1250 ? true : false;
             HUD2.VelSpeed = GetValues.AirSpeedEnabled > 0 ? GetValues.ReadAirSpeed : GetValues.ReadGroundSpeed;
 
-            if (ReadRoll > 1200)
+            if (Math.Abs(ReadRoll) > 1200)
             {
                 HUDSMALL1.roll = 0;
                 HUDSMALL1.pitch = 0;
             }
             else
             {
-                HUDSMALL1.roll = ReadRoll / 10;
+                HUDSMALL1.roll = -ReadRoll / 10;
                 HUDSMALL1.pitch = ReadPitch / 10;
             }
             HUDSMALL1.status = CommandArmDisarm;
@@ -2221,7 +2221,7 @@ namespace JCFLIGHTGCS
                 else if (FrameMode == 3 || FrameMode == 4 || FrameMode == 5)
                 {
                     int ExpoValue = 0;
-                    int AttitudeRoll = -ReadRoll / 10;
+                    int AttitudeRoll = ReadRoll / 10;
                     if (AttitudeRoll >= 10 && AttitudeRoll < 35) ExpoValue = 150;
                     if (AttitudeRoll >= 35) ExpoValue = 50;
                     if (AttitudeRoll <= -10 && AttitudeRoll > -35) ExpoValue = -150;
@@ -2896,7 +2896,7 @@ namespace JCFLIGHTGCS
                 label95.ForeColor = Color.Green;
             }
             //AHRS
-            if (ReadRoll > 1200)
+            if (Math.Abs(ReadRoll) > 1200)
             {
                 label94.Text = "AHRS:Ruim";
                 label94.ForeColor = Color.Red;
@@ -4090,7 +4090,7 @@ namespace JCFLIGHTGCS
         {
             BlackBoxStream.WriteLine("IMU,{0},{1},{2},{3},{4},{5},{6}", DateTime.Now.ToString("HH:mm:ss.fff"), GetValues.AccFilteredX, GetValues.AccFilteredY, GetValues.AccFilteredZ, GetValues.GyroFilteredX, GetValues.GyroFilteredY, GetValues.GyroFilteredZ);
             BlackBoxStream.WriteLine("MAG,{0},{1},{2},{3}", DateTime.Now.ToString("HH:mm:ss.fff"), GetValues.CompassX, GetValues.CompassY, GetValues.CompassZ);
-            BlackBoxStream.WriteLine("ATTITUDE,{0},{1},{2},{3},{4}", DateTime.Now.ToString("HH:mm:ss.fff"), ReadRoll > 1200 ? 0 : ReadRoll, ReadPitch, ReadCompass, label83.Text);
+            BlackBoxStream.WriteLine("ATTITUDE,{0},{1},{2},{3},{4}", DateTime.Now.ToString("HH:mm:ss.fff"), Math.Abs(ReadRoll) > 1200 ? 0 : -ReadRoll, ReadPitch, ReadCompass, label83.Text);
             BlackBoxStream.WriteLine("RADIO,{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12}", DateTime.Now.ToString("HH:mm:ss.fff"), ThrottleData, PitchData, RollData, YawData, Aux1Data, Aux2Data, Aux3Data, Aux4Data, Aux5Data, Aux6Data, Aux7Data, Aux8Data);
         }
 
