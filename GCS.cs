@@ -1683,7 +1683,7 @@ namespace JCFLIGHTGCS
             else
             {
                 AccNotCalibrated = false;
-                RollToGraph.Add((double)xTimeStamp, ReadRoll);
+                RollToGraph.Add((double)xTimeStamp, -ReadRoll);
             }
             PitchToGraph.Add((double)xTimeStamp, ReadPitch);
             CompassToGraph.Add((double)xTimeStamp, ReadCompass);
@@ -1793,8 +1793,8 @@ namespace JCFLIGHTGCS
             }
             else
             {
-                HUD1.Roll = ReadRoll / 10;
-                HUD1.Pitch = -ReadPitch / 10;
+                HUD1.Roll = -ReadRoll / 10;
+                HUD1.Pitch = ReadPitch / 10;
             }
             HUD1.ARMStatus = CommandArmDisarm == 0 ? false : true;
             HUD1.FailSafe = FailSafeDetect == 1 ? true : false;
@@ -1811,8 +1811,8 @@ namespace JCFLIGHTGCS
             }
             else
             {
-                HUD2.Roll = ReadRoll / 10;
-                HUD2.Pitch = -ReadPitch / 10;
+                HUD2.Roll = -ReadRoll / 10;
+                HUD2.Pitch = ReadPitch / 10;
             }
             HUD2.ARMStatus = CommandArmDisarm == 0 ? false : true;
             HUD2.FailSafe = FailSafeDetect == 1 ? true : false;
@@ -1829,8 +1829,8 @@ namespace JCFLIGHTGCS
             }
             else
             {
-                HUDSMALL1.roll = ReadRoll / 10;
-                HUDSMALL1.pitch = -ReadPitch / 10;
+                HUDSMALL1.roll = -ReadRoll / 10;
+                HUDSMALL1.pitch = ReadPitch / 10;
             }
             HUDSMALL1.status = CommandArmDisarm;
             HUDSMALL1.failsafe = FailSafeDetect == 1 ? true : false;
@@ -2230,8 +2230,8 @@ namespace JCFLIGHTGCS
                     int ExpoValue = 0;
                     int AttitudeRoll = -ReadRoll / 10;
                     if (AttitudeRoll >= 10 && AttitudeRoll < 35) ExpoValue = 150;
-                    if (AttitudeRoll >= 35) ExpoValue = 50;
                     if (AttitudeRoll <= -10 && AttitudeRoll > -35) ExpoValue = -150;
+                    if (AttitudeRoll >= 35) ExpoValue = 50;
                     if (AttitudeRoll <= -35) ExpoValue = -50;
                     PositionToRoutes.Markers.Add(new GMapMarkerAero(GPS_Position, ReadCompass, CoG, Crosstrack, ExpoValue));
                 }
@@ -4155,7 +4155,7 @@ namespace JCFLIGHTGCS
         {
             BlackBoxStream.WriteLine("IMU,{0},{1},{2},{3},{4},{5},{6}", DateTime.Now.ToString("HH:mm:ss.fff"), GetValues.AccFilteredX, GetValues.AccFilteredY, GetValues.AccFilteredZ, GetValues.GyroFilteredX, GetValues.GyroFilteredY, GetValues.GyroFilteredZ);
             BlackBoxStream.WriteLine("MAG,{0},{1},{2},{3}", DateTime.Now.ToString("HH:mm:ss.fff"), GetValues.CompassX, GetValues.CompassY, GetValues.CompassZ);
-            BlackBoxStream.WriteLine("ATTITUDE,{0},{1},{2},{3},{4}", DateTime.Now.ToString("HH:mm:ss.fff"), Math.Abs(ReadRoll) > 1200 ? 0 : ReadRoll, ReadPitch, ReadCompass, label83.Text);
+            BlackBoxStream.WriteLine("ATTITUDE,{0},{1},{2},{3},{4}", DateTime.Now.ToString("HH:mm:ss.fff"), Math.Abs(ReadRoll) > 1200 ? 0 : -ReadRoll, -ReadPitch, ReadCompass, label83.Text);
             BlackBoxStream.WriteLine("RADIO,{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12}", DateTime.Now.ToString("HH:mm:ss.fff"), ThrottleData, PitchData, RollData, YawData, Aux1Data, Aux2Data, Aux3Data, Aux4Data, Aux5Data, Aux6Data, Aux7Data, Aux8Data);
         }
 
