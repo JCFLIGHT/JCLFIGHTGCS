@@ -1263,14 +1263,6 @@ namespace JCFLIGHTGCS
                 {
                     if (_ARMStatus == false)
                     {
-                        if (!_ThrottleSafe)
-                        {
-                            drawstring("Throttle safe para armar", font, fontsize + 2, (SolidBrush)Brushes.Red, -132, 85);
-                        }
-                        else
-                        {
-                            drawstring("Throttle acima do limite para armar", font, fontsize + 2, (SolidBrush)Brushes.Red, -125, 85);
-                        }
                         drawstring("Desarmado", font, fontsize + 15, (SolidBrush)Brushes.Red, -75, halfheight / -3);
                         StatusLast = _ARMStatus;
                     }
@@ -1281,6 +1273,18 @@ namespace JCFLIGHTGCS
                             drawstring("Armado", font, fontsize + 15, (SolidBrush)Brushes.Red, -55, halfheight / -3);
                             StatusLast = _ARMStatus;
                         }
+                    }
+                }
+
+                if (_ARMStatus == false)
+                {
+                    if (!_ThrottleSafe)
+                    {
+                        drawstring("Throttle safe para armar", font, fontsize + 2, (SolidBrush)Brushes.Red, -132, 85);
+                    }
+                    else
+                    {
+                        drawstring("Throttle acima do limite para armar", font, fontsize + 2, (SolidBrush)Brushes.Red, -125, 85);
                     }
                 }
 

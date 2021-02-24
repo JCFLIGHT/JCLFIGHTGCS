@@ -29,7 +29,7 @@ namespace JCFLIGHTGCS
         static byte CheckSum = 0;
         static byte Command;
         static byte[] InBuffer = new byte[300];
-        static byte[] NumericConvert = new byte[15];
+        static byte[] NumericConvert = new byte[30];
 
         int ThrottleData = 900;
         int YawData = 1000;
@@ -542,7 +542,7 @@ namespace JCFLIGHTGCS
             label157.ForeColor = Color.White;
             label158.BackColor = Color.Blue;
             label158.ForeColor = Color.White;
-            Airports.ReadOurairports(Settings.GetRunningDirectory() + "airports.csv");
+            Airports.ReadOurairports(Settings.GetRunningDirectory() + "Airports.csv");
             Airports.checkdups = true;
             if (!GCSSettings.Read_From_XML(Settings.GetRunningDirectory() + "GCSSettings.xml"))
             {
@@ -960,6 +960,13 @@ namespace JCFLIGHTGCS
                     NumericConvert[10] = (byte)InBuffer[ptr++];
                     NumericConvert[11] = (byte)InBuffer[ptr++];
                     ServosLPF = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    NumericConvert[12] = (byte)InBuffer[ptr++];
+                    NumericConvert[13] = (byte)InBuffer[ptr++];
+                    NumericConvert[14] = (byte)InBuffer[ptr++];
+                    NumericConvert[15] = (byte)InBuffer[ptr++];
+                    NumericConvert[16] = (byte)InBuffer[ptr++];
+                    NumericConvert[17] = (byte)InBuffer[ptr++];
+                    NumericConvert[18] = (byte)InBuffer[ptr++];
                     break;
 
                 case 10:
@@ -1676,7 +1683,7 @@ namespace JCFLIGHTGCS
             else
             {
                 AccNotCalibrated = false;
-                RollToGraph.Add((double)xTimeStamp, -ReadRoll);
+                RollToGraph.Add((double)xTimeStamp, ReadRoll);
             }
             PitchToGraph.Add((double)xTimeStamp, ReadPitch);
             CompassToGraph.Add((double)xTimeStamp, ReadCompass);
@@ -1786,8 +1793,8 @@ namespace JCFLIGHTGCS
             }
             else
             {
-                HUD1.Roll = -ReadRoll / 10;
-                HUD1.Pitch = ReadPitch / 10;
+                HUD1.Roll = ReadRoll / 10;
+                HUD1.Pitch = -ReadPitch / 10;
             }
             HUD1.ARMStatus = CommandArmDisarm == 0 ? false : true;
             HUD1.FailSafe = FailSafeDetect == 1 ? true : false;
@@ -1804,8 +1811,8 @@ namespace JCFLIGHTGCS
             }
             else
             {
-                HUD2.Roll = -ReadRoll / 10;
-                HUD2.Pitch = ReadPitch / 10;
+                HUD2.Roll = ReadRoll / 10;
+                HUD2.Pitch = -ReadPitch / 10;
             }
             HUD2.ARMStatus = CommandArmDisarm == 0 ? false : true;
             HUD2.FailSafe = FailSafeDetect == 1 ? true : false;
@@ -1822,8 +1829,8 @@ namespace JCFLIGHTGCS
             }
             else
             {
-                HUDSMALL1.roll = -ReadRoll / 10;
-                HUDSMALL1.pitch = ReadPitch / 10;
+                HUDSMALL1.roll = ReadRoll / 10;
+                HUDSMALL1.pitch = -ReadPitch / 10;
             }
             HUDSMALL1.status = CommandArmDisarm;
             HUDSMALL1.failsafe = FailSafeDetect == 1 ? true : false;
@@ -2288,6 +2295,23 @@ namespace JCFLIGHTGCS
 
         private void FlightModeToLabel(byte _FlightMode)
         {
+            if (FrameMode == 0)
+            {
+                groupBox6.Text = "CONTROLE DERIVATIVO";
+            }
+            else if (FrameMode == 1)
+            {
+                groupBox6.Text = "CONTROLE DERIVATIVO";
+            }
+            else if (FrameMode == 2)
+            {
+                groupBox6.Text = "CONTROLE DERIVATIVO";
+            }
+            else if (FrameMode == 3 || FrameMode == 4 || FrameMode == 5)
+            {
+                groupBox6.Text = "FEED-FORWARD";
+            }
+
             switch (_FlightMode)
             {
                 case 0: //ACRO
@@ -2852,6 +2876,13 @@ namespace JCFLIGHTGCS
                 numericUpDown10.Value = (decimal)(NumericConvert[9]) / 10;
                 numericUpDown11.Value = (decimal)(NumericConvert[10]) / 100;
                 numericUpDown12.Value = (decimal)(NumericConvert[11]) / 100;
+                numericUpDown68.Value = (decimal)(NumericConvert[12]) / 10;
+                numericUpDown69.Value = (decimal)(NumericConvert[13]) / 10;
+                numericUpDown31.Value = (decimal)(NumericConvert[14]) / 10;
+                numericUpDown71.Value = (decimal)(NumericConvert[15]) / 10;
+                numericUpDown72.Value = NumericConvert[16];
+                numericUpDown70.Value = (decimal)(NumericConvert[17]) / 10;
+                numericUpDown73.Value = NumericConvert[18];
             }
             SmallCompass = false;
             tabControl1.SelectTab(tabPage7);
@@ -3037,15 +3068,6 @@ namespace JCFLIGHTGCS
                "Limpar Configurações", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     Serial_Write_To_FC(20);
-                    numericUpDown1.Value = (decimal)(35) / 10;
-                    numericUpDown2.Value = (decimal)(25) / 1000;
-                    numericUpDown3.Value = 26;
-                    numericUpDown4.Value = (decimal)(35) / 10;
-                    numericUpDown5.Value = (decimal)(25) / 1000;
-                    numericUpDown6.Value = 26;
-                    numericUpDown7.Value = (decimal)(69) / 10;
-                    numericUpDown8.Value = (decimal)(50) / 1000;
-                    numericUpDown9.Value = 0;
                     numericUpDown10.Value = (decimal)(50) / 10;
                     numericUpDown11.Value = (decimal)(100) / 100;
                     numericUpDown12.Value = (decimal)(90) / 100;
@@ -3064,6 +3086,42 @@ namespace JCFLIGHTGCS
                     numericUpDown23.Value = 0;
                     numericUpDown24.Value = 0;
                     comboBox22.SelectedIndex = 0;
+                    if (FrameMode == 3 || FrameMode == 4 || FrameMode == 5)
+                    {
+                        numericUpDown1.Value = (decimal)(5) / 10;
+                        numericUpDown2.Value = (decimal)(7) / 1000;
+                        numericUpDown3.Value = 0;
+                        numericUpDown4.Value = (decimal)(5) / 10;
+                        numericUpDown5.Value = (decimal)(7) / 1000;
+                        numericUpDown6.Value = 0;
+                        numericUpDown7.Value = (decimal)(6) / 10;
+                        numericUpDown8.Value = (decimal)(10) / 1000;
+                        numericUpDown9.Value = 0;
+                        numericUpDown68.Value = (decimal)(50) / 10;
+                        numericUpDown69.Value = (decimal)(50) / 10;
+                        numericUpDown31.Value = (decimal)(60) / 10;
+                        numericUpDown71.Value = (decimal)(20) / 10;
+                        numericUpDown72.Value = 5;
+                    }
+                    else
+                    {
+                        numericUpDown1.Value = (decimal)(40) / 10;
+                        numericUpDown2.Value = (decimal)(30) / 1000;
+                        numericUpDown3.Value = 23;
+                        numericUpDown4.Value = (decimal)(40) / 10;
+                        numericUpDown5.Value = (decimal)(30) / 1000;
+                        numericUpDown6.Value = 23;
+                        numericUpDown7.Value = (decimal)(85) / 10;
+                        numericUpDown8.Value = (decimal)(45) / 1000;
+                        numericUpDown9.Value = 0;
+                        numericUpDown68.Value = (decimal)(60) / 10;
+                        numericUpDown69.Value = (decimal)(60) / 10;
+                        numericUpDown31.Value = (decimal)(60) / 10;
+                        numericUpDown71.Value = (decimal)(20) / 10;
+                        numericUpDown72.Value = 15;
+                    }
+                    numericUpDown70.Value = (decimal)(60) / 10;
+                    numericUpDown73.Value = 90;
                 }
                 if (MessageBox.Show("Para aplicar as configurações é necessario reiniciar a controladora de voo.Você deseja reiniciar automaticamente agora?",
               "Reboot", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -3263,7 +3321,7 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)0x4a;
                     SendBuffer[VectorPointer++] = (byte)0x43;
                     SendBuffer[VectorPointer++] = (byte)0x3c;
-                    SendBuffer[VectorPointer++] = 32;
+                    SendBuffer[VectorPointer++] = 39;
                     SendBuffer[VectorPointer++] = (byte)18;
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToByte(numericUpDown18.Value));
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown19.Value));
@@ -3297,6 +3355,13 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)(numericUpDown12.Value * 100);
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown21.Value));
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown21.Value) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)(numericUpDown68.Value * 10);
+                    SendBuffer[VectorPointer++] = (byte)(numericUpDown69.Value * 10);
+                    SendBuffer[VectorPointer++] = (byte)(numericUpDown31.Value * 10);
+                    SendBuffer[VectorPointer++] = (byte)(numericUpDown71.Value * 10);
+                    SendBuffer[VectorPointer++] = (byte)numericUpDown72.Value;
+                    SendBuffer[VectorPointer++] = (byte)(numericUpDown70.Value * 10);
+                    SendBuffer[VectorPointer++] = (byte)numericUpDown73.Value;
                     for (int i = 3; i < VectorPointer; i++) CheckAllBuffers ^= SendBuffer[i];
                     SendBuffer[VectorPointer++] = CheckAllBuffers;
                     SerialPort.Write(SendBuffer, 0, VectorPointer);
@@ -4090,7 +4155,7 @@ namespace JCFLIGHTGCS
         {
             BlackBoxStream.WriteLine("IMU,{0},{1},{2},{3},{4},{5},{6}", DateTime.Now.ToString("HH:mm:ss.fff"), GetValues.AccFilteredX, GetValues.AccFilteredY, GetValues.AccFilteredZ, GetValues.GyroFilteredX, GetValues.GyroFilteredY, GetValues.GyroFilteredZ);
             BlackBoxStream.WriteLine("MAG,{0},{1},{2},{3}", DateTime.Now.ToString("HH:mm:ss.fff"), GetValues.CompassX, GetValues.CompassY, GetValues.CompassZ);
-            BlackBoxStream.WriteLine("ATTITUDE,{0},{1},{2},{3},{4}", DateTime.Now.ToString("HH:mm:ss.fff"), Math.Abs(ReadRoll) > 1200 ? 0 : -ReadRoll, ReadPitch, ReadCompass, label83.Text);
+            BlackBoxStream.WriteLine("ATTITUDE,{0},{1},{2},{3},{4}", DateTime.Now.ToString("HH:mm:ss.fff"), Math.Abs(ReadRoll) > 1200 ? 0 : ReadRoll, ReadPitch, ReadCompass, label83.Text);
             BlackBoxStream.WriteLine("RADIO,{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12}", DateTime.Now.ToString("HH:mm:ss.fff"), ThrottleData, PitchData, RollData, YawData, Aux1Data, Aux2Data, Aux3Data, Aux4Data, Aux5Data, Aux6Data, Aux7Data, Aux8Data);
         }
 
