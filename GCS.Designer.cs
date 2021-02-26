@@ -28,7 +28,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GCS));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.button7 = new System.Windows.Forms.Button();
             this.label27 = new System.Windows.Forms.Label();
@@ -4610,9 +4610,9 @@
             this.label202.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label202.Location = new System.Drawing.Point(11, 242);
             this.label202.Name = "label202";
-            this.label202.Size = new System.Drawing.Size(95, 16);
+            this.label202.Size = new System.Drawing.Size(96, 16);
             this.label202.TabIndex = 159;
-            this.label202.Text = "Servo 4 Méd";
+            this.label202.Text = "Servo 4 Trim";
             // 
             // numericUpDown46
             // 
@@ -4653,9 +4653,9 @@
             this.label200.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label200.Location = new System.Drawing.Point(11, 214);
             this.label200.Name = "label200";
-            this.label200.Size = new System.Drawing.Size(95, 16);
+            this.label200.Size = new System.Drawing.Size(96, 16);
             this.label200.TabIndex = 156;
-            this.label200.Text = "Servo 3 Méd";
+            this.label200.Text = "Servo 3 Trim";
             // 
             // numericUpDown45
             // 
@@ -4696,9 +4696,9 @@
             this.label198.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label198.Location = new System.Drawing.Point(11, 186);
             this.label198.Name = "label198";
-            this.label198.Size = new System.Drawing.Size(95, 16);
+            this.label198.Size = new System.Drawing.Size(96, 16);
             this.label198.TabIndex = 153;
-            this.label198.Text = "Servo 2 Méd";
+            this.label198.Text = "Servo 2 Trim";
             // 
             // numericUpDown44
             // 
@@ -4739,9 +4739,9 @@
             this.label196.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label196.Location = new System.Drawing.Point(11, 156);
             this.label196.Name = "label196";
-            this.label196.Size = new System.Drawing.Size(95, 16);
+            this.label196.Size = new System.Drawing.Size(96, 16);
             this.label196.TabIndex = 150;
-            this.label196.Text = "Servo 1 Méd";
+            this.label196.Text = "Servo 1 Trim";
             // 
             // numericUpDown43
             // 
@@ -7972,8 +7972,8 @@
             // Parametro
             // 
             this.Parametro.DataPropertyName = "Nenhum";
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Parametro.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Parametro.DefaultCellStyle = dataGridViewCellStyle1;
             this.Parametro.HeaderText = "Parâmetro";
             this.Parametro.Name = "Parametro";
             this.Parametro.ReadOnly = true;
