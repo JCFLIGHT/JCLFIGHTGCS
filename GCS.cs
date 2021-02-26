@@ -140,7 +140,7 @@ namespace JCFLIGHTGCS
         byte ComboBoxAirSpeed = 0;
         byte ComboBoxSPI = 0;
         byte ComboBoxUART2 = 0;
-        byte ComboBoxCompass = 0;
+        byte ComboBoxUart1 = 0;
         byte ComboBoxCompassRot = 0;
         byte ComboBoxAcro = 0;
         byte ComboBoxSport = 0;
@@ -162,7 +162,7 @@ namespace JCFLIGHTGCS
         byte RthAltitudeGuard = 0;
         byte OptFlowGuard = 0;
         byte SonarGuard = 0;
-        byte CompassGuard = 0;
+        byte Uart1Guard = 0;
         byte CompassRotGuard = 0;
         byte AcroGuard = 0;
         byte SportGuard = 0;
@@ -912,7 +912,7 @@ namespace JCFLIGHTGCS
                     ParachuteGuard = (byte)InBuffer[ptr++];
                     OptFlowGuard = (byte)InBuffer[ptr++];
                     SonarGuard = (byte)InBuffer[ptr++];
-                    CompassGuard = (byte)InBuffer[ptr++];
+                    Uart1Guard = (byte)InBuffer[ptr++];
                     CompassRotGuard = (byte)InBuffer[ptr++];
                     RthAltitudeGuard = (byte)InBuffer[ptr++];
                     AcroGuard = (byte)InBuffer[ptr++];
@@ -2049,7 +2049,7 @@ namespace JCFLIGHTGCS
                 comboBox9.SelectedIndex = AutoGuard;
                 comboBox15.SelectedIndex = OptFlowGuard;
                 comboBox16.SelectedIndex = ((SonarGuard > comboBox16.Items.Count) ? 0 : SonarGuard);
-                comboBox17.SelectedIndex = CompassGuard;
+                comboBox17.SelectedIndex = Uart1Guard;
                 comboBox18.SelectedIndex = CompassRotGuard;
                 comboBox19.SelectedIndex = RthAltitudeGuard;
                 comboBox24.SelectedIndex = SafeBtnGuard;
@@ -2758,7 +2758,7 @@ namespace JCFLIGHTGCS
 
         private void comboBox17_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ComboBoxCompass = Convert.ToByte(comboBox17.SelectedIndex);
+            ComboBoxUart1 = Convert.ToByte(comboBox17.SelectedIndex);
         }
 
         private void comboBox18_SelectedIndexChanged(object sender, EventArgs e)
@@ -3285,7 +3285,7 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)ComboBoxParachute;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxSPI;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxUART2;
-                    SendBuffer[VectorPointer++] = (byte)ComboBoxCompass;
+                    SendBuffer[VectorPointer++] = (byte)ComboBoxUart1;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxCompassRot;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxRthAltitude;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxAcro;

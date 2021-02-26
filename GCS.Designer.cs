@@ -28,7 +28,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GCS));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.button7 = new System.Windows.Forms.Button();
             this.label27 = new System.Windows.Forms.Label();
@@ -312,10 +312,6 @@
             this.label181 = new System.Windows.Forms.Label();
             this.button26 = new System.Windows.Forms.Button();
             this.button27 = new System.Windows.Forms.Button();
-            this.label177 = new System.Windows.Forms.Label();
-            this.numericUpDown35 = new System.Windows.Forms.NumericUpDown();
-            this.label178 = new System.Windows.Forms.Label();
-            this.numericUpDown36 = new System.Windows.Forms.NumericUpDown();
             this.groupBox34 = new System.Windows.Forms.GroupBox();
             this.label175 = new System.Windows.Forms.Label();
             this.label174 = new System.Windows.Forms.Label();
@@ -325,18 +321,22 @@
             this.numericUpDown33 = new System.Windows.Forms.NumericUpDown();
             this.label171 = new System.Windows.Forms.Label();
             this.numericUpDown32 = new System.Windows.Forms.NumericUpDown();
-            this.label169 = new System.Windows.Forms.Label();
-            this.numericUpDown30 = new System.Windows.Forms.NumericUpDown();
             this.groupBox32 = new System.Windows.Forms.GroupBox();
             this.label166 = new System.Windows.Forms.Label();
             this.numericUpDown28 = new System.Windows.Forms.NumericUpDown();
             this.rcExpo2 = new JCFLIGHTGCS.RCExpo();
             this.label167 = new System.Windows.Forms.Label();
+            this.label169 = new System.Windows.Forms.Label();
             this.numericUpDown27 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown30 = new System.Windows.Forms.NumericUpDown();
             this.groupBox31 = new System.Windows.Forms.GroupBox();
+            this.label177 = new System.Windows.Forms.Label();
             this.label179 = new System.Windows.Forms.Label();
+            this.numericUpDown35 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown25 = new System.Windows.Forms.NumericUpDown();
+            this.label178 = new System.Windows.Forms.Label();
             this.numericUpDown67 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown36 = new System.Windows.Forms.NumericUpDown();
             this.label164 = new System.Windows.Forms.Label();
             this.numericUpDown26 = new System.Windows.Forms.NumericUpDown();
             this.throttleExpo2 = new JCFLIGHTGCS.ThrottleExpo();
@@ -693,19 +693,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown40)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown39)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown41)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown35)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown36)).BeginInit();
             this.groupBox34.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown34)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown33)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown32)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown30)).BeginInit();
             this.groupBox32.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown28)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown27)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown30)).BeginInit();
             this.groupBox31.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown35)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown25)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown67)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown36)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown26)).BeginInit();
             this.tabPage6.SuspendLayout();
             this.tabPage7.SuspendLayout();
@@ -1989,7 +1989,7 @@
             this.groupBox30.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox30.Location = new System.Drawing.Point(219, 143);
             this.groupBox30.Name = "groupBox30";
-            this.groupBox30.Size = new System.Drawing.Size(143, 115);
+            this.groupBox30.Size = new System.Drawing.Size(143, 124);
             this.groupBox30.TabIndex = 30;
             this.groupBox30.TabStop = false;
             this.groupBox30.Text = "ACC AJUSTE";
@@ -1997,7 +1997,7 @@
             // numericUpDown24
             // 
             this.numericUpDown24.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown24.Location = new System.Drawing.Point(75, 81);
+            this.numericUpDown24.Location = new System.Drawing.Point(75, 89);
             this.numericUpDown24.Maximum = new decimal(new int[] {
             800,
             0,
@@ -2015,7 +2015,7 @@
             // numericUpDown23
             // 
             this.numericUpDown23.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown23.Location = new System.Drawing.Point(75, 17);
+            this.numericUpDown23.Location = new System.Drawing.Point(75, 25);
             this.numericUpDown23.Maximum = new decimal(new int[] {
             800,
             0,
@@ -2033,7 +2033,7 @@
             // numericUpDown22
             // 
             this.numericUpDown22.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown22.Location = new System.Drawing.Point(75, 49);
+            this.numericUpDown22.Location = new System.Drawing.Point(75, 57);
             this.numericUpDown22.Maximum = new decimal(new int[] {
             800,
             0,
@@ -2052,7 +2052,7 @@
             // 
             this.label155.AutoSize = true;
             this.label155.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label155.Location = new System.Drawing.Point(8, 83);
+            this.label155.Location = new System.Drawing.Point(8, 91);
             this.label155.Name = "label155";
             this.label155.Size = new System.Drawing.Size(40, 20);
             this.label155.TabIndex = 31;
@@ -2062,7 +2062,7 @@
             // 
             this.label102.AutoSize = true;
             this.label102.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label102.Location = new System.Drawing.Point(8, 19);
+            this.label102.Location = new System.Drawing.Point(8, 27);
             this.label102.Name = "label102";
             this.label102.Size = new System.Drawing.Size(44, 20);
             this.label102.TabIndex = 31;
@@ -2072,7 +2072,7 @@
             // 
             this.label69.AutoSize = true;
             this.label69.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label69.Location = new System.Drawing.Point(8, 53);
+            this.label69.Location = new System.Drawing.Point(8, 61);
             this.label69.Name = "label69";
             this.label69.Size = new System.Drawing.Size(36, 20);
             this.label69.TabIndex = 30;
@@ -2108,7 +2108,7 @@
             // 
             this.groupBox27.Controls.Add(this.comboBox24);
             this.groupBox27.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox27.Location = new System.Drawing.Point(6, 387);
+            this.groupBox27.Location = new System.Drawing.Point(6, 453);
             this.groupBox27.Name = "groupBox27";
             this.groupBox27.Size = new System.Drawing.Size(210, 60);
             this.groupBox27.TabIndex = 25;
@@ -2197,9 +2197,9 @@
             // 
             this.groupBox10.Controls.Add(this.comboBox18);
             this.groupBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox10.Location = new System.Drawing.Point(3, 501);
+            this.groupBox10.Location = new System.Drawing.Point(6, 515);
             this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(213, 52);
+            this.groupBox10.Size = new System.Drawing.Size(328, 52);
             this.groupBox10.TabIndex = 19;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "ROT. DO COMPASS";
@@ -2210,13 +2210,48 @@
             this.comboBox18.FormattingEnabled = true;
             this.comboBox18.Items.AddRange(new object[] {
             "SEM ROTAÇÃO",
-            "YAW 45°",
-            "YAW 315°",
-            "ROLL 180° & YAW 45°",
-            "PITCH 180°"});
+            "ROTAÇÃO_YAW_45",
+            "ROTAÇÃO_YAW_90",
+            "ROTAÇÃO_YAW_135",
+            "ROTAÇÃO_YAW_180",
+            "ROTAÇÃO_YAW_225",
+            "ROTAÇÃO_YAW_270",
+            "ROTAÇÃO_YAW_315",
+            "ROTAÇÃO_ROLL_180",
+            "ROTAÇÃO_ROLL_180_YAW_45",
+            "ROTAÇÃO_ROLL_180_YAW_90",
+            "ROTAÇÃO_ROLL_180_YAW_135",
+            "ROTAÇÃO_PITCH_180",
+            "ROTAÇÃO_ROLL_180_YAW_225",
+            "ROTAÇÃO_ROLL_180_YAW_270",
+            "ROTAÇÃO_ROLL_180_YAW_315",
+            "ROTAÇÃO_ROLL_90",
+            "ROTAÇÃO_ROLL_90_YAW_45",
+            "ROTAÇÃO_ROLL_90_YAW_90",
+            "ROTAÇÃO_ROLL_90_YAW_135",
+            "ROTAÇÃO_ROLL_270",
+            "ROTAÇÃO_ROLL_270_YAW_45",
+            "ROTAÇÃO_ROLL_270_YAW_90",
+            "ROTAÇÃO_ROLL_270_YAW_135",
+            "ROTAÇÃO_PITCH_90",
+            "ROTAÇÃO_PITCH_270",
+            "ROTAÇÃO_PITCH_180_YAW_90",
+            "ROTAÇÃO_PITCH_180_YAW_270",
+            "ROTAÇÃO_ROLL_90_PITCH_90",
+            "ROTAÇÃO_ROLL_180_PITCH_90",
+            "ROTAÇÃO_ROLL_270_PITCH_90",
+            "ROTAÇÃO_ROLL_90_PITCH_180",
+            "ROTAÇÃO_ROLL_270_PITCH_180",
+            "ROTAÇÃO_ROLL_90_PITCH_270,",
+            "ROTAÇÃO_ROLL_180_PITCH_270",
+            "ROTAÇÃO_ROLL_270_PITCH_270",
+            "ROTAÇÃO_ROLL_90_PITCH_180_YAW_90",
+            "ROTAÇÃO_ROLL_90_YAW_270",
+            "ROTAÇÃO_YAW_293_PITCH_68_ROLL_90",
+            "ROTAÇÃO MAXIMA"});
             this.comboBox18.Location = new System.Drawing.Point(6, 21);
             this.comboBox18.Name = "comboBox18";
-            this.comboBox18.Size = new System.Drawing.Size(198, 24);
+            this.comboBox18.Size = new System.Drawing.Size(316, 24);
             this.comboBox18.TabIndex = 0;
             this.comboBox18.Text = "SELECIONE";
             this.comboBox18.SelectedIndexChanged += new System.EventHandler(this.comboBox18_SelectedIndexChanged);
@@ -2225,24 +2260,20 @@
             // 
             this.groupBox9.Controls.Add(this.comboBox17);
             this.groupBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox9.Location = new System.Drawing.Point(6, 444);
+            this.groupBox9.Location = new System.Drawing.Point(6, 273);
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.Size = new System.Drawing.Size(210, 54);
             this.groupBox9.TabIndex = 18;
             this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "COMPASS";
+            this.groupBox9.Text = "UART 1";
             // 
             // comboBox17
             // 
             this.comboBox17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox17.FormattingEnabled = true;
             this.comboBox17.Items.AddRange(new object[] {
-            "GPS + AK8975",
-            "GPS + HMC5843",
-            "GPS + HMC5883",
-            "EXT.AK8975",
-            "EXT.HMC5843",
-            "EXT.HMC5883"});
+            "GPS-UBLOX",
+            "GPS-DJI"});
             this.comboBox17.Location = new System.Drawing.Point(6, 21);
             this.comboBox17.Name = "comboBox17";
             this.comboBox17.Size = new System.Drawing.Size(198, 24);
@@ -2254,12 +2285,12 @@
             // 
             this.groupBox8.Controls.Add(this.comboBox16);
             this.groupBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox8.Location = new System.Drawing.Point(6, 273);
+            this.groupBox8.Location = new System.Drawing.Point(6, 333);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Size = new System.Drawing.Size(210, 54);
             this.groupBox8.TabIndex = 17;
             this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "UART2";
+            this.groupBox8.Text = "UART 2";
             // 
             // comboBox16
             // 
@@ -2280,12 +2311,12 @@
             // 
             this.groupBox7.Controls.Add(this.comboBox15);
             this.groupBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox7.Location = new System.Drawing.Point(6, 330);
+            this.groupBox7.Location = new System.Drawing.Point(6, 393);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(210, 54);
             this.groupBox7.TabIndex = 16;
             this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "UART3";
+            this.groupBox7.Text = "UART 3";
             // 
             // comboBox15
             // 
@@ -2551,9 +2582,9 @@
             this.label50.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label50.Location = new System.Drawing.Point(287, 332);
             this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(251, 20);
+            this.label50.Size = new System.Drawing.Size(248, 20);
             this.label50.TabIndex = 27;
-            this.label50.Text = "> Arma e Desarma a Controladora";
+            this.label50.Text = "> Arma e Desarma a controladora";
             // 
             // comboBox10
             // 
@@ -2628,9 +2659,9 @@
             this.label47.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label47.Location = new System.Drawing.Point(287, 28);
             this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(284, 20);
+            this.label47.Size = new System.Drawing.Size(306, 20);
             this.label47.TabIndex = 22;
-            this.label47.Text = "> O Controlador PID fica livre do AHRS";
+            this.label47.Text = "> O Controlador PID fica livre do auto-nível";
             // 
             // label46
             // 
@@ -4947,72 +4978,6 @@
             this.button27.UseVisualStyleBackColor = true;
             this.button27.Click += new System.EventHandler(this.button27_Click);
             // 
-            // label177
-            // 
-            this.label177.AutoSize = true;
-            this.label177.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label177.Location = new System.Drawing.Point(6, 116);
-            this.label177.Name = "label177";
-            this.label177.Size = new System.Drawing.Size(104, 16);
-            this.label177.TabIndex = 136;
-            this.label177.Text = "Pulso Máximo";
-            // 
-            // numericUpDown35
-            // 
-            this.numericUpDown35.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown35.Location = new System.Drawing.Point(120, 86);
-            this.numericUpDown35.Maximum = new decimal(new int[] {
-            1400,
-            0,
-            0,
-            0});
-            this.numericUpDown35.Minimum = new decimal(new int[] {
-            900,
-            0,
-            0,
-            0});
-            this.numericUpDown35.Name = "numericUpDown35";
-            this.numericUpDown35.Size = new System.Drawing.Size(120, 22);
-            this.numericUpDown35.TabIndex = 133;
-            this.numericUpDown35.Value = new decimal(new int[] {
-            900,
-            0,
-            0,
-            0});
-            // 
-            // label178
-            // 
-            this.label178.AutoSize = true;
-            this.label178.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label178.Location = new System.Drawing.Point(6, 88);
-            this.label178.Name = "label178";
-            this.label178.Size = new System.Drawing.Size(100, 16);
-            this.label178.TabIndex = 134;
-            this.label178.Text = "Pulso Mínimo";
-            // 
-            // numericUpDown36
-            // 
-            this.numericUpDown36.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown36.Location = new System.Drawing.Point(120, 114);
-            this.numericUpDown36.Maximum = new decimal(new int[] {
-            2200,
-            0,
-            0,
-            0});
-            this.numericUpDown36.Minimum = new decimal(new int[] {
-            1700,
-            0,
-            0,
-            0});
-            this.numericUpDown36.Name = "numericUpDown36";
-            this.numericUpDown36.Size = new System.Drawing.Size(120, 22);
-            this.numericUpDown36.TabIndex = 135;
-            this.numericUpDown36.Value = new decimal(new int[] {
-            1700,
-            0,
-            0,
-            0});
-            // 
             // groupBox34
             // 
             this.groupBox34.Controls.Add(this.label175);
@@ -5120,35 +5085,6 @@
             this.numericUpDown32.Size = new System.Drawing.Size(120, 22);
             this.numericUpDown32.TabIndex = 135;
             // 
-            // label169
-            // 
-            this.label169.AutoSize = true;
-            this.label169.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label169.Location = new System.Drawing.Point(6, 88);
-            this.label169.Name = "label169";
-            this.label169.Size = new System.Drawing.Size(74, 16);
-            this.label169.TabIndex = 134;
-            this.label169.Text = "Yaw Rate";
-            // 
-            // numericUpDown30
-            // 
-            this.numericUpDown30.DecimalPlaces = 2;
-            this.numericUpDown30.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown30.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            131072});
-            this.numericUpDown30.Location = new System.Drawing.Point(120, 86);
-            this.numericUpDown30.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDown30.Name = "numericUpDown30";
-            this.numericUpDown30.Size = new System.Drawing.Size(120, 22);
-            this.numericUpDown30.TabIndex = 135;
-            // 
             // groupBox32
             // 
             this.groupBox32.Controls.Add(this.label166);
@@ -5213,6 +5149,16 @@
             this.label167.TabIndex = 134;
             this.label167.Text = "Rc Expo";
             // 
+            // label169
+            // 
+            this.label169.AutoSize = true;
+            this.label169.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label169.Location = new System.Drawing.Point(6, 88);
+            this.label169.Name = "label169";
+            this.label169.Size = new System.Drawing.Size(74, 16);
+            this.label169.TabIndex = 134;
+            this.label169.Text = "Yaw Rate";
+            // 
             // numericUpDown27
             // 
             this.numericUpDown27.DecimalPlaces = 2;
@@ -5231,6 +5177,25 @@
             this.numericUpDown27.Name = "numericUpDown27";
             this.numericUpDown27.Size = new System.Drawing.Size(120, 22);
             this.numericUpDown27.TabIndex = 135;
+            // 
+            // numericUpDown30
+            // 
+            this.numericUpDown30.DecimalPlaces = 2;
+            this.numericUpDown30.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericUpDown30.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.numericUpDown30.Location = new System.Drawing.Point(120, 86);
+            this.numericUpDown30.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown30.Name = "numericUpDown30";
+            this.numericUpDown30.Size = new System.Drawing.Size(120, 22);
+            this.numericUpDown30.TabIndex = 135;
             // 
             // groupBox31
             // 
@@ -5253,6 +5218,16 @@
             this.groupBox31.TabStop = false;
             this.groupBox31.Text = "Throttle";
             // 
+            // label177
+            // 
+            this.label177.AutoSize = true;
+            this.label177.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label177.Location = new System.Drawing.Point(6, 116);
+            this.label177.Name = "label177";
+            this.label177.Size = new System.Drawing.Size(104, 16);
+            this.label177.TabIndex = 136;
+            this.label177.Text = "Pulso Máximo";
+            // 
             // label179
             // 
             this.label179.AutoSize = true;
@@ -5262,6 +5237,29 @@
             this.label179.Size = new System.Drawing.Size(71, 16);
             this.label179.TabIndex = 138;
             this.label179.Text = "Fail-Safe";
+            // 
+            // numericUpDown35
+            // 
+            this.numericUpDown35.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericUpDown35.Location = new System.Drawing.Point(120, 86);
+            this.numericUpDown35.Maximum = new decimal(new int[] {
+            1400,
+            0,
+            0,
+            0});
+            this.numericUpDown35.Minimum = new decimal(new int[] {
+            900,
+            0,
+            0,
+            0});
+            this.numericUpDown35.Name = "numericUpDown35";
+            this.numericUpDown35.Size = new System.Drawing.Size(120, 22);
+            this.numericUpDown35.TabIndex = 133;
+            this.numericUpDown35.Value = new decimal(new int[] {
+            900,
+            0,
+            0,
+            0});
             // 
             // numericUpDown25
             // 
@@ -5282,6 +5280,16 @@
             this.numericUpDown25.Size = new System.Drawing.Size(120, 22);
             this.numericUpDown25.TabIndex = 129;
             // 
+            // label178
+            // 
+            this.label178.AutoSize = true;
+            this.label178.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label178.Location = new System.Drawing.Point(6, 88);
+            this.label178.Name = "label178";
+            this.label178.Size = new System.Drawing.Size(100, 16);
+            this.label178.TabIndex = 134;
+            this.label178.Text = "Pulso Mínimo";
+            // 
             // numericUpDown67
             // 
             this.numericUpDown67.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -5301,6 +5309,29 @@
             this.numericUpDown67.TabIndex = 137;
             this.numericUpDown67.Value = new decimal(new int[] {
             800,
+            0,
+            0,
+            0});
+            // 
+            // numericUpDown36
+            // 
+            this.numericUpDown36.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericUpDown36.Location = new System.Drawing.Point(120, 114);
+            this.numericUpDown36.Maximum = new decimal(new int[] {
+            2200,
+            0,
+            0,
+            0});
+            this.numericUpDown36.Minimum = new decimal(new int[] {
+            1700,
+            0,
+            0,
+            0});
+            this.numericUpDown36.Name = "numericUpDown36";
+            this.numericUpDown36.Size = new System.Drawing.Size(120, 22);
+            this.numericUpDown36.TabIndex = 135;
+            this.numericUpDown36.Value = new decimal(new int[] {
+            1700,
             0,
             0,
             0});
@@ -7941,8 +7972,8 @@
             // Parametro
             // 
             this.Parametro.DataPropertyName = "Nenhum";
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Parametro.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Parametro.DefaultCellStyle = dataGridViewCellStyle7;
             this.Parametro.HeaderText = "Parâmetro";
             this.Parametro.Name = "Parametro";
             this.Parametro.ReadOnly = true;
@@ -8218,22 +8249,22 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown40)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown39)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown41)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown35)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown36)).EndInit();
             this.groupBox34.ResumeLayout(false);
             this.groupBox34.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown34)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown33)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown32)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown30)).EndInit();
             this.groupBox32.ResumeLayout(false);
             this.groupBox32.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown28)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown27)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown30)).EndInit();
             this.groupBox31.ResumeLayout(false);
             this.groupBox31.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown35)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown25)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown67)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown36)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown26)).EndInit();
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
