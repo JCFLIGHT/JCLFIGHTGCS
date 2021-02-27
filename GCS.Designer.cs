@@ -2062,7 +2062,7 @@
             // 
             this.label102.AutoSize = true;
             this.label102.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label102.Location = new System.Drawing.Point(8, 27);
+            this.label102.Location = new System.Drawing.Point(8, 59);
             this.label102.Name = "label102";
             this.label102.Size = new System.Drawing.Size(44, 20);
             this.label102.TabIndex = 31;
@@ -2072,7 +2072,7 @@
             // 
             this.label69.AutoSize = true;
             this.label69.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label69.Location = new System.Drawing.Point(8, 61);
+            this.label69.Location = new System.Drawing.Point(8, 23);
             this.label69.Name = "label69";
             this.label69.Size = new System.Drawing.Size(36, 20);
             this.label69.TabIndex = 30;
@@ -6818,7 +6818,7 @@
             // metroLabel33
             // 
             this.metroLabel33.AutoSize = true;
-            this.metroLabel33.Location = new System.Drawing.Point(8, 45);
+            this.metroLabel33.Location = new System.Drawing.Point(6, 44);
             this.metroLabel33.Name = "metroLabel33";
             this.metroLabel33.Size = new System.Drawing.Size(74, 19);
             this.metroLabel33.TabIndex = 4;
@@ -7555,7 +7555,7 @@
             // metroLabel14
             // 
             this.metroLabel14.AutoSize = true;
-            this.metroLabel14.Location = new System.Drawing.Point(8, 45);
+            this.metroLabel14.Location = new System.Drawing.Point(6, 45);
             this.metroLabel14.Name = "metroLabel14";
             this.metroLabel14.Size = new System.Drawing.Size(53, 19);
             this.metroLabel14.TabIndex = 4;
