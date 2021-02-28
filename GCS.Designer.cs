@@ -1275,9 +1275,9 @@
             this.label185.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label185.Location = new System.Drawing.Point(4, 49);
             this.label185.Name = "label185";
-            this.label185.Size = new System.Drawing.Size(107, 52);
+            this.label185.Size = new System.Drawing.Size(73, 52);
             this.label185.TabIndex = 62;
-            this.label185.Text = "Para a \r\nJCFLIGHT-CLASSIC \r\né recomendado \r\nno máximo 20Hz.";
+            this.label185.Text = "Parâmetro de \r\natualização\r\nconstante \r\ndo GCS.";
             // 
             // label183
             // 
