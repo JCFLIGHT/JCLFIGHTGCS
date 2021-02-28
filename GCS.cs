@@ -1681,7 +1681,7 @@ namespace JCFLIGHTGCS
                 AccNotCalibrated = false;
                 RollToGraph.Add((double)xTimeStamp, -ReadRoll);
             }
-            PitchToGraph.Add((double)xTimeStamp, ReadPitch);
+            PitchToGraph.Add((double)xTimeStamp, -ReadPitch);
             CompassToGraph.Add((double)xTimeStamp, ReadCompass);
             BaroToGraph.Add((double)xTimeStamp, ReadBarometer);
             TempToGraph.Add((double)xTimeStamp, Temperature);
