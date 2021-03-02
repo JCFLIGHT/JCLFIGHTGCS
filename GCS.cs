@@ -240,6 +240,7 @@ namespace JCFLIGHTGCS
         byte CountWP2 = 0;
         byte CountToBlock = 0;
         int WPRadius = 200;
+        bool AutoWpPushed = false;
 
         byte ThrottleMiddle = 0;
         byte ThrottleExpo = 0;
@@ -540,14 +541,15 @@ namespace JCFLIGHTGCS
             label157.ForeColor = Color.White;
             label158.BackColor = Color.Blue;
             label158.ForeColor = Color.White;
-            Airports.ReadOurairports(Settings.GetRunningDirectory() + "Airports.csv");
-            Airports.checkdups = true;
+
             if (!GCSSettings.Read_From_XML(Settings.GetRunningDirectory() + "GCSSettings.xml"))
             {
                 MessageBox.Show("Error ao ler o arquivo de configuração do GCS.");
             }
-            timer2.Interval = GCSSettings.GCSRate;
-            numericUpDown38.Value = GCSSettings.GCSFrequency;
+
+            Airports.ReadOurairports(Settings.GetRunningDirectory() + "Airports.csv");
+            Airports.checkdups = true;
+
             this.ResumeLayout();
             //FECHA O SPLASH SCREEN
             Program.Splash?.Close();
@@ -965,6 +967,11 @@ namespace JCFLIGHTGCS
                     NumericConvert[16] = (byte)InBuffer[ptr++];
                     NumericConvert[17] = (byte)InBuffer[ptr++];
                     NumericConvert[18] = (byte)InBuffer[ptr++];
+                    NumericConvert[19] = (byte)InBuffer[ptr++];
+                    NumericConvert[20] = (byte)InBuffer[ptr++];
+                    NumericConvert[21] = (byte)InBuffer[ptr++];
+                    NumericConvert[22] = (byte)InBuffer[ptr++];
+                    NumericConvert[23] = (byte)InBuffer[ptr++];
                     break;
 
                 case 10:
@@ -1351,69 +1358,28 @@ namespace JCFLIGHTGCS
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            timer2.Interval = GCSSettings.GCSRate;
+            GetValues.GCSFrequency = GCSSettings.GCSFrequency;
+            GetValues.GCSSpeech = GCSSettings.GCSSpeech;
+            GetValues.GCSRebootBoard = GCSSettings.GCSRebootBoard;
+            GetValues.GCSAutoWP = GCSSettings.GCSAutoWP;
+            GetValues.GCSTrackLength = GCSSettings.GCSTrackLength;
+            GetValues.GCSAirPorts = GCSSettings.GCSAirPorts;
+            GetValues.GCSTrackSize = GCSSettings.GCSTrackSize;
 
-            if (numericUpDown38.Value == 5)
+            if (GCSSettings.GCSSpeech > 0)
             {
-                GCSSettings.GCSRate = timer2.Interval = 200;
-                GCSSettings.GCSFrequency = (byte)numericUpDown38.Value;
-                GCSSettings.Save_To_XML(Settings.GetRunningDirectory() + "GCSSettings.xml");
+                SpeechRun();
             }
-            else if (numericUpDown38.Value == 10)
+
+            if (GCSSettings.GCSAutoWP > 0 && !AutoWpPushed && GPS_NumSat >= 5)
             {
-                GCSSettings.GCSRate = timer2.Interval = 100;
-                GCSSettings.GCSFrequency = (byte)numericUpDown38.Value;
-                GCSSettings.Save_To_XML(Settings.GetRunningDirectory() + "GCSSettings.xml");
-            }
-            else if (numericUpDown38.Value == 15)
-            {
-                GCSSettings.GCSRate = timer2.Interval = 66;
-                GCSSettings.GCSFrequency = (byte)numericUpDown38.Value;
-                GCSSettings.Save_To_XML(Settings.GetRunningDirectory() + "GCSSettings.xml");
-            }
-            else if (numericUpDown38.Value == 20)
-            {
-                GCSSettings.GCSRate = timer2.Interval = 50;
-                GCSSettings.GCSFrequency = (byte)numericUpDown38.Value;
-                GCSSettings.Save_To_XML(Settings.GetRunningDirectory() + "GCSSettings.xml");
-            }
-            else if (numericUpDown38.Value == 25)
-            {
-                GCSSettings.GCSRate = timer2.Interval = 40;
-                GCSSettings.GCSFrequency = (byte)numericUpDown38.Value;
-                GCSSettings.Save_To_XML(Settings.GetRunningDirectory() + "GCSSettings.xml");
-            }
-            else if (numericUpDown38.Value == 30)
-            {
-                GCSSettings.GCSRate = timer2.Interval = 33;
-                GCSSettings.GCSFrequency = (byte)numericUpDown38.Value;
-                GCSSettings.Save_To_XML(Settings.GetRunningDirectory() + "GCSSettings.xml");
-            }
-            else if (numericUpDown38.Value == 35)
-            {
-                GCSSettings.GCSRate = timer2.Interval = 28;
-                GCSSettings.GCSFrequency = (byte)numericUpDown38.Value;
-                GCSSettings.Save_To_XML(Settings.GetRunningDirectory() + "GCSSettings.xml");
-            }
-            else if (numericUpDown38.Value == 40)
-            {
-                GCSSettings.GCSRate = timer2.Interval = 25;
-                GCSSettings.GCSFrequency = (byte)numericUpDown38.Value;
-                GCSSettings.Save_To_XML(Settings.GetRunningDirectory() + "GCSSettings.xml");
-            }
-            else if (numericUpDown38.Value == 45)
-            {
-                GCSSettings.GCSRate = timer2.Interval = 22;
-                GCSSettings.GCSFrequency = (byte)numericUpDown38.Value;
-                GCSSettings.Save_To_XML(Settings.GetRunningDirectory() + "GCSSettings.xml");
-            }
-            else if (numericUpDown38.Value == 50)
-            {
-                GCSSettings.GCSRate = timer2.Interval = 20;
-                GCSSettings.GCSFrequency = (byte)numericUpDown38.Value;
-                GCSSettings.Save_To_XML(Settings.GetRunningDirectory() + "GCSSettings.xml");
+                carregarWPsToolStripMenuItem_Click(null, null);
+                AutoWpPushed = true;
             }
 
             label76.Text = Convert.ToString(GPS_NumSat);
+
             if (GPS_NumSat < 10)
             {
                 if (!ForceNewLocationToLabels)
@@ -1436,6 +1402,7 @@ namespace JCFLIGHTGCS
                     label76.Location = new Point(410, 89);
                 }
             }
+
             if (HDOP >= 10)
             {
                 if (!ForceNewLocationToLabels)
@@ -1460,6 +1427,7 @@ namespace JCFLIGHTGCS
                 }
                 label78.Text = HDOP.ToString(new CultureInfo("en-US"));
             }
+
             if (ReadBarometer < 1000)
             {
                 if (!ForceNewLocationToLabels)
@@ -1496,7 +1464,9 @@ namespace JCFLIGHTGCS
                 }
                 label79.Text = ReadBarometer.ToString(new CultureInfo("en-US")) + "KM";
             }
+
             label87.Text = Current.ToString(new CultureInfo("en-US")) + "A";
+
             if (Current < 10)
             {
                 if (!ForceNewLocationToLabels)
@@ -1508,6 +1478,7 @@ namespace JCFLIGHTGCS
                     label87.Location = new Point(400, 404);
                 }
             }
+
             if (Current >= 10 && Current < 100)
             {
                 if (!ForceNewLocationToLabels)
@@ -1519,6 +1490,7 @@ namespace JCFLIGHTGCS
                     label87.Location = new Point(395, 404);
                 }
             }
+
             if (Current >= 100)
             {
                 if (!ForceNewLocationToLabels)
@@ -1530,7 +1502,9 @@ namespace JCFLIGHTGCS
                     label87.Location = new Point(385, 404);
                 }
             }
+
             label116.Text = AmperInMah.ToString(new CultureInfo("en-US")) + "MAH";
+
             if (AmperInMah < 0.10f)
             {
                 if (!ForceNewLocationToLabels)
@@ -1542,6 +1516,7 @@ namespace JCFLIGHTGCS
                     label116.Location = new Point(400, 450);
                 }
             }
+
             if (AmperInMah >= 0.10f && AmperInMah < 0.100f)
             {
                 if (!ForceNewLocationToLabels)
@@ -1553,6 +1528,7 @@ namespace JCFLIGHTGCS
                     label116.Location = new Point(395, 450);
                 }
             }
+
             if (AmperInMah >= 0.100f && AmperInMah < 1)
             {
                 if (!ForceNewLocationToLabels)
@@ -1564,6 +1540,7 @@ namespace JCFLIGHTGCS
                     label116.Location = new Point(385, 450);
                 }
             }
+
             if (AmperInMah >= 1 && AmperInMah < 10)
             {
                 if (!ForceNewLocationToLabels)
@@ -1575,6 +1552,7 @@ namespace JCFLIGHTGCS
                     label116.Location = new Point(375, 450);
                 }
             }
+
             if (AmperInMah >= 10)
             {
                 if (!ForceNewLocationToLabels)
@@ -1586,7 +1564,9 @@ namespace JCFLIGHTGCS
                     label116.Location = new Point(365, 450);
                 }
             }
+
             label89.Text = Watts.ToString(new CultureInfo("en-US")) + "W";
+
             if (Watts < 10)
             {
                 if (!ForceNewLocationToLabels)
@@ -1598,6 +1578,7 @@ namespace JCFLIGHTGCS
                     label89.Location = new Point(408, 496);
                 }
             }
+
             if (Watts >= 10 && Watts < 100)
             {
                 if (!ForceNewLocationToLabels)
@@ -1609,6 +1590,7 @@ namespace JCFLIGHTGCS
                     label89.Location = new Point(395, 496);
                 }
             }
+
             if (Watts >= 100)
             {
                 if (!ForceNewLocationToLabels)
@@ -1620,6 +1602,7 @@ namespace JCFLIGHTGCS
                     label89.Location = new Point(385, 496);
                 }
             }
+
             if (Declination != 0) label81.Text = Declination.ToString(new CultureInfo("en-US")) + "°";
             if ((Declination > 0 && Declination < 10) || (Declination > (-10) && Declination < 0))
             {
@@ -1867,6 +1850,10 @@ namespace JCFLIGHTGCS
                 label4.Location = new Point(17, 90);
                 label5.Location = new Point(19, 89);
             }
+            else
+            {
+                AutoWpPushed = false;
+            }
         }
 
         byte ConstrainByte(byte amt, byte low, byte high)
@@ -1897,6 +1884,10 @@ namespace JCFLIGHTGCS
         private void comboBox7_SelectedIndexChanged(object sender, EventArgs e)
         {
             SerialComPort = Convert.ToString(comboBox7.SelectedItem);
+            if (GCSSettings.GCSRebootBoard > 0)
+            {
+                SerialPort.DtrEnable = true;
+            }
             try
             {
                 if (!Reboot)
@@ -2207,7 +2198,11 @@ namespace JCFLIGHTGCS
                 GPSLonPrev = GPS_Position.Lng;
                 label157.Text = Convert.ToString("Lat:" + GPS_Position.Lat);
                 label158.Text = Convert.ToString("Lng:" + GPS_Position.Lng);
-                byte TrackLength = 200;
+                int TrackLength = GCSSettings.GCSTrackLength;
+
+                Pen PenRoute = new Pen(Color.Purple, GCSSettings.GCSTrackSize);
+                Grout.Stroke = PenRoute;
+
                 if (Grout.Points.Count > TrackLength) Grout.Points.RemoveRange(0, Grout.Points.Count - TrackLength);
                 if (FrameMode == 0)
                 {
@@ -2291,21 +2286,13 @@ namespace JCFLIGHTGCS
 
         private void FlightModeToLabel(byte _FlightMode)
         {
-            if (FrameMode == 0)
-            {
-                groupBox6.Text = "CONTROLE DERIVATIVO";
-            }
-            else if (FrameMode == 1)
-            {
-                groupBox6.Text = "CONTROLE DERIVATIVO";
-            }
-            else if (FrameMode == 2)
-            {
-                groupBox6.Text = "CONTROLE DERIVATIVO";
-            }
-            else if (FrameMode == 3 || FrameMode == 4 || FrameMode == 5)
+            if (FrameMode == 3 || FrameMode == 4 || FrameMode == 5)
             {
                 groupBox6.Text = "FEED-FORWARD";
+            }
+            else
+            {
+                groupBox6.Text = "CONTROLE DERIVATIVO";
             }
 
             switch (_FlightMode)
@@ -2531,28 +2518,31 @@ namespace JCFLIGHTGCS
 
         private void FlightTimer_Tick(object sender, EventArgs e)
         {
-            if (AirportsCountTime >= 5)
+            if (GCSSettings.GCSAirPorts > 0)
             {
-                AirportsOverlay.Markers.Clear();
-                foreach (var item in Airports.getAirports(MyGMap.Position).ToArray())
+                if (AirportsCountTime >= 5)
                 {
-                    try
+                    AirportsOverlay.Markers.Clear();
+                    foreach (var item in Airports.getAirports(MyGMap.Position).ToArray())
                     {
-                        AirportsOverlay.Markers.Add(new GMapMarkerAirport(item)
+                        try
                         {
-                            ToolTipText = item.Tag,
-                            ToolTipMode = MarkerTooltipMode.OnMouseOver
-                        });
+                            AirportsOverlay.Markers.Add(new GMapMarkerAirport(item)
+                            {
+                                ToolTipText = item.Tag,
+                                ToolTipMode = MarkerTooltipMode.OnMouseOver
+                            });
+                        }
+                        catch (Exception)
+                        {
+                        }
                     }
-                    catch (Exception)
-                    {
-                    }
+                    AirportsCountTime = 0;
                 }
-                AirportsCountTime = 0;
-            }
-            else
-            {
-                AirportsCountTime += 1;
+                else
+                {
+                    AirportsCountTime += 1;
+                }
             }
             try
             {
@@ -2879,6 +2869,11 @@ namespace JCFLIGHTGCS
                 numericUpDown72.Value = NumericConvert[16];
                 numericUpDown70.Value = (decimal)(NumericConvert[17]) / 10;
                 numericUpDown73.Value = NumericConvert[18];
+                numericUpDown74.Value = NumericConvert[19];
+                numericUpDown37.Value = NumericConvert[20];
+                numericUpDown29.Value = NumericConvert[21];
+                numericUpDown75.Value = NumericConvert[22];
+                numericUpDown76.Value = NumericConvert[23];
             }
             SmallCompass = false;
             tabControl1.SelectTab(tabPage7);
@@ -3118,6 +3113,23 @@ namespace JCFLIGHTGCS
                     }
                     numericUpDown70.Value = (decimal)(60) / 10;
                     numericUpDown73.Value = 90;
+                    if (FrameMode == 3 || FrameMode == 4 || FrameMode == 5)
+                    {
+                        numericUpDown74.Value = 45;
+                        numericUpDown37.Value = 25;
+                        numericUpDown29.Value = 20;
+                        numericUpDown75.Value = 40;
+                        numericUpDown76.Value = 30;
+                    }
+                    else
+                    {
+                        numericUpDown74.Value = 30;
+                        numericUpDown37.Value = 30;
+                        numericUpDown29.Value = 30;
+                        numericUpDown75.Value = 40;
+                        numericUpDown76.Value = 30;
+
+                    }
                 }
                 if (MessageBox.Show("Para aplicar as configurações é necessario reiniciar a controladora de voo.Você deseja reiniciar automaticamente agora?",
               "Reboot", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -3317,7 +3329,7 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)0x4a;
                     SendBuffer[VectorPointer++] = (byte)0x43;
                     SendBuffer[VectorPointer++] = (byte)0x3c;
-                    SendBuffer[VectorPointer++] = 39;
+                    SendBuffer[VectorPointer++] = 44;
                     SendBuffer[VectorPointer++] = (byte)18;
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToByte(numericUpDown18.Value));
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown19.Value));
@@ -3358,6 +3370,11 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)numericUpDown72.Value;
                     SendBuffer[VectorPointer++] = (byte)(numericUpDown70.Value * 10);
                     SendBuffer[VectorPointer++] = (byte)numericUpDown73.Value;
+                    SendBuffer[VectorPointer++] = (byte)numericUpDown74.Value;
+                    SendBuffer[VectorPointer++] = (byte)numericUpDown37.Value;
+                    SendBuffer[VectorPointer++] = (byte)numericUpDown29.Value;
+                    SendBuffer[VectorPointer++] = (byte)numericUpDown75.Value;
+                    SendBuffer[VectorPointer++] = (byte)numericUpDown76.Value;
                     for (int i = 3; i < VectorPointer; i++) CheckAllBuffers ^= SendBuffer[i];
                     SendBuffer[VectorPointer++] = CheckAllBuffers;
                     SerialPort.Write(SendBuffer, 0, VectorPointer);
@@ -3626,7 +3643,7 @@ namespace JCFLIGHTGCS
             dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Inclinação no Pitch (Elevator) ao fazer o AutoLaunch";
 
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AutoLaunch_Throttle_SpinUp";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "uint";
+            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "uint16_t";
             dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor de incrimentação no Throttle para Aeros com rodas";
 
             dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AutoLaunch_Throttle_SpinUp_Tempo";
@@ -4354,5 +4371,15 @@ namespace JCFLIGHTGCS
             return Convert.ToByte(CheckDevices);
         }
 
+        private void button28_Click(object sender, EventArgs e)
+        {
+            GCSConfigurations GCS_Configurations = new GCSConfigurations();
+            GCS_Configurations.ShowDialog();
+        }
+
+        private void SpeechRun()
+        {
+
+        }
     }
 }

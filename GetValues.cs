@@ -8,6 +8,9 @@ namespace JCFLIGHTGCS
 {
     class GetValues
     {
+        /// <summary>
+        /// INFORMAÇÕES DA PLACA
+        /// </summary>
         public static string GetPlatformName;
         public static string GetFirwareName;
         public static string GetFirwareVersion;
@@ -16,6 +19,20 @@ namespace JCFLIGHTGCS
         public static string GetBuildTime;
         public static string PreArmMessage;
 
+        /// <summary>
+        /// CONFIG DO GCS
+        /// </summary>
+        public static int GCSFrequency = 0;
+        public static int GCSSpeech = 0;
+        public static int GCSRebootBoard = 0;
+        public static int GCSAutoWP = 0;
+        public static int GCSTrackLength = 0;
+        public static int GCSAirPorts = 0;
+        public static int GCSTrackSize = 0;
+
+        /// <summary>
+        /// PASSAGEM DE PARAMETROS DE UM FORM PRA OUTRO
+        /// </summary>
         public static int AccNotFilteredX = 0;
         public static int AccNotFilteredY = 0;
         public static int AccNotFilteredZ = 0;
