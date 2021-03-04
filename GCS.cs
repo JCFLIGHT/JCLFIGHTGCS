@@ -1765,7 +1765,7 @@ namespace JCFLIGHTGCS
                    Aux4ActualData, Aux5ActualData, Aux6ActualData, Aux7ActualData, Aux8ActualData);
             ProgressBarControl3(ThrottleAttitudeData, YawAttitudeData, PitchAttitudeData, RollAttitudeData);
 
-            GetValues.SafeStateToLaunch = (FrameMode == 3 || FrameMode == 4 || FrameMode == 5) && ThrottleAttitudeData >= 1450 && FlightMode == 3;
+            GetValues.SafeStateToLaunch = (FrameMode == 3 || FrameMode == 4 || FrameMode == 5) && ThrottleData >= 1400 && FlightMode == 3;
 
             if (Math.Abs(ReadRoll) > 1200)
             {
@@ -2286,15 +2286,6 @@ namespace JCFLIGHTGCS
 
         private void FlightModeToLabel(byte _FlightMode)
         {
-            if (FrameMode == 3 || FrameMode == 4 || FrameMode == 5)
-            {
-                groupBox6.Text = "FEED-FORWARD";
-            }
-            else
-            {
-                groupBox6.Text = "CONTROLE DERIVATIVO";
-            }
-
             switch (_FlightMode)
             {
                 case 0: //ACRO
@@ -2544,6 +2535,16 @@ namespace JCFLIGHTGCS
                     AirportsCountTime += 1;
                 }
             }
+
+            if (FrameMode == 3 || FrameMode == 4 || FrameMode == 5)
+            {
+                groupBox6.Text = "FEED-FORWARD";
+            }
+            else
+            {
+                groupBox6.Text = "CONTROLE DERIVATIVO";
+            }
+
             try
             {
                 if (SerialPort.IsOpen == false) return;
@@ -2557,6 +2558,7 @@ namespace JCFLIGHTGCS
                     Serial_Write_To_FC(27);
                 }
             }
+
             if (CommandArmDisarm == 1)
             {
                 if (ResetTimer)
@@ -2870,7 +2872,7 @@ namespace JCFLIGHTGCS
                 numericUpDown70.Value = (decimal)(NumericConvert[17]) / 10;
                 numericUpDown73.Value = NumericConvert[18];
                 numericUpDown74.Value = NumericConvert[19];
-                numericUpDown37.Value = NumericConvert[20];
+                numericUpDown37.Value = -NumericConvert[20];
                 numericUpDown29.Value = NumericConvert[21];
                 numericUpDown75.Value = NumericConvert[22];
                 numericUpDown76.Value = NumericConvert[23];
@@ -3116,7 +3118,7 @@ namespace JCFLIGHTGCS
                     if (FrameMode == 3 || FrameMode == 4 || FrameMode == 5)
                     {
                         numericUpDown74.Value = 45;
-                        numericUpDown37.Value = 25;
+                        numericUpDown37.Value = -25;
                         numericUpDown29.Value = 20;
                         numericUpDown75.Value = 40;
                         numericUpDown76.Value = 30;
@@ -3124,7 +3126,7 @@ namespace JCFLIGHTGCS
                     else
                     {
                         numericUpDown74.Value = 30;
-                        numericUpDown37.Value = 30;
+                        numericUpDown37.Value = -30;
                         numericUpDown29.Value = 30;
                         numericUpDown75.Value = 40;
                         numericUpDown76.Value = 30;
@@ -3371,7 +3373,7 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)(numericUpDown70.Value * 10);
                     SendBuffer[VectorPointer++] = (byte)numericUpDown73.Value;
                     SendBuffer[VectorPointer++] = (byte)numericUpDown74.Value;
-                    SendBuffer[VectorPointer++] = (byte)numericUpDown37.Value;
+                    SendBuffer[VectorPointer++] = (byte)Math.Abs(numericUpDown37.Value);
                     SendBuffer[VectorPointer++] = (byte)numericUpDown29.Value;
                     SendBuffer[VectorPointer++] = (byte)numericUpDown75.Value;
                     SendBuffer[VectorPointer++] = (byte)numericUpDown76.Value;
