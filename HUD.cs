@@ -1284,7 +1284,14 @@ namespace JCFLIGHTGCS
                     }
                     else
                     {
-                        drawstring("Throttle acima do limite para armar", font, fontsize + 2, (SolidBrush)Brushes.Red, -125, 85);
+                        if (!GetValues.SafeStateToLaunch)
+                        {
+                            drawstring("Throttle acima do limite para armar", font, fontsize + 2, (SolidBrush)Brushes.Red, -125, 85);
+                        }
+                        else
+                        {
+                            drawstring("Throttle seguro para fazer o auto-launch", font, fontsize + 2, (SolidBrush)Brushes.Red, -165, 85);
+                        }
                     }
                 }
 

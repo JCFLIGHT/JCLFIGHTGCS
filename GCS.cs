@@ -1765,6 +1765,8 @@ namespace JCFLIGHTGCS
                    Aux4ActualData, Aux5ActualData, Aux6ActualData, Aux7ActualData, Aux8ActualData);
             ProgressBarControl3(ThrottleAttitudeData, YawAttitudeData, PitchAttitudeData, RollAttitudeData);
 
+            GetValues.SafeStateToLaunch = (FrameMode == 3 || FrameMode == 4 || FrameMode == 5) && ThrottleAttitudeData >= 1450 && FlightMode == 3;
+
             if (Math.Abs(ReadRoll) > 1200)
             {
                 HUD1.Roll = 0;
@@ -2199,10 +2201,8 @@ namespace JCFLIGHTGCS
                 label157.Text = Convert.ToString("Lat:" + GPS_Position.Lat);
                 label158.Text = Convert.ToString("Lng:" + GPS_Position.Lng);
                 int TrackLength = GCSSettings.GCSTrackLength;
-
                 Pen PenRoute = new Pen(Color.Purple, GCSSettings.GCSTrackSize);
                 Grout.Stroke = PenRoute;
-
                 if (Grout.Points.Count > TrackLength) Grout.Points.RemoveRange(0, Grout.Points.Count - TrackLength);
                 if (FrameMode == 0)
                 {

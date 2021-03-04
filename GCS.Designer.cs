@@ -1248,7 +1248,7 @@
             // 
             this.label183.AutoSize = true;
             this.label183.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label183.Location = new System.Drawing.Point(97, 520);
+            this.label183.Location = new System.Drawing.Point(85, 520);
             this.label183.Name = "label183";
             this.label183.Size = new System.Drawing.Size(111, 20);
             this.label183.TabIndex = 60;
@@ -1258,7 +1258,7 @@
             // 
             this.label184.AutoSize = true;
             this.label184.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label184.Location = new System.Drawing.Point(135, 544);
+            this.label184.Location = new System.Drawing.Point(123, 544);
             this.label184.Name = "label184";
             this.label184.Size = new System.Drawing.Size(33, 20);
             this.label184.TabIndex = 59;
@@ -1266,7 +1266,7 @@
             // 
             // metroProgressBar30
             // 
-            this.metroProgressBar30.Location = new System.Drawing.Point(20, 543);
+            this.metroProgressBar30.Location = new System.Drawing.Point(8, 543);
             this.metroProgressBar30.Name = "metroProgressBar30";
             this.metroProgressBar30.Size = new System.Drawing.Size(283, 23);
             this.metroProgressBar30.Style = MetroFramework.MetroColorStyle.Red;
@@ -1333,7 +1333,7 @@
             // 
             this.label151.AutoSize = true;
             this.label151.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label151.Location = new System.Drawing.Point(16, 460);
+            this.label151.Location = new System.Drawing.Point(4, 460);
             this.label151.Name = "label151";
             this.label151.Size = new System.Drawing.Size(262, 20);
             this.label151.TabIndex = 53;
@@ -1343,7 +1343,7 @@
             // 
             this.label150.AutoSize = true;
             this.label150.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label150.Location = new System.Drawing.Point(135, 484);
+            this.label150.Location = new System.Drawing.Point(123, 484);
             this.label150.Name = "label150";
             this.label150.Size = new System.Drawing.Size(33, 20);
             this.label150.TabIndex = 52;
@@ -1351,7 +1351,7 @@
             // 
             // metroProgressBar29
             // 
-            this.metroProgressBar29.Location = new System.Drawing.Point(20, 483);
+            this.metroProgressBar29.Location = new System.Drawing.Point(8, 483);
             this.metroProgressBar29.Name = "metroProgressBar29";
             this.metroProgressBar29.Size = new System.Drawing.Size(283, 23);
             this.metroProgressBar29.Style = MetroFramework.MetroColorStyle.Red;
