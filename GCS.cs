@@ -967,7 +967,7 @@ namespace JCFLIGHTGCS
                     NumericConvert[16] = (byte)InBuffer[ptr++];
                     NumericConvert[17] = (byte)InBuffer[ptr++];
                     NumericConvert[18] = (byte)InBuffer[ptr++];
-                    NumericConvert[19] = (byte)InBuffer[ptr++];
+                    GetValues.BankAngleRollValue = NumericConvert[19] = (byte)InBuffer[ptr++];
                     NumericConvert[20] = (byte)InBuffer[ptr++];
                     NumericConvert[21] = (byte)InBuffer[ptr++];
                     NumericConvert[22] = (byte)InBuffer[ptr++];

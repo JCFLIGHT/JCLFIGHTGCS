@@ -9,6 +9,11 @@ namespace JCFLIGHTGCS
     class GetValues
     {
         /// <summary>
+        /// BANK ANGLE HUD
+        /// </summary>
+        public static byte BankAngleRollValue = 0;
+
+        /// <summary>
         /// INFORMAÇÕES DA PLACA
         /// </summary>
         public static string GetPlatformName;

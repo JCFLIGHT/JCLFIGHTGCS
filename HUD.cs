@@ -1254,7 +1254,7 @@ namespace JCFLIGHTGCS
                     armedtimer = DateTime.Now;
                 }
 
-                if (this._Roll > 45 || this._Roll < (-45))
+                if (Math.Abs(this._Roll) > GetValues.BankAngleRollValue)
                 {
                     drawstring("Bank-Angle", font, fontsize + 15, (SolidBrush)Brushes.Red, -85, halfheight / -3);
                     StatusLast = _ARMStatus;

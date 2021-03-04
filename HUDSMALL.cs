@@ -1136,7 +1136,7 @@ namespace JCFLIGHTGCS
                 }
                 else
                 {
-                    if (this._roll > 35 || this._roll < (-35))
+                    if (Math.Abs(this._roll) > GetValues.BankAngleRollValue)
                     {
                         drawstring("Bank-Angle", font, fontsize + 5, (SolidBrush)Brushes.Red, -75, 20);
                         statuslast = status;
