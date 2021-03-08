@@ -13,8 +13,8 @@ namespace JCFLIGHTGCS
 {
     class GCSSettings
     {
-        public static int GCSFrequency = 10;
-        public static int GCSRate = 100;
+        public static int GCSFrequency = 50;
+        public static int GCSRate = 20;
         public static int GCSSpeech = 0;
         public static int GCSRebootBoard = 0;
         public static int GCSAutoWP = 0;

@@ -10,7 +10,7 @@ using System.Drawing.Drawing2D;
 
 namespace JCFLIGHTGCS
 {
-    class GMapMarkerAero : GMapMarker
+    class GMapMarkerPlane : GMapMarker
     {
         const float rad2deg = (float)(180 / Math.PI);
         const float deg2rad = (float)(1.0 / rad2deg);
@@ -21,7 +21,7 @@ namespace JCFLIGHTGCS
         float target = -1;
         float radius = -1;
 
-        public GMapMarkerAero(PointLatLng p, float heading, float cog, float target, float radius)
+        public GMapMarkerPlane(PointLatLng p, float heading, float cog, float target, float radius)
             : base(p)
         {
             this.heading = heading;

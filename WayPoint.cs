@@ -1147,7 +1147,7 @@ namespace JCFLIGHTGCS
                     if (AttitudeRoll >= 35) ExpoValue = 50;
                     if (AttitudeRoll <= -10 && AttitudeRoll > -35) ExpoValue = -150;
                     if (AttitudeRoll <= -35) ExpoValue = -50;
-                    GmapPositions.Markers.Add(new GMapMarkerAero(GPS_Position, Heading, CoG, Crosstrack, ExpoValue));
+                    GmapPositions.Markers.Add(new GMapMarkerPlane(GPS_Position, Heading, CoG, Crosstrack, ExpoValue));
                 }
                 if (ArmDisarm == 1) GMapTack.Points.Add(GPS_Position);
                 if (checkBox1.Checked == true)

@@ -719,6 +719,7 @@ namespace JCFLIGHTGCS
             rcExpo1.SetRCExpoParameters((double)RCRate / 100, (double)RcExpo / 100);
             throttleExpo2.SetRCExpoParameters((double)numericUpDown25.Value, (double)numericUpDown26.Value, ThrottleData);
             rcExpo2.SetRCExpoParameters((double)numericUpDown27.Value, (double)numericUpDown28.Value);
+            InertialSensor.AccCalcVibrationAndClipping();
         }
 
         private void SerialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e)
@@ -1290,18 +1291,18 @@ namespace JCFLIGHTGCS
             metroProgressBar11.Value = Convert.ToInt16(ValueConverterProgressBar(CHAux7, 1000, 2000, 0, 100));
             metroProgressBar12.Value = Convert.ToInt16(ValueConverterProgressBar(CHAux8, 1000, 2000, 0, 100));
             //LABEL'S
-            label28.Text = Convert.ToString(CHThrottle);
-            label29.Text = Convert.ToString(CHYaw);
-            label30.Text = Convert.ToString(CHPitch);
-            label31.Text = Convert.ToString(CHRoll);
-            label32.Text = Convert.ToString(CHAux1);
-            label33.Text = Convert.ToString(CHAux2);
-            label34.Text = Convert.ToString(CHAux3);
-            label35.Text = Convert.ToString(CHAux4);
-            label36.Text = Convert.ToString(CHAux5);
-            label37.Text = Convert.ToString(CHAux6);
-            label38.Text = Convert.ToString(CHAux7);
-            label38.Text = Convert.ToString(CHAux8);
+            label28.Text = Convert.ToString(Math.Max(1000, CHThrottle));
+            label29.Text = Convert.ToString(Math.Max(1000, CHYaw));
+            label30.Text = Convert.ToString(Math.Max(1000, CHPitch));
+            label31.Text = Convert.ToString(Math.Max(1000, CHRoll));
+            label32.Text = Convert.ToString(Math.Max(1000, CHAux1));
+            label33.Text = Convert.ToString(Math.Max(1000, CHAux2));
+            label34.Text = Convert.ToString(Math.Max(1000, CHAux3));
+            label35.Text = Convert.ToString(Math.Max(1000, CHAux4));
+            label36.Text = Convert.ToString(Math.Max(1000, CHAux5));
+            label37.Text = Convert.ToString(Math.Max(1000, CHAux6));
+            label38.Text = Convert.ToString(Math.Max(1000, CHAux7));
+            label38.Text = Convert.ToString(Math.Max(1000, CHAux8));
         }
 
         private void ProgressBarControl2(int CHThrottle, int CHYaw, int CHPitch, int CHRoll, int CHAux1, int CHAux2,
@@ -1321,27 +1322,27 @@ namespace JCFLIGHTGCS
             metroProgressBar24.Value = Convert.ToInt16(ValueConverterProgressBar(CHAux7, 900, 2200, 0, 100));
             metroProgressBar13.Value = Convert.ToInt16(ValueConverterProgressBar(CHAux8, 900, 2200, 0, 100));
             //LABEL'S
-            label141.Text = Convert.ToString(CHThrottle);
-            label140.Text = Convert.ToString(CHYaw);
-            label139.Text = Convert.ToString(CHPitch);
-            label138.Text = Convert.ToString(CHRoll);
-            label137.Text = Convert.ToString(CHAux1);
-            label136.Text = Convert.ToString(CHAux2);
-            label135.Text = Convert.ToString(CHAux3);
-            label134.Text = Convert.ToString(CHAux4);
-            label133.Text = Convert.ToString(CHAux5);
-            label132.Text = Convert.ToString(CHAux6);
-            label131.Text = Convert.ToString(CHAux7);
-            label130.Text = Convert.ToString(CHAux8);
+            label141.Text = Convert.ToString(Math.Max(900, CHThrottle));
+            label140.Text = Convert.ToString(Math.Max(900, CHYaw));
+            label139.Text = Convert.ToString(Math.Max(900, CHPitch));
+            label138.Text = Convert.ToString(Math.Max(900, CHRoll));
+            label137.Text = Convert.ToString(Math.Max(900, CHAux1));
+            label136.Text = Convert.ToString(Math.Max(900, CHAux2));
+            label135.Text = Convert.ToString(Math.Max(900, CHAux3));
+            label134.Text = Convert.ToString(Math.Max(900, CHAux4));
+            label133.Text = Convert.ToString(Math.Max(900, CHAux5));
+            label132.Text = Convert.ToString(Math.Max(900, CHAux6));
+            label131.Text = Convert.ToString(Math.Max(900, CHAux7));
+            label130.Text = Convert.ToString(Math.Max(900, CHAux8));
         }
 
         private void ProgressBarControl3(int CHThrottle, int CHYaw, int CHPitch, int CHRoll)
         {
             //CONTROLE DAS BARRAS DE PROGRESSO
             metroProgressBar28.Value = Convert.ToInt16(ValueConverterProgressBar(CHThrottle, 1000, 2000, 0, 100));
-            metroProgressBar27.Value = Convert.ToInt16(ValueConverterProgressBar(CHYaw, -550, 550, 0, 100));
-            metroProgressBar26.Value = Convert.ToInt16(ValueConverterProgressBar(CHPitch, -550, 550, 0, 100));
-            metroProgressBar25.Value = Convert.ToInt16(ValueConverterProgressBar(CHRoll, -550, 550, 0, 100));
+            metroProgressBar27.Value = Convert.ToInt16(ValueConverterProgressBar(CHYaw, -YawRate * 10, YawRate * 10, 0, 100));
+            metroProgressBar26.Value = Convert.ToInt16(ValueConverterProgressBar(CHPitch, -RCRate * 10, RCRate * 10, 0, 100));
+            metroProgressBar25.Value = Convert.ToInt16(ValueConverterProgressBar(CHRoll, -RCRate * 10, RCRate * 10, 0, 100));
             //LABEL'S
             label149.Text = Convert.ToString(CHThrottle);
             label148.Text = Convert.ToString(CHYaw);
@@ -1637,21 +1638,29 @@ namespace JCFLIGHTGCS
                     label81.Location = new Point(390, 246);
                 }
             }
-            label150.Text = MemoryRamUsedPercent + "%";
-            metroProgressBar29.Value = MemoryRamUsedPercent;
-            if (MemoryRamUsedPercent <= 50)
+
+            horizontalProgressBar21.Value = MemoryRamUsedPercent;
+
+            foreach (var item in new HorizontalProgressBar2[] { horizontalProgressBar21, horizontalProgressBar22 })
             {
-                metroProgressBar29.Style = MetroFramework.MetroColorStyle.Green;
+                if (item.Value <= 50)
+                {
+                    item.ValueColor = Color.Lime;
+                }
+
+                if (item.Value > 50)
+                {
+                    item.ValueColor = Color.Orange;
+                }
+
+                if (item.Value > 90)
+                {
+                    item.ValueColor = Color.Red;
+                }
             }
-            else if (MemoryRamUsedPercent > 50 && MemoryRamUsedPercent < 90)
-            {
-                metroProgressBar29.Style = MetroFramework.MetroColorStyle.Yellow;
-            }
-            else
-            {
-                metroProgressBar29.Style = MetroFramework.MetroColorStyle.Red;
-            }
+
             label151.Text = "Memoria Ram Livre:" + MemoryRamUsed + "KB de " + RamMemString;
+
             FlightModeToLabel(FlightMode);
 
             if (Math.Abs(ReadRoll) > 1200)
@@ -2222,9 +2231,11 @@ namespace JCFLIGHTGCS
                     int AttitudeRoll = -ReadRoll / 10;
                     if (AttitudeRoll >= 10 && AttitudeRoll < 35) ExpoValue = 150;
                     if (AttitudeRoll <= -10 && AttitudeRoll > -35) ExpoValue = -150;
-                    if (AttitudeRoll >= 35) ExpoValue = 50;
-                    if (AttitudeRoll <= -35) ExpoValue = -50;
-                    PositionToRoutes.Markers.Add(new GMapMarkerAero(GPS_Position, ReadCompass, CoG, Crosstrack, ExpoValue));
+                    if (AttitudeRoll >= 35 && AttitudeRoll < 45) ExpoValue = 50;
+                    if (AttitudeRoll <= -35 && AttitudeRoll > -45) ExpoValue = -50;
+                    if (AttitudeRoll >= 45) ExpoValue = 25;
+                    if (AttitudeRoll <= -45) ExpoValue = -25;
+                    PositionToRoutes.Markers.Add(new GMapMarkerPlane(GPS_Position, ReadCompass, CoG, Crosstrack, ExpoValue));
                 }
                 if (HomePointDisctance >= 1000 && HomePointDisctance < 10000)
                 {
@@ -3492,20 +3503,7 @@ namespace JCFLIGHTGCS
             {
                 SmallCompass = true;
             }
-            label184.Text = CPULoad.ToString() + "%";
-            metroProgressBar30.Value = CPULoad;
-            if (CPULoad <= 50)
-            {
-                metroProgressBar30.Style = MetroFramework.MetroColorStyle.Green;
-            }
-            else if (CPULoad > 50 && CPULoad < 90)
-            {
-                metroProgressBar30.Style = MetroFramework.MetroColorStyle.Yellow;
-            }
-            else
-            {
-                metroProgressBar30.Style = MetroFramework.MetroColorStyle.Red;
-            }
+            horizontalProgressBar22.Value = CPULoad;
         }
 
         private void UpdateAccImageStatus()
@@ -3864,6 +3862,10 @@ namespace JCFLIGHTGCS
 
         bool HorizontalVariance()
         {
+            if (InertialSensor.get_vibration_level_X() > 30)
+            {
+                return true;
+            }
             return false;
         }
 
@@ -4382,6 +4384,21 @@ namespace JCFLIGHTGCS
         private void SpeechRun()
         {
 
+        }
+
+        private void HUD1_vibeclick_1(object sender, EventArgs e)
+        {
+            Vibrations VibrationsOpen = new Vibrations();
+            VibrationsOpen.TopMost = true;
+            VibrationsOpen.Show();
+
+        }
+
+        private void HUD2_vibeclick(object sender, EventArgs e)
+        {
+            Vibrations VibrationsOpen = new Vibrations();
+            VibrationsOpen.TopMost = true;
+            VibrationsOpen.Show();
         }
     }
 }

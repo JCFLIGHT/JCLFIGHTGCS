@@ -84,6 +84,7 @@
             this.Name = "Reboot";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Reboot";
+            this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Reboot_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();

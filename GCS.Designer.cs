@@ -28,7 +28,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GCS));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.button7 = new System.Windows.Forms.Button();
             this.label27 = new System.Windows.Forms.Label();
@@ -61,17 +61,15 @@
             this.RealTimer = new System.Windows.Forms.Timer(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.horizontalProgressBar22 = new JCFLIGHTGCS.HorizontalProgressBar2();
+            this.horizontalProgressBar21 = new JCFLIGHTGCS.HorizontalProgressBar2();
             this.button28 = new System.Windows.Forms.Button();
             this.label183 = new System.Windows.Forms.Label();
-            this.label184 = new System.Windows.Forms.Label();
-            this.metroProgressBar30 = new MetroFramework.Controls.MetroProgressBar();
             this.button23 = new System.Windows.Forms.Button();
             this.button22 = new System.Windows.Forms.Button();
             this.button21 = new System.Windows.Forms.Button();
             this.HUD1 = new JCFLIGHTGCS.HUD();
             this.label151 = new System.Windows.Forms.Label();
-            this.label150 = new System.Windows.Forms.Label();
-            this.metroProgressBar29 = new MetroFramework.Controls.MetroProgressBar();
             this.label95 = new System.Windows.Forms.Label();
             this.label94 = new System.Windows.Forms.Label();
             this.button15 = new System.Windows.Forms.Button();
@@ -1198,17 +1196,15 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.horizontalProgressBar22);
+            this.tabPage1.Controls.Add(this.horizontalProgressBar21);
             this.tabPage1.Controls.Add(this.button28);
             this.tabPage1.Controls.Add(this.label183);
-            this.tabPage1.Controls.Add(this.label184);
-            this.tabPage1.Controls.Add(this.metroProgressBar30);
             this.tabPage1.Controls.Add(this.button23);
             this.tabPage1.Controls.Add(this.button22);
             this.tabPage1.Controls.Add(this.button21);
             this.tabPage1.Controls.Add(this.HUD1);
             this.tabPage1.Controls.Add(this.label151);
-            this.tabPage1.Controls.Add(this.label150);
-            this.tabPage1.Controls.Add(this.metroProgressBar29);
             this.tabPage1.Controls.Add(this.label95);
             this.tabPage1.Controls.Add(this.label94);
             this.tabPage1.Controls.Add(this.button15);
@@ -1233,6 +1229,42 @@
             this.tabPage1.Text = "Resumo";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // horizontalProgressBar22
+            // 
+            this.horizontalProgressBar22.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(68)))), ((int)(((byte)(69)))));
+            this.horizontalProgressBar22.BorderColor = System.Drawing.SystemColors.ActiveBorder;
+            this.horizontalProgressBar22.DisplayScale = 1F;
+            this.horizontalProgressBar22.DrawLabel = true;
+            this.horizontalProgressBar22.Label = "Porcentagem:";
+            this.horizontalProgressBar22.Location = new System.Drawing.Point(8, 544);
+            this.horizontalProgressBar22.Maximum = 100;
+            this.horizontalProgressBar22.maxline = 90;
+            this.horizontalProgressBar22.Minimum = 0;
+            this.horizontalProgressBar22.minline = 50;
+            this.horizontalProgressBar22.Name = "horizontalProgressBar22";
+            this.horizontalProgressBar22.Size = new System.Drawing.Size(283, 23);
+            this.horizontalProgressBar22.TabIndex = 65;
+            this.horizontalProgressBar22.Value = 0;
+            this.horizontalProgressBar22.ValueColor = System.Drawing.Color.Lime;
+            // 
+            // horizontalProgressBar21
+            // 
+            this.horizontalProgressBar21.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(68)))), ((int)(((byte)(69)))));
+            this.horizontalProgressBar21.BorderColor = System.Drawing.SystemColors.ActiveBorder;
+            this.horizontalProgressBar21.DisplayScale = 1F;
+            this.horizontalProgressBar21.DrawLabel = true;
+            this.horizontalProgressBar21.Label = "Porcentagem:";
+            this.horizontalProgressBar21.Location = new System.Drawing.Point(8, 483);
+            this.horizontalProgressBar21.Maximum = 100;
+            this.horizontalProgressBar21.maxline = 90;
+            this.horizontalProgressBar21.Minimum = 0;
+            this.horizontalProgressBar21.minline = 50;
+            this.horizontalProgressBar21.Name = "horizontalProgressBar21";
+            this.horizontalProgressBar21.Size = new System.Drawing.Size(283, 23);
+            this.horizontalProgressBar21.TabIndex = 64;
+            this.horizontalProgressBar21.Value = 0;
+            this.horizontalProgressBar21.ValueColor = System.Drawing.Color.Lime;
+            // 
             // button28
             // 
             this.button28.BackColor = System.Drawing.Color.Chartreuse;
@@ -1253,25 +1285,6 @@
             this.label183.Size = new System.Drawing.Size(111, 20);
             this.label183.TabIndex = 60;
             this.label183.Text = "Carga da CPU";
-            // 
-            // label184
-            // 
-            this.label184.AutoSize = true;
-            this.label184.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label184.Location = new System.Drawing.Point(123, 544);
-            this.label184.Name = "label184";
-            this.label184.Size = new System.Drawing.Size(33, 20);
-            this.label184.TabIndex = 59;
-            this.label184.Text = "0%";
-            // 
-            // metroProgressBar30
-            // 
-            this.metroProgressBar30.Location = new System.Drawing.Point(8, 543);
-            this.metroProgressBar30.Name = "metroProgressBar30";
-            this.metroProgressBar30.Size = new System.Drawing.Size(283, 23);
-            this.metroProgressBar30.Style = MetroFramework.MetroColorStyle.Red;
-            this.metroProgressBar30.TabIndex = 58;
-            this.metroProgressBar30.Tag = "";
             // 
             // button23
             // 
@@ -1328,6 +1341,7 @@
             this.HUD1.ThrottleSafe = false;
             this.HUD1.VelSpeed = 0F;
             this.HUD1.VSync = false;
+            this.HUD1.vibeclick += new System.EventHandler(this.HUD1_vibeclick_1);
             // 
             // label151
             // 
@@ -1338,25 +1352,6 @@
             this.label151.Size = new System.Drawing.Size(262, 20);
             this.label151.TabIndex = 53;
             this.label151.Text = "Memoria Ram Livre:0KB de 8192KB";
-            // 
-            // label150
-            // 
-            this.label150.AutoSize = true;
-            this.label150.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label150.Location = new System.Drawing.Point(123, 484);
-            this.label150.Name = "label150";
-            this.label150.Size = new System.Drawing.Size(33, 20);
-            this.label150.TabIndex = 52;
-            this.label150.Text = "0%";
-            // 
-            // metroProgressBar29
-            // 
-            this.metroProgressBar29.Location = new System.Drawing.Point(8, 483);
-            this.metroProgressBar29.Name = "metroProgressBar29";
-            this.metroProgressBar29.Size = new System.Drawing.Size(283, 23);
-            this.metroProgressBar29.Style = MetroFramework.MetroColorStyle.Red;
-            this.metroProgressBar29.TabIndex = 51;
-            this.metroProgressBar29.Tag = "";
             // 
             // label95
             // 
@@ -5366,9 +5361,9 @@
             this.label163.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label163.Location = new System.Drawing.Point(780, 398);
             this.label163.Name = "label163";
-            this.label163.Size = new System.Drawing.Size(136, 15);
+            this.label163.Size = new System.Drawing.Size(128, 15);
             this.label163.TabIndex = 127;
-            this.label163.Text = "Expo e Rate do YPR";
+            this.label163.Text = "Expo e Rate do PR";
             // 
             // label162
             // 
@@ -6673,6 +6668,7 @@
             this.HUD2.ThrottleSafe = false;
             this.HUD2.VelSpeed = 0F;
             this.HUD2.VSync = false;
+            this.HUD2.vibeclick += new System.EventHandler(this.HUD2_vibeclick);
             // 
             // HUDSMALL1
             // 
@@ -8069,8 +8065,8 @@
             // Parametro
             // 
             this.Parametro.DataPropertyName = "Nenhum";
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Parametro.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Parametro.DefaultCellStyle = dataGridViewCellStyle17;
             this.Parametro.HeaderText = "Parâmetro";
             this.Parametro.Name = "Parametro";
             this.Parametro.ReadOnly = true;
@@ -8123,6 +8119,7 @@
             // timer2
             // 
             this.timer2.Enabled = true;
+            this.timer2.Interval = 20;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
             // timer3
@@ -8809,9 +8806,7 @@
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.Panel panel14;
         private System.Windows.Forms.Label label18;
-        private MetroFramework.Controls.MetroProgressBar metroProgressBar29;
         private System.Windows.Forms.Label label151;
-        private System.Windows.Forms.Label label150;
         private System.Windows.Forms.GroupBox groupBox27;
         private System.Windows.Forms.ComboBox comboBox24;
         private System.Windows.Forms.Label label153;
@@ -8886,8 +8881,6 @@
         private System.Windows.Forms.Button button26;
         private System.Windows.Forms.Button button27;
         private System.Windows.Forms.Label label183;
-        private System.Windows.Forms.Label label184;
-        private MetroFramework.Controls.MetroProgressBar metroProgressBar30;
         private System.Windows.Forms.GroupBox groupBox37;
         private System.Windows.Forms.Label label201;
         private System.Windows.Forms.Label label202;
@@ -9011,6 +9004,8 @@
         private MetroFramework.Controls.MetroLabel metroLabel37;
         private System.Windows.Forms.NumericUpDown numericUpDown74;
         private System.Windows.Forms.Button button28;
+        private HorizontalProgressBar2 horizontalProgressBar21;
+        private HorizontalProgressBar2 horizontalProgressBar22;
     }
 }
 

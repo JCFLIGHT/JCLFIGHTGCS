@@ -71,6 +71,33 @@ namespace JCFLIGHTGCS
 
         private bool started = false;
 
+        public event EventHandler vibeclick;
+
+        Rectangle vibehitzone = new Rectangle();
+
+        private void HUD_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (vibehitzone.IntersectsWith(new Rectangle(e.X, e.Y, 5, 5)))
+            {
+                if (vibeclick != null)
+                {
+                    vibeclick(this, null);
+                }
+            }
+        }
+
+        private void HUD_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (vibehitzone.IntersectsWith(new Rectangle(e.X, e.Y, 5, 5)))
+            {
+                Cursor.Current = Cursors.Hand;
+            }
+            else
+            {
+                Cursor.Current = DefaultCursor;
+            }
+        }
+
         public HUD()
         {
             InitializeComponent();
@@ -1280,17 +1307,17 @@ namespace JCFLIGHTGCS
                 {
                     if (!_ThrottleSafe)
                     {
-                        drawstring("Throttle safe para armar", font, fontsize + 2, (SolidBrush)Brushes.Red, -132, 85);
+                        drawstring("Throttle seguro para armar", font, fontsize + 2, (SolidBrush)Brushes.Red, -132, 85);
                     }
                     else
                     {
                         if (!GetValues.SafeStateToLaunch)
                         {
-                            drawstring("Throttle acima do limite para armar", font, fontsize + 2, (SolidBrush)Brushes.Red, -125, 85);
+                            drawstring("Throttle acima do limite para armar", font, fontsize + 2, (SolidBrush)Brushes.Red, -167, 85);
                         }
                         else
                         {
-                            drawstring("Throttle seguro para fazer o auto-launch", font, fontsize + 2, (SolidBrush)Brushes.Red, -165, 85);
+                            drawstring("Throttle seguro para fazer o Take-Off", font, fontsize + 2, (SolidBrush)Brushes.Red, -165, 85);
                         }
                     }
                 }
@@ -1311,8 +1338,21 @@ namespace JCFLIGHTGCS
 
                 if (AHRSHorizontalVariance == true)
                 {
-                    drawstring("Erro de variância na Pos.Horiz.", font, fontsize + 2, (SolidBrush)Brushes.Red, -132, 70);
+                    drawstring("Erro de variância na Pos.Horiz.", font, fontsize + 2, (SolidBrush)Brushes.Red, -132, 65);
                     StatusLast = _ARMStatus;
+                }
+
+                graphicsObject.ResetTransform();
+
+                vibehitzone = new Rectangle(this.Width - 10 * fontsize, this.Height - ((fontsize) * 3) - fontoffset, 80, fontsize * 2);
+
+                if (InertialSensor.get_vibration_level_X() > 30 || InertialSensor.get_vibration_level_Y() > 30 || InertialSensor.get_vibration_level_Z() > 30)
+                {
+                    drawstring("Vibração", font, fontsize, (SolidBrush)Brushes.Red, vibehitzone.X, vibehitzone.Y);
+                }
+                else
+                {
+                    drawstring("Vibração", font, fontsize, _whiteBrush, vibehitzone.X, vibehitzone.Y);
                 }
 
                 graphicsObject.ResetTransform();
@@ -1723,6 +1763,8 @@ namespace JCFLIGHTGCS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.Name = "HUD";
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.HUD_MouseClick);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.HUD_MouseMove);
             this.ResumeLayout(false);
 
         }

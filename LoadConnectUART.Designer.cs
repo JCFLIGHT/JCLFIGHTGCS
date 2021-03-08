@@ -86,6 +86,7 @@
             this.Name = "LoadConnectUART";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "JCFLIGHT GCS";
+            this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LoadConnectUART_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
