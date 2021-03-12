@@ -127,7 +127,7 @@ namespace JCFLIGHTGCS
         int CompassHealthCount = 9999999;
         int HeadingCompassPrev = 0;
 
-        byte ComboBoxIOC = 0;
+        byte ComboBoxSimpleMode = 0;
         byte ComboBoxAltHold = 0;
         byte ComboBoxGPSHold = 0;
         byte ComboBoxRTH = 0;
@@ -151,7 +151,7 @@ namespace JCFLIGHTGCS
         byte ComboBoxKalmanState = 0;
         byte ComboBoxCompSpeed = 0;
         byte ComboBoxAutoLand = 0;
-        byte IOCDataGuard = 0;
+        byte SimpleDataGuard = 0;
         byte AltHoldGuard = 0;
         byte GPSHoldGuard = 0;
         byte RTHGuard = 0;
@@ -921,7 +921,7 @@ namespace JCFLIGHTGCS
                     AcroGuard = (byte)InBuffer[ptr++];
                     AltHoldGuard = (byte)InBuffer[ptr++];
                     GPSHoldGuard = (byte)InBuffer[ptr++];
-                    IOCDataGuard = (byte)InBuffer[ptr++];
+                    SimpleDataGuard = (byte)InBuffer[ptr++];
                     RTHGuard = (byte)InBuffer[ptr++];
                     SportGuard = (byte)InBuffer[ptr++];
                     AutoFlipGuard = (byte)InBuffer[ptr++];
@@ -2037,7 +2037,7 @@ namespace JCFLIGHTGCS
                 }
                 Serial_Write_To_FC(13);
                 SerialOpen = true;
-                comboBox4.SelectedIndex = ((IOCDataGuard > comboBox4.Items.Count) ? 0 : IOCDataGuard);
+                comboBox4.SelectedIndex = ((SimpleDataGuard > comboBox4.Items.Count) ? 0 : SimpleDataGuard);
                 comboBox2.SelectedIndex = AltHoldGuard;
                 comboBox3.SelectedIndex = GPSHoldGuard;
                 comboBox5.SelectedIndex = RTHGuard;
@@ -2396,7 +2396,7 @@ namespace JCFLIGHTGCS
                     }
                     break;
 
-                case 5: //IOC
+                case 5: //MODO SIMPLES
                     if (FrameMode < 3 || FrameMode == 6 || FrameMode == 7)
                     {
                         if (!ForceNewLocationToLabels)
@@ -2407,7 +2407,7 @@ namespace JCFLIGHTGCS
                         {
                             label83.Location = new Point(402, 296);
                         }
-                        label83.Text = "IOC";
+                        label83.Text = "SIMPLES";
                     }
                     else
                     {
@@ -2696,7 +2696,7 @@ namespace JCFLIGHTGCS
 
         private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ComboBoxIOC = Convert.ToByte(comboBox4.SelectedIndex);
+            ComboBoxSimpleMode = Convert.ToByte(comboBox4.SelectedIndex);
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
@@ -2947,8 +2947,8 @@ namespace JCFLIGHTGCS
         {
             if (ComboBoxFrame == 0 || ComboBoxFrame == 1 || ComboBoxFrame == 2 || ComboBoxFrame == 6 || ComboBoxFrame == 7) //QUAD & HEXA
             {
-                label22.Text = "IOC";
-                label44.Text = "> Controle de Orientação Inteligente";
+                label22.Text = "Simples";
+                label44.Text = "> Mantém a borda de ataque sempre pra frente";
                 label23.Text = "Ataque";
                 label46.Text = "> Modo Stabilize com Limite maior no Ângulo (55°)";
                 label20.Text = "Altitude-Hold";
@@ -3001,8 +3001,8 @@ namespace JCFLIGHTGCS
             }
             else if (ComboBoxFrame == 8) //FOGUETE
             {
-                label22.Text = "IOC";
-                label44.Text = "> Controle de Orientação Inteligente";
+                label22.Text = "Simples";
+                label44.Text = "> > Mantém a borda de ataque sempre pra frente";
                 label23.Text = "Ataque";
                 label46.Text = "> Modo Stabilize com Limite maior no Ângulo (55°)";
                 label20.Text = "Altitude-Hold";
@@ -3316,7 +3316,7 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)ComboBoxAcro;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxAltHold;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxGPSHold;
-                    SendBuffer[VectorPointer++] = (byte)ComboBoxIOC;
+                    SendBuffer[VectorPointer++] = (byte)ComboBoxSimpleMode;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxRTH;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxSport;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxAutoFlip;

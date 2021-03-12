@@ -2650,9 +2650,9 @@
             this.label44.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label44.Location = new System.Drawing.Point(287, 139);
             this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(265, 20);
+            this.label44.Size = new System.Drawing.Size(344, 20);
             this.label44.TabIndex = 19;
-            this.label44.Text = "> Controle de Orientação Inteligente";
+            this.label44.Text = "> Mantém a borda de ataque sempre pra frente";
             // 
             // label43
             // 
@@ -2915,9 +2915,9 @@
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label22.Location = new System.Drawing.Point(6, 136);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(45, 24);
+            this.label22.Size = new System.Drawing.Size(84, 24);
             this.label22.TabIndex = 7;
-            this.label22.Text = "IOC";
+            this.label22.Text = "Simples";
             // 
             // comboBox5
             // 
