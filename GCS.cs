@@ -551,6 +551,7 @@ namespace JCFLIGHTGCS
             Airports.checkdups = true;
 
             this.ResumeLayout();
+
             //FECHA O SPLASH SCREEN
             Program.Splash?.Close();
         }
@@ -4240,6 +4241,7 @@ namespace JCFLIGHTGCS
             }
             SmallCompass = false;
             panel19.Visible = true;
+            tabControl1.SelectTab(tabPage9);
         }
 
         private void button25_Click(object sender, EventArgs e)
@@ -4260,6 +4262,7 @@ namespace JCFLIGHTGCS
             }
             panel19.Visible = false;
             SmallCompass = false;
+            tabControl1.SelectTab(tabPage5);
         }
 
         private void button26_Click(object sender, EventArgs e)
