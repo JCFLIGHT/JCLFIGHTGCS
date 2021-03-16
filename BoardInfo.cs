@@ -102,13 +102,13 @@ namespace JCFLIGHTGCS
                 if (checkBox1.Checked)
                 {
                     zedGraphControl1.GraphPane.CurveList[0].Label.Text = "Acc Pitch (Sem Filtro)";
-                    Chart1.Add(TimeStamp, GetValues.AccNotFilteredX);
+                    Chart1.Add(TimeStamp, GetValues.AccNotFilteredY);
                 }
 
                 if (checkBox2.Checked)
                 {
                     zedGraphControl1.GraphPane.CurveList[1].Label.Text = "Acc Roll (Sem Filtro)";
-                    Chart2.Add(TimeStamp, GetValues.AccNotFilteredY);
+                    Chart2.Add(TimeStamp, GetValues.AccNotFilteredX);
                 }
 
                 if (checkBox3.Checked)
@@ -120,13 +120,13 @@ namespace JCFLIGHTGCS
                 if (checkBox4.Checked)
                 {
                     zedGraphControl1.GraphPane.CurveList[3].Label.Text = "Acc Pitch (Com Filtro)";
-                    Chart4.Add(TimeStamp, GetValues.AccFilteredX);
+                    Chart4.Add(TimeStamp, GetValues.AccFilteredY);
                 }
 
                 if (checkBox5.Checked)
                 {
                     zedGraphControl1.GraphPane.CurveList[4].Label.Text = "Acc Roll (Com Filtro)";
-                    Chart5.Add(TimeStamp, GetValues.AccFilteredY);
+                    Chart5.Add(TimeStamp, GetValues.AccFilteredX);
                 }
 
                 if (checkBox6.Checked)

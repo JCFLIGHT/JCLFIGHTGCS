@@ -3511,10 +3511,10 @@ namespace JCFLIGHTGCS
         {
             if ((1 & (GetAccCalibFlag >> 0)) > 0) pictureBox10.BackColor = Color.Green;
             if ((1 & (GetAccCalibFlag >> 1)) > 0) pictureBox13.BackColor = Color.Green;
-            if ((1 & (GetAccCalibFlag >> 2)) > 0) pictureBox19.BackColor = Color.Green;
-            if ((1 & (GetAccCalibFlag >> 3)) > 0) pictureBox21.BackColor = Color.Green;
-            if ((1 & (GetAccCalibFlag >> 4)) > 0) pictureBox17.BackColor = Color.Green;
-            if ((1 & (GetAccCalibFlag >> 5)) > 0) pictureBox15.BackColor = Color.Green;
+            if ((1 & (GetAccCalibFlag >> 2)) > 0) pictureBox17.BackColor = Color.Green;
+            if ((1 & (GetAccCalibFlag >> 3)) > 0) pictureBox15.BackColor = Color.Green;
+            if ((1 & (GetAccCalibFlag >> 4)) > 0) pictureBox21.BackColor = Color.Green;
+            if ((1 & (GetAccCalibFlag >> 5)) > 0) pictureBox19.BackColor = Color.Green;
         }
 
         private void limparMapaToolStripMenuItem_Click(object sender, EventArgs e)
