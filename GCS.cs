@@ -4397,35 +4397,25 @@ namespace JCFLIGHTGCS
                 return;
             }
 
-            if (SpeechCount < 1)
+            if (SpeechCount < 3) //O MAIOR AUDIO TEM 3 SEGUNDOS
             {
                 SpeechCount++;
                 return;
             }
 
-            if (Math.Abs(ReadRoll / 10) > GetValues.BankAngleRollValue && SpeechCount == 1)
+            SpeechCount = 0;
+
+            if (Math.Abs(ReadRoll / 10) > GetValues.BankAngleRollValue)
             {
                 Player.URL = Directory.GetCurrentDirectory() + "\\FlightSounds" + "\\BankAngle.mp3";
             }
 
-            if (SpeechCount < 2)
-            {
-                SpeechCount++;
-                return;
-            }
-
-            if ((ReadPitch / 10) < -NumericConvert[20] && SpeechCount == 2)
+            if ((ReadPitch / 10) <= -NumericConvert[20])
             {
                 Player.URL = Directory.GetCurrentDirectory() + "\\FlightSounds" + "\\DontSink.mp3";
             }
 
-            if (SpeechCount < 3)
-            {
-                SpeechCount++;
-                return;
-            }
-
-            if ((FlightMode != 4 || FlightMode != 12) && !AutoPilotDeactived && SpeechCount == 3)
+            if ((FlightMode != 4 || FlightMode != 12) && !AutoPilotDeactived)
             {
                 Player.URL = Directory.GetCurrentDirectory() + "\\FlightSounds" + "\\AutoPilotDisengage.mp3";
                 AutoPilotDeactived = true;
@@ -4443,7 +4433,11 @@ namespace JCFLIGHTGCS
                 }
             }
 
-            SpeechCount = 0;
+            if ((ReadPitch / 10) >= 45) //45 GRAUS JÁ PODE SER CONSIDERADO UMA INCLINAÇÃO DE PITCH PERIGOSA
+            {
+                Player.URL = Directory.GetCurrentDirectory() + "\\FlightSounds" + "\\Stall.mp3";
+            }
+
         }
 
         private void HUD1_vibeclick_1(object sender, EventArgs e)
