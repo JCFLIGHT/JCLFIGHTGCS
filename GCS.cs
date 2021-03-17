@@ -14,12 +14,15 @@ using GMap.NET.WindowsForms.Markers;
 using System.Globalization;
 using System.Drawing.Drawing2D;
 using System.IO;
+using WMPLib;
 
 namespace JCFLIGHTGCS
 {
     public partial class GCS : Form
     {
         SerialPort SerialPort = new SerialPort();
+        WindowsMediaPlayer Player = new WindowsMediaPlayer();
+
         string SerialComPort;
         string[] SerialPorts = SerialPort.GetPortNames();
         static bool Error_Received = false;
@@ -1369,11 +1372,6 @@ namespace JCFLIGHTGCS
             GetValues.GCSAirPorts = GCSSettings.GCSAirPorts;
             GetValues.GCSTrackSize = GCSSettings.GCSTrackSize;
 
-            if (GCSSettings.GCSSpeech > 0)
-            {
-                SpeechRun();
-            }
-
             if (GCSSettings.GCSAutoWP > 0 && !AutoWpPushed && GPS_NumSat >= 5)
             {
                 carregarWPsToolStripMenuItem_Click(null, null);
@@ -2521,6 +2519,11 @@ namespace JCFLIGHTGCS
 
         private void FlightTimer_Tick(object sender, EventArgs e)
         {
+            if (GCSSettings.GCSSpeech > 0)
+            {
+                SpeechRun();
+            }
+
             if (GCSSettings.GCSAirPorts > 0)
             {
                 if (AirportsCountTime >= 5)
@@ -4384,9 +4387,63 @@ namespace JCFLIGHTGCS
             GCS_Configurations.ShowDialog();
         }
 
+        int SpeechCount = 0;
+        bool AutoPilotDeactived = false;
+        int AutoPilotDeactivedCount = 0;
         private void SpeechRun()
         {
+            if (SerialPort.IsOpen == false)
+            {
+                return;
+            }
 
+            if (SpeechCount < 1)
+            {
+                SpeechCount++;
+                return;
+            }
+
+            if (Math.Abs(ReadRoll / 10) > GetValues.BankAngleRollValue && SpeechCount == 1)
+            {
+                Player.URL = Directory.GetCurrentDirectory() + "\\FlightSounds" + "\\BankAngle.mp3";
+            }
+
+            if (SpeechCount < 2)
+            {
+                SpeechCount++;
+                return;
+            }
+
+            if ((ReadPitch / 10) < -NumericConvert[20] && SpeechCount == 2)
+            {
+                Player.URL = Directory.GetCurrentDirectory() + "\\FlightSounds" + "\\DontSink.mp3";
+            }
+
+            if (SpeechCount < 3)
+            {
+                SpeechCount++;
+                return;
+            }
+
+            if ((FlightMode != 4 || FlightMode != 12) && !AutoPilotDeactived && SpeechCount == 3)
+            {
+                Player.URL = Directory.GetCurrentDirectory() + "\\FlightSounds" + "\\AutoPilotDisengage.mp3";
+                AutoPilotDeactived = true;
+            }
+            else
+            {
+                if (AutoPilotDeactivedCount >= 60)
+                {
+                    AutoPilotDeactived = false;
+                    AutoPilotDeactivedCount = 0;
+                }
+                else
+                {
+                    AutoPilotDeactivedCount++;
+                }
+            }
+
+            SpeechCount = 0;
         }
 
         private void HUD1_vibeclick_1(object sender, EventArgs e)
