@@ -116,6 +116,7 @@ namespace JCFLIGHTGCS
         private float _VelSpeed = 0;
         private bool _ThrottleSafe = false;
         private bool _IMUHealty = false;
+        private bool _CompassHealty = false;
         private bool _FailSafe = false;
         private bool _ARMStatus = false;
 
@@ -198,6 +199,20 @@ namespace JCFLIGHTGCS
                 if (_FailSafe != value)
                 {
                     _FailSafe = value;
+                    this.Invalidate();
+                }
+            }
+        }
+
+        [Browsable(true), Category("Values")]
+        public bool CompassHealty
+        {
+            get { return _CompassHealty; }
+            set
+            {
+                if (_CompassHealty != value)
+                {
+                    _CompassHealty = value;
                     this.Invalidate();
                 }
             }
@@ -1329,10 +1344,18 @@ namespace JCFLIGHTGCS
                 }
                 else
                 {
-                    if (_FailSafe == true)
+                    if (_CompassHealty)
                     {
-                        drawstring("Fail-Safe", font, fontsize + 20, (SolidBrush)Brushes.Red, -75, 40);
+                        drawstring("Compass Ruim", font, fontsize + 10, (SolidBrush)Brushes.Red, -130, 40);
                         StatusLast = _ARMStatus;
+                    }
+                    else
+                    {
+                        if (_FailSafe == true)
+                        {
+                            drawstring("Fail-Safe", font, fontsize + 20, (SolidBrush)Brushes.Red, -75, 40);
+                            StatusLast = _ARMStatus;
+                        }
                     }
                 }
 

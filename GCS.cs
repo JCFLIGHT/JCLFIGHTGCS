@@ -62,7 +62,7 @@ namespace JCFLIGHTGCS
         int YawAttitudeData = 0;
         int PitchAttitudeData = 0;
         int RollAttitudeData = 0;
-        int ReadRoll = 2000;
+        int ReadRoll = 0;
         int ReadPitch = 0;
         int ReadCompass = 0;
         byte CPULoad = 0;
@@ -1662,7 +1662,7 @@ namespace JCFLIGHTGCS
 
             FlightModeToLabel(FlightMode);
 
-            if (Math.Abs(ReadRoll) > 1200)
+            if (GetAccCalibFlag != 63)
             {
                 AccNotCalibrated = true;
                 RollToGraph.Add((double)xTimeStamp, 0);
@@ -1775,7 +1775,7 @@ namespace JCFLIGHTGCS
 
             GetValues.SafeStateToLaunch = (FrameMode == 3 || FrameMode == 4 || FrameMode == 5) && ThrottleData >= 1400 && FlightMode == 3;
 
-            if (Math.Abs(ReadRoll) > 1200)
+            if (GetAccCalibFlag != 63)
             {
                 HUD1.Roll = 0;
                 HUD1.Pitch = 0;
@@ -1793,7 +1793,7 @@ namespace JCFLIGHTGCS
             HUD1.ThrottleSafe = ThrottleActualData > 1250 ? true : false;
             HUD1.VelSpeed = GetValues.AirSpeedEnabled > 0 ? GetValues.ReadAirSpeed : GetValues.ReadGroundSpeed;
 
-            if (Math.Abs(ReadRoll) > 1200)
+            if (GetAccCalibFlag != 63)
             {
                 HUD2.Roll = 0;
                 HUD2.Pitch = 0;
@@ -1808,10 +1808,10 @@ namespace JCFLIGHTGCS
             HUD2.IMUHealty = GetAccCalibFlag != 63 && SerialPort.IsOpen ? true : false;
             HUD2.LinkQualityGCS = (float)CalculateAverage(PacketsReceived, PacketsError);
             HUD2.AHRSHorizontalVariance = HorizontalVariance();
-            HUD2.ThrottleSafe = ThrottleActualData > 1250 ? true : false;
+            HUD2.ThrottleSafe = ThrottleActualData > 1300 ? true : false;
             HUD2.VelSpeed = GetValues.AirSpeedEnabled > 0 ? GetValues.ReadAirSpeed : GetValues.ReadGroundSpeed;
 
-            if (Math.Abs(ReadRoll) > 1200)
+            if (GetAccCalibFlag != 63)
             {
                 HUDSMALL1.roll = 0;
                 HUDSMALL1.pitch = 0;
@@ -2926,24 +2926,13 @@ namespace JCFLIGHTGCS
             }
             if (CompassHealthCount >= 4000) //4 SEGUNDOS
             {
-                label95.Text = "Compass:Ruim";
-                label95.ForeColor = Color.Red;
+                HUD1.CompassHealty = true;
+                HUD2.CompassHealty = true;
             }
             else
             {
-                label95.Text = "Compass:Bom";
-                label95.ForeColor = Color.Green;
-            }
-            //AHRS
-            if (Math.Abs(ReadRoll) > 1200)
-            {
-                label94.Text = "AHRS:Ruim";
-                label94.ForeColor = Color.Red;
-            }
-            else
-            {
-                label94.Text = "AHRS:Bom";
-                label94.ForeColor = Color.Green;
+                HUD1.CompassHealty = false;
+                HUD2.CompassHealty = false;
             }
         }
 
@@ -4174,7 +4163,7 @@ namespace JCFLIGHTGCS
         {
             BlackBoxStream.WriteLine("IMU,{0},{1},{2},{3},{4},{5},{6}", DateTime.Now.ToString("HH:mm:ss.fff"), GetValues.AccFilteredX, GetValues.AccFilteredY, GetValues.AccFilteredZ, GetValues.GyroFilteredX, GetValues.GyroFilteredY, GetValues.GyroFilteredZ);
             BlackBoxStream.WriteLine("MAG,{0},{1},{2},{3}", DateTime.Now.ToString("HH:mm:ss.fff"), GetValues.CompassX, GetValues.CompassY, GetValues.CompassZ);
-            BlackBoxStream.WriteLine("ATTITUDE,{0},{1},{2},{3},{4}", DateTime.Now.ToString("HH:mm:ss.fff"), Math.Abs(ReadRoll) > 1200 ? 0 : -ReadRoll, -ReadPitch, ReadCompass, label83.Text);
+            BlackBoxStream.WriteLine("ATTITUDE,{0},{1},{2},{3},{4}", DateTime.Now.ToString("HH:mm:ss.fff"), GetAccCalibFlag != 63 ? 0 : -ReadRoll, -ReadPitch, ReadCompass, label83.Text);
             BlackBoxStream.WriteLine("RADIO,{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12}", DateTime.Now.ToString("HH:mm:ss.fff"), ThrottleData, PitchData, RollData, YawData, Aux1Data, Aux2Data, Aux3Data, Aux4Data, Aux5Data, Aux6Data, Aux7Data, Aux8Data);
         }
 

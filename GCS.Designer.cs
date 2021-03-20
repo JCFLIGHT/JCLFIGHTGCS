@@ -34,7 +34,6 @@
             this.label27 = new System.Windows.Forms.Label();
             this.comboBox7 = new System.Windows.Forms.ComboBox();
             this.BarraTitulo = new System.Windows.Forms.Panel();
-            this.preArmNotification2 = new JCFLIGHTGCS.PreArmNotification();
             this.panel18 = new System.Windows.Forms.Panel();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.label72 = new System.Windows.Forms.Label();
@@ -49,7 +48,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.MenuVertical = new System.Windows.Forms.Panel();
-            this.preArmNotification1 = new JCFLIGHTGCS.PreArmNotification();
             this.button19 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
             this.button18 = new System.Windows.Forms.Button();
@@ -61,22 +59,16 @@
             this.RealTimer = new System.Windows.Forms.Timer(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.horizontalProgressBar22 = new JCFLIGHTGCS.HorizontalProgressBar2();
-            this.horizontalProgressBar21 = new JCFLIGHTGCS.HorizontalProgressBar2();
             this.button28 = new System.Windows.Forms.Button();
             this.label183 = new System.Windows.Forms.Label();
             this.button23 = new System.Windows.Forms.Button();
             this.button22 = new System.Windows.Forms.Button();
             this.button21 = new System.Windows.Forms.Button();
-            this.HUD1 = new JCFLIGHTGCS.HUD();
             this.label151 = new System.Windows.Forms.Label();
-            this.label95 = new System.Windows.Forms.Label();
-            this.label94 = new System.Windows.Forms.Label();
             this.button15 = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.circularProgressBar1 = new CircularProgressBar.CircularProgressBar();
-            this.HeadingIndicator = new JCFLIGHTGCS.HeadingIndicatorInstrumentControl();
             this.panel16 = new System.Windows.Forms.Panel();
             this.label25 = new System.Windows.Forms.Label();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
@@ -187,7 +179,6 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.label153 = new System.Windows.Forms.Label();
             this.label152 = new System.Windows.Forms.Label();
-            this.label93 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.CompassCalibration = new System.Windows.Forms.Button();
             this.AccCalibration = new System.Windows.Forms.Button();
@@ -302,8 +293,6 @@
             this.metroProgressBar2 = new MetroFramework.Controls.MetroProgressBar();
             this.metroProgressBar1 = new MetroFramework.Controls.MetroProgressBar();
             this.metroProgressBar11 = new MetroFramework.Controls.MetroProgressBar();
-            this.rcExpo1 = new JCFLIGHTGCS.RCExpo();
-            this.throttleExpo1 = new JCFLIGHTGCS.ThrottleExpo();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.label158 = new System.Windows.Forms.Label();
             this.label157 = new System.Windows.Forms.Label();
@@ -337,9 +326,6 @@
             this.label73 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.circularProgressBar2 = new CircularProgressBar.CircularProgressBar();
-            this.HUD2 = new JCFLIGHTGCS.HUD();
-            this.HUDSMALL1 = new JCFLIGHTGCS.HUDSMALL();
-            this.HeadingIndicator2 = new JCFLIGHTGCS.HeadingIndicatorInstrumentControl();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.groupBox33 = new System.Windows.Forms.GroupBox();
             this.metroLabel39 = new MetroFramework.Controls.MetroLabel();
@@ -540,7 +526,6 @@
             this.groupBox32 = new System.Windows.Forms.GroupBox();
             this.label166 = new System.Windows.Forms.Label();
             this.numericUpDown28 = new System.Windows.Forms.NumericUpDown();
-            this.rcExpo2 = new JCFLIGHTGCS.RCExpo();
             this.label167 = new System.Windows.Forms.Label();
             this.label169 = new System.Windows.Forms.Label();
             this.numericUpDown27 = new System.Windows.Forms.NumericUpDown();
@@ -551,7 +536,6 @@
             this.label164 = new System.Windows.Forms.Label();
             this.label179 = new System.Windows.Forms.Label();
             this.numericUpDown26 = new System.Windows.Forms.NumericUpDown();
-            this.throttleExpo2 = new JCFLIGHTGCS.ThrottleExpo();
             this.numericUpDown35 = new System.Windows.Forms.NumericUpDown();
             this.label165 = new System.Windows.Forms.Label();
             this.numericUpDown36 = new System.Windows.Forms.NumericUpDown();
@@ -571,6 +555,19 @@
             this.limparMapaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.carregarWPsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.limparWPsDoMapaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.horizontalProgressBar22 = new JCFLIGHTGCS.HorizontalProgressBar2();
+            this.horizontalProgressBar21 = new JCFLIGHTGCS.HorizontalProgressBar2();
+            this.HUD1 = new JCFLIGHTGCS.HUD();
+            this.HeadingIndicator = new JCFLIGHTGCS.HeadingIndicatorInstrumentControl();
+            this.rcExpo1 = new JCFLIGHTGCS.RCExpo();
+            this.throttleExpo1 = new JCFLIGHTGCS.ThrottleExpo();
+            this.HUD2 = new JCFLIGHTGCS.HUD();
+            this.HUDSMALL1 = new JCFLIGHTGCS.HUDSMALL();
+            this.HeadingIndicator2 = new JCFLIGHTGCS.HeadingIndicatorInstrumentControl();
+            this.rcExpo2 = new JCFLIGHTGCS.RCExpo();
+            this.throttleExpo2 = new JCFLIGHTGCS.ThrottleExpo();
+            this.preArmNotification2 = new JCFLIGHTGCS.PreArmNotification();
+            this.preArmNotification1 = new JCFLIGHTGCS.PreArmNotification();
             this.BarraTitulo.SuspendLayout();
             this.panel18.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
@@ -803,13 +800,6 @@
             this.BarraTitulo.TabIndex = 8;
             this.BarraTitulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BarraTitulo_MouseDown);
             // 
-            // preArmNotification2
-            // 
-            this.preArmNotification2.Location = new System.Drawing.Point(3, 3);
-            this.preArmNotification2.Name = "preArmNotification2";
-            this.preArmNotification2.Size = new System.Drawing.Size(247, 123);
-            this.preArmNotification2.TabIndex = 10;
-            // 
             // panel18
             // 
             this.panel18.Controls.Add(this.pictureBox9);
@@ -1014,13 +1004,6 @@
             this.MenuVertical.Size = new System.Drawing.Size(249, 710);
             this.MenuVertical.TabIndex = 7;
             // 
-            // preArmNotification1
-            // 
-            this.preArmNotification1.Location = new System.Drawing.Point(2, 0);
-            this.preArmNotification1.Name = "preArmNotification1";
-            this.preArmNotification1.Size = new System.Drawing.Size(247, 123);
-            this.preArmNotification1.TabIndex = 9;
-            // 
             // button19
             // 
             this.button19.BackColor = System.Drawing.Color.YellowGreen;
@@ -1180,8 +1163,6 @@
             this.tabPage1.Controls.Add(this.button21);
             this.tabPage1.Controls.Add(this.HUD1);
             this.tabPage1.Controls.Add(this.label151);
-            this.tabPage1.Controls.Add(this.label95);
-            this.tabPage1.Controls.Add(this.label94);
             this.tabPage1.Controls.Add(this.button15);
             this.tabPage1.Controls.Add(this.button14);
             this.tabPage1.Controls.Add(this.label2);
@@ -1203,42 +1184,6 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Resumo";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // horizontalProgressBar22
-            // 
-            this.horizontalProgressBar22.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(68)))), ((int)(((byte)(69)))));
-            this.horizontalProgressBar22.BorderColor = System.Drawing.SystemColors.ActiveBorder;
-            this.horizontalProgressBar22.DisplayScale = 1F;
-            this.horizontalProgressBar22.DrawLabel = true;
-            this.horizontalProgressBar22.Label = "Porcentagem:";
-            this.horizontalProgressBar22.Location = new System.Drawing.Point(8, 544);
-            this.horizontalProgressBar22.Maximum = 100;
-            this.horizontalProgressBar22.maxline = 90;
-            this.horizontalProgressBar22.Minimum = 0;
-            this.horizontalProgressBar22.minline = 50;
-            this.horizontalProgressBar22.Name = "horizontalProgressBar22";
-            this.horizontalProgressBar22.Size = new System.Drawing.Size(283, 23);
-            this.horizontalProgressBar22.TabIndex = 65;
-            this.horizontalProgressBar22.Value = 0;
-            this.horizontalProgressBar22.ValueColor = System.Drawing.Color.Lime;
-            // 
-            // horizontalProgressBar21
-            // 
-            this.horizontalProgressBar21.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(68)))), ((int)(((byte)(69)))));
-            this.horizontalProgressBar21.BorderColor = System.Drawing.SystemColors.ActiveBorder;
-            this.horizontalProgressBar21.DisplayScale = 1F;
-            this.horizontalProgressBar21.DrawLabel = true;
-            this.horizontalProgressBar21.Label = "Porcentagem:";
-            this.horizontalProgressBar21.Location = new System.Drawing.Point(8, 483);
-            this.horizontalProgressBar21.Maximum = 100;
-            this.horizontalProgressBar21.maxline = 90;
-            this.horizontalProgressBar21.Minimum = 0;
-            this.horizontalProgressBar21.minline = 50;
-            this.horizontalProgressBar21.Name = "horizontalProgressBar21";
-            this.horizontalProgressBar21.Size = new System.Drawing.Size(283, 23);
-            this.horizontalProgressBar21.TabIndex = 64;
-            this.horizontalProgressBar21.Value = 0;
-            this.horizontalProgressBar21.ValueColor = System.Drawing.Color.Lime;
             // 
             // button28
             // 
@@ -1293,31 +1238,6 @@
             this.button21.UseVisualStyleBackColor = false;
             this.button21.Click += new System.EventHandler(this.button21_Click);
             // 
-            // HUD1
-            // 
-            this.HUD1.AHRSHorizontalVariance = false;
-            this.HUD1.ARMStatus = false;
-            this.HUD1.BackColor = System.Drawing.Color.Black;
-            this.HUD1.bgimage = null;
-            this.HUD1.FailSafe = false;
-            this.HUD1.hudcolor = System.Drawing.Color.White;
-            this.HUD1.IMUHealty = false;
-            this.HUD1.LinkQualityGCS = 0F;
-            this.HUD1.Location = new System.Drawing.Point(8, 152);
-            this.HUD1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.HUD1.Name = "HUD1";
-            this.HUD1.Pitch = 0F;
-            this.HUD1.Roll = 0F;
-            this.HUD1.Size = new System.Drawing.Size(340, 300);
-            this.HUD1.skyColor1 = System.Drawing.Color.Blue;
-            this.HUD1.skyColor2 = System.Drawing.Color.LightBlue;
-            this.HUD1.streamjpg = ((System.IO.MemoryStream)(resources.GetObject("HUD1.streamjpg")));
-            this.HUD1.TabIndex = 54;
-            this.HUD1.ThrottleSafe = false;
-            this.HUD1.VelSpeed = 0F;
-            this.HUD1.VSync = false;
-            this.HUD1.vibeclick += new System.EventHandler(this.HUD1_vibeclick_1);
-            // 
             // label151
             // 
             this.label151.AutoSize = true;
@@ -1327,28 +1247,6 @@
             this.label151.Size = new System.Drawing.Size(262, 20);
             this.label151.TabIndex = 53;
             this.label151.Text = "Memoria Ram Livre:0KB de 8192KB";
-            // 
-            // label95
-            // 
-            this.label95.AutoSize = true;
-            this.label95.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label95.ForeColor = System.Drawing.Color.Red;
-            this.label95.Location = new System.Drawing.Point(468, 132);
-            this.label95.Name = "label95";
-            this.label95.Size = new System.Drawing.Size(112, 18);
-            this.label95.TabIndex = 49;
-            this.label95.Text = "Compass:Ruim";
-            // 
-            // label94
-            // 
-            this.label94.AutoSize = true;
-            this.label94.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label94.ForeColor = System.Drawing.Color.Red;
-            this.label94.Location = new System.Drawing.Point(129, 132);
-            this.label94.Name = "label94";
-            this.label94.Size = new System.Drawing.Size(88, 18);
-            this.label94.TabIndex = 48;
-            this.label94.Text = "AHRS:Ruim";
             // 
             // button15
             // 
@@ -1417,15 +1315,6 @@
             this.circularProgressBar1.TabIndex = 46;
             this.circularProgressBar1.TextMargin = new System.Windows.Forms.Padding(8, 8, 0, 0);
             this.circularProgressBar1.Value = 68;
-            // 
-            // HeadingIndicator
-            // 
-            this.HeadingIndicator.BackColor = System.Drawing.Color.White;
-            this.HeadingIndicator.Location = new System.Drawing.Point(382, 153);
-            this.HeadingIndicator.Name = "HeadingIndicator";
-            this.HeadingIndicator.Size = new System.Drawing.Size(300, 300);
-            this.HeadingIndicator.TabIndex = 4;
-            this.HeadingIndicator.Text = "HeadingIndicator";
             // 
             // panel16
             // 
@@ -3049,7 +2938,6 @@
             // 
             this.tabPage3.Controls.Add(this.label153);
             this.tabPage3.Controls.Add(this.label152);
-            this.tabPage3.Controls.Add(this.label93);
             this.tabPage3.Controls.Add(this.label8);
             this.tabPage3.Controls.Add(this.CompassCalibration);
             this.tabPage3.Controls.Add(this.AccCalibration);
@@ -3080,10 +2968,9 @@
             this.label153.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label153.Location = new System.Drawing.Point(9, 297);
             this.label153.Name = "label153";
-            this.label153.Size = new System.Drawing.Size(467, 13);
+            this.label153.Size = new System.Drawing.Size(295, 13);
             this.label153.TabIndex = 19;
-            this.label153.Text = "Gire o Compass em vários sentidos para fazer a calibração,você tem 60 segundos pa" +
-    "ra fazer isso.";
+            this.label153.Text = "Gire o Compass em vários sentidos para realizar a calibração.";
             // 
             // label152
             // 
@@ -3094,18 +2981,6 @@
             this.label152.Size = new System.Drawing.Size(303, 31);
             this.label152.TabIndex = 18;
             this.label152.Text = "Calibração do Compass";
-            // 
-            // label93
-            // 
-            this.label93.AutoSize = true;
-            this.label93.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label93.Location = new System.Drawing.Point(9, 33);
-            this.label93.Name = "label93";
-            this.label93.Size = new System.Drawing.Size(954, 13);
-            this.label93.TabIndex = 16;
-            this.label93.Text = "Observação:Vale ressaltar que,as duas primeiras calibrações da IMU tem que ser ob" +
-    "rigatoriamente na ordem(Primeiro para cima,a segunda para baixo),as outras resta" +
-    "ntes podem ser em qualquer ordem.";
             // 
             // label8
             // 
@@ -4355,22 +4230,6 @@
             this.metroProgressBar11.Style = MetroFramework.MetroColorStyle.Purple;
             this.metroProgressBar11.TabIndex = 46;
             // 
-            // rcExpo1
-            // 
-            this.rcExpo1.Location = new System.Drawing.Point(774, 416);
-            this.rcExpo1.Name = "rcExpo1";
-            this.rcExpo1.Size = new System.Drawing.Size(150, 100);
-            this.rcExpo1.TabIndex = 124;
-            this.rcExpo1.Text = "rcExpo1";
-            // 
-            // throttleExpo1
-            // 
-            this.throttleExpo1.Location = new System.Drawing.Point(572, 416);
-            this.throttleExpo1.Name = "throttleExpo1";
-            this.throttleExpo1.Size = new System.Drawing.Size(150, 100);
-            this.throttleExpo1.TabIndex = 123;
-            this.throttleExpo1.Text = "throttleExpo1";
-            // 
             // tabPage6
             // 
             this.tabPage6.Controls.Add(this.label158);
@@ -4797,60 +4656,6 @@
             this.circularProgressBar2.TabIndex = 47;
             this.circularProgressBar2.TextMargin = new System.Windows.Forms.Padding(8, 8, 0, 0);
             this.circularProgressBar2.Value = 68;
-            // 
-            // HUD2
-            // 
-            this.HUD2.AHRSHorizontalVariance = false;
-            this.HUD2.ARMStatus = false;
-            this.HUD2.BackColor = System.Drawing.Color.Black;
-            this.HUD2.bgimage = null;
-            this.HUD2.FailSafe = false;
-            this.HUD2.hudcolor = System.Drawing.Color.White;
-            this.HUD2.IMUHealty = false;
-            this.HUD2.LinkQualityGCS = 0F;
-            this.HUD2.Location = new System.Drawing.Point(0, 6);
-            this.HUD2.Name = "HUD2";
-            this.HUD2.Pitch = 0F;
-            this.HUD2.Roll = 0F;
-            this.HUD2.Size = new System.Drawing.Size(360, 360);
-            this.HUD2.skyColor1 = System.Drawing.Color.Blue;
-            this.HUD2.skyColor2 = System.Drawing.Color.LightBlue;
-            this.HUD2.streamjpg = ((System.IO.MemoryStream)(resources.GetObject("HUD2.streamjpg")));
-            this.HUD2.TabIndex = 75;
-            this.HUD2.ThrottleSafe = false;
-            this.HUD2.VelSpeed = 0F;
-            this.HUD2.VSync = false;
-            this.HUD2.vibeclick += new System.EventHandler(this.HUD2_vibeclick);
-            // 
-            // HUDSMALL1
-            // 
-            this.HUDSMALL1.bgimage = null;
-            this.HUDSMALL1.datetime = new System.DateTime(((long)(0)));
-            this.HUDSMALL1.failsafe = false;
-            this.HUDSMALL1.hudcolor = System.Drawing.Color.White;
-            this.HUDSMALL1.imuhealty = false;
-            this.HUDSMALL1.linkqualitygcs = 0F;
-            this.HUDSMALL1.Location = new System.Drawing.Point(0, 6);
-            this.HUDSMALL1.messagetime = new System.DateTime(((long)(0)));
-            this.HUDSMALL1.Name = "HUDSMALL1";
-            this.HUDSMALL1.pitch = 0F;
-            this.HUDSMALL1.roll = 0F;
-            this.HUDSMALL1.Russian = false;
-            this.HUDSMALL1.Size = new System.Drawing.Size(157, 158);
-            this.HUDSMALL1.skyColor1 = System.Drawing.Color.Blue;
-            this.HUDSMALL1.skyColor2 = System.Drawing.Color.LightBlue;
-            this.HUDSMALL1.status = 0;
-            this.HUDSMALL1.streamjpg = null;
-            this.HUDSMALL1.TabIndex = 73;
-            // 
-            // HeadingIndicator2
-            // 
-            this.HeadingIndicator2.BackColor = System.Drawing.Color.White;
-            this.HeadingIndicator2.Location = new System.Drawing.Point(0, 186);
-            this.HeadingIndicator2.Name = "HeadingIndicator2";
-            this.HeadingIndicator2.Size = new System.Drawing.Size(157, 160);
-            this.HeadingIndicator2.TabIndex = 5;
-            this.HeadingIndicator2.Text = "HeadingIndicator2";
             // 
             // tabPage7
             // 
@@ -7552,14 +7357,6 @@
             this.numericUpDown28.Size = new System.Drawing.Size(120, 22);
             this.numericUpDown28.TabIndex = 133;
             // 
-            // rcExpo2
-            // 
-            this.rcExpo2.Location = new System.Drawing.Point(46, 114);
-            this.rcExpo2.Name = "rcExpo2";
-            this.rcExpo2.Size = new System.Drawing.Size(150, 100);
-            this.rcExpo2.TabIndex = 128;
-            this.rcExpo2.Text = "rcExpo2";
-            // 
             // label167
             // 
             this.label167.AutoSize = true;
@@ -7706,14 +7503,6 @@
             this.numericUpDown26.Name = "numericUpDown26";
             this.numericUpDown26.Size = new System.Drawing.Size(120, 22);
             this.numericUpDown26.TabIndex = 131;
-            // 
-            // throttleExpo2
-            // 
-            this.throttleExpo2.Location = new System.Drawing.Point(45, 177);
-            this.throttleExpo2.Name = "throttleExpo2";
-            this.throttleExpo2.Size = new System.Drawing.Size(150, 100);
-            this.throttleExpo2.TabIndex = 127;
-            this.throttleExpo2.Text = "throttleExpo2";
             // 
             // numericUpDown35
             // 
@@ -7909,6 +7698,176 @@
             this.limparWPsDoMapaToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
             this.limparWPsDoMapaToolStripMenuItem.Text = "Limpar WP\'s do mapa";
             this.limparWPsDoMapaToolStripMenuItem.Click += new System.EventHandler(this.limparWPsDoMapaToolStripMenuItem_Click);
+            // 
+            // horizontalProgressBar22
+            // 
+            this.horizontalProgressBar22.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(68)))), ((int)(((byte)(69)))));
+            this.horizontalProgressBar22.BorderColor = System.Drawing.SystemColors.ActiveBorder;
+            this.horizontalProgressBar22.DisplayScale = 1F;
+            this.horizontalProgressBar22.DrawLabel = true;
+            this.horizontalProgressBar22.Label = "Porcentagem:";
+            this.horizontalProgressBar22.Location = new System.Drawing.Point(8, 544);
+            this.horizontalProgressBar22.Maximum = 100;
+            this.horizontalProgressBar22.maxline = 90;
+            this.horizontalProgressBar22.Minimum = 0;
+            this.horizontalProgressBar22.minline = 50;
+            this.horizontalProgressBar22.Name = "horizontalProgressBar22";
+            this.horizontalProgressBar22.Size = new System.Drawing.Size(283, 23);
+            this.horizontalProgressBar22.TabIndex = 65;
+            this.horizontalProgressBar22.Value = 0;
+            this.horizontalProgressBar22.ValueColor = System.Drawing.Color.Lime;
+            // 
+            // horizontalProgressBar21
+            // 
+            this.horizontalProgressBar21.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(68)))), ((int)(((byte)(69)))));
+            this.horizontalProgressBar21.BorderColor = System.Drawing.SystemColors.ActiveBorder;
+            this.horizontalProgressBar21.DisplayScale = 1F;
+            this.horizontalProgressBar21.DrawLabel = true;
+            this.horizontalProgressBar21.Label = "Porcentagem:";
+            this.horizontalProgressBar21.Location = new System.Drawing.Point(8, 483);
+            this.horizontalProgressBar21.Maximum = 100;
+            this.horizontalProgressBar21.maxline = 90;
+            this.horizontalProgressBar21.Minimum = 0;
+            this.horizontalProgressBar21.minline = 50;
+            this.horizontalProgressBar21.Name = "horizontalProgressBar21";
+            this.horizontalProgressBar21.Size = new System.Drawing.Size(283, 23);
+            this.horizontalProgressBar21.TabIndex = 64;
+            this.horizontalProgressBar21.Value = 0;
+            this.horizontalProgressBar21.ValueColor = System.Drawing.Color.Lime;
+            // 
+            // HUD1
+            // 
+            this.HUD1.AHRSHorizontalVariance = false;
+            this.HUD1.ARMStatus = false;
+            this.HUD1.BackColor = System.Drawing.Color.Black;
+            this.HUD1.bgimage = null;
+            this.HUD1.FailSafe = false;
+            this.HUD1.hudcolor = System.Drawing.Color.White;
+            this.HUD1.IMUHealty = false;
+            this.HUD1.LinkQualityGCS = 0F;
+            this.HUD1.Location = new System.Drawing.Point(8, 152);
+            this.HUD1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.HUD1.Name = "HUD1";
+            this.HUD1.Pitch = 0F;
+            this.HUD1.Roll = 0F;
+            this.HUD1.Size = new System.Drawing.Size(340, 300);
+            this.HUD1.skyColor1 = System.Drawing.Color.Blue;
+            this.HUD1.skyColor2 = System.Drawing.Color.LightBlue;
+            this.HUD1.streamjpg = ((System.IO.MemoryStream)(resources.GetObject("HUD1.streamjpg")));
+            this.HUD1.TabIndex = 54;
+            this.HUD1.ThrottleSafe = false;
+            this.HUD1.VelSpeed = 0F;
+            this.HUD1.VSync = false;
+            this.HUD1.vibeclick += new System.EventHandler(this.HUD1_vibeclick_1);
+            // 
+            // HeadingIndicator
+            // 
+            this.HeadingIndicator.BackColor = System.Drawing.Color.White;
+            this.HeadingIndicator.Location = new System.Drawing.Point(382, 153);
+            this.HeadingIndicator.Name = "HeadingIndicator";
+            this.HeadingIndicator.Size = new System.Drawing.Size(300, 300);
+            this.HeadingIndicator.TabIndex = 4;
+            this.HeadingIndicator.Text = "HeadingIndicator";
+            // 
+            // rcExpo1
+            // 
+            this.rcExpo1.Location = new System.Drawing.Point(774, 416);
+            this.rcExpo1.Name = "rcExpo1";
+            this.rcExpo1.Size = new System.Drawing.Size(150, 100);
+            this.rcExpo1.TabIndex = 124;
+            this.rcExpo1.Text = "rcExpo1";
+            // 
+            // throttleExpo1
+            // 
+            this.throttleExpo1.Location = new System.Drawing.Point(572, 416);
+            this.throttleExpo1.Name = "throttleExpo1";
+            this.throttleExpo1.Size = new System.Drawing.Size(150, 100);
+            this.throttleExpo1.TabIndex = 123;
+            this.throttleExpo1.Text = "throttleExpo1";
+            // 
+            // HUD2
+            // 
+            this.HUD2.AHRSHorizontalVariance = false;
+            this.HUD2.ARMStatus = false;
+            this.HUD2.BackColor = System.Drawing.Color.Black;
+            this.HUD2.bgimage = null;
+            this.HUD2.FailSafe = false;
+            this.HUD2.hudcolor = System.Drawing.Color.White;
+            this.HUD2.IMUHealty = false;
+            this.HUD2.LinkQualityGCS = 0F;
+            this.HUD2.Location = new System.Drawing.Point(0, 6);
+            this.HUD2.Name = "HUD2";
+            this.HUD2.Pitch = 0F;
+            this.HUD2.Roll = 0F;
+            this.HUD2.Size = new System.Drawing.Size(360, 360);
+            this.HUD2.skyColor1 = System.Drawing.Color.Blue;
+            this.HUD2.skyColor2 = System.Drawing.Color.LightBlue;
+            this.HUD2.streamjpg = ((System.IO.MemoryStream)(resources.GetObject("HUD2.streamjpg")));
+            this.HUD2.TabIndex = 75;
+            this.HUD2.ThrottleSafe = false;
+            this.HUD2.VelSpeed = 0F;
+            this.HUD2.VSync = false;
+            this.HUD2.vibeclick += new System.EventHandler(this.HUD2_vibeclick);
+            // 
+            // HUDSMALL1
+            // 
+            this.HUDSMALL1.bgimage = null;
+            this.HUDSMALL1.datetime = new System.DateTime(((long)(0)));
+            this.HUDSMALL1.failsafe = false;
+            this.HUDSMALL1.hudcolor = System.Drawing.Color.White;
+            this.HUDSMALL1.imuhealty = false;
+            this.HUDSMALL1.linkqualitygcs = 0F;
+            this.HUDSMALL1.Location = new System.Drawing.Point(0, 6);
+            this.HUDSMALL1.messagetime = new System.DateTime(((long)(0)));
+            this.HUDSMALL1.Name = "HUDSMALL1";
+            this.HUDSMALL1.pitch = 0F;
+            this.HUDSMALL1.roll = 0F;
+            this.HUDSMALL1.Russian = false;
+            this.HUDSMALL1.Size = new System.Drawing.Size(157, 158);
+            this.HUDSMALL1.skyColor1 = System.Drawing.Color.Blue;
+            this.HUDSMALL1.skyColor2 = System.Drawing.Color.LightBlue;
+            this.HUDSMALL1.status = 0;
+            this.HUDSMALL1.streamjpg = null;
+            this.HUDSMALL1.TabIndex = 73;
+            // 
+            // HeadingIndicator2
+            // 
+            this.HeadingIndicator2.BackColor = System.Drawing.Color.White;
+            this.HeadingIndicator2.Location = new System.Drawing.Point(0, 186);
+            this.HeadingIndicator2.Name = "HeadingIndicator2";
+            this.HeadingIndicator2.Size = new System.Drawing.Size(157, 160);
+            this.HeadingIndicator2.TabIndex = 5;
+            this.HeadingIndicator2.Text = "HeadingIndicator2";
+            // 
+            // rcExpo2
+            // 
+            this.rcExpo2.Location = new System.Drawing.Point(46, 114);
+            this.rcExpo2.Name = "rcExpo2";
+            this.rcExpo2.Size = new System.Drawing.Size(150, 100);
+            this.rcExpo2.TabIndex = 128;
+            this.rcExpo2.Text = "rcExpo2";
+            // 
+            // throttleExpo2
+            // 
+            this.throttleExpo2.Location = new System.Drawing.Point(45, 177);
+            this.throttleExpo2.Name = "throttleExpo2";
+            this.throttleExpo2.Size = new System.Drawing.Size(150, 100);
+            this.throttleExpo2.TabIndex = 127;
+            this.throttleExpo2.Text = "throttleExpo2";
+            // 
+            // preArmNotification2
+            // 
+            this.preArmNotification2.Location = new System.Drawing.Point(3, 3);
+            this.preArmNotification2.Name = "preArmNotification2";
+            this.preArmNotification2.Size = new System.Drawing.Size(247, 123);
+            this.preArmNotification2.TabIndex = 10;
+            // 
+            // preArmNotification1
+            // 
+            this.preArmNotification1.Location = new System.Drawing.Point(2, 0);
+            this.preArmNotification1.Name = "preArmNotification1";
+            this.preArmNotification1.Size = new System.Drawing.Size(247, 123);
+            this.preArmNotification1.TabIndex = 9;
             // 
             // GCS
             // 
@@ -8349,12 +8308,9 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ComboBox comboBox19;
         private System.Windows.Forms.Timer FlightTimer;
-        private System.Windows.Forms.Label label93;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button button13;
-        private System.Windows.Forms.Label label95;
-        private System.Windows.Forms.Label label94;
         private System.Windows.Forms.Button button15;
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.TabPage tabPage7;
