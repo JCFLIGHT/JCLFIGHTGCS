@@ -304,6 +304,7 @@ namespace JCFLIGHTGCS
             SerialPort.Handshake = Handshake.None;
             SerialPort.DtrEnable = false;
             SerialPort.ReadBufferSize = 4096;
+            SerialPort.ReadTimeout = 500;
             foreach (string PortsName in SerialPorts) comboBox7.Items.Add(PortsName);
             SerialPort.DataReceived += new SerialDataReceivedEventHandler(SerialPort1_DataReceived);
             circularProgressBar1.Value = 0;
@@ -3484,6 +3485,10 @@ namespace JCFLIGHTGCS
 
         private void timer3_Tick(object sender, EventArgs e)
         {
+            if (GCSConfigurations.CloseGCSNow)
+            {
+                this.Close();
+            }
             if (SerialPort.IsOpen == false)
             {
                 return;
@@ -4163,7 +4168,7 @@ namespace JCFLIGHTGCS
         {
             BlackBoxStream.WriteLine("IMU,{0},{1},{2},{3},{4},{5},{6}", DateTime.Now.ToString("HH:mm:ss.fff"), GetValues.AccFilteredX, GetValues.AccFilteredY, GetValues.AccFilteredZ, GetValues.GyroFilteredX, GetValues.GyroFilteredY, GetValues.GyroFilteredZ);
             BlackBoxStream.WriteLine("MAG,{0},{1},{2},{3}", DateTime.Now.ToString("HH:mm:ss.fff"), GetValues.CompassX, GetValues.CompassY, GetValues.CompassZ);
-            BlackBoxStream.WriteLine("ATTITUDE,{0},{1},{2},{3},{4}", DateTime.Now.ToString("HH:mm:ss.fff"), GetAccCalibFlag != 63 ? 0 : -ReadRoll, -ReadPitch, ReadCompass, label83.Text);
+            BlackBoxStream.WriteLine("ATTITUDE,{0},{1},{2},{3},{4}", DateTime.Now.ToString("HH:mm:ss.fff"), GetAccCalibFlag != 63 ? 0 : -ReadRoll, GetAccCalibFlag != 63 ? 0 : -ReadPitch, ReadCompass, label83.Text);
             BlackBoxStream.WriteLine("RADIO,{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12}", DateTime.Now.ToString("HH:mm:ss.fff"), ThrottleData, PitchData, RollData, YawData, Aux1Data, Aux2Data, Aux3Data, Aux4Data, Aux5Data, Aux6Data, Aux7Data, Aux8Data);
         }
 
@@ -4378,6 +4383,7 @@ namespace JCFLIGHTGCS
 
         int SpeechCount = 0;
         bool AutoPilotDeactived = false;
+        bool OkToResetSpeech = false;
         int AutoPilotDeactivedCount = 0;
         private void SpeechRun()
         {
@@ -4392,21 +4398,22 @@ namespace JCFLIGHTGCS
                 return;
             }
 
-            SpeechCount = 0;
-
             if (Math.Abs(ReadRoll / 10) > GetValues.BankAngleRollValue)
             {
                 Player.URL = Directory.GetCurrentDirectory() + "\\FlightSounds" + "\\BankAngle.mp3";
+                OkToResetSpeech = true;
             }
 
             if ((ReadPitch / 10) <= -NumericConvert[20])
             {
                 Player.URL = Directory.GetCurrentDirectory() + "\\FlightSounds" + "\\DontSink.mp3";
+                OkToResetSpeech = true;
             }
 
             if ((FlightMode != 4 || FlightMode != 12) && !AutoPilotDeactived)
             {
                 Player.URL = Directory.GetCurrentDirectory() + "\\FlightSounds" + "\\AutoPilotDisengage.mp3";
+                OkToResetSpeech = true;
                 AutoPilotDeactived = true;
             }
             else
@@ -4425,8 +4432,14 @@ namespace JCFLIGHTGCS
             if ((ReadPitch / 10) >= 45) //45 GRAUS JÁ PODE SER CONSIDERADO UMA INCLINAÇÃO DE PITCH PERIGOSA
             {
                 Player.URL = Directory.GetCurrentDirectory() + "\\FlightSounds" + "\\Stall.mp3";
+                OkToResetSpeech = true;
             }
 
+            if (OkToResetSpeech)
+            {
+                SpeechCount = 0;
+                OkToResetSpeech = false;
+            }
         }
 
         private void HUD1_vibeclick_1(object sender, EventArgs e)

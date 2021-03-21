@@ -9,6 +9,8 @@ using System.Windows.Forms;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
 
+//AUTOR ORIGINAL:MICHAEL OBORNE DO TIME ARDUPILOT
+
 namespace JCFLIGHTGCS
 {
     public partial class Compass : Form

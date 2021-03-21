@@ -123,9 +123,9 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(73, 120);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(380, 16);
+            this.label2.Size = new System.Drawing.Size(430, 16);
             this.label2.TabIndex = 6;
-            this.label2.Text = "Tamanho da Track do GPS (Rastro de navegação Lat e Long)";
+            this.label2.Text = "Tamanho máximo da Track do GPS (Rastro de navegação Lat e Long)";
             // 
             // numericUpDown2
             // 

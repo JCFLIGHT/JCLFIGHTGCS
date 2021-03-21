@@ -12,7 +12,7 @@ namespace JCFLIGHTGCS
 {
     public partial class GCSConfigurations : Form
     {
-        bool MessageRead = false;
+        public static bool CloseGCSNow = false;
 
         public GCSConfigurations()
         {
@@ -21,7 +21,6 @@ namespace JCFLIGHTGCS
 
         private void GCSConfigurations_Load(object sender, EventArgs e)
         {
-            MessageRead = false;
             numericUpDown1.Value = GetValues.GCSFrequency;
             checkBox1.Checked = Convert.ToBoolean(GetValues.GCSSpeech);
             checkBox2.Checked = Convert.ToBoolean(GetValues.GCSRebootBoard);
@@ -112,7 +111,7 @@ namespace JCFLIGHTGCS
             }
 
             GCSSettings.GCSTrackLength = (int)numericUpDown2.Value;
-        
+
             if (checkBox4.Checked == true)
             {
                 GCSSettings.GCSAirPorts = 1;
@@ -134,11 +133,11 @@ namespace JCFLIGHTGCS
 
         private void GCSConfigurations_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (!MessageRead)
+            if (MessageBox.Show("É necessario reiniciar o GCS para aplicar os novos parâmetros",
+                           "JCFLIGHTGCS", MessageBoxButtons.OK, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                MessageBox.Show("É necessario reiniciar o GCS para aplicar os novos parâmetros");
+                CloseGCSNow = true;
             }
-            MessageRead = !MessageRead;
         }
     }
 }
