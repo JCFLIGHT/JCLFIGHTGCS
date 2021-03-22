@@ -197,8 +197,8 @@ namespace JCFLIGHTGCS
 
                 if (checkBox18.Checked)
                 {
-                    zedGraphControl1.GraphPane.CurveList[4].Label.Text = "Tubo de Pitot(Pressão)";
-                    Chart5.Add(TimeStamp, GetValues.ReadAirSpeed);
+                    zedGraphControl1.GraphPane.CurveList[4].Label.Text = "Tubo de Pitot(KM/h)";
+                    Chart5.Add(TimeStamp, Convert.ToDouble(GetValues.ReadAirSpeed / 27.778f));
                 }
 
                 if (checkBox19.Checked)
@@ -302,7 +302,7 @@ namespace JCFLIGHTGCS
             label29.Text = "Attitude Pitch:" + GetValues.ReadAttitudePitch;
             label28.Text = "Attitude Yaw:" + GetValues.ReadAttitudeYaw;
             label31.Text = "Temperatura(Baro):" + GetValues.ReadTemperature;
-            label15.Text = "Tubo de Pitot(Pressão):" + GetValues.ReadAirSpeed;
+            label15.Text = "Tubo de Pitot(KM/h):" + Convert.ToDouble(GetValues.ReadAirSpeed / 27.778f).ToString("0.00");
             label16.Text = "Erros I2C:" + GetValues.ReadI2CError;
             label20.Text = "GroudSpeed(GPS):" + GetValues.ReadGroundSpeed;
             label21.Text = "GroudCourse (GPS):" + GetValues.ReadGroundCourse;

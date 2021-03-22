@@ -2229,6 +2229,10 @@ namespace JCFLIGHTGCS
                 {
                     int ExpoValue = 0;
                     int AttitudeRoll = -ReadRoll / 10;
+                    if (GetAccCalibFlag != 63)
+                    {
+                        AttitudeRoll = 0;
+                    }
                     if (AttitudeRoll >= 10 && AttitudeRoll < 35) ExpoValue = 150;
                     if (AttitudeRoll <= -10 && AttitudeRoll > -35) ExpoValue = -150;
                     if (AttitudeRoll >= 35 && AttitudeRoll < 45) ExpoValue = 50;
