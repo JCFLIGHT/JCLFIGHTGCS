@@ -2373,7 +2373,7 @@ namespace JCFLIGHTGCS
                     }
                     break;
 
-                case 4: //GPS-HOLD
+                case 4: //POS-HOLD
                     if (FrameMode < 3 || FrameMode == 6 || FrameMode == 7)
                     {
                         if (!ForceNewLocationToLabels)
@@ -2384,7 +2384,7 @@ namespace JCFLIGHTGCS
                         {
                             label83.Location = new Point(375, 296);
                         }
-                        label83.Text = "GPS-HOLD";
+                        label83.Text = "POS-HOLD";
                     }
                     else
                     {
@@ -2951,7 +2951,7 @@ namespace JCFLIGHTGCS
                 label46.Text = "> Modo Stabilize com Limite maior no Ângulo (55°)";
                 label20.Text = "Altitude-Hold";
                 label42.Text = "> Retenção de Altitude com base no Barômetro e INS";
-                label21.Text = "GPS-Hold";
+                label21.Text = "Pos-Hold";
                 label43.Text = "> Retenção de Posição com base no GPS e INS";
                 label24.Text = "Auto-Flip";
                 label48.Text = "> Realiza Flips Automáticos de 180° no Pitch e Roll";
@@ -2996,31 +2996,6 @@ namespace JCFLIGHTGCS
                 comboBox10.Enabled = true;
                 comboBox19.Enabled = true;
                 comboBox23.Enabled = true;
-            }
-            else if (ComboBoxFrame == 8) //FOGUETE
-            {
-                label22.Text = "Simples";
-                label44.Text = "> > Mantém a borda de ataque sempre pra frente";
-                label23.Text = "Ataque";
-                label46.Text = "> Modo Stabilize com Limite maior no Ângulo (55°)";
-                label20.Text = "Altitude-Hold";
-                label42.Text = "> Retenção de Altitude com base no Barômetro e INS";
-                label21.Text = "GPS-Hold";
-                label43.Text = "> Retenção de Posição com base no GPS e INS";
-                label92.Text = "Auto-Land";
-                label70.Text = "> Realiza um pouso automático";
-                comboBox1.Enabled = false;
-                comboBox2.Enabled = false;
-                comboBox3.Enabled = false;
-                comboBox4.Enabled = false;
-                comboBox5.Enabled = false;
-                comboBox6.Enabled = false;
-                comboBox7.Enabled = false;
-                comboBox8.Enabled = false;
-                comboBox9.Enabled = false;
-                comboBox10.Enabled = false;
-                comboBox19.Enabled = false;
-                comboBox23.Enabled = false;
             }
         }
 
