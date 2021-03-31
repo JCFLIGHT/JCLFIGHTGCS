@@ -185,14 +185,7 @@ namespace Terminal
                     {
                         var temp = cmd.ToString();
 
-                        if (cmd.ToString() == "+++")
-                        {
-                            serialPort1.Write(Encoding.ASCII.GetBytes(cmd.ToString()), 0, cmd.Length);
-                        }
-                        else
-                        {
-                            serialPort1.Write(Encoding.ASCII.GetBytes(cmd + "\r"), 0, cmd.Length + 1);
-                        }
+                        serialPort1.Write(Encoding.ASCII.GetBytes(cmd.ToString()), 0, cmd.Length);
                     }
                     catch
                     {
