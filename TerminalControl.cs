@@ -19,6 +19,7 @@ namespace Terminal
             InitializeComponent();
             serialPort1.DataReceived += serialPort1_DataReceived;
             comboBox1.Items.AddRange(SerialPort.GetPortNames());
+            button1.Enabled = false;
         }
 
         private void serialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e)
@@ -208,6 +209,7 @@ namespace Terminal
                 TXT_terminal.AppendText("\n");
                 TXT_terminal.AppendText("Comunicação serial fechada\r\n");
                 conected = false;
+                button1.Enabled = false;
             }
         }
 
@@ -223,6 +225,7 @@ namespace Terminal
                     TXT_terminal.AppendText("Comunicação serial aberta\r\n");
                     TXT_terminal.AppendText("\n");
                     conected = true;
+                    button1.Enabled = true;
                 }
             }
             catch (Exception)

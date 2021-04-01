@@ -73,12 +73,14 @@
             // 
             // button1
             // 
+            this.button1.BackColor = System.Drawing.Color.White;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Location = new System.Drawing.Point(188, 3);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(92, 21);
             this.button1.TabIndex = 10;
             this.button1.Text = "Desconectar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // comboBox1
@@ -92,22 +94,26 @@
             // 
             // button2
             // 
+            this.button2.BackColor = System.Drawing.Color.White;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button2.Location = new System.Drawing.Point(295, 3);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(208, 21);
             this.button2.TabIndex = 12;
             this.button2.Text = "Visitar a guia de instrução de uso do CLI";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
+            this.button3.BackColor = System.Drawing.Color.White;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button3.Location = new System.Drawing.Point(522, 3);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(208, 21);
             this.button3.TabIndex = 13;
             this.button3.Text = "Visitar o documento de variáveis do CLI";
-            this.button3.UseVisualStyleBackColor = true;
+            this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // TerminalControl
