@@ -201,25 +201,44 @@ namespace Terminal
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (!conected)
-            {
-                serialPort1.PortName = comboBox1.Text;
-                serialPort1.Open();
-                serialPort1.DtrEnable = true;
-                button1.Text = "Desconectar";
-                TXT_terminal.AppendText("Comunicação serial aberta\r\n");
-                TXT_terminal.AppendText("\n");
-                conected = true;
-            }
-            else
+            if (conected)
             {
                 serialPort1.Close();
                 serialPort1.DtrEnable = false;
-                button1.Text = "Conectar";
                 TXT_terminal.AppendText("\n");
                 TXT_terminal.AppendText("Comunicação serial fechada\r\n");
                 conected = false;
             }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!conected)
+                {
+                    serialPort1.PortName = comboBox1.Text;
+                    serialPort1.Open();
+                    serialPort1.DtrEnable = true;
+                    TXT_terminal.AppendText("Comunicação serial aberta\r\n");
+                    TXT_terminal.AppendText("\n");
+                    conected = true;
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("A conexão falhou!Acho que a Porta Serial está aberta em outro programa,verifique se ela não está aberta na tela principal do GCS.");
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/JCFLIGHT/JCFLIGHT/wiki/CLI");
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/JCFLIGHT/JCFLIGHT/blob/master/Docs/Settings.md");
         }
     }
 }

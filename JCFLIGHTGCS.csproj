@@ -452,6 +452,9 @@
     <EmbeddedResource Include="SplashScreen.resx">
       <DependentUpon>SplashScreen.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="TerminalControl.resx">
+      <DependentUpon>TerminalControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Vibrations.resx">
       <DependentUpon>Vibrations.cs</DependentUpon>
     </EmbeddedResource>

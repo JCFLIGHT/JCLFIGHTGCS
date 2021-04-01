@@ -221,7 +221,6 @@ namespace JCFLIGHTGCS
         byte MemoryRamUsedPercent = 0;
         int MemoryRamUsed = 0;
 
-        int GridCounter = 0;
         int AirportsCountTime = 0;
 
         public string[] GetString1;
@@ -528,7 +527,6 @@ namespace JCFLIGHTGCS
             zedGraphControl6.ScrollGrace = 0;
             fScale = zedGraphControl6.GraphPane.XAxis.Scale;
             zedGraphControl6.AxisChange();
-            Load_Data_Grid();
             this.MaximumSize = Screen.PrimaryScreen.WorkingArea.Size; //NÃO CUBRA A BARRA DE TAREFAS
             this.WindowState = FormWindowState.Maximized;
             maximinizar.Visible = true;
@@ -553,6 +551,9 @@ namespace JCFLIGHTGCS
 
             Airports.ReadOurairports(Settings.GetRunningDirectory() + "Airports.csv");
             Airports.checkdups = true;
+
+            terminalControl1.Width = 1113;
+            terminalControl1.Height = 590;
 
             this.ResumeLayout();
 
@@ -580,6 +581,8 @@ namespace JCFLIGHTGCS
             {
                 MyGMap.Size = new Size(850, 555);
             }
+            terminalControl1.Width = 1113;
+            terminalControl1.Height = 590;
             maximinizar.Visible = true;
             iconmaximizar.Visible = true;
         }
@@ -596,6 +599,8 @@ namespace JCFLIGHTGCS
             {
                 MyGMap.Size = new Size(790, 555);
             }
+            terminalControl1.Width = 1047;
+            terminalControl1.Height = 572;
             maximinizar.Visible = false;
             iconmaximizar.Visible = true;
         }
@@ -748,87 +753,91 @@ namespace JCFLIGHTGCS
                 }
                 catch (UnauthorizedAccessException) { }
 
-                if (SerialPort.BytesToRead == 0)
+                try
                 {
-                    break;
-                }
-                else
-                {
-                    CheckState = (byte)SerialPort.ReadByte();
-                }
-
-                switch (Read_State)
-                {
-                    case 0:
-                        if (CheckState == 0x4a)
-                        {
-                            Read_State = 1;
-                        }
+                    if (SerialPort.BytesToRead == 0)
+                    {
                         break;
+                    }
+                    else
+                    {
+                        CheckState = (byte)SerialPort.ReadByte();
+                    }
 
-                    case 1:
-                        Read_State = (CheckState == 0x43) ? (byte)2 : (byte)0;
-                        break;
-
-                    case 2:
-                        if (CheckState == 0x46)
-                        {
-                            Read_State = 3;
-                        }
-                        else if (CheckState == 0x21)
-                        {
-                            Read_State = 6;
-                        }
-                        else
-                        {
-                            Read_State = 0;
-                        }
-                        break;
-
-                    case 3:
-                    case 6:
-                        Error_Received = (Read_State == 6);
-                        DataSize = CheckState;
-                        OffSet = 0;
-                        CheckSum = 0;
-                        CheckSum ^= CheckState;
-                        Read_State = 4;
-                        if (DataSize > 254)
-                        {
-                            Read_State = 0;
-                        }
-                        break;
-
-                    case 4:
-                        Command = CheckState;
-                        CheckSum ^= CheckState;
-                        Read_State = 5;
-                        break;
-
-                    case 5:
-                        if (OffSet < DataSize)
-                        {
-                            CheckSum ^= CheckState;
-                            InBuffer[OffSet++] = CheckState;
-                        }
-                        else
-                        {
-                            if (CheckSum == CheckState)
+                    switch (Read_State)
+                    {
+                        case 0:
+                            if (CheckState == 0x4a)
                             {
-                                if (!Error_Received)
-                                {
-                                    PacketsReceived++;
-                                    Serial_Parse(Command);
-                                }
+                                Read_State = 1;
+                            }
+                            break;
+
+                        case 1:
+                            Read_State = (CheckState == 0x43) ? (byte)2 : (byte)0;
+                            break;
+
+                        case 2:
+                            if (CheckState == 0x46)
+                            {
+                                Read_State = 3;
+                            }
+                            else if (CheckState == 0x21)
+                            {
+                                Read_State = 6;
                             }
                             else
                             {
-                                PacketsError++;
+                                Read_State = 0;
                             }
-                            Read_State = 0;
-                        }
-                        break;
+                            break;
+
+                        case 3:
+                        case 6:
+                            Error_Received = (Read_State == 6);
+                            DataSize = CheckState;
+                            OffSet = 0;
+                            CheckSum = 0;
+                            CheckSum ^= CheckState;
+                            Read_State = 4;
+                            if (DataSize > 254)
+                            {
+                                Read_State = 0;
+                            }
+                            break;
+
+                        case 4:
+                            Command = CheckState;
+                            CheckSum ^= CheckState;
+                            Read_State = 5;
+                            break;
+
+                        case 5:
+                            if (OffSet < DataSize)
+                            {
+                                CheckSum ^= CheckState;
+                                InBuffer[OffSet++] = CheckState;
+                            }
+                            else
+                            {
+                                if (CheckSum == CheckState)
+                                {
+                                    if (!Error_Received)
+                                    {
+                                        PacketsReceived++;
+                                        Serial_Parse(Command);
+                                    }
+                                }
+                                else
+                                {
+                                    PacketsError++;
+                                }
+                                Read_State = 0;
+                            }
+                            break;
+                    }
                 }
+                catch (UnauthorizedAccessException) { }
             }
         }
 
@@ -1223,18 +1232,24 @@ namespace JCFLIGHTGCS
                 GetValues.GetPlatformName = GetString1[0];
                 if (GetValues.GetPlatformName == "AVR")
                 {
+                    numericUpDown13.Enabled = false;
+                    numericUpDown15.Enabled = false;
                     numericUpDown16.Enabled = false;
                     numericUpDown17.Enabled = false;
                     RamMemString = "8192KB";
                 }
                 else if (GetValues.GetPlatformName == "ESP32")
                 {
+                    numericUpDown13.Enabled = true;
+                    numericUpDown15.Enabled = true;
                     numericUpDown16.Enabled = true;
                     numericUpDown17.Enabled = true;
                     RamMemString = "327680KB";
                 }
                 else if (GetValues.GetPlatformName == "STM32")
                 {
+                    numericUpDown13.Enabled = true;
+                    numericUpDown15.Enabled = true;
                     numericUpDown16.Enabled = true;
                     numericUpDown17.Enabled = true;
                     RamMemString = "131072KB";
@@ -3579,159 +3594,6 @@ namespace JCFLIGHTGCS
             }
             SmallCompass = false;
             tabControl1.SelectTab(tabPage8);
-        }
-
-        private void Load_Data_Grid()
-        {
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "kP_AHRS";
-            dataGridView1.Rows[GridCounter].Cells[Unidade.Index].Value = "Float";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Ganho Proporcional para correção da estimativa de Attitude";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "kI_AHRS";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "Float";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Ganho Integral para correção da estimativa de Attitude";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "kP_Mag";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "Float";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Ganho Proporcional para correção da estimativa de direção do Yaw";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "kI_Mag";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "Float";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Ganho Integral para correção da estimativa de direção do Yaw";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AutoLaunch_AHRS_BankAngle";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "Radianos";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Ângulo no AHRS para considerar que o AutoLaunch deve iniciar";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AutoLaunch_IMU_BankAngle";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "Graus";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Ângulo na IMU para considerar que o AutoLaunch deve iniciar";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AutoLaunch_IMU_Velocidade";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "CM/S";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Velocidade da IMU para validar o AutoLaunch";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AutoLaunch_Dispara_Motor";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "MS";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Tempo para iniciar o motor após o status de lançado";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AutoLaunch_Elevator";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "Graus";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Inclinação no Pitch (Elevator) ao fazer o AutoLaunch";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AutoLaunch_Throttle_SpinUp";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "uint16_t";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor de incrimentação no Throttle para Aeros com rodas";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AutoLaunch_Throttle_SpinUp_Tempo";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "MS";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Tempo de incrimentação no Throttle para Aeros com rodas";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AutoLaunch_Throttle_Maximo";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "US";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Pulso maximo aplicado ao motor durante o AutoLaunch";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AutoLaunch_Abortar";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "MS";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Cancela o AutoLaunch após o estouro desse tempo";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AutoLaunch_Altitude";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "Metros";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Cancela o AutoLaunch após atingir essa altitude (Ignora o tempo acima)";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Bateria_Fator_De_Tensão";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "Float";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Fator para converter a leitura ADC em Tensão";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Bateria_Amper_Por_Volt";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "Float";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Fator para converter a leitura ADC em Corrente";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Bateria_Amper_OffSet";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "Float";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Ajuste fino do valor da Corrente";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "CrashCheck_IMU_BankAngle";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "Radianos";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Ângulo da IMU a ser considerado como Crash";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "CrashCheck_Tempo";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "Segundos";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Estouro de tempo para validar o Crash";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Gimbal_Pulso_Minimo";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "US";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor minimo do pulso a ser aplicado no Gimbal";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Gimbal_Pulso_Médio";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "US";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor médio do pulso a ser aplicado no Gimbal";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Gimbal_Pulso_Maximo";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "US";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor maximo do pulso a ser aplicado no Gimbal";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Land_Check_Acc";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "M/S^2";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor da aceleração da IMU";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Land_LPF_CutOff";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "Hz";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor da frequêcnia de corte da aceleração da IMU (Por Favor,não altere)";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Throttle_Fator";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "byte";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor do ganho do Thottle para o PID";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Auto_Desarm_Tempo";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "Segundos";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Estouro de tempo para desarmar a controladora em baixo Throttle";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Auto_Desarm_Throttle_Minimo";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "uS";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor maximo do pulso do Throttle para iniciar a contagem do Auto-Desarm";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Auto_Desarm_YPR_Minimo";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "uS";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor minimo tolerado nos canais Yaw,Pitch e Roll para validar o Auto-Desarm";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Auto_Desarm_YPR_Maximo";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "uS";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Valor maximo tolerado nos canais Yaw,Pitch e Roll para validar o Auto-Desarm";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "Aero_Com_Rodas";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "Boolean";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "0 - Aeromodelo sem trem de pouso / 1 - Aeromodelo com trem de pouso (Apenas para o AutoLaunch)";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "GPS_Baud_Rate";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "byte";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "0 - 9600KBPS / 1 - 19200KBPS / 2 - 38400KBPS / 3 - 57600KBPS / 4 - 115200KBPS";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "GPS_Velocidade_De_Navegação";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "CM/S";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Velocidade maxima de navegação em modo RTH";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "GPS_WP_Radius";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "Metros";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Raio do ponto para validar o mesmo em modo WayPoint e RTH";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "GPS_RTH_Land";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "Metros";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Em modo RTH,inicia o Land ao chegar proximo a distância definida aqui";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "GPS_Compensação_De_Tilt";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "byte";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Parâmetro para compensar o rate de navegação em modo WayPoint e RTH";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AirSpeed_Amostras";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "byte";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Número de amostras para calibrar o AirSpeed";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].Cells[Parametro.Index].Value = "AirSpeed_Fator";
-            dataGridView1.Rows[GridCounter += 1].Cells[Unidade.Index].Value = "uint16_t";
-            dataGridView1.Rows[GridCounter].Cells[Descricao.Index].Value = "Fator para converter a pressão em velocidade";
-
-            dataGridView1.Rows[dataGridView1.Rows.Add()].DataGridView.EndEdit();
         }
 
         private void button20_Click(object sender, EventArgs e)

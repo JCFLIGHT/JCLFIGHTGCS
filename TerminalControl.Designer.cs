@@ -34,6 +34,8 @@
             this.port_label = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // TXT_terminal
@@ -41,7 +43,7 @@
             this.TXT_terminal.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TXT_terminal.BackColor = System.Drawing.Color.Black;
+            this.TXT_terminal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
             this.TXT_terminal.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TXT_terminal.ForeColor = System.Drawing.Color.White;
             this.TXT_terminal.Location = new System.Drawing.Point(0, 27);
@@ -75,7 +77,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(92, 21);
             this.button1.TabIndex = 10;
-            this.button1.Text = "Conectar";
+            this.button1.Text = "Desconectar";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -86,10 +88,33 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(102, 21);
             this.comboBox1.TabIndex = 9;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(295, 3);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(208, 21);
+            this.button2.TabIndex = 12;
+            this.button2.Text = "Visitar a guia de instrução de uso do CLI";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(522, 3);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(208, 21);
+            this.button3.TabIndex = 13;
+            this.button3.Text = "Visitar o documento de variáveis do CLI";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // TerminalControl
             // 
-            this.BackColor = System.Drawing.Color.Black;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.port_label);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.comboBox1);
@@ -109,5 +134,7 @@
         private System.Windows.Forms.Label port_label;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
     }
 }

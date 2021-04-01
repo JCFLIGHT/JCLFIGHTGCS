@@ -1,6 +1,6 @@
 ## Contribuidor
 
-[Julio Cesar Matias](https://github.com/JuliooCesarMDM)                                                          
+[Julio Cesar Matias](https://github.com/JulioCesarMatias)                                                          
 
 ## Como abrir
 

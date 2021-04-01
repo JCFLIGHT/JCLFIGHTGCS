@@ -240,3 +240,4 @@ C:\Users\Julio Cesar\Desktop\Projetos\JCFLIGHT\JCFLIGHTGCS\bin\Debug\BSE.Windows
 C:\Users\Julio Cesar\Desktop\Projetos\JCFLIGHT\JCFLIGHTGCS\obj\Debug\JCFLIGHTGCS.Vibrations.resources
 C:\Users\Julio Cesar\Desktop\Projetos\JCFLIGHT\JCFLIGHTGCS\obj\Debug\JCFLIGHTGCS.HUD.resources
 C:\Users\Julio Cesar\Desktop\Projetos\JCFLIGHT\JCFLIGHTGCS\bin\Debug\AxInterop.WMPLib.dll
+C:\Users\Julio Cesar\Desktop\Projetos\JCFLIGHT\JCFLIGHTGCS\obj\Debug\Terminal.TerminalControl.resources
