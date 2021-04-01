@@ -1236,6 +1236,10 @@ namespace JCFLIGHTGCS
                     numericUpDown15.Enabled = false;
                     numericUpDown16.Enabled = false;
                     numericUpDown17.Enabled = false;
+                    numericUpDown20.Enabled = false;
+                    numericUpDown21.Enabled = false;
+                    comboBox22.Enabled = false;
+
                     RamMemString = "8192KB";
                 }
                 else if (GetValues.GetPlatformName == "ESP32")
@@ -1244,6 +1248,9 @@ namespace JCFLIGHTGCS
                     numericUpDown15.Enabled = true;
                     numericUpDown16.Enabled = true;
                     numericUpDown17.Enabled = true;
+                    numericUpDown20.Enabled = true;
+                    numericUpDown21.Enabled = true;
+                    comboBox22.Enabled = true;
                     RamMemString = "327680KB";
                 }
                 else if (GetValues.GetPlatformName == "STM32")
@@ -1252,6 +1259,9 @@ namespace JCFLIGHTGCS
                     numericUpDown15.Enabled = true;
                     numericUpDown16.Enabled = true;
                     numericUpDown17.Enabled = true;
+                    numericUpDown20.Enabled = true;
+                    numericUpDown21.Enabled = true;
+                    comboBox22.Enabled = true;
                     RamMemString = "131072KB";
                 }
             }
