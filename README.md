@@ -19,3 +19,19 @@
 
 - Caso você encontre algum bug,abra um Issue clicando [aqui](https://github.com/JCFLIGHT/JCLFIGHTGCS.git).
 - Caso você deseja enviar alguma melhoria feita para o algoritimo,faça um Pull-Request.
+
+## Fotos
+
+![JCFLIGHT](Photos/SplashScreen.png)
+![JCFLIGHT](Photos/Tela_Inicial_GCS.png)
+![JCFLIGHT](Photos/Tela_De_Voo.png)
+![JCFLIGHT](Photos/Calibração.png)
+![JCFLIGHT](Photos/CopassCal_Suporte.png)
+![JCFLIGHT](Photos/JCLFIGHT_Configuracao.png)
+![JCFLIGHT](Photos/PID_and_Filters_Adjust.png)
+![JCFLIGHT](Photos/CLI.png)
+![JCFLIGHT](Photos/Rádio_Controle.png)
+![JCFLIGHT](Photos/Rádio_Controle_Config.png)
+![JCFLIGHT](Photos/Waypoint.png)
+![JCFLIGHT](Photos/Leitura_Dos_Sensores.png)
+![JCFLIGHT](Photos/FirmwareUpdate.png)

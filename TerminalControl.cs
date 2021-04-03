@@ -184,8 +184,6 @@ namespace Terminal
                 {
                     try
                     {
-                        var temp = cmd.ToString();
-
                         serialPort1.Write(Encoding.ASCII.GetBytes(cmd.ToString()), 0, cmd.Length);
                     }
                     catch
