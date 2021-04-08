@@ -34,7 +34,13 @@
             this.comboBox7 = new System.Windows.Forms.ComboBox();
             this.BarraTitulo = new System.Windows.Forms.Panel();
             this.panel18 = new System.Windows.Forms.Panel();
+            this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.label72 = new System.Windows.Forms.Label();
+            this.iconminimizar = new System.Windows.Forms.PictureBox();
+            this.maximinizar = new System.Windows.Forms.PictureBox();
+            this.iconmaximizar = new System.Windows.Forms.PictureBox();
+            this.encerrar = new System.Windows.Forms.PictureBox();
+            this.btnlogoInicio = new System.Windows.Forms.PictureBox();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -58,40 +64,50 @@
             this.button22 = new System.Windows.Forms.Button();
             this.button21 = new System.Windows.Forms.Button();
             this.label151 = new System.Windows.Forms.Label();
+            this.button15 = new System.Windows.Forms.Button();
+            this.button14 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.circularProgressBar1 = new CircularProgressBar.CircularProgressBar();
             this.panel16 = new System.Windows.Forms.Panel();
             this.label25 = new System.Windows.Forms.Label();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.panel17 = new System.Windows.Forms.Panel();
             this.label26 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label11 = new System.Windows.Forms.Label();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label12 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.panel13 = new System.Windows.Forms.Panel();
             this.label17 = new System.Windows.Forms.Label();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.panel14 = new System.Windows.Forms.Panel();
             this.label18 = new System.Windows.Forms.Label();
             this.panel11 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.panel12 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel9 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel10 = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
             this.label14 = new System.Windows.Forms.Label();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.panel8 = new System.Windows.Forms.Panel();
             this.label16 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label19 = new System.Windows.Forms.Label();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.panel15 = new System.Windows.Forms.Panel();
             this.label71 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -109,7 +125,6 @@
             this.label113 = new System.Windows.Forms.Label();
             this.label114 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.comboBox19 = new System.Windows.Forms.ComboBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.comboBox18 = new System.Windows.Forms.ComboBox();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
@@ -157,12 +172,27 @@
             this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.label23 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
+            this.button9 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.label153 = new System.Windows.Forms.Label();
             this.label152 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.CompassCalibration = new System.Windows.Forms.Button();
             this.AccCalibration = new System.Windows.Forms.Button();
+            this.pictureBox22 = new System.Windows.Forms.PictureBox();
+            this.pictureBox20 = new System.Windows.Forms.PictureBox();
+            this.pictureBox21 = new System.Windows.Forms.PictureBox();
+            this.pictureBox18 = new System.Windows.Forms.PictureBox();
+            this.pictureBox19 = new System.Windows.Forms.PictureBox();
+            this.pictureBox16 = new System.Windows.Forms.PictureBox();
+            this.pictureBox17 = new System.Windows.Forms.PictureBox();
+            this.pictureBox14 = new System.Windows.Forms.PictureBox();
+            this.pictureBox15 = new System.Windows.Forms.PictureBox();
+            this.pictureBox12 = new System.Windows.Forms.PictureBox();
+            this.pictureBox13 = new System.Windows.Forms.PictureBox();
+            this.pictureBox11 = new System.Windows.Forms.PictureBox();
+            this.pictureBox10 = new System.Windows.Forms.PictureBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.zedGraphControl6 = new ZedGraph.ZedGraphControl();
             this.zedGraphControl5 = new ZedGraph.ZedGraphControl();
@@ -323,17 +353,12 @@
             this.metroLabel29 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel30 = new MetroFramework.Controls.MetroLabel();
             this.numericUpDown68 = new System.Windows.Forms.NumericUpDown();
-            this.label154 = new System.Windows.Forms.Label();
             this.groupBox29 = new System.Windows.Forms.GroupBox();
             this.numericUpDown21 = new System.Windows.Forms.NumericUpDown();
             this.metroLabel27 = new MetroFramework.Controls.MetroLabel();
-            this.label115 = new System.Windows.Forms.Label();
             this.groupBox26 = new System.Windows.Forms.GroupBox();
             this.numericUpDown20 = new System.Windows.Forms.NumericUpDown();
             this.metroLabel23 = new MetroFramework.Controls.MetroLabel();
-            this.label112 = new System.Windows.Forms.Label();
-            this.label111 = new System.Windows.Forms.Label();
-            this.label110 = new System.Windows.Forms.Label();
             this.groupBox25 = new System.Windows.Forms.GroupBox();
             this.metroLabel21 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel22 = new MetroFramework.Controls.MetroLabel();
@@ -363,8 +388,6 @@
             this.groupBox19 = new System.Windows.Forms.GroupBox();
             this.metroLabel13 = new MetroFramework.Controls.MetroLabel();
             this.numericUpDown13 = new System.Windows.Forms.NumericUpDown();
-            this.label103 = new System.Windows.Forms.Label();
-            this.label101 = new System.Windows.Forms.Label();
             this.groupBox18 = new System.Windows.Forms.GroupBox();
             this.metroLabel10 = new MetroFramework.Controls.MetroLabel();
             this.numericUpDown14 = new System.Windows.Forms.NumericUpDown();
@@ -402,6 +425,8 @@
             this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.button17 = new System.Windows.Forms.Button();
+            this.button16 = new System.Windows.Forms.Button();
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.panel19 = new System.Windows.Forms.Panel();
@@ -473,6 +498,8 @@
             this.numericUpDown62 = new System.Windows.Forms.NumericUpDown();
             this.label180 = new System.Windows.Forms.Label();
             this.label181 = new System.Windows.Forms.Label();
+            this.button26 = new System.Windows.Forms.Button();
+            this.button27 = new System.Windows.Forms.Button();
             this.groupBox34 = new System.Windows.Forms.GroupBox();
             this.label175 = new System.Windows.Forms.Label();
             this.label174 = new System.Windows.Forms.Label();
@@ -514,41 +541,29 @@
             this.limparMapaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.carregarWPsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.limparWPsDoMapaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button15 = new System.Windows.Forms.Button();
-            this.button14 = new System.Windows.Forms.Button();
-            this.pictureBox8 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.pictureBox22 = new System.Windows.Forms.PictureBox();
-            this.pictureBox20 = new System.Windows.Forms.PictureBox();
-            this.pictureBox21 = new System.Windows.Forms.PictureBox();
-            this.pictureBox18 = new System.Windows.Forms.PictureBox();
-            this.pictureBox19 = new System.Windows.Forms.PictureBox();
-            this.pictureBox16 = new System.Windows.Forms.PictureBox();
-            this.pictureBox17 = new System.Windows.Forms.PictureBox();
-            this.pictureBox14 = new System.Windows.Forms.PictureBox();
-            this.pictureBox15 = new System.Windows.Forms.PictureBox();
-            this.pictureBox12 = new System.Windows.Forms.PictureBox();
-            this.pictureBox13 = new System.Windows.Forms.PictureBox();
-            this.pictureBox11 = new System.Windows.Forms.PictureBox();
-            this.pictureBox10 = new System.Windows.Forms.PictureBox();
-            this.button17 = new System.Windows.Forms.Button();
-            this.button16 = new System.Windows.Forms.Button();
-            this.button26 = new System.Windows.Forms.Button();
-            this.button27 = new System.Windows.Forms.Button();
-            this.pictureBox9 = new System.Windows.Forms.PictureBox();
-            this.iconminimizar = new System.Windows.Forms.PictureBox();
-            this.maximinizar = new System.Windows.Forms.PictureBox();
-            this.iconmaximizar = new System.Windows.Forms.PictureBox();
-            this.encerrar = new System.Windows.Forms.PictureBox();
-            this.btnlogoInicio = new System.Windows.Forms.PictureBox();
+            this.metroLabel40 = new MetroFramework.Controls.MetroLabel();
+            this.numericUpDown38 = new System.Windows.Forms.NumericUpDown();
+            this.metroLabel41 = new MetroFramework.Controls.MetroLabel();
+            this.numericUpDown77 = new System.Windows.Forms.NumericUpDown();
+            this.metroLabel43 = new MetroFramework.Controls.MetroLabel();
+            this.numericUpDown79 = new System.Windows.Forms.NumericUpDown();
+            this.metroLabel44 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel45 = new MetroFramework.Controls.MetroLabel();
+            this.numericUpDown80 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown81 = new System.Windows.Forms.NumericUpDown();
+            this.metroLabel48 = new MetroFramework.Controls.MetroLabel();
+            this.numericUpDown84 = new System.Windows.Forms.NumericUpDown();
+            this.metroLabel42 = new MetroFramework.Controls.MetroLabel();
+            this.numericUpDown78 = new System.Windows.Forms.NumericUpDown();
+            this.metroLabel46 = new MetroFramework.Controls.MetroLabel();
+            this.numericUpDown82 = new System.Windows.Forms.NumericUpDown();
+            this.metroLabel47 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel49 = new MetroFramework.Controls.MetroLabel();
+            this.numericUpDown83 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown85 = new System.Windows.Forms.NumericUpDown();
+            this.label52 = new System.Windows.Forms.Label();
+            this.label53 = new System.Windows.Forms.Label();
+            this.label54 = new System.Windows.Forms.Label();
             this.horizontalProgressBar22 = new JCFLIGHTGCS.HorizontalProgressBar2();
             this.horizontalProgressBar21 = new JCFLIGHTGCS.HorizontalProgressBar2();
             this.HUD1 = new JCFLIGHTGCS.HUD();
@@ -558,31 +573,46 @@
             this.HUD2 = new JCFLIGHTGCS.HUD();
             this.HUDSMALL1 = new JCFLIGHTGCS.HUDSMALL();
             this.HeadingIndicator2 = new JCFLIGHTGCS.HeadingIndicatorInstrumentControl();
+            this.terminalControl1 = new Terminal.TerminalControl();
             this.rcExpo2 = new JCFLIGHTGCS.RCExpo();
             this.throttleExpo2 = new JCFLIGHTGCS.ThrottleExpo();
             this.preArmNotification2 = new JCFLIGHTGCS.PreArmNotification();
             this.preArmNotification1 = new JCFLIGHTGCS.PreArmNotification();
-            this.terminalControl1 = new Terminal.TerminalControl();
+            this.numericUpDown86 = new System.Windows.Forms.NumericUpDown();
             this.BarraTitulo.SuspendLayout();
             this.panel18.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconminimizar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.maximinizar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconmaximizar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.encerrar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnlogoInicio)).BeginInit();
             this.MenuVertical.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel16.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             this.panel17.SuspendLayout();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.panel4.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel5.SuspendLayout();
             this.panel13.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             this.panel14.SuspendLayout();
             this.panel11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             this.panel12.SuspendLayout();
             this.panel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel10.SuspendLayout();
             this.panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.panel8.SuspendLayout();
             this.panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.panel15.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox30.SuspendLayout();
@@ -602,6 +632,19 @@
             this.groupBox2.SuspendLayout();
             this.groupBox11.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             this.tabPage4.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.tabPage6.SuspendLayout();
@@ -708,33 +751,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown67)).BeginInit();
             this.panel1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iconminimizar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.maximinizar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iconmaximizar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.encerrar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnlogoInicio)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown38)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown77)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown79)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown80)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown81)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown84)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown78)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown82)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown83)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown85)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown86)).BeginInit();
             this.SuspendLayout();
             // 
             // serialPort1
@@ -806,6 +833,17 @@
             this.panel18.Size = new System.Drawing.Size(229, 85);
             this.panel18.TabIndex = 9;
             // 
+            // pictureBox9
+            // 
+            this.pictureBox9.BackColor = System.Drawing.Color.White;
+            this.pictureBox9.Image = global::JCFLIGHTGCS.Properties.Resources.Desconectado;
+            this.pictureBox9.Location = new System.Drawing.Point(132, 10);
+            this.pictureBox9.Name = "pictureBox9";
+            this.pictureBox9.Size = new System.Drawing.Size(93, 72);
+            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox9.TabIndex = 6;
+            this.pictureBox9.TabStop = false;
+            // 
             // label72
             // 
             this.label72.AutoSize = true;
@@ -816,6 +854,70 @@
             this.label72.Size = new System.Drawing.Size(227, 29);
             this.label72.TabIndex = 5;
             this.label72.Text = "00:00:00 26/07/2020";
+            // 
+            // iconminimizar
+            // 
+            this.iconminimizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.iconminimizar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.iconminimizar.Image = global::JCFLIGHTGCS.Properties.Resources.minimazar;
+            this.iconminimizar.Location = new System.Drawing.Point(968, 3);
+            this.iconminimizar.Name = "iconminimizar";
+            this.iconminimizar.Size = new System.Drawing.Size(18, 18);
+            this.iconminimizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.iconminimizar.TabIndex = 4;
+            this.iconminimizar.TabStop = false;
+            this.iconminimizar.Click += new System.EventHandler(this.iconminimizar_Click);
+            // 
+            // maximinizar
+            // 
+            this.maximinizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.maximinizar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.maximinizar.Image = global::JCFLIGHTGCS.Properties.Resources.maxi;
+            this.maximinizar.Location = new System.Drawing.Point(990, 8);
+            this.maximinizar.Name = "maximinizar";
+            this.maximinizar.Size = new System.Drawing.Size(18, 18);
+            this.maximinizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.maximinizar.TabIndex = 3;
+            this.maximinizar.TabStop = false;
+            this.maximinizar.Visible = false;
+            this.maximinizar.Click += new System.EventHandler(this.maximinizar_Click);
+            // 
+            // iconmaximizar
+            // 
+            this.iconmaximizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.iconmaximizar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.iconmaximizar.Image = global::JCFLIGHTGCS.Properties.Resources.maxi;
+            this.iconmaximizar.Location = new System.Drawing.Point(995, 3);
+            this.iconmaximizar.Name = "iconmaximizar";
+            this.iconmaximizar.Size = new System.Drawing.Size(18, 18);
+            this.iconmaximizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.iconmaximizar.TabIndex = 2;
+            this.iconmaximizar.TabStop = false;
+            this.iconmaximizar.Click += new System.EventHandler(this.iconmaximizar_Click);
+            // 
+            // encerrar
+            // 
+            this.encerrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.encerrar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.encerrar.Image = global::JCFLIGHTGCS.Properties.Resources.cerrar;
+            this.encerrar.Location = new System.Drawing.Point(1021, 3);
+            this.encerrar.Name = "encerrar";
+            this.encerrar.Size = new System.Drawing.Size(18, 18);
+            this.encerrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.encerrar.TabIndex = 1;
+            this.encerrar.TabStop = false;
+            this.encerrar.Click += new System.EventHandler(this.encerrar_Click_1);
+            // 
+            // btnlogoInicio
+            // 
+            this.btnlogoInicio.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.btnlogoInicio.Image = ((System.Drawing.Image)(resources.GetObject("btnlogoInicio.Image")));
+            this.btnlogoInicio.Location = new System.Drawing.Point(257, 22);
+            this.btnlogoInicio.Name = "btnlogoInicio";
+            this.btnlogoInicio.Size = new System.Drawing.Size(398, 88);
+            this.btnlogoInicio.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnlogoInicio.TabIndex = 0;
+            this.btnlogoInicio.TabStop = false;
             // 
             // button5
             // 
@@ -1168,6 +1270,31 @@
             this.label151.TabIndex = 53;
             this.label151.Text = "Memoria Ram Livre:0KB de 8192KB";
             // 
+            // button15
+            // 
+            this.button15.BackColor = System.Drawing.Color.LimeGreen;
+            this.button15.BackgroundImage = global::JCFLIGHTGCS.Properties.Resources.WhatsApp;
+            this.button15.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button15.Location = new System.Drawing.Point(964, 496);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(79, 69);
+            this.button15.TabIndex = 11;
+            this.button15.UseVisualStyleBackColor = false;
+            this.button15.Click += new System.EventHandler(this.button15_Click);
+            // 
+            // button14
+            // 
+            this.button14.BackColor = System.Drawing.Color.White;
+            this.button14.BackgroundImage = global::JCFLIGHTGCS.Properties.Resources.YouTube;
+            this.button14.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button14.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button14.Location = new System.Drawing.Point(862, 496);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(79, 69);
+            this.button14.TabIndex = 10;
+            this.button14.UseVisualStyleBackColor = false;
+            this.button14.Click += new System.EventHandler(this.button14_Click);
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -1233,6 +1360,16 @@
             this.label25.TabIndex = 16;
             this.label25.Text = "Desconectado";
             // 
+            // pictureBox8
+            // 
+            this.pictureBox8.Image = global::JCFLIGHTGCS.Properties.Resources.Radio;
+            this.pictureBox8.Location = new System.Drawing.Point(14, 34);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(80, 53);
+            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox8.TabIndex = 5;
+            this.pictureBox8.TabStop = false;
+            // 
             // panel17
             // 
             this.panel17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -1276,6 +1413,16 @@
             this.label11.Size = new System.Drawing.Size(89, 18);
             this.label11.TabIndex = 16;
             this.label11.Text = "Desabilitado";
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = global::JCFLIGHTGCS.Properties.Resources.Pitot_Tube;
+            this.pictureBox4.Location = new System.Drawing.Point(14, 34);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(80, 53);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox4.TabIndex = 4;
+            this.pictureBox4.TabStop = false;
             // 
             // panel4
             // 
@@ -1322,6 +1469,17 @@
             this.label5.TabIndex = 16;
             this.label5.Text = "Desabilitado";
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.ErrorImage = null;
+            this.pictureBox2.Image = global::JCFLIGHTGCS.Properties.Resources.Gyro;
+            this.pictureBox2.Location = new System.Drawing.Point(15, 34);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(80, 52);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 2;
+            this.pictureBox2.TabStop = false;
+            // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -1365,6 +1523,17 @@
             this.label17.Size = new System.Drawing.Size(89, 18);
             this.label17.TabIndex = 16;
             this.label17.Text = "Desabilitado";
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox7.Image = global::JCFLIGHTGCS.Properties.Resources._3901_L0X_1;
+            this.pictureBox7.Location = new System.Drawing.Point(14, 34);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(80, 53);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox7.TabIndex = 5;
+            this.pictureBox7.TabStop = false;
             // 
             // panel14
             // 
@@ -1410,6 +1579,16 @@
             this.label7.TabIndex = 16;
             this.label7.Text = "Desabilitado";
             // 
+            // pictureBox6
+            // 
+            this.pictureBox6.Image = global::JCFLIGHTGCS.Properties.Resources.Compass;
+            this.pictureBox6.Location = new System.Drawing.Point(14, 34);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(80, 53);
+            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox6.TabIndex = 6;
+            this.pictureBox6.TabStop = false;
+            // 
             // panel12
             // 
             this.panel12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -1453,6 +1632,16 @@
             this.label4.Size = new System.Drawing.Size(89, 18);
             this.label4.TabIndex = 1;
             this.label4.Text = "Desabilitado";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::JCFLIGHTGCS.Properties.Resources.Accelerometer;
+            this.pictureBox1.Location = new System.Drawing.Point(13, 34);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(80, 53);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
             // 
             // panel10
             // 
@@ -1521,6 +1710,16 @@
             this.label14.TabIndex = 16;
             this.label14.Text = "Desabilitado";
             // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = global::JCFLIGHTGCS.Properties.Resources.Parachute;
+            this.pictureBox5.Location = new System.Drawing.Point(14, 34);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(80, 53);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox5.TabIndex = 5;
+            this.pictureBox5.TabStop = false;
+            // 
             // panel8
             // 
             this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -1564,6 +1763,17 @@
             this.label19.Size = new System.Drawing.Size(75, 18);
             this.label19.TabIndex = 16;
             this.label19.Text = "Sem Sinal";
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox3.Image = global::JCFLIGHTGCS.Properties.Resources.GPS;
+            this.pictureBox3.Location = new System.Drawing.Point(14, 34);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(80, 53);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 3;
+            this.pictureBox3.TabStop = false;
             // 
             // panel15
             // 
@@ -1790,7 +2000,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.comboBox19);
+            this.groupBox1.Controls.Add(this.numericUpDown86);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(219, 6);
             this.groupBox1.Name = "groupBox1";
@@ -1798,37 +2008,6 @@
             this.groupBox1.TabIndex = 20;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "RTH ALT.";
-            // 
-            // comboBox19
-            // 
-            this.comboBox19.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox19.FormattingEnabled = true;
-            this.comboBox19.Items.AddRange(new object[] {
-            "10M",
-            "15M",
-            "20M",
-            "25M",
-            "30M",
-            "35M",
-            "40M",
-            "45M",
-            "50M",
-            "55M",
-            "60M",
-            "65M",
-            "70M",
-            "75M",
-            "80M",
-            "85M",
-            "90M",
-            "95M",
-            "100M"});
-            this.comboBox19.Location = new System.Drawing.Point(6, 28);
-            this.comboBox19.Name = "comboBox19";
-            this.comboBox19.Size = new System.Drawing.Size(125, 24);
-            this.comboBox19.TabIndex = 0;
-            this.comboBox19.Text = "SELECIONE";
-            this.comboBox19.SelectedIndexChanged += new System.EventHandler(this.comboBox19_SelectedIndexChanged);
             // 
             // groupBox10
             // 
@@ -2726,6 +2905,26 @@
             this.label20.TabIndex = 3;
             this.label20.Text = "Altitude-Hold";
             // 
+            // button9
+            // 
+            this.button9.Image = global::JCFLIGHTGCS.Properties.Resources.DefaultPID;
+            this.button9.Location = new System.Drawing.Point(953, 450);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(75, 66);
+            this.button9.TabIndex = 13;
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
+            // button8
+            // 
+            this.button8.Image = global::JCFLIGHTGCS.Properties.Resources.Save;
+            this.button8.Location = new System.Drawing.Point(856, 450);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(75, 66);
+            this.button8.TabIndex = 12;
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.label153);
@@ -2805,6 +3004,130 @@
             this.AccCalibration.Text = "Clique aqui para calibrar o Acelerômetro";
             this.AccCalibration.UseVisualStyleBackColor = true;
             this.AccCalibration.Click += new System.EventHandler(this.button10_Click);
+            // 
+            // pictureBox22
+            // 
+            this.pictureBox22.Image = global::JCFLIGHTGCS.Properties.Resources.Compass1;
+            this.pictureBox22.Location = new System.Drawing.Point(362, 316);
+            this.pictureBox22.Name = "pictureBox22";
+            this.pictureBox22.Size = new System.Drawing.Size(325, 174);
+            this.pictureBox22.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox22.TabIndex = 17;
+            this.pictureBox22.TabStop = false;
+            // 
+            // pictureBox20
+            // 
+            this.pictureBox20.Image = global::JCFLIGHTGCS.Properties.Resources.CalibAcc6;
+            this.pictureBox20.Location = new System.Drawing.Point(897, 62);
+            this.pictureBox20.Name = "pictureBox20";
+            this.pictureBox20.Size = new System.Drawing.Size(130, 130);
+            this.pictureBox20.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox20.TabIndex = 14;
+            this.pictureBox20.TabStop = false;
+            // 
+            // pictureBox21
+            // 
+            this.pictureBox21.BackColor = System.Drawing.Color.Red;
+            this.pictureBox21.Location = new System.Drawing.Point(887, 51);
+            this.pictureBox21.Name = "pictureBox21";
+            this.pictureBox21.Size = new System.Drawing.Size(150, 150);
+            this.pictureBox21.TabIndex = 13;
+            this.pictureBox21.TabStop = false;
+            // 
+            // pictureBox18
+            // 
+            this.pictureBox18.Image = global::JCFLIGHTGCS.Properties.Resources.CalibAcc5;
+            this.pictureBox18.Location = new System.Drawing.Point(722, 62);
+            this.pictureBox18.Name = "pictureBox18";
+            this.pictureBox18.Size = new System.Drawing.Size(130, 130);
+            this.pictureBox18.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox18.TabIndex = 12;
+            this.pictureBox18.TabStop = false;
+            // 
+            // pictureBox19
+            // 
+            this.pictureBox19.BackColor = System.Drawing.Color.Red;
+            this.pictureBox19.Location = new System.Drawing.Point(712, 51);
+            this.pictureBox19.Name = "pictureBox19";
+            this.pictureBox19.Size = new System.Drawing.Size(150, 150);
+            this.pictureBox19.TabIndex = 11;
+            this.pictureBox19.TabStop = false;
+            // 
+            // pictureBox16
+            // 
+            this.pictureBox16.Image = global::JCFLIGHTGCS.Properties.Resources.CalibAcc4;
+            this.pictureBox16.Location = new System.Drawing.Point(547, 62);
+            this.pictureBox16.Name = "pictureBox16";
+            this.pictureBox16.Size = new System.Drawing.Size(130, 130);
+            this.pictureBox16.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox16.TabIndex = 10;
+            this.pictureBox16.TabStop = false;
+            // 
+            // pictureBox17
+            // 
+            this.pictureBox17.BackColor = System.Drawing.Color.Red;
+            this.pictureBox17.Location = new System.Drawing.Point(537, 51);
+            this.pictureBox17.Name = "pictureBox17";
+            this.pictureBox17.Size = new System.Drawing.Size(150, 150);
+            this.pictureBox17.TabIndex = 9;
+            this.pictureBox17.TabStop = false;
+            // 
+            // pictureBox14
+            // 
+            this.pictureBox14.Image = global::JCFLIGHTGCS.Properties.Resources.CalibAcc3;
+            this.pictureBox14.Location = new System.Drawing.Point(372, 62);
+            this.pictureBox14.Name = "pictureBox14";
+            this.pictureBox14.Size = new System.Drawing.Size(130, 130);
+            this.pictureBox14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox14.TabIndex = 8;
+            this.pictureBox14.TabStop = false;
+            // 
+            // pictureBox15
+            // 
+            this.pictureBox15.BackColor = System.Drawing.Color.Red;
+            this.pictureBox15.Location = new System.Drawing.Point(362, 51);
+            this.pictureBox15.Name = "pictureBox15";
+            this.pictureBox15.Size = new System.Drawing.Size(150, 150);
+            this.pictureBox15.TabIndex = 7;
+            this.pictureBox15.TabStop = false;
+            // 
+            // pictureBox12
+            // 
+            this.pictureBox12.Image = global::JCFLIGHTGCS.Properties.Resources.AccCalib2;
+            this.pictureBox12.Location = new System.Drawing.Point(197, 62);
+            this.pictureBox12.Name = "pictureBox12";
+            this.pictureBox12.Size = new System.Drawing.Size(130, 130);
+            this.pictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox12.TabIndex = 6;
+            this.pictureBox12.TabStop = false;
+            // 
+            // pictureBox13
+            // 
+            this.pictureBox13.BackColor = System.Drawing.Color.Red;
+            this.pictureBox13.Location = new System.Drawing.Point(187, 51);
+            this.pictureBox13.Name = "pictureBox13";
+            this.pictureBox13.Size = new System.Drawing.Size(150, 150);
+            this.pictureBox13.TabIndex = 5;
+            this.pictureBox13.TabStop = false;
+            // 
+            // pictureBox11
+            // 
+            this.pictureBox11.Image = global::JCFLIGHTGCS.Properties.Resources.AccCalib1;
+            this.pictureBox11.Location = new System.Drawing.Point(22, 62);
+            this.pictureBox11.Name = "pictureBox11";
+            this.pictureBox11.Size = new System.Drawing.Size(130, 130);
+            this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox11.TabIndex = 1;
+            this.pictureBox11.TabStop = false;
+            // 
+            // pictureBox10
+            // 
+            this.pictureBox10.BackColor = System.Drawing.Color.Red;
+            this.pictureBox10.Location = new System.Drawing.Point(12, 51);
+            this.pictureBox10.Name = "pictureBox10";
+            this.pictureBox10.Size = new System.Drawing.Size(150, 150);
+            this.pictureBox10.TabIndex = 0;
+            this.pictureBox10.TabStop = false;
             // 
             // tabPage4
             // 
@@ -4331,13 +4654,8 @@
             this.tabPage7.Controls.Add(this.groupBox44);
             this.tabPage7.Controls.Add(this.groupBox43);
             this.tabPage7.Controls.Add(this.groupBox6);
-            this.tabPage7.Controls.Add(this.label154);
             this.tabPage7.Controls.Add(this.groupBox29);
-            this.tabPage7.Controls.Add(this.label115);
             this.tabPage7.Controls.Add(this.groupBox26);
-            this.tabPage7.Controls.Add(this.label112);
-            this.tabPage7.Controls.Add(this.label111);
-            this.tabPage7.Controls.Add(this.label110);
             this.tabPage7.Controls.Add(this.groupBox25);
             this.tabPage7.Controls.Add(this.label109);
             this.tabPage7.Controls.Add(this.groupBox24);
@@ -4351,8 +4669,6 @@
             this.tabPage7.Controls.Add(this.groupBox21);
             this.tabPage7.Controls.Add(this.groupBox20);
             this.tabPage7.Controls.Add(this.groupBox19);
-            this.tabPage7.Controls.Add(this.label103);
-            this.tabPage7.Controls.Add(this.label101);
             this.tabPage7.Controls.Add(this.groupBox18);
             this.tabPage7.Controls.Add(this.groupBox17);
             this.tabPage7.Controls.Add(this.label100);
@@ -4384,7 +4700,7 @@
             this.groupBox33.Controls.Add(this.metroLabel37);
             this.groupBox33.Controls.Add(this.numericUpDown74);
             this.groupBox33.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox33.Location = new System.Drawing.Point(391, 116);
+            this.groupBox33.Location = new System.Drawing.Point(185, 312);
             this.groupBox33.Name = "groupBox33";
             this.groupBox33.Size = new System.Drawing.Size(179, 135);
             this.groupBox33.TabIndex = 43;
@@ -4415,7 +4731,7 @@
             // metroLabel38
             // 
             this.metroLabel38.AutoSize = true;
-            this.metroLabel38.Location = new System.Drawing.Point(6, 89);
+            this.metroLabel38.Location = new System.Drawing.Point(6, 88);
             this.metroLabel38.Name = "metroLabel38";
             this.metroLabel38.Size = new System.Drawing.Size(83, 19);
             this.metroLabel38.TabIndex = 44;
@@ -4508,9 +4824,9 @@
             this.groupBox44.Controls.Add(this.metroLabel34);
             this.groupBox44.Controls.Add(this.numericUpDown73);
             this.groupBox44.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox44.Location = new System.Drawing.Point(185, 189);
+            this.groupBox44.Location = new System.Drawing.Point(4, 312);
             this.groupBox44.Name = "groupBox44";
-            this.groupBox44.Size = new System.Drawing.Size(200, 69);
+            this.groupBox44.Size = new System.Drawing.Size(173, 69);
             this.groupBox44.TabIndex = 42;
             this.groupBox44.TabStop = false;
             this.groupBox44.Text = "HEADING-HOLD";
@@ -4523,7 +4839,7 @@
             0,
             0,
             65536});
-            this.numericUpDown70.Location = new System.Drawing.Point(124, 19);
+            this.numericUpDown70.Location = new System.Drawing.Point(82, 18);
             this.numericUpDown70.Maximum = new decimal(new int[] {
             25,
             0,
@@ -4553,7 +4869,7 @@
             // 
             // numericUpDown73
             // 
-            this.numericUpDown73.Location = new System.Drawing.Point(124, 44);
+            this.numericUpDown73.Location = new System.Drawing.Point(82, 42);
             this.numericUpDown73.Maximum = new decimal(new int[] {
             200,
             0,
@@ -4570,7 +4886,7 @@
             this.groupBox43.Controls.Add(this.metroLabel31);
             this.groupBox43.Controls.Add(this.numericUpDown71);
             this.groupBox43.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox43.Location = new System.Drawing.Point(4, 116);
+            this.groupBox43.Location = new System.Drawing.Point(6, 103);
             this.groupBox43.Name = "groupBox43";
             this.groupBox43.Size = new System.Drawing.Size(175, 77);
             this.groupBox43.TabIndex = 41;
@@ -4722,21 +5038,12 @@
             this.numericUpDown68.Size = new System.Drawing.Size(70, 21);
             this.numericUpDown68.TabIndex = 2;
             // 
-            // label154
-            // 
-            this.label154.AutoSize = true;
-            this.label154.Location = new System.Drawing.Point(210, 533);
-            this.label154.Name = "label154";
-            this.label154.Size = new System.Drawing.Size(114, 13);
-            this.label154.TabIndex = 39;
-            this.label154.Text = "(50HZ POR PADRÃO)";
-            // 
             // groupBox29
             // 
             this.groupBox29.Controls.Add(this.numericUpDown21);
             this.groupBox29.Controls.Add(this.metroLabel27);
             this.groupBox29.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox29.Location = new System.Drawing.Point(4, 509);
+            this.groupBox29.Location = new System.Drawing.Point(210, 520);
             this.groupBox29.Name = "groupBox29";
             this.groupBox29.Size = new System.Drawing.Size(200, 48);
             this.groupBox29.TabIndex = 38;
@@ -4764,21 +5071,12 @@
             this.metroLabel27.TabIndex = 3;
             this.metroLabel27.Text = "Valor (Hz)";
             // 
-            // label115
-            // 
-            this.label115.AutoSize = true;
-            this.label115.Location = new System.Drawing.Point(210, 479);
-            this.label115.Name = "label115";
-            this.label115.Size = new System.Drawing.Size(114, 13);
-            this.label115.TabIndex = 36;
-            this.label115.Text = "(50HZ POR PADRÃO)";
-            // 
             // groupBox26
             // 
             this.groupBox26.Controls.Add(this.numericUpDown20);
             this.groupBox26.Controls.Add(this.metroLabel23);
             this.groupBox26.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox26.Location = new System.Drawing.Point(4, 455);
+            this.groupBox26.Location = new System.Drawing.Point(4, 520);
             this.groupBox26.Name = "groupBox26";
             this.groupBox26.Size = new System.Drawing.Size(200, 48);
             this.groupBox26.TabIndex = 35;
@@ -4806,33 +5104,6 @@
             this.metroLabel23.TabIndex = 3;
             this.metroLabel23.Text = "Valor (Hz)";
             // 
-            // label112
-            // 
-            this.label112.AutoSize = true;
-            this.label112.Location = new System.Drawing.Point(210, 313);
-            this.label112.Name = "label112";
-            this.label112.Size = new System.Drawing.Size(232, 13);
-            this.label112.TabIndex = 34;
-            this.label112.Text = "(1500 POR PADRÃO PARA MULTIROTORES)";
-            // 
-            // label111
-            // 
-            this.label111.AutoSize = true;
-            this.label111.Location = new System.Drawing.Point(210, 301);
-            this.label111.Name = "label111";
-            this.label111.Size = new System.Drawing.Size(317, 13);
-            this.label111.TabIndex = 33;
-            this.label111.Text = "(INICIA A ATENUAÇÃO A PARTIR DO VALOR DEFINIDO AQUI)";
-            // 
-            // label110
-            // 
-            this.label110.AutoSize = true;
-            this.label110.Location = new System.Drawing.Point(210, 281);
-            this.label110.Name = "label110";
-            this.label110.Size = new System.Drawing.Size(463, 13);
-            this.label110.TabIndex = 32;
-            this.label110.Text = "(0 POR PADRÃO - TAXA DE ATENUAÇÃO DO PID DINÂMICO COM BASE NA ACELERAÇÃO)\r\n";
-            // 
             // groupBox25
             // 
             this.groupBox25.Controls.Add(this.metroLabel21);
@@ -4840,7 +5111,7 @@
             this.groupBox25.Controls.Add(this.numericUpDown18);
             this.groupBox25.Controls.Add(this.numericUpDown19);
             this.groupBox25.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox25.Location = new System.Drawing.Point(4, 258);
+            this.groupBox25.Location = new System.Drawing.Point(4, 447);
             this.groupBox25.Name = "groupBox25";
             this.groupBox25.Size = new System.Drawing.Size(200, 70);
             this.groupBox25.TabIndex = 31;
@@ -4850,7 +5121,7 @@
             // metroLabel21
             // 
             this.metroLabel21.AutoSize = true;
-            this.metroLabel21.Location = new System.Drawing.Point(8, 45);
+            this.metroLabel21.Location = new System.Drawing.Point(6, 46);
             this.metroLabel21.Name = "metroLabel21";
             this.metroLabel21.Size = new System.Drawing.Size(97, 19);
             this.metroLabel21.TabIndex = 4;
@@ -5148,30 +5419,12 @@
             this.numericUpDown13.Size = new System.Drawing.Size(70, 21);
             this.numericUpDown13.TabIndex = 2;
             // 
-            // label103
-            // 
-            this.label103.AutoSize = true;
-            this.label103.Location = new System.Drawing.Point(210, 426);
-            this.label103.Name = "label103";
-            this.label103.Size = new System.Drawing.Size(369, 13);
-            this.label103.TabIndex = 17;
-            this.label103.Text = "(40HZ POR PADRÃO - VALIDO APENAS PARA OS EIXOS PITCH E ROLL)";
-            // 
-            // label101
-            // 
-            this.label101.AutoSize = true;
-            this.label101.Location = new System.Drawing.Point(210, 360);
-            this.label101.Name = "label101";
-            this.label101.Size = new System.Drawing.Size(114, 13);
-            this.label101.TabIndex = 15;
-            this.label101.Text = "(20HZ POR PADRÃO)";
-            // 
             // groupBox18
             // 
             this.groupBox18.Controls.Add(this.metroLabel10);
             this.groupBox18.Controls.Add(this.numericUpDown14);
             this.groupBox18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox18.Location = new System.Drawing.Point(4, 401);
+            this.groupBox18.Location = new System.Drawing.Point(416, 450);
             this.groupBox18.Name = "groupBox18";
             this.groupBox18.Size = new System.Drawing.Size(200, 48);
             this.groupBox18.TabIndex = 14;
@@ -5204,7 +5457,7 @@
             this.groupBox17.Controls.Add(this.comboBox20);
             this.groupBox17.Controls.Add(this.metroLabel11);
             this.groupBox17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox17.Location = new System.Drawing.Point(4, 338);
+            this.groupBox17.Location = new System.Drawing.Point(210, 450);
             this.groupBox17.Name = "groupBox17";
             this.groupBox17.Size = new System.Drawing.Size(200, 48);
             this.groupBox17.TabIndex = 13;
@@ -5258,22 +5511,41 @@
             // 
             // groupBox16
             // 
+            this.groupBox16.Controls.Add(this.label54);
+            this.groupBox16.Controls.Add(this.label53);
+            this.groupBox16.Controls.Add(this.label52);
+            this.groupBox16.Controls.Add(this.metroLabel42);
+            this.groupBox16.Controls.Add(this.numericUpDown78);
+            this.groupBox16.Controls.Add(this.metroLabel46);
+            this.groupBox16.Controls.Add(this.numericUpDown82);
+            this.groupBox16.Controls.Add(this.metroLabel47);
+            this.groupBox16.Controls.Add(this.metroLabel49);
+            this.groupBox16.Controls.Add(this.numericUpDown83);
+            this.groupBox16.Controls.Add(this.numericUpDown85);
+            this.groupBox16.Controls.Add(this.metroLabel48);
+            this.groupBox16.Controls.Add(this.numericUpDown84);
+            this.groupBox16.Controls.Add(this.metroLabel43);
+            this.groupBox16.Controls.Add(this.numericUpDown79);
+            this.groupBox16.Controls.Add(this.metroLabel44);
+            this.groupBox16.Controls.Add(this.metroLabel45);
+            this.groupBox16.Controls.Add(this.numericUpDown80);
+            this.groupBox16.Controls.Add(this.numericUpDown81);
             this.groupBox16.Controls.Add(this.metroLabel14);
             this.groupBox16.Controls.Add(this.metroLabel15);
             this.groupBox16.Controls.Add(this.numericUpDown11);
             this.groupBox16.Controls.Add(this.numericUpDown12);
             this.groupBox16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox16.Location = new System.Drawing.Point(185, 116);
+            this.groupBox16.Location = new System.Drawing.Point(185, 103);
             this.groupBox16.Name = "groupBox16";
-            this.groupBox16.Size = new System.Drawing.Size(200, 70);
+            this.groupBox16.Size = new System.Drawing.Size(449, 203);
             this.groupBox16.TabIndex = 5;
             this.groupBox16.TabStop = false;
-            this.groupBox16.Text = "GPS-HOLD";
+            this.groupBox16.Text = "Navegação por GPS";
             // 
             // metroLabel14
             // 
             this.metroLabel14.AutoSize = true;
-            this.metroLabel14.Location = new System.Drawing.Point(6, 45);
+            this.metroLabel14.Location = new System.Drawing.Point(8, 58);
             this.metroLabel14.Name = "metroLabel14";
             this.metroLabel14.Size = new System.Drawing.Size(53, 19);
             this.metroLabel14.TabIndex = 4;
@@ -5282,7 +5554,7 @@
             // metroLabel15
             // 
             this.metroLabel15.AutoSize = true;
-            this.metroLabel15.Location = new System.Drawing.Point(6, 20);
+            this.metroLabel15.Location = new System.Drawing.Point(8, 33);
             this.metroLabel15.Name = "metroLabel15";
             this.metroLabel15.Size = new System.Drawing.Size(85, 19);
             this.metroLabel15.TabIndex = 3;
@@ -5296,7 +5568,7 @@
             0,
             0,
             131072});
-            this.numericUpDown11.Location = new System.Drawing.Point(124, 20);
+            this.numericUpDown11.Location = new System.Drawing.Point(126, 33);
             this.numericUpDown11.Maximum = new decimal(new int[] {
             254,
             0,
@@ -5314,7 +5586,7 @@
             0,
             0,
             131072});
-            this.numericUpDown12.Location = new System.Drawing.Point(124, 44);
+            this.numericUpDown12.Location = new System.Drawing.Point(126, 57);
             this.numericUpDown12.Maximum = new decimal(new int[] {
             254,
             0,
@@ -5326,12 +5598,16 @@
             // 
             // groupBox15
             // 
+            this.groupBox15.Controls.Add(this.metroLabel41);
+            this.groupBox15.Controls.Add(this.numericUpDown77);
+            this.groupBox15.Controls.Add(this.metroLabel40);
+            this.groupBox15.Controls.Add(this.numericUpDown38);
             this.groupBox15.Controls.Add(this.metroLabel12);
             this.groupBox15.Controls.Add(this.numericUpDown10);
             this.groupBox15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox15.Location = new System.Drawing.Point(4, 202);
             this.groupBox15.Name = "groupBox15";
-            this.groupBox15.Size = new System.Drawing.Size(175, 45);
+            this.groupBox15.Size = new System.Drawing.Size(175, 104);
             this.groupBox15.TabIndex = 4;
             this.groupBox15.TabStop = false;
             this.groupBox15.Text = "ALTITUDE-HOLD";
@@ -5635,6 +5911,26 @@
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(70, 21);
             this.numericUpDown1.TabIndex = 0;
+            // 
+            // button17
+            // 
+            this.button17.Image = global::JCFLIGHTGCS.Properties.Resources.DefaultPID;
+            this.button17.Location = new System.Drawing.Point(960, 451);
+            this.button17.Name = "button17";
+            this.button17.Size = new System.Drawing.Size(75, 66);
+            this.button17.TabIndex = 10;
+            this.button17.UseVisualStyleBackColor = true;
+            this.button17.Click += new System.EventHandler(this.button17_Click);
+            // 
+            // button16
+            // 
+            this.button16.Image = global::JCFLIGHTGCS.Properties.Resources.Save;
+            this.button16.Location = new System.Drawing.Point(860, 451);
+            this.button16.Name = "button16";
+            this.button16.Size = new System.Drawing.Size(75, 66);
+            this.button16.TabIndex = 9;
+            this.button16.UseVisualStyleBackColor = true;
+            this.button16.Click += new System.EventHandler(this.button16_Click);
             // 
             // tabPage8
             // 
@@ -6778,6 +7074,26 @@
             this.label181.TabIndex = 146;
             this.label181.Text = "Salvar\r\nParâmetros.\r\n";
             // 
+            // button26
+            // 
+            this.button26.Image = global::JCFLIGHTGCS.Properties.Resources.DefaultPID;
+            this.button26.Location = new System.Drawing.Point(964, 419);
+            this.button26.Name = "button26";
+            this.button26.Size = new System.Drawing.Size(75, 66);
+            this.button26.TabIndex = 145;
+            this.button26.UseVisualStyleBackColor = true;
+            this.button26.Click += new System.EventHandler(this.button26_Click);
+            // 
+            // button27
+            // 
+            this.button27.Image = global::JCFLIGHTGCS.Properties.Resources.Save;
+            this.button27.Location = new System.Drawing.Point(867, 419);
+            this.button27.Name = "button27";
+            this.button27.Size = new System.Drawing.Size(75, 66);
+            this.button27.TabIndex = 144;
+            this.button27.UseVisualStyleBackColor = true;
+            this.button27.Click += new System.EventHandler(this.button27_Click);
+            // 
             // groupBox34
             // 
             this.groupBox34.Controls.Add(this.label175);
@@ -7273,372 +7589,302 @@
             this.limparWPsDoMapaToolStripMenuItem.Text = "Limpar WP\'s do mapa";
             this.limparWPsDoMapaToolStripMenuItem.Click += new System.EventHandler(this.limparWPsDoMapaToolStripMenuItem_Click);
             // 
-            // button15
-            // 
-            this.button15.BackColor = System.Drawing.Color.LimeGreen;
-            this.button15.BackgroundImage = global::JCFLIGHTGCS.Properties.Resources.WhatsApp;
-            this.button15.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button15.Location = new System.Drawing.Point(964, 496);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(79, 69);
-            this.button15.TabIndex = 11;
-            this.button15.UseVisualStyleBackColor = false;
-            this.button15.Click += new System.EventHandler(this.button15_Click);
-            // 
-            // button14
-            // 
-            this.button14.BackColor = System.Drawing.Color.White;
-            this.button14.BackgroundImage = global::JCFLIGHTGCS.Properties.Resources.YouTube;
-            this.button14.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button14.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button14.Location = new System.Drawing.Point(862, 496);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(79, 69);
-            this.button14.TabIndex = 10;
-            this.button14.UseVisualStyleBackColor = false;
-            this.button14.Click += new System.EventHandler(this.button14_Click);
-            // 
-            // pictureBox8
-            // 
-            this.pictureBox8.Image = global::JCFLIGHTGCS.Properties.Resources.Radio;
-            this.pictureBox8.Location = new System.Drawing.Point(14, 34);
-            this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(80, 53);
-            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox8.TabIndex = 5;
-            this.pictureBox8.TabStop = false;
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Image = global::JCFLIGHTGCS.Properties.Resources.Pitot_Tube;
-            this.pictureBox4.Location = new System.Drawing.Point(14, 34);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(80, 53);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox4.TabIndex = 4;
-            this.pictureBox4.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.ErrorImage = null;
-            this.pictureBox2.Image = global::JCFLIGHTGCS.Properties.Resources.Gyro;
-            this.pictureBox2.Location = new System.Drawing.Point(15, 34);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(80, 52);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 2;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox7
-            // 
-            this.pictureBox7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox7.Image = global::JCFLIGHTGCS.Properties.Resources._3901_L0X_1;
-            this.pictureBox7.Location = new System.Drawing.Point(14, 34);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(80, 53);
-            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox7.TabIndex = 5;
-            this.pictureBox7.TabStop = false;
-            // 
-            // pictureBox6
-            // 
-            this.pictureBox6.Image = global::JCFLIGHTGCS.Properties.Resources.Compass;
-            this.pictureBox6.Location = new System.Drawing.Point(14, 34);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(80, 53);
-            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox6.TabIndex = 6;
-            this.pictureBox6.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::JCFLIGHTGCS.Properties.Resources.Accelerometer;
-            this.pictureBox1.Location = new System.Drawing.Point(13, 34);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(80, 53);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.Image = global::JCFLIGHTGCS.Properties.Resources.Parachute;
-            this.pictureBox5.Location = new System.Drawing.Point(14, 34);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(80, 53);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox5.TabIndex = 5;
-            this.pictureBox5.TabStop = false;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox3.Image = global::JCFLIGHTGCS.Properties.Resources.GPS;
-            this.pictureBox3.Location = new System.Drawing.Point(14, 34);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(80, 53);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 3;
-            this.pictureBox3.TabStop = false;
-            // 
-            // button9
-            // 
-            this.button9.Image = global::JCFLIGHTGCS.Properties.Resources.DefaultPID;
-            this.button9.Location = new System.Drawing.Point(953, 450);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(75, 66);
-            this.button9.TabIndex = 13;
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
-            // 
-            // button8
-            // 
-            this.button8.Image = global::JCFLIGHTGCS.Properties.Resources.Save;
-            this.button8.Location = new System.Drawing.Point(856, 450);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 66);
-            this.button8.TabIndex = 12;
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
-            // 
-            // pictureBox22
-            // 
-            this.pictureBox22.Image = global::JCFLIGHTGCS.Properties.Resources.Compass1;
-            this.pictureBox22.Location = new System.Drawing.Point(362, 316);
-            this.pictureBox22.Name = "pictureBox22";
-            this.pictureBox22.Size = new System.Drawing.Size(325, 174);
-            this.pictureBox22.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox22.TabIndex = 17;
-            this.pictureBox22.TabStop = false;
-            // 
-            // pictureBox20
-            // 
-            this.pictureBox20.Image = global::JCFLIGHTGCS.Properties.Resources.CalibAcc6;
-            this.pictureBox20.Location = new System.Drawing.Point(897, 62);
-            this.pictureBox20.Name = "pictureBox20";
-            this.pictureBox20.Size = new System.Drawing.Size(130, 130);
-            this.pictureBox20.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox20.TabIndex = 14;
-            this.pictureBox20.TabStop = false;
-            // 
-            // pictureBox21
-            // 
-            this.pictureBox21.BackColor = System.Drawing.Color.Red;
-            this.pictureBox21.Location = new System.Drawing.Point(887, 51);
-            this.pictureBox21.Name = "pictureBox21";
-            this.pictureBox21.Size = new System.Drawing.Size(150, 150);
-            this.pictureBox21.TabIndex = 13;
-            this.pictureBox21.TabStop = false;
-            // 
-            // pictureBox18
-            // 
-            this.pictureBox18.Image = global::JCFLIGHTGCS.Properties.Resources.CalibAcc5;
-            this.pictureBox18.Location = new System.Drawing.Point(722, 62);
-            this.pictureBox18.Name = "pictureBox18";
-            this.pictureBox18.Size = new System.Drawing.Size(130, 130);
-            this.pictureBox18.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox18.TabIndex = 12;
-            this.pictureBox18.TabStop = false;
-            // 
-            // pictureBox19
-            // 
-            this.pictureBox19.BackColor = System.Drawing.Color.Red;
-            this.pictureBox19.Location = new System.Drawing.Point(712, 51);
-            this.pictureBox19.Name = "pictureBox19";
-            this.pictureBox19.Size = new System.Drawing.Size(150, 150);
-            this.pictureBox19.TabIndex = 11;
-            this.pictureBox19.TabStop = false;
-            // 
-            // pictureBox16
-            // 
-            this.pictureBox16.Image = global::JCFLIGHTGCS.Properties.Resources.CalibAcc4;
-            this.pictureBox16.Location = new System.Drawing.Point(547, 62);
-            this.pictureBox16.Name = "pictureBox16";
-            this.pictureBox16.Size = new System.Drawing.Size(130, 130);
-            this.pictureBox16.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox16.TabIndex = 10;
-            this.pictureBox16.TabStop = false;
-            // 
-            // pictureBox17
-            // 
-            this.pictureBox17.BackColor = System.Drawing.Color.Red;
-            this.pictureBox17.Location = new System.Drawing.Point(537, 51);
-            this.pictureBox17.Name = "pictureBox17";
-            this.pictureBox17.Size = new System.Drawing.Size(150, 150);
-            this.pictureBox17.TabIndex = 9;
-            this.pictureBox17.TabStop = false;
-            // 
-            // pictureBox14
-            // 
-            this.pictureBox14.Image = global::JCFLIGHTGCS.Properties.Resources.CalibAcc3;
-            this.pictureBox14.Location = new System.Drawing.Point(372, 62);
-            this.pictureBox14.Name = "pictureBox14";
-            this.pictureBox14.Size = new System.Drawing.Size(130, 130);
-            this.pictureBox14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox14.TabIndex = 8;
-            this.pictureBox14.TabStop = false;
-            // 
-            // pictureBox15
-            // 
-            this.pictureBox15.BackColor = System.Drawing.Color.Red;
-            this.pictureBox15.Location = new System.Drawing.Point(362, 51);
-            this.pictureBox15.Name = "pictureBox15";
-            this.pictureBox15.Size = new System.Drawing.Size(150, 150);
-            this.pictureBox15.TabIndex = 7;
-            this.pictureBox15.TabStop = false;
-            // 
-            // pictureBox12
-            // 
-            this.pictureBox12.Image = global::JCFLIGHTGCS.Properties.Resources.AccCalib2;
-            this.pictureBox12.Location = new System.Drawing.Point(197, 62);
-            this.pictureBox12.Name = "pictureBox12";
-            this.pictureBox12.Size = new System.Drawing.Size(130, 130);
-            this.pictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox12.TabIndex = 6;
-            this.pictureBox12.TabStop = false;
-            // 
-            // pictureBox13
-            // 
-            this.pictureBox13.BackColor = System.Drawing.Color.Red;
-            this.pictureBox13.Location = new System.Drawing.Point(187, 51);
-            this.pictureBox13.Name = "pictureBox13";
-            this.pictureBox13.Size = new System.Drawing.Size(150, 150);
-            this.pictureBox13.TabIndex = 5;
-            this.pictureBox13.TabStop = false;
-            // 
-            // pictureBox11
-            // 
-            this.pictureBox11.Image = global::JCFLIGHTGCS.Properties.Resources.AccCalib1;
-            this.pictureBox11.Location = new System.Drawing.Point(22, 62);
-            this.pictureBox11.Name = "pictureBox11";
-            this.pictureBox11.Size = new System.Drawing.Size(130, 130);
-            this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox11.TabIndex = 1;
-            this.pictureBox11.TabStop = false;
-            // 
-            // pictureBox10
-            // 
-            this.pictureBox10.BackColor = System.Drawing.Color.Red;
-            this.pictureBox10.Location = new System.Drawing.Point(12, 51);
-            this.pictureBox10.Name = "pictureBox10";
-            this.pictureBox10.Size = new System.Drawing.Size(150, 150);
-            this.pictureBox10.TabIndex = 0;
-            this.pictureBox10.TabStop = false;
-            // 
-            // button17
-            // 
-            this.button17.Image = global::JCFLIGHTGCS.Properties.Resources.DefaultPID;
-            this.button17.Location = new System.Drawing.Point(960, 451);
-            this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(75, 66);
-            this.button17.TabIndex = 10;
-            this.button17.UseVisualStyleBackColor = true;
-            this.button17.Click += new System.EventHandler(this.button17_Click);
-            // 
-            // button16
-            // 
-            this.button16.Image = global::JCFLIGHTGCS.Properties.Resources.Save;
-            this.button16.Location = new System.Drawing.Point(860, 451);
-            this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(75, 66);
-            this.button16.TabIndex = 9;
-            this.button16.UseVisualStyleBackColor = true;
-            this.button16.Click += new System.EventHandler(this.button16_Click);
-            // 
-            // button26
-            // 
-            this.button26.Image = global::JCFLIGHTGCS.Properties.Resources.DefaultPID;
-            this.button26.Location = new System.Drawing.Point(964, 419);
-            this.button26.Name = "button26";
-            this.button26.Size = new System.Drawing.Size(75, 66);
-            this.button26.TabIndex = 145;
-            this.button26.UseVisualStyleBackColor = true;
-            this.button26.Click += new System.EventHandler(this.button26_Click);
-            // 
-            // button27
-            // 
-            this.button27.Image = global::JCFLIGHTGCS.Properties.Resources.Save;
-            this.button27.Location = new System.Drawing.Point(867, 419);
-            this.button27.Name = "button27";
-            this.button27.Size = new System.Drawing.Size(75, 66);
-            this.button27.TabIndex = 144;
-            this.button27.UseVisualStyleBackColor = true;
-            this.button27.Click += new System.EventHandler(this.button27_Click);
-            // 
-            // pictureBox9
-            // 
-            this.pictureBox9.BackColor = System.Drawing.Color.White;
-            this.pictureBox9.Image = global::JCFLIGHTGCS.Properties.Resources.Desconectado;
-            this.pictureBox9.Location = new System.Drawing.Point(132, 10);
-            this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(93, 72);
-            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox9.TabIndex = 6;
-            this.pictureBox9.TabStop = false;
-            // 
-            // iconminimizar
-            // 
-            this.iconminimizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.iconminimizar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.iconminimizar.Image = global::JCFLIGHTGCS.Properties.Resources.minimazar;
-            this.iconminimizar.Location = new System.Drawing.Point(968, 3);
-            this.iconminimizar.Name = "iconminimizar";
-            this.iconminimizar.Size = new System.Drawing.Size(18, 18);
-            this.iconminimizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.iconminimizar.TabIndex = 4;
-            this.iconminimizar.TabStop = false;
-            this.iconminimizar.Click += new System.EventHandler(this.iconminimizar_Click);
-            // 
-            // maximinizar
-            // 
-            this.maximinizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.maximinizar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.maximinizar.Image = global::JCFLIGHTGCS.Properties.Resources.maxi;
-            this.maximinizar.Location = new System.Drawing.Point(990, 8);
-            this.maximinizar.Name = "maximinizar";
-            this.maximinizar.Size = new System.Drawing.Size(18, 18);
-            this.maximinizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.maximinizar.TabIndex = 3;
-            this.maximinizar.TabStop = false;
-            this.maximinizar.Visible = false;
-            this.maximinizar.Click += new System.EventHandler(this.maximinizar_Click);
-            // 
-            // iconmaximizar
-            // 
-            this.iconmaximizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.iconmaximizar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.iconmaximizar.Image = global::JCFLIGHTGCS.Properties.Resources.maxi;
-            this.iconmaximizar.Location = new System.Drawing.Point(995, 3);
-            this.iconmaximizar.Name = "iconmaximizar";
-            this.iconmaximizar.Size = new System.Drawing.Size(18, 18);
-            this.iconmaximizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.iconmaximizar.TabIndex = 2;
-            this.iconmaximizar.TabStop = false;
-            this.iconmaximizar.Click += new System.EventHandler(this.iconmaximizar_Click);
-            // 
-            // encerrar
-            // 
-            this.encerrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.encerrar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.encerrar.Image = global::JCFLIGHTGCS.Properties.Resources.cerrar;
-            this.encerrar.Location = new System.Drawing.Point(1021, 3);
-            this.encerrar.Name = "encerrar";
-            this.encerrar.Size = new System.Drawing.Size(18, 18);
-            this.encerrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.encerrar.TabIndex = 1;
-            this.encerrar.TabStop = false;
-            this.encerrar.Click += new System.EventHandler(this.encerrar_Click_1);
-            // 
-            // btnlogoInicio
-            // 
-            this.btnlogoInicio.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.btnlogoInicio.Image = ((System.Drawing.Image)(resources.GetObject("btnlogoInicio.Image")));
-            this.btnlogoInicio.Location = new System.Drawing.Point(257, 22);
-            this.btnlogoInicio.Name = "btnlogoInicio";
-            this.btnlogoInicio.Size = new System.Drawing.Size(398, 88);
-            this.btnlogoInicio.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnlogoInicio.TabIndex = 0;
-            this.btnlogoInicio.TabStop = false;
+            // metroLabel40
+            // 
+            this.metroLabel40.AutoSize = true;
+            this.metroLabel40.Location = new System.Drawing.Point(6, 48);
+            this.metroLabel40.Name = "metroLabel40";
+            this.metroLabel40.Size = new System.Drawing.Size(53, 19);
+            this.metroLabel40.TabIndex = 5;
+            this.metroLabel40.Text = "Integral";
+            // 
+            // numericUpDown38
+            // 
+            this.numericUpDown38.DecimalPlaces = 1;
+            this.numericUpDown38.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.numericUpDown38.Location = new System.Drawing.Point(96, 46);
+            this.numericUpDown38.Maximum = new decimal(new int[] {
+            25,
+            0,
+            0,
+            0});
+            this.numericUpDown38.Name = "numericUpDown38";
+            this.numericUpDown38.Size = new System.Drawing.Size(70, 21);
+            this.numericUpDown38.TabIndex = 4;
+            // 
+            // metroLabel41
+            // 
+            this.metroLabel41.AutoSize = true;
+            this.metroLabel41.Location = new System.Drawing.Point(6, 75);
+            this.metroLabel41.Name = "metroLabel41";
+            this.metroLabel41.Size = new System.Drawing.Size(67, 19);
+            this.metroLabel41.TabIndex = 7;
+            this.metroLabel41.Text = "Derivativo";
+            // 
+            // numericUpDown77
+            // 
+            this.numericUpDown77.DecimalPlaces = 1;
+            this.numericUpDown77.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.numericUpDown77.Location = new System.Drawing.Point(96, 73);
+            this.numericUpDown77.Maximum = new decimal(new int[] {
+            25,
+            0,
+            0,
+            0});
+            this.numericUpDown77.Name = "numericUpDown77";
+            this.numericUpDown77.Size = new System.Drawing.Size(70, 21);
+            this.numericUpDown77.TabIndex = 6;
+            // 
+            // metroLabel43
+            // 
+            this.metroLabel43.AutoSize = true;
+            this.metroLabel43.Location = new System.Drawing.Point(8, 152);
+            this.metroLabel43.Name = "metroLabel43";
+            this.metroLabel43.Size = new System.Drawing.Size(67, 19);
+            this.metroLabel43.TabIndex = 12;
+            this.metroLabel43.Text = "Derivativo";
+            // 
+            // numericUpDown79
+            // 
+            this.numericUpDown79.DecimalPlaces = 2;
+            this.numericUpDown79.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.numericUpDown79.Location = new System.Drawing.Point(126, 151);
+            this.numericUpDown79.Maximum = new decimal(new int[] {
+            254,
+            0,
+            0,
+            131072});
+            this.numericUpDown79.Name = "numericUpDown79";
+            this.numericUpDown79.Size = new System.Drawing.Size(70, 21);
+            this.numericUpDown79.TabIndex = 11;
+            // 
+            // metroLabel44
+            // 
+            this.metroLabel44.AutoSize = true;
+            this.metroLabel44.Location = new System.Drawing.Point(8, 128);
+            this.metroLabel44.Name = "metroLabel44";
+            this.metroLabel44.Size = new System.Drawing.Size(53, 19);
+            this.metroLabel44.TabIndex = 10;
+            this.metroLabel44.Text = "Integral";
+            // 
+            // metroLabel45
+            // 
+            this.metroLabel45.AutoSize = true;
+            this.metroLabel45.Location = new System.Drawing.Point(8, 103);
+            this.metroLabel45.Name = "metroLabel45";
+            this.metroLabel45.Size = new System.Drawing.Size(85, 19);
+            this.metroLabel45.TabIndex = 9;
+            this.metroLabel45.Text = "Proporcional";
+            // 
+            // numericUpDown80
+            // 
+            this.numericUpDown80.DecimalPlaces = 2;
+            this.numericUpDown80.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.numericUpDown80.Location = new System.Drawing.Point(126, 103);
+            this.numericUpDown80.Maximum = new decimal(new int[] {
+            254,
+            0,
+            0,
+            131072});
+            this.numericUpDown80.Name = "numericUpDown80";
+            this.numericUpDown80.Size = new System.Drawing.Size(70, 21);
+            this.numericUpDown80.TabIndex = 7;
+            // 
+            // numericUpDown81
+            // 
+            this.numericUpDown81.DecimalPlaces = 2;
+            this.numericUpDown81.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.numericUpDown81.Location = new System.Drawing.Point(126, 127);
+            this.numericUpDown81.Maximum = new decimal(new int[] {
+            254,
+            0,
+            0,
+            131072});
+            this.numericUpDown81.Name = "numericUpDown81";
+            this.numericUpDown81.Size = new System.Drawing.Size(70, 21);
+            this.numericUpDown81.TabIndex = 8;
+            // 
+            // metroLabel48
+            // 
+            this.metroLabel48.AutoSize = true;
+            this.metroLabel48.Location = new System.Drawing.Point(8, 176);
+            this.metroLabel48.Name = "metroLabel48";
+            this.metroLabel48.Size = new System.Drawing.Size(85, 19);
+            this.metroLabel48.TabIndex = 20;
+            this.metroLabel48.Text = "Integral Max.";
+            // 
+            // numericUpDown84
+            // 
+            this.numericUpDown84.DecimalPlaces = 2;
+            this.numericUpDown84.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.numericUpDown84.Location = new System.Drawing.Point(126, 175);
+            this.numericUpDown84.Maximum = new decimal(new int[] {
+            254,
+            0,
+            0,
+            131072});
+            this.numericUpDown84.Name = "numericUpDown84";
+            this.numericUpDown84.Size = new System.Drawing.Size(70, 21);
+            this.numericUpDown84.TabIndex = 19;
+            // 
+            // metroLabel42
+            // 
+            this.metroLabel42.AutoSize = true;
+            this.metroLabel42.Location = new System.Drawing.Point(233, 106);
+            this.metroLabel42.Name = "metroLabel42";
+            this.metroLabel42.Size = new System.Drawing.Size(85, 19);
+            this.metroLabel42.TabIndex = 28;
+            this.metroLabel42.Text = "Integral Max.";
+            // 
+            // numericUpDown78
+            // 
+            this.numericUpDown78.DecimalPlaces = 2;
+            this.numericUpDown78.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.numericUpDown78.Location = new System.Drawing.Point(351, 105);
+            this.numericUpDown78.Maximum = new decimal(new int[] {
+            254,
+            0,
+            0,
+            131072});
+            this.numericUpDown78.Name = "numericUpDown78";
+            this.numericUpDown78.Size = new System.Drawing.Size(70, 21);
+            this.numericUpDown78.TabIndex = 27;
+            // 
+            // metroLabel46
+            // 
+            this.metroLabel46.AutoSize = true;
+            this.metroLabel46.Location = new System.Drawing.Point(233, 82);
+            this.metroLabel46.Name = "metroLabel46";
+            this.metroLabel46.Size = new System.Drawing.Size(67, 19);
+            this.metroLabel46.TabIndex = 26;
+            this.metroLabel46.Text = "Derivativo";
+            // 
+            // numericUpDown82
+            // 
+            this.numericUpDown82.DecimalPlaces = 2;
+            this.numericUpDown82.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.numericUpDown82.Location = new System.Drawing.Point(351, 81);
+            this.numericUpDown82.Maximum = new decimal(new int[] {
+            254,
+            0,
+            0,
+            131072});
+            this.numericUpDown82.Name = "numericUpDown82";
+            this.numericUpDown82.Size = new System.Drawing.Size(70, 21);
+            this.numericUpDown82.TabIndex = 25;
+            // 
+            // metroLabel47
+            // 
+            this.metroLabel47.AutoSize = true;
+            this.metroLabel47.Location = new System.Drawing.Point(233, 58);
+            this.metroLabel47.Name = "metroLabel47";
+            this.metroLabel47.Size = new System.Drawing.Size(53, 19);
+            this.metroLabel47.TabIndex = 24;
+            this.metroLabel47.Text = "Integral";
+            // 
+            // metroLabel49
+            // 
+            this.metroLabel49.AutoSize = true;
+            this.metroLabel49.Location = new System.Drawing.Point(233, 33);
+            this.metroLabel49.Name = "metroLabel49";
+            this.metroLabel49.Size = new System.Drawing.Size(85, 19);
+            this.metroLabel49.TabIndex = 23;
+            this.metroLabel49.Text = "Proporcional";
+            // 
+            // numericUpDown83
+            // 
+            this.numericUpDown83.DecimalPlaces = 2;
+            this.numericUpDown83.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.numericUpDown83.Location = new System.Drawing.Point(351, 33);
+            this.numericUpDown83.Maximum = new decimal(new int[] {
+            254,
+            0,
+            0,
+            131072});
+            this.numericUpDown83.Name = "numericUpDown83";
+            this.numericUpDown83.Size = new System.Drawing.Size(70, 21);
+            this.numericUpDown83.TabIndex = 21;
+            // 
+            // numericUpDown85
+            // 
+            this.numericUpDown85.DecimalPlaces = 2;
+            this.numericUpDown85.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.numericUpDown85.Location = new System.Drawing.Point(351, 57);
+            this.numericUpDown85.Maximum = new decimal(new int[] {
+            254,
+            0,
+            0,
+            131072});
+            this.numericUpDown85.Name = "numericUpDown85";
+            this.numericUpDown85.Size = new System.Drawing.Size(70, 21);
+            this.numericUpDown85.TabIndex = 22;
+            // 
+            // label52
+            // 
+            this.label52.AutoSize = true;
+            this.label52.Location = new System.Drawing.Point(65, 15);
+            this.label52.Name = "label52";
+            this.label52.Size = new System.Drawing.Size(58, 15);
+            this.label52.TabIndex = 29;
+            this.label52.Text = "Posição";
+            // 
+            // label53
+            // 
+            this.label53.AutoSize = true;
+            this.label53.Location = new System.Drawing.Point(43, 85);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(112, 15);
+            this.label53.TabIndex = 30;
+            this.label53.Text = "Rate da Posição";
+            // 
+            // label54
+            // 
+            this.label54.AutoSize = true;
+            this.label54.Location = new System.Drawing.Point(252, 15);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(132, 15);
+            this.label54.TabIndex = 31;
+            this.label54.Text = "Rate de Navegação";
             // 
             // horizontalProgressBar22
             // 
@@ -7782,6 +8028,15 @@
             this.HeadingIndicator2.TabIndex = 5;
             this.HeadingIndicator2.Text = "HeadingIndicator2";
             // 
+            // terminalControl1
+            // 
+            this.terminalControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
+            this.terminalControl1.data = null;
+            this.terminalControl1.Location = new System.Drawing.Point(0, 0);
+            this.terminalControl1.Name = "terminalControl1";
+            this.terminalControl1.Size = new System.Drawing.Size(1047, 572);
+            this.terminalControl1.TabIndex = 0;
+            // 
             // rcExpo2
             // 
             this.rcExpo2.Location = new System.Drawing.Point(46, 114);
@@ -7812,14 +8067,28 @@
             this.preArmNotification1.Size = new System.Drawing.Size(247, 123);
             this.preArmNotification1.TabIndex = 9;
             // 
-            // terminalControl1
+            // numericUpDown86
             // 
-            this.terminalControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
-            this.terminalControl1.data = null;
-            this.terminalControl1.Location = new System.Drawing.Point(0, 0);
-            this.terminalControl1.Name = "terminalControl1";
-            this.terminalControl1.Size = new System.Drawing.Size(1047, 572);
-            this.terminalControl1.TabIndex = 0;
+            this.numericUpDown86.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericUpDown86.Location = new System.Drawing.Point(34, 26);
+            this.numericUpDown86.Maximum = new decimal(new int[] {
+            150,
+            0,
+            0,
+            0});
+            this.numericUpDown86.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numericUpDown86.Name = "numericUpDown86";
+            this.numericUpDown86.Size = new System.Drawing.Size(62, 26);
+            this.numericUpDown86.TabIndex = 33;
+            this.numericUpDown86.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             // 
             // GCS
             // 
@@ -7841,40 +8110,54 @@
             this.BarraTitulo.PerformLayout();
             this.panel18.ResumeLayout(false);
             this.panel18.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconminimizar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.maximinizar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconmaximizar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.encerrar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnlogoInicio)).EndInit();
             this.MenuVertical.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.panel16.ResumeLayout(false);
             this.panel16.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             this.panel17.ResumeLayout(false);
             this.panel17.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             this.panel13.ResumeLayout(false);
             this.panel13.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             this.panel14.ResumeLayout(false);
             this.panel14.PerformLayout();
             this.panel11.ResumeLayout(false);
             this.panel11.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             this.panel12.ResumeLayout(false);
             this.panel12.PerformLayout();
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.panel15.ResumeLayout(false);
             this.panel15.PerformLayout();
             this.tabPage2.ResumeLayout(false);
@@ -7899,6 +8182,19 @@
             this.groupBox11.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
@@ -8034,33 +8330,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown67)).EndInit();
             this.panel1.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iconminimizar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.maximinizar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iconmaximizar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.encerrar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnlogoInicio)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown38)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown77)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown79)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown80)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown81)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown84)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown78)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown82)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown83)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown85)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown86)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -8257,7 +8537,6 @@
         private System.Windows.Forms.Label label91;
         private System.Windows.Forms.Timer GmapAtt;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ComboBox comboBox19;
         private System.Windows.Forms.Timer FlightTimer;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button11;
@@ -8296,14 +8575,12 @@
         private System.Windows.Forms.Button button16;
         private System.Windows.Forms.Label label100;
         private System.Windows.Forms.Label label99;
-        private System.Windows.Forms.Label label101;
         private System.Windows.Forms.GroupBox groupBox18;
         private MetroFramework.Controls.MetroLabel metroLabel10;
         private System.Windows.Forms.NumericUpDown numericUpDown14;
         private System.Windows.Forms.GroupBox groupBox17;
         private System.Windows.Forms.ComboBox comboBox20;
         private MetroFramework.Controls.MetroLabel metroLabel11;
-        private System.Windows.Forms.Label label103;
         private System.Windows.Forms.GroupBox groupBox23;
         private System.Windows.Forms.ComboBox comboBox21;
         private MetroFramework.Controls.MetroLabel metroLabel19;
@@ -8328,16 +8605,12 @@
         private System.Windows.Forms.GroupBox groupBox24;
         private System.Windows.Forms.ComboBox comboBox22;
         private MetroFramework.Controls.MetroLabel metroLabel20;
-        private System.Windows.Forms.Label label112;
-        private System.Windows.Forms.Label label111;
-        private System.Windows.Forms.Label label110;
         private System.Windows.Forms.GroupBox groupBox25;
         private MetroFramework.Controls.MetroLabel metroLabel21;
         private MetroFramework.Controls.MetroLabel metroLabel22;
         private System.Windows.Forms.NumericUpDown numericUpDown18;
         private System.Windows.Forms.NumericUpDown numericUpDown19;
         private System.Windows.Forms.Button button18;
-        private System.Windows.Forms.Label label115;
         private System.Windows.Forms.GroupBox groupBox26;
         private System.Windows.Forms.NumericUpDown numericUpDown20;
         private MetroFramework.Controls.MetroLabel metroLabel23;
@@ -8428,7 +8701,6 @@
         private System.Windows.Forms.Label label152;
         private System.Windows.Forms.GroupBox groupBox28;
         private System.Windows.Forms.ComboBox comboBox25;
-        private System.Windows.Forms.Label label154;
         private System.Windows.Forms.GroupBox groupBox29;
         private System.Windows.Forms.NumericUpDown numericUpDown21;
         private MetroFramework.Controls.MetroLabel metroLabel27;
@@ -8599,6 +8871,30 @@
         private System.Windows.Forms.Button button25;
         private System.Windows.Forms.GroupBox groupBox35;
         private Terminal.TerminalControl terminalControl1;
+        private System.Windows.Forms.Label label54;
+        private System.Windows.Forms.Label label53;
+        private System.Windows.Forms.Label label52;
+        private MetroFramework.Controls.MetroLabel metroLabel42;
+        private System.Windows.Forms.NumericUpDown numericUpDown78;
+        private MetroFramework.Controls.MetroLabel metroLabel46;
+        private System.Windows.Forms.NumericUpDown numericUpDown82;
+        private MetroFramework.Controls.MetroLabel metroLabel47;
+        private MetroFramework.Controls.MetroLabel metroLabel49;
+        private System.Windows.Forms.NumericUpDown numericUpDown83;
+        private System.Windows.Forms.NumericUpDown numericUpDown85;
+        private MetroFramework.Controls.MetroLabel metroLabel48;
+        private System.Windows.Forms.NumericUpDown numericUpDown84;
+        private MetroFramework.Controls.MetroLabel metroLabel43;
+        private System.Windows.Forms.NumericUpDown numericUpDown79;
+        private MetroFramework.Controls.MetroLabel metroLabel44;
+        private MetroFramework.Controls.MetroLabel metroLabel45;
+        private System.Windows.Forms.NumericUpDown numericUpDown80;
+        private System.Windows.Forms.NumericUpDown numericUpDown81;
+        private MetroFramework.Controls.MetroLabel metroLabel41;
+        private System.Windows.Forms.NumericUpDown numericUpDown77;
+        private MetroFramework.Controls.MetroLabel metroLabel40;
+        private System.Windows.Forms.NumericUpDown numericUpDown38;
+        private System.Windows.Forms.NumericUpDown numericUpDown86;
     }
 }
 

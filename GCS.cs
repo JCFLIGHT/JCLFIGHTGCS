@@ -138,7 +138,6 @@ namespace JCFLIGHTGCS
         byte ComboBoxGimbal = 0;
         byte ComboBoxFrame = 0;
         byte ComboBoxParachute = 0;
-        byte ComboBoxRthAltitude = 0;
         byte ComboBoxSafeBtn = 0;
         byte ComboBoxAirSpeed = 0;
         byte ComboBoxSPI = 0;
@@ -2078,7 +2077,7 @@ namespace JCFLIGHTGCS
                 comboBox16.SelectedIndex = ((SonarGuard > comboBox16.Items.Count) ? 0 : SonarGuard);
                 comboBox17.SelectedIndex = Uart1Guard;
                 comboBox18.SelectedIndex = CompassRotGuard;
-                comboBox19.SelectedIndex = RthAltitudeGuard;
+                numericUpDown86.Value = RthAltitudeGuard < 10 ? 10 : RthAltitudeGuard;
                 comboBox24.SelectedIndex = SafeBtnGuard;
                 comboBox25.SelectedIndex = AirSpeedGuard;
                 numericUpDown22.Value = AccRollAdjustGuard;
@@ -2703,7 +2702,7 @@ namespace JCFLIGHTGCS
                     comboBox16.SelectedIndex = 0;
                     comboBox17.SelectedIndex = 0;
                     comboBox18.SelectedIndex = 0;
-                    comboBox19.SelectedIndex = 0;
+                    numericUpDown86.Value = 10;
                     comboBox10.SelectedIndex = 0;
                     comboBox23.SelectedIndex = 0;
                     comboBox24.SelectedIndex = 0;
@@ -2801,11 +2800,6 @@ namespace JCFLIGHTGCS
         private void comboBox18_SelectedIndexChanged(object sender, EventArgs e)
         {
             ComboBoxCompassRot = Convert.ToByte(comboBox18.SelectedIndex);
-        }
-
-        private void comboBox19_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ComboBoxRthAltitude = Convert.ToByte(comboBox19.SelectedIndex);
         }
 
         private void comboBox24_SelectedIndexChanged(object sender, EventArgs e)
@@ -2982,18 +2976,6 @@ namespace JCFLIGHTGCS
                 label48.Text = "> Realiza Flips Automáticos de 180° no Pitch e Roll";
                 label92.Text = "Auto-Land";
                 label70.Text = "> Realiza um pouso automático";
-                comboBox1.Enabled = true;
-                comboBox2.Enabled = true;
-                comboBox3.Enabled = true;
-                comboBox4.Enabled = true;
-                comboBox5.Enabled = true;
-                comboBox6.Enabled = true;
-                comboBox7.Enabled = true;
-                comboBox8.Enabled = true;
-                comboBox9.Enabled = true;
-                comboBox10.Enabled = true;
-                comboBox19.Enabled = true;
-                comboBox23.Enabled = true;
             }
             else if (ComboBoxFrame == 3 || ComboBoxFrame == 4 || ComboBoxFrame == 5) //AERO, ASA-FIXA & V-TAIL
             {
@@ -3009,18 +2991,6 @@ namespace JCFLIGHTGCS
                 label48.Text = "> Ajusta os servos com base na Veloc. e Inclinação";
                 label92.Text = "Cruise";
                 label70.Text = "> Mantém a posição e a altitude do Aero em linha reta";
-                comboBox1.Enabled = true;
-                comboBox2.Enabled = true;
-                comboBox3.Enabled = true;
-                comboBox4.Enabled = true;
-                comboBox5.Enabled = true;
-                comboBox6.Enabled = true;
-                comboBox7.Enabled = true;
-                comboBox8.Enabled = true;
-                comboBox9.Enabled = true;
-                comboBox10.Enabled = true;
-                comboBox19.Enabled = true;
-                comboBox23.Enabled = true;
             }
         }
 
@@ -3310,7 +3280,7 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)ComboBoxUART2;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxUart1;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxCompassRot;
-                    SendBuffer[VectorPointer++] = (byte)ComboBoxRthAltitude;
+                    SendBuffer[VectorPointer++] = (byte)numericUpDown86.Value;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxAcro;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxAltHold;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxGPSHold;
