@@ -284,6 +284,8 @@ namespace JCFLIGHTGCS
         int Servo3Rate;
         int Servo4Rate;
         int FailSafeValue;
+        byte MaxRollLevel;
+        byte MaxPitchLevel;
 
         StreamWriter BlackBoxStream;
         static bool BlackBoxRunning = false;
@@ -1167,6 +1169,8 @@ namespace JCFLIGHTGCS
                     Servo3Max = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     Servo4Max = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     FailSafeValue = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    MaxRollLevel = (byte)InBuffer[ptr++];
+                    MaxPitchLevel = (byte)InBuffer[ptr++];
                     break;
             }
         }
@@ -1184,7 +1188,11 @@ namespace JCFLIGHTGCS
             Buffer[4] = (byte)Command;
             CheckSum ^= Buffer[4];
             Buffer[5] = (byte)CheckSum;
-            SerialPort.Write(Buffer, 0, 6);
+            try
+            {
+                SerialPort.Write(Buffer, 0, 6);
+            }
+            catch { }
         }
 
         private void timer2_Tick(object sender, EventArgs e)
@@ -3367,7 +3375,7 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)0x4a;
                     SendBuffer[VectorPointer++] = (byte)0x43;
                     SendBuffer[VectorPointer++] = (byte)0x3c;
-                    SendBuffer[VectorPointer++] = 35;
+                    SendBuffer[VectorPointer++] = 37;
                     SendBuffer[VectorPointer++] = (byte)31;
                     SendBuffer[VectorPointer++] = (byte)(numericUpDown25.Value * 100);
                     SendBuffer[VectorPointer++] = (byte)(numericUpDown26.Value * 100);
@@ -3404,6 +3412,8 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)GetChannelsReverse();
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown67.Value));
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown67.Value) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)numericUpDown89.Value;
+                    SendBuffer[VectorPointer++] = (byte)numericUpDown90.Value;
                     for (int i = 3; i < VectorPointer; i++) CheckAllBuffers ^= SendBuffer[i];
                     SendBuffer[VectorPointer++] = CheckAllBuffers;
                     SerialPort.Write(SendBuffer, 0, VectorPointer);
@@ -4056,6 +4066,8 @@ namespace JCFLIGHTGCS
                 numericUpDown52.Value = Servo3Rate;
                 numericUpDown51.Value = Servo4Rate;
                 numericUpDown67.Value = FailSafeValue < 800 ? 800 : FailSafeValue;
+                numericUpDown89.Value = MaxRollLevel;
+                numericUpDown90.Value = MaxPitchLevel;
             }
             SmallCompass = false;
             panel19.Visible = true;
@@ -4138,6 +4150,8 @@ namespace JCFLIGHTGCS
                     numericUpDown49.Value = 2000;
                     numericUpDown48.Value = 2000;
                     numericUpDown47.Value = 2000;
+                    numericUpDown89.Value = 30;
+                    numericUpDown90.Value = 30;
                 }
                 if (MessageBox.Show("Para aplicar as configurações é necessario reiniciar a controladora de voo.Você deseja reiniciar automaticamente agora?",
               "Reboot", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
