@@ -286,6 +286,8 @@ namespace JCFLIGHTGCS
         int FailSafeValue;
         byte MaxRollLevel;
         byte MaxPitchLevel;
+        int Integral_Relax_LPF;
+        int kCD_or_FF_LPF;
 
         StreamWriter BlackBoxStream;
         static bool BlackBoxRunning = false;
@@ -988,6 +990,8 @@ namespace JCFLIGHTGCS
                     NumericConvert[21] = (byte)InBuffer[ptr++];
                     NumericConvert[22] = (byte)InBuffer[ptr++];
                     NumericConvert[23] = (byte)InBuffer[ptr++];
+                    Integral_Relax_LPF = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    kCD_or_FF_LPF = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     break;
 
                 case 10:
@@ -2923,6 +2927,8 @@ namespace JCFLIGHTGCS
                 numericUpDown29.Value = NumericConvert[21];
                 numericUpDown75.Value = NumericConvert[22];
                 numericUpDown76.Value = NumericConvert[23];
+                numericUpDown91.Value = Integral_Relax_LPF;
+                numericUpDown87.Value = kCD_or_FF_LPF;
             }
             SmallCompass = false;
             tabControl1.SelectTab(tabPage7);
@@ -3066,6 +3072,8 @@ namespace JCFLIGHTGCS
                     numericUpDown23.Value = 0;
                     numericUpDown24.Value = 0;
                     comboBox22.SelectedIndex = 0;
+                    numericUpDown91.Value = 15;
+                    numericUpDown87.Value = 30;
                     if (FrameMode == 3 || FrameMode == 4 || FrameMode == 5)
                     {
                         numericUpDown1.Value = (decimal)(5) / 10;
@@ -3318,7 +3326,7 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)0x4a;
                     SendBuffer[VectorPointer++] = (byte)0x43;
                     SendBuffer[VectorPointer++] = (byte)0x3c;
-                    SendBuffer[VectorPointer++] = 44;
+                    SendBuffer[VectorPointer++] = 48;
                     SendBuffer[VectorPointer++] = (byte)18;
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToByte(numericUpDown18.Value));
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown19.Value));
@@ -3364,6 +3372,10 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)numericUpDown29.Value;
                     SendBuffer[VectorPointer++] = (byte)numericUpDown75.Value;
                     SendBuffer[VectorPointer++] = (byte)numericUpDown76.Value;
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown91.Value));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown91.Value) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown87.Value));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown87.Value) >> 8);
                     for (int i = 3; i < VectorPointer; i++) CheckAllBuffers ^= SendBuffer[i];
                     SendBuffer[VectorPointer++] = CheckAllBuffers;
                     SerialPort.Write(SendBuffer, 0, VectorPointer);
