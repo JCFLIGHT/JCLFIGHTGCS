@@ -117,6 +117,10 @@
             this.panel15 = new System.Windows.Forms.Panel();
             this.label71 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.groupBox40 = new System.Windows.Forms.GroupBox();
+            this.label93 = new System.Windows.Forms.Label();
+            this.numericUpDown94 = new System.Windows.Forms.NumericUpDown();
+            this.label94 = new System.Windows.Forms.Label();
             this.groupBox30 = new System.Windows.Forms.GroupBox();
             this.numericUpDown24 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown23 = new System.Windows.Forms.NumericUpDown();
@@ -592,10 +596,7 @@
             this.limparMapaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.carregarWPsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.limparWPsDoMapaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupBox40 = new System.Windows.Forms.GroupBox();
-            this.numericUpDown94 = new System.Windows.Forms.NumericUpDown();
-            this.label94 = new System.Windows.Forms.Label();
-            this.label93 = new System.Windows.Forms.Label();
+            this.label95 = new System.Windows.Forms.Label();
             this.BarraTitulo.SuspendLayout();
             this.panel18.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
@@ -632,6 +633,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.panel15.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.groupBox40.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown94)).BeginInit();
             this.groupBox30.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown24)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown23)).BeginInit();
@@ -787,8 +790,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown67)).BeginInit();
             this.panel1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
-            this.groupBox40.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown94)).BeginInit();
             this.SuspendLayout();
             // 
             // serialPort1
@@ -1937,6 +1938,57 @@
             this.tabPage2.Text = "Configurações";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // groupBox40
+            // 
+            this.groupBox40.Controls.Add(this.label93);
+            this.groupBox40.Controls.Add(this.numericUpDown94);
+            this.groupBox40.Controls.Add(this.label94);
+            this.groupBox40.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox40.Location = new System.Drawing.Point(219, 275);
+            this.groupBox40.Name = "groupBox40";
+            this.groupBox40.Size = new System.Drawing.Size(143, 88);
+            this.groupBox40.TabIndex = 31;
+            this.groupBox40.TabStop = false;
+            this.groupBox40.Text = "PITCH-TRIM";
+            // 
+            // label93
+            // 
+            this.label93.AutoSize = true;
+            this.label93.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label93.Location = new System.Drawing.Point(9, 51);
+            this.label93.Name = "label93";
+            this.label93.Size = new System.Drawing.Size(111, 32);
+            this.label93.TabIndex = 32;
+            this.label93.Text = "Aeros e Asa-Fixa\r\napenas!";
+            // 
+            // numericUpDown94
+            // 
+            this.numericUpDown94.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericUpDown94.Location = new System.Drawing.Point(12, 22);
+            this.numericUpDown94.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numericUpDown94.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDown94.Name = "numericUpDown94";
+            this.numericUpDown94.Size = new System.Drawing.Size(62, 26);
+            this.numericUpDown94.TabIndex = 31;
+            // 
+            // label94
+            // 
+            this.label94.AutoSize = true;
+            this.label94.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label94.Location = new System.Drawing.Point(80, 24);
+            this.label94.Name = "label94";
+            this.label94.Size = new System.Drawing.Size(53, 20);
+            this.label94.TabIndex = 31;
+            this.label94.Text = "Graus";
+            // 
             // groupBox30
             // 
             this.groupBox30.Controls.Add(this.numericUpDown24);
@@ -2113,6 +2165,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label95);
             this.groupBox1.Controls.Add(this.numericUpDown86);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(219, 6);
@@ -2125,7 +2178,7 @@
             // numericUpDown86
             // 
             this.numericUpDown86.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown86.Location = new System.Drawing.Point(34, 26);
+            this.numericUpDown86.Location = new System.Drawing.Point(6, 26);
             this.numericUpDown86.Maximum = new decimal(new int[] {
             150,
             0,
@@ -8260,56 +8313,15 @@
             this.limparWPsDoMapaToolStripMenuItem.Text = "Limpar WP\'s do mapa";
             this.limparWPsDoMapaToolStripMenuItem.Click += new System.EventHandler(this.limparWPsDoMapaToolStripMenuItem_Click);
             // 
-            // groupBox40
+            // label95
             // 
-            this.groupBox40.Controls.Add(this.label93);
-            this.groupBox40.Controls.Add(this.numericUpDown94);
-            this.groupBox40.Controls.Add(this.label94);
-            this.groupBox40.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox40.Location = new System.Drawing.Point(219, 275);
-            this.groupBox40.Name = "groupBox40";
-            this.groupBox40.Size = new System.Drawing.Size(143, 88);
-            this.groupBox40.TabIndex = 31;
-            this.groupBox40.TabStop = false;
-            this.groupBox40.Text = "PITCH-TRIM";
-            // 
-            // numericUpDown94
-            // 
-            this.numericUpDown94.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown94.Location = new System.Drawing.Point(12, 22);
-            this.numericUpDown94.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.numericUpDown94.Minimum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            -2147483648});
-            this.numericUpDown94.Name = "numericUpDown94";
-            this.numericUpDown94.Size = new System.Drawing.Size(62, 26);
-            this.numericUpDown94.TabIndex = 31;
-            // 
-            // label94
-            // 
-            this.label94.AutoSize = true;
-            this.label94.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label94.Location = new System.Drawing.Point(80, 24);
-            this.label94.Name = "label94";
-            this.label94.Size = new System.Drawing.Size(53, 20);
-            this.label94.TabIndex = 31;
-            this.label94.Text = "Graus";
-            // 
-            // label93
-            // 
-            this.label93.AutoSize = true;
-            this.label93.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label93.Location = new System.Drawing.Point(9, 51);
-            this.label93.Name = "label93";
-            this.label93.Size = new System.Drawing.Size(111, 32);
-            this.label93.TabIndex = 32;
-            this.label93.Text = "Aeros e Asa-Fixa\r\napenas!";
+            this.label95.AutoSize = true;
+            this.label95.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label95.Location = new System.Drawing.Point(74, 28);
+            this.label95.Name = "label95";
+            this.label95.Size = new System.Drawing.Size(58, 20);
+            this.label95.TabIndex = 34;
+            this.label95.Text = "Metros";
             // 
             // GCS
             // 
@@ -8383,6 +8395,9 @@
             this.panel15.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.groupBox40.ResumeLayout(false);
+            this.groupBox40.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown94)).EndInit();
             this.groupBox30.ResumeLayout(false);
             this.groupBox30.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown24)).EndInit();
@@ -8391,6 +8406,7 @@
             this.groupBox28.ResumeLayout(false);
             this.groupBox27.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown86)).EndInit();
             this.groupBox10.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
@@ -8573,9 +8589,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown67)).EndInit();
             this.panel1.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
-            this.groupBox40.ResumeLayout(false);
-            this.groupBox40.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown94)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -9147,6 +9160,7 @@
         private System.Windows.Forms.Label label93;
         private System.Windows.Forms.NumericUpDown numericUpDown94;
         private System.Windows.Forms.Label label94;
+        private System.Windows.Forms.Label label95;
     }
 }
 
