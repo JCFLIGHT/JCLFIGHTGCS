@@ -177,6 +177,8 @@ namespace JCFLIGHTGCS
         int AccRollAdjustGuard = 0;
         int AccPitchAdjustGuard = 0;
         int AccYawAdjustGuard = 0;
+        int PitchLevelTrimGuard;
+
         int DevicesSum = 0;
 
         double AmperInMah = 0;
@@ -950,6 +952,7 @@ namespace JCFLIGHTGCS
                     AccRollAdjustGuard = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     AccPitchAdjustGuard = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     AccYawAdjustGuard = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    PitchLevelTrimGuard = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     break;
 
                 case 9:
@@ -2097,6 +2100,7 @@ namespace JCFLIGHTGCS
                 numericUpDown24.Value = AccYawAdjustGuard;
                 comboBox10.SelectedIndex = ArmDisarmGuard;
                 comboBox23.SelectedIndex = AutoLandGuard;
+                numericUpDown94.Value = Math.Abs(PitchLevelTrimGuard) > 10 ? 0 : PitchLevelTrimGuard;
             }
             SmallCompass = false;
             tabControl1.SelectTab(tabPage2);
@@ -2990,6 +2994,7 @@ namespace JCFLIGHTGCS
                 label48.Text = "> Realiza Flips Automáticos de 180° no Pitch e Roll";
                 label92.Text = "Auto-Land";
                 label70.Text = "> Realiza um pouso automático";
+                numericUpDown94.Enabled = false;
             }
             else if (ComboBoxFrame == 3 || ComboBoxFrame == 4 || ComboBoxFrame == 5) //AERO, ASA-FIXA & V-TAIL
             {
@@ -3005,6 +3010,7 @@ namespace JCFLIGHTGCS
                 label48.Text = "> Ajusta os servos com base na Veloc. e Inclinação";
                 label92.Text = "Cruise";
                 label70.Text = "> Mantém a posição e a altitude do Aero em linha reta";
+                numericUpDown94.Enabled = true;
             }
         }
 
@@ -3071,6 +3077,7 @@ namespace JCFLIGHTGCS
                     numericUpDown22.Value = 0;
                     numericUpDown23.Value = 0;
                     numericUpDown24.Value = 0;
+                    numericUpDown94.Value = 0;
                     comboBox22.SelectedIndex = 0;
                     numericUpDown91.Value = 15;
                     numericUpDown87.Value = 30;
@@ -3286,7 +3293,7 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)0x4a;
                     SendBuffer[VectorPointer++] = (byte)0x43;
                     SendBuffer[VectorPointer++] = (byte)0x3c;
-                    SendBuffer[VectorPointer++] = 27;
+                    SendBuffer[VectorPointer++] = 29;
                     SendBuffer[VectorPointer++] = (byte)15;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxFrame;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxPPM;
@@ -3315,6 +3322,8 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown23.Value) >> 8);
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown24.Value));
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown24.Value) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown94.Value));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown94.Value) >> 8);
                     for (int i = 3; i < VectorPointer; i++) CheckAllBuffers ^= SendBuffer[i];
                     SendBuffer[VectorPointer++] = CheckAllBuffers;
                     SerialPort.Write(SendBuffer, 0, VectorPointer);

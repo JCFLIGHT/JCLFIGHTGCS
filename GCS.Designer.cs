@@ -337,6 +337,9 @@
             this.HUDSMALL1 = new JCFLIGHTGCS.HUDSMALL();
             this.HeadingIndicator2 = new JCFLIGHTGCS.HeadingIndicatorInstrumentControl();
             this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.groupBox39 = new System.Windows.Forms.GroupBox();
+            this.metroLabel52 = new MetroFramework.Controls.MetroLabel();
+            this.numericUpDown91 = new System.Windows.Forms.NumericUpDown();
             this.groupBox37 = new System.Windows.Forms.GroupBox();
             this.metroLabel40 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel41 = new MetroFramework.Controls.MetroLabel();
@@ -589,9 +592,10 @@
             this.limparMapaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.carregarWPsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.limparWPsDoMapaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupBox39 = new System.Windows.Forms.GroupBox();
-            this.metroLabel52 = new MetroFramework.Controls.MetroLabel();
-            this.numericUpDown91 = new System.Windows.Forms.NumericUpDown();
+            this.groupBox40 = new System.Windows.Forms.GroupBox();
+            this.numericUpDown94 = new System.Windows.Forms.NumericUpDown();
+            this.label94 = new System.Windows.Forms.Label();
+            this.label93 = new System.Windows.Forms.Label();
             this.BarraTitulo.SuspendLayout();
             this.panel18.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
@@ -663,6 +667,8 @@
             this.tabPage5.SuspendLayout();
             this.tabPage6.SuspendLayout();
             this.tabPage7.SuspendLayout();
+            this.groupBox39.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown91)).BeginInit();
             this.groupBox37.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown38)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown77)).BeginInit();
@@ -781,8 +787,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown67)).BeginInit();
             this.panel1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
-            this.groupBox39.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown91)).BeginInit();
+            this.groupBox40.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown94)).BeginInit();
             this.SuspendLayout();
             // 
             // serialPort1
@@ -1905,6 +1911,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.groupBox40);
             this.tabPage2.Controls.Add(this.groupBox30);
             this.tabPage2.Controls.Add(this.groupBox28);
             this.tabPage2.Controls.Add(this.groupBox27);
@@ -1941,7 +1948,7 @@
             this.groupBox30.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox30.Location = new System.Drawing.Point(219, 154);
             this.groupBox30.Name = "groupBox30";
-            this.groupBox30.Size = new System.Drawing.Size(143, 124);
+            this.groupBox30.Size = new System.Drawing.Size(143, 115);
             this.groupBox30.TabIndex = 30;
             this.groupBox30.TabStop = false;
             this.groupBox30.Text = "ACC AJUSTE";
@@ -1949,7 +1956,7 @@
             // numericUpDown24
             // 
             this.numericUpDown24.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown24.Location = new System.Drawing.Point(75, 89);
+            this.numericUpDown24.Location = new System.Drawing.Point(75, 84);
             this.numericUpDown24.Maximum = new decimal(new int[] {
             800,
             0,
@@ -1967,7 +1974,7 @@
             // numericUpDown23
             // 
             this.numericUpDown23.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown23.Location = new System.Drawing.Point(75, 25);
+            this.numericUpDown23.Location = new System.Drawing.Point(75, 20);
             this.numericUpDown23.Maximum = new decimal(new int[] {
             800,
             0,
@@ -1985,7 +1992,7 @@
             // numericUpDown22
             // 
             this.numericUpDown22.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown22.Location = new System.Drawing.Point(75, 57);
+            this.numericUpDown22.Location = new System.Drawing.Point(75, 52);
             this.numericUpDown22.Maximum = new decimal(new int[] {
             800,
             0,
@@ -2004,7 +2011,7 @@
             // 
             this.label155.AutoSize = true;
             this.label155.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label155.Location = new System.Drawing.Point(8, 91);
+            this.label155.Location = new System.Drawing.Point(8, 86);
             this.label155.Name = "label155";
             this.label155.Size = new System.Drawing.Size(40, 20);
             this.label155.TabIndex = 31;
@@ -2014,7 +2021,7 @@
             // 
             this.label102.AutoSize = true;
             this.label102.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label102.Location = new System.Drawing.Point(8, 59);
+            this.label102.Location = new System.Drawing.Point(8, 54);
             this.label102.Name = "label102";
             this.label102.Size = new System.Drawing.Size(44, 20);
             this.label102.TabIndex = 31;
@@ -2024,7 +2031,7 @@
             // 
             this.label69.AutoSize = true;
             this.label69.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label69.Location = new System.Drawing.Point(8, 23);
+            this.label69.Location = new System.Drawing.Point(8, 22);
             this.label69.Name = "label69";
             this.label69.Size = new System.Drawing.Size(36, 20);
             this.label69.TabIndex = 30;
@@ -2402,7 +2409,7 @@
             this.groupBox2.Size = new System.Drawing.Size(210, 65);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "AIRFRAME";
+            this.groupBox2.Text = "PLATAFORMA";
             // 
             // comboBox11
             // 
@@ -4890,6 +4897,39 @@
             this.tabPage7.Text = "PID";
             this.tabPage7.UseVisualStyleBackColor = true;
             // 
+            // groupBox39
+            // 
+            this.groupBox39.Controls.Add(this.metroLabel52);
+            this.groupBox39.Controls.Add(this.numericUpDown91);
+            this.groupBox39.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox39.Location = new System.Drawing.Point(554, 384);
+            this.groupBox39.Name = "groupBox39";
+            this.groupBox39.Size = new System.Drawing.Size(160, 48);
+            this.groupBox39.TabIndex = 46;
+            this.groupBox39.TabStop = false;
+            this.groupBox39.Text = "INTEGRAL (PID) LPF";
+            // 
+            // metroLabel52
+            // 
+            this.metroLabel52.AutoSize = true;
+            this.metroLabel52.Location = new System.Drawing.Point(6, 20);
+            this.metroLabel52.Name = "metroLabel52";
+            this.metroLabel52.Size = new System.Drawing.Size(65, 19);
+            this.metroLabel52.TabIndex = 3;
+            this.metroLabel52.Text = "Valor (Hz)";
+            // 
+            // numericUpDown91
+            // 
+            this.numericUpDown91.Location = new System.Drawing.Point(77, 20);
+            this.numericUpDown91.Maximum = new decimal(new int[] {
+            32700,
+            0,
+            0,
+            0});
+            this.numericUpDown91.Name = "numericUpDown91";
+            this.numericUpDown91.Size = new System.Drawing.Size(70, 21);
+            this.numericUpDown91.TabIndex = 2;
+            // 
             // groupBox37
             // 
             this.groupBox37.Controls.Add(this.metroLabel40);
@@ -5152,9 +5192,9 @@
             this.metroLabel33.AutoSize = true;
             this.metroLabel33.Location = new System.Drawing.Point(6, 44);
             this.metroLabel33.Name = "metroLabel33";
-            this.metroLabel33.Size = new System.Drawing.Size(74, 19);
+            this.metroLabel33.Size = new System.Drawing.Size(87, 19);
             this.metroLabel33.TabIndex = 4;
-            this.metroLabel33.Text = "Rate Limite";
+            this.metroLabel33.Text = "Rate Máximo";
             // 
             // metroLabel34
             // 
@@ -5595,7 +5635,7 @@
             this.groupBox22.Size = new System.Drawing.Size(200, 48);
             this.groupBox22.TabIndex = 22;
             this.groupBox22.TabStop = false;
-            this.groupBox22.Text = "NOTCH (GYRO)";
+            this.groupBox22.Text = "BIQUAD NOTCH (GYRO)";
             // 
             // metroLabel18
             // 
@@ -5628,7 +5668,7 @@
             this.groupBox21.Size = new System.Drawing.Size(200, 48);
             this.groupBox21.TabIndex = 21;
             this.groupBox21.TabStop = false;
-            this.groupBox21.Text = "NOTCH (ACC)";
+            this.groupBox21.Text = "BIQUAD NOTCH (ACC)";
             // 
             // metroLabel17
             // 
@@ -5661,7 +5701,7 @@
             this.groupBox20.Size = new System.Drawing.Size(200, 48);
             this.groupBox20.TabIndex = 20;
             this.groupBox20.TabStop = false;
-            this.groupBox20.Text = "LPF (GYRO)";
+            this.groupBox20.Text = "BIQUAD LPF (GYRO)";
             // 
             // metroLabel16
             // 
@@ -5694,7 +5734,7 @@
             this.groupBox19.Size = new System.Drawing.Size(200, 48);
             this.groupBox19.TabIndex = 19;
             this.groupBox19.TabStop = false;
-            this.groupBox19.Text = "LPF (ACC)";
+            this.groupBox19.Text = "BIQUAD LPF (ACC)";
             // 
             // metroLabel13
             // 
@@ -5760,7 +5800,7 @@
             this.groupBox17.Size = new System.Drawing.Size(160, 48);
             this.groupBox17.TabIndex = 13;
             this.groupBox17.TabStop = false;
-            this.groupBox17.Text = "GYRO LPF";
+            this.groupBox17.Text = "GYRO LPF (HW)";
             // 
             // comboBox20
             // 
@@ -8220,38 +8260,56 @@
             this.limparWPsDoMapaToolStripMenuItem.Text = "Limpar WP\'s do mapa";
             this.limparWPsDoMapaToolStripMenuItem.Click += new System.EventHandler(this.limparWPsDoMapaToolStripMenuItem_Click);
             // 
-            // groupBox39
+            // groupBox40
             // 
-            this.groupBox39.Controls.Add(this.metroLabel52);
-            this.groupBox39.Controls.Add(this.numericUpDown91);
-            this.groupBox39.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox39.Location = new System.Drawing.Point(554, 384);
-            this.groupBox39.Name = "groupBox39";
-            this.groupBox39.Size = new System.Drawing.Size(160, 48);
-            this.groupBox39.TabIndex = 46;
-            this.groupBox39.TabStop = false;
-            this.groupBox39.Text = "INTEGRAL (PID) LPF";
+            this.groupBox40.Controls.Add(this.label93);
+            this.groupBox40.Controls.Add(this.numericUpDown94);
+            this.groupBox40.Controls.Add(this.label94);
+            this.groupBox40.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox40.Location = new System.Drawing.Point(219, 275);
+            this.groupBox40.Name = "groupBox40";
+            this.groupBox40.Size = new System.Drawing.Size(143, 88);
+            this.groupBox40.TabIndex = 31;
+            this.groupBox40.TabStop = false;
+            this.groupBox40.Text = "PITCH-TRIM";
             // 
-            // metroLabel52
+            // numericUpDown94
             // 
-            this.metroLabel52.AutoSize = true;
-            this.metroLabel52.Location = new System.Drawing.Point(6, 20);
-            this.metroLabel52.Name = "metroLabel52";
-            this.metroLabel52.Size = new System.Drawing.Size(65, 19);
-            this.metroLabel52.TabIndex = 3;
-            this.metroLabel52.Text = "Valor (Hz)";
-            // 
-            // numericUpDown91
-            // 
-            this.numericUpDown91.Location = new System.Drawing.Point(77, 20);
-            this.numericUpDown91.Maximum = new decimal(new int[] {
-            32700,
+            this.numericUpDown94.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericUpDown94.Location = new System.Drawing.Point(12, 22);
+            this.numericUpDown94.Maximum = new decimal(new int[] {
+            10,
             0,
             0,
             0});
-            this.numericUpDown91.Name = "numericUpDown91";
-            this.numericUpDown91.Size = new System.Drawing.Size(70, 21);
-            this.numericUpDown91.TabIndex = 2;
+            this.numericUpDown94.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDown94.Name = "numericUpDown94";
+            this.numericUpDown94.Size = new System.Drawing.Size(62, 26);
+            this.numericUpDown94.TabIndex = 31;
+            // 
+            // label94
+            // 
+            this.label94.AutoSize = true;
+            this.label94.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label94.Location = new System.Drawing.Point(80, 24);
+            this.label94.Name = "label94";
+            this.label94.Size = new System.Drawing.Size(53, 20);
+            this.label94.TabIndex = 31;
+            this.label94.Text = "Graus";
+            // 
+            // label93
+            // 
+            this.label93.AutoSize = true;
+            this.label93.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label93.Location = new System.Drawing.Point(9, 51);
+            this.label93.Name = "label93";
+            this.label93.Size = new System.Drawing.Size(111, 32);
+            this.label93.TabIndex = 32;
+            this.label93.Text = "Aeros e Asa-Fixa\r\napenas!";
             // 
             // GCS
             // 
@@ -8366,6 +8424,9 @@
             this.tabPage6.PerformLayout();
             this.tabPage7.ResumeLayout(false);
             this.tabPage7.PerformLayout();
+            this.groupBox39.ResumeLayout(false);
+            this.groupBox39.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown91)).EndInit();
             this.groupBox37.ResumeLayout(false);
             this.groupBox37.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown38)).EndInit();
@@ -8512,9 +8573,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown67)).EndInit();
             this.panel1.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
-            this.groupBox39.ResumeLayout(false);
-            this.groupBox39.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown91)).EndInit();
+            this.groupBox40.ResumeLayout(false);
+            this.groupBox40.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown94)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -9082,6 +9143,10 @@
         private System.Windows.Forms.GroupBox groupBox39;
         private MetroFramework.Controls.MetroLabel metroLabel52;
         private System.Windows.Forms.NumericUpDown numericUpDown91;
+        private System.Windows.Forms.GroupBox groupBox40;
+        private System.Windows.Forms.Label label93;
+        private System.Windows.Forms.NumericUpDown numericUpDown94;
+        private System.Windows.Forms.Label label94;
     }
 }
 
