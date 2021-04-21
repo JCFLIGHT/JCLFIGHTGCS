@@ -33,7 +33,6 @@
             this.label27 = new System.Windows.Forms.Label();
             this.comboBox7 = new System.Windows.Forms.ComboBox();
             this.BarraTitulo = new System.Windows.Forms.Panel();
-            this.preArmNotification2 = new JCFLIGHTGCS.PreArmNotification();
             this.panel18 = new System.Windows.Forms.Panel();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.label72 = new System.Windows.Forms.Label();
@@ -48,7 +47,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.MenuVertical = new System.Windows.Forms.Panel();
-            this.preArmNotification1 = new JCFLIGHTGCS.PreArmNotification();
             this.button19 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
             this.button18 = new System.Windows.Forms.Button();
@@ -60,20 +58,16 @@
             this.RealTimer = new System.Windows.Forms.Timer(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.horizontalProgressBar22 = new JCFLIGHTGCS.HorizontalProgressBar2();
-            this.horizontalProgressBar21 = new JCFLIGHTGCS.HorizontalProgressBar2();
             this.button28 = new System.Windows.Forms.Button();
             this.label183 = new System.Windows.Forms.Label();
             this.button23 = new System.Windows.Forms.Button();
             this.button22 = new System.Windows.Forms.Button();
             this.button21 = new System.Windows.Forms.Button();
-            this.HUD1 = new JCFLIGHTGCS.HUD();
             this.label151 = new System.Windows.Forms.Label();
             this.button15 = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.circularProgressBar1 = new CircularProgressBar.CircularProgressBar();
-            this.HeadingIndicator = new JCFLIGHTGCS.HeadingIndicatorInstrumentControl();
             this.panel16 = new System.Windows.Forms.Panel();
             this.label25 = new System.Windows.Forms.Label();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
@@ -121,13 +115,6 @@
             this.label93 = new System.Windows.Forms.Label();
             this.numericUpDown94 = new System.Windows.Forms.NumericUpDown();
             this.label94 = new System.Windows.Forms.Label();
-            this.groupBox30 = new System.Windows.Forms.GroupBox();
-            this.numericUpDown24 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown23 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown22 = new System.Windows.Forms.NumericUpDown();
-            this.label155 = new System.Windows.Forms.Label();
-            this.label102 = new System.Windows.Forms.Label();
-            this.label69 = new System.Windows.Forms.Label();
             this.groupBox28 = new System.Windows.Forms.GroupBox();
             this.comboBox25 = new System.Windows.Forms.ComboBox();
             this.groupBox27 = new System.Windows.Forms.GroupBox();
@@ -135,6 +122,7 @@
             this.label113 = new System.Windows.Forms.Label();
             this.label114 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label95 = new System.Windows.Forms.Label();
             this.numericUpDown86 = new System.Windows.Forms.NumericUpDown();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.comboBox18 = new System.Windows.Forms.ComboBox();
@@ -302,8 +290,6 @@
             this.metroProgressBar2 = new MetroFramework.Controls.MetroProgressBar();
             this.metroProgressBar1 = new MetroFramework.Controls.MetroProgressBar();
             this.metroProgressBar11 = new MetroFramework.Controls.MetroProgressBar();
-            this.rcExpo1 = new JCFLIGHTGCS.RCExpo();
-            this.throttleExpo1 = new JCFLIGHTGCS.ThrottleExpo();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.label158 = new System.Windows.Forms.Label();
             this.label157 = new System.Windows.Forms.Label();
@@ -337,9 +323,6 @@
             this.label73 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.circularProgressBar2 = new CircularProgressBar.CircularProgressBar();
-            this.HUD2 = new JCFLIGHTGCS.HUD();
-            this.HUDSMALL1 = new JCFLIGHTGCS.HUDSMALL();
-            this.HeadingIndicator2 = new JCFLIGHTGCS.HeadingIndicatorInstrumentControl();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.groupBox39 = new System.Windows.Forms.GroupBox();
             this.metroLabel52 = new MetroFramework.Controls.MetroLabel();
@@ -348,7 +331,6 @@
             this.metroLabel40 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel41 = new MetroFramework.Controls.MetroLabel();
             this.numericUpDown38 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown77 = new System.Windows.Forms.NumericUpDown();
             this.groupBox36 = new System.Windows.Forms.GroupBox();
             this.metroLabel50 = new MetroFramework.Controls.MetroLabel();
             this.numericUpDown87 = new System.Windows.Forms.NumericUpDown();
@@ -476,7 +458,6 @@
             this.button17 = new System.Windows.Forms.Button();
             this.button16 = new System.Windows.Forms.Button();
             this.tabPage8 = new System.Windows.Forms.TabPage();
-            this.terminalControl1 = new Terminal.TerminalControl();
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.panel19 = new System.Windows.Forms.Panel();
             this.groupBox35 = new System.Windows.Forms.GroupBox();
@@ -549,15 +530,6 @@
             this.label181 = new System.Windows.Forms.Label();
             this.button26 = new System.Windows.Forms.Button();
             this.button27 = new System.Windows.Forms.Button();
-            this.groupBox34 = new System.Windows.Forms.GroupBox();
-            this.label175 = new System.Windows.Forms.Label();
-            this.label174 = new System.Windows.Forms.Label();
-            this.label176 = new System.Windows.Forms.Label();
-            this.numericUpDown34 = new System.Windows.Forms.NumericUpDown();
-            this.label172 = new System.Windows.Forms.Label();
-            this.numericUpDown33 = new System.Windows.Forms.NumericUpDown();
-            this.label171 = new System.Windows.Forms.Label();
-            this.numericUpDown32 = new System.Windows.Forms.NumericUpDown();
             this.groupBox32 = new System.Windows.Forms.GroupBox();
             this.numericUpDown89 = new System.Windows.Forms.NumericUpDown();
             this.label55 = new System.Windows.Forms.Label();
@@ -565,7 +537,6 @@
             this.numericUpDown90 = new System.Windows.Forms.NumericUpDown();
             this.label166 = new System.Windows.Forms.Label();
             this.numericUpDown28 = new System.Windows.Forms.NumericUpDown();
-            this.rcExpo2 = new JCFLIGHTGCS.RCExpo();
             this.label167 = new System.Windows.Forms.Label();
             this.label169 = new System.Windows.Forms.Label();
             this.numericUpDown27 = new System.Windows.Forms.NumericUpDown();
@@ -576,7 +547,6 @@
             this.label164 = new System.Windows.Forms.Label();
             this.label179 = new System.Windows.Forms.Label();
             this.numericUpDown26 = new System.Windows.Forms.NumericUpDown();
-            this.throttleExpo2 = new JCFLIGHTGCS.ThrottleExpo();
             this.numericUpDown35 = new System.Windows.Forms.NumericUpDown();
             this.label165 = new System.Windows.Forms.Label();
             this.numericUpDown36 = new System.Windows.Forms.NumericUpDown();
@@ -596,7 +566,28 @@
             this.limparMapaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.carregarWPsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.limparWPsDoMapaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label95 = new System.Windows.Forms.Label();
+            this.groupBox34 = new System.Windows.Forms.GroupBox();
+            this.metroLabel53 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel54 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel55 = new MetroFramework.Controls.MetroLabel();
+            this.numericUpDown32 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown33 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown34 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown77 = new System.Windows.Forms.NumericUpDown();
+            this.horizontalProgressBar22 = new JCFLIGHTGCS.HorizontalProgressBar2();
+            this.horizontalProgressBar21 = new JCFLIGHTGCS.HorizontalProgressBar2();
+            this.HUD1 = new JCFLIGHTGCS.HUD();
+            this.HeadingIndicator = new JCFLIGHTGCS.HeadingIndicatorInstrumentControl();
+            this.rcExpo1 = new JCFLIGHTGCS.RCExpo();
+            this.throttleExpo1 = new JCFLIGHTGCS.ThrottleExpo();
+            this.HUD2 = new JCFLIGHTGCS.HUD();
+            this.HUDSMALL1 = new JCFLIGHTGCS.HUDSMALL();
+            this.HeadingIndicator2 = new JCFLIGHTGCS.HeadingIndicatorInstrumentControl();
+            this.terminalControl1 = new Terminal.TerminalControl();
+            this.rcExpo2 = new JCFLIGHTGCS.RCExpo();
+            this.throttleExpo2 = new JCFLIGHTGCS.ThrottleExpo();
+            this.preArmNotification2 = new JCFLIGHTGCS.PreArmNotification();
+            this.preArmNotification1 = new JCFLIGHTGCS.PreArmNotification();
             this.BarraTitulo.SuspendLayout();
             this.panel18.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
@@ -635,10 +626,6 @@
             this.tabPage2.SuspendLayout();
             this.groupBox40.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown94)).BeginInit();
-            this.groupBox30.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown24)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown23)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown22)).BeginInit();
             this.groupBox28.SuspendLayout();
             this.groupBox27.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -674,7 +661,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown91)).BeginInit();
             this.groupBox37.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown38)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown77)).BeginInit();
             this.groupBox36.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown87)).BeginInit();
             this.groupBox33.SuspendLayout();
@@ -772,10 +758,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown60)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown61)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown62)).BeginInit();
-            this.groupBox34.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown34)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown33)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown32)).BeginInit();
             this.groupBox32.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown89)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown90)).BeginInit();
@@ -790,6 +772,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown67)).BeginInit();
             this.panel1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
+            this.groupBox34.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown32)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown33)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown34)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown77)).BeginInit();
             this.SuspendLayout();
             // 
             // serialPort1
@@ -849,13 +836,6 @@
             this.BarraTitulo.Size = new System.Drawing.Size(1051, 128);
             this.BarraTitulo.TabIndex = 8;
             this.BarraTitulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BarraTitulo_MouseDown);
-            // 
-            // preArmNotification2
-            // 
-            this.preArmNotification2.Location = new System.Drawing.Point(3, 3);
-            this.preArmNotification2.Name = "preArmNotification2";
-            this.preArmNotification2.Size = new System.Drawing.Size(247, 123);
-            this.preArmNotification2.TabIndex = 10;
             // 
             // panel18
             // 
@@ -1061,13 +1041,6 @@
             this.MenuVertical.Size = new System.Drawing.Size(249, 710);
             this.MenuVertical.TabIndex = 7;
             // 
-            // preArmNotification1
-            // 
-            this.preArmNotification1.Location = new System.Drawing.Point(2, 0);
-            this.preArmNotification1.Name = "preArmNotification1";
-            this.preArmNotification1.Size = new System.Drawing.Size(247, 123);
-            this.preArmNotification1.TabIndex = 9;
-            // 
             // button19
             // 
             this.button19.BackColor = System.Drawing.Color.YellowGreen;
@@ -1249,42 +1222,6 @@
             this.tabPage1.Text = "Resumo";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // horizontalProgressBar22
-            // 
-            this.horizontalProgressBar22.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(68)))), ((int)(((byte)(69)))));
-            this.horizontalProgressBar22.BorderColor = System.Drawing.SystemColors.ActiveBorder;
-            this.horizontalProgressBar22.DisplayScale = 1F;
-            this.horizontalProgressBar22.DrawLabel = true;
-            this.horizontalProgressBar22.Label = "Porcentagem:";
-            this.horizontalProgressBar22.Location = new System.Drawing.Point(8, 544);
-            this.horizontalProgressBar22.Maximum = 100;
-            this.horizontalProgressBar22.maxline = 90;
-            this.horizontalProgressBar22.Minimum = 0;
-            this.horizontalProgressBar22.minline = 50;
-            this.horizontalProgressBar22.Name = "horizontalProgressBar22";
-            this.horizontalProgressBar22.Size = new System.Drawing.Size(283, 23);
-            this.horizontalProgressBar22.TabIndex = 65;
-            this.horizontalProgressBar22.Value = 0;
-            this.horizontalProgressBar22.ValueColor = System.Drawing.Color.Lime;
-            // 
-            // horizontalProgressBar21
-            // 
-            this.horizontalProgressBar21.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(68)))), ((int)(((byte)(69)))));
-            this.horizontalProgressBar21.BorderColor = System.Drawing.SystemColors.ActiveBorder;
-            this.horizontalProgressBar21.DisplayScale = 1F;
-            this.horizontalProgressBar21.DrawLabel = true;
-            this.horizontalProgressBar21.Label = "Porcentagem:";
-            this.horizontalProgressBar21.Location = new System.Drawing.Point(8, 483);
-            this.horizontalProgressBar21.Maximum = 100;
-            this.horizontalProgressBar21.maxline = 90;
-            this.horizontalProgressBar21.Minimum = 0;
-            this.horizontalProgressBar21.minline = 50;
-            this.horizontalProgressBar21.Name = "horizontalProgressBar21";
-            this.horizontalProgressBar21.Size = new System.Drawing.Size(283, 23);
-            this.horizontalProgressBar21.TabIndex = 64;
-            this.horizontalProgressBar21.Value = 0;
-            this.horizontalProgressBar21.ValueColor = System.Drawing.Color.Lime;
-            // 
             // button28
             // 
             this.button28.BackColor = System.Drawing.Color.Chartreuse;
@@ -1337,32 +1274,6 @@
             this.button21.Text = "Iniciar gravação da Caixa-Preta";
             this.button21.UseVisualStyleBackColor = false;
             this.button21.Click += new System.EventHandler(this.button21_Click);
-            // 
-            // HUD1
-            // 
-            this.HUD1.AHRSHorizontalVariance = false;
-            this.HUD1.ARMStatus = false;
-            this.HUD1.BackColor = System.Drawing.Color.Black;
-            this.HUD1.bgimage = null;
-            this.HUD1.CompassHealty = false;
-            this.HUD1.FailSafe = false;
-            this.HUD1.hudcolor = System.Drawing.Color.White;
-            this.HUD1.IMUHealty = false;
-            this.HUD1.LinkQualityGCS = 0F;
-            this.HUD1.Location = new System.Drawing.Point(8, 152);
-            this.HUD1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.HUD1.Name = "HUD1";
-            this.HUD1.Pitch = 0F;
-            this.HUD1.Roll = 0F;
-            this.HUD1.Size = new System.Drawing.Size(340, 300);
-            this.HUD1.skyColor1 = System.Drawing.Color.Blue;
-            this.HUD1.skyColor2 = System.Drawing.Color.LightBlue;
-            this.HUD1.streamjpg = ((System.IO.MemoryStream)(resources.GetObject("HUD1.streamjpg")));
-            this.HUD1.TabIndex = 54;
-            this.HUD1.ThrottleSafe = false;
-            this.HUD1.VelSpeed = 0F;
-            this.HUD1.VSync = false;
-            this.HUD1.vibeclick += new System.EventHandler(this.HUD1_vibeclick_1);
             // 
             // label151
             // 
@@ -1441,15 +1352,6 @@
             this.circularProgressBar1.TabIndex = 46;
             this.circularProgressBar1.TextMargin = new System.Windows.Forms.Padding(8, 8, 0, 0);
             this.circularProgressBar1.Value = 68;
-            // 
-            // HeadingIndicator
-            // 
-            this.HeadingIndicator.BackColor = System.Drawing.Color.White;
-            this.HeadingIndicator.Location = new System.Drawing.Point(382, 153);
-            this.HeadingIndicator.Name = "HeadingIndicator";
-            this.HeadingIndicator.Size = new System.Drawing.Size(300, 300);
-            this.HeadingIndicator.TabIndex = 4;
-            this.HeadingIndicator.Text = "HeadingIndicator";
             // 
             // panel16
             // 
@@ -1913,7 +1815,6 @@
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.groupBox40);
-            this.tabPage2.Controls.Add(this.groupBox30);
             this.tabPage2.Controls.Add(this.groupBox28);
             this.tabPage2.Controls.Add(this.groupBox27);
             this.tabPage2.Controls.Add(this.label113);
@@ -1944,7 +1845,7 @@
             this.groupBox40.Controls.Add(this.numericUpDown94);
             this.groupBox40.Controls.Add(this.label94);
             this.groupBox40.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox40.Location = new System.Drawing.Point(219, 275);
+            this.groupBox40.Location = new System.Drawing.Point(219, 154);
             this.groupBox40.Name = "groupBox40";
             this.groupBox40.Size = new System.Drawing.Size(143, 88);
             this.groupBox40.TabIndex = 31;
@@ -1988,106 +1889,6 @@
             this.label94.Size = new System.Drawing.Size(53, 20);
             this.label94.TabIndex = 31;
             this.label94.Text = "Graus";
-            // 
-            // groupBox30
-            // 
-            this.groupBox30.Controls.Add(this.numericUpDown24);
-            this.groupBox30.Controls.Add(this.numericUpDown23);
-            this.groupBox30.Controls.Add(this.numericUpDown22);
-            this.groupBox30.Controls.Add(this.label155);
-            this.groupBox30.Controls.Add(this.label102);
-            this.groupBox30.Controls.Add(this.label69);
-            this.groupBox30.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox30.Location = new System.Drawing.Point(219, 154);
-            this.groupBox30.Name = "groupBox30";
-            this.groupBox30.Size = new System.Drawing.Size(143, 115);
-            this.groupBox30.TabIndex = 30;
-            this.groupBox30.TabStop = false;
-            this.groupBox30.Text = "ACC AJUSTE";
-            // 
-            // numericUpDown24
-            // 
-            this.numericUpDown24.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown24.Location = new System.Drawing.Point(75, 84);
-            this.numericUpDown24.Maximum = new decimal(new int[] {
-            800,
-            0,
-            0,
-            0});
-            this.numericUpDown24.Minimum = new decimal(new int[] {
-            800,
-            0,
-            0,
-            -2147483648});
-            this.numericUpDown24.Name = "numericUpDown24";
-            this.numericUpDown24.Size = new System.Drawing.Size(62, 26);
-            this.numericUpDown24.TabIndex = 32;
-            // 
-            // numericUpDown23
-            // 
-            this.numericUpDown23.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown23.Location = new System.Drawing.Point(75, 20);
-            this.numericUpDown23.Maximum = new decimal(new int[] {
-            800,
-            0,
-            0,
-            0});
-            this.numericUpDown23.Minimum = new decimal(new int[] {
-            800,
-            0,
-            0,
-            -2147483648});
-            this.numericUpDown23.Name = "numericUpDown23";
-            this.numericUpDown23.Size = new System.Drawing.Size(62, 26);
-            this.numericUpDown23.TabIndex = 32;
-            // 
-            // numericUpDown22
-            // 
-            this.numericUpDown22.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown22.Location = new System.Drawing.Point(75, 52);
-            this.numericUpDown22.Maximum = new decimal(new int[] {
-            800,
-            0,
-            0,
-            0});
-            this.numericUpDown22.Minimum = new decimal(new int[] {
-            800,
-            0,
-            0,
-            -2147483648});
-            this.numericUpDown22.Name = "numericUpDown22";
-            this.numericUpDown22.Size = new System.Drawing.Size(62, 26);
-            this.numericUpDown22.TabIndex = 31;
-            // 
-            // label155
-            // 
-            this.label155.AutoSize = true;
-            this.label155.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label155.Location = new System.Drawing.Point(8, 86);
-            this.label155.Name = "label155";
-            this.label155.Size = new System.Drawing.Size(40, 20);
-            this.label155.TabIndex = 31;
-            this.label155.Text = "Yaw";
-            // 
-            // label102
-            // 
-            this.label102.AutoSize = true;
-            this.label102.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label102.Location = new System.Drawing.Point(8, 54);
-            this.label102.Name = "label102";
-            this.label102.Size = new System.Drawing.Size(44, 20);
-            this.label102.TabIndex = 31;
-            this.label102.Text = "Pitch";
-            // 
-            // label69
-            // 
-            this.label69.AutoSize = true;
-            this.label69.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label69.Location = new System.Drawing.Point(8, 22);
-            this.label69.Name = "label69";
-            this.label69.Size = new System.Drawing.Size(36, 20);
-            this.label69.TabIndex = 30;
-            this.label69.Text = "Roll";
             // 
             // groupBox28
             // 
@@ -2174,6 +1975,16 @@
             this.groupBox1.TabIndex = 20;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "RTH ALT.";
+            // 
+            // label95
+            // 
+            this.label95.AutoSize = true;
+            this.label95.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label95.Location = new System.Drawing.Point(74, 28);
+            this.label95.Name = "label95";
+            this.label95.Size = new System.Drawing.Size(58, 20);
+            this.label95.TabIndex = 34;
+            this.label95.Text = "Metros";
             // 
             // numericUpDown86
             // 
@@ -4410,22 +4221,6 @@
             this.metroProgressBar11.Style = MetroFramework.MetroColorStyle.Purple;
             this.metroProgressBar11.TabIndex = 46;
             // 
-            // rcExpo1
-            // 
-            this.rcExpo1.Location = new System.Drawing.Point(774, 416);
-            this.rcExpo1.Name = "rcExpo1";
-            this.rcExpo1.Size = new System.Drawing.Size(150, 100);
-            this.rcExpo1.TabIndex = 124;
-            this.rcExpo1.Text = "rcExpo1";
-            // 
-            // throttleExpo1
-            // 
-            this.throttleExpo1.Location = new System.Drawing.Point(572, 416);
-            this.throttleExpo1.Name = "throttleExpo1";
-            this.throttleExpo1.Size = new System.Drawing.Size(150, 100);
-            this.throttleExpo1.TabIndex = 123;
-            this.throttleExpo1.Text = "throttleExpo1";
-            // 
             // tabPage6
             // 
             this.tabPage6.Controls.Add(this.label158);
@@ -4853,63 +4648,9 @@
             this.circularProgressBar2.TextMargin = new System.Windows.Forms.Padding(8, 8, 0, 0);
             this.circularProgressBar2.Value = 68;
             // 
-            // HUD2
-            // 
-            this.HUD2.AHRSHorizontalVariance = false;
-            this.HUD2.ARMStatus = false;
-            this.HUD2.BackColor = System.Drawing.Color.Black;
-            this.HUD2.bgimage = null;
-            this.HUD2.CompassHealty = false;
-            this.HUD2.FailSafe = false;
-            this.HUD2.hudcolor = System.Drawing.Color.White;
-            this.HUD2.IMUHealty = false;
-            this.HUD2.LinkQualityGCS = 0F;
-            this.HUD2.Location = new System.Drawing.Point(0, 6);
-            this.HUD2.Name = "HUD2";
-            this.HUD2.Pitch = 0F;
-            this.HUD2.Roll = 0F;
-            this.HUD2.Size = new System.Drawing.Size(360, 360);
-            this.HUD2.skyColor1 = System.Drawing.Color.Blue;
-            this.HUD2.skyColor2 = System.Drawing.Color.LightBlue;
-            this.HUD2.streamjpg = ((System.IO.MemoryStream)(resources.GetObject("HUD2.streamjpg")));
-            this.HUD2.TabIndex = 75;
-            this.HUD2.ThrottleSafe = false;
-            this.HUD2.VelSpeed = 0F;
-            this.HUD2.VSync = false;
-            this.HUD2.vibeclick += new System.EventHandler(this.HUD2_vibeclick);
-            // 
-            // HUDSMALL1
-            // 
-            this.HUDSMALL1.bgimage = null;
-            this.HUDSMALL1.datetime = new System.DateTime(((long)(0)));
-            this.HUDSMALL1.failsafe = false;
-            this.HUDSMALL1.hudcolor = System.Drawing.Color.White;
-            this.HUDSMALL1.imuhealty = false;
-            this.HUDSMALL1.linkqualitygcs = 0F;
-            this.HUDSMALL1.Location = new System.Drawing.Point(0, 6);
-            this.HUDSMALL1.messagetime = new System.DateTime(((long)(0)));
-            this.HUDSMALL1.Name = "HUDSMALL1";
-            this.HUDSMALL1.pitch = 0F;
-            this.HUDSMALL1.roll = 0F;
-            this.HUDSMALL1.Russian = false;
-            this.HUDSMALL1.Size = new System.Drawing.Size(157, 158);
-            this.HUDSMALL1.skyColor1 = System.Drawing.Color.Blue;
-            this.HUDSMALL1.skyColor2 = System.Drawing.Color.LightBlue;
-            this.HUDSMALL1.status = 0;
-            this.HUDSMALL1.streamjpg = null;
-            this.HUDSMALL1.TabIndex = 73;
-            // 
-            // HeadingIndicator2
-            // 
-            this.HeadingIndicator2.BackColor = System.Drawing.Color.White;
-            this.HeadingIndicator2.Location = new System.Drawing.Point(0, 186);
-            this.HeadingIndicator2.Name = "HeadingIndicator2";
-            this.HeadingIndicator2.Size = new System.Drawing.Size(157, 160);
-            this.HeadingIndicator2.TabIndex = 5;
-            this.HeadingIndicator2.Text = "HeadingIndicator2";
-            // 
             // tabPage7
             // 
+            this.tabPage7.Controls.Add(this.groupBox34);
             this.tabPage7.Controls.Add(this.groupBox39);
             this.tabPage7.Controls.Add(this.groupBox37);
             this.tabPage7.Controls.Add(this.groupBox36);
@@ -4985,10 +4726,10 @@
             // 
             // groupBox37
             // 
+            this.groupBox37.Controls.Add(this.numericUpDown77);
             this.groupBox37.Controls.Add(this.metroLabel40);
             this.groupBox37.Controls.Add(this.metroLabel41);
             this.groupBox37.Controls.Add(this.numericUpDown38);
-            this.groupBox37.Controls.Add(this.numericUpDown77);
             this.groupBox37.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox37.Location = new System.Drawing.Point(6, 239);
             this.groupBox37.Name = "groupBox37";
@@ -5032,18 +4773,6 @@
             this.numericUpDown38.Name = "numericUpDown38";
             this.numericUpDown38.Size = new System.Drawing.Size(70, 21);
             this.numericUpDown38.TabIndex = 4;
-            // 
-            // numericUpDown77
-            // 
-            this.numericUpDown77.Location = new System.Drawing.Point(96, 42);
-            this.numericUpDown77.Maximum = new decimal(new int[] {
-            250,
-            0,
-            0,
-            0});
-            this.numericUpDown77.Name = "numericUpDown77";
-            this.numericUpDown77.Size = new System.Drawing.Size(70, 21);
-            this.numericUpDown77.TabIndex = 6;
             // 
             // groupBox36
             // 
@@ -5091,7 +4820,7 @@
             this.groupBox33.Controls.Add(this.metroLabel37);
             this.groupBox33.Controls.Add(this.numericUpDown74);
             this.groupBox33.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox33.Location = new System.Drawing.Point(185, 240);
+            this.groupBox33.Location = new System.Drawing.Point(366, 239);
             this.groupBox33.Name = "groupBox33";
             this.groupBox33.Size = new System.Drawing.Size(179, 135);
             this.groupBox33.TabIndex = 43;
@@ -5946,18 +5675,7 @@
             // 
             // numericUpDown88
             // 
-            this.numericUpDown88.DecimalPlaces = 2;
-            this.numericUpDown88.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            131072});
             this.numericUpDown88.Location = new System.Drawing.Point(96, 79);
-            this.numericUpDown88.Maximum = new decimal(new int[] {
-            254,
-            0,
-            0,
-            131072});
             this.numericUpDown88.Name = "numericUpDown88";
             this.numericUpDown88.Size = new System.Drawing.Size(70, 21);
             this.numericUpDown88.TabIndex = 32;
@@ -5965,7 +5683,7 @@
             // label54
             // 
             this.label54.AutoSize = true;
-            this.label54.Location = new System.Drawing.Point(372, 17);
+            this.label54.Location = new System.Drawing.Point(372, 15);
             this.label54.Name = "label54";
             this.label54.Size = new System.Drawing.Size(132, 15);
             this.label54.TabIndex = 31;
@@ -6009,36 +5727,14 @@
             // 
             // numericUpDown84
             // 
-            this.numericUpDown84.DecimalPlaces = 2;
-            this.numericUpDown84.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            131072});
             this.numericUpDown84.Location = new System.Drawing.Point(273, 105);
-            this.numericUpDown84.Maximum = new decimal(new int[] {
-            254,
-            0,
-            0,
-            131072});
             this.numericUpDown84.Name = "numericUpDown84";
             this.numericUpDown84.Size = new System.Drawing.Size(70, 21);
             this.numericUpDown84.TabIndex = 19;
             // 
             // numericUpDown78
             // 
-            this.numericUpDown78.DecimalPlaces = 2;
-            this.numericUpDown78.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            131072});
             this.numericUpDown78.Location = new System.Drawing.Point(447, 105);
-            this.numericUpDown78.Maximum = new decimal(new int[] {
-            254,
-            0,
-            0,
-            131072});
             this.numericUpDown78.Name = "numericUpDown78";
             this.numericUpDown78.Size = new System.Drawing.Size(70, 21);
             this.numericUpDown78.TabIndex = 27;
@@ -6601,15 +6297,6 @@
             this.tabPage8.Text = "tabPage8";
             this.tabPage8.UseVisualStyleBackColor = true;
             // 
-            // terminalControl1
-            // 
-            this.terminalControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
-            this.terminalControl1.data = null;
-            this.terminalControl1.Location = new System.Drawing.Point(0, 0);
-            this.terminalControl1.Name = "terminalControl1";
-            this.terminalControl1.Size = new System.Drawing.Size(1047, 572);
-            this.terminalControl1.TabIndex = 0;
-            // 
             // tabPage9
             // 
             this.tabPage9.Controls.Add(this.panel19);
@@ -6628,7 +6315,6 @@
             this.panel19.Controls.Add(this.label181);
             this.panel19.Controls.Add(this.button26);
             this.panel19.Controls.Add(this.button27);
-            this.panel19.Controls.Add(this.groupBox34);
             this.panel19.Controls.Add(this.groupBox32);
             this.panel19.Controls.Add(this.groupBox31);
             this.panel19.Controls.Add(this.button25);
@@ -7762,113 +7448,6 @@
             this.button27.UseVisualStyleBackColor = true;
             this.button27.Click += new System.EventHandler(this.button27_Click);
             // 
-            // groupBox34
-            // 
-            this.groupBox34.Controls.Add(this.label175);
-            this.groupBox34.Controls.Add(this.label174);
-            this.groupBox34.Controls.Add(this.label176);
-            this.groupBox34.Controls.Add(this.numericUpDown34);
-            this.groupBox34.Controls.Add(this.label172);
-            this.groupBox34.Controls.Add(this.numericUpDown33);
-            this.groupBox34.Controls.Add(this.label171);
-            this.groupBox34.Controls.Add(this.numericUpDown32);
-            this.groupBox34.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox34.Location = new System.Drawing.Point(271, 315);
-            this.groupBox34.Name = "groupBox34";
-            this.groupBox34.Size = new System.Drawing.Size(286, 124);
-            this.groupBox34.TabIndex = 142;
-            this.groupBox34.TabStop = false;
-            this.groupBox34.Text = "Altitude-Hold";
-            // 
-            // label175
-            // 
-            this.label175.AutoSize = true;
-            this.label175.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label175.Location = new System.Drawing.Point(240, 95);
-            this.label175.Name = "label175";
-            this.label175.Size = new System.Drawing.Size(43, 16);
-            this.label175.TabIndex = 146;
-            this.label175.Text = "Cm/s";
-            // 
-            // label174
-            // 
-            this.label174.AutoSize = true;
-            this.label174.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label174.Location = new System.Drawing.Point(245, 65);
-            this.label174.Name = "label174";
-            this.label174.Size = new System.Drawing.Size(20, 16);
-            this.label174.TabIndex = 143;
-            this.label174.Text = "M";
-            // 
-            // label176
-            // 
-            this.label176.AutoSize = true;
-            this.label176.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label176.Location = new System.Drawing.Point(-1, 93);
-            this.label176.Name = "label176";
-            this.label176.Size = new System.Drawing.Size(120, 16);
-            this.label176.TabIndex = 144;
-            this.label176.Text = "Vel. Vertical Min";
-            // 
-            // numericUpDown34
-            // 
-            this.numericUpDown34.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown34.Location = new System.Drawing.Point(119, 91);
-            this.numericUpDown34.Minimum = new decimal(new int[] {
-            30,
-            0,
-            0,
-            0});
-            this.numericUpDown34.Name = "numericUpDown34";
-            this.numericUpDown34.Size = new System.Drawing.Size(120, 22);
-            this.numericUpDown34.TabIndex = 145;
-            this.numericUpDown34.Value = new decimal(new int[] {
-            30,
-            0,
-            0,
-            0});
-            // 
-            // label172
-            // 
-            this.label172.AutoSize = true;
-            this.label172.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label172.Location = new System.Drawing.Point(-1, 62);
-            this.label172.Name = "label172";
-            this.label172.Size = new System.Drawing.Size(96, 16);
-            this.label172.TabIndex = 137;
-            this.label172.Text = "Safe Altitude";
-            // 
-            // numericUpDown33
-            // 
-            this.numericUpDown33.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown33.Location = new System.Drawing.Point(119, 60);
-            this.numericUpDown33.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.numericUpDown33.Name = "numericUpDown33";
-            this.numericUpDown33.Size = new System.Drawing.Size(120, 22);
-            this.numericUpDown33.TabIndex = 138;
-            // 
-            // label171
-            // 
-            this.label171.AutoSize = true;
-            this.label171.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label171.Location = new System.Drawing.Point(-1, 28);
-            this.label171.Name = "label171";
-            this.label171.Size = new System.Drawing.Size(86, 16);
-            this.label171.TabIndex = 134;
-            this.label171.Text = "Zona Morta";
-            // 
-            // numericUpDown32
-            // 
-            this.numericUpDown32.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown32.Location = new System.Drawing.Point(119, 26);
-            this.numericUpDown32.Name = "numericUpDown32";
-            this.numericUpDown32.Size = new System.Drawing.Size(120, 22);
-            this.numericUpDown32.TabIndex = 135;
-            // 
             // groupBox32
             // 
             this.groupBox32.Controls.Add(this.numericUpDown89);
@@ -7954,14 +7533,6 @@
             this.numericUpDown28.Name = "numericUpDown28";
             this.numericUpDown28.Size = new System.Drawing.Size(120, 22);
             this.numericUpDown28.TabIndex = 133;
-            // 
-            // rcExpo2
-            // 
-            this.rcExpo2.Location = new System.Drawing.Point(45, 171);
-            this.rcExpo2.Name = "rcExpo2";
-            this.rcExpo2.Size = new System.Drawing.Size(150, 100);
-            this.rcExpo2.TabIndex = 128;
-            this.rcExpo2.Text = "rcExpo2";
             // 
             // label167
             // 
@@ -8109,14 +7680,6 @@
             this.numericUpDown26.Name = "numericUpDown26";
             this.numericUpDown26.Size = new System.Drawing.Size(120, 22);
             this.numericUpDown26.TabIndex = 131;
-            // 
-            // throttleExpo2
-            // 
-            this.throttleExpo2.Location = new System.Drawing.Point(45, 177);
-            this.throttleExpo2.Name = "throttleExpo2";
-            this.throttleExpo2.Size = new System.Drawing.Size(150, 100);
-            this.throttleExpo2.TabIndex = 127;
-            this.throttleExpo2.Text = "throttleExpo2";
             // 
             // numericUpDown35
             // 
@@ -8313,15 +7876,295 @@
             this.limparWPsDoMapaToolStripMenuItem.Text = "Limpar WP\'s do mapa";
             this.limparWPsDoMapaToolStripMenuItem.Click += new System.EventHandler(this.limparWPsDoMapaToolStripMenuItem_Click);
             // 
-            // label95
+            // groupBox34
             // 
-            this.label95.AutoSize = true;
-            this.label95.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label95.Location = new System.Drawing.Point(74, 28);
-            this.label95.Name = "label95";
-            this.label95.Size = new System.Drawing.Size(58, 20);
-            this.label95.TabIndex = 34;
-            this.label95.Text = "Metros";
+            this.groupBox34.Controls.Add(this.metroLabel53);
+            this.groupBox34.Controls.Add(this.metroLabel54);
+            this.groupBox34.Controls.Add(this.metroLabel55);
+            this.groupBox34.Controls.Add(this.numericUpDown32);
+            this.groupBox34.Controls.Add(this.numericUpDown33);
+            this.groupBox34.Controls.Add(this.numericUpDown34);
+            this.groupBox34.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox34.Location = new System.Drawing.Point(185, 239);
+            this.groupBox34.Name = "groupBox34";
+            this.groupBox34.Size = new System.Drawing.Size(175, 100);
+            this.groupBox34.TabIndex = 47;
+            this.groupBox34.TabStop = false;
+            this.groupBox34.Text = "VELOCIDADE Z";
+            // 
+            // metroLabel53
+            // 
+            this.metroLabel53.AutoSize = true;
+            this.metroLabel53.Location = new System.Drawing.Point(4, 71);
+            this.metroLabel53.Name = "metroLabel53";
+            this.metroLabel53.Size = new System.Drawing.Size(67, 19);
+            this.metroLabel53.TabIndex = 5;
+            this.metroLabel53.Text = "Derivativo";
+            // 
+            // metroLabel54
+            // 
+            this.metroLabel54.AutoSize = true;
+            this.metroLabel54.Location = new System.Drawing.Point(6, 45);
+            this.metroLabel54.Name = "metroLabel54";
+            this.metroLabel54.Size = new System.Drawing.Size(53, 19);
+            this.metroLabel54.TabIndex = 4;
+            this.metroLabel54.Text = "Integral";
+            // 
+            // metroLabel55
+            // 
+            this.metroLabel55.AutoSize = true;
+            this.metroLabel55.Location = new System.Drawing.Point(6, 20);
+            this.metroLabel55.Name = "metroLabel55";
+            this.metroLabel55.Size = new System.Drawing.Size(85, 19);
+            this.metroLabel55.TabIndex = 3;
+            this.metroLabel55.Text = "Proporcional";
+            // 
+            // numericUpDown32
+            // 
+            this.numericUpDown32.Location = new System.Drawing.Point(97, 71);
+            this.numericUpDown32.Maximum = new decimal(new int[] {
+            250,
+            0,
+            0,
+            0});
+            this.numericUpDown32.Name = "numericUpDown32";
+            this.numericUpDown32.Size = new System.Drawing.Size(70, 21);
+            this.numericUpDown32.TabIndex = 2;
+            // 
+            // numericUpDown33
+            // 
+            this.numericUpDown33.DecimalPlaces = 3;
+            this.numericUpDown33.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            196608});
+            this.numericUpDown33.Location = new System.Drawing.Point(97, 45);
+            this.numericUpDown33.Maximum = new decimal(new int[] {
+            250,
+            0,
+            0,
+            196608});
+            this.numericUpDown33.Name = "numericUpDown33";
+            this.numericUpDown33.Size = new System.Drawing.Size(70, 21);
+            this.numericUpDown33.TabIndex = 2;
+            // 
+            // numericUpDown34
+            // 
+            this.numericUpDown34.DecimalPlaces = 1;
+            this.numericUpDown34.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.numericUpDown34.Location = new System.Drawing.Point(97, 20);
+            this.numericUpDown34.Maximum = new decimal(new int[] {
+            25,
+            0,
+            0,
+            0});
+            this.numericUpDown34.Name = "numericUpDown34";
+            this.numericUpDown34.Size = new System.Drawing.Size(70, 21);
+            this.numericUpDown34.TabIndex = 0;
+            // 
+            // numericUpDown77
+            // 
+            this.numericUpDown77.DecimalPlaces = 3;
+            this.numericUpDown77.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            196608});
+            this.numericUpDown77.Location = new System.Drawing.Point(96, 42);
+            this.numericUpDown77.Maximum = new decimal(new int[] {
+            250,
+            0,
+            0,
+            196608});
+            this.numericUpDown77.Name = "numericUpDown77";
+            this.numericUpDown77.Size = new System.Drawing.Size(70, 21);
+            this.numericUpDown77.TabIndex = 8;
+            // 
+            // horizontalProgressBar22
+            // 
+            this.horizontalProgressBar22.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(68)))), ((int)(((byte)(69)))));
+            this.horizontalProgressBar22.BorderColor = System.Drawing.SystemColors.ActiveBorder;
+            this.horizontalProgressBar22.DisplayScale = 1F;
+            this.horizontalProgressBar22.DrawLabel = true;
+            this.horizontalProgressBar22.Label = "Porcentagem:";
+            this.horizontalProgressBar22.Location = new System.Drawing.Point(8, 544);
+            this.horizontalProgressBar22.Maximum = 100;
+            this.horizontalProgressBar22.maxline = 90;
+            this.horizontalProgressBar22.Minimum = 0;
+            this.horizontalProgressBar22.minline = 50;
+            this.horizontalProgressBar22.Name = "horizontalProgressBar22";
+            this.horizontalProgressBar22.Size = new System.Drawing.Size(283, 23);
+            this.horizontalProgressBar22.TabIndex = 65;
+            this.horizontalProgressBar22.Value = 0;
+            this.horizontalProgressBar22.ValueColor = System.Drawing.Color.Lime;
+            // 
+            // horizontalProgressBar21
+            // 
+            this.horizontalProgressBar21.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(68)))), ((int)(((byte)(69)))));
+            this.horizontalProgressBar21.BorderColor = System.Drawing.SystemColors.ActiveBorder;
+            this.horizontalProgressBar21.DisplayScale = 1F;
+            this.horizontalProgressBar21.DrawLabel = true;
+            this.horizontalProgressBar21.Label = "Porcentagem:";
+            this.horizontalProgressBar21.Location = new System.Drawing.Point(8, 483);
+            this.horizontalProgressBar21.Maximum = 100;
+            this.horizontalProgressBar21.maxline = 90;
+            this.horizontalProgressBar21.Minimum = 0;
+            this.horizontalProgressBar21.minline = 50;
+            this.horizontalProgressBar21.Name = "horizontalProgressBar21";
+            this.horizontalProgressBar21.Size = new System.Drawing.Size(283, 23);
+            this.horizontalProgressBar21.TabIndex = 64;
+            this.horizontalProgressBar21.Value = 0;
+            this.horizontalProgressBar21.ValueColor = System.Drawing.Color.Lime;
+            // 
+            // HUD1
+            // 
+            this.HUD1.AHRSHorizontalVariance = false;
+            this.HUD1.ARMStatus = false;
+            this.HUD1.BackColor = System.Drawing.Color.Black;
+            this.HUD1.bgimage = null;
+            this.HUD1.CompassHealty = false;
+            this.HUD1.FailSafe = false;
+            this.HUD1.hudcolor = System.Drawing.Color.White;
+            this.HUD1.IMUHealty = false;
+            this.HUD1.LinkQualityGCS = 0F;
+            this.HUD1.Location = new System.Drawing.Point(8, 152);
+            this.HUD1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.HUD1.Name = "HUD1";
+            this.HUD1.Pitch = 0F;
+            this.HUD1.Roll = 0F;
+            this.HUD1.Size = new System.Drawing.Size(340, 300);
+            this.HUD1.skyColor1 = System.Drawing.Color.Blue;
+            this.HUD1.skyColor2 = System.Drawing.Color.LightBlue;
+            this.HUD1.streamjpg = ((System.IO.MemoryStream)(resources.GetObject("HUD1.streamjpg")));
+            this.HUD1.TabIndex = 54;
+            this.HUD1.ThrottleSafe = false;
+            this.HUD1.VelSpeed = 0F;
+            this.HUD1.VSync = false;
+            this.HUD1.vibeclick += new System.EventHandler(this.HUD1_vibeclick_1);
+            // 
+            // HeadingIndicator
+            // 
+            this.HeadingIndicator.BackColor = System.Drawing.Color.White;
+            this.HeadingIndicator.Location = new System.Drawing.Point(382, 153);
+            this.HeadingIndicator.Name = "HeadingIndicator";
+            this.HeadingIndicator.Size = new System.Drawing.Size(300, 300);
+            this.HeadingIndicator.TabIndex = 4;
+            this.HeadingIndicator.Text = "HeadingIndicator";
+            // 
+            // rcExpo1
+            // 
+            this.rcExpo1.Location = new System.Drawing.Point(774, 416);
+            this.rcExpo1.Name = "rcExpo1";
+            this.rcExpo1.Size = new System.Drawing.Size(150, 100);
+            this.rcExpo1.TabIndex = 124;
+            this.rcExpo1.Text = "rcExpo1";
+            // 
+            // throttleExpo1
+            // 
+            this.throttleExpo1.Location = new System.Drawing.Point(572, 416);
+            this.throttleExpo1.Name = "throttleExpo1";
+            this.throttleExpo1.Size = new System.Drawing.Size(150, 100);
+            this.throttleExpo1.TabIndex = 123;
+            this.throttleExpo1.Text = "throttleExpo1";
+            // 
+            // HUD2
+            // 
+            this.HUD2.AHRSHorizontalVariance = false;
+            this.HUD2.ARMStatus = false;
+            this.HUD2.BackColor = System.Drawing.Color.Black;
+            this.HUD2.bgimage = null;
+            this.HUD2.CompassHealty = false;
+            this.HUD2.FailSafe = false;
+            this.HUD2.hudcolor = System.Drawing.Color.White;
+            this.HUD2.IMUHealty = false;
+            this.HUD2.LinkQualityGCS = 0F;
+            this.HUD2.Location = new System.Drawing.Point(0, 6);
+            this.HUD2.Name = "HUD2";
+            this.HUD2.Pitch = 0F;
+            this.HUD2.Roll = 0F;
+            this.HUD2.Size = new System.Drawing.Size(360, 360);
+            this.HUD2.skyColor1 = System.Drawing.Color.Blue;
+            this.HUD2.skyColor2 = System.Drawing.Color.LightBlue;
+            this.HUD2.streamjpg = ((System.IO.MemoryStream)(resources.GetObject("HUD2.streamjpg")));
+            this.HUD2.TabIndex = 75;
+            this.HUD2.ThrottleSafe = false;
+            this.HUD2.VelSpeed = 0F;
+            this.HUD2.VSync = false;
+            this.HUD2.vibeclick += new System.EventHandler(this.HUD2_vibeclick);
+            // 
+            // HUDSMALL1
+            // 
+            this.HUDSMALL1.bgimage = null;
+            this.HUDSMALL1.datetime = new System.DateTime(((long)(0)));
+            this.HUDSMALL1.failsafe = false;
+            this.HUDSMALL1.hudcolor = System.Drawing.Color.White;
+            this.HUDSMALL1.imuhealty = false;
+            this.HUDSMALL1.linkqualitygcs = 0F;
+            this.HUDSMALL1.Location = new System.Drawing.Point(0, 6);
+            this.HUDSMALL1.messagetime = new System.DateTime(((long)(0)));
+            this.HUDSMALL1.Name = "HUDSMALL1";
+            this.HUDSMALL1.pitch = 0F;
+            this.HUDSMALL1.roll = 0F;
+            this.HUDSMALL1.Russian = false;
+            this.HUDSMALL1.Size = new System.Drawing.Size(157, 158);
+            this.HUDSMALL1.skyColor1 = System.Drawing.Color.Blue;
+            this.HUDSMALL1.skyColor2 = System.Drawing.Color.LightBlue;
+            this.HUDSMALL1.status = 0;
+            this.HUDSMALL1.streamjpg = null;
+            this.HUDSMALL1.TabIndex = 73;
+            // 
+            // HeadingIndicator2
+            // 
+            this.HeadingIndicator2.BackColor = System.Drawing.Color.White;
+            this.HeadingIndicator2.Location = new System.Drawing.Point(0, 186);
+            this.HeadingIndicator2.Name = "HeadingIndicator2";
+            this.HeadingIndicator2.Size = new System.Drawing.Size(157, 160);
+            this.HeadingIndicator2.TabIndex = 5;
+            this.HeadingIndicator2.Text = "HeadingIndicator2";
+            // 
+            // terminalControl1
+            // 
+            this.terminalControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
+            this.terminalControl1.data = null;
+            this.terminalControl1.Location = new System.Drawing.Point(0, 0);
+            this.terminalControl1.Name = "terminalControl1";
+            this.terminalControl1.Size = new System.Drawing.Size(1047, 572);
+            this.terminalControl1.TabIndex = 0;
+            // 
+            // rcExpo2
+            // 
+            this.rcExpo2.Location = new System.Drawing.Point(45, 171);
+            this.rcExpo2.Name = "rcExpo2";
+            this.rcExpo2.Size = new System.Drawing.Size(150, 100);
+            this.rcExpo2.TabIndex = 128;
+            this.rcExpo2.Text = "rcExpo2";
+            // 
+            // throttleExpo2
+            // 
+            this.throttleExpo2.Location = new System.Drawing.Point(45, 177);
+            this.throttleExpo2.Name = "throttleExpo2";
+            this.throttleExpo2.Size = new System.Drawing.Size(150, 100);
+            this.throttleExpo2.TabIndex = 127;
+            this.throttleExpo2.Text = "throttleExpo2";
+            // 
+            // preArmNotification2
+            // 
+            this.preArmNotification2.Location = new System.Drawing.Point(3, 3);
+            this.preArmNotification2.Name = "preArmNotification2";
+            this.preArmNotification2.Size = new System.Drawing.Size(247, 123);
+            this.preArmNotification2.TabIndex = 10;
+            // 
+            // preArmNotification1
+            // 
+            this.preArmNotification1.Location = new System.Drawing.Point(2, 0);
+            this.preArmNotification1.Name = "preArmNotification1";
+            this.preArmNotification1.Size = new System.Drawing.Size(247, 123);
+            this.preArmNotification1.TabIndex = 9;
             // 
             // GCS
             // 
@@ -8398,11 +8241,6 @@
             this.groupBox40.ResumeLayout(false);
             this.groupBox40.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown94)).EndInit();
-            this.groupBox30.ResumeLayout(false);
-            this.groupBox30.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown24)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown23)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown22)).EndInit();
             this.groupBox28.ResumeLayout(false);
             this.groupBox27.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
@@ -8446,7 +8284,6 @@
             this.groupBox37.ResumeLayout(false);
             this.groupBox37.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown38)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown77)).EndInit();
             this.groupBox36.ResumeLayout(false);
             this.groupBox36.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown87)).EndInit();
@@ -8568,11 +8405,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown60)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown61)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown62)).EndInit();
-            this.groupBox34.ResumeLayout(false);
-            this.groupBox34.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown34)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown33)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown32)).EndInit();
             this.groupBox32.ResumeLayout(false);
             this.groupBox32.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown89)).EndInit();
@@ -8589,6 +8421,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown67)).EndInit();
             this.panel1.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
+            this.groupBox34.ResumeLayout(false);
+            this.groupBox34.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown32)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown33)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown34)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown77)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -8954,13 +8792,6 @@
         private MetroFramework.Controls.MetroLabel metroLabel27;
         private PreArmNotification preArmNotification1;
         private HUDSMALL HUDSMALL1;
-        private System.Windows.Forms.GroupBox groupBox30;
-        private System.Windows.Forms.NumericUpDown numericUpDown24;
-        private System.Windows.Forms.NumericUpDown numericUpDown23;
-        private System.Windows.Forms.NumericUpDown numericUpDown22;
-        private System.Windows.Forms.Label label155;
-        private System.Windows.Forms.Label label102;
-        private System.Windows.Forms.Label label69;
         private System.Windows.Forms.Button button20;
         private System.Windows.Forms.Panel panel18;
         private HUD HUD1;
@@ -9087,15 +8918,6 @@
         private System.Windows.Forms.Label label181;
         private System.Windows.Forms.Button button26;
         private System.Windows.Forms.Button button27;
-        private System.Windows.Forms.GroupBox groupBox34;
-        private System.Windows.Forms.Label label175;
-        private System.Windows.Forms.Label label174;
-        private System.Windows.Forms.Label label176;
-        private System.Windows.Forms.NumericUpDown numericUpDown34;
-        private System.Windows.Forms.Label label172;
-        private System.Windows.Forms.NumericUpDown numericUpDown33;
-        private System.Windows.Forms.Label label171;
-        private System.Windows.Forms.NumericUpDown numericUpDown32;
         private System.Windows.Forms.GroupBox groupBox32;
         private System.Windows.Forms.Label label166;
         private System.Windows.Forms.NumericUpDown numericUpDown28;
@@ -9139,7 +8961,6 @@
         private System.Windows.Forms.NumericUpDown numericUpDown80;
         private System.Windows.Forms.NumericUpDown numericUpDown81;
         private MetroFramework.Controls.MetroLabel metroLabel41;
-        private System.Windows.Forms.NumericUpDown numericUpDown77;
         private MetroFramework.Controls.MetroLabel metroLabel40;
         private System.Windows.Forms.NumericUpDown numericUpDown38;
         private System.Windows.Forms.NumericUpDown numericUpDown86;
@@ -9161,6 +8982,14 @@
         private System.Windows.Forms.NumericUpDown numericUpDown94;
         private System.Windows.Forms.Label label94;
         private System.Windows.Forms.Label label95;
+        private System.Windows.Forms.GroupBox groupBox34;
+        private MetroFramework.Controls.MetroLabel metroLabel53;
+        private MetroFramework.Controls.MetroLabel metroLabel54;
+        private MetroFramework.Controls.MetroLabel metroLabel55;
+        private System.Windows.Forms.NumericUpDown numericUpDown32;
+        private System.Windows.Forms.NumericUpDown numericUpDown33;
+        private System.Windows.Forms.NumericUpDown numericUpDown34;
+        private System.Windows.Forms.NumericUpDown numericUpDown77;
     }
 }
 
