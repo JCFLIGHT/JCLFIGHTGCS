@@ -231,27 +231,27 @@ namespace JCFLIGHTGCS
             label48.Parent = MyGMap;
             label48.BackColor = Color.Blue;
             label48.ForeColor = Color.White;
-            comboBox1.MouseWheel += new MouseEventHandler(comboBox1_MouseWheel);
+            numericUpDown1.MouseWheel += new MouseEventHandler(numericUpDown1_MouseWheel);
             comboBox2.MouseWheel += new MouseEventHandler(comboBox2_MouseWheel);
             comboBox3.MouseWheel += new MouseEventHandler(comboBox3_MouseWheel);
-            comboBox4.MouseWheel += new MouseEventHandler(comboBox4_MouseWheel);
+            numericUpDown2.MouseWheel += new MouseEventHandler(numericUpDown2_MouseWheel);
             comboBox5.MouseWheel += new MouseEventHandler(comboBox5_MouseWheel);
-            comboBox6.MouseWheel += new MouseEventHandler(comboBox6_MouseWheel);
+            numericUpDown3.MouseWheel += new MouseEventHandler(numericUpDown3_MouseWheel);
             comboBox7.MouseWheel += new MouseEventHandler(comboBox7_MouseWheel);
-            comboBox8.MouseWheel += new MouseEventHandler(comboBox8_MouseWheel);
+            numericUpDown4.MouseWheel += new MouseEventHandler(numericUpDown4_MouseWheel);
             comboBox9.MouseWheel += new MouseEventHandler(comboBox9_MouseWheel);
-            comboBox10.MouseWheel += new MouseEventHandler(comboBox10_MouseWheel);
+            numericUpDown5.MouseWheel += new MouseEventHandler(numericUpDown5_MouseWheel);
             comboBox11.MouseWheel += new MouseEventHandler(comboBox11_MouseWheel);
-            comboBox12.MouseWheel += new MouseEventHandler(comboBox12_MouseWheel);
+            numericUpDown6.MouseWheel += new MouseEventHandler(numericUpDown6_MouseWheel);
             comboBox13.MouseWheel += new MouseEventHandler(comboBox13_MouseWheel);
             comboBox14.MouseWheel += new MouseEventHandler(comboBox14_MouseWheel);
-            comboBox15.MouseWheel += new MouseEventHandler(comboBox15_MouseWheel);
+            numericUpDown7.MouseWheel += new MouseEventHandler(numericUpDown7_MouseWheel);
             comboBox16.MouseWheel += new MouseEventHandler(comboBox16_MouseWheel);
-            comboBox17.MouseWheel += new MouseEventHandler(comboBox17_MouseWheel);
+            numericUpDown8.MouseWheel += new MouseEventHandler(numericUpDown8_MouseWheel);
             comboBox18.MouseWheel += new MouseEventHandler(comboBox18_MouseWheel);
-            comboBox19.MouseWheel += new MouseEventHandler(comboBox19_MouseWheel);
+            numericUpDown9.MouseWheel += new MouseEventHandler(numericUpDown9_MouseWheel);
             comboBox20.MouseWheel += new MouseEventHandler(comboBox20_MouseWheel);
-            comboBox21.MouseWheel += new MouseEventHandler(comboBox21_MouseWheel);
+            numericUpDown10.MouseWheel += new MouseEventHandler(numericUpDown10_MouseWheel);
             trackBar1.MouseWheel += new MouseEventHandler(trackBar1_MouseWheel);
         }
 
@@ -898,16 +898,16 @@ namespace JCFLIGHTGCS
                             MyGMap.Overlays.Add(GmapPolygons);
                             PrintArea2 = false;
                         }
-                        comboBox1.SelectedIndex = PushedComboBox[0];
-                        comboBox4.SelectedIndex = PushedComboBox[1];
-                        comboBox6.SelectedIndex = PushedComboBox[2];
-                        comboBox8.SelectedIndex = PushedComboBox[3];
-                        comboBox10.SelectedIndex = PushedComboBox[4];
-                        comboBox12.SelectedIndex = PushedComboBox[5];
-                        comboBox15.SelectedIndex = PushedComboBox[6];
-                        comboBox17.SelectedIndex = PushedComboBox[7];
-                        comboBox19.SelectedIndex = PushedComboBox[8];
-                        comboBox21.SelectedIndex = PushedComboBox[9];
+                        numericUpDown1.Value = PushedComboBox[0];
+                        numericUpDown2.Value = PushedComboBox[1];
+                        numericUpDown3.Value = PushedComboBox[2];
+                        numericUpDown4.Value = PushedComboBox[3];
+                        numericUpDown5.Value = PushedComboBox[4];
+                        numericUpDown6.Value = PushedComboBox[5];
+                        numericUpDown7.Value = PushedComboBox[6];
+                        numericUpDown8.Value = PushedComboBox[7];
+                        numericUpDown9.Value = PushedComboBox[8];
+                        numericUpDown10.Value = PushedComboBox[9];
                         comboBox2.SelectedIndex = (PushedComboBox[10] > 0) ? PushedComboBox[10] - 1 : 0;
                         comboBox3.SelectedIndex = (PushedComboBox[11] > 0) ? PushedComboBox[11] - 1 : 0;
                         comboBox5.SelectedIndex = (PushedComboBox[12] > 0) ? PushedComboBox[12] - 1 : 0;
@@ -1228,16 +1228,16 @@ namespace JCFLIGHTGCS
             GPSHoldTimed10 = 1;
             CountToBlock = 0;
             BlockPushParams = false;
-            comboBox1.SelectedIndex = 0;
-            comboBox4.SelectedIndex = 0;
-            comboBox6.SelectedIndex = 0;
-            comboBox8.SelectedIndex = 0;
-            comboBox10.SelectedIndex = 0;
-            comboBox12.SelectedIndex = 0;
-            comboBox15.SelectedIndex = 0;
-            comboBox17.SelectedIndex = 0;
-            comboBox19.SelectedIndex = 0;
-            comboBox21.SelectedIndex = 0;
+            numericUpDown1.Value = 10;
+            numericUpDown2.Value = 10;
+            numericUpDown3.Value = 10;
+            numericUpDown4.Value = 10;
+            numericUpDown5.Value = 10;
+            numericUpDown6.Value = 10;
+            numericUpDown7.Value = 10;
+            numericUpDown8.Value = 10;
+            numericUpDown9.Value = 10;
+            numericUpDown10.Value = 10;
             comboBox2.SelectedIndex = 0;
             comboBox3.SelectedIndex = 0;
             comboBox5.SelectedIndex = 0;
@@ -1269,6 +1269,7 @@ namespace JCFLIGHTGCS
             {
                 VectorPointer = 0;
                 CheckAllBuffers = 0;
+
                 WayPoint1Latitude = Convert.ToInt32(WPLatVect1 * 1e7);
                 WayPoint1Longitude = Convert.ToInt32(WPLonVect1 * 1e7);
                 //ENVIA O PRIMEIRO WAYPOINT SE DISPONIVEL
@@ -1285,40 +1286,18 @@ namespace JCFLIGHTGCS
                 SendBuffer[VectorPointer++] = (byte)(WayPoint1Longitude >> 8);
                 SendBuffer[VectorPointer++] = (byte)(WayPoint1Longitude >> 16);
                 SendBuffer[VectorPointer++] = (byte)(WayPoint1Longitude >> 24);
+
                 //ALTITUDE DE SUBIDA
-                if (Convert.ToString(comboBox1.SelectedItem) == "10M") SendBuffer[VectorPointer++] = (byte)(0);
-                if (Convert.ToString(comboBox1.SelectedItem) == "15M") SendBuffer[VectorPointer++] = (byte)(1);
-                if (Convert.ToString(comboBox1.SelectedItem) == "20M") SendBuffer[VectorPointer++] = (byte)(2);
-                if (Convert.ToString(comboBox1.SelectedItem) == "25M") SendBuffer[VectorPointer++] = (byte)(3);
-                if (Convert.ToString(comboBox1.SelectedItem) == "30M") SendBuffer[VectorPointer++] = (byte)(4);
-                if (Convert.ToString(comboBox1.SelectedItem) == "35M") SendBuffer[VectorPointer++] = (byte)(5);
-                if (Convert.ToString(comboBox1.SelectedItem) == "40M") SendBuffer[VectorPointer++] = (byte)(6);
-                if (Convert.ToString(comboBox1.SelectedItem) == "45M") SendBuffer[VectorPointer++] = (byte)(7);
-                if (Convert.ToString(comboBox1.SelectedItem) == "50M") SendBuffer[VectorPointer++] = (byte)(8);
-                if (Convert.ToString(comboBox1.SelectedItem) == "55M") SendBuffer[VectorPointer++] = (byte)(9);
-                if (Convert.ToString(comboBox1.SelectedItem) == "60M") SendBuffer[VectorPointer++] = (byte)(10);
-                if (Convert.ToString(comboBox1.SelectedItem) == "65M") SendBuffer[VectorPointer++] = (byte)(11);
-                if (Convert.ToString(comboBox1.SelectedItem) == "70M") SendBuffer[VectorPointer++] = (byte)(12);
-                if (Convert.ToString(comboBox1.SelectedItem) == "75M") SendBuffer[VectorPointer++] = (byte)(13);
-                if (Convert.ToString(comboBox1.SelectedItem) == "80M") SendBuffer[VectorPointer++] = (byte)(14);
-                if (Convert.ToString(comboBox1.SelectedItem) == "85M") SendBuffer[VectorPointer++] = (byte)(15);
-                if (Convert.ToString(comboBox1.SelectedItem) == "90M") SendBuffer[VectorPointer++] = (byte)(16);
-                if (Convert.ToString(comboBox1.SelectedItem) == "95M") SendBuffer[VectorPointer++] = (byte)(17);
-                if (Convert.ToString(comboBox1.SelectedItem) == "100M") SendBuffer[VectorPointer++] = (byte)(18);
-                if (Convert.ToString(comboBox1.SelectedItem) == "105M") SendBuffer[VectorPointer++] = (byte)(19);
-                if (Convert.ToString(comboBox1.SelectedItem) == "110M") SendBuffer[VectorPointer++] = (byte)(20);
-                if (Convert.ToString(comboBox1.SelectedItem) == "115M") SendBuffer[VectorPointer++] = (byte)(21);
-                if (Convert.ToString(comboBox1.SelectedItem) == "120M") SendBuffer[VectorPointer++] = (byte)(22);
-                if (Convert.ToString(comboBox1.SelectedItem) == "125M") SendBuffer[VectorPointer++] = (byte)(23);
-                if (Convert.ToString(comboBox1.SelectedItem) == "130M") SendBuffer[VectorPointer++] = (byte)(24);
-                if (Convert.ToString(comboBox1.SelectedItem) == "135M") SendBuffer[VectorPointer++] = (byte)(25);
-                if (Convert.ToString(comboBox1.SelectedItem) == "140M") SendBuffer[VectorPointer++] = (byte)(26);
+                SendBuffer[VectorPointer++] = (byte)(numericUpDown1.Value);
+
                 //MODO DE VOO
                 if (Convert.ToString(comboBox2.SelectedItem) == "PROX.WP") SendBuffer[VectorPointer++] = (byte)(1);
                 if (Convert.ToString(comboBox2.SelectedItem) == "GPS-HOLD") SendBuffer[VectorPointer++] = (byte)(2);
                 if (Convert.ToString(comboBox2.SelectedItem) == "LAND") SendBuffer[VectorPointer++] = (byte)(3);
                 if (Convert.ToString(comboBox2.SelectedItem) == "RTH") SendBuffer[VectorPointer++] = (byte)(4);
                 if (Convert.ToString(comboBox2.SelectedItem) == "TAKEOFF") SendBuffer[VectorPointer++] = (byte)(5);
+
+                //TEMPO DO GPS-HOLD
                 SendBuffer[VectorPointer++] = (byte)(GPSHoldTimed1);
 
                 WayPoint2Latitude = Convert.ToInt32(WPLatVect2 * 1e7);
@@ -1332,40 +1311,18 @@ namespace JCFLIGHTGCS
                 SendBuffer[VectorPointer++] = (byte)(WayPoint2Longitude >> 8);
                 SendBuffer[VectorPointer++] = (byte)(WayPoint2Longitude >> 16);
                 SendBuffer[VectorPointer++] = (byte)(WayPoint2Longitude >> 24);
+
                 //ALTITUDE DE SUBIDA
-                if (Convert.ToString(comboBox4.SelectedItem) == "10M") SendBuffer[VectorPointer++] = (byte)(0);
-                if (Convert.ToString(comboBox4.SelectedItem) == "15M") SendBuffer[VectorPointer++] = (byte)(1);
-                if (Convert.ToString(comboBox4.SelectedItem) == "20M") SendBuffer[VectorPointer++] = (byte)(2);
-                if (Convert.ToString(comboBox4.SelectedItem) == "25M") SendBuffer[VectorPointer++] = (byte)(3);
-                if (Convert.ToString(comboBox4.SelectedItem) == "30M") SendBuffer[VectorPointer++] = (byte)(4);
-                if (Convert.ToString(comboBox4.SelectedItem) == "35M") SendBuffer[VectorPointer++] = (byte)(5);
-                if (Convert.ToString(comboBox4.SelectedItem) == "40M") SendBuffer[VectorPointer++] = (byte)(6);
-                if (Convert.ToString(comboBox4.SelectedItem) == "45M") SendBuffer[VectorPointer++] = (byte)(7);
-                if (Convert.ToString(comboBox4.SelectedItem) == "50M") SendBuffer[VectorPointer++] = (byte)(8);
-                if (Convert.ToString(comboBox4.SelectedItem) == "55M") SendBuffer[VectorPointer++] = (byte)(9);
-                if (Convert.ToString(comboBox4.SelectedItem) == "60M") SendBuffer[VectorPointer++] = (byte)(10);
-                if (Convert.ToString(comboBox4.SelectedItem) == "65M") SendBuffer[VectorPointer++] = (byte)(11);
-                if (Convert.ToString(comboBox4.SelectedItem) == "70M") SendBuffer[VectorPointer++] = (byte)(12);
-                if (Convert.ToString(comboBox4.SelectedItem) == "75M") SendBuffer[VectorPointer++] = (byte)(13);
-                if (Convert.ToString(comboBox4.SelectedItem) == "80M") SendBuffer[VectorPointer++] = (byte)(14);
-                if (Convert.ToString(comboBox4.SelectedItem) == "85M") SendBuffer[VectorPointer++] = (byte)(15);
-                if (Convert.ToString(comboBox4.SelectedItem) == "90M") SendBuffer[VectorPointer++] = (byte)(16);
-                if (Convert.ToString(comboBox4.SelectedItem) == "95M") SendBuffer[VectorPointer++] = (byte)(17);
-                if (Convert.ToString(comboBox4.SelectedItem) == "100M") SendBuffer[VectorPointer++] = (byte)(18);
-                if (Convert.ToString(comboBox4.SelectedItem) == "105M") SendBuffer[VectorPointer++] = (byte)(19);
-                if (Convert.ToString(comboBox4.SelectedItem) == "110M") SendBuffer[VectorPointer++] = (byte)(20);
-                if (Convert.ToString(comboBox4.SelectedItem) == "115M") SendBuffer[VectorPointer++] = (byte)(21);
-                if (Convert.ToString(comboBox4.SelectedItem) == "120M") SendBuffer[VectorPointer++] = (byte)(22);
-                if (Convert.ToString(comboBox4.SelectedItem) == "125M") SendBuffer[VectorPointer++] = (byte)(23);
-                if (Convert.ToString(comboBox4.SelectedItem) == "130M") SendBuffer[VectorPointer++] = (byte)(24);
-                if (Convert.ToString(comboBox4.SelectedItem) == "135M") SendBuffer[VectorPointer++] = (byte)(25);
-                if (Convert.ToString(comboBox4.SelectedItem) == "140M") SendBuffer[VectorPointer++] = (byte)(26);
+                SendBuffer[VectorPointer++] = (byte)(numericUpDown2.Value);
+
                 //MODO DE VOO
                 if (Convert.ToString(comboBox3.SelectedItem) == "PROX.WP") SendBuffer[VectorPointer++] = (byte)(1);
                 if (Convert.ToString(comboBox3.SelectedItem) == "GPS-HOLD") SendBuffer[VectorPointer++] = (byte)(2);
                 if (Convert.ToString(comboBox3.SelectedItem) == "LAND") SendBuffer[VectorPointer++] = (byte)(3);
                 if (Convert.ToString(comboBox3.SelectedItem) == "RTH") SendBuffer[VectorPointer++] = (byte)(4);
                 if (Convert.ToString(comboBox3.SelectedItem) == "TAKEOFF") SendBuffer[VectorPointer++] = (byte)(5);
+
+                //TEMPO DE VOO DO GPS-HOLD
                 SendBuffer[VectorPointer++] = (byte)(GPSHoldTimed2);
 
                 WayPoint3Latitude = Convert.ToInt32(WPLatVect3 * 1e7);
@@ -1379,40 +1336,18 @@ namespace JCFLIGHTGCS
                 SendBuffer[VectorPointer++] = (byte)(WayPoint3Longitude >> 8);
                 SendBuffer[VectorPointer++] = (byte)(WayPoint3Longitude >> 16);
                 SendBuffer[VectorPointer++] = (byte)(WayPoint3Longitude >> 24);
+
                 //ALTITUDE DE SUBIDA
-                if (Convert.ToString(comboBox6.SelectedItem) == "10M") SendBuffer[VectorPointer++] = (byte)(0);
-                if (Convert.ToString(comboBox6.SelectedItem) == "15M") SendBuffer[VectorPointer++] = (byte)(1);
-                if (Convert.ToString(comboBox6.SelectedItem) == "20M") SendBuffer[VectorPointer++] = (byte)(2);
-                if (Convert.ToString(comboBox6.SelectedItem) == "25M") SendBuffer[VectorPointer++] = (byte)(3);
-                if (Convert.ToString(comboBox6.SelectedItem) == "30M") SendBuffer[VectorPointer++] = (byte)(4);
-                if (Convert.ToString(comboBox6.SelectedItem) == "35M") SendBuffer[VectorPointer++] = (byte)(5);
-                if (Convert.ToString(comboBox6.SelectedItem) == "40M") SendBuffer[VectorPointer++] = (byte)(6);
-                if (Convert.ToString(comboBox6.SelectedItem) == "45M") SendBuffer[VectorPointer++] = (byte)(7);
-                if (Convert.ToString(comboBox6.SelectedItem) == "50M") SendBuffer[VectorPointer++] = (byte)(8);
-                if (Convert.ToString(comboBox6.SelectedItem) == "55M") SendBuffer[VectorPointer++] = (byte)(9);
-                if (Convert.ToString(comboBox6.SelectedItem) == "60M") SendBuffer[VectorPointer++] = (byte)(10);
-                if (Convert.ToString(comboBox6.SelectedItem) == "65M") SendBuffer[VectorPointer++] = (byte)(11);
-                if (Convert.ToString(comboBox6.SelectedItem) == "70M") SendBuffer[VectorPointer++] = (byte)(12);
-                if (Convert.ToString(comboBox6.SelectedItem) == "75M") SendBuffer[VectorPointer++] = (byte)(13);
-                if (Convert.ToString(comboBox6.SelectedItem) == "80M") SendBuffer[VectorPointer++] = (byte)(14);
-                if (Convert.ToString(comboBox6.SelectedItem) == "85M") SendBuffer[VectorPointer++] = (byte)(15);
-                if (Convert.ToString(comboBox6.SelectedItem) == "90M") SendBuffer[VectorPointer++] = (byte)(16);
-                if (Convert.ToString(comboBox6.SelectedItem) == "95M") SendBuffer[VectorPointer++] = (byte)(17);
-                if (Convert.ToString(comboBox6.SelectedItem) == "100M") SendBuffer[VectorPointer++] = (byte)(18);
-                if (Convert.ToString(comboBox6.SelectedItem) == "105M") SendBuffer[VectorPointer++] = (byte)(19);
-                if (Convert.ToString(comboBox6.SelectedItem) == "110M") SendBuffer[VectorPointer++] = (byte)(20);
-                if (Convert.ToString(comboBox6.SelectedItem) == "115M") SendBuffer[VectorPointer++] = (byte)(21);
-                if (Convert.ToString(comboBox6.SelectedItem) == "120M") SendBuffer[VectorPointer++] = (byte)(22);
-                if (Convert.ToString(comboBox6.SelectedItem) == "125M") SendBuffer[VectorPointer++] = (byte)(23);
-                if (Convert.ToString(comboBox6.SelectedItem) == "130M") SendBuffer[VectorPointer++] = (byte)(24);
-                if (Convert.ToString(comboBox6.SelectedItem) == "135M") SendBuffer[VectorPointer++] = (byte)(25);
-                if (Convert.ToString(comboBox6.SelectedItem) == "140M") SendBuffer[VectorPointer++] = (byte)(26);
+                SendBuffer[VectorPointer++] = (byte)(numericUpDown3.Value);
+
                 //MODO DE VOO
                 if (Convert.ToString(comboBox5.SelectedItem) == "PROX.WP") SendBuffer[VectorPointer++] = (byte)(1);
                 if (Convert.ToString(comboBox5.SelectedItem) == "GPS-HOLD") SendBuffer[VectorPointer++] = (byte)(2);
                 if (Convert.ToString(comboBox5.SelectedItem) == "LAND") SendBuffer[VectorPointer++] = (byte)(3);
                 if (Convert.ToString(comboBox5.SelectedItem) == "RTH") SendBuffer[VectorPointer++] = (byte)(4);
                 if (Convert.ToString(comboBox5.SelectedItem) == "TAKEOFF") SendBuffer[VectorPointer++] = (byte)(5);
+
+                //TEMPO DE VOO DO GPS-HOLD
                 SendBuffer[VectorPointer++] = (byte)(GPSHoldTimed3);
 
                 WayPoint4Latitude = Convert.ToInt32(WPLatVect4 * 1e7);
@@ -1426,40 +1361,18 @@ namespace JCFLIGHTGCS
                 SendBuffer[VectorPointer++] = (byte)(WayPoint4Longitude >> 8);
                 SendBuffer[VectorPointer++] = (byte)(WayPoint4Longitude >> 16);
                 SendBuffer[VectorPointer++] = (byte)(WayPoint4Longitude >> 24);
+
                 //ALTITUDE DE SUBIDA
-                if (Convert.ToString(comboBox8.SelectedItem) == "10M") SendBuffer[VectorPointer++] = (byte)(0);
-                if (Convert.ToString(comboBox8.SelectedItem) == "15M") SendBuffer[VectorPointer++] = (byte)(1);
-                if (Convert.ToString(comboBox8.SelectedItem) == "20M") SendBuffer[VectorPointer++] = (byte)(2);
-                if (Convert.ToString(comboBox8.SelectedItem) == "25M") SendBuffer[VectorPointer++] = (byte)(3);
-                if (Convert.ToString(comboBox8.SelectedItem) == "30M") SendBuffer[VectorPointer++] = (byte)(4);
-                if (Convert.ToString(comboBox8.SelectedItem) == "35M") SendBuffer[VectorPointer++] = (byte)(5);
-                if (Convert.ToString(comboBox8.SelectedItem) == "40M") SendBuffer[VectorPointer++] = (byte)(6);
-                if (Convert.ToString(comboBox8.SelectedItem) == "45M") SendBuffer[VectorPointer++] = (byte)(7);
-                if (Convert.ToString(comboBox8.SelectedItem) == "50M") SendBuffer[VectorPointer++] = (byte)(8);
-                if (Convert.ToString(comboBox8.SelectedItem) == "55M") SendBuffer[VectorPointer++] = (byte)(9);
-                if (Convert.ToString(comboBox8.SelectedItem) == "60M") SendBuffer[VectorPointer++] = (byte)(10);
-                if (Convert.ToString(comboBox8.SelectedItem) == "65M") SendBuffer[VectorPointer++] = (byte)(11);
-                if (Convert.ToString(comboBox8.SelectedItem) == "70M") SendBuffer[VectorPointer++] = (byte)(12);
-                if (Convert.ToString(comboBox8.SelectedItem) == "75M") SendBuffer[VectorPointer++] = (byte)(13);
-                if (Convert.ToString(comboBox8.SelectedItem) == "80M") SendBuffer[VectorPointer++] = (byte)(14);
-                if (Convert.ToString(comboBox8.SelectedItem) == "85M") SendBuffer[VectorPointer++] = (byte)(15);
-                if (Convert.ToString(comboBox8.SelectedItem) == "90M") SendBuffer[VectorPointer++] = (byte)(16);
-                if (Convert.ToString(comboBox8.SelectedItem) == "95M") SendBuffer[VectorPointer++] = (byte)(17);
-                if (Convert.ToString(comboBox8.SelectedItem) == "100M") SendBuffer[VectorPointer++] = (byte)(18);
-                if (Convert.ToString(comboBox8.SelectedItem) == "105M") SendBuffer[VectorPointer++] = (byte)(19);
-                if (Convert.ToString(comboBox8.SelectedItem) == "110M") SendBuffer[VectorPointer++] = (byte)(20);
-                if (Convert.ToString(comboBox8.SelectedItem) == "115M") SendBuffer[VectorPointer++] = (byte)(21);
-                if (Convert.ToString(comboBox8.SelectedItem) == "120M") SendBuffer[VectorPointer++] = (byte)(22);
-                if (Convert.ToString(comboBox8.SelectedItem) == "125M") SendBuffer[VectorPointer++] = (byte)(23);
-                if (Convert.ToString(comboBox8.SelectedItem) == "130M") SendBuffer[VectorPointer++] = (byte)(24);
-                if (Convert.ToString(comboBox8.SelectedItem) == "135M") SendBuffer[VectorPointer++] = (byte)(25);
-                if (Convert.ToString(comboBox8.SelectedItem) == "140M") SendBuffer[VectorPointer++] = (byte)(26);
+                SendBuffer[VectorPointer++] = (byte)(numericUpDown4.Value);
+
                 //MODO DE VOO
                 if (Convert.ToString(comboBox7.SelectedItem) == "PROX.WP") SendBuffer[VectorPointer++] = (byte)(1);
                 if (Convert.ToString(comboBox7.SelectedItem) == "GPS-HOLD") SendBuffer[VectorPointer++] = (byte)(2);
                 if (Convert.ToString(comboBox7.SelectedItem) == "LAND") SendBuffer[VectorPointer++] = (byte)(3);
                 if (Convert.ToString(comboBox7.SelectedItem) == "RTH") SendBuffer[VectorPointer++] = (byte)(4);
                 if (Convert.ToString(comboBox7.SelectedItem) == "TAKEOFF") SendBuffer[VectorPointer++] = (byte)(5);
+
+                //TEMPO DE VOO DO GPS-HOLD
                 SendBuffer[VectorPointer++] = (byte)(GPSHoldTimed4);
 
                 WayPoint5Latitude = Convert.ToInt32(WPLatVect5 * 1e7);
@@ -1473,40 +1386,18 @@ namespace JCFLIGHTGCS
                 SendBuffer[VectorPointer++] = (byte)(WayPoint5Longitude >> 8);
                 SendBuffer[VectorPointer++] = (byte)(WayPoint5Longitude >> 16);
                 SendBuffer[VectorPointer++] = (byte)(WayPoint5Longitude >> 24);
+
                 //ALTITUDE DE SUBIDA
-                if (Convert.ToString(comboBox10.SelectedItem) == "10M") SendBuffer[VectorPointer++] = (byte)(0);
-                if (Convert.ToString(comboBox10.SelectedItem) == "15M") SendBuffer[VectorPointer++] = (byte)(1);
-                if (Convert.ToString(comboBox10.SelectedItem) == "20M") SendBuffer[VectorPointer++] = (byte)(2);
-                if (Convert.ToString(comboBox10.SelectedItem) == "25M") SendBuffer[VectorPointer++] = (byte)(3);
-                if (Convert.ToString(comboBox10.SelectedItem) == "30M") SendBuffer[VectorPointer++] = (byte)(4);
-                if (Convert.ToString(comboBox10.SelectedItem) == "35M") SendBuffer[VectorPointer++] = (byte)(5);
-                if (Convert.ToString(comboBox10.SelectedItem) == "40M") SendBuffer[VectorPointer++] = (byte)(6);
-                if (Convert.ToString(comboBox10.SelectedItem) == "45M") SendBuffer[VectorPointer++] = (byte)(7);
-                if (Convert.ToString(comboBox10.SelectedItem) == "50M") SendBuffer[VectorPointer++] = (byte)(8);
-                if (Convert.ToString(comboBox10.SelectedItem) == "55M") SendBuffer[VectorPointer++] = (byte)(9);
-                if (Convert.ToString(comboBox10.SelectedItem) == "60M") SendBuffer[VectorPointer++] = (byte)(10);
-                if (Convert.ToString(comboBox10.SelectedItem) == "65M") SendBuffer[VectorPointer++] = (byte)(11);
-                if (Convert.ToString(comboBox10.SelectedItem) == "70M") SendBuffer[VectorPointer++] = (byte)(12);
-                if (Convert.ToString(comboBox10.SelectedItem) == "75M") SendBuffer[VectorPointer++] = (byte)(13);
-                if (Convert.ToString(comboBox10.SelectedItem) == "80M") SendBuffer[VectorPointer++] = (byte)(14);
-                if (Convert.ToString(comboBox10.SelectedItem) == "85M") SendBuffer[VectorPointer++] = (byte)(15);
-                if (Convert.ToString(comboBox10.SelectedItem) == "90M") SendBuffer[VectorPointer++] = (byte)(16);
-                if (Convert.ToString(comboBox10.SelectedItem) == "95M") SendBuffer[VectorPointer++] = (byte)(17);
-                if (Convert.ToString(comboBox10.SelectedItem) == "100M") SendBuffer[VectorPointer++] = (byte)(18);
-                if (Convert.ToString(comboBox10.SelectedItem) == "105M") SendBuffer[VectorPointer++] = (byte)(19);
-                if (Convert.ToString(comboBox10.SelectedItem) == "110M") SendBuffer[VectorPointer++] = (byte)(20);
-                if (Convert.ToString(comboBox10.SelectedItem) == "115M") SendBuffer[VectorPointer++] = (byte)(21);
-                if (Convert.ToString(comboBox10.SelectedItem) == "120M") SendBuffer[VectorPointer++] = (byte)(22);
-                if (Convert.ToString(comboBox10.SelectedItem) == "125M") SendBuffer[VectorPointer++] = (byte)(23);
-                if (Convert.ToString(comboBox10.SelectedItem) == "130M") SendBuffer[VectorPointer++] = (byte)(24);
-                if (Convert.ToString(comboBox10.SelectedItem) == "135M") SendBuffer[VectorPointer++] = (byte)(25);
-                if (Convert.ToString(comboBox10.SelectedItem) == "140M") SendBuffer[VectorPointer++] = (byte)(26);
+                SendBuffer[VectorPointer++] = (byte)(numericUpDown5.Value);
+
                 //MODO DE VOO
                 if (Convert.ToString(comboBox9.SelectedItem) == "PROX.WP") SendBuffer[VectorPointer++] = (byte)(1);
                 if (Convert.ToString(comboBox9.SelectedItem) == "GPS-HOLD") SendBuffer[VectorPointer++] = (byte)(2);
                 if (Convert.ToString(comboBox9.SelectedItem) == "LAND") SendBuffer[VectorPointer++] = (byte)(3);
                 if (Convert.ToString(comboBox9.SelectedItem) == "RTH") SendBuffer[VectorPointer++] = (byte)(4);
                 if (Convert.ToString(comboBox9.SelectedItem) == "TAKEOFF") SendBuffer[VectorPointer++] = (byte)(5);
+
+                //TEMPO DE VOO DO GPS-HOLD
                 SendBuffer[VectorPointer++] = (byte)(GPSHoldTimed5);
 
                 for (int i = 3; i < VectorPointer; i++) CheckAllBuffers ^= SendBuffer[i];
@@ -1532,40 +1423,18 @@ namespace JCFLIGHTGCS
                 SendBuffer[VectorPointer++] = (byte)(WayPoint6Longitude >> 8);
                 SendBuffer[VectorPointer++] = (byte)(WayPoint6Longitude >> 16);
                 SendBuffer[VectorPointer++] = (byte)(WayPoint6Longitude >> 24);
+
                 //ALTITUDE DE SUBIDA
-                if (Convert.ToString(comboBox12.SelectedItem) == "10M") SendBuffer[VectorPointer++] = (byte)(0);
-                if (Convert.ToString(comboBox12.SelectedItem) == "15M") SendBuffer[VectorPointer++] = (byte)(1);
-                if (Convert.ToString(comboBox12.SelectedItem) == "20M") SendBuffer[VectorPointer++] = (byte)(2);
-                if (Convert.ToString(comboBox12.SelectedItem) == "25M") SendBuffer[VectorPointer++] = (byte)(3);
-                if (Convert.ToString(comboBox12.SelectedItem) == "30M") SendBuffer[VectorPointer++] = (byte)(4);
-                if (Convert.ToString(comboBox12.SelectedItem) == "35M") SendBuffer[VectorPointer++] = (byte)(5);
-                if (Convert.ToString(comboBox12.SelectedItem) == "40M") SendBuffer[VectorPointer++] = (byte)(6);
-                if (Convert.ToString(comboBox12.SelectedItem) == "45M") SendBuffer[VectorPointer++] = (byte)(7);
-                if (Convert.ToString(comboBox12.SelectedItem) == "50M") SendBuffer[VectorPointer++] = (byte)(8);
-                if (Convert.ToString(comboBox12.SelectedItem) == "55M") SendBuffer[VectorPointer++] = (byte)(9);
-                if (Convert.ToString(comboBox12.SelectedItem) == "60M") SendBuffer[VectorPointer++] = (byte)(10);
-                if (Convert.ToString(comboBox12.SelectedItem) == "65M") SendBuffer[VectorPointer++] = (byte)(11);
-                if (Convert.ToString(comboBox12.SelectedItem) == "70M") SendBuffer[VectorPointer++] = (byte)(12);
-                if (Convert.ToString(comboBox12.SelectedItem) == "75M") SendBuffer[VectorPointer++] = (byte)(13);
-                if (Convert.ToString(comboBox12.SelectedItem) == "80M") SendBuffer[VectorPointer++] = (byte)(14);
-                if (Convert.ToString(comboBox12.SelectedItem) == "85M") SendBuffer[VectorPointer++] = (byte)(15);
-                if (Convert.ToString(comboBox12.SelectedItem) == "90M") SendBuffer[VectorPointer++] = (byte)(16);
-                if (Convert.ToString(comboBox12.SelectedItem) == "95M") SendBuffer[VectorPointer++] = (byte)(17);
-                if (Convert.ToString(comboBox12.SelectedItem) == "100M") SendBuffer[VectorPointer++] = (byte)(18);
-                if (Convert.ToString(comboBox12.SelectedItem) == "105M") SendBuffer[VectorPointer++] = (byte)(19);
-                if (Convert.ToString(comboBox12.SelectedItem) == "110M") SendBuffer[VectorPointer++] = (byte)(20);
-                if (Convert.ToString(comboBox12.SelectedItem) == "115M") SendBuffer[VectorPointer++] = (byte)(21);
-                if (Convert.ToString(comboBox12.SelectedItem) == "120M") SendBuffer[VectorPointer++] = (byte)(22);
-                if (Convert.ToString(comboBox12.SelectedItem) == "125M") SendBuffer[VectorPointer++] = (byte)(23);
-                if (Convert.ToString(comboBox12.SelectedItem) == "130M") SendBuffer[VectorPointer++] = (byte)(24);
-                if (Convert.ToString(comboBox12.SelectedItem) == "135M") SendBuffer[VectorPointer++] = (byte)(25);
-                if (Convert.ToString(comboBox12.SelectedItem) == "140M") SendBuffer[VectorPointer++] = (byte)(26);
+                SendBuffer[VectorPointer++] = (byte)(numericUpDown6.Value);
+
                 //MODO DE VOO
                 if (Convert.ToString(comboBox11.SelectedItem) == "PROX.WP") SendBuffer[VectorPointer++] = (byte)(1);
                 if (Convert.ToString(comboBox11.SelectedItem) == "GPS-HOLD") SendBuffer[VectorPointer++] = (byte)(2);
                 if (Convert.ToString(comboBox11.SelectedItem) == "LAND") SendBuffer[VectorPointer++] = (byte)(3);
                 if (Convert.ToString(comboBox11.SelectedItem) == "RTH") SendBuffer[VectorPointer++] = (byte)(4);
                 if (Convert.ToString(comboBox11.SelectedItem) == "TAKEOFF") SendBuffer[VectorPointer++] = (byte)(5);
+
+                //TEMPO DE VOO DO GPS-HOLD
                 SendBuffer[VectorPointer++] = (byte)(GPSHoldTimed6);
 
                 WayPoint7Latitude = Convert.ToInt32(WPLatVect7 * 1e7);
@@ -1579,40 +1448,18 @@ namespace JCFLIGHTGCS
                 SendBuffer[VectorPointer++] = (byte)(WayPoint7Longitude >> 8);
                 SendBuffer[VectorPointer++] = (byte)(WayPoint7Longitude >> 16);
                 SendBuffer[VectorPointer++] = (byte)(WayPoint7Longitude >> 24);
+
                 //ALTITUDE DE SUBIDA
-                if (Convert.ToString(comboBox15.SelectedItem) == "10M") SendBuffer[VectorPointer++] = (byte)(0);
-                if (Convert.ToString(comboBox15.SelectedItem) == "15M") SendBuffer[VectorPointer++] = (byte)(1);
-                if (Convert.ToString(comboBox15.SelectedItem) == "20M") SendBuffer[VectorPointer++] = (byte)(2);
-                if (Convert.ToString(comboBox15.SelectedItem) == "25M") SendBuffer[VectorPointer++] = (byte)(3);
-                if (Convert.ToString(comboBox15.SelectedItem) == "30M") SendBuffer[VectorPointer++] = (byte)(4);
-                if (Convert.ToString(comboBox15.SelectedItem) == "35M") SendBuffer[VectorPointer++] = (byte)(5);
-                if (Convert.ToString(comboBox15.SelectedItem) == "40M") SendBuffer[VectorPointer++] = (byte)(6);
-                if (Convert.ToString(comboBox15.SelectedItem) == "45M") SendBuffer[VectorPointer++] = (byte)(7);
-                if (Convert.ToString(comboBox15.SelectedItem) == "50M") SendBuffer[VectorPointer++] = (byte)(8);
-                if (Convert.ToString(comboBox15.SelectedItem) == "55M") SendBuffer[VectorPointer++] = (byte)(9);
-                if (Convert.ToString(comboBox15.SelectedItem) == "60M") SendBuffer[VectorPointer++] = (byte)(10);
-                if (Convert.ToString(comboBox15.SelectedItem) == "65M") SendBuffer[VectorPointer++] = (byte)(11);
-                if (Convert.ToString(comboBox15.SelectedItem) == "70M") SendBuffer[VectorPointer++] = (byte)(12);
-                if (Convert.ToString(comboBox15.SelectedItem) == "75M") SendBuffer[VectorPointer++] = (byte)(13);
-                if (Convert.ToString(comboBox15.SelectedItem) == "80M") SendBuffer[VectorPointer++] = (byte)(14);
-                if (Convert.ToString(comboBox15.SelectedItem) == "85M") SendBuffer[VectorPointer++] = (byte)(15);
-                if (Convert.ToString(comboBox15.SelectedItem) == "90M") SendBuffer[VectorPointer++] = (byte)(16);
-                if (Convert.ToString(comboBox15.SelectedItem) == "95M") SendBuffer[VectorPointer++] = (byte)(17);
-                if (Convert.ToString(comboBox15.SelectedItem) == "100M") SendBuffer[VectorPointer++] = (byte)(18);
-                if (Convert.ToString(comboBox15.SelectedItem) == "105M") SendBuffer[VectorPointer++] = (byte)(19);
-                if (Convert.ToString(comboBox15.SelectedItem) == "110M") SendBuffer[VectorPointer++] = (byte)(20);
-                if (Convert.ToString(comboBox15.SelectedItem) == "115M") SendBuffer[VectorPointer++] = (byte)(21);
-                if (Convert.ToString(comboBox15.SelectedItem) == "120M") SendBuffer[VectorPointer++] = (byte)(22);
-                if (Convert.ToString(comboBox15.SelectedItem) == "125M") SendBuffer[VectorPointer++] = (byte)(23);
-                if (Convert.ToString(comboBox15.SelectedItem) == "130M") SendBuffer[VectorPointer++] = (byte)(24);
-                if (Convert.ToString(comboBox15.SelectedItem) == "135M") SendBuffer[VectorPointer++] = (byte)(25);
-                if (Convert.ToString(comboBox15.SelectedItem) == "140M") SendBuffer[VectorPointer++] = (byte)(26);
+                SendBuffer[VectorPointer++] = (byte)(numericUpDown7.Value);
+
                 //MODO DE VOO
                 if (Convert.ToString(comboBox14.SelectedItem) == "PROX.WP") SendBuffer[VectorPointer++] = (byte)(1);
                 if (Convert.ToString(comboBox14.SelectedItem) == "GPS-HOLD") SendBuffer[VectorPointer++] = (byte)(2);
                 if (Convert.ToString(comboBox14.SelectedItem) == "LAND") SendBuffer[VectorPointer++] = (byte)(3);
                 if (Convert.ToString(comboBox14.SelectedItem) == "RTH") SendBuffer[VectorPointer++] = (byte)(4);
                 if (Convert.ToString(comboBox14.SelectedItem) == "TAKEOFF") SendBuffer[VectorPointer++] = (byte)(5);
+
+                //TEMPO DE VOO DO GPS-HOLD
                 SendBuffer[VectorPointer++] = (byte)(GPSHoldTimed7);
 
                 WayPoint8Latitude = Convert.ToInt32(WPLatVect8 * 1e7);
@@ -1626,40 +1473,18 @@ namespace JCFLIGHTGCS
                 SendBuffer[VectorPointer++] = (byte)(WayPoint8Longitude >> 8);
                 SendBuffer[VectorPointer++] = (byte)(WayPoint8Longitude >> 16);
                 SendBuffer[VectorPointer++] = (byte)(WayPoint8Longitude >> 24);
+
                 //ALTITUDE DE SUBIDA
-                if (Convert.ToString(comboBox17.SelectedItem) == "10M") SendBuffer[VectorPointer++] = (byte)(0);
-                if (Convert.ToString(comboBox17.SelectedItem) == "15M") SendBuffer[VectorPointer++] = (byte)(1);
-                if (Convert.ToString(comboBox17.SelectedItem) == "20M") SendBuffer[VectorPointer++] = (byte)(2);
-                if (Convert.ToString(comboBox17.SelectedItem) == "25M") SendBuffer[VectorPointer++] = (byte)(3);
-                if (Convert.ToString(comboBox17.SelectedItem) == "30M") SendBuffer[VectorPointer++] = (byte)(4);
-                if (Convert.ToString(comboBox17.SelectedItem) == "35M") SendBuffer[VectorPointer++] = (byte)(5);
-                if (Convert.ToString(comboBox17.SelectedItem) == "40M") SendBuffer[VectorPointer++] = (byte)(6);
-                if (Convert.ToString(comboBox17.SelectedItem) == "45M") SendBuffer[VectorPointer++] = (byte)(7);
-                if (Convert.ToString(comboBox17.SelectedItem) == "50M") SendBuffer[VectorPointer++] = (byte)(8);
-                if (Convert.ToString(comboBox17.SelectedItem) == "55M") SendBuffer[VectorPointer++] = (byte)(9);
-                if (Convert.ToString(comboBox17.SelectedItem) == "60M") SendBuffer[VectorPointer++] = (byte)(10);
-                if (Convert.ToString(comboBox17.SelectedItem) == "65M") SendBuffer[VectorPointer++] = (byte)(11);
-                if (Convert.ToString(comboBox17.SelectedItem) == "70M") SendBuffer[VectorPointer++] = (byte)(12);
-                if (Convert.ToString(comboBox17.SelectedItem) == "75M") SendBuffer[VectorPointer++] = (byte)(13);
-                if (Convert.ToString(comboBox17.SelectedItem) == "80M") SendBuffer[VectorPointer++] = (byte)(14);
-                if (Convert.ToString(comboBox17.SelectedItem) == "85M") SendBuffer[VectorPointer++] = (byte)(15);
-                if (Convert.ToString(comboBox17.SelectedItem) == "90M") SendBuffer[VectorPointer++] = (byte)(16);
-                if (Convert.ToString(comboBox17.SelectedItem) == "95M") SendBuffer[VectorPointer++] = (byte)(17);
-                if (Convert.ToString(comboBox17.SelectedItem) == "100M") SendBuffer[VectorPointer++] = (byte)(18);
-                if (Convert.ToString(comboBox17.SelectedItem) == "105M") SendBuffer[VectorPointer++] = (byte)(19);
-                if (Convert.ToString(comboBox17.SelectedItem) == "110M") SendBuffer[VectorPointer++] = (byte)(20);
-                if (Convert.ToString(comboBox17.SelectedItem) == "115M") SendBuffer[VectorPointer++] = (byte)(21);
-                if (Convert.ToString(comboBox17.SelectedItem) == "120M") SendBuffer[VectorPointer++] = (byte)(22);
-                if (Convert.ToString(comboBox17.SelectedItem) == "125M") SendBuffer[VectorPointer++] = (byte)(23);
-                if (Convert.ToString(comboBox17.SelectedItem) == "130M") SendBuffer[VectorPointer++] = (byte)(24);
-                if (Convert.ToString(comboBox17.SelectedItem) == "135M") SendBuffer[VectorPointer++] = (byte)(25);
-                if (Convert.ToString(comboBox17.SelectedItem) == "140M") SendBuffer[VectorPointer++] = (byte)(26);
+                SendBuffer[VectorPointer++] = (byte)(numericUpDown8.Value);
+
                 //MODO DE VOO
                 if (Convert.ToString(comboBox16.SelectedItem) == "PROX.WP") SendBuffer[VectorPointer++] = (byte)(1);
                 if (Convert.ToString(comboBox16.SelectedItem) == "GPS-HOLD") SendBuffer[VectorPointer++] = (byte)(2);
                 if (Convert.ToString(comboBox16.SelectedItem) == "LAND") SendBuffer[VectorPointer++] = (byte)(3);
                 if (Convert.ToString(comboBox16.SelectedItem) == "RTH") SendBuffer[VectorPointer++] = (byte)(4);
                 if (Convert.ToString(comboBox16.SelectedItem) == "TAKEOFF") SendBuffer[VectorPointer++] = (byte)(5);
+
+                //TEMPO DE VOO DO GPS-HOLD
                 SendBuffer[VectorPointer++] = (byte)(GPSHoldTimed8);
 
                 WayPoint9Latitude = Convert.ToInt32(WPLatVect9 * 1e7);
@@ -1673,40 +1498,18 @@ namespace JCFLIGHTGCS
                 SendBuffer[VectorPointer++] = (byte)(WayPoint9Longitude >> 8);
                 SendBuffer[VectorPointer++] = (byte)(WayPoint9Longitude >> 16);
                 SendBuffer[VectorPointer++] = (byte)(WayPoint9Longitude >> 24);
+
                 //ALTITUDE DE SUBIDA
-                if (Convert.ToString(comboBox19.SelectedItem) == "10M") SendBuffer[VectorPointer++] = (byte)(0);
-                if (Convert.ToString(comboBox19.SelectedItem) == "15M") SendBuffer[VectorPointer++] = (byte)(1);
-                if (Convert.ToString(comboBox19.SelectedItem) == "20M") SendBuffer[VectorPointer++] = (byte)(2);
-                if (Convert.ToString(comboBox19.SelectedItem) == "25M") SendBuffer[VectorPointer++] = (byte)(3);
-                if (Convert.ToString(comboBox19.SelectedItem) == "30M") SendBuffer[VectorPointer++] = (byte)(4);
-                if (Convert.ToString(comboBox19.SelectedItem) == "35M") SendBuffer[VectorPointer++] = (byte)(5);
-                if (Convert.ToString(comboBox19.SelectedItem) == "40M") SendBuffer[VectorPointer++] = (byte)(6);
-                if (Convert.ToString(comboBox19.SelectedItem) == "45M") SendBuffer[VectorPointer++] = (byte)(7);
-                if (Convert.ToString(comboBox19.SelectedItem) == "50M") SendBuffer[VectorPointer++] = (byte)(8);
-                if (Convert.ToString(comboBox19.SelectedItem) == "55M") SendBuffer[VectorPointer++] = (byte)(9);
-                if (Convert.ToString(comboBox19.SelectedItem) == "60M") SendBuffer[VectorPointer++] = (byte)(10);
-                if (Convert.ToString(comboBox19.SelectedItem) == "65M") SendBuffer[VectorPointer++] = (byte)(11);
-                if (Convert.ToString(comboBox19.SelectedItem) == "70M") SendBuffer[VectorPointer++] = (byte)(12);
-                if (Convert.ToString(comboBox19.SelectedItem) == "75M") SendBuffer[VectorPointer++] = (byte)(13);
-                if (Convert.ToString(comboBox19.SelectedItem) == "80M") SendBuffer[VectorPointer++] = (byte)(14);
-                if (Convert.ToString(comboBox19.SelectedItem) == "85M") SendBuffer[VectorPointer++] = (byte)(15);
-                if (Convert.ToString(comboBox19.SelectedItem) == "90M") SendBuffer[VectorPointer++] = (byte)(16);
-                if (Convert.ToString(comboBox19.SelectedItem) == "95M") SendBuffer[VectorPointer++] = (byte)(17);
-                if (Convert.ToString(comboBox19.SelectedItem) == "100M") SendBuffer[VectorPointer++] = (byte)(18);
-                if (Convert.ToString(comboBox19.SelectedItem) == "105M") SendBuffer[VectorPointer++] = (byte)(19);
-                if (Convert.ToString(comboBox19.SelectedItem) == "110M") SendBuffer[VectorPointer++] = (byte)(20);
-                if (Convert.ToString(comboBox19.SelectedItem) == "115M") SendBuffer[VectorPointer++] = (byte)(21);
-                if (Convert.ToString(comboBox19.SelectedItem) == "120M") SendBuffer[VectorPointer++] = (byte)(22);
-                if (Convert.ToString(comboBox19.SelectedItem) == "125M") SendBuffer[VectorPointer++] = (byte)(23);
-                if (Convert.ToString(comboBox19.SelectedItem) == "130M") SendBuffer[VectorPointer++] = (byte)(24);
-                if (Convert.ToString(comboBox19.SelectedItem) == "135M") SendBuffer[VectorPointer++] = (byte)(25);
-                if (Convert.ToString(comboBox19.SelectedItem) == "140M") SendBuffer[VectorPointer++] = (byte)(26);
+                SendBuffer[VectorPointer++] = (byte)(numericUpDown9.Value);
+
                 //MODO DE VOO
                 if (Convert.ToString(comboBox18.SelectedItem) == "PROX.WP") SendBuffer[VectorPointer++] = (byte)(1);
                 if (Convert.ToString(comboBox18.SelectedItem) == "GPS-HOLD") SendBuffer[VectorPointer++] = (byte)(2);
                 if (Convert.ToString(comboBox18.SelectedItem) == "LAND") SendBuffer[VectorPointer++] = (byte)(3);
                 if (Convert.ToString(comboBox18.SelectedItem) == "RTH") SendBuffer[VectorPointer++] = (byte)(4);
                 if (Convert.ToString(comboBox18.SelectedItem) == "TAKEOFF") SendBuffer[VectorPointer++] = (byte)(5);
+
+                //TEMPO DE VOO DO GPS-HOLD
                 SendBuffer[VectorPointer++] = (byte)(GPSHoldTimed9);
 
                 WayPoint10Latitude = Convert.ToInt32(WPLatVect10 * 1e7);
@@ -1720,40 +1523,18 @@ namespace JCFLIGHTGCS
                 SendBuffer[VectorPointer++] = (byte)(WayPoint10Longitude >> 8);
                 SendBuffer[VectorPointer++] = (byte)(WayPoint10Longitude >> 16);
                 SendBuffer[VectorPointer++] = (byte)(WayPoint10Longitude >> 24);
+
                 //ALTITUDE DE SUBIDA
-                if (Convert.ToString(comboBox21.SelectedItem) == "10M") SendBuffer[VectorPointer++] = (byte)(0);
-                if (Convert.ToString(comboBox21.SelectedItem) == "15M") SendBuffer[VectorPointer++] = (byte)(1);
-                if (Convert.ToString(comboBox21.SelectedItem) == "20M") SendBuffer[VectorPointer++] = (byte)(2);
-                if (Convert.ToString(comboBox21.SelectedItem) == "25M") SendBuffer[VectorPointer++] = (byte)(3);
-                if (Convert.ToString(comboBox21.SelectedItem) == "30M") SendBuffer[VectorPointer++] = (byte)(4);
-                if (Convert.ToString(comboBox21.SelectedItem) == "35M") SendBuffer[VectorPointer++] = (byte)(5);
-                if (Convert.ToString(comboBox21.SelectedItem) == "40M") SendBuffer[VectorPointer++] = (byte)(6);
-                if (Convert.ToString(comboBox21.SelectedItem) == "45M") SendBuffer[VectorPointer++] = (byte)(7);
-                if (Convert.ToString(comboBox21.SelectedItem) == "50M") SendBuffer[VectorPointer++] = (byte)(8);
-                if (Convert.ToString(comboBox21.SelectedItem) == "55M") SendBuffer[VectorPointer++] = (byte)(9);
-                if (Convert.ToString(comboBox21.SelectedItem) == "60M") SendBuffer[VectorPointer++] = (byte)(10);
-                if (Convert.ToString(comboBox21.SelectedItem) == "65M") SendBuffer[VectorPointer++] = (byte)(11);
-                if (Convert.ToString(comboBox21.SelectedItem) == "70M") SendBuffer[VectorPointer++] = (byte)(12);
-                if (Convert.ToString(comboBox21.SelectedItem) == "75M") SendBuffer[VectorPointer++] = (byte)(13);
-                if (Convert.ToString(comboBox21.SelectedItem) == "80M") SendBuffer[VectorPointer++] = (byte)(14);
-                if (Convert.ToString(comboBox21.SelectedItem) == "85M") SendBuffer[VectorPointer++] = (byte)(15);
-                if (Convert.ToString(comboBox21.SelectedItem) == "90M") SendBuffer[VectorPointer++] = (byte)(16);
-                if (Convert.ToString(comboBox21.SelectedItem) == "95M") SendBuffer[VectorPointer++] = (byte)(17);
-                if (Convert.ToString(comboBox21.SelectedItem) == "100M") SendBuffer[VectorPointer++] = (byte)(18);
-                if (Convert.ToString(comboBox21.SelectedItem) == "105M") SendBuffer[VectorPointer++] = (byte)(19);
-                if (Convert.ToString(comboBox21.SelectedItem) == "110M") SendBuffer[VectorPointer++] = (byte)(20);
-                if (Convert.ToString(comboBox21.SelectedItem) == "115M") SendBuffer[VectorPointer++] = (byte)(21);
-                if (Convert.ToString(comboBox21.SelectedItem) == "120M") SendBuffer[VectorPointer++] = (byte)(22);
-                if (Convert.ToString(comboBox21.SelectedItem) == "125M") SendBuffer[VectorPointer++] = (byte)(23);
-                if (Convert.ToString(comboBox21.SelectedItem) == "130M") SendBuffer[VectorPointer++] = (byte)(24);
-                if (Convert.ToString(comboBox21.SelectedItem) == "135M") SendBuffer[VectorPointer++] = (byte)(25);
-                if (Convert.ToString(comboBox21.SelectedItem) == "140M") SendBuffer[VectorPointer++] = (byte)(26);
+                SendBuffer[VectorPointer++] = (byte)(numericUpDown10.Value);
+
                 //MODO DE VOO
                 if (Convert.ToString(comboBox20.SelectedItem) == "PROX.WP") SendBuffer[VectorPointer++] = (byte)(1);
                 if (Convert.ToString(comboBox20.SelectedItem) == "GPS-HOLD") SendBuffer[VectorPointer++] = (byte)(2);
                 if (Convert.ToString(comboBox20.SelectedItem) == "LAND") SendBuffer[VectorPointer++] = (byte)(3);
                 if (Convert.ToString(comboBox20.SelectedItem) == "RTH") SendBuffer[VectorPointer++] = (byte)(4);
                 if (Convert.ToString(comboBox20.SelectedItem) == "TAKEOFF") SendBuffer[VectorPointer++] = (byte)(5);
+
+                //TEMPO DE VOO DO GPS-HOLD
                 SendBuffer[VectorPointer++] = (byte)(GPSHoldTimed10);
 
                 for (int i = 3; i < VectorPointer; i++) CheckAllBuffers ^= SendBuffer[i];
@@ -2342,7 +2123,7 @@ namespace JCFLIGHTGCS
             MouseClickedComboBox20 = true;
         }
 
-        void comboBox1_MouseWheel(object sender, MouseEventArgs e)
+        void numericUpDown1_MouseWheel(object sender, MouseEventArgs e)
         {
             ((HandledMouseEventArgs)e).Handled = true;
         }
@@ -2357,7 +2138,7 @@ namespace JCFLIGHTGCS
             ((HandledMouseEventArgs)e).Handled = true;
         }
 
-        void comboBox4_MouseWheel(object sender, MouseEventArgs e)
+        void numericUpDown2_MouseWheel(object sender, MouseEventArgs e)
         {
             ((HandledMouseEventArgs)e).Handled = true;
         }
@@ -2367,7 +2148,7 @@ namespace JCFLIGHTGCS
             ((HandledMouseEventArgs)e).Handled = true;
         }
 
-        void comboBox6_MouseWheel(object sender, MouseEventArgs e)
+        void numericUpDown3_MouseWheel(object sender, MouseEventArgs e)
         {
             ((HandledMouseEventArgs)e).Handled = true;
         }
@@ -2377,7 +2158,7 @@ namespace JCFLIGHTGCS
             ((HandledMouseEventArgs)e).Handled = true;
         }
 
-        void comboBox8_MouseWheel(object sender, MouseEventArgs e)
+        void numericUpDown4_MouseWheel(object sender, MouseEventArgs e)
         {
             ((HandledMouseEventArgs)e).Handled = true;
         }
@@ -2387,7 +2168,7 @@ namespace JCFLIGHTGCS
             ((HandledMouseEventArgs)e).Handled = true;
         }
 
-        void comboBox10_MouseWheel(object sender, MouseEventArgs e)
+        void numericUpDown5_MouseWheel(object sender, MouseEventArgs e)
         {
             ((HandledMouseEventArgs)e).Handled = true;
         }
@@ -2397,7 +2178,7 @@ namespace JCFLIGHTGCS
             ((HandledMouseEventArgs)e).Handled = true;
         }
 
-        void comboBox12_MouseWheel(object sender, MouseEventArgs e)
+        void numericUpDown6_MouseWheel(object sender, MouseEventArgs e)
         {
             ((HandledMouseEventArgs)e).Handled = true;
         }
@@ -2412,7 +2193,7 @@ namespace JCFLIGHTGCS
             ((HandledMouseEventArgs)e).Handled = true;
         }
 
-        void comboBox15_MouseWheel(object sender, MouseEventArgs e)
+        void numericUpDown7_MouseWheel(object sender, MouseEventArgs e)
         {
             ((HandledMouseEventArgs)e).Handled = true;
         }
@@ -2422,7 +2203,7 @@ namespace JCFLIGHTGCS
             ((HandledMouseEventArgs)e).Handled = true;
         }
 
-        void comboBox17_MouseWheel(object sender, MouseEventArgs e)
+        void numericUpDown8_MouseWheel(object sender, MouseEventArgs e)
         {
             ((HandledMouseEventArgs)e).Handled = true;
         }
@@ -2432,7 +2213,7 @@ namespace JCFLIGHTGCS
             ((HandledMouseEventArgs)e).Handled = true;
         }
 
-        void comboBox19_MouseWheel(object sender, MouseEventArgs e)
+        void numericUpDown9_MouseWheel(object sender, MouseEventArgs e)
         {
             ((HandledMouseEventArgs)e).Handled = true;
         }
@@ -2442,7 +2223,7 @@ namespace JCFLIGHTGCS
             ((HandledMouseEventArgs)e).Handled = true;
         }
 
-        void comboBox21_MouseWheel(object sender, MouseEventArgs e)
+        void numericUpDown10_MouseWheel(object sender, MouseEventArgs e)
         {
             ((HandledMouseEventArgs)e).Handled = true;
         }

@@ -35,31 +35,24 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox33 = new System.Windows.Forms.GroupBox();
             this.comboBox20 = new System.Windows.Forms.ComboBox();
-            this.comboBox21 = new System.Windows.Forms.ComboBox();
             this.label54 = new System.Windows.Forms.Label();
             this.groupBox32 = new System.Windows.Forms.GroupBox();
             this.comboBox18 = new System.Windows.Forms.ComboBox();
-            this.comboBox19 = new System.Windows.Forms.ComboBox();
             this.label53 = new System.Windows.Forms.Label();
             this.groupBox30 = new System.Windows.Forms.GroupBox();
             this.comboBox11 = new System.Windows.Forms.ComboBox();
-            this.comboBox12 = new System.Windows.Forms.ComboBox();
             this.label39 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.comboBox9 = new System.Windows.Forms.ComboBox();
-            this.comboBox10 = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.comboBox7 = new System.Windows.Forms.ComboBox();
-            this.comboBox8 = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.comboBox5 = new System.Windows.Forms.ComboBox();
-            this.comboBox6 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -69,7 +62,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.groupBox34 = new System.Windows.Forms.GroupBox();
             this.label55 = new System.Windows.Forms.Label();
@@ -173,11 +165,9 @@
             this.button4 = new System.Windows.Forms.Button();
             this.groupBox20 = new System.Windows.Forms.GroupBox();
             this.comboBox14 = new System.Windows.Forms.ComboBox();
-            this.comboBox15 = new System.Windows.Forms.ComboBox();
             this.label51 = new System.Windows.Forms.Label();
             this.groupBox31 = new System.Windows.Forms.GroupBox();
             this.comboBox16 = new System.Windows.Forms.ComboBox();
-            this.comboBox17 = new System.Windows.Forms.ComboBox();
             this.label52 = new System.Windows.Forms.Label();
             this.label76 = new System.Windows.Forms.Label();
             this.label77 = new System.Windows.Forms.Label();
@@ -194,6 +184,16 @@
             this.tirarFotoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.limparMapaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown5 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown6 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown7 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown8 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown9 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown10 = new System.Windows.Forms.NumericUpDown();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox33.SuspendLayout();
@@ -242,6 +242,16 @@
             this.groupBox31.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown10)).BeginInit();
             this.SuspendLayout();
             // 
             // MyGMap
@@ -313,8 +323,8 @@
             // 
             // groupBox33
             // 
+            this.groupBox33.Controls.Add(this.numericUpDown10);
             this.groupBox33.Controls.Add(this.comboBox20);
-            this.groupBox33.Controls.Add(this.comboBox21);
             this.groupBox33.Controls.Add(this.label54);
             this.groupBox33.Location = new System.Drawing.Point(0, 483);
             this.groupBox33.Name = "groupBox33";
@@ -342,43 +352,6 @@
             this.comboBox20.KeyUp += new System.Windows.Forms.KeyEventHandler(this.comboBox20_KeyUp);
             this.comboBox20.MouseDown += new System.Windows.Forms.MouseEventHandler(this.comboBox20_MouseDown);
             // 
-            // comboBox21
-            // 
-            this.comboBox21.FormattingEnabled = true;
-            this.comboBox21.Items.AddRange(new object[] {
-            "10M",
-            "15M",
-            "20M",
-            "25M",
-            "30M",
-            "35M",
-            "40M",
-            "45M",
-            "50M",
-            "55M",
-            "60M",
-            "65M",
-            "70M",
-            "75M",
-            "80M",
-            "85M",
-            "90M",
-            "95M",
-            "100M",
-            "105M",
-            "110M",
-            "115M",
-            "120M",
-            "125M",
-            "130M",
-            "135M",
-            "140M"});
-            this.comboBox21.Location = new System.Drawing.Point(75, 16);
-            this.comboBox21.Name = "comboBox21";
-            this.comboBox21.Size = new System.Drawing.Size(55, 21);
-            this.comboBox21.TabIndex = 0;
-            this.comboBox21.Text = "10M";
-            // 
             // label54
             // 
             this.label54.AutoSize = true;
@@ -390,8 +363,8 @@
             // 
             // groupBox32
             // 
+            this.groupBox32.Controls.Add(this.numericUpDown9);
             this.groupBox32.Controls.Add(this.comboBox18);
-            this.groupBox32.Controls.Add(this.comboBox19);
             this.groupBox32.Controls.Add(this.label53);
             this.groupBox32.Location = new System.Drawing.Point(0, 432);
             this.groupBox32.Name = "groupBox32";
@@ -419,43 +392,6 @@
             this.comboBox18.KeyUp += new System.Windows.Forms.KeyEventHandler(this.comboBox18_KeyUp);
             this.comboBox18.MouseDown += new System.Windows.Forms.MouseEventHandler(this.comboBox18_MouseDown);
             // 
-            // comboBox19
-            // 
-            this.comboBox19.FormattingEnabled = true;
-            this.comboBox19.Items.AddRange(new object[] {
-            "10M",
-            "15M",
-            "20M",
-            "25M",
-            "30M",
-            "35M",
-            "40M",
-            "45M",
-            "50M",
-            "55M",
-            "60M",
-            "65M",
-            "70M",
-            "75M",
-            "80M",
-            "85M",
-            "90M",
-            "95M",
-            "100M",
-            "105M",
-            "110M",
-            "115M",
-            "120M",
-            "125M",
-            "130M",
-            "135M",
-            "140M"});
-            this.comboBox19.Location = new System.Drawing.Point(75, 16);
-            this.comboBox19.Name = "comboBox19";
-            this.comboBox19.Size = new System.Drawing.Size(55, 21);
-            this.comboBox19.TabIndex = 0;
-            this.comboBox19.Text = "10M";
-            // 
             // label53
             // 
             this.label53.AutoSize = true;
@@ -467,8 +403,8 @@
             // 
             // groupBox30
             // 
+            this.groupBox30.Controls.Add(this.numericUpDown6);
             this.groupBox30.Controls.Add(this.comboBox11);
-            this.groupBox30.Controls.Add(this.comboBox12);
             this.groupBox30.Controls.Add(this.label39);
             this.groupBox30.Location = new System.Drawing.Point(0, 282);
             this.groupBox30.Name = "groupBox30";
@@ -496,43 +432,6 @@
             this.comboBox11.KeyUp += new System.Windows.Forms.KeyEventHandler(this.comboBox11_KeyUp);
             this.comboBox11.MouseDown += new System.Windows.Forms.MouseEventHandler(this.comboBox11_MouseDown);
             // 
-            // comboBox12
-            // 
-            this.comboBox12.FormattingEnabled = true;
-            this.comboBox12.Items.AddRange(new object[] {
-            "10M",
-            "15M",
-            "20M",
-            "25M",
-            "30M",
-            "35M",
-            "40M",
-            "45M",
-            "50M",
-            "55M",
-            "60M",
-            "65M",
-            "70M",
-            "75M",
-            "80M",
-            "85M",
-            "90M",
-            "95M",
-            "100M",
-            "105M",
-            "110M",
-            "115M",
-            "120M",
-            "125M",
-            "130M",
-            "135M",
-            "140M"});
-            this.comboBox12.Location = new System.Drawing.Point(75, 16);
-            this.comboBox12.Name = "comboBox12";
-            this.comboBox12.Size = new System.Drawing.Size(55, 21);
-            this.comboBox12.TabIndex = 0;
-            this.comboBox12.Text = "10M";
-            // 
             // label39
             // 
             this.label39.AutoSize = true;
@@ -544,8 +443,8 @@
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.numericUpDown2);
             this.groupBox6.Controls.Add(this.comboBox3);
-            this.groupBox6.Controls.Add(this.comboBox4);
             this.groupBox6.Controls.Add(this.label9);
             this.groupBox6.Location = new System.Drawing.Point(0, 82);
             this.groupBox6.Name = "groupBox6";
@@ -573,43 +472,6 @@
             this.comboBox3.KeyUp += new System.Windows.Forms.KeyEventHandler(this.comboBox3_KeyUp_1);
             this.comboBox3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.comboBox3_MouseDown_1);
             // 
-            // comboBox4
-            // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Items.AddRange(new object[] {
-            "10M",
-            "15M",
-            "20M",
-            "25M",
-            "30M",
-            "35M",
-            "40M",
-            "45M",
-            "50M",
-            "55M",
-            "60M",
-            "65M",
-            "70M",
-            "75M",
-            "80M",
-            "85M",
-            "90M",
-            "95M",
-            "100M",
-            "105M",
-            "110M",
-            "115M",
-            "120M",
-            "125M",
-            "130M",
-            "135M",
-            "140M"});
-            this.comboBox4.Location = new System.Drawing.Point(75, 16);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(55, 21);
-            this.comboBox4.TabIndex = 0;
-            this.comboBox4.Text = "10M";
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -621,8 +483,8 @@
             // 
             // groupBox9
             // 
+            this.groupBox9.Controls.Add(this.numericUpDown5);
             this.groupBox9.Controls.Add(this.comboBox9);
-            this.groupBox9.Controls.Add(this.comboBox10);
             this.groupBox9.Controls.Add(this.label4);
             this.groupBox9.Location = new System.Drawing.Point(0, 232);
             this.groupBox9.Name = "groupBox9";
@@ -650,43 +512,6 @@
             this.comboBox9.KeyUp += new System.Windows.Forms.KeyEventHandler(this.comboBox9_KeyUp);
             this.comboBox9.MouseDown += new System.Windows.Forms.MouseEventHandler(this.comboBox9_MouseDown);
             // 
-            // comboBox10
-            // 
-            this.comboBox10.FormattingEnabled = true;
-            this.comboBox10.Items.AddRange(new object[] {
-            "10M",
-            "15M",
-            "20M",
-            "25M",
-            "30M",
-            "35M",
-            "40M",
-            "45M",
-            "50M",
-            "55M",
-            "60M",
-            "65M",
-            "70M",
-            "75M",
-            "80M",
-            "85M",
-            "90M",
-            "95M",
-            "100M",
-            "105M",
-            "110M",
-            "115M",
-            "120M",
-            "125M",
-            "130M",
-            "135M",
-            "140M"});
-            this.comboBox10.Location = new System.Drawing.Point(75, 16);
-            this.comboBox10.Name = "comboBox10";
-            this.comboBox10.Size = new System.Drawing.Size(55, 21);
-            this.comboBox10.TabIndex = 0;
-            this.comboBox10.Text = "10M";
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -698,8 +523,8 @@
             // 
             // groupBox8
             // 
+            this.groupBox8.Controls.Add(this.numericUpDown4);
             this.groupBox8.Controls.Add(this.comboBox7);
-            this.groupBox8.Controls.Add(this.comboBox8);
             this.groupBox8.Controls.Add(this.label3);
             this.groupBox8.Location = new System.Drawing.Point(0, 182);
             this.groupBox8.Name = "groupBox8";
@@ -727,43 +552,6 @@
             this.comboBox7.KeyUp += new System.Windows.Forms.KeyEventHandler(this.comboBox7_KeyUp);
             this.comboBox7.MouseDown += new System.Windows.Forms.MouseEventHandler(this.comboBox7_MouseDown);
             // 
-            // comboBox8
-            // 
-            this.comboBox8.FormattingEnabled = true;
-            this.comboBox8.Items.AddRange(new object[] {
-            "10M",
-            "15M",
-            "20M",
-            "25M",
-            "30M",
-            "35M",
-            "40M",
-            "45M",
-            "50M",
-            "55M",
-            "60M",
-            "65M",
-            "70M",
-            "75M",
-            "80M",
-            "85M",
-            "90M",
-            "95M",
-            "100M",
-            "105M",
-            "110M",
-            "115M",
-            "120M",
-            "125M",
-            "130M",
-            "135M",
-            "140M"});
-            this.comboBox8.Location = new System.Drawing.Point(75, 16);
-            this.comboBox8.Name = "comboBox8";
-            this.comboBox8.Size = new System.Drawing.Size(55, 21);
-            this.comboBox8.TabIndex = 0;
-            this.comboBox8.Text = "10M";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -775,8 +563,8 @@
             // 
             // groupBox7
             // 
+            this.groupBox7.Controls.Add(this.numericUpDown3);
             this.groupBox7.Controls.Add(this.comboBox5);
-            this.groupBox7.Controls.Add(this.comboBox6);
             this.groupBox7.Controls.Add(this.label2);
             this.groupBox7.Location = new System.Drawing.Point(0, 132);
             this.groupBox7.Name = "groupBox7";
@@ -803,43 +591,6 @@
             this.comboBox5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox5_KeyPress);
             this.comboBox5.KeyUp += new System.Windows.Forms.KeyEventHandler(this.comboBox5_KeyUp);
             this.comboBox5.MouseDown += new System.Windows.Forms.MouseEventHandler(this.comboBox5_MouseDown);
-            // 
-            // comboBox6
-            // 
-            this.comboBox6.FormattingEnabled = true;
-            this.comboBox6.Items.AddRange(new object[] {
-            "10M",
-            "15M",
-            "20M",
-            "25M",
-            "30M",
-            "35M",
-            "40M",
-            "45M",
-            "50M",
-            "55M",
-            "60M",
-            "65M",
-            "70M",
-            "75M",
-            "80M",
-            "85M",
-            "90M",
-            "95M",
-            "100M",
-            "105M",
-            "110M",
-            "115M",
-            "120M",
-            "125M",
-            "130M",
-            "135M",
-            "140M"});
-            this.comboBox6.Location = new System.Drawing.Point(75, 16);
-            this.comboBox6.Name = "comboBox6";
-            this.comboBox6.Size = new System.Drawing.Size(55, 21);
-            this.comboBox6.TabIndex = 0;
-            this.comboBox6.Text = "10M";
             // 
             // label2
             // 
@@ -906,8 +657,8 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.numericUpDown1);
             this.groupBox5.Controls.Add(this.comboBox2);
-            this.groupBox5.Controls.Add(this.comboBox1);
             this.groupBox5.Controls.Add(this.label1);
             this.groupBox5.Location = new System.Drawing.Point(1029, 84);
             this.groupBox5.Name = "groupBox5";
@@ -934,43 +685,6 @@
             this.comboBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox2_KeyPress);
             this.comboBox2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.comboBox2_KeyUp);
             this.comboBox2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.comboBox2_MouseDown);
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "10M",
-            "15M",
-            "20M",
-            "25M",
-            "30M",
-            "35M",
-            "40M",
-            "45M",
-            "50M",
-            "55M",
-            "60M",
-            "65M",
-            "70M",
-            "75M",
-            "80M",
-            "85M",
-            "90M",
-            "95M",
-            "100M",
-            "105M",
-            "110M",
-            "115M",
-            "120M",
-            "125M",
-            "130M",
-            "135M",
-            "140M"});
-            this.comboBox1.Location = new System.Drawing.Point(75, 16);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(55, 21);
-            this.comboBox1.TabIndex = 0;
-            this.comboBox1.Text = "10M";
             // 
             // groupBox10
             // 
@@ -1997,8 +1711,8 @@
             // 
             // groupBox20
             // 
+            this.groupBox20.Controls.Add(this.numericUpDown7);
             this.groupBox20.Controls.Add(this.comboBox14);
-            this.groupBox20.Controls.Add(this.comboBox15);
             this.groupBox20.Controls.Add(this.label51);
             this.groupBox20.Location = new System.Drawing.Point(1029, 385);
             this.groupBox20.Name = "groupBox20";
@@ -2026,43 +1740,6 @@
             this.comboBox14.KeyUp += new System.Windows.Forms.KeyEventHandler(this.comboBox14_KeyUp);
             this.comboBox14.MouseDown += new System.Windows.Forms.MouseEventHandler(this.comboBox14_MouseDown);
             // 
-            // comboBox15
-            // 
-            this.comboBox15.FormattingEnabled = true;
-            this.comboBox15.Items.AddRange(new object[] {
-            "10M",
-            "15M",
-            "20M",
-            "25M",
-            "30M",
-            "35M",
-            "40M",
-            "45M",
-            "50M",
-            "55M",
-            "60M",
-            "65M",
-            "70M",
-            "75M",
-            "80M",
-            "85M",
-            "90M",
-            "95M",
-            "100M",
-            "105M",
-            "110M",
-            "115M",
-            "120M",
-            "125M",
-            "130M",
-            "135M",
-            "140M"});
-            this.comboBox15.Location = new System.Drawing.Point(75, 16);
-            this.comboBox15.Name = "comboBox15";
-            this.comboBox15.Size = new System.Drawing.Size(55, 21);
-            this.comboBox15.TabIndex = 0;
-            this.comboBox15.Text = "10M";
-            // 
             // label51
             // 
             this.label51.AutoSize = true;
@@ -2074,8 +1751,8 @@
             // 
             // groupBox31
             // 
+            this.groupBox31.Controls.Add(this.numericUpDown8);
             this.groupBox31.Controls.Add(this.comboBox16);
-            this.groupBox31.Controls.Add(this.comboBox17);
             this.groupBox31.Controls.Add(this.label52);
             this.groupBox31.Location = new System.Drawing.Point(1029, 435);
             this.groupBox31.Name = "groupBox31";
@@ -2102,43 +1779,6 @@
             this.comboBox16.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox16_KeyPress);
             this.comboBox16.KeyUp += new System.Windows.Forms.KeyEventHandler(this.comboBox16_KeyUp);
             this.comboBox16.MouseDown += new System.Windows.Forms.MouseEventHandler(this.comboBox16_MouseDown);
-            // 
-            // comboBox17
-            // 
-            this.comboBox17.FormattingEnabled = true;
-            this.comboBox17.Items.AddRange(new object[] {
-            "10M",
-            "15M",
-            "20M",
-            "25M",
-            "30M",
-            "35M",
-            "40M",
-            "45M",
-            "50M",
-            "55M",
-            "60M",
-            "65M",
-            "70M",
-            "75M",
-            "80M",
-            "85M",
-            "90M",
-            "95M",
-            "100M",
-            "105M",
-            "110M",
-            "115M",
-            "120M",
-            "125M",
-            "130M",
-            "135M",
-            "140M"});
-            this.comboBox17.Location = new System.Drawing.Point(75, 16);
-            this.comboBox17.Name = "comboBox17";
-            this.comboBox17.Size = new System.Drawing.Size(55, 21);
-            this.comboBox17.TabIndex = 0;
-            this.comboBox17.Text = "10M";
             // 
             // label52
             // 
@@ -2290,6 +1930,236 @@
             this.checkBox1.Text = "Auto-Posição";
             this.checkBox1.UseVisualStyleBackColor = false;
             // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericUpDown1.Location = new System.Drawing.Point(75, 15);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            150,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(55, 22);
+            this.numericUpDown1.TabIndex = 2;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // numericUpDown2
+            // 
+            this.numericUpDown2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericUpDown2.Location = new System.Drawing.Point(75, 15);
+            this.numericUpDown2.Maximum = new decimal(new int[] {
+            150,
+            0,
+            0,
+            0});
+            this.numericUpDown2.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numericUpDown2.Name = "numericUpDown2";
+            this.numericUpDown2.Size = new System.Drawing.Size(55, 22);
+            this.numericUpDown2.TabIndex = 3;
+            this.numericUpDown2.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // numericUpDown3
+            // 
+            this.numericUpDown3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericUpDown3.Location = new System.Drawing.Point(75, 15);
+            this.numericUpDown3.Maximum = new decimal(new int[] {
+            150,
+            0,
+            0,
+            0});
+            this.numericUpDown3.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numericUpDown3.Name = "numericUpDown3";
+            this.numericUpDown3.Size = new System.Drawing.Size(55, 22);
+            this.numericUpDown3.TabIndex = 3;
+            this.numericUpDown3.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // numericUpDown4
+            // 
+            this.numericUpDown4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericUpDown4.Location = new System.Drawing.Point(75, 10);
+            this.numericUpDown4.Maximum = new decimal(new int[] {
+            150,
+            0,
+            0,
+            0});
+            this.numericUpDown4.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numericUpDown4.Name = "numericUpDown4";
+            this.numericUpDown4.Size = new System.Drawing.Size(55, 22);
+            this.numericUpDown4.TabIndex = 3;
+            this.numericUpDown4.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // numericUpDown5
+            // 
+            this.numericUpDown5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericUpDown5.Location = new System.Drawing.Point(75, 15);
+            this.numericUpDown5.Maximum = new decimal(new int[] {
+            150,
+            0,
+            0,
+            0});
+            this.numericUpDown5.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numericUpDown5.Name = "numericUpDown5";
+            this.numericUpDown5.Size = new System.Drawing.Size(55, 22);
+            this.numericUpDown5.TabIndex = 3;
+            this.numericUpDown5.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // numericUpDown6
+            // 
+            this.numericUpDown6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericUpDown6.Location = new System.Drawing.Point(75, 15);
+            this.numericUpDown6.Maximum = new decimal(new int[] {
+            150,
+            0,
+            0,
+            0});
+            this.numericUpDown6.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numericUpDown6.Name = "numericUpDown6";
+            this.numericUpDown6.Size = new System.Drawing.Size(55, 22);
+            this.numericUpDown6.TabIndex = 3;
+            this.numericUpDown6.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // numericUpDown7
+            // 
+            this.numericUpDown7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericUpDown7.Location = new System.Drawing.Point(75, 15);
+            this.numericUpDown7.Maximum = new decimal(new int[] {
+            150,
+            0,
+            0,
+            0});
+            this.numericUpDown7.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numericUpDown7.Name = "numericUpDown7";
+            this.numericUpDown7.Size = new System.Drawing.Size(55, 22);
+            this.numericUpDown7.TabIndex = 3;
+            this.numericUpDown7.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // numericUpDown8
+            // 
+            this.numericUpDown8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericUpDown8.Location = new System.Drawing.Point(75, 15);
+            this.numericUpDown8.Maximum = new decimal(new int[] {
+            150,
+            0,
+            0,
+            0});
+            this.numericUpDown8.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numericUpDown8.Name = "numericUpDown8";
+            this.numericUpDown8.Size = new System.Drawing.Size(55, 22);
+            this.numericUpDown8.TabIndex = 4;
+            this.numericUpDown8.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // numericUpDown9
+            // 
+            this.numericUpDown9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericUpDown9.Location = new System.Drawing.Point(75, 15);
+            this.numericUpDown9.Maximum = new decimal(new int[] {
+            150,
+            0,
+            0,
+            0});
+            this.numericUpDown9.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numericUpDown9.Name = "numericUpDown9";
+            this.numericUpDown9.Size = new System.Drawing.Size(55, 22);
+            this.numericUpDown9.TabIndex = 4;
+            this.numericUpDown9.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // numericUpDown10
+            // 
+            this.numericUpDown10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericUpDown10.Location = new System.Drawing.Point(75, 15);
+            this.numericUpDown10.Maximum = new decimal(new int[] {
+            150,
+            0,
+            0,
+            0});
+            this.numericUpDown10.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numericUpDown10.Name = "numericUpDown10";
+            this.numericUpDown10.Size = new System.Drawing.Size(55, 22);
+            this.numericUpDown10.TabIndex = 4;
+            this.numericUpDown10.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
             // WayPoint
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2426,6 +2296,16 @@
             this.groupBox31.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown10)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2443,22 +2323,17 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.ComboBox comboBox7;
-        private System.Windows.Forms.ComboBox comboBox8;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.ComboBox comboBox5;
-        private System.Windows.Forms.ComboBox comboBox6;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.ComboBox comboBox4;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.ComboBox comboBox9;
-        private System.Windows.Forms.ComboBox comboBox10;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupBox10;
         private System.Windows.Forms.GroupBox groupBox11;
@@ -2487,7 +2362,6 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.GroupBox groupBox30;
         private System.Windows.Forms.ComboBox comboBox11;
-        private System.Windows.Forms.ComboBox comboBox12;
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.GroupBox groupBox21;
         private System.Windows.Forms.Label label24;
@@ -2535,19 +2409,15 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.GroupBox groupBox33;
         private System.Windows.Forms.ComboBox comboBox20;
-        private System.Windows.Forms.ComboBox comboBox21;
         private System.Windows.Forms.Label label54;
         private System.Windows.Forms.GroupBox groupBox32;
         private System.Windows.Forms.ComboBox comboBox18;
-        private System.Windows.Forms.ComboBox comboBox19;
         private System.Windows.Forms.Label label53;
         private System.Windows.Forms.GroupBox groupBox20;
         private System.Windows.Forms.ComboBox comboBox14;
-        private System.Windows.Forms.ComboBox comboBox15;
         private System.Windows.Forms.Label label51;
         private System.Windows.Forms.GroupBox groupBox31;
         private System.Windows.Forms.ComboBox comboBox16;
-        private System.Windows.Forms.ComboBox comboBox17;
         private System.Windows.Forms.Label label52;
         private System.Windows.Forms.GroupBox groupBox34;
         private System.Windows.Forms.Label label55;
@@ -2596,5 +2466,15 @@
         private System.Windows.Forms.ToolStripMenuItem voeParaCáToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem limparMapaToolStripMenuItem;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.NumericUpDown numericUpDown10;
+        private System.Windows.Forms.NumericUpDown numericUpDown9;
+        private System.Windows.Forms.NumericUpDown numericUpDown6;
+        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.NumericUpDown numericUpDown5;
+        private System.Windows.Forms.NumericUpDown numericUpDown4;
+        private System.Windows.Forms.NumericUpDown numericUpDown3;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown numericUpDown7;
+        private System.Windows.Forms.NumericUpDown numericUpDown8;
     }
 }
