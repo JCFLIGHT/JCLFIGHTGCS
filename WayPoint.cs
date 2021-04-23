@@ -185,6 +185,7 @@ namespace JCFLIGHTGCS
         public WayPoint()
         {
             InitializeComponent();
+            MessageRead = false;
             MyGMap.PolygonsEnabled = true;
             //SERIAL
             SerialPort.DataBits = 8;
@@ -196,7 +197,7 @@ namespace JCFLIGHTGCS
             foreach (string PortsName in SerialPorts) comboBox13.Items.Add(PortsName);
             SerialPort.DataReceived += new SerialDataReceivedEventHandler(serialPort1_DataReceived_1);
             pictureBox1.Image = Properties.Resources.Desconectado;
-            MyGMap.ShowCenter = false;
+            MyGMap.ShowCenter = true;
             MyGMap.Manager.Mode = AccessMode.ServerAndCache;
             //MyGMap.MapProvider = GMapProviders.BingSatelliteMap;
             //MyGMap.MapProvider = GMapProviders.BingHybridMap;
@@ -216,9 +217,6 @@ namespace JCFLIGHTGCS
             GMOverlayLiveData = new GMapOverlay("LiveData");
             MyGMap.Overlays.Add(GMOverlayLiveData);
             GMOverlayLiveData.Markers.Clear();
-            trackBar1.Value = 2;
-            trackBar1.Minimum = 2;
-            trackBar1.Maximum = 20;
             label41.Parent = MyGMap;
             label41.BackColor = Color.Blue;
             label41.ForeColor = Color.White;
@@ -232,25 +230,25 @@ namespace JCFLIGHTGCS
             label48.BackColor = Color.Blue;
             label48.ForeColor = Color.White;
             numericUpDown1.MouseWheel += new MouseEventHandler(numericUpDown1_MouseWheel);
+            comboBox1.MouseWheel += new MouseEventHandler(comboBox1_MouseWheel);
             comboBox2.MouseWheel += new MouseEventHandler(comboBox2_MouseWheel);
-            comboBox3.MouseWheel += new MouseEventHandler(comboBox3_MouseWheel);
             numericUpDown2.MouseWheel += new MouseEventHandler(numericUpDown2_MouseWheel);
-            comboBox5.MouseWheel += new MouseEventHandler(comboBox5_MouseWheel);
+            comboBox3.MouseWheel += new MouseEventHandler(comboBox3_MouseWheel);
             numericUpDown3.MouseWheel += new MouseEventHandler(numericUpDown3_MouseWheel);
-            comboBox7.MouseWheel += new MouseEventHandler(comboBox7_MouseWheel);
+            comboBox4.MouseWheel += new MouseEventHandler(comboBox4_MouseWheel);
             numericUpDown4.MouseWheel += new MouseEventHandler(numericUpDown4_MouseWheel);
-            comboBox9.MouseWheel += new MouseEventHandler(comboBox9_MouseWheel);
+            comboBox5.MouseWheel += new MouseEventHandler(comboBox5_MouseWheel);
             numericUpDown5.MouseWheel += new MouseEventHandler(numericUpDown5_MouseWheel);
-            comboBox11.MouseWheel += new MouseEventHandler(comboBox11_MouseWheel);
+            comboBox6.MouseWheel += new MouseEventHandler(comboBox6_MouseWheel);
             numericUpDown6.MouseWheel += new MouseEventHandler(numericUpDown6_MouseWheel);
             comboBox13.MouseWheel += new MouseEventHandler(comboBox13_MouseWheel);
-            comboBox14.MouseWheel += new MouseEventHandler(comboBox14_MouseWheel);
+            comboBox7.MouseWheel += new MouseEventHandler(comboBox7_MouseWheel);
             numericUpDown7.MouseWheel += new MouseEventHandler(numericUpDown7_MouseWheel);
-            comboBox16.MouseWheel += new MouseEventHandler(comboBox16_MouseWheel);
+            comboBox8.MouseWheel += new MouseEventHandler(comboBox8_MouseWheel);
             numericUpDown8.MouseWheel += new MouseEventHandler(numericUpDown8_MouseWheel);
-            comboBox18.MouseWheel += new MouseEventHandler(comboBox18_MouseWheel);
+            comboBox9.MouseWheel += new MouseEventHandler(comboBox9_MouseWheel);
             numericUpDown9.MouseWheel += new MouseEventHandler(numericUpDown9_MouseWheel);
-            comboBox20.MouseWheel += new MouseEventHandler(comboBox20_MouseWheel);
+            comboBox10.MouseWheel += new MouseEventHandler(comboBox10_MouseWheel);
             numericUpDown10.MouseWheel += new MouseEventHandler(numericUpDown10_MouseWheel);
             trackBar1.MouseWheel += new MouseEventHandler(trackBar1_MouseWheel);
         }
@@ -389,7 +387,14 @@ namespace JCFLIGHTGCS
         private void button1_Click(object sender, EventArgs e)
         {
             if (SerialPort.IsOpen == false) return;
-            SendWayPoints(SerialPort);
+            Program.WaitUart.Show();
+            for (int i = 0; i <= CountWP; i++)
+            {
+                Program.WaitUart.Refresh();
+                SendWayPoints(SerialPort);
+                Thread.Sleep(50);
+            }
+            Program.WaitUart.Close();
         }
 
         private void comboBox13_SelectedIndexChanged(object sender, EventArgs e)
@@ -434,7 +439,6 @@ namespace JCFLIGHTGCS
         {
             CountWP2 = 0;
             ParamsPushed = false;
-            MessageRead = false;
             comboBox13.Enabled = true;
             comboBox13.Text = "Selecione";
             SerialPort.Close();
@@ -898,26 +902,26 @@ namespace JCFLIGHTGCS
                             MyGMap.Overlays.Add(GmapPolygons);
                             PrintArea2 = false;
                         }
-                        numericUpDown1.Value = PushedComboBox[0];
-                        numericUpDown2.Value = PushedComboBox[1];
-                        numericUpDown3.Value = PushedComboBox[2];
-                        numericUpDown4.Value = PushedComboBox[3];
-                        numericUpDown5.Value = PushedComboBox[4];
-                        numericUpDown6.Value = PushedComboBox[5];
-                        numericUpDown7.Value = PushedComboBox[6];
-                        numericUpDown8.Value = PushedComboBox[7];
-                        numericUpDown9.Value = PushedComboBox[8];
-                        numericUpDown10.Value = PushedComboBox[9];
-                        comboBox2.SelectedIndex = (PushedComboBox[10] > 0) ? PushedComboBox[10] - 1 : 0;
-                        comboBox3.SelectedIndex = (PushedComboBox[11] > 0) ? PushedComboBox[11] - 1 : 0;
-                        comboBox5.SelectedIndex = (PushedComboBox[12] > 0) ? PushedComboBox[12] - 1 : 0;
-                        comboBox7.SelectedIndex = (PushedComboBox[13] > 0) ? PushedComboBox[13] - 1 : 0;
-                        comboBox9.SelectedIndex = (PushedComboBox[14] > 0) ? PushedComboBox[14] - 1 : 0;
-                        comboBox11.SelectedIndex = (PushedComboBox[15] > 0) ? PushedComboBox[15] - 1 : 0;
-                        comboBox14.SelectedIndex = (PushedComboBox[16] > 0) ? PushedComboBox[16] - 1 : 0;
-                        comboBox16.SelectedIndex = (PushedComboBox[17] > 0) ? PushedComboBox[17] - 1 : 0;
-                        comboBox18.SelectedIndex = (PushedComboBox[18] > 0) ? PushedComboBox[18] - 1 : 0;
-                        comboBox20.SelectedIndex = (PushedComboBox[19] > 0) ? PushedComboBox[19] - 1 : 0;
+                        numericUpDown1.Value = (PushedComboBox[0] == 0) ? 10 : PushedComboBox[0];
+                        numericUpDown2.Value = (PushedComboBox[1] == 0) ? 10 : PushedComboBox[1];
+                        numericUpDown3.Value = (PushedComboBox[2] == 0) ? 10 : PushedComboBox[2];
+                        numericUpDown4.Value = (PushedComboBox[3] == 0) ? 10 : PushedComboBox[3];
+                        numericUpDown5.Value = (PushedComboBox[4] == 0) ? 10 : PushedComboBox[4];
+                        numericUpDown6.Value = (PushedComboBox[5] == 0) ? 10 : PushedComboBox[5];
+                        numericUpDown7.Value = (PushedComboBox[6] == 0) ? 10 : PushedComboBox[6];
+                        numericUpDown8.Value = (PushedComboBox[7] == 0) ? 10 : PushedComboBox[7];
+                        numericUpDown9.Value = (PushedComboBox[8] == 0) ? 10 : PushedComboBox[8];
+                        numericUpDown10.Value = (PushedComboBox[9] == 0) ? 10 : PushedComboBox[9];
+                        comboBox1.SelectedIndex = (PushedComboBox[10] > 0) ? PushedComboBox[10] - 1 : 0;
+                        comboBox2.SelectedIndex = (PushedComboBox[11] > 0) ? PushedComboBox[11] - 1 : 0;
+                        comboBox3.SelectedIndex = (PushedComboBox[12] > 0) ? PushedComboBox[12] - 1 : 0;
+                        comboBox4.SelectedIndex = (PushedComboBox[13] > 0) ? PushedComboBox[13] - 1 : 0;
+                        comboBox5.SelectedIndex = (PushedComboBox[14] > 0) ? PushedComboBox[14] - 1 : 0;
+                        comboBox6.SelectedIndex = (PushedComboBox[15] > 0) ? PushedComboBox[15] - 1 : 0;
+                        comboBox7.SelectedIndex = (PushedComboBox[16] > 0) ? PushedComboBox[16] - 1 : 0;
+                        comboBox8.SelectedIndex = (PushedComboBox[17] > 0) ? PushedComboBox[17] - 1 : 0;
+                        comboBox9.SelectedIndex = (PushedComboBox[18] > 0) ? PushedComboBox[18] - 1 : 0;
+                        comboBox10.SelectedIndex = (PushedComboBox[19] > 0) ? PushedComboBox[19] - 1 : 0;
                         CountToBlock++;
                         if (CountToBlock > 80)
                         {
@@ -1104,7 +1108,6 @@ namespace JCFLIGHTGCS
             {
                 button3.Enabled = false;
             }
-            if (PushLocation) MyGMap.Zoom = trackBar1.Value;
         }
 
         private void WayPoint_FormClosing(object sender, FormClosingEventArgs e)
@@ -1160,6 +1163,10 @@ namespace JCFLIGHTGCS
 
         private void button2_Click(object sender, EventArgs e)
         {
+            if (SerialPort.IsOpen == true)
+            {
+                Serial_Write_To_FC(3);
+            }
             MarkersOverlay.Markers.Clear();
             GmapPolygons.Polygons.Clear();
             GmapPolygons.Clear();
@@ -1228,34 +1235,38 @@ namespace JCFLIGHTGCS
             GPSHoldTimed10 = 1;
             CountToBlock = 0;
             BlockPushParams = false;
-            numericUpDown1.Value = 10;
-            numericUpDown2.Value = 10;
-            numericUpDown3.Value = 10;
-            numericUpDown4.Value = 10;
-            numericUpDown5.Value = 10;
-            numericUpDown6.Value = 10;
-            numericUpDown7.Value = 10;
-            numericUpDown8.Value = 10;
-            numericUpDown9.Value = 10;
-            numericUpDown10.Value = 10;
-            comboBox2.SelectedIndex = 0;
-            comboBox3.SelectedIndex = 0;
-            comboBox5.SelectedIndex = 0;
-            comboBox7.SelectedIndex = 0;
-            comboBox9.SelectedIndex = 0;
-            comboBox11.SelectedIndex = 0;
-            comboBox14.SelectedIndex = 0;
-            comboBox16.SelectedIndex = 0;
-            comboBox18.SelectedIndex = 0;
-            comboBox20.SelectedIndex = 0;
-            if (SerialPort.IsOpen == false) return;
-            Serial_Write_To_FC(3);
+            numericUpDown1.Value = PushedComboBox[0] = 10;
+            numericUpDown2.Value = PushedComboBox[1] = 10;
+            numericUpDown3.Value = PushedComboBox[2] = 10;
+            numericUpDown4.Value = PushedComboBox[3] = 10;
+            numericUpDown5.Value = PushedComboBox[4] = 10;
+            numericUpDown6.Value = PushedComboBox[5] = 10;
+            numericUpDown7.Value = PushedComboBox[6] = 10;
+            numericUpDown8.Value = PushedComboBox[7] = 10;
+            numericUpDown9.Value = PushedComboBox[8] = 10;
+            numericUpDown10.Value = PushedComboBox[9] = 10;
+            comboBox1.SelectedIndex = PushedComboBox[10] = 0;
+            comboBox2.SelectedIndex = PushedComboBox[11] = 0;
+            comboBox3.SelectedIndex = PushedComboBox[12] = 0;
+            comboBox4.SelectedIndex = PushedComboBox[13] = 0;
+            comboBox5.SelectedIndex = PushedComboBox[14] = 0;
+            comboBox6.SelectedIndex = PushedComboBox[15] = 0;
+            comboBox7.SelectedIndex = PushedComboBox[16] = 0;
+            comboBox8.SelectedIndex = PushedComboBox[17] = 0;
+            comboBox9.SelectedIndex = PushedComboBox[18] = 0;
+            comboBox10.SelectedIndex = PushedComboBox[19] = 0;
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            if (SerialPort.IsOpen == false) return;
-            Serial_Write_To_FC(4);
+            Program.WaitUart.Show();
+            for (int i = 0; i <= CountWP; i++)
+            {
+                Program.WaitUart.Refresh();
+                Serial_Write_To_FC(4);
+                Thread.Sleep(50);
+            }
+            Program.WaitUart.Close();
         }
 
         public void SendWayPoints(SerialPort SerialPort)
@@ -1270,9 +1281,9 @@ namespace JCFLIGHTGCS
                 VectorPointer = 0;
                 CheckAllBuffers = 0;
 
+                //ENVIA O PRIMEIRO WAYPOINT
                 WayPoint1Latitude = Convert.ToInt32(WPLatVect1 * 1e7);
                 WayPoint1Longitude = Convert.ToInt32(WPLonVect1 * 1e7);
-                //ENVIA O PRIMEIRO WAYPOINT SE DISPONIVEL
                 SendBuffer[VectorPointer++] = (byte)0x4a;
                 SendBuffer[VectorPointer++] = (byte)0x43;
                 SendBuffer[VectorPointer++] = (byte)0x3c;
@@ -1291,18 +1302,14 @@ namespace JCFLIGHTGCS
                 SendBuffer[VectorPointer++] = (byte)(numericUpDown1.Value);
 
                 //MODO DE VOO
-                if (Convert.ToString(comboBox2.SelectedItem) == "PROX.WP") SendBuffer[VectorPointer++] = (byte)(1);
-                if (Convert.ToString(comboBox2.SelectedItem) == "GPS-HOLD") SendBuffer[VectorPointer++] = (byte)(2);
-                if (Convert.ToString(comboBox2.SelectedItem) == "LAND") SendBuffer[VectorPointer++] = (byte)(3);
-                if (Convert.ToString(comboBox2.SelectedItem) == "RTH") SendBuffer[VectorPointer++] = (byte)(4);
-                if (Convert.ToString(comboBox2.SelectedItem) == "TAKEOFF") SendBuffer[VectorPointer++] = (byte)(5);
+                SendBuffer[VectorPointer++] = (byte)(comboBox1.SelectedIndex + 1);
 
                 //TEMPO DO GPS-HOLD
                 SendBuffer[VectorPointer++] = (byte)(GPSHoldTimed1);
 
+                //ENVIA O SEGUNDO WAYPOINT
                 WayPoint2Latitude = Convert.ToInt32(WPLatVect2 * 1e7);
                 WayPoint2Longitude = Convert.ToInt32(WPLonVect2 * 1e7);
-                //ENVIA O SEGUNDO WAYPOINT SE DISPONIVEL
                 SendBuffer[VectorPointer++] = (byte)(WayPoint2Latitude);
                 SendBuffer[VectorPointer++] = (byte)(WayPoint2Latitude >> 8);
                 SendBuffer[VectorPointer++] = (byte)(WayPoint2Latitude >> 16);
@@ -1316,18 +1323,14 @@ namespace JCFLIGHTGCS
                 SendBuffer[VectorPointer++] = (byte)(numericUpDown2.Value);
 
                 //MODO DE VOO
-                if (Convert.ToString(comboBox3.SelectedItem) == "PROX.WP") SendBuffer[VectorPointer++] = (byte)(1);
-                if (Convert.ToString(comboBox3.SelectedItem) == "GPS-HOLD") SendBuffer[VectorPointer++] = (byte)(2);
-                if (Convert.ToString(comboBox3.SelectedItem) == "LAND") SendBuffer[VectorPointer++] = (byte)(3);
-                if (Convert.ToString(comboBox3.SelectedItem) == "RTH") SendBuffer[VectorPointer++] = (byte)(4);
-                if (Convert.ToString(comboBox3.SelectedItem) == "TAKEOFF") SendBuffer[VectorPointer++] = (byte)(5);
+                SendBuffer[VectorPointer++] = (byte)(comboBox2.SelectedIndex + 1);
 
                 //TEMPO DE VOO DO GPS-HOLD
                 SendBuffer[VectorPointer++] = (byte)(GPSHoldTimed2);
 
+                //ENVIA O TERCEIRO WAYPOINT
                 WayPoint3Latitude = Convert.ToInt32(WPLatVect3 * 1e7);
                 WayPoint3Longitude = Convert.ToInt32(WPLonVect3 * 1e7);
-                //ENVIA O TERCEIRO WAYPOINT SE DISPONIVEL
                 SendBuffer[VectorPointer++] = (byte)(WayPoint3Latitude);
                 SendBuffer[VectorPointer++] = (byte)(WayPoint3Latitude >> 8);
                 SendBuffer[VectorPointer++] = (byte)(WayPoint3Latitude >> 16);
@@ -1341,18 +1344,14 @@ namespace JCFLIGHTGCS
                 SendBuffer[VectorPointer++] = (byte)(numericUpDown3.Value);
 
                 //MODO DE VOO
-                if (Convert.ToString(comboBox5.SelectedItem) == "PROX.WP") SendBuffer[VectorPointer++] = (byte)(1);
-                if (Convert.ToString(comboBox5.SelectedItem) == "GPS-HOLD") SendBuffer[VectorPointer++] = (byte)(2);
-                if (Convert.ToString(comboBox5.SelectedItem) == "LAND") SendBuffer[VectorPointer++] = (byte)(3);
-                if (Convert.ToString(comboBox5.SelectedItem) == "RTH") SendBuffer[VectorPointer++] = (byte)(4);
-                if (Convert.ToString(comboBox5.SelectedItem) == "TAKEOFF") SendBuffer[VectorPointer++] = (byte)(5);
+                SendBuffer[VectorPointer++] = (byte)(comboBox3.SelectedIndex + 1);
 
                 //TEMPO DE VOO DO GPS-HOLD
                 SendBuffer[VectorPointer++] = (byte)(GPSHoldTimed3);
 
+                //ENVIA O QUARTO WAYPOINT
                 WayPoint4Latitude = Convert.ToInt32(WPLatVect4 * 1e7);
                 WayPoint4Longitude = Convert.ToInt32(WPLonVect4 * 1e7);
-                //ENVIA O QUARTO WAYPOINT SE DISPONIVEL
                 SendBuffer[VectorPointer++] = (byte)(WayPoint4Latitude);
                 SendBuffer[VectorPointer++] = (byte)(WayPoint4Latitude >> 8);
                 SendBuffer[VectorPointer++] = (byte)(WayPoint4Latitude >> 16);
@@ -1366,18 +1365,14 @@ namespace JCFLIGHTGCS
                 SendBuffer[VectorPointer++] = (byte)(numericUpDown4.Value);
 
                 //MODO DE VOO
-                if (Convert.ToString(comboBox7.SelectedItem) == "PROX.WP") SendBuffer[VectorPointer++] = (byte)(1);
-                if (Convert.ToString(comboBox7.SelectedItem) == "GPS-HOLD") SendBuffer[VectorPointer++] = (byte)(2);
-                if (Convert.ToString(comboBox7.SelectedItem) == "LAND") SendBuffer[VectorPointer++] = (byte)(3);
-                if (Convert.ToString(comboBox7.SelectedItem) == "RTH") SendBuffer[VectorPointer++] = (byte)(4);
-                if (Convert.ToString(comboBox7.SelectedItem) == "TAKEOFF") SendBuffer[VectorPointer++] = (byte)(5);
+                SendBuffer[VectorPointer++] = (byte)(comboBox4.SelectedIndex + 1);
 
                 //TEMPO DE VOO DO GPS-HOLD
                 SendBuffer[VectorPointer++] = (byte)(GPSHoldTimed4);
 
+                //ENVIA O QUINTO WAYPOINT
                 WayPoint5Latitude = Convert.ToInt32(WPLatVect5 * 1e7);
                 WayPoint5Longitude = Convert.ToInt32(WPLonVect5 * 1e7);
-                //ENVIA O QUINTO WAYPOINT SE DISPONIVEL
                 SendBuffer[VectorPointer++] = (byte)(WayPoint5Latitude);
                 SendBuffer[VectorPointer++] = (byte)(WayPoint5Latitude >> 8);
                 SendBuffer[VectorPointer++] = (byte)(WayPoint5Latitude >> 16);
@@ -1391,11 +1386,7 @@ namespace JCFLIGHTGCS
                 SendBuffer[VectorPointer++] = (byte)(numericUpDown5.Value);
 
                 //MODO DE VOO
-                if (Convert.ToString(comboBox9.SelectedItem) == "PROX.WP") SendBuffer[VectorPointer++] = (byte)(1);
-                if (Convert.ToString(comboBox9.SelectedItem) == "GPS-HOLD") SendBuffer[VectorPointer++] = (byte)(2);
-                if (Convert.ToString(comboBox9.SelectedItem) == "LAND") SendBuffer[VectorPointer++] = (byte)(3);
-                if (Convert.ToString(comboBox9.SelectedItem) == "RTH") SendBuffer[VectorPointer++] = (byte)(4);
-                if (Convert.ToString(comboBox9.SelectedItem) == "TAKEOFF") SendBuffer[VectorPointer++] = (byte)(5);
+                SendBuffer[VectorPointer++] = (byte)(comboBox5.SelectedIndex + 1);
 
                 //TEMPO DE VOO DO GPS-HOLD
                 SendBuffer[VectorPointer++] = (byte)(GPSHoldTimed5);
@@ -1407,9 +1398,9 @@ namespace JCFLIGHTGCS
                 VectorPointer = 0;
                 CheckAllBuffers = 0;
 
+                //ENVIA O SEXTO WAYPOINT
                 WayPoint6Latitude = Convert.ToInt32(WPLatVect6 * 1e7);
                 WayPoint6Longitude = Convert.ToInt32(WPLonVect6 * 1e7);
-                //ENVIA O SEXTO WAYPOINT SE DISPONIVEL
                 SendBuffer[VectorPointer++] = (byte)0x4A;
                 SendBuffer[VectorPointer++] = (byte)0x43;
                 SendBuffer[VectorPointer++] = (byte)0x3c;
@@ -1428,18 +1419,14 @@ namespace JCFLIGHTGCS
                 SendBuffer[VectorPointer++] = (byte)(numericUpDown6.Value);
 
                 //MODO DE VOO
-                if (Convert.ToString(comboBox11.SelectedItem) == "PROX.WP") SendBuffer[VectorPointer++] = (byte)(1);
-                if (Convert.ToString(comboBox11.SelectedItem) == "GPS-HOLD") SendBuffer[VectorPointer++] = (byte)(2);
-                if (Convert.ToString(comboBox11.SelectedItem) == "LAND") SendBuffer[VectorPointer++] = (byte)(3);
-                if (Convert.ToString(comboBox11.SelectedItem) == "RTH") SendBuffer[VectorPointer++] = (byte)(4);
-                if (Convert.ToString(comboBox11.SelectedItem) == "TAKEOFF") SendBuffer[VectorPointer++] = (byte)(5);
+                SendBuffer[VectorPointer++] = (byte)(comboBox6.SelectedIndex + 1);
 
                 //TEMPO DE VOO DO GPS-HOLD
                 SendBuffer[VectorPointer++] = (byte)(GPSHoldTimed6);
 
+                //ENVIA O SETIMO WAYPOINT
                 WayPoint7Latitude = Convert.ToInt32(WPLatVect7 * 1e7);
                 WayPoint7Longitude = Convert.ToInt32(WPLonVect7 * 1e7);
-                //ENVIA O SETIMO WAYPOINT SE DISPONIVEL
                 SendBuffer[VectorPointer++] = (byte)(WayPoint7Latitude);
                 SendBuffer[VectorPointer++] = (byte)(WayPoint7Latitude >> 8);
                 SendBuffer[VectorPointer++] = (byte)(WayPoint7Latitude >> 16);
@@ -1453,18 +1440,14 @@ namespace JCFLIGHTGCS
                 SendBuffer[VectorPointer++] = (byte)(numericUpDown7.Value);
 
                 //MODO DE VOO
-                if (Convert.ToString(comboBox14.SelectedItem) == "PROX.WP") SendBuffer[VectorPointer++] = (byte)(1);
-                if (Convert.ToString(comboBox14.SelectedItem) == "GPS-HOLD") SendBuffer[VectorPointer++] = (byte)(2);
-                if (Convert.ToString(comboBox14.SelectedItem) == "LAND") SendBuffer[VectorPointer++] = (byte)(3);
-                if (Convert.ToString(comboBox14.SelectedItem) == "RTH") SendBuffer[VectorPointer++] = (byte)(4);
-                if (Convert.ToString(comboBox14.SelectedItem) == "TAKEOFF") SendBuffer[VectorPointer++] = (byte)(5);
+                SendBuffer[VectorPointer++] = (byte)(comboBox7.SelectedIndex + 1);
 
                 //TEMPO DE VOO DO GPS-HOLD
                 SendBuffer[VectorPointer++] = (byte)(GPSHoldTimed7);
 
+                //ENVIA O OITAVO WAYPOINT
                 WayPoint8Latitude = Convert.ToInt32(WPLatVect8 * 1e7);
                 WayPoint8Longitude = Convert.ToInt32(WPLonVect8 * 1e7);
-                //ENVIA O OITAVO WAYPOINT SE DISPONIVEL
                 SendBuffer[VectorPointer++] = (byte)(WayPoint8Latitude);
                 SendBuffer[VectorPointer++] = (byte)(WayPoint8Latitude >> 8);
                 SendBuffer[VectorPointer++] = (byte)(WayPoint8Latitude >> 16);
@@ -1478,18 +1461,14 @@ namespace JCFLIGHTGCS
                 SendBuffer[VectorPointer++] = (byte)(numericUpDown8.Value);
 
                 //MODO DE VOO
-                if (Convert.ToString(comboBox16.SelectedItem) == "PROX.WP") SendBuffer[VectorPointer++] = (byte)(1);
-                if (Convert.ToString(comboBox16.SelectedItem) == "GPS-HOLD") SendBuffer[VectorPointer++] = (byte)(2);
-                if (Convert.ToString(comboBox16.SelectedItem) == "LAND") SendBuffer[VectorPointer++] = (byte)(3);
-                if (Convert.ToString(comboBox16.SelectedItem) == "RTH") SendBuffer[VectorPointer++] = (byte)(4);
-                if (Convert.ToString(comboBox16.SelectedItem) == "TAKEOFF") SendBuffer[VectorPointer++] = (byte)(5);
+                SendBuffer[VectorPointer++] = (byte)(comboBox8.SelectedIndex + 1);
 
                 //TEMPO DE VOO DO GPS-HOLD
                 SendBuffer[VectorPointer++] = (byte)(GPSHoldTimed8);
 
+                //ENVIA O NONO WAYPOINT
                 WayPoint9Latitude = Convert.ToInt32(WPLatVect9 * 1e7);
                 WayPoint9Longitude = Convert.ToInt32(WPLonVect9 * 1e7);
-                //ENVIA O NONO WAYPOINT SE DISPONIVEL
                 SendBuffer[VectorPointer++] = (byte)(WayPoint9Latitude);
                 SendBuffer[VectorPointer++] = (byte)(WayPoint9Latitude >> 8);
                 SendBuffer[VectorPointer++] = (byte)(WayPoint9Latitude >> 16);
@@ -1503,18 +1482,14 @@ namespace JCFLIGHTGCS
                 SendBuffer[VectorPointer++] = (byte)(numericUpDown9.Value);
 
                 //MODO DE VOO
-                if (Convert.ToString(comboBox18.SelectedItem) == "PROX.WP") SendBuffer[VectorPointer++] = (byte)(1);
-                if (Convert.ToString(comboBox18.SelectedItem) == "GPS-HOLD") SendBuffer[VectorPointer++] = (byte)(2);
-                if (Convert.ToString(comboBox18.SelectedItem) == "LAND") SendBuffer[VectorPointer++] = (byte)(3);
-                if (Convert.ToString(comboBox18.SelectedItem) == "RTH") SendBuffer[VectorPointer++] = (byte)(4);
-                if (Convert.ToString(comboBox18.SelectedItem) == "TAKEOFF") SendBuffer[VectorPointer++] = (byte)(5);
+                SendBuffer[VectorPointer++] = (byte)(comboBox9.SelectedIndex + 1);
 
                 //TEMPO DE VOO DO GPS-HOLD
                 SendBuffer[VectorPointer++] = (byte)(GPSHoldTimed9);
 
+                //ENVIA O DECIMO WAYPOINT
                 WayPoint10Latitude = Convert.ToInt32(WPLatVect10 * 1e7);
                 WayPoint10Longitude = Convert.ToInt32(WPLonVect10 * 1e7);
-                //ENVIA O NONO WAYPOINT SE DISPONIVEL
                 SendBuffer[VectorPointer++] = (byte)(WayPoint10Latitude);
                 SendBuffer[VectorPointer++] = (byte)(WayPoint10Latitude >> 8);
                 SendBuffer[VectorPointer++] = (byte)(WayPoint10Latitude >> 16);
@@ -1528,11 +1503,7 @@ namespace JCFLIGHTGCS
                 SendBuffer[VectorPointer++] = (byte)(numericUpDown10.Value);
 
                 //MODO DE VOO
-                if (Convert.ToString(comboBox20.SelectedItem) == "PROX.WP") SendBuffer[VectorPointer++] = (byte)(1);
-                if (Convert.ToString(comboBox20.SelectedItem) == "GPS-HOLD") SendBuffer[VectorPointer++] = (byte)(2);
-                if (Convert.ToString(comboBox20.SelectedItem) == "LAND") SendBuffer[VectorPointer++] = (byte)(3);
-                if (Convert.ToString(comboBox20.SelectedItem) == "RTH") SendBuffer[VectorPointer++] = (byte)(4);
-                if (Convert.ToString(comboBox20.SelectedItem) == "TAKEOFF") SendBuffer[VectorPointer++] = (byte)(5);
+                SendBuffer[VectorPointer++] = (byte)(comboBox10.SelectedIndex + 1);
 
                 //TEMPO DE VOO DO GPS-HOLD
                 SendBuffer[VectorPointer++] = (byte)(GPSHoldTimed10);
@@ -1543,15 +1514,15 @@ namespace JCFLIGHTGCS
             }
         }
 
-        Boolean MouseClickedComboBox2 = false;
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        Boolean MouseClickedComboBox1 = false;
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!MouseClickedComboBox2)
+            if (!MouseClickedComboBox1)
             {
                 return;
             }
 
-            if (comboBox2.Text == "GPS-HOLD")
+            if (comboBox1.Text == "GPS-HOLD")
             {
                 string message, tittle, defaultValue;
                 object MyValue;
@@ -1581,35 +1552,35 @@ namespace JCFLIGHTGCS
             }
         }
 
-        private void comboBox2_KeyUp(object sender, KeyEventArgs e)
+        private void comboBox1_KeyUp(object sender, KeyEventArgs e)
         {
-            MouseClickedComboBox2 = false;
+            MouseClickedComboBox1 = false;
         }
 
-        private void comboBox2_KeyDown(object sender, KeyEventArgs e)
+        private void comboBox1_KeyDown(object sender, KeyEventArgs e)
         {
-            MouseClickedComboBox2 = false;
+            MouseClickedComboBox1 = false;
         }
 
-        private void comboBox2_KeyPress(object sender, KeyPressEventArgs e)
+        private void comboBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            MouseClickedComboBox2 = false;
+            MouseClickedComboBox1 = false;
         }
 
-        private void comboBox2_MouseDown(object sender, MouseEventArgs e)
+        private void comboBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            MouseClickedComboBox2 = true;
+            MouseClickedComboBox1 = true;
         }
 
-        Boolean MouseClickedComboBox3 = false;
-        private void comboBox3_SelectedIndexChanged_1(object sender, EventArgs e)
+        Boolean MouseClickedComboBox2 = false;
+        private void comboBox2_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            if (!MouseClickedComboBox3)
+            if (!MouseClickedComboBox2)
             {
                 return;
             }
 
-            if (comboBox3.Text == "GPS-HOLD")
+            if (comboBox2.Text == "GPS-HOLD")
             {
                 string message, tittle, defaultValue;
                 object MyValue;
@@ -1639,35 +1610,35 @@ namespace JCFLIGHTGCS
             }
         }
 
-        private void comboBox3_KeyUp_1(object sender, KeyEventArgs e)
+        private void comboBox2_KeyUp_1(object sender, KeyEventArgs e)
         {
-            MouseClickedComboBox3 = false;
+            MouseClickedComboBox2 = false;
         }
 
-        private void comboBox3_KeyDown_1(object sender, KeyEventArgs e)
+        private void comboBox2_KeyDown_1(object sender, KeyEventArgs e)
         {
-            MouseClickedComboBox3 = false;
+            MouseClickedComboBox2 = false;
         }
 
-        private void comboBox3_KeyPress_1(object sender, KeyPressEventArgs e)
+        private void comboBox2_KeyPress_1(object sender, KeyPressEventArgs e)
         {
-            MouseClickedComboBox3 = false;
+            MouseClickedComboBox2 = false;
         }
 
-        private void comboBox3_MouseDown_1(object sender, MouseEventArgs e)
+        private void comboBox2_MouseDown_1(object sender, MouseEventArgs e)
         {
-            MouseClickedComboBox3 = true;
+            MouseClickedComboBox2 = true;
         }
 
-        Boolean MouseClickedComboBox5 = false;
-        private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
+        Boolean MouseClickedComboBox3 = false;
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!MouseClickedComboBox5)
+            if (!MouseClickedComboBox3)
             {
                 return;
             }
 
-            if (comboBox5.Text == "GPS-HOLD")
+            if (comboBox3.Text == "GPS-HOLD")
             {
                 string message, tittle, defaultValue;
                 object MyValue;
@@ -1697,35 +1668,35 @@ namespace JCFLIGHTGCS
             }
         }
 
-        private void comboBox5_KeyUp(object sender, KeyEventArgs e)
+        private void comboBox3_KeyUp(object sender, KeyEventArgs e)
         {
-            MouseClickedComboBox5 = false;
+            MouseClickedComboBox3 = false;
         }
 
-        private void comboBox5_KeyDown(object sender, KeyEventArgs e)
+        private void comboBox3_KeyDown(object sender, KeyEventArgs e)
         {
-            MouseClickedComboBox5 = false;
+            MouseClickedComboBox3 = false;
         }
 
-        private void comboBox5_KeyPress(object sender, KeyPressEventArgs e)
+        private void comboBox3_KeyPress(object sender, KeyPressEventArgs e)
         {
-            MouseClickedComboBox5 = false;
+            MouseClickedComboBox3 = false;
         }
 
-        private void comboBox5_MouseDown(object sender, MouseEventArgs e)
+        private void comboBox3_MouseDown(object sender, MouseEventArgs e)
         {
-            MouseClickedComboBox5 = true;
+            MouseClickedComboBox3 = true;
         }
 
-        Boolean MouseClickedComboBox7 = false;
-        private void comboBox7_SelectedIndexChanged(object sender, EventArgs e)
+        Boolean MouseClickedComboBox4 = false;
+        private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!MouseClickedComboBox7)
+            if (!MouseClickedComboBox4)
             {
                 return;
             }
 
-            if (comboBox7.Text == "GPS-HOLD")
+            if (comboBox4.Text == "GPS-HOLD")
             {
                 string message, tittle, defaultValue;
                 object MyValue;
@@ -1755,35 +1726,35 @@ namespace JCFLIGHTGCS
             }
         }
 
-        private void comboBox7_KeyUp(object sender, KeyEventArgs e)
+        private void comboBox4_KeyUp(object sender, KeyEventArgs e)
         {
-            MouseClickedComboBox7 = false;
+            MouseClickedComboBox4 = false;
         }
 
-        private void comboBox7_KeyDown(object sender, KeyEventArgs e)
+        private void comboBox4_KeyDown(object sender, KeyEventArgs e)
         {
-            MouseClickedComboBox7 = false;
+            MouseClickedComboBox4 = false;
         }
 
-        private void comboBox7_KeyPress(object sender, KeyPressEventArgs e)
+        private void comboBox4_KeyPress(object sender, KeyPressEventArgs e)
         {
-            MouseClickedComboBox7 = false;
+            MouseClickedComboBox4 = false;
         }
 
-        private void comboBox7_MouseDown(object sender, MouseEventArgs e)
+        private void comboBox4_MouseDown(object sender, MouseEventArgs e)
         {
-            MouseClickedComboBox7 = true;
+            MouseClickedComboBox4 = true;
         }
 
-        Boolean MouseClickedComboBox9 = false;
-        private void comboBox9_SelectedIndexChanged(object sender, EventArgs e)
+        Boolean MouseClickedComboBox5 = false;
+        private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!MouseClickedComboBox9)
+            if (!MouseClickedComboBox5)
             {
                 return;
             }
 
-            if (comboBox9.Text == "GPS-HOLD")
+            if (comboBox5.Text == "GPS-HOLD")
             {
                 string message, tittle, defaultValue;
                 object MyValue;
@@ -1813,35 +1784,35 @@ namespace JCFLIGHTGCS
             }
         }
 
-        private void comboBox9_KeyUp(object sender, KeyEventArgs e)
+        private void comboBox5_KeyUp(object sender, KeyEventArgs e)
         {
-            MouseClickedComboBox9 = false;
+            MouseClickedComboBox5 = false;
         }
 
-        private void comboBox9_KeyDown(object sender, KeyEventArgs e)
+        private void comboBox5_KeyDown(object sender, KeyEventArgs e)
         {
-            MouseClickedComboBox9 = false;
+            MouseClickedComboBox5 = false;
         }
 
-        private void comboBox9_KeyPress(object sender, KeyPressEventArgs e)
+        private void comboBox5_KeyPress(object sender, KeyPressEventArgs e)
         {
-            MouseClickedComboBox9 = false;
+            MouseClickedComboBox5 = false;
         }
 
-        private void comboBox9_MouseDown(object sender, MouseEventArgs e)
+        private void comboBox5_MouseDown(object sender, MouseEventArgs e)
         {
-            MouseClickedComboBox9 = true;
+            MouseClickedComboBox5 = true;
         }
 
-        Boolean MouseClickedComboBox11 = false;
-        private void comboBox11_SelectedIndexChanged(object sender, EventArgs e)
+        Boolean MouseClickedComboBox6 = false;
+        private void comboBox6_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!MouseClickedComboBox11)
+            if (!MouseClickedComboBox6)
             {
                 return;
             }
 
-            if (comboBox11.Text == "GPS-HOLD")
+            if (comboBox6.Text == "GPS-HOLD")
             {
                 string message, tittle, defaultValue;
                 object MyValue;
@@ -1871,35 +1842,35 @@ namespace JCFLIGHTGCS
             }
         }
 
-        private void comboBox11_KeyUp(object sender, KeyEventArgs e)
+        private void comboBox6_KeyUp(object sender, KeyEventArgs e)
         {
-            MouseClickedComboBox11 = false;
+            MouseClickedComboBox6 = false;
         }
 
-        private void comboBox11_KeyDown(object sender, KeyEventArgs e)
+        private void comboBox6_KeyDown(object sender, KeyEventArgs e)
         {
-            MouseClickedComboBox11 = false;
+            MouseClickedComboBox6 = false;
         }
 
-        private void comboBox11_KeyPress(object sender, KeyPressEventArgs e)
+        private void comboBox6_KeyPress(object sender, KeyPressEventArgs e)
         {
-            MouseClickedComboBox11 = false;
+            MouseClickedComboBox6 = false;
         }
 
-        private void comboBox11_MouseDown(object sender, MouseEventArgs e)
+        private void comboBox6_MouseDown(object sender, MouseEventArgs e)
         {
-            MouseClickedComboBox11 = true;
+            MouseClickedComboBox6 = true;
         }
 
-        Boolean MouseClickedComboBox14 = false;
-        private void comboBox14_SelectedIndexChanged(object sender, EventArgs e)
+        Boolean MouseClickedComboBox7 = false;
+        private void comboBox7_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!MouseClickedComboBox14)
+            if (!MouseClickedComboBox7)
             {
                 return;
             }
 
-            if (comboBox14.Text == "GPS-HOLD")
+            if (comboBox7.Text == "GPS-HOLD")
             {
                 string message, tittle, defaultValue;
                 object MyValue;
@@ -1929,35 +1900,35 @@ namespace JCFLIGHTGCS
             }
         }
 
-        private void comboBox14_KeyUp(object sender, KeyEventArgs e)
+        private void comboBox7_KeyUp(object sender, KeyEventArgs e)
         {
-            MouseClickedComboBox14 = false;
+            MouseClickedComboBox7 = false;
         }
 
-        private void comboBox14_KeyDown(object sender, KeyEventArgs e)
+        private void comboBox7_KeyDown(object sender, KeyEventArgs e)
         {
-            MouseClickedComboBox14 = false;
+            MouseClickedComboBox7 = false;
         }
 
-        private void comboBox14_KeyPress(object sender, KeyPressEventArgs e)
+        private void comboBox7_KeyPress(object sender, KeyPressEventArgs e)
         {
-            MouseClickedComboBox14 = false;
+            MouseClickedComboBox7 = false;
         }
 
-        private void comboBox14_MouseDown(object sender, MouseEventArgs e)
+        private void comboBox7_MouseDown(object sender, MouseEventArgs e)
         {
-            MouseClickedComboBox14 = true;
+            MouseClickedComboBox7 = true;
         }
 
-        Boolean MouseClickedComboBox16 = false;
-        private void comboBox16_SelectedIndexChanged(object sender, EventArgs e)
+        Boolean MouseClickedComboBox8 = false;
+        private void comboBox8_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!MouseClickedComboBox16)
+            if (!MouseClickedComboBox8)
             {
                 return;
             }
 
-            if (comboBox16.Text == "GPS-HOLD")
+            if (comboBox8.Text == "GPS-HOLD")
             {
                 string message, tittle, defaultValue;
                 object MyValue;
@@ -1987,35 +1958,35 @@ namespace JCFLIGHTGCS
             }
         }
 
-        private void comboBox16_KeyUp(object sender, KeyEventArgs e)
+        private void comboBox8_KeyUp(object sender, KeyEventArgs e)
         {
-            MouseClickedComboBox16 = false;
+            MouseClickedComboBox8 = false;
         }
 
-        private void comboBox16_KeyDown(object sender, KeyEventArgs e)
+        private void comboBox8_KeyDown(object sender, KeyEventArgs e)
         {
-            MouseClickedComboBox16 = false;
+            MouseClickedComboBox8 = false;
         }
 
-        private void comboBox16_KeyPress(object sender, KeyPressEventArgs e)
+        private void comboBox8_KeyPress(object sender, KeyPressEventArgs e)
         {
-            MouseClickedComboBox16 = false;
+            MouseClickedComboBox8 = false;
         }
 
-        private void comboBox16_MouseDown(object sender, MouseEventArgs e)
+        private void comboBox8_MouseDown(object sender, MouseEventArgs e)
         {
-            MouseClickedComboBox16 = true;
+            MouseClickedComboBox8 = true;
         }
 
-        Boolean MouseClickedComboBox18 = false;
-        private void comboBox18_SelectedIndexChanged(object sender, EventArgs e)
+        Boolean MouseClickedComboBox9 = false;
+        private void comboBox9_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!MouseClickedComboBox18)
+            if (!MouseClickedComboBox9)
             {
                 return;
             }
 
-            if (comboBox18.Text == "GPS-HOLD")
+            if (comboBox9.Text == "GPS-HOLD")
             {
                 string message, tittle, defaultValue;
                 object MyValue;
@@ -2045,35 +2016,35 @@ namespace JCFLIGHTGCS
             }
         }
 
-        private void comboBox18_KeyUp(object sender, KeyEventArgs e)
+        private void comboBox9_KeyUp(object sender, KeyEventArgs e)
         {
-            MouseClickedComboBox18 = false;
+            MouseClickedComboBox9 = false;
         }
 
-        private void comboBox18_KeyDown(object sender, KeyEventArgs e)
+        private void comboBox9_KeyDown(object sender, KeyEventArgs e)
         {
-            MouseClickedComboBox18 = false;
+            MouseClickedComboBox9 = false;
         }
 
-        private void comboBox18_KeyPress(object sender, KeyPressEventArgs e)
+        private void comboBox9_KeyPress(object sender, KeyPressEventArgs e)
         {
-            MouseClickedComboBox18 = false;
+            MouseClickedComboBox9 = false;
         }
 
-        private void comboBox18_MouseDown(object sender, MouseEventArgs e)
+        private void comboBox9_MouseDown(object sender, MouseEventArgs e)
         {
-            MouseClickedComboBox18 = true;
+            MouseClickedComboBox9 = true;
         }
 
-        Boolean MouseClickedComboBox20 = false;
-        private void comboBox20_SelectedIndexChanged(object sender, EventArgs e)
+        Boolean MouseClickedComboBox10 = false;
+        private void comboBox10_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!MouseClickedComboBox20)
+            if (!MouseClickedComboBox10)
             {
                 return;
             }
 
-            if (comboBox20.Text == "GPS-HOLD")
+            if (comboBox10.Text == "GPS-HOLD")
             {
                 string message, tittle, defaultValue;
                 object MyValue;
@@ -2103,27 +2074,32 @@ namespace JCFLIGHTGCS
             }
         }
 
-        private void comboBox20_KeyUp(object sender, KeyEventArgs e)
+        private void comboBox10_KeyUp(object sender, KeyEventArgs e)
         {
-            MouseClickedComboBox20 = false;
+            MouseClickedComboBox10 = false;
         }
 
-        private void comboBox20_KeyDown(object sender, KeyEventArgs e)
+        private void comboBox10_KeyDown(object sender, KeyEventArgs e)
         {
-            MouseClickedComboBox20 = false;
+            MouseClickedComboBox10 = false;
         }
 
-        private void comboBox20_KeyPress(object sender, KeyPressEventArgs e)
+        private void comboBox10_KeyPress(object sender, KeyPressEventArgs e)
         {
-            MouseClickedComboBox20 = false;
+            MouseClickedComboBox10 = false;
         }
 
-        private void comboBox20_MouseDown(object sender, MouseEventArgs e)
+        private void comboBox10_MouseDown(object sender, MouseEventArgs e)
         {
-            MouseClickedComboBox20 = true;
+            MouseClickedComboBox10 = true;
         }
 
         void numericUpDown1_MouseWheel(object sender, MouseEventArgs e)
+        {
+            ((HandledMouseEventArgs)e).Handled = true;
+        }
+
+        void comboBox1_MouseWheel(object sender, MouseEventArgs e)
         {
             ((HandledMouseEventArgs)e).Handled = true;
         }
@@ -2133,17 +2109,12 @@ namespace JCFLIGHTGCS
             ((HandledMouseEventArgs)e).Handled = true;
         }
 
-        void comboBox3_MouseWheel(object sender, MouseEventArgs e)
-        {
-            ((HandledMouseEventArgs)e).Handled = true;
-        }
-
         void numericUpDown2_MouseWheel(object sender, MouseEventArgs e)
         {
             ((HandledMouseEventArgs)e).Handled = true;
         }
 
-        void comboBox5_MouseWheel(object sender, MouseEventArgs e)
+        void comboBox3_MouseWheel(object sender, MouseEventArgs e)
         {
             ((HandledMouseEventArgs)e).Handled = true;
         }
@@ -2153,7 +2124,7 @@ namespace JCFLIGHTGCS
             ((HandledMouseEventArgs)e).Handled = true;
         }
 
-        void comboBox7_MouseWheel(object sender, MouseEventArgs e)
+        void comboBox4_MouseWheel(object sender, MouseEventArgs e)
         {
             ((HandledMouseEventArgs)e).Handled = true;
         }
@@ -2163,7 +2134,7 @@ namespace JCFLIGHTGCS
             ((HandledMouseEventArgs)e).Handled = true;
         }
 
-        void comboBox9_MouseWheel(object sender, MouseEventArgs e)
+        void comboBox5_MouseWheel(object sender, MouseEventArgs e)
         {
             ((HandledMouseEventArgs)e).Handled = true;
         }
@@ -2173,7 +2144,7 @@ namespace JCFLIGHTGCS
             ((HandledMouseEventArgs)e).Handled = true;
         }
 
-        void comboBox11_MouseWheel(object sender, MouseEventArgs e)
+        void comboBox6_MouseWheel(object sender, MouseEventArgs e)
         {
             ((HandledMouseEventArgs)e).Handled = true;
         }
@@ -2188,7 +2159,7 @@ namespace JCFLIGHTGCS
             ((HandledMouseEventArgs)e).Handled = true;
         }
 
-        void comboBox14_MouseWheel(object sender, MouseEventArgs e)
+        void comboBox7_MouseWheel(object sender, MouseEventArgs e)
         {
             ((HandledMouseEventArgs)e).Handled = true;
         }
@@ -2198,7 +2169,7 @@ namespace JCFLIGHTGCS
             ((HandledMouseEventArgs)e).Handled = true;
         }
 
-        void comboBox16_MouseWheel(object sender, MouseEventArgs e)
+        void comboBox8_MouseWheel(object sender, MouseEventArgs e)
         {
             ((HandledMouseEventArgs)e).Handled = true;
         }
@@ -2208,7 +2179,7 @@ namespace JCFLIGHTGCS
             ((HandledMouseEventArgs)e).Handled = true;
         }
 
-        void comboBox18_MouseWheel(object sender, MouseEventArgs e)
+        void comboBox9_MouseWheel(object sender, MouseEventArgs e)
         {
             ((HandledMouseEventArgs)e).Handled = true;
         }
@@ -2218,7 +2189,7 @@ namespace JCFLIGHTGCS
             ((HandledMouseEventArgs)e).Handled = true;
         }
 
-        void comboBox20_MouseWheel(object sender, MouseEventArgs e)
+        void comboBox10_MouseWheel(object sender, MouseEventArgs e)
         {
             ((HandledMouseEventArgs)e).Handled = true;
         }
@@ -2454,6 +2425,34 @@ namespace JCFLIGHTGCS
         {
             this.MaximumSize = Screen.PrimaryScreen.WorkingArea.Size; //NÃO CUBRA A BARRA DE TAREFAS
             this.WindowState = FormWindowState.Maximized;
+        }
+
+        private void MyGMap_OnMapZoomChanged()
+        {
+            trackBar1.Value = (int)(MyGMap.Zoom);
+        }
+
+        private void MyGMap_Resize(object sender, EventArgs e)
+        {
+            MyGMap.Zoom = MyGMap.Zoom + 0.01;
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            try
+            {
+                if (MyGMap.MaxZoom + 1 == (double)trackBar1.Value)
+                {
+                    MyGMap.Zoom = (double)trackBar1.Value - 0.1;
+                }
+                else
+                {
+                    MyGMap.Zoom = (double)trackBar1.Value;
+                }
+            }
+            catch
+            {
+            }
         }
     }
 }

@@ -12,6 +12,7 @@ namespace JCFLIGHTGCS
 {
     public partial class LoadConnectUART : Form
     {
+
         public LoadConnectUART()
         {
             InitializeComponent();
