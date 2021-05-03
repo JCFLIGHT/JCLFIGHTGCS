@@ -2372,14 +2372,7 @@ namespace JCFLIGHTGCS
                     {
                         label83.Location = new Point(375, 296);
                     }
-                    if (FrameMode < 3 || FrameMode == 6 || FrameMode == 7)
-                    {
-                        label83.Text = "ALT-HOLD";
-                    }
-                    else
-                    {
-                        label83.Text = "AUTO-THR";
-                    }
+                    label83.Text = "ALT-HOLD";
                     break;
 
                 case 3: //ATAQUE              
@@ -2595,10 +2588,36 @@ namespace JCFLIGHTGCS
             if (FrameMode == 3 || FrameMode == 4 || FrameMode == 5)
             {
                 groupBox6.Text = "FEED-FORWARD";
+                numericUpDown94.Enabled = true;
+                numericUpDown32.Enabled = false;
+                numericUpDown33.Enabled = false;
+                numericUpDown34.Enabled = false;
+                numericUpDown38.Enabled = true;
+                numericUpDown77.Enabled = true;
+                label52.Text = "Auto-Throttle";
+                metroLabel15.Text = "Ganho ";
+                metroLabel14.Text = "Vel. Minima";
+                metroLabel38.Text = "Raio do Círculo";
+                metroLabel42.Visible = true;
+                label53.Text = "Navegação XY";
+                label54.Text = "Navegação Heading";
             }
             else
             {
                 groupBox6.Text = "CONTROLE DERIVATIVO";
+                numericUpDown94.Enabled = false;
+                numericUpDown32.Enabled = true;
+                numericUpDown33.Enabled = true;
+                numericUpDown34.Enabled = true;
+                numericUpDown38.Enabled = false;
+                numericUpDown77.Enabled = false;
+                label52.Text = "Posição";
+                metroLabel15.Text = "Proporcional";
+                metroLabel14.Text = "Integral";
+                metroLabel38.Text = "Ataque Bank";
+                metroLabel42.Visible = false;
+                label53.Text = "Rate da Posição";
+                label54.Text = "Rate de Navegação";
             }
 
             try
@@ -2932,8 +2951,8 @@ namespace JCFLIGHTGCS
                 numericUpDown33.Value = (decimal)(NumericConvert[24]) / 1000;
                 numericUpDown32.Value = (decimal)(NumericConvert[25]);
                 numericUpDown10.Value = (decimal)(NumericConvert[26]) / 10;
-                numericUpDown38.Value = (decimal)(NumericConvert[27]) / 10;
-                numericUpDown77.Value = (decimal)(NumericConvert[28]) / 1000;
+                numericUpDown38.Value = (decimal)(NumericConvert[27]) / 1000;
+                numericUpDown77.Value = (decimal)(NumericConvert[28]);
             }
             SmallCompass = false;
             tabControl1.SelectTab(tabPage7);
@@ -2986,7 +3005,7 @@ namespace JCFLIGHTGCS
                 label22.Text = "Simples";
                 label44.Text = "> Mantém a borda de ataque sempre pra frente";
                 label23.Text = "Ataque";
-                label46.Text = "> Modo Stabilize com Limite maior no Ângulo (55°)";
+                label46.Text = "> Estabilização com limite de ângulo maior";
                 label20.Text = "Altitude-Hold";
                 label42.Text = "> Retenção de Altitude com base no Barômetro e INS";
                 label21.Text = "Pos-Hold";
@@ -2995,7 +3014,6 @@ namespace JCFLIGHTGCS
                 label48.Text = "> Realiza Flips Automáticos de 180° no Pitch e Roll";
                 label92.Text = "Auto-Land";
                 label70.Text = "> Realiza um pouso automático";
-                numericUpDown94.Enabled = false;
             }
             else if (ComboBoxFrame == 3 || ComboBoxFrame == 4 || ComboBoxFrame == 5) //AERO, ASA-FIXA & V-TAIL
             {
@@ -3003,15 +3021,14 @@ namespace JCFLIGHTGCS
                 label44.Text = "> Servos independentes do controlador PID";
                 label23.Text = "Auto-TakeOff";
                 label46.Text = "> Lançamento Automático para Aeros e Asa";
-                label20.Text = "Auto-Throttle";
-                label42.Text = "> Mantém a velocidade usando o Tubo de Pitot";
+                label20.Text = "Altitude-Hold";
+                label42.Text = "> Mantém a velocidade e a altitude constante";
                 label21.Text = "Auto-Círculo";
-                label43.Text = "> Mantém a posição e a altitude do Aero em círculo";
+                label43.Text = "> Mantém a posição e a altitude do Aero em Círculo";
                 label24.Text = "Turn-Coord.";
-                label48.Text = "> Ajusta os servos com base na Veloc. e Inclinação";
+                label48.Text = "> Curva Coordenada baseada na Veloc. da Fuselagem";
                 label92.Text = "Cruise";
                 label70.Text = "> Mantém a posição e a altitude do Aero em linha reta";
-                numericUpDown94.Enabled = true;
             }
         }
 
@@ -3082,8 +3099,8 @@ namespace JCFLIGHTGCS
                     numericUpDown91.Value = 15;
                     numericUpDown87.Value = 30;
                     numericUpDown10.Value = (decimal)(0) / 10;
-                    numericUpDown38.Value = (decimal)(50) / 10;
-                    numericUpDown77.Value = (decimal)(20) / 1000;
+                    numericUpDown38.Value = (decimal)(50) / 1000;
+                    numericUpDown77.Value = (decimal)(20);
                     if (FrameMode == 3 || FrameMode == 4 || FrameMode == 5)
                     {
                         numericUpDown1.Value = (decimal)(5) / 10;
@@ -3385,8 +3402,8 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)(numericUpDown33.Value * 1000);
                     SendBuffer[VectorPointer++] = (byte)numericUpDown32.Value;
                     SendBuffer[VectorPointer++] = (byte)(numericUpDown10.Value * 10);
-                    SendBuffer[VectorPointer++] = (byte)(numericUpDown38.Value * 10);
-                    SendBuffer[VectorPointer++] = (byte)(numericUpDown77.Value * 1000);
+                    SendBuffer[VectorPointer++] = (byte)(numericUpDown38.Value * 1000);
+                    SendBuffer[VectorPointer++] = (byte)(numericUpDown77.Value);
                     for (int i = 3; i < VectorPointer; i++) CheckAllBuffers ^= SendBuffer[i];
                     SendBuffer[VectorPointer++] = CheckAllBuffers;
                     SerialPort.Write(SendBuffer, 0, VectorPointer);
