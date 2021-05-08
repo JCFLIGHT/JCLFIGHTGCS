@@ -101,74 +101,38 @@ namespace JCFLIGHTGCS
             {
                 if (checkBox1.Checked)
                 {
-                    zedGraphControl1.GraphPane.CurveList[0].Label.Text = "Acc Pitch (Sem Filtro)";
-                    Chart1.Add(TimeStamp, GetValues.AccNotFilteredY);
+                    zedGraphControl1.GraphPane.CurveList[0].Label.Text = "Acc Pitch";
+                    Chart1.Add(TimeStamp, GetValues.AccY);
                 }
 
                 if (checkBox2.Checked)
                 {
-                    zedGraphControl1.GraphPane.CurveList[1].Label.Text = "Acc Roll (Sem Filtro)";
-                    Chart2.Add(TimeStamp, GetValues.AccNotFilteredX);
+                    zedGraphControl1.GraphPane.CurveList[1].Label.Text = "Acc Roll";
+                    Chart2.Add(TimeStamp, GetValues.AccX);
                 }
 
                 if (checkBox3.Checked)
                 {
-                    zedGraphControl1.GraphPane.CurveList[2].Label.Text = "Acc Yaw (Sem Filtro)";
-                    Chart3.Add(TimeStamp, GetValues.AccNotFilteredZ);
-                }
-
-                if (checkBox4.Checked)
-                {
-                    zedGraphControl1.GraphPane.CurveList[3].Label.Text = "Acc Pitch (Com Filtro)";
-                    Chart4.Add(TimeStamp, GetValues.AccFilteredY);
-                }
-
-                if (checkBox5.Checked)
-                {
-                    zedGraphControl1.GraphPane.CurveList[4].Label.Text = "Acc Roll (Com Filtro)";
-                    Chart5.Add(TimeStamp, GetValues.AccFilteredX);
-                }
-
-                if (checkBox6.Checked)
-                {
-                    zedGraphControl1.GraphPane.CurveList[5].Label.Text = "Acc Yaw (Com Filtro)";
-                    Chart6.Add(TimeStamp, GetValues.AccFilteredZ);
+                    zedGraphControl1.GraphPane.CurveList[2].Label.Text = "Acc Yaw";
+                    Chart3.Add(TimeStamp, GetValues.AccZ);
                 }
 
                 if (checkBox7.Checked)
                 {
-                    zedGraphControl1.GraphPane.CurveList[0].Label.Text = "Gyro Roll (Sem Filtro)";
-                    Chart1.Add(TimeStamp, GetValues.GyroNotFilteredX);
+                    zedGraphControl1.GraphPane.CurveList[3].Label.Text = "Gyro Roll";
+                    Chart4.Add(TimeStamp, GetValues.GyroX);
                 }
 
                 if (checkBox8.Checked)
                 {
-                    zedGraphControl1.GraphPane.CurveList[1].Label.Text = "Gyro Pitch (Sem Filtro)";
-                    Chart2.Add(TimeStamp, GetValues.GyroNotFilteredY);
+                    zedGraphControl1.GraphPane.CurveList[4].Label.Text = "Gyro Pitch";
+                    Chart5.Add(TimeStamp, GetValues.GyroY);
                 }
 
                 if (checkBox9.Checked)
                 {
-                    zedGraphControl1.GraphPane.CurveList[2].Label.Text = "Gyro Yaw (Sem Filtro)";
-                    Chart3.Add(TimeStamp, GetValues.GyroNotFilteredZ);
-                }
-
-                if (checkBox10.Checked)
-                {
-                    zedGraphControl1.GraphPane.CurveList[3].Label.Text = "Gyro Roll (Com Filtro)";
-                    Chart4.Add(TimeStamp, GetValues.GyroFilteredX);
-                }
-
-                if (checkBox11.Checked)
-                {
-                    zedGraphControl1.GraphPane.CurveList[4].Label.Text = "Gyro Pitch (Com Filtro)";
-                    Chart5.Add(TimeStamp, GetValues.GyroFilteredY);
-                }
-
-                if (checkBox12.Checked)
-                {
-                    zedGraphControl1.GraphPane.CurveList[5].Label.Text = "Gyro Yaw (Com Filtro)";
-                    Chart6.Add(TimeStamp, GetValues.GyroFilteredZ);
+                    zedGraphControl1.GraphPane.CurveList[5].Label.Text = "Gyro Yaw";
+                    Chart6.Add(TimeStamp, GetValues.GyroZ);
                 }
 
                 if (checkBox13.Checked)
@@ -278,18 +242,12 @@ namespace JCFLIGHTGCS
         private void timer1_Tick(object sender, EventArgs e)
         {
             Graphit();
-            label1.Text = "Acc Pitch(Sem Filtro):" + GetValues.AccNotFilteredX;
-            label2.Text = "Acc Roll(Sem Filtro):" + GetValues.AccNotFilteredY;
-            label3.Text = "Acc Yaw(Sem Filtro):" + GetValues.AccNotFilteredZ;
-            label23.Text = "Acc Pitch(Com Filtro):" + GetValues.AccFilteredX;
-            label22.Text = "Acc Roll(Com Filtro):" + GetValues.AccFilteredY;
-            label17.Text = "Acc Yaw(Com Filtro):" + GetValues.AccFilteredZ;
-            label4.Text = "Gyro Roll(Sem Filtro):" + GetValues.GyroNotFilteredX;
-            label5.Text = "Gyro Pitch(Sem Filtro):" + GetValues.GyroNotFilteredY;
-            label6.Text = "Gyro Yaw(Sem Filtro):" + GetValues.GyroNotFilteredZ;
-            label26.Text = "Gyro Roll(Com Filtro):" + GetValues.GyroFilteredX;
-            label25.Text = "Gyro Pitch(Com Filtro):" + GetValues.GyroFilteredY;
-            label24.Text = "Gyro Yaw(Com Filtro):" + GetValues.GyroFilteredZ;
+            label1.Text = "Acc Roll:" + GetValues.AccX;
+            label2.Text = "Acc Pitch:" + GetValues.AccY;
+            label3.Text = "Acc Yaw:" + GetValues.AccZ;
+            label4.Text = "Gyro Roll:" + GetValues.GyroX;
+            label5.Text = "Gyro Pitch:" + GetValues.GyroY;
+            label6.Text = "Gyro Yaw:" + GetValues.GyroZ;
             label7.Text = "Mag Roll:" + GetValues.CompassX;
             label8.Text = "Mag Pitch:" + GetValues.CompassY;
             label9.Text = "Mag Yaw:" + GetValues.CompassZ;

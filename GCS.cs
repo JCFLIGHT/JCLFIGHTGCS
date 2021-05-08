@@ -32,7 +32,7 @@ namespace JCFLIGHTGCS
         static byte CheckSum = 0;
         static byte Command;
         static byte[] InBuffer = new byte[300];
-        static byte[] NumericConvert = new byte[40];
+        static byte[] NumericConvert = new byte[50];
 
         int ThrottleData = 900;
         int YawData = 1000;
@@ -174,16 +174,13 @@ namespace JCFLIGHTGCS
         byte AutoLandGuard = 0;
         byte SafeBtnGuard = 0;
         byte AirSpeedGuard = 0;
-        int AccRollAdjustGuard = 0;
-        int AccPitchAdjustGuard = 0;
-        int AccYawAdjustGuard = 0;
         int PitchLevelTrimGuard;
 
         int DevicesSum = 0;
 
         double AmperInMah = 0;
 
-        int BreakPoint = 1000;
+        int TPABreakPoint = 1000;
 
         byte TPAFactor = 0;
         byte GyroLPF = 0;
@@ -946,16 +943,13 @@ namespace JCFLIGHTGCS
                     AutoLandGuard = (byte)InBuffer[ptr++];
                     SafeBtnGuard = (byte)InBuffer[ptr++];
                     GetValues.AirSpeedEnabled = AirSpeedGuard = (byte)InBuffer[ptr++];
-                    AccRollAdjustGuard = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    AccPitchAdjustGuard = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    AccYawAdjustGuard = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     PitchLevelTrimGuard = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     break;
 
                 case 9:
                     ptr = 0;
                     TPAFactor = (byte)InBuffer[ptr++];
-                    BreakPoint = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    TPABreakPoint = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     GyroLPF = (byte)InBuffer[ptr++];
                     DerivativeLPF = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     RCSmooth = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
@@ -997,6 +991,12 @@ namespace JCFLIGHTGCS
                     NumericConvert[26] = (byte)InBuffer[ptr++];
                     NumericConvert[27] = (byte)InBuffer[ptr++];
                     NumericConvert[28] = (byte)InBuffer[ptr++];
+                    NumericConvert[29] = (byte)InBuffer[ptr++];
+                    NumericConvert[30] = (byte)InBuffer[ptr++];
+                    NumericConvert[31] = (byte)InBuffer[ptr++];
+                    NumericConvert[32] = (byte)InBuffer[ptr++];
+                    NumericConvert[33] = (byte)InBuffer[ptr++];
+                    NumericConvert[34] = (byte)InBuffer[ptr++];
                     break;
 
                 case 10:
@@ -1019,18 +1019,12 @@ namespace JCFLIGHTGCS
                     RollAttitudeData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     MemoryRamUsed = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     MemoryRamUsedPercent = (byte)InBuffer[ptr++];
-                    GetValues.AccNotFilteredX = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    GetValues.AccNotFilteredY = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    GetValues.AccNotFilteredZ = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    GetValues.AccFilteredX = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    GetValues.AccFilteredY = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    GetValues.AccFilteredZ = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    GetValues.GyroNotFilteredX = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    GetValues.GyroNotFilteredY = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    GetValues.GyroNotFilteredZ = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    GetValues.GyroFilteredX = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    GetValues.GyroFilteredY = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    GetValues.GyroFilteredZ = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    GetValues.AccX = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    GetValues.AccY = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    GetValues.AccZ = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    GetValues.GyroX = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    GetValues.GyroY = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    GetValues.GyroZ = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     GetValues.ReadGroundSpeed = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     GetValues.ReadI2CError = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     GetValues.ReadAirSpeed = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
@@ -2616,7 +2610,7 @@ namespace JCFLIGHTGCS
                 metroLabel14.Text = "Integral";
                 metroLabel38.Text = "Ataque Bank";
                 metroLabel42.Visible = false;
-                label53.Text = "Rate da Posição";
+                label53.Text = "Rate de Posição";
                 label54.Text = "Rate de Navegação";
             }
 
@@ -2910,7 +2904,7 @@ namespace JCFLIGHTGCS
                     Serial_Write_To_FC(13);
                     PidAndFiltersCommunicationOpen = true;
                 }
-                numericUpDown19.Value = BreakPoint;
+                numericUpDown19.Value = TPABreakPoint;
                 numericUpDown18.Value = TPAFactor;
                 comboBox20.SelectedIndex = GyroLPF;
                 numericUpDown14.Value = DerivativeLPF;
@@ -2953,6 +2947,12 @@ namespace JCFLIGHTGCS
                 numericUpDown10.Value = (decimal)(NumericConvert[26]) / 10;
                 numericUpDown38.Value = (decimal)(NumericConvert[27]) / 1000;
                 numericUpDown77.Value = (decimal)(NumericConvert[28]);
+                numericUpDown80.Value = (decimal)(NumericConvert[29]) / 10;
+                numericUpDown81.Value = (decimal)(NumericConvert[30]) / 1000;
+                numericUpDown79.Value = (decimal)(NumericConvert[31]);
+                numericUpDown83.Value = (decimal)(NumericConvert[32]) / 10;
+                numericUpDown85.Value = (decimal)(NumericConvert[33]) / 1000;
+                numericUpDown82.Value = (decimal)(NumericConvert[34]);
             }
             SmallCompass = false;
             tabControl1.SelectTab(tabPage7);
@@ -3027,7 +3027,7 @@ namespace JCFLIGHTGCS
                 label43.Text = "> Mantém a posição e a altitude do Aero em Círculo";
                 label24.Text = "Turn-Coord.";
                 label48.Text = "> Curva Coordenada baseada na Veloc. da Fuselagem";
-                label92.Text = "Cruise";
+                label92.Text = "Cruzeiro";
                 label70.Text = "> Mantém a posição e a altitude do Aero em linha reta";
             }
         }
@@ -3117,6 +3117,12 @@ namespace JCFLIGHTGCS
                         numericUpDown31.Value = (decimal)(60) / 10;
                         numericUpDown71.Value = (decimal)(20) / 10;
                         numericUpDown72.Value = 5;
+                        numericUpDown80.Value = (decimal)(75) / 10;
+                        numericUpDown81.Value = (decimal)(5) / 1000;
+                        numericUpDown79.Value = (decimal)(8);
+                        numericUpDown83.Value = (decimal)(30) / 10;
+                        numericUpDown85.Value = (decimal)(2) / 1000;
+                        numericUpDown82.Value = (decimal)(0);
                     }
                     else
                     {
@@ -3134,6 +3140,12 @@ namespace JCFLIGHTGCS
                         numericUpDown31.Value = (decimal)(60) / 10;
                         numericUpDown71.Value = (decimal)(20) / 10;
                         numericUpDown72.Value = 15;
+                        numericUpDown80.Value = (decimal)(70) / 10;
+                        numericUpDown81.Value = (decimal)(20) / 1000;
+                        numericUpDown79.Value = (decimal)(20);
+                        numericUpDown83.Value = (decimal)(25) / 10;
+                        numericUpDown85.Value = (decimal)(33) / 1000;
+                        numericUpDown82.Value = (decimal)(83);
                     }
                     numericUpDown70.Value = (decimal)(60) / 10;
                     numericUpDown73.Value = 90;
@@ -3349,7 +3361,7 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)0x4a;
                     SendBuffer[VectorPointer++] = (byte)0x43;
                     SendBuffer[VectorPointer++] = (byte)0x3c;
-                    SendBuffer[VectorPointer++] = 53;
+                    SendBuffer[VectorPointer++] = 59;
                     SendBuffer[VectorPointer++] = (byte)18;
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToByte(numericUpDown18.Value));
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown19.Value));
@@ -3404,6 +3416,12 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)(numericUpDown10.Value * 10);
                     SendBuffer[VectorPointer++] = (byte)(numericUpDown38.Value * 1000);
                     SendBuffer[VectorPointer++] = (byte)(numericUpDown77.Value);
+                    SendBuffer[VectorPointer++] = (byte)(numericUpDown80.Value * 10);
+                    SendBuffer[VectorPointer++] = (byte)(numericUpDown81.Value * 1000);
+                    SendBuffer[VectorPointer++] = (byte)(numericUpDown79.Value);
+                    SendBuffer[VectorPointer++] = (byte)(numericUpDown83.Value * 10);
+                    SendBuffer[VectorPointer++] = (byte)(numericUpDown85.Value * 1000);
+                    SendBuffer[VectorPointer++] = (byte)(numericUpDown82.Value);
                     for (int i = 3; i < VectorPointer; i++) CheckAllBuffers ^= SendBuffer[i];
                     SendBuffer[VectorPointer++] = CheckAllBuffers;
                     SerialPort.Write(SendBuffer, 0, VectorPointer);
@@ -4034,7 +4052,7 @@ namespace JCFLIGHTGCS
 
         void UpdateBlackBoxData()
         {
-            BlackBoxStream.WriteLine("IMU,{0},{1},{2},{3},{4},{5},{6}", DateTime.Now.ToString("HH:mm:ss.fff"), GetValues.AccFilteredX, GetValues.AccFilteredY, GetValues.AccFilteredZ, GetValues.GyroFilteredX, GetValues.GyroFilteredY, GetValues.GyroFilteredZ);
+            BlackBoxStream.WriteLine("IMU,{0},{1},{2},{3},{4},{5},{6}", DateTime.Now.ToString("HH:mm:ss.fff"), GetValues.AccX, GetValues.AccY, GetValues.AccZ, GetValues.GyroX, GetValues.GyroY, GetValues.GyroZ);
             BlackBoxStream.WriteLine("MAG,{0},{1},{2},{3}", DateTime.Now.ToString("HH:mm:ss.fff"), GetValues.CompassX, GetValues.CompassY, GetValues.CompassZ);
             BlackBoxStream.WriteLine("ATTITUDE,{0},{1},{2},{3},{4}", DateTime.Now.ToString("HH:mm:ss.fff"), GetAccCalibFlag != 63 ? 0 : -ReadRoll, GetAccCalibFlag != 63 ? 0 : -ReadPitch, ReadCompass, label83.Text);
             BlackBoxStream.WriteLine("RADIO,{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12}", DateTime.Now.ToString("HH:mm:ss.fff"), ThrottleData, PitchData, RollData, YawData, Aux1Data, Aux2Data, Aux3Data, Aux4Data, Aux5Data, Aux6Data, Aux7Data, Aux8Data);

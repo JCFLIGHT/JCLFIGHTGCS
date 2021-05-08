@@ -2473,9 +2473,9 @@
             this.label50.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label50.Location = new System.Drawing.Point(287, 332);
             this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(248, 20);
+            this.label50.Size = new System.Drawing.Size(363, 20);
             this.label50.TabIndex = 27;
-            this.label50.Text = "> Arma e Desarma a controladora";
+            this.label50.Text = "> Arma e Desarma o sistema por um canal Auxiliar";
             // 
             // comboBox10
             // 
@@ -2520,9 +2520,9 @@
             this.label51.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label51.Location = new System.Drawing.Point(6, 329);
             this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(112, 24);
+            this.label51.Size = new System.Drawing.Size(119, 24);
             this.label51.TabIndex = 26;
-            this.label51.Text = "ArmDisarm";
+            this.label51.Text = "Arm-Disarm";
             // 
             // label49
             // 
@@ -2560,9 +2560,9 @@
             this.label46.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label46.Location = new System.Drawing.Point(287, 215);
             this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(362, 20);
+            this.label46.Size = new System.Drawing.Size(373, 20);
             this.label46.TabIndex = 21;
-            this.label46.Text = "> Modo Stabilize com Limite maior no Ângulo (55°)";
+            this.label46.Text = "> Modo de estabilização com limite maior no Ângulo";
             // 
             // label45
             // 
@@ -2570,9 +2570,9 @@
             this.label45.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label45.Location = new System.Drawing.Point(287, 177);
             this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(308, 20);
+            this.label45.Size = new System.Drawing.Size(310, 20);
             this.label45.TabIndex = 20;
-            this.label45.Text = "> Return To Home com Pouso Automático";
+            this.label45.Text = "> Return-To-Home com Pouso Automático";
             // 
             // label44
             // 
@@ -4932,7 +4932,7 @@
             this.groupBox39.Controls.Add(this.metroLabel52);
             this.groupBox39.Controls.Add(this.numericUpDown91);
             this.groupBox39.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox39.Location = new System.Drawing.Point(554, 400);
+            this.groupBox39.Location = new System.Drawing.Point(378, 400);
             this.groupBox39.Name = "groupBox39";
             this.groupBox39.Size = new System.Drawing.Size(160, 48);
             this.groupBox39.TabIndex = 46;
@@ -4965,12 +4965,12 @@
             this.groupBox36.Controls.Add(this.metroLabel50);
             this.groupBox36.Controls.Add(this.numericUpDown87);
             this.groupBox36.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox36.Location = new System.Drawing.Point(6, 470);
+            this.groupBox36.Location = new System.Drawing.Point(744, 400);
             this.groupBox36.Name = "groupBox36";
             this.groupBox36.Size = new System.Drawing.Size(164, 48);
             this.groupBox36.TabIndex = 44;
             this.groupBox36.TabStop = false;
-            this.groupBox36.Text = "kCD (PID) LPF";
+            this.groupBox36.Text = "CD (PID) LPF";
             // 
             // metroLabel50
             // 
@@ -5011,16 +5011,16 @@
             this.groupBox33.Size = new System.Drawing.Size(185, 135);
             this.groupBox33.TabIndex = 43;
             this.groupBox33.TabStop = false;
-            this.groupBox33.Text = "ÂNGULOS DE NAV.";
+            this.groupBox33.Text = "RECURSOS DE NAV.";
             // 
             // metroLabel39
             // 
             this.metroLabel39.AutoSize = true;
             this.metroLabel39.Location = new System.Drawing.Point(6, 112);
             this.metroLabel39.Name = "metroLabel39";
-            this.metroLabel39.Size = new System.Drawing.Size(94, 19);
+            this.metroLabel39.Size = new System.Drawing.Size(102, 19);
             this.metroLabel39.TabIndex = 46;
-            this.metroLabel39.Text = "GPS Bank Max";
+            this.metroLabel39.Text = "Piloto Aut. Bank";
             // 
             // numericUpDown76
             // 
@@ -5349,7 +5349,7 @@
             this.groupBox29.Controls.Add(this.numericUpDown21);
             this.groupBox29.Controls.Add(this.metroLabel27);
             this.groupBox29.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox29.Location = new System.Drawing.Point(342, 470);
+            this.groupBox29.Location = new System.Drawing.Point(172, 473);
             this.groupBox29.Name = "groupBox29";
             this.groupBox29.Size = new System.Drawing.Size(164, 48);
             this.groupBox29.TabIndex = 38;
@@ -5382,7 +5382,7 @@
             this.groupBox26.Controls.Add(this.numericUpDown20);
             this.groupBox26.Controls.Add(this.metroLabel23);
             this.groupBox26.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox26.Location = new System.Drawing.Point(176, 470);
+            this.groupBox26.Location = new System.Drawing.Point(6, 473);
             this.groupBox26.Name = "groupBox26";
             this.groupBox26.Size = new System.Drawing.Size(160, 48);
             this.groupBox26.TabIndex = 35;
@@ -5490,7 +5490,7 @@
             this.groupBox24.Size = new System.Drawing.Size(200, 48);
             this.groupBox24.TabIndex = 29;
             this.groupBox24.TabStop = false;
-            this.groupBox24.Text = "VBAT PID COMPENSAÇÃO";
+            this.groupBox24.Text = "V.BAT THR COMPENSAÇÃO";
             // 
             // comboBox22
             // 
@@ -5730,7 +5730,7 @@
             this.groupBox18.Controls.Add(this.metroLabel10);
             this.groupBox18.Controls.Add(this.numericUpDown14);
             this.groupBox18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox18.Location = new System.Drawing.Point(378, 400);
+            this.groupBox18.Location = new System.Drawing.Point(554, 400);
             this.groupBox18.Name = "groupBox18";
             this.groupBox18.Size = new System.Drawing.Size(170, 48);
             this.groupBox18.TabIndex = 14;
@@ -5774,16 +5774,18 @@
             // 
             this.comboBox20.FormattingEnabled = true;
             this.comboBox20.Items.AddRange(new object[] {
+            "NENHUM",
+            "10 Hz",
             "20 Hz",
             "42 Hz",
             "98 Hz",
             "188 Hz",
             "256 Hz"});
-            this.comboBox20.Location = new System.Drawing.Point(77, 18);
+            this.comboBox20.Location = new System.Drawing.Point(72, 18);
             this.comboBox20.Name = "comboBox20";
-            this.comboBox20.Size = new System.Drawing.Size(70, 23);
+            this.comboBox20.Size = new System.Drawing.Size(84, 23);
             this.comboBox20.TabIndex = 15;
-            this.comboBox20.Text = "20 Hz";
+            this.comboBox20.Text = "NENHUM";
             this.comboBox20.SelectedIndexChanged += new System.EventHandler(this.comboBox20_SelectedIndexChanged);
             // 
             // metroLabel11
@@ -5870,7 +5872,7 @@
             this.label53.Name = "label53";
             this.label53.Size = new System.Drawing.Size(112, 15);
             this.label53.TabIndex = 30;
-            this.label53.Text = "Rate da Posição";
+            this.label53.Text = "Rate de Posição";
             // 
             // label52
             // 
@@ -5892,18 +5894,12 @@
             // 
             // numericUpDown79
             // 
-            this.numericUpDown79.DecimalPlaces = 2;
-            this.numericUpDown79.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            131072});
             this.numericUpDown79.Location = new System.Drawing.Point(271, 83);
             this.numericUpDown79.Maximum = new decimal(new int[] {
             254,
             0,
             0,
-            131072});
+            0});
             this.numericUpDown79.Name = "numericUpDown79";
             this.numericUpDown79.Size = new System.Drawing.Size(70, 21);
             this.numericUpDown79.TabIndex = 11;
@@ -5937,54 +5933,48 @@
             // 
             // numericUpDown82
             // 
-            this.numericUpDown82.DecimalPlaces = 2;
-            this.numericUpDown82.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            131072});
             this.numericUpDown82.Location = new System.Drawing.Point(445, 83);
             this.numericUpDown82.Maximum = new decimal(new int[] {
             254,
             0,
             0,
-            131072});
+            0});
             this.numericUpDown82.Name = "numericUpDown82";
             this.numericUpDown82.Size = new System.Drawing.Size(70, 21);
             this.numericUpDown82.TabIndex = 25;
             // 
             // numericUpDown80
             // 
-            this.numericUpDown80.DecimalPlaces = 2;
+            this.numericUpDown80.DecimalPlaces = 1;
             this.numericUpDown80.Increment = new decimal(new int[] {
             1,
             0,
             0,
-            131072});
+            65536});
             this.numericUpDown80.Location = new System.Drawing.Point(271, 35);
             this.numericUpDown80.Maximum = new decimal(new int[] {
             254,
             0,
             0,
-            131072});
+            65536});
             this.numericUpDown80.Name = "numericUpDown80";
             this.numericUpDown80.Size = new System.Drawing.Size(70, 21);
             this.numericUpDown80.TabIndex = 7;
             // 
             // numericUpDown81
             // 
-            this.numericUpDown81.DecimalPlaces = 2;
+            this.numericUpDown81.DecimalPlaces = 3;
             this.numericUpDown81.Increment = new decimal(new int[] {
             1,
             0,
             0,
-            131072});
+            196608});
             this.numericUpDown81.Location = new System.Drawing.Point(271, 59);
             this.numericUpDown81.Maximum = new decimal(new int[] {
             254,
             0,
             0,
-            131072});
+            196608});
             this.numericUpDown81.Name = "numericUpDown81";
             this.numericUpDown81.Size = new System.Drawing.Size(70, 21);
             this.numericUpDown81.TabIndex = 8;
@@ -6063,36 +6053,36 @@
             // 
             // numericUpDown83
             // 
-            this.numericUpDown83.DecimalPlaces = 2;
+            this.numericUpDown83.DecimalPlaces = 1;
             this.numericUpDown83.Increment = new decimal(new int[] {
             1,
             0,
             0,
-            131072});
+            65536});
             this.numericUpDown83.Location = new System.Drawing.Point(445, 35);
             this.numericUpDown83.Maximum = new decimal(new int[] {
             254,
             0,
             0,
-            131072});
+            65536});
             this.numericUpDown83.Name = "numericUpDown83";
             this.numericUpDown83.Size = new System.Drawing.Size(70, 21);
             this.numericUpDown83.TabIndex = 21;
             // 
             // numericUpDown85
             // 
-            this.numericUpDown85.DecimalPlaces = 2;
+            this.numericUpDown85.DecimalPlaces = 3;
             this.numericUpDown85.Increment = new decimal(new int[] {
             1,
             0,
             0,
-            131072});
+            196608});
             this.numericUpDown85.Location = new System.Drawing.Point(445, 59);
             this.numericUpDown85.Maximum = new decimal(new int[] {
             254,
             0,
             0,
-            131072});
+            196608});
             this.numericUpDown85.Name = "numericUpDown85";
             this.numericUpDown85.Size = new System.Drawing.Size(70, 21);
             this.numericUpDown85.TabIndex = 22;
@@ -6111,7 +6101,7 @@
             this.groupBox15.Size = new System.Drawing.Size(175, 100);
             this.groupBox15.TabIndex = 4;
             this.groupBox15.TabStop = false;
-            this.groupBox15.Text = "ALTITUDE-HOLD";
+            this.groupBox15.Text = "POSIÇÃO Z";
             // 
             // numericUpDown77
             // 
@@ -7714,9 +7704,9 @@
             this.label166.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label166.Location = new System.Drawing.Point(6, 29);
             this.label166.Name = "label166";
-            this.label166.Size = new System.Drawing.Size(64, 16);
+            this.label166.Size = new System.Drawing.Size(66, 16);
             this.label166.TabIndex = 136;
-            this.label166.Text = "Rc Rate";
+            this.label166.Text = "RC Rate";
             // 
             // numericUpDown28
             // 
@@ -7751,9 +7741,9 @@
             this.label167.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label167.Location = new System.Drawing.Point(6, 60);
             this.label167.Name = "label167";
-            this.label167.Size = new System.Drawing.Size(66, 16);
+            this.label167.Size = new System.Drawing.Size(68, 16);
             this.label167.TabIndex = 134;
-            this.label167.Text = "Rc Expo";
+            this.label167.Text = "RC Expo";
             // 
             // label169
             // 

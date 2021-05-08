@@ -39,18 +39,12 @@ namespace JCFLIGHTGCS
         /// <summary>
         /// PASSAGEM DE PARAMETROS DE UM FORM PRA OUTRO
         /// </summary>
-        public static int AccNotFilteredX = 0;
-        public static int AccNotFilteredY = 0;
-        public static int AccNotFilteredZ = 0;
-        public static int AccFilteredX = 0;
-        public static int AccFilteredY = 0;
-        public static int AccFilteredZ = 0;
-        public static int GyroNotFilteredX = 0;
-        public static int GyroNotFilteredY = 0;
-        public static int GyroNotFilteredZ = 0;
-        public static int GyroFilteredX = 0;
-        public static int GyroFilteredY = 0;
-        public static int GyroFilteredZ = 0;
+        public static int AccX = 0;
+        public static int AccY = 0;
+        public static int AccZ = 0;
+        public static int GyroX = 0;
+        public static int GyroY = 0;
+        public static int GyroZ = 0;
         public static int CompassX = 0;
         public static int CompassY = 0;
         public static int CompassZ = 0;
