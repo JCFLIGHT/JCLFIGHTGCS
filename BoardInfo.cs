@@ -101,14 +101,14 @@ namespace JCFLIGHTGCS
             {
                 if (checkBox1.Checked)
                 {
-                    zedGraphControl1.GraphPane.CurveList[0].Label.Text = "Acc Pitch";
-                    Chart1.Add(TimeStamp, GetValues.AccY);
+                    zedGraphControl1.GraphPane.CurveList[0].Label.Text = "Acc Roll";
+                    Chart1.Add(TimeStamp, GetValues.AccX);
                 }
 
                 if (checkBox2.Checked)
                 {
-                    zedGraphControl1.GraphPane.CurveList[1].Label.Text = "Acc Roll";
-                    Chart2.Add(TimeStamp, GetValues.AccX);
+                    zedGraphControl1.GraphPane.CurveList[1].Label.Text = "Acc Pitch";
+                    Chart2.Add(TimeStamp, GetValues.AccY);
                 }
 
                 if (checkBox3.Checked)

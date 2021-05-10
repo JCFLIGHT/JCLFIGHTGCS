@@ -1,3 +1,11 @@
 <?xml version="1.0"?>
 <GCSPARAMETERS>
+    <GCSFrequency Valor = "15" />
+    <GCSRate Valor = "66" />
+    <GCSSpeech Valor = "0" />
+    <GCSRebootBoard Valor = "0" />
+    <GCSAutoWP Valor = "0" />
+    <GCSTrackLength Valor = "200" />
+    <GCSAirPorts Valor = "1" />
+    <GCSTrackSize Valor = "5" />
 </GCSPARAMETERS>

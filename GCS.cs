@@ -4269,6 +4269,9 @@ namespace JCFLIGHTGCS
         bool AutoPilotDeactived = false;
         bool OkToResetSpeech = false;
         int AutoPilotDeactivedCount = 0;
+        byte APFlightModePrev = 0;
+        bool APDeactivedPrev = false;
+        bool OnceAPDisengage = false;
         private void SpeechRun()
         {
             if (SerialPort.IsOpen == false)
@@ -4282,7 +4285,7 @@ namespace JCFLIGHTGCS
                 return;
             }
 
-            if (Math.Abs(ReadRoll / 10) > GetValues.BankAngleRollValue)
+            if (Math.Abs(ReadRoll / 10) > NumericConvert[19])
             {
                 Player.URL = Directory.GetCurrentDirectory() + "\\FlightSounds" + "\\BankAngle.mp3";
                 OkToResetSpeech = true;
@@ -4294,11 +4297,17 @@ namespace JCFLIGHTGCS
                 OkToResetSpeech = true;
             }
 
-            if ((FlightMode != 4 || FlightMode != 12) && !AutoPilotDeactived)
+            byte APActual = (FlightMode == 4 || FlightMode == 12) ? APFlightModePrev : FlightMode;
+            bool APDeactived = FlightMode != APActual;
+            OnceAPDisengage = APDeactived != APDeactivedPrev;
+            APDeactivedPrev = APDeactived;
+
+            if ((!APDeactived && OnceAPDisengage) || ((FlightMode != 4 || FlightMode != 12) && !AutoPilotDeactived))
             {
                 Player.URL = Directory.GetCurrentDirectory() + "\\FlightSounds" + "\\AutoPilotDisengage.mp3";
                 OkToResetSpeech = true;
                 AutoPilotDeactived = true;
+                APFlightModePrev = FlightMode;
             }
             else
             {
