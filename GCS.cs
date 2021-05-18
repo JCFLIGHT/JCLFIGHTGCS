@@ -140,7 +140,7 @@ namespace JCFLIGHTGCS
         byte ComboBoxParachute = 0;
         byte ComboBoxSafeBtn = 0;
         byte ComboBoxAirSpeed = 0;
-        byte ComboBoxSPI = 0;
+        byte ComboBoxUART3 = 0;
         byte ComboBoxUART2 = 0;
         byte ComboBoxUart1 = 0;
         byte ComboBoxCompassRot = 0;
@@ -162,8 +162,8 @@ namespace JCFLIGHTGCS
         byte FrameGuard = 0;
         byte ParachuteGuard = 0;
         byte RthAltitudeGuard = 0;
-        byte OptFlowGuard = 0;
-        byte SonarGuard = 0;
+        byte Uart3Guard = 0;
+        byte Uart2Guard = 0;
         byte Uart1Guard = 0;
         byte CompassRotGuard = 0;
         byte AcroGuard = 0;
@@ -926,9 +926,9 @@ namespace JCFLIGHTGCS
                     PPMGuard = (byte)InBuffer[ptr++];
                     GimbalGuard = (byte)InBuffer[ptr++];
                     ParachuteGuard = (byte)InBuffer[ptr++];
-                    OptFlowGuard = (byte)InBuffer[ptr++];
-                    SonarGuard = (byte)InBuffer[ptr++];
                     Uart1Guard = (byte)InBuffer[ptr++];
+                    Uart2Guard = (byte)InBuffer[ptr++];
+                    Uart3Guard = (byte)InBuffer[ptr++];       
                     CompassRotGuard = (byte)InBuffer[ptr++];
                     RthAltitudeGuard = (byte)InBuffer[ptr++];
                     AcroGuard = (byte)InBuffer[ptr++];
@@ -1245,8 +1245,6 @@ namespace JCFLIGHTGCS
                     numericUpDown17.Enabled = false;
                     numericUpDown20.Enabled = false;
                     numericUpDown21.Enabled = false;
-                    comboBox22.Enabled = false;
-
                     RamMemString = "8192KB";
                 }
                 else if (GetValues.GetPlatformName == "ESP32")
@@ -1257,7 +1255,6 @@ namespace JCFLIGHTGCS
                     numericUpDown17.Enabled = true;
                     numericUpDown20.Enabled = true;
                     numericUpDown21.Enabled = true;
-                    comboBox22.Enabled = true;
                     RamMemString = "327680KB";
                 }
                 else if (GetValues.GetPlatformName == "STM32")
@@ -1268,7 +1265,6 @@ namespace JCFLIGHTGCS
                     numericUpDown17.Enabled = true;
                     numericUpDown20.Enabled = true;
                     numericUpDown21.Enabled = true;
-                    comboBox22.Enabled = true;
                     RamMemString = "131072KB";
                 }
             }
@@ -2069,7 +2065,7 @@ namespace JCFLIGHTGCS
                 }
                 Serial_Write_To_FC(13);
                 SerialOpen = true;
-                comboBox4.SelectedIndex = ((SimpleDataGuard > comboBox4.Items.Count) ? 0 : SimpleDataGuard);
+                comboBox4.SelectedIndex = SimpleDataGuard;
                 comboBox2.SelectedIndex = AltHoldGuard;
                 comboBox3.SelectedIndex = GPSHoldGuard;
                 comboBox5.SelectedIndex = RTHGuard;
@@ -2081,16 +2077,16 @@ namespace JCFLIGHTGCS
                 comboBox6.SelectedIndex = SportGuard;
                 comboBox8.SelectedIndex = AutoFlipGuard;
                 comboBox9.SelectedIndex = AutoGuard;
-                comboBox15.SelectedIndex = OptFlowGuard;
-                comboBox16.SelectedIndex = ((SonarGuard > comboBox16.Items.Count) ? 0 : SonarGuard);
+                comboBox15.SelectedIndex = Uart3Guard;
+                comboBox16.SelectedIndex = Uart2Guard;
                 comboBox17.SelectedIndex = Uart1Guard;
                 comboBox18.SelectedIndex = CompassRotGuard;
-                numericUpDown86.Value = RthAltitudeGuard < 10 ? 10 : RthAltitudeGuard;
+                numericUpDown86.Value = RthAltitudeGuard;
                 comboBox24.SelectedIndex = SafeBtnGuard;
                 comboBox25.SelectedIndex = AirSpeedGuard;
                 comboBox10.SelectedIndex = ArmDisarmGuard;
                 comboBox23.SelectedIndex = AutoLandGuard;
-                numericUpDown94.Value = Math.Abs(PitchLevelTrimGuard) > 10 ? 0 : PitchLevelTrimGuard;
+                numericUpDown94.Value = PitchLevelTrimGuard;
             }
             SmallCompass = false;
             tabControl1.SelectTab(tabPage2);
@@ -2809,7 +2805,7 @@ namespace JCFLIGHTGCS
 
         private void comboBox15_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ComboBoxSPI = Convert.ToByte(comboBox15.SelectedIndex);
+            ComboBoxUART3 = Convert.ToByte(comboBox15.SelectedIndex);
         }
 
         private void comboBox16_SelectedIndexChanged(object sender, EventArgs e)
@@ -2849,12 +2845,12 @@ namespace JCFLIGHTGCS
 
         private void comboBox21_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ComboBoxKalmanState = Convert.ToByte(comboBox21.SelectedIndex);
+            ComboBoxKalmanState = Convert.ToByte(buttonToggle11.IsOn);
         }
 
         private void comboBox22_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ComboBoxCompSpeed = Convert.ToByte(comboBox22.SelectedIndex);
+            ComboBoxCompSpeed = Convert.ToByte(buttonToggle12.IsOn);
         }
 
         private void comboBox23_SelectedIndexChanged(object sender, EventArgs e)
@@ -2910,12 +2906,12 @@ namespace JCFLIGHTGCS
                 numericUpDown14.Value = DerivativeLPF;
                 numericUpDown20.Value = RCSmooth;
                 numericUpDown21.Value = ServosLPF;
-                comboBox21.SelectedIndex = KalmanState;
+                buttonToggle11.IsOn = Convert.ToBoolean(KalmanState);
                 numericUpDown13.Value = BiAccLPF;
                 numericUpDown15.Value = BiGyroLPF;
                 numericUpDown16.Value = BiAccNotch;
                 numericUpDown17.Value = BiGyroNotch;
-                comboBox22.SelectedIndex = CompSpeed;
+                buttonToggle12.IsOn = Convert.ToBoolean(CompSpeed);
                 numericUpDown1.Value = (decimal)(NumericConvert[0]) / 10;
                 numericUpDown2.Value = (decimal)(NumericConvert[1]) / 1000;
                 numericUpDown3.Value = NumericConvert[2];
@@ -3089,13 +3085,13 @@ namespace JCFLIGHTGCS
                     numericUpDown14.Value = 40;
                     numericUpDown20.Value = 50;
                     numericUpDown21.Value = 50;
-                    comboBox21.SelectedIndex = 0;
+                    buttonToggle11.IsOn = false;
                     numericUpDown13.Value = 15;
                     numericUpDown15.Value = 60;
                     numericUpDown16.Value = 0;
                     numericUpDown17.Value = 0;
                     numericUpDown94.Value = 0;
-                    comboBox22.SelectedIndex = 0;
+                    buttonToggle12.IsOn = false;
                     numericUpDown91.Value = 15;
                     numericUpDown87.Value = 30;
                     numericUpDown10.Value = (decimal)(0) / 10;
@@ -3233,74 +3229,74 @@ namespace JCFLIGHTGCS
         {
             if ((ChannelsReverse & 1) > 0)
             {
-                checkBox2.Checked = true;
+                buttonToggle1.IsOn = true;
             }
             else
             {
-                checkBox2.Checked = false;
+                buttonToggle1.IsOn = false;
             }
 
             if ((ChannelsReverse & 2) > 0)
             {
-                checkBox3.Checked = true;
+                buttonToggle2.IsOn = true;
             }
             else
             {
-                checkBox3.Checked = false;
+                buttonToggle2.IsOn = false;
             }
 
             if ((ChannelsReverse & 4) > 0)
             {
-                checkBox4.Checked = true;
+                buttonToggle3.IsOn = true;
             }
             else
             {
-                checkBox4.Checked = false;
+                buttonToggle3.IsOn = false;
             }
 
             if ((ChannelsReverse & 8) > 0)
             {
-                checkBox5.Checked = true;
+                buttonToggle4.IsOn = true;
             }
             else
             {
-                checkBox5.Checked = false;
+                buttonToggle4.IsOn = false;
             }
 
             if ((ServosReverse & 1) > 0)
             {
-                checkBox9.Checked = true;
+                buttonToggle5.IsOn = true;
             }
             else
             {
-                checkBox9.Checked = false;
+                buttonToggle5.IsOn = false;
             }
 
             if ((ServosReverse & 2) > 0)
             {
-                checkBox8.Checked = true;
+                buttonToggle6.IsOn = true;
             }
             else
             {
-                checkBox8.Checked = false;
+                buttonToggle6.IsOn = false;
             }
 
             if ((ServosReverse & 4) > 0)
             {
-                checkBox7.Checked = true;
+                buttonToggle7.IsOn = true;
             }
             else
             {
-                checkBox7.Checked = false;
+                buttonToggle7.IsOn = false;
             }
 
             if ((ServosReverse & 8) > 0)
             {
-                checkBox6.Checked = true;
+                buttonToggle8.IsOn = true;
             }
             else
             {
-                checkBox6.Checked = false;
+                buttonToggle8.IsOn = false;
             }
         }
 
@@ -3330,12 +3326,12 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)ComboBoxFrame;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxPPM;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxGimbal;
-                    SendBuffer[VectorPointer++] = (byte)ComboBoxParachute;
-                    SendBuffer[VectorPointer++] = (byte)ComboBoxSPI;
+                    SendBuffer[VectorPointer++] = (byte)ComboBoxParachute;        
+                    SendBuffer[VectorPointer++] = (byte)ComboBoxUart1;               
                     SendBuffer[VectorPointer++] = (byte)ComboBoxUART2;
-                    SendBuffer[VectorPointer++] = (byte)ComboBoxUart1;
+                    SendBuffer[VectorPointer++] = (byte)ComboBoxUART3;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxCompassRot;
-                    SendBuffer[VectorPointer++] = (byte)numericUpDown86.Value;
+                    SendBuffer[VectorPointer++] = (byte)(numericUpDown86.Value);
                     SendBuffer[VectorPointer++] = (byte)ComboBoxAcro;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxAltHold;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxGPSHold;
@@ -4175,14 +4171,14 @@ namespace JCFLIGHTGCS
                     numericUpDown65.Value = 45;
                     numericUpDown64.Value = 45;
                     numericUpDown63.Value = 45;
-                    checkBox2.Checked = false;
-                    checkBox3.Checked = false;
-                    checkBox4.Checked = false;
-                    checkBox5.Checked = false;
-                    checkBox6.Checked = false;
-                    checkBox7.Checked = false;
-                    checkBox8.Checked = false;
-                    checkBox9.Checked = false;
+                    buttonToggle1.IsOn = false;
+                    buttonToggle2.IsOn = false;
+                    buttonToggle3.IsOn = false;
+                    buttonToggle4.IsOn = false;
+                    buttonToggle8.IsOn = false;
+                    buttonToggle7.IsOn = false;
+                    buttonToggle6.IsOn = false;
+                    buttonToggle5.IsOn = false;
                     numericUpDown51.Value = 100;
                     numericUpDown52.Value = 100;
                     numericUpDown53.Value = 100;
@@ -4243,19 +4239,19 @@ namespace JCFLIGHTGCS
 
         byte GetChannelsReverse()
         {
-            int CheckDevices = Convert.ToByte(checkBox2.Checked) |
-                Convert.ToByte(checkBox3.Checked) << 1 |
-               Convert.ToByte(checkBox4.Checked) << 2 |
-               Convert.ToByte(checkBox5.Checked) << 3;
+            int CheckDevices = Convert.ToByte(buttonToggle1.IsOn) |
+                Convert.ToByte(buttonToggle2.IsOn) << 1 |
+               Convert.ToByte(buttonToggle3.IsOn) << 2 |
+               Convert.ToByte(buttonToggle4.IsOn) << 3;
             return Convert.ToByte(CheckDevices);
         }
 
         byte GetServosReverse()
         {
-            int CheckDevices = Convert.ToByte(checkBox9.Checked) |
-                Convert.ToByte(checkBox8.Checked) << 1 |
-               Convert.ToByte(checkBox7.Checked) << 2 |
-               Convert.ToByte(checkBox6.Checked) << 3;
+            int CheckDevices = Convert.ToByte(buttonToggle5.IsOn) |
+                Convert.ToByte(buttonToggle6.IsOn) << 1 |
+               Convert.ToByte(buttonToggle7.IsOn) << 2 |
+               Convert.ToByte(buttonToggle8.IsOn) << 3;
             return Convert.ToByte(CheckDevices);
         }
 

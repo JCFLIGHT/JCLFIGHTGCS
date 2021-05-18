@@ -252,6 +252,7 @@
     <Compile Include="BoardInfo.Designer.cs">
       <DependentUpon>BoardInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="ButtonToggle.cs" />
     <Compile Include="Compass.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -327,6 +328,7 @@
     <Compile Include="InstrumentsControls\ThrottleExpo.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="MyRectangle.cs" />
     <Compile Include="PingTest.cs" />
     <Compile Include="PointLatLngAlt.cs" />
     <Compile Include="PreArmNotification.cs">
