@@ -5,45 +5,29 @@
 
 trigger:
 - master
-- refs/tags/beta
 
 pool:
-  vmImage: 'windows-2019'
+  vmImage: 'windows-latest'
 
 variables:
-  solution: '**/JCFLIGHTGCS.sln'
+  solution: '**/*JCFLIGHTGCS.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
 steps:
-- script: date /t
-  displayName: Get the date
-- script: dir /s
-  workingDirectory: $(Agent.BuildDirectory)
-  displayName: List contents of a folder
+- task: NuGetToolInstaller@1
 
-- script: dotnet nuget locals all --clear
-- script: git submodule update --init --depth 2 --no-single-branch 
+- task: NuGetCommand@2
+  inputs:
+    restoreSolution: '$(solution)'
 
 - task: VSBuild@1
   inputs:
     solution: '$(solution)'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
-    msbuildArgs: '-restore /m'
-    logFileVerbosity: minimal
 
-- script: dir
-  workingDirectory: '$(Build.BinariesDirectory)' 
-  displayName: List contents of a folder
-
-- task: ArchiveFiles@2
+- task: VSTest@2
   inputs:
-    rootFolderOrFile: '$(Build.Repository.LocalPath)/bin2/Release' 
-    includeRootFolder: false
-    archiveFile: '$(Build.ArtifactStagingDirectory)/JCFLIGHTGCS.zip' 
-
-- task: PublishPipelineArtifact@0
-  inputs:
-    artifactName: 'JCFLIGHTGCS' 
-    targetPath: '$(Build.ArtifactStagingDirectory)/JCFLIGHTGCS.zip' 
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
