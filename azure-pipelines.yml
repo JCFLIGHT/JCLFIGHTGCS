@@ -5,7 +5,6 @@
 
 trigger:
 - master
-- refs/tags/beta
 
 pool:
   vmImage: 'windows-2019'
