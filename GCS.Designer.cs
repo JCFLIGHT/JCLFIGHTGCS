@@ -8593,7 +8593,6 @@
             // terminalControl1
             // 
             this.terminalControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
-            this.terminalControl1.data = null;
             this.terminalControl1.Location = new System.Drawing.Point(0, 0);
             this.terminalControl1.Name = "terminalControl1";
             this.terminalControl1.Size = new System.Drawing.Size(1047, 572);
