@@ -480,6 +480,8 @@
             this.numericUpDown24 = new System.Windows.Forms.NumericUpDown();
             this.label102 = new System.Windows.Forms.Label();
             this.groupBox30 = new System.Windows.Forms.GroupBox();
+            this.label193 = new System.Windows.Forms.Label();
+            this.label190 = new System.Windows.Forms.Label();
             this.label182 = new System.Windows.Forms.Label();
             this.label176 = new System.Windows.Forms.Label();
             this.label175 = new System.Windows.Forms.Label();
@@ -599,8 +601,6 @@
             this.limparMapaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.carregarWPsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.limparWPsDoMapaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label190 = new System.Windows.Forms.Label();
-            this.label193 = new System.Windows.Forms.Label();
             this.horizontalProgressBar22 = new JCFLIGHTGCS.HorizontalProgressBar2();
             this.horizontalProgressBar21 = new JCFLIGHTGCS.HorizontalProgressBar2();
             this.HUD1 = new JCFLIGHTGCS.HUD();
@@ -6666,6 +6666,26 @@
             this.groupBox30.TabStop = false;
             this.groupBox30.Text = "Outros Parâmetros";
             // 
+            // label193
+            // 
+            this.label193.AutoSize = true;
+            this.label193.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label193.Location = new System.Drawing.Point(116, 58);
+            this.label193.Name = "label193";
+            this.label193.Size = new System.Drawing.Size(60, 16);
+            this.label193.TabIndex = 202;
+            this.label193.Text = "Attitude";
+            // 
+            // label190
+            // 
+            this.label190.AutoSize = true;
+            this.label190.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label190.Location = new System.Drawing.Point(222, 58);
+            this.label190.Name = "label190";
+            this.label190.Size = new System.Drawing.Size(52, 16);
+            this.label190.TabIndex = 201;
+            this.label190.Text = "Cruise";
+            // 
             // label182
             // 
             this.label182.AutoSize = true;
@@ -8391,26 +8411,6 @@
             this.limparWPsDoMapaToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
             this.limparWPsDoMapaToolStripMenuItem.Text = "Limpar WP\'s do mapa";
             this.limparWPsDoMapaToolStripMenuItem.Click += new System.EventHandler(this.limparWPsDoMapaToolStripMenuItem_Click);
-            // 
-            // label190
-            // 
-            this.label190.AutoSize = true;
-            this.label190.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label190.Location = new System.Drawing.Point(222, 58);
-            this.label190.Name = "label190";
-            this.label190.Size = new System.Drawing.Size(52, 16);
-            this.label190.TabIndex = 201;
-            this.label190.Text = "Cruise";
-            // 
-            // label193
-            // 
-            this.label193.AutoSize = true;
-            this.label193.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label193.Location = new System.Drawing.Point(116, 58);
-            this.label193.Name = "label193";
-            this.label193.Size = new System.Drawing.Size(60, 16);
-            this.label193.TabIndex = 202;
-            this.label193.Text = "Attitude";
             // 
             // horizontalProgressBar22
             // 

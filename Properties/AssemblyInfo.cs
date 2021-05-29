@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("JCFLIGHT")]
 [assembly: AssemblyProduct("JCFLIGHTGCS")]
-[assembly: AssemblyCopyright("Copyright ©  2019-2022")]
+[assembly: AssemblyCopyright("Copyright ©  2019-2100")]
 [assembly: AssemblyTrademark("JCFLIGHT")]
 [assembly: AssemblyCulture("")]
 
@@ -31,5 +31,5 @@ using System.Runtime.InteropServices;
 //
 /*[assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]*/
-[assembly: AssemblyVersion("1.2.*")]
+[assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
