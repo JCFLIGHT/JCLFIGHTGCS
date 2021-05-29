@@ -27,7 +27,7 @@ jobs:
           name: JCFLIGHTGCS
           path: bin\Release
   
-   buildDebug:
+  buildDebug:
     name: Debugar construção
     runs-on: windows-latest
 
