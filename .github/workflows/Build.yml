@@ -19,13 +19,13 @@ jobs:
       - name: Limpar
         shell: pwsh
         run: |
-          cd bin\Release
-          gci | ForEach-Object {                 if (Test-Path $_.Name -PathType Leaf)                {                    Write-Host "Remove" $_.FullName   ;                 Remove-Item $_.FullName                            } else {                    Write-Host $_.Name                }            }
+          cd bin\Release\net461
+          gci plugins | ForEach-Object {                 if (Test-Path $_.Name -PathType Leaf)                {                    Write-Host "Remove" $_.FullName   ;                 Remove-Item $_.FullName                            } else {                    Write-Host $_.Name                }            }
           
       - uses: actions/upload-artifact@v1
         with:
           name: JCFLIGHTGCS
-          path: bin\Release
+          path: bin\Release\net461
   
   buildDebug:
     name: Debugar construção
@@ -46,5 +46,5 @@ jobs:
       - name: Limpar
         shell: pwsh
         run: |
-          cd bin\Debug
-          gci | ForEach-Object {                 if (Test-Path $_.Name -PathType Leaf)                {                    Write-Host "Remove" $_.FullName   ;                 Remove-Item $_.FullName                            } else {                    Write-Host $_.Name                }            }
+          cd bin\Debug\net461
+          gci plugins | ForEach-Object {                 if (Test-Path $_.Name -PathType Leaf)                {                    Write-Host "Remove" $_.FullName   ;                 Remove-Item $_.FullName                            } else {                    Write-Host $_.Name                }            }
