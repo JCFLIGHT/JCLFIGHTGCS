@@ -33,7 +33,6 @@
             this.label27 = new System.Windows.Forms.Label();
             this.comboBox7 = new System.Windows.Forms.ComboBox();
             this.BarraTitulo = new System.Windows.Forms.Panel();
-            this.preArmNotification2 = new JCFLIGHTGCS.PreArmNotification();
             this.panel18 = new System.Windows.Forms.Panel();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.label72 = new System.Windows.Forms.Label();
@@ -48,7 +47,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.MenuVertical = new System.Windows.Forms.Panel();
-            this.preArmNotification1 = new JCFLIGHTGCS.PreArmNotification();
             this.button19 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
             this.button18 = new System.Windows.Forms.Button();
@@ -60,20 +58,16 @@
             this.RealTimer = new System.Windows.Forms.Timer(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.horizontalProgressBar22 = new JCFLIGHTGCS.HorizontalProgressBar2();
-            this.horizontalProgressBar21 = new JCFLIGHTGCS.HorizontalProgressBar2();
             this.button28 = new System.Windows.Forms.Button();
             this.label183 = new System.Windows.Forms.Label();
             this.button23 = new System.Windows.Forms.Button();
             this.button22 = new System.Windows.Forms.Button();
             this.button21 = new System.Windows.Forms.Button();
-            this.HUD1 = new JCFLIGHTGCS.HUD();
             this.label151 = new System.Windows.Forms.Label();
             this.button15 = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.circularProgressBar1 = new CircularProgressBar.CircularProgressBar();
-            this.HeadingIndicator = new JCFLIGHTGCS.HeadingIndicatorInstrumentControl();
             this.panel16 = new System.Windows.Forms.Panel();
             this.label25 = new System.Windows.Forms.Label();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
@@ -127,7 +121,6 @@
             this.numericUpDown102 = new System.Windows.Forms.NumericUpDown();
             this.label217 = new System.Windows.Forms.Label();
             this.label201 = new System.Windows.Forms.Label();
-            this.buttonToggle14 = new JCFLIGHTGCS.ButtonToggle();
             this.numericUpDown98 = new System.Windows.Forms.NumericUpDown();
             this.label199 = new System.Windows.Forms.Label();
             this.numericUpDown97 = new System.Windows.Forms.NumericUpDown();
@@ -313,8 +306,6 @@
             this.metroProgressBar2 = new MetroFramework.Controls.MetroProgressBar();
             this.metroProgressBar1 = new MetroFramework.Controls.MetroProgressBar();
             this.metroProgressBar11 = new MetroFramework.Controls.MetroProgressBar();
-            this.rcExpo1 = new JCFLIGHTGCS.RCExpo();
-            this.throttleExpo1 = new JCFLIGHTGCS.ThrottleExpo();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.label158 = new System.Windows.Forms.Label();
             this.label157 = new System.Windows.Forms.Label();
@@ -348,9 +339,6 @@
             this.label73 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.circularProgressBar2 = new CircularProgressBar.CircularProgressBar();
-            this.HUD2 = new JCFLIGHTGCS.HUD();
-            this.HUDSMALL1 = new JCFLIGHTGCS.HUDSMALL();
-            this.HeadingIndicator2 = new JCFLIGHTGCS.HeadingIndicatorInstrumentControl();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.groupBox34 = new System.Windows.Forms.GroupBox();
             this.metroLabel53 = new MetroFramework.Controls.MetroLabel();
@@ -406,7 +394,6 @@
             this.numericUpDown19 = new System.Windows.Forms.NumericUpDown();
             this.label109 = new System.Windows.Forms.Label();
             this.groupBox24 = new System.Windows.Forms.GroupBox();
-            this.buttonToggle12 = new JCFLIGHTGCS.ButtonToggle();
             this.metroLabel20 = new MetroFramework.Controls.MetroLabel();
             this.label108 = new System.Windows.Forms.Label();
             this.label107 = new System.Windows.Forms.Label();
@@ -414,7 +401,6 @@
             this.label105 = new System.Windows.Forms.Label();
             this.label104 = new System.Windows.Forms.Label();
             this.groupBox23 = new System.Windows.Forms.GroupBox();
-            this.buttonToggle11 = new JCFLIGHTGCS.ButtonToggle();
             this.metroLabel19 = new MetroFramework.Controls.MetroLabel();
             this.groupBox22 = new System.Windows.Forms.GroupBox();
             this.metroLabel18 = new MetroFramework.Controls.MetroLabel();
@@ -488,7 +474,6 @@
             this.button17 = new System.Windows.Forms.Button();
             this.button16 = new System.Windows.Forms.Button();
             this.tabPage8 = new System.Windows.Forms.TabPage();
-            this.terminalControl1 = new Terminal.TerminalControl();
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.panel19 = new System.Windows.Forms.Panel();
             this.groupBox37 = new System.Windows.Forms.GroupBox();
@@ -497,7 +482,6 @@
             this.label186 = new System.Windows.Forms.Label();
             this.label185 = new System.Windows.Forms.Label();
             this.label184 = new System.Windows.Forms.Label();
-            this.buttonToggle10 = new JCFLIGHTGCS.ButtonToggle();
             this.label115 = new System.Windows.Forms.Label();
             this.numericUpDown92 = new System.Windows.Forms.NumericUpDown();
             this.label112 = new System.Windows.Forms.Label();
@@ -518,13 +502,8 @@
             this.label190 = new System.Windows.Forms.Label();
             this.label182 = new System.Windows.Forms.Label();
             this.label176 = new System.Windows.Forms.Label();
-            this.label175 = new System.Windows.Forms.Label();
-            this.buttonToggle13 = new JCFLIGHTGCS.ButtonToggle();
-            this.buttonToggle9 = new JCFLIGHTGCS.ButtonToggle();
             this.numericUpDown95 = new System.Windows.Forms.NumericUpDown();
             this.label154 = new System.Windows.Forms.Label();
-            this.numericUpDown93 = new System.Windows.Forms.NumericUpDown();
-            this.label150 = new System.Windows.Forms.Label();
             this.numericUpDown22 = new System.Windows.Forms.NumericUpDown();
             this.label98 = new System.Windows.Forms.Label();
             this.label97 = new System.Windows.Forms.Label();
@@ -536,10 +515,6 @@
             this.label172 = new System.Windows.Forms.Label();
             this.label173 = new System.Windows.Forms.Label();
             this.label174 = new System.Windows.Forms.Label();
-            this.buttonToggle8 = new JCFLIGHTGCS.ButtonToggle();
-            this.buttonToggle7 = new JCFLIGHTGCS.ButtonToggle();
-            this.buttonToggle6 = new JCFLIGHTGCS.ButtonToggle();
-            this.buttonToggle5 = new JCFLIGHTGCS.ButtonToggle();
             this.numericUpDown51 = new System.Windows.Forms.NumericUpDown();
             this.label211 = new System.Windows.Forms.Label();
             this.label202 = new System.Windows.Forms.Label();
@@ -577,10 +552,6 @@
             this.label168 = new System.Windows.Forms.Label();
             this.label161 = new System.Windows.Forms.Label();
             this.label155 = new System.Windows.Forms.Label();
-            this.buttonToggle4 = new JCFLIGHTGCS.ButtonToggle();
-            this.buttonToggle3 = new JCFLIGHTGCS.ButtonToggle();
-            this.buttonToggle2 = new JCFLIGHTGCS.ButtonToggle();
-            this.buttonToggle1 = new JCFLIGHTGCS.ButtonToggle();
             this.label203 = new System.Windows.Forms.Label();
             this.label220 = new System.Windows.Forms.Label();
             this.numericUpDown63 = new System.Windows.Forms.NumericUpDown();
@@ -616,7 +587,6 @@
             this.numericUpDown90 = new System.Windows.Forms.NumericUpDown();
             this.label166 = new System.Windows.Forms.Label();
             this.numericUpDown28 = new System.Windows.Forms.NumericUpDown();
-            this.rcExpo2 = new JCFLIGHTGCS.RCExpo();
             this.label167 = new System.Windows.Forms.Label();
             this.label169 = new System.Windows.Forms.Label();
             this.numericUpDown27 = new System.Windows.Forms.NumericUpDown();
@@ -627,7 +597,6 @@
             this.label164 = new System.Windows.Forms.Label();
             this.label179 = new System.Windows.Forms.Label();
             this.numericUpDown26 = new System.Windows.Forms.NumericUpDown();
-            this.throttleExpo2 = new JCFLIGHTGCS.ThrottleExpo();
             this.numericUpDown35 = new System.Windows.Forms.NumericUpDown();
             this.label165 = new System.Windows.Forms.Label();
             this.numericUpDown36 = new System.Windows.Forms.NumericUpDown();
@@ -650,6 +619,34 @@
             this.numericUpDown103 = new System.Windows.Forms.NumericUpDown();
             this.groupBox42 = new System.Windows.Forms.GroupBox();
             this.metroLabel48 = new MetroFramework.Controls.MetroLabel();
+            this.horizontalProgressBar22 = new JCFLIGHTGCS.HorizontalProgressBar2();
+            this.horizontalProgressBar21 = new JCFLIGHTGCS.HorizontalProgressBar2();
+            this.HUD1 = new JCFLIGHTGCS.HUD();
+            this.HeadingIndicator = new JCFLIGHTGCS.HeadingIndicatorInstrumentControl();
+            this.buttonToggle14 = new JCFLIGHTGCS.ButtonToggle();
+            this.rcExpo1 = new JCFLIGHTGCS.RCExpo();
+            this.throttleExpo1 = new JCFLIGHTGCS.ThrottleExpo();
+            this.HUD2 = new JCFLIGHTGCS.HUD();
+            this.HUDSMALL1 = new JCFLIGHTGCS.HUDSMALL();
+            this.HeadingIndicator2 = new JCFLIGHTGCS.HeadingIndicatorInstrumentControl();
+            this.buttonToggle12 = new JCFLIGHTGCS.ButtonToggle();
+            this.buttonToggle11 = new JCFLIGHTGCS.ButtonToggle();
+            this.terminalControl1 = new Terminal.TerminalControl();
+            this.buttonToggle10 = new JCFLIGHTGCS.ButtonToggle();
+            this.buttonToggle13 = new JCFLIGHTGCS.ButtonToggle();
+            this.buttonToggle9 = new JCFLIGHTGCS.ButtonToggle();
+            this.buttonToggle8 = new JCFLIGHTGCS.ButtonToggle();
+            this.buttonToggle7 = new JCFLIGHTGCS.ButtonToggle();
+            this.buttonToggle6 = new JCFLIGHTGCS.ButtonToggle();
+            this.buttonToggle5 = new JCFLIGHTGCS.ButtonToggle();
+            this.buttonToggle4 = new JCFLIGHTGCS.ButtonToggle();
+            this.buttonToggle3 = new JCFLIGHTGCS.ButtonToggle();
+            this.buttonToggle2 = new JCFLIGHTGCS.ButtonToggle();
+            this.buttonToggle1 = new JCFLIGHTGCS.ButtonToggle();
+            this.rcExpo2 = new JCFLIGHTGCS.RCExpo();
+            this.throttleExpo2 = new JCFLIGHTGCS.ThrottleExpo();
+            this.preArmNotification2 = new JCFLIGHTGCS.PreArmNotification();
+            this.preArmNotification1 = new JCFLIGHTGCS.PreArmNotification();
             this.BarraTitulo.SuspendLayout();
             this.panel18.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
@@ -808,7 +805,6 @@
             this.groupBox30.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown99)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown95)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown93)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown22)).BeginInit();
             this.groupBox35.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown51)).BeginInit();
@@ -915,13 +911,6 @@
             this.BarraTitulo.Size = new System.Drawing.Size(1051, 128);
             this.BarraTitulo.TabIndex = 8;
             this.BarraTitulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BarraTitulo_MouseDown);
-            // 
-            // preArmNotification2
-            // 
-            this.preArmNotification2.Location = new System.Drawing.Point(3, 3);
-            this.preArmNotification2.Name = "preArmNotification2";
-            this.preArmNotification2.Size = new System.Drawing.Size(247, 123);
-            this.preArmNotification2.TabIndex = 10;
             // 
             // panel18
             // 
@@ -1127,13 +1116,6 @@
             this.MenuVertical.Size = new System.Drawing.Size(249, 710);
             this.MenuVertical.TabIndex = 7;
             // 
-            // preArmNotification1
-            // 
-            this.preArmNotification1.Location = new System.Drawing.Point(2, 0);
-            this.preArmNotification1.Name = "preArmNotification1";
-            this.preArmNotification1.Size = new System.Drawing.Size(247, 123);
-            this.preArmNotification1.TabIndex = 9;
-            // 
             // button19
             // 
             this.button19.BackColor = System.Drawing.Color.YellowGreen;
@@ -1315,42 +1297,6 @@
             this.tabPage1.Text = "Resumo";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // horizontalProgressBar22
-            // 
-            this.horizontalProgressBar22.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(68)))), ((int)(((byte)(69)))));
-            this.horizontalProgressBar22.BorderColor = System.Drawing.SystemColors.ActiveBorder;
-            this.horizontalProgressBar22.DisplayScale = 1F;
-            this.horizontalProgressBar22.DrawLabel = true;
-            this.horizontalProgressBar22.Label = "Porcentagem:";
-            this.horizontalProgressBar22.Location = new System.Drawing.Point(8, 544);
-            this.horizontalProgressBar22.Maximum = 100;
-            this.horizontalProgressBar22.maxline = 90;
-            this.horizontalProgressBar22.Minimum = 0;
-            this.horizontalProgressBar22.minline = 50;
-            this.horizontalProgressBar22.Name = "horizontalProgressBar22";
-            this.horizontalProgressBar22.Size = new System.Drawing.Size(283, 23);
-            this.horizontalProgressBar22.TabIndex = 65;
-            this.horizontalProgressBar22.Value = 0;
-            this.horizontalProgressBar22.ValueColor = System.Drawing.Color.Lime;
-            // 
-            // horizontalProgressBar21
-            // 
-            this.horizontalProgressBar21.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(68)))), ((int)(((byte)(69)))));
-            this.horizontalProgressBar21.BorderColor = System.Drawing.SystemColors.ActiveBorder;
-            this.horizontalProgressBar21.DisplayScale = 1F;
-            this.horizontalProgressBar21.DrawLabel = true;
-            this.horizontalProgressBar21.Label = "Porcentagem:";
-            this.horizontalProgressBar21.Location = new System.Drawing.Point(8, 483);
-            this.horizontalProgressBar21.Maximum = 100;
-            this.horizontalProgressBar21.maxline = 90;
-            this.horizontalProgressBar21.Minimum = 0;
-            this.horizontalProgressBar21.minline = 50;
-            this.horizontalProgressBar21.Name = "horizontalProgressBar21";
-            this.horizontalProgressBar21.Size = new System.Drawing.Size(283, 23);
-            this.horizontalProgressBar21.TabIndex = 64;
-            this.horizontalProgressBar21.Value = 0;
-            this.horizontalProgressBar21.ValueColor = System.Drawing.Color.Lime;
-            // 
             // button28
             // 
             this.button28.BackColor = System.Drawing.Color.Chartreuse;
@@ -1403,32 +1349,6 @@
             this.button21.Text = "Iniciar gravação da Caixa-Preta";
             this.button21.UseVisualStyleBackColor = false;
             this.button21.Click += new System.EventHandler(this.button21_Click);
-            // 
-            // HUD1
-            // 
-            this.HUD1.AHRSHorizontalVariance = false;
-            this.HUD1.ARMStatus = false;
-            this.HUD1.BackColor = System.Drawing.Color.Black;
-            this.HUD1.bgimage = null;
-            this.HUD1.CompassHealty = false;
-            this.HUD1.FailSafe = false;
-            this.HUD1.hudcolor = System.Drawing.Color.White;
-            this.HUD1.IMUHealty = false;
-            this.HUD1.LinkQualityGCS = 0F;
-            this.HUD1.Location = new System.Drawing.Point(8, 152);
-            this.HUD1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.HUD1.Name = "HUD1";
-            this.HUD1.Pitch = 0F;
-            this.HUD1.Roll = 0F;
-            this.HUD1.Size = new System.Drawing.Size(340, 300);
-            this.HUD1.skyColor1 = System.Drawing.Color.Blue;
-            this.HUD1.skyColor2 = System.Drawing.Color.LightBlue;
-            this.HUD1.streamjpg = ((System.IO.MemoryStream)(resources.GetObject("HUD1.streamjpg")));
-            this.HUD1.TabIndex = 54;
-            this.HUD1.ThrottleSafe = false;
-            this.HUD1.VelSpeed = 0F;
-            this.HUD1.VSync = false;
-            this.HUD1.vibeclick += new System.EventHandler(this.HUD1_vibeclick_1);
             // 
             // label151
             // 
@@ -1507,15 +1427,6 @@
             this.circularProgressBar1.TabIndex = 46;
             this.circularProgressBar1.TextMargin = new System.Windows.Forms.Padding(8, 8, 0, 0);
             this.circularProgressBar1.Value = 68;
-            // 
-            // HeadingIndicator
-            // 
-            this.HeadingIndicator.BackColor = System.Drawing.Color.White;
-            this.HeadingIndicator.Location = new System.Drawing.Point(382, 153);
-            this.HeadingIndicator.Name = "HeadingIndicator";
-            this.HeadingIndicator.Size = new System.Drawing.Size(300, 300);
-            this.HeadingIndicator.TabIndex = 4;
-            this.HeadingIndicator.Text = "HeadingIndicator";
             // 
             // panel16
             // 
@@ -2155,24 +2066,6 @@
             this.label201.Size = new System.Drawing.Size(105, 32);
             this.label201.TabIndex = 198;
             this.label201.Text = "RTH com a \r\ntensão baixa?";
-            // 
-            // buttonToggle14
-            // 
-            this.buttonToggle14.BackColor = System.Drawing.Color.White;
-            this.buttonToggle14.BorderColor = System.Drawing.Color.LightGray;
-            this.buttonToggle14.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonToggle14.ForeColor = System.Drawing.Color.White;
-            this.buttonToggle14.IsOn = false;
-            this.buttonToggle14.Location = new System.Drawing.Point(374, 89);
-            this.buttonToggle14.Name = "buttonToggle14";
-            this.buttonToggle14.OffColor = System.Drawing.Color.White;
-            this.buttonToggle14.OffText = "";
-            this.buttonToggle14.OnColor = System.Drawing.Color.DeepSkyBlue;
-            this.buttonToggle14.OnText = "";
-            this.buttonToggle14.Size = new System.Drawing.Size(40, 22);
-            this.buttonToggle14.TabIndex = 197;
-            this.buttonToggle14.Text = "buttonToggle14";
-            this.buttonToggle14.TextEnabled = true;
             // 
             // numericUpDown98
             // 
@@ -4645,22 +4538,6 @@
             this.metroProgressBar11.Style = MetroFramework.MetroColorStyle.Purple;
             this.metroProgressBar11.TabIndex = 46;
             // 
-            // rcExpo1
-            // 
-            this.rcExpo1.Location = new System.Drawing.Point(774, 416);
-            this.rcExpo1.Name = "rcExpo1";
-            this.rcExpo1.Size = new System.Drawing.Size(150, 100);
-            this.rcExpo1.TabIndex = 124;
-            this.rcExpo1.Text = "rcExpo1";
-            // 
-            // throttleExpo1
-            // 
-            this.throttleExpo1.Location = new System.Drawing.Point(572, 416);
-            this.throttleExpo1.Name = "throttleExpo1";
-            this.throttleExpo1.Size = new System.Drawing.Size(150, 100);
-            this.throttleExpo1.TabIndex = 123;
-            this.throttleExpo1.Text = "throttleExpo1";
-            // 
             // tabPage6
             // 
             this.tabPage6.Controls.Add(this.label158);
@@ -5087,61 +4964,6 @@
             this.circularProgressBar2.TabIndex = 47;
             this.circularProgressBar2.TextMargin = new System.Windows.Forms.Padding(8, 8, 0, 0);
             this.circularProgressBar2.Value = 68;
-            // 
-            // HUD2
-            // 
-            this.HUD2.AHRSHorizontalVariance = false;
-            this.HUD2.ARMStatus = false;
-            this.HUD2.BackColor = System.Drawing.Color.Black;
-            this.HUD2.bgimage = null;
-            this.HUD2.CompassHealty = false;
-            this.HUD2.FailSafe = false;
-            this.HUD2.hudcolor = System.Drawing.Color.White;
-            this.HUD2.IMUHealty = false;
-            this.HUD2.LinkQualityGCS = 0F;
-            this.HUD2.Location = new System.Drawing.Point(0, 6);
-            this.HUD2.Name = "HUD2";
-            this.HUD2.Pitch = 0F;
-            this.HUD2.Roll = 0F;
-            this.HUD2.Size = new System.Drawing.Size(360, 360);
-            this.HUD2.skyColor1 = System.Drawing.Color.Blue;
-            this.HUD2.skyColor2 = System.Drawing.Color.LightBlue;
-            this.HUD2.streamjpg = ((System.IO.MemoryStream)(resources.GetObject("HUD2.streamjpg")));
-            this.HUD2.TabIndex = 75;
-            this.HUD2.ThrottleSafe = false;
-            this.HUD2.VelSpeed = 0F;
-            this.HUD2.VSync = false;
-            this.HUD2.vibeclick += new System.EventHandler(this.HUD2_vibeclick);
-            // 
-            // HUDSMALL1
-            // 
-            this.HUDSMALL1.bgimage = null;
-            this.HUDSMALL1.datetime = new System.DateTime(((long)(0)));
-            this.HUDSMALL1.failsafe = false;
-            this.HUDSMALL1.hudcolor = System.Drawing.Color.White;
-            this.HUDSMALL1.imuhealty = false;
-            this.HUDSMALL1.linkqualitygcs = 0F;
-            this.HUDSMALL1.Location = new System.Drawing.Point(0, 6);
-            this.HUDSMALL1.messagetime = new System.DateTime(((long)(0)));
-            this.HUDSMALL1.Name = "HUDSMALL1";
-            this.HUDSMALL1.pitch = 0F;
-            this.HUDSMALL1.roll = 0F;
-            this.HUDSMALL1.Russian = false;
-            this.HUDSMALL1.Size = new System.Drawing.Size(157, 158);
-            this.HUDSMALL1.skyColor1 = System.Drawing.Color.Blue;
-            this.HUDSMALL1.skyColor2 = System.Drawing.Color.LightBlue;
-            this.HUDSMALL1.status = 0;
-            this.HUDSMALL1.streamjpg = null;
-            this.HUDSMALL1.TabIndex = 73;
-            // 
-            // HeadingIndicator2
-            // 
-            this.HeadingIndicator2.BackColor = System.Drawing.Color.White;
-            this.HeadingIndicator2.Location = new System.Drawing.Point(0, 186);
-            this.HeadingIndicator2.Name = "HeadingIndicator2";
-            this.HeadingIndicator2.Size = new System.Drawing.Size(157, 160);
-            this.HeadingIndicator2.TabIndex = 5;
-            this.HeadingIndicator2.Text = "HeadingIndicator2";
             // 
             // tabPage7
             // 
@@ -5842,24 +5664,6 @@
             this.groupBox24.TabStop = false;
             this.groupBox24.Text = "V.BAT THR COMPENSAÇÃO";
             // 
-            // buttonToggle12
-            // 
-            this.buttonToggle12.BackColor = System.Drawing.Color.White;
-            this.buttonToggle12.BorderColor = System.Drawing.Color.LightGray;
-            this.buttonToggle12.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonToggle12.ForeColor = System.Drawing.Color.White;
-            this.buttonToggle12.IsOn = false;
-            this.buttonToggle12.Location = new System.Drawing.Point(87, 18);
-            this.buttonToggle12.Name = "buttonToggle12";
-            this.buttonToggle12.OffColor = System.Drawing.Color.White;
-            this.buttonToggle12.OffText = "";
-            this.buttonToggle12.OnColor = System.Drawing.Color.DeepSkyBlue;
-            this.buttonToggle12.OnText = "";
-            this.buttonToggle12.Size = new System.Drawing.Size(40, 22);
-            this.buttonToggle12.TabIndex = 185;
-            this.buttonToggle12.Text = "buttonToggle12";
-            this.buttonToggle12.TextEnabled = true;
-            // 
             // metroLabel20
             // 
             this.metroLabel20.AutoSize = true;
@@ -5925,24 +5729,6 @@
             this.groupBox23.TabIndex = 23;
             this.groupBox23.TabStop = false;
             this.groupBox23.Text = "FILTRO DE KALMAN (IMU)";
-            // 
-            // buttonToggle11
-            // 
-            this.buttonToggle11.BackColor = System.Drawing.Color.White;
-            this.buttonToggle11.BorderColor = System.Drawing.Color.LightGray;
-            this.buttonToggle11.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonToggle11.ForeColor = System.Drawing.Color.White;
-            this.buttonToggle11.IsOn = false;
-            this.buttonToggle11.Location = new System.Drawing.Point(87, 18);
-            this.buttonToggle11.Name = "buttonToggle11";
-            this.buttonToggle11.OffColor = System.Drawing.Color.White;
-            this.buttonToggle11.OffText = "";
-            this.buttonToggle11.OnColor = System.Drawing.Color.DeepSkyBlue;
-            this.buttonToggle11.OnText = "";
-            this.buttonToggle11.Size = new System.Drawing.Size(40, 22);
-            this.buttonToggle11.TabIndex = 185;
-            this.buttonToggle11.Text = "buttonToggle11";
-            this.buttonToggle11.TextEnabled = true;
             // 
             // metroLabel19
             // 
@@ -6841,14 +6627,6 @@
             this.tabPage8.Text = "tabPage8";
             this.tabPage8.UseVisualStyleBackColor = true;
             // 
-            // terminalControl1
-            // 
-            this.terminalControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
-            this.terminalControl1.Location = new System.Drawing.Point(0, 0);
-            this.terminalControl1.Name = "terminalControl1";
-            this.terminalControl1.Size = new System.Drawing.Size(1047, 572);
-            this.terminalControl1.TabIndex = 0;
-            // 
             // tabPage9
             // 
             this.tabPage9.Controls.Add(this.panel19);
@@ -6956,24 +6734,6 @@
             this.label184.Size = new System.Drawing.Size(36, 16);
             this.label184.TabIndex = 207;
             this.label184.Text = "(Hz)";
-            // 
-            // buttonToggle10
-            // 
-            this.buttonToggle10.BackColor = System.Drawing.Color.White;
-            this.buttonToggle10.BorderColor = System.Drawing.Color.LightGray;
-            this.buttonToggle10.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonToggle10.ForeColor = System.Drawing.Color.White;
-            this.buttonToggle10.IsOn = false;
-            this.buttonToggle10.Location = new System.Drawing.Point(186, 193);
-            this.buttonToggle10.Name = "buttonToggle10";
-            this.buttonToggle10.OffColor = System.Drawing.Color.White;
-            this.buttonToggle10.OffText = "";
-            this.buttonToggle10.OnColor = System.Drawing.Color.DeepSkyBlue;
-            this.buttonToggle10.OnText = "";
-            this.buttonToggle10.Size = new System.Drawing.Size(40, 22);
-            this.buttonToggle10.TabIndex = 206;
-            this.buttonToggle10.Text = "buttonToggle10";
-            this.buttonToggle10.TextEnabled = true;
             // 
             // label115
             // 
@@ -7166,13 +6926,10 @@
             this.groupBox30.Controls.Add(this.label190);
             this.groupBox30.Controls.Add(this.label182);
             this.groupBox30.Controls.Add(this.label176);
-            this.groupBox30.Controls.Add(this.label175);
             this.groupBox30.Controls.Add(this.buttonToggle13);
             this.groupBox30.Controls.Add(this.buttonToggle9);
             this.groupBox30.Controls.Add(this.numericUpDown95);
             this.groupBox30.Controls.Add(this.label154);
-            this.groupBox30.Controls.Add(this.numericUpDown93);
-            this.groupBox30.Controls.Add(this.label150);
             this.groupBox30.Controls.Add(this.numericUpDown22);
             this.groupBox30.Controls.Add(this.label98);
             this.groupBox30.Controls.Add(this.label97);
@@ -7196,7 +6953,7 @@
             0,
             0,
             262144});
-            this.numericUpDown99.Location = new System.Drawing.Point(164, 199);
+            this.numericUpDown99.Location = new System.Drawing.Point(164, 171);
             this.numericUpDown99.Maximum = new decimal(new int[] {
             10,
             0,
@@ -7215,7 +6972,7 @@
             // 
             this.label208.AutoSize = true;
             this.label208.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label208.Location = new System.Drawing.Point(6, 201);
+            this.label208.Location = new System.Drawing.Point(6, 173);
             this.label208.Name = "label208";
             this.label208.Size = new System.Drawing.Size(113, 16);
             this.label208.TabIndex = 203;
@@ -7245,7 +7002,7 @@
             // 
             this.label182.AutoSize = true;
             this.label182.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label182.Location = new System.Drawing.Point(230, 173);
+            this.label182.Location = new System.Drawing.Point(230, 145);
             this.label182.Name = "label182";
             this.label182.Size = new System.Drawing.Size(55, 16);
             this.label182.TabIndex = 200;
@@ -7261,56 +7018,10 @@
             this.label176.TabIndex = 199;
             this.label176.Text = "(uS)";
             // 
-            // label175
-            // 
-            this.label175.AutoSize = true;
-            this.label175.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label175.Location = new System.Drawing.Point(230, 145);
-            this.label175.Name = "label175";
-            this.label175.Size = new System.Drawing.Size(31, 16);
-            this.label175.TabIndex = 198;
-            this.label175.Text = "(%)";
-            // 
-            // buttonToggle13
-            // 
-            this.buttonToggle13.BackColor = System.Drawing.Color.White;
-            this.buttonToggle13.BorderColor = System.Drawing.Color.LightGray;
-            this.buttonToggle13.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonToggle13.ForeColor = System.Drawing.Color.White;
-            this.buttonToggle13.IsOn = false;
-            this.buttonToggle13.Location = new System.Drawing.Point(176, 55);
-            this.buttonToggle13.Name = "buttonToggle13";
-            this.buttonToggle13.OffColor = System.Drawing.Color.White;
-            this.buttonToggle13.OffText = "";
-            this.buttonToggle13.OnColor = System.Drawing.Color.DeepSkyBlue;
-            this.buttonToggle13.OnText = "";
-            this.buttonToggle13.Size = new System.Drawing.Size(40, 22);
-            this.buttonToggle13.TabIndex = 197;
-            this.buttonToggle13.Text = "buttonToggle13";
-            this.buttonToggle13.TextEnabled = true;
-            // 
-            // buttonToggle9
-            // 
-            this.buttonToggle9.BackColor = System.Drawing.Color.White;
-            this.buttonToggle9.BorderColor = System.Drawing.Color.LightGray;
-            this.buttonToggle9.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonToggle9.ForeColor = System.Drawing.Color.White;
-            this.buttonToggle9.IsOn = false;
-            this.buttonToggle9.Location = new System.Drawing.Point(176, 83);
-            this.buttonToggle9.Name = "buttonToggle9";
-            this.buttonToggle9.OffColor = System.Drawing.Color.White;
-            this.buttonToggle9.OffText = "";
-            this.buttonToggle9.OnColor = System.Drawing.Color.DeepSkyBlue;
-            this.buttonToggle9.OnText = "";
-            this.buttonToggle9.Size = new System.Drawing.Size(40, 22);
-            this.buttonToggle9.TabIndex = 196;
-            this.buttonToggle9.Text = "buttonToggle9";
-            this.buttonToggle9.TextEnabled = true;
-            // 
             // numericUpDown95
             // 
             this.numericUpDown95.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown95.Location = new System.Drawing.Point(164, 171);
+            this.numericUpDown95.Location = new System.Drawing.Point(164, 143);
             this.numericUpDown95.Maximum = new decimal(new int[] {
             6000,
             0,
@@ -7334,39 +7045,11 @@
             // 
             this.label154.AutoSize = true;
             this.label154.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label154.Location = new System.Drawing.Point(6, 173);
+            this.label154.Location = new System.Drawing.Point(6, 145);
             this.label154.Name = "label154";
             this.label154.Size = new System.Drawing.Size(153, 16);
             this.label154.TabIndex = 194;
             this.label154.Text = "AirSpeed Referência";
-            // 
-            // numericUpDown93
-            // 
-            this.numericUpDown93.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown93.Location = new System.Drawing.Point(164, 143);
-            this.numericUpDown93.Maximum = new decimal(new int[] {
-            90,
-            0,
-            0,
-            0});
-            this.numericUpDown93.Name = "numericUpDown93";
-            this.numericUpDown93.Size = new System.Drawing.Size(60, 22);
-            this.numericUpDown93.TabIndex = 193;
-            this.numericUpDown93.Value = new decimal(new int[] {
-            50,
-            0,
-            0,
-            0});
-            // 
-            // label150
-            // 
-            this.label150.AutoSize = true;
-            this.label150.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label150.Location = new System.Drawing.Point(6, 145);
-            this.label150.Name = "label150";
-            this.label150.Size = new System.Drawing.Size(119, 16);
-            this.label150.TabIndex = 192;
-            this.label150.Text = "Integral WindUp";
             // 
             // numericUpDown22
             // 
@@ -7548,78 +7231,6 @@
             this.label174.Size = new System.Drawing.Size(76, 16);
             this.label174.TabIndex = 188;
             this.label174.Text = "Reverter?";
-            // 
-            // buttonToggle8
-            // 
-            this.buttonToggle8.BackColor = System.Drawing.Color.White;
-            this.buttonToggle8.BorderColor = System.Drawing.Color.LightGray;
-            this.buttonToggle8.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonToggle8.ForeColor = System.Drawing.Color.White;
-            this.buttonToggle8.IsOn = false;
-            this.buttonToggle8.Location = new System.Drawing.Point(520, 104);
-            this.buttonToggle8.Name = "buttonToggle8";
-            this.buttonToggle8.OffColor = System.Drawing.Color.White;
-            this.buttonToggle8.OffText = "";
-            this.buttonToggle8.OnColor = System.Drawing.Color.DeepSkyBlue;
-            this.buttonToggle8.OnText = "";
-            this.buttonToggle8.Size = new System.Drawing.Size(40, 22);
-            this.buttonToggle8.TabIndex = 187;
-            this.buttonToggle8.Text = "buttonToggle8";
-            this.buttonToggle8.TextEnabled = true;
-            // 
-            // buttonToggle7
-            // 
-            this.buttonToggle7.BackColor = System.Drawing.Color.White;
-            this.buttonToggle7.BorderColor = System.Drawing.Color.LightGray;
-            this.buttonToggle7.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonToggle7.ForeColor = System.Drawing.Color.White;
-            this.buttonToggle7.IsOn = false;
-            this.buttonToggle7.Location = new System.Drawing.Point(520, 76);
-            this.buttonToggle7.Name = "buttonToggle7";
-            this.buttonToggle7.OffColor = System.Drawing.Color.White;
-            this.buttonToggle7.OffText = "";
-            this.buttonToggle7.OnColor = System.Drawing.Color.DeepSkyBlue;
-            this.buttonToggle7.OnText = "";
-            this.buttonToggle7.Size = new System.Drawing.Size(40, 22);
-            this.buttonToggle7.TabIndex = 186;
-            this.buttonToggle7.Text = "buttonToggle7";
-            this.buttonToggle7.TextEnabled = true;
-            // 
-            // buttonToggle6
-            // 
-            this.buttonToggle6.BackColor = System.Drawing.Color.White;
-            this.buttonToggle6.BorderColor = System.Drawing.Color.LightGray;
-            this.buttonToggle6.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonToggle6.ForeColor = System.Drawing.Color.White;
-            this.buttonToggle6.IsOn = false;
-            this.buttonToggle6.Location = new System.Drawing.Point(520, 46);
-            this.buttonToggle6.Name = "buttonToggle6";
-            this.buttonToggle6.OffColor = System.Drawing.Color.White;
-            this.buttonToggle6.OffText = "";
-            this.buttonToggle6.OnColor = System.Drawing.Color.DeepSkyBlue;
-            this.buttonToggle6.OnText = "";
-            this.buttonToggle6.Size = new System.Drawing.Size(40, 22);
-            this.buttonToggle6.TabIndex = 185;
-            this.buttonToggle6.Text = "buttonToggle6";
-            this.buttonToggle6.TextEnabled = true;
-            // 
-            // buttonToggle5
-            // 
-            this.buttonToggle5.BackColor = System.Drawing.Color.White;
-            this.buttonToggle5.BorderColor = System.Drawing.Color.LightGray;
-            this.buttonToggle5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonToggle5.ForeColor = System.Drawing.Color.White;
-            this.buttonToggle5.IsOn = false;
-            this.buttonToggle5.Location = new System.Drawing.Point(520, 20);
-            this.buttonToggle5.Name = "buttonToggle5";
-            this.buttonToggle5.OffColor = System.Drawing.Color.White;
-            this.buttonToggle5.OffText = "";
-            this.buttonToggle5.OnColor = System.Drawing.Color.DeepSkyBlue;
-            this.buttonToggle5.OnText = "";
-            this.buttonToggle5.Size = new System.Drawing.Size(40, 22);
-            this.buttonToggle5.TabIndex = 184;
-            this.buttonToggle5.Text = "buttonToggle5";
-            this.buttonToggle5.TextEnabled = true;
             // 
             // numericUpDown51
             // 
@@ -8231,78 +7842,6 @@
             this.label155.TabIndex = 180;
             this.label155.Text = "Reverter?";
             // 
-            // buttonToggle4
-            // 
-            this.buttonToggle4.BackColor = System.Drawing.Color.White;
-            this.buttonToggle4.BorderColor = System.Drawing.Color.LightGray;
-            this.buttonToggle4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonToggle4.ForeColor = System.Drawing.Color.White;
-            this.buttonToggle4.IsOn = false;
-            this.buttonToggle4.Location = new System.Drawing.Point(427, 112);
-            this.buttonToggle4.Name = "buttonToggle4";
-            this.buttonToggle4.OffColor = System.Drawing.Color.White;
-            this.buttonToggle4.OffText = "";
-            this.buttonToggle4.OnColor = System.Drawing.Color.DeepSkyBlue;
-            this.buttonToggle4.OnText = "";
-            this.buttonToggle4.Size = new System.Drawing.Size(40, 22);
-            this.buttonToggle4.TabIndex = 179;
-            this.buttonToggle4.Text = "buttonToggle4";
-            this.buttonToggle4.TextEnabled = true;
-            // 
-            // buttonToggle3
-            // 
-            this.buttonToggle3.BackColor = System.Drawing.Color.White;
-            this.buttonToggle3.BorderColor = System.Drawing.Color.LightGray;
-            this.buttonToggle3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonToggle3.ForeColor = System.Drawing.Color.White;
-            this.buttonToggle3.IsOn = false;
-            this.buttonToggle3.Location = new System.Drawing.Point(427, 84);
-            this.buttonToggle3.Name = "buttonToggle3";
-            this.buttonToggle3.OffColor = System.Drawing.Color.White;
-            this.buttonToggle3.OffText = "";
-            this.buttonToggle3.OnColor = System.Drawing.Color.DeepSkyBlue;
-            this.buttonToggle3.OnText = "";
-            this.buttonToggle3.Size = new System.Drawing.Size(40, 22);
-            this.buttonToggle3.TabIndex = 178;
-            this.buttonToggle3.Text = "buttonToggle3";
-            this.buttonToggle3.TextEnabled = true;
-            // 
-            // buttonToggle2
-            // 
-            this.buttonToggle2.BackColor = System.Drawing.Color.White;
-            this.buttonToggle2.BorderColor = System.Drawing.Color.LightGray;
-            this.buttonToggle2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonToggle2.ForeColor = System.Drawing.Color.White;
-            this.buttonToggle2.IsOn = false;
-            this.buttonToggle2.Location = new System.Drawing.Point(427, 54);
-            this.buttonToggle2.Name = "buttonToggle2";
-            this.buttonToggle2.OffColor = System.Drawing.Color.White;
-            this.buttonToggle2.OffText = "";
-            this.buttonToggle2.OnColor = System.Drawing.Color.DeepSkyBlue;
-            this.buttonToggle2.OnText = "";
-            this.buttonToggle2.Size = new System.Drawing.Size(40, 22);
-            this.buttonToggle2.TabIndex = 177;
-            this.buttonToggle2.Text = "buttonToggle2";
-            this.buttonToggle2.TextEnabled = true;
-            // 
-            // buttonToggle1
-            // 
-            this.buttonToggle1.BackColor = System.Drawing.Color.White;
-            this.buttonToggle1.BorderColor = System.Drawing.Color.LightGray;
-            this.buttonToggle1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonToggle1.ForeColor = System.Drawing.Color.White;
-            this.buttonToggle1.IsOn = false;
-            this.buttonToggle1.Location = new System.Drawing.Point(427, 28);
-            this.buttonToggle1.Name = "buttonToggle1";
-            this.buttonToggle1.OffColor = System.Drawing.Color.White;
-            this.buttonToggle1.OffText = "";
-            this.buttonToggle1.OnColor = System.Drawing.Color.DeepSkyBlue;
-            this.buttonToggle1.OnText = "";
-            this.buttonToggle1.Size = new System.Drawing.Size(40, 22);
-            this.buttonToggle1.TabIndex = 176;
-            this.buttonToggle1.Text = "buttonToggle1";
-            this.buttonToggle1.TextEnabled = true;
-            // 
             // label203
             // 
             this.label203.AutoSize = true;
@@ -8805,14 +8344,6 @@
             this.numericUpDown28.Size = new System.Drawing.Size(120, 22);
             this.numericUpDown28.TabIndex = 133;
             // 
-            // rcExpo2
-            // 
-            this.rcExpo2.Location = new System.Drawing.Point(45, 171);
-            this.rcExpo2.Name = "rcExpo2";
-            this.rcExpo2.Size = new System.Drawing.Size(150, 100);
-            this.rcExpo2.TabIndex = 128;
-            this.rcExpo2.Text = "rcExpo2";
-            // 
             // label167
             // 
             this.label167.AutoSize = true;
@@ -8959,14 +8490,6 @@
             this.numericUpDown26.Name = "numericUpDown26";
             this.numericUpDown26.Size = new System.Drawing.Size(120, 22);
             this.numericUpDown26.TabIndex = 131;
-            // 
-            // throttleExpo2
-            // 
-            this.throttleExpo2.Location = new System.Drawing.Point(45, 177);
-            this.throttleExpo2.Name = "throttleExpo2";
-            this.throttleExpo2.Size = new System.Drawing.Size(150, 100);
-            this.throttleExpo2.TabIndex = 127;
-            this.throttleExpo2.Text = "throttleExpo2";
             // 
             // numericUpDown35
             // 
@@ -9202,6 +8725,438 @@
             this.metroLabel48.TabIndex = 202;
             this.metroLabel48.Text = "Valor (%)";
             // 
+            // horizontalProgressBar22
+            // 
+            this.horizontalProgressBar22.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(68)))), ((int)(((byte)(69)))));
+            this.horizontalProgressBar22.BorderColor = System.Drawing.SystemColors.ActiveBorder;
+            this.horizontalProgressBar22.DisplayScale = 1F;
+            this.horizontalProgressBar22.DrawLabel = true;
+            this.horizontalProgressBar22.Label = "Porcentagem:";
+            this.horizontalProgressBar22.Location = new System.Drawing.Point(8, 544);
+            this.horizontalProgressBar22.Maximum = 100;
+            this.horizontalProgressBar22.maxline = 90;
+            this.horizontalProgressBar22.Minimum = 0;
+            this.horizontalProgressBar22.minline = 50;
+            this.horizontalProgressBar22.Name = "horizontalProgressBar22";
+            this.horizontalProgressBar22.Size = new System.Drawing.Size(283, 23);
+            this.horizontalProgressBar22.TabIndex = 65;
+            this.horizontalProgressBar22.Value = 0;
+            this.horizontalProgressBar22.ValueColor = System.Drawing.Color.Lime;
+            // 
+            // horizontalProgressBar21
+            // 
+            this.horizontalProgressBar21.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(68)))), ((int)(((byte)(69)))));
+            this.horizontalProgressBar21.BorderColor = System.Drawing.SystemColors.ActiveBorder;
+            this.horizontalProgressBar21.DisplayScale = 1F;
+            this.horizontalProgressBar21.DrawLabel = true;
+            this.horizontalProgressBar21.Label = "Porcentagem:";
+            this.horizontalProgressBar21.Location = new System.Drawing.Point(8, 483);
+            this.horizontalProgressBar21.Maximum = 100;
+            this.horizontalProgressBar21.maxline = 90;
+            this.horizontalProgressBar21.Minimum = 0;
+            this.horizontalProgressBar21.minline = 50;
+            this.horizontalProgressBar21.Name = "horizontalProgressBar21";
+            this.horizontalProgressBar21.Size = new System.Drawing.Size(283, 23);
+            this.horizontalProgressBar21.TabIndex = 64;
+            this.horizontalProgressBar21.Value = 0;
+            this.horizontalProgressBar21.ValueColor = System.Drawing.Color.Lime;
+            // 
+            // HUD1
+            // 
+            this.HUD1.AHRSHorizontalVariance = false;
+            this.HUD1.ARMStatus = false;
+            this.HUD1.BackColor = System.Drawing.Color.Black;
+            this.HUD1.bgimage = null;
+            this.HUD1.CompassHealty = false;
+            this.HUD1.FailSafe = false;
+            this.HUD1.hudcolor = System.Drawing.Color.White;
+            this.HUD1.IMUHealty = false;
+            this.HUD1.LinkQualityGCS = 0F;
+            this.HUD1.Location = new System.Drawing.Point(8, 152);
+            this.HUD1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.HUD1.Name = "HUD1";
+            this.HUD1.Pitch = 0F;
+            this.HUD1.Roll = 0F;
+            this.HUD1.Size = new System.Drawing.Size(340, 300);
+            this.HUD1.skyColor1 = System.Drawing.Color.Blue;
+            this.HUD1.skyColor2 = System.Drawing.Color.LightBlue;
+            this.HUD1.streamjpg = ((System.IO.MemoryStream)(resources.GetObject("HUD1.streamjpg")));
+            this.HUD1.TabIndex = 54;
+            this.HUD1.ThrottleSafe = false;
+            this.HUD1.VelSpeed = 0F;
+            this.HUD1.VSync = false;
+            this.HUD1.vibeclick += new System.EventHandler(this.HUD1_vibeclick_1);
+            // 
+            // HeadingIndicator
+            // 
+            this.HeadingIndicator.BackColor = System.Drawing.Color.White;
+            this.HeadingIndicator.Location = new System.Drawing.Point(382, 153);
+            this.HeadingIndicator.Name = "HeadingIndicator";
+            this.HeadingIndicator.Size = new System.Drawing.Size(300, 300);
+            this.HeadingIndicator.TabIndex = 4;
+            this.HeadingIndicator.Text = "HeadingIndicator";
+            // 
+            // buttonToggle14
+            // 
+            this.buttonToggle14.BackColor = System.Drawing.Color.White;
+            this.buttonToggle14.BorderColor = System.Drawing.Color.LightGray;
+            this.buttonToggle14.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonToggle14.ForeColor = System.Drawing.Color.White;
+            this.buttonToggle14.IsOn = false;
+            this.buttonToggle14.Location = new System.Drawing.Point(374, 89);
+            this.buttonToggle14.Name = "buttonToggle14";
+            this.buttonToggle14.OffColor = System.Drawing.Color.White;
+            this.buttonToggle14.OffText = "";
+            this.buttonToggle14.OnColor = System.Drawing.Color.DeepSkyBlue;
+            this.buttonToggle14.OnText = "";
+            this.buttonToggle14.Size = new System.Drawing.Size(40, 22);
+            this.buttonToggle14.TabIndex = 197;
+            this.buttonToggle14.Text = "buttonToggle14";
+            this.buttonToggle14.TextEnabled = true;
+            // 
+            // rcExpo1
+            // 
+            this.rcExpo1.Location = new System.Drawing.Point(774, 416);
+            this.rcExpo1.Name = "rcExpo1";
+            this.rcExpo1.Size = new System.Drawing.Size(150, 100);
+            this.rcExpo1.TabIndex = 124;
+            this.rcExpo1.Text = "rcExpo1";
+            // 
+            // throttleExpo1
+            // 
+            this.throttleExpo1.Location = new System.Drawing.Point(572, 416);
+            this.throttleExpo1.Name = "throttleExpo1";
+            this.throttleExpo1.Size = new System.Drawing.Size(150, 100);
+            this.throttleExpo1.TabIndex = 123;
+            this.throttleExpo1.Text = "throttleExpo1";
+            // 
+            // HUD2
+            // 
+            this.HUD2.AHRSHorizontalVariance = false;
+            this.HUD2.ARMStatus = false;
+            this.HUD2.BackColor = System.Drawing.Color.Black;
+            this.HUD2.bgimage = null;
+            this.HUD2.CompassHealty = false;
+            this.HUD2.FailSafe = false;
+            this.HUD2.hudcolor = System.Drawing.Color.White;
+            this.HUD2.IMUHealty = false;
+            this.HUD2.LinkQualityGCS = 0F;
+            this.HUD2.Location = new System.Drawing.Point(0, 6);
+            this.HUD2.Name = "HUD2";
+            this.HUD2.Pitch = 0F;
+            this.HUD2.Roll = 0F;
+            this.HUD2.Size = new System.Drawing.Size(360, 360);
+            this.HUD2.skyColor1 = System.Drawing.Color.Blue;
+            this.HUD2.skyColor2 = System.Drawing.Color.LightBlue;
+            this.HUD2.streamjpg = ((System.IO.MemoryStream)(resources.GetObject("HUD2.streamjpg")));
+            this.HUD2.TabIndex = 75;
+            this.HUD2.ThrottleSafe = false;
+            this.HUD2.VelSpeed = 0F;
+            this.HUD2.VSync = false;
+            this.HUD2.vibeclick += new System.EventHandler(this.HUD2_vibeclick);
+            // 
+            // HUDSMALL1
+            // 
+            this.HUDSMALL1.bgimage = null;
+            this.HUDSMALL1.datetime = new System.DateTime(((long)(0)));
+            this.HUDSMALL1.failsafe = false;
+            this.HUDSMALL1.hudcolor = System.Drawing.Color.White;
+            this.HUDSMALL1.imuhealty = false;
+            this.HUDSMALL1.linkqualitygcs = 0F;
+            this.HUDSMALL1.Location = new System.Drawing.Point(0, 6);
+            this.HUDSMALL1.messagetime = new System.DateTime(((long)(0)));
+            this.HUDSMALL1.Name = "HUDSMALL1";
+            this.HUDSMALL1.pitch = 0F;
+            this.HUDSMALL1.roll = 0F;
+            this.HUDSMALL1.Russian = false;
+            this.HUDSMALL1.Size = new System.Drawing.Size(157, 158);
+            this.HUDSMALL1.skyColor1 = System.Drawing.Color.Blue;
+            this.HUDSMALL1.skyColor2 = System.Drawing.Color.LightBlue;
+            this.HUDSMALL1.status = 0;
+            this.HUDSMALL1.streamjpg = null;
+            this.HUDSMALL1.TabIndex = 73;
+            // 
+            // HeadingIndicator2
+            // 
+            this.HeadingIndicator2.BackColor = System.Drawing.Color.White;
+            this.HeadingIndicator2.Location = new System.Drawing.Point(0, 186);
+            this.HeadingIndicator2.Name = "HeadingIndicator2";
+            this.HeadingIndicator2.Size = new System.Drawing.Size(157, 160);
+            this.HeadingIndicator2.TabIndex = 5;
+            this.HeadingIndicator2.Text = "HeadingIndicator2";
+            // 
+            // buttonToggle12
+            // 
+            this.buttonToggle12.BackColor = System.Drawing.Color.White;
+            this.buttonToggle12.BorderColor = System.Drawing.Color.LightGray;
+            this.buttonToggle12.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonToggle12.ForeColor = System.Drawing.Color.White;
+            this.buttonToggle12.IsOn = false;
+            this.buttonToggle12.Location = new System.Drawing.Point(87, 18);
+            this.buttonToggle12.Name = "buttonToggle12";
+            this.buttonToggle12.OffColor = System.Drawing.Color.White;
+            this.buttonToggle12.OffText = "";
+            this.buttonToggle12.OnColor = System.Drawing.Color.DeepSkyBlue;
+            this.buttonToggle12.OnText = "";
+            this.buttonToggle12.Size = new System.Drawing.Size(40, 22);
+            this.buttonToggle12.TabIndex = 185;
+            this.buttonToggle12.Text = "buttonToggle12";
+            this.buttonToggle12.TextEnabled = true;
+            // 
+            // buttonToggle11
+            // 
+            this.buttonToggle11.BackColor = System.Drawing.Color.White;
+            this.buttonToggle11.BorderColor = System.Drawing.Color.LightGray;
+            this.buttonToggle11.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonToggle11.ForeColor = System.Drawing.Color.White;
+            this.buttonToggle11.IsOn = false;
+            this.buttonToggle11.Location = new System.Drawing.Point(87, 18);
+            this.buttonToggle11.Name = "buttonToggle11";
+            this.buttonToggle11.OffColor = System.Drawing.Color.White;
+            this.buttonToggle11.OffText = "";
+            this.buttonToggle11.OnColor = System.Drawing.Color.DeepSkyBlue;
+            this.buttonToggle11.OnText = "";
+            this.buttonToggle11.Size = new System.Drawing.Size(40, 22);
+            this.buttonToggle11.TabIndex = 185;
+            this.buttonToggle11.Text = "buttonToggle11";
+            this.buttonToggle11.TextEnabled = true;
+            // 
+            // terminalControl1
+            // 
+            this.terminalControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
+            this.terminalControl1.Location = new System.Drawing.Point(0, 0);
+            this.terminalControl1.Name = "terminalControl1";
+            this.terminalControl1.Size = new System.Drawing.Size(1047, 572);
+            this.terminalControl1.TabIndex = 0;
+            // 
+            // buttonToggle10
+            // 
+            this.buttonToggle10.BackColor = System.Drawing.Color.White;
+            this.buttonToggle10.BorderColor = System.Drawing.Color.LightGray;
+            this.buttonToggle10.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonToggle10.ForeColor = System.Drawing.Color.White;
+            this.buttonToggle10.IsOn = false;
+            this.buttonToggle10.Location = new System.Drawing.Point(186, 193);
+            this.buttonToggle10.Name = "buttonToggle10";
+            this.buttonToggle10.OffColor = System.Drawing.Color.White;
+            this.buttonToggle10.OffText = "";
+            this.buttonToggle10.OnColor = System.Drawing.Color.DeepSkyBlue;
+            this.buttonToggle10.OnText = "";
+            this.buttonToggle10.Size = new System.Drawing.Size(40, 22);
+            this.buttonToggle10.TabIndex = 206;
+            this.buttonToggle10.Text = "buttonToggle10";
+            this.buttonToggle10.TextEnabled = true;
+            // 
+            // buttonToggle13
+            // 
+            this.buttonToggle13.BackColor = System.Drawing.Color.White;
+            this.buttonToggle13.BorderColor = System.Drawing.Color.LightGray;
+            this.buttonToggle13.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonToggle13.ForeColor = System.Drawing.Color.White;
+            this.buttonToggle13.IsOn = false;
+            this.buttonToggle13.Location = new System.Drawing.Point(176, 55);
+            this.buttonToggle13.Name = "buttonToggle13";
+            this.buttonToggle13.OffColor = System.Drawing.Color.White;
+            this.buttonToggle13.OffText = "";
+            this.buttonToggle13.OnColor = System.Drawing.Color.DeepSkyBlue;
+            this.buttonToggle13.OnText = "";
+            this.buttonToggle13.Size = new System.Drawing.Size(40, 22);
+            this.buttonToggle13.TabIndex = 197;
+            this.buttonToggle13.Text = "buttonToggle13";
+            this.buttonToggle13.TextEnabled = true;
+            // 
+            // buttonToggle9
+            // 
+            this.buttonToggle9.BackColor = System.Drawing.Color.White;
+            this.buttonToggle9.BorderColor = System.Drawing.Color.LightGray;
+            this.buttonToggle9.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonToggle9.ForeColor = System.Drawing.Color.White;
+            this.buttonToggle9.IsOn = false;
+            this.buttonToggle9.Location = new System.Drawing.Point(176, 83);
+            this.buttonToggle9.Name = "buttonToggle9";
+            this.buttonToggle9.OffColor = System.Drawing.Color.White;
+            this.buttonToggle9.OffText = "";
+            this.buttonToggle9.OnColor = System.Drawing.Color.DeepSkyBlue;
+            this.buttonToggle9.OnText = "";
+            this.buttonToggle9.Size = new System.Drawing.Size(40, 22);
+            this.buttonToggle9.TabIndex = 196;
+            this.buttonToggle9.Text = "buttonToggle9";
+            this.buttonToggle9.TextEnabled = true;
+            // 
+            // buttonToggle8
+            // 
+            this.buttonToggle8.BackColor = System.Drawing.Color.White;
+            this.buttonToggle8.BorderColor = System.Drawing.Color.LightGray;
+            this.buttonToggle8.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonToggle8.ForeColor = System.Drawing.Color.White;
+            this.buttonToggle8.IsOn = false;
+            this.buttonToggle8.Location = new System.Drawing.Point(520, 104);
+            this.buttonToggle8.Name = "buttonToggle8";
+            this.buttonToggle8.OffColor = System.Drawing.Color.White;
+            this.buttonToggle8.OffText = "";
+            this.buttonToggle8.OnColor = System.Drawing.Color.DeepSkyBlue;
+            this.buttonToggle8.OnText = "";
+            this.buttonToggle8.Size = new System.Drawing.Size(40, 22);
+            this.buttonToggle8.TabIndex = 187;
+            this.buttonToggle8.Text = "buttonToggle8";
+            this.buttonToggle8.TextEnabled = true;
+            // 
+            // buttonToggle7
+            // 
+            this.buttonToggle7.BackColor = System.Drawing.Color.White;
+            this.buttonToggle7.BorderColor = System.Drawing.Color.LightGray;
+            this.buttonToggle7.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonToggle7.ForeColor = System.Drawing.Color.White;
+            this.buttonToggle7.IsOn = false;
+            this.buttonToggle7.Location = new System.Drawing.Point(520, 76);
+            this.buttonToggle7.Name = "buttonToggle7";
+            this.buttonToggle7.OffColor = System.Drawing.Color.White;
+            this.buttonToggle7.OffText = "";
+            this.buttonToggle7.OnColor = System.Drawing.Color.DeepSkyBlue;
+            this.buttonToggle7.OnText = "";
+            this.buttonToggle7.Size = new System.Drawing.Size(40, 22);
+            this.buttonToggle7.TabIndex = 186;
+            this.buttonToggle7.Text = "buttonToggle7";
+            this.buttonToggle7.TextEnabled = true;
+            // 
+            // buttonToggle6
+            // 
+            this.buttonToggle6.BackColor = System.Drawing.Color.White;
+            this.buttonToggle6.BorderColor = System.Drawing.Color.LightGray;
+            this.buttonToggle6.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonToggle6.ForeColor = System.Drawing.Color.White;
+            this.buttonToggle6.IsOn = false;
+            this.buttonToggle6.Location = new System.Drawing.Point(520, 46);
+            this.buttonToggle6.Name = "buttonToggle6";
+            this.buttonToggle6.OffColor = System.Drawing.Color.White;
+            this.buttonToggle6.OffText = "";
+            this.buttonToggle6.OnColor = System.Drawing.Color.DeepSkyBlue;
+            this.buttonToggle6.OnText = "";
+            this.buttonToggle6.Size = new System.Drawing.Size(40, 22);
+            this.buttonToggle6.TabIndex = 185;
+            this.buttonToggle6.Text = "buttonToggle6";
+            this.buttonToggle6.TextEnabled = true;
+            // 
+            // buttonToggle5
+            // 
+            this.buttonToggle5.BackColor = System.Drawing.Color.White;
+            this.buttonToggle5.BorderColor = System.Drawing.Color.LightGray;
+            this.buttonToggle5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonToggle5.ForeColor = System.Drawing.Color.White;
+            this.buttonToggle5.IsOn = false;
+            this.buttonToggle5.Location = new System.Drawing.Point(520, 20);
+            this.buttonToggle5.Name = "buttonToggle5";
+            this.buttonToggle5.OffColor = System.Drawing.Color.White;
+            this.buttonToggle5.OffText = "";
+            this.buttonToggle5.OnColor = System.Drawing.Color.DeepSkyBlue;
+            this.buttonToggle5.OnText = "";
+            this.buttonToggle5.Size = new System.Drawing.Size(40, 22);
+            this.buttonToggle5.TabIndex = 184;
+            this.buttonToggle5.Text = "buttonToggle5";
+            this.buttonToggle5.TextEnabled = true;
+            // 
+            // buttonToggle4
+            // 
+            this.buttonToggle4.BackColor = System.Drawing.Color.White;
+            this.buttonToggle4.BorderColor = System.Drawing.Color.LightGray;
+            this.buttonToggle4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonToggle4.ForeColor = System.Drawing.Color.White;
+            this.buttonToggle4.IsOn = false;
+            this.buttonToggle4.Location = new System.Drawing.Point(427, 112);
+            this.buttonToggle4.Name = "buttonToggle4";
+            this.buttonToggle4.OffColor = System.Drawing.Color.White;
+            this.buttonToggle4.OffText = "";
+            this.buttonToggle4.OnColor = System.Drawing.Color.DeepSkyBlue;
+            this.buttonToggle4.OnText = "";
+            this.buttonToggle4.Size = new System.Drawing.Size(40, 22);
+            this.buttonToggle4.TabIndex = 179;
+            this.buttonToggle4.Text = "buttonToggle4";
+            this.buttonToggle4.TextEnabled = true;
+            // 
+            // buttonToggle3
+            // 
+            this.buttonToggle3.BackColor = System.Drawing.Color.White;
+            this.buttonToggle3.BorderColor = System.Drawing.Color.LightGray;
+            this.buttonToggle3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonToggle3.ForeColor = System.Drawing.Color.White;
+            this.buttonToggle3.IsOn = false;
+            this.buttonToggle3.Location = new System.Drawing.Point(427, 84);
+            this.buttonToggle3.Name = "buttonToggle3";
+            this.buttonToggle3.OffColor = System.Drawing.Color.White;
+            this.buttonToggle3.OffText = "";
+            this.buttonToggle3.OnColor = System.Drawing.Color.DeepSkyBlue;
+            this.buttonToggle3.OnText = "";
+            this.buttonToggle3.Size = new System.Drawing.Size(40, 22);
+            this.buttonToggle3.TabIndex = 178;
+            this.buttonToggle3.Text = "buttonToggle3";
+            this.buttonToggle3.TextEnabled = true;
+            // 
+            // buttonToggle2
+            // 
+            this.buttonToggle2.BackColor = System.Drawing.Color.White;
+            this.buttonToggle2.BorderColor = System.Drawing.Color.LightGray;
+            this.buttonToggle2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonToggle2.ForeColor = System.Drawing.Color.White;
+            this.buttonToggle2.IsOn = false;
+            this.buttonToggle2.Location = new System.Drawing.Point(427, 54);
+            this.buttonToggle2.Name = "buttonToggle2";
+            this.buttonToggle2.OffColor = System.Drawing.Color.White;
+            this.buttonToggle2.OffText = "";
+            this.buttonToggle2.OnColor = System.Drawing.Color.DeepSkyBlue;
+            this.buttonToggle2.OnText = "";
+            this.buttonToggle2.Size = new System.Drawing.Size(40, 22);
+            this.buttonToggle2.TabIndex = 177;
+            this.buttonToggle2.Text = "buttonToggle2";
+            this.buttonToggle2.TextEnabled = true;
+            // 
+            // buttonToggle1
+            // 
+            this.buttonToggle1.BackColor = System.Drawing.Color.White;
+            this.buttonToggle1.BorderColor = System.Drawing.Color.LightGray;
+            this.buttonToggle1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonToggle1.ForeColor = System.Drawing.Color.White;
+            this.buttonToggle1.IsOn = false;
+            this.buttonToggle1.Location = new System.Drawing.Point(427, 28);
+            this.buttonToggle1.Name = "buttonToggle1";
+            this.buttonToggle1.OffColor = System.Drawing.Color.White;
+            this.buttonToggle1.OffText = "";
+            this.buttonToggle1.OnColor = System.Drawing.Color.DeepSkyBlue;
+            this.buttonToggle1.OnText = "";
+            this.buttonToggle1.Size = new System.Drawing.Size(40, 22);
+            this.buttonToggle1.TabIndex = 176;
+            this.buttonToggle1.Text = "buttonToggle1";
+            this.buttonToggle1.TextEnabled = true;
+            // 
+            // rcExpo2
+            // 
+            this.rcExpo2.Location = new System.Drawing.Point(45, 171);
+            this.rcExpo2.Name = "rcExpo2";
+            this.rcExpo2.Size = new System.Drawing.Size(150, 100);
+            this.rcExpo2.TabIndex = 128;
+            this.rcExpo2.Text = "rcExpo2";
+            // 
+            // throttleExpo2
+            // 
+            this.throttleExpo2.Location = new System.Drawing.Point(45, 177);
+            this.throttleExpo2.Name = "throttleExpo2";
+            this.throttleExpo2.Size = new System.Drawing.Size(150, 100);
+            this.throttleExpo2.TabIndex = 127;
+            this.throttleExpo2.Text = "throttleExpo2";
+            // 
+            // preArmNotification2
+            // 
+            this.preArmNotification2.Location = new System.Drawing.Point(3, 3);
+            this.preArmNotification2.Name = "preArmNotification2";
+            this.preArmNotification2.Size = new System.Drawing.Size(247, 123);
+            this.preArmNotification2.TabIndex = 10;
+            // 
+            // preArmNotification1
+            // 
+            this.preArmNotification1.Location = new System.Drawing.Point(2, 0);
+            this.preArmNotification1.Name = "preArmNotification1";
+            this.preArmNotification1.Size = new System.Drawing.Size(247, 123);
+            this.preArmNotification1.TabIndex = 9;
+            // 
             // GCS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -9430,7 +9385,6 @@
             this.groupBox30.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown99)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown95)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown93)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown22)).EndInit();
             this.groupBox35.ResumeLayout(false);
             this.groupBox35.PerformLayout();
@@ -10053,8 +10007,6 @@
         private System.Windows.Forms.Label label115;
         private System.Windows.Forms.NumericUpDown numericUpDown95;
         private System.Windows.Forms.Label label154;
-        private System.Windows.Forms.NumericUpDown numericUpDown93;
-        private System.Windows.Forms.Label label150;
         private ButtonToggle buttonToggle1;
         private System.Windows.Forms.Label label170;
         private System.Windows.Forms.Label label168;
@@ -10083,7 +10035,6 @@
         private System.Windows.Forms.Label label184;
         private System.Windows.Forms.Label label182;
         private System.Windows.Forms.Label label176;
-        private System.Windows.Forms.Label label175;
         private System.Windows.Forms.Label label193;
         private System.Windows.Forms.Label label190;
         private System.Windows.Forms.GroupBox groupBox41;
