@@ -7499,7 +7499,7 @@
             this.groupBox35.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox35.Location = new System.Drawing.Point(271, 163);
             this.groupBox35.Name = "groupBox35";
-            this.groupBox35.Size = new System.Drawing.Size(653, 134);
+            this.groupBox35.Size = new System.Drawing.Size(671, 134);
             this.groupBox35.TabIndex = 182;
             this.groupBox35.TabStop = false;
             this.groupBox35.Text = "Servos";
@@ -7508,7 +7508,7 @@
             // 
             this.label171.AutoSize = true;
             this.label171.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label171.Location = new System.Drawing.Point(566, 106);
+            this.label171.Location = new System.Drawing.Point(585, 106);
             this.label171.Name = "label171";
             this.label171.Size = new System.Drawing.Size(76, 16);
             this.label171.TabIndex = 191;
@@ -7518,7 +7518,7 @@
             // 
             this.label172.AutoSize = true;
             this.label172.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label172.Location = new System.Drawing.Point(566, 78);
+            this.label172.Location = new System.Drawing.Point(585, 78);
             this.label172.Name = "label172";
             this.label172.Size = new System.Drawing.Size(76, 16);
             this.label172.TabIndex = 190;
@@ -7528,7 +7528,7 @@
             // 
             this.label173.AutoSize = true;
             this.label173.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label173.Location = new System.Drawing.Point(566, 50);
+            this.label173.Location = new System.Drawing.Point(585, 50);
             this.label173.Name = "label173";
             this.label173.Size = new System.Drawing.Size(76, 16);
             this.label173.TabIndex = 189;
@@ -7538,7 +7538,7 @@
             // 
             this.label174.AutoSize = true;
             this.label174.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label174.Location = new System.Drawing.Point(566, 22);
+            this.label174.Location = new System.Drawing.Point(585, 22);
             this.label174.Name = "label174";
             this.label174.Size = new System.Drawing.Size(76, 16);
             this.label174.TabIndex = 188;
@@ -7551,7 +7551,7 @@
             this.buttonToggle8.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonToggle8.ForeColor = System.Drawing.Color.White;
             this.buttonToggle8.IsOn = false;
-            this.buttonToggle8.Location = new System.Drawing.Point(520, 104);
+            this.buttonToggle8.Location = new System.Drawing.Point(539, 104);
             this.buttonToggle8.Name = "buttonToggle8";
             this.buttonToggle8.OffColor = System.Drawing.Color.White;
             this.buttonToggle8.OffText = "";
@@ -7569,7 +7569,7 @@
             this.buttonToggle7.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonToggle7.ForeColor = System.Drawing.Color.White;
             this.buttonToggle7.IsOn = false;
-            this.buttonToggle7.Location = new System.Drawing.Point(520, 76);
+            this.buttonToggle7.Location = new System.Drawing.Point(539, 76);
             this.buttonToggle7.Name = "buttonToggle7";
             this.buttonToggle7.OffColor = System.Drawing.Color.White;
             this.buttonToggle7.OffText = "";
@@ -7587,7 +7587,7 @@
             this.buttonToggle6.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonToggle6.ForeColor = System.Drawing.Color.White;
             this.buttonToggle6.IsOn = false;
-            this.buttonToggle6.Location = new System.Drawing.Point(520, 46);
+            this.buttonToggle6.Location = new System.Drawing.Point(539, 46);
             this.buttonToggle6.Name = "buttonToggle6";
             this.buttonToggle6.OffColor = System.Drawing.Color.White;
             this.buttonToggle6.OffText = "";
@@ -7605,7 +7605,7 @@
             this.buttonToggle5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonToggle5.ForeColor = System.Drawing.Color.White;
             this.buttonToggle5.IsOn = false;
-            this.buttonToggle5.Location = new System.Drawing.Point(520, 20);
+            this.buttonToggle5.Location = new System.Drawing.Point(539, 20);
             this.buttonToggle5.Name = "buttonToggle5";
             this.buttonToggle5.OffColor = System.Drawing.Color.White;
             this.buttonToggle5.OffText = "";
@@ -7619,7 +7619,7 @@
             // numericUpDown51
             // 
             this.numericUpDown51.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown51.Location = new System.Drawing.Point(443, 104);
+            this.numericUpDown51.Location = new System.Drawing.Point(462, 104);
             this.numericUpDown51.Maximum = new decimal(new int[] {
             125,
             0,
@@ -7645,9 +7645,9 @@
             this.label211.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label211.Location = new System.Drawing.Point(373, 107);
             this.label211.Name = "label211";
-            this.label211.Size = new System.Drawing.Size(68, 16);
+            this.label211.Size = new System.Drawing.Size(83, 16);
             this.label211.TabIndex = 179;
-            this.label211.Text = "Rate (%)";
+            this.label211.Text = "Weight (%)";
             // 
             // label202
             // 
@@ -7662,7 +7662,7 @@
             // numericUpDown54
             // 
             this.numericUpDown54.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown54.Location = new System.Drawing.Point(443, 20);
+            this.numericUpDown54.Location = new System.Drawing.Point(462, 20);
             this.numericUpDown54.Maximum = new decimal(new int[] {
             125,
             0,
@@ -7711,9 +7711,9 @@
             this.label214.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label214.Location = new System.Drawing.Point(373, 23);
             this.label214.Name = "label214";
-            this.label214.Size = new System.Drawing.Size(68, 16);
+            this.label214.Size = new System.Drawing.Size(83, 16);
             this.label214.TabIndex = 173;
-            this.label214.Text = "Rate (%)";
+            this.label214.Text = "Weight (%)";
             // 
             // numericUpDown43
             // 
@@ -7744,9 +7744,9 @@
             this.label212.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label212.Location = new System.Drawing.Point(373, 79);
             this.label212.Name = "label212";
-            this.label212.Size = new System.Drawing.Size(68, 16);
+            this.label212.Size = new System.Drawing.Size(83, 16);
             this.label212.TabIndex = 177;
-            this.label212.Text = "Rate (%)";
+            this.label212.Text = "Weight (%)";
             // 
             // label196
             // 
@@ -7761,7 +7761,7 @@
             // numericUpDown53
             // 
             this.numericUpDown53.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown53.Location = new System.Drawing.Point(443, 48);
+            this.numericUpDown53.Location = new System.Drawing.Point(462, 48);
             this.numericUpDown53.Maximum = new decimal(new int[] {
             125,
             0,
@@ -7794,7 +7794,7 @@
             // numericUpDown52
             // 
             this.numericUpDown52.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown52.Location = new System.Drawing.Point(443, 76);
+            this.numericUpDown52.Location = new System.Drawing.Point(462, 76);
             this.numericUpDown52.Maximum = new decimal(new int[] {
             125,
             0,
@@ -7843,9 +7843,9 @@
             this.label213.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label213.Location = new System.Drawing.Point(373, 51);
             this.label213.Name = "label213";
-            this.label213.Size = new System.Drawing.Size(68, 16);
+            this.label213.Size = new System.Drawing.Size(83, 16);
             this.label213.TabIndex = 175;
-            this.label213.Text = "Rate (%)";
+            this.label213.Text = "Weight (%)";
             // 
             // numericUpDown41
             // 
