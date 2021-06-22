@@ -1226,7 +1226,7 @@ namespace JCFLIGHTGCS
 
             if (SerialPort.BytesToRead == 0)
             {
-                if (ItsSafeToUpdate && CommandArmDisarm == 0)
+                if (ItsSafeToUpdate)
                 {
                     Serial_Write_To_FC(7);
                     Serial_Write_To_FC(8);
