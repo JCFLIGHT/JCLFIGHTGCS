@@ -177,6 +177,11 @@ namespace JCFLIGHTGCS
         int BattVoltageScaleGuard;
         int BattCurrentScaleGuard;
         int BattCurrentOffSetGuard;
+        int BattMinVoltageGuard;
+        int BattMaxVoltageGuard;
+        byte NumberOfCells;
+        byte CriticBattPercent;
+        bool RTHLowBatt;
         byte CH6TunningGuard;
 
         int DevicesSum = 0;
@@ -955,6 +960,11 @@ namespace JCFLIGHTGCS
                     BattVoltageScaleGuard = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     BattCurrentScaleGuard = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     BattCurrentOffSetGuard = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    BattMinVoltageGuard = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    BattMaxVoltageGuard = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    NumberOfCells = (byte)InBuffer[ptr++];
+                    CriticBattPercent = (byte)InBuffer[ptr++];
+                    RTHLowBatt = Convert.ToBoolean((byte)InBuffer[ptr++]);
                     break;
 
                 case 9:
@@ -2107,7 +2117,12 @@ namespace JCFLIGHTGCS
                 numericUpDown94.Value = PitchLevelTrimGuard;
                 numericUpDown96.Value = (decimal)(BattVoltageScaleGuard / 100.0f);
                 numericUpDown97.Value = (decimal)(BattCurrentScaleGuard / 100.0f);
-                numericUpDown98.Value = (decimal)(BattCurrentOffSetGuard / 100.0f);
+                numericUpDown98.Value = (decimal)(BattCurrentOffSetGuard > 0 ? BattCurrentOffSetGuard / 100.0f : 0);
+                numericUpDown102.Value = (decimal)(BattMinVoltageGuard / 100.0f);
+                numericUpDown101.Value = (decimal)(BattMaxVoltageGuard / 100.0f);
+                comboBox21.SelectedIndex = NumberOfCells;
+                numericUpDown100.Value = CriticBattPercent;
+                buttonToggle14.IsOn = RTHLowBatt;
             }
             SmallCompass = false;
             tabControl1.SelectTab(tabPage2);
@@ -3111,10 +3126,15 @@ namespace JCFLIGHTGCS
                     numericUpDown96.Value = 0;
                     numericUpDown97.Value = 0;
                     numericUpDown98.Value = 0;
+                    numericUpDown102.Value = (decimal)(360 / 100.0f);
+                    numericUpDown101.Value = (decimal)(420 / 100.0f);
+                    comboBox21.SelectedIndex = 0;
+                    numericUpDown100.Value = 20;
+                    buttonToggle14.IsOn = false;
                     buttonToggle12.IsOn = false;
                     numericUpDown91.Value = 15;
                     numericUpDown87.Value = 30;
-                    numericUpDown10.Value = (decimal)(0) / 10;
+                    numericUpDown10.Value = (decimal)(0);
                     numericUpDown38.Value = (decimal)(50) / 1000;
                     numericUpDown77.Value = (decimal)(20);
                     if (FrameMode == 3 || FrameMode == 4 || FrameMode == 5)
@@ -3342,7 +3362,7 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)0x4a;
                     SendBuffer[VectorPointer++] = (byte)0x43;
                     SendBuffer[VectorPointer++] = (byte)0x3c;
-                    SendBuffer[VectorPointer++] = 29;
+                    SendBuffer[VectorPointer++] = 36;
                     SendBuffer[VectorPointer++] = (byte)15;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxFrame;
                     SendBuffer[VectorPointer++] = (byte)ComboBoxPPM;
@@ -3371,8 +3391,15 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown96.Value * 100) >> 8);
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown97.Value * 100));
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown97.Value * 100) >> 8);
-                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown98.Value) * 100);
+                    SendBuffer[VectorPointer++] = (byte)Convert.ToInt16(numericUpDown98.Value * 100);
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown98.Value * 100) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)Convert.ToInt16(numericUpDown102.Value * 100);
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown102.Value * 100) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)Convert.ToInt16(numericUpDown101.Value * 100);
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown101.Value * 100) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToByte(comboBox21.SelectedIndex));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToByte(numericUpDown100.Value));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToByte(buttonToggle14.IsOn));
                     for (int i = 3; i < VectorPointer; i++) CheckAllBuffers ^= SendBuffer[i];
                     SendBuffer[VectorPointer++] = CheckAllBuffers;
                     SerialPort.Write(SendBuffer, 0, VectorPointer);
