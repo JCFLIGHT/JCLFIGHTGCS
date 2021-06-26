@@ -648,6 +648,7 @@
             this.throttleExpo2 = new JCFLIGHTGCS.ThrottleExpo();
             this.preArmNotification2 = new JCFLIGHTGCS.PreArmNotification();
             this.preArmNotification1 = new JCFLIGHTGCS.PreArmNotification();
+            this.label150 = new System.Windows.Forms.Label();
             this.BarraTitulo.SuspendLayout();
             this.panel18.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
@@ -3245,6 +3246,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.label150);
             this.tabPage3.Controls.Add(this.label153);
             this.tabPage3.Controls.Add(this.label152);
             this.tabPage3.Controls.Add(this.label8);
@@ -3355,7 +3357,7 @@
             // pictureBox18
             // 
             this.pictureBox18.Image = global::JCFLIGHTGCS.Properties.Resources.CalibAcc5;
-            this.pictureBox18.Location = new System.Drawing.Point(722, 62);
+            this.pictureBox18.Location = new System.Drawing.Point(548, 62);
             this.pictureBox18.Name = "pictureBox18";
             this.pictureBox18.Size = new System.Drawing.Size(130, 130);
             this.pictureBox18.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -3365,7 +3367,7 @@
             // pictureBox19
             // 
             this.pictureBox19.BackColor = System.Drawing.Color.Red;
-            this.pictureBox19.Location = new System.Drawing.Point(712, 51);
+            this.pictureBox19.Location = new System.Drawing.Point(538, 51);
             this.pictureBox19.Name = "pictureBox19";
             this.pictureBox19.Size = new System.Drawing.Size(150, 150);
             this.pictureBox19.TabIndex = 11;
@@ -3374,7 +3376,7 @@
             // pictureBox16
             // 
             this.pictureBox16.Image = global::JCFLIGHTGCS.Properties.Resources.CalibAcc4;
-            this.pictureBox16.Location = new System.Drawing.Point(547, 62);
+            this.pictureBox16.Location = new System.Drawing.Point(374, 62);
             this.pictureBox16.Name = "pictureBox16";
             this.pictureBox16.Size = new System.Drawing.Size(130, 130);
             this.pictureBox16.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -3384,7 +3386,7 @@
             // pictureBox17
             // 
             this.pictureBox17.BackColor = System.Drawing.Color.Red;
-            this.pictureBox17.Location = new System.Drawing.Point(537, 51);
+            this.pictureBox17.Location = new System.Drawing.Point(364, 51);
             this.pictureBox17.Name = "pictureBox17";
             this.pictureBox17.Size = new System.Drawing.Size(150, 150);
             this.pictureBox17.TabIndex = 9;
@@ -3393,7 +3395,7 @@
             // pictureBox14
             // 
             this.pictureBox14.Image = global::JCFLIGHTGCS.Properties.Resources.CalibAcc3;
-            this.pictureBox14.Location = new System.Drawing.Point(372, 62);
+            this.pictureBox14.Location = new System.Drawing.Point(723, 62);
             this.pictureBox14.Name = "pictureBox14";
             this.pictureBox14.Size = new System.Drawing.Size(130, 130);
             this.pictureBox14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -3403,7 +3405,7 @@
             // pictureBox15
             // 
             this.pictureBox15.BackColor = System.Drawing.Color.Red;
-            this.pictureBox15.Location = new System.Drawing.Point(362, 51);
+            this.pictureBox15.Location = new System.Drawing.Point(713, 51);
             this.pictureBox15.Name = "pictureBox15";
             this.pictureBox15.Size = new System.Drawing.Size(150, 150);
             this.pictureBox15.TabIndex = 7;
@@ -9186,6 +9188,16 @@
             this.preArmNotification1.Size = new System.Drawing.Size(247, 123);
             this.preArmNotification1.TabIndex = 9;
             // 
+            // label150
+            // 
+            this.label150.AutoSize = true;
+            this.label150.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label150.Location = new System.Drawing.Point(14, 34);
+            this.label150.Name = "label150";
+            this.label150.Size = new System.Drawing.Size(315, 13);
+            this.label150.TabIndex = 20;
+            this.label150.Text = "Faça a calibração da IMU respeitando a orientação das imagens.";
+            // 
             // GCS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -10089,6 +10101,7 @@
         private MetroFramework.Controls.MetroLabel metroLabel48;
         private System.Windows.Forms.NumericUpDown numericUpDown103;
         private System.Windows.Forms.ComboBox comboBox22;
+        private System.Windows.Forms.Label label150;
     }
 }
 
