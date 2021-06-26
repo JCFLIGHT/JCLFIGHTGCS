@@ -151,7 +151,8 @@ namespace JCFLIGHTGCS
         byte ComboBoxArmDisarm = 0;
         byte ComboBoxGyroLPF = 0;
         byte ComboBoxAutoLand = 0;
-        byte ComboBoxCH6Tunning = 0;
+        byte ComboBoxCHTunning = 0;
+        byte ComboBoxTunning = 0;
         byte SimpleDataGuard = 0;
         byte AltHoldGuard = 0;
         byte GPSHoldGuard = 0;
@@ -182,7 +183,8 @@ namespace JCFLIGHTGCS
         byte NumberOfCells;
         byte CriticBattPercent;
         bool RTHLowBatt;
-        byte CH6TunningGuard;
+        byte TunningGuard;
+        byte CHTunningGuard;
 
         int DevicesSum = 0;
 
@@ -297,6 +299,13 @@ namespace JCFLIGHTGCS
         bool LandAfterRTH;
         int HoverThrottle;
         int AirSpeedReference;
+        byte TECSPitch2ThrFactor;
+        byte TECSPitch2ThrLPF;
+        byte TECSAPLPF;
+        int TECSCruiseMin;
+        int TECSCruiseMax;
+        int TECSCruise;
+        bool TECSCruiseToRight;
 
         StreamWriter BlackBoxStream;
         static bool BlackBoxRunning = false;
@@ -1195,10 +1204,18 @@ namespace JCFLIGHTGCS
                     MaxPitchLevel = (byte)InBuffer[ptr++];
                     PAMode = Convert.ToBoolean((byte)InBuffer[ptr++]);
                     AirSpeedScale = BitConverter.ToInt32(InBuffer, ptr); ptr += 4;
-                    CH6TunningGuard = (byte)InBuffer[ptr++];
+                    CHTunningGuard = (byte)InBuffer[ptr++];
+                    TunningGuard = (byte)InBuffer[ptr++];
                     LandAfterRTH = Convert.ToBoolean((byte)InBuffer[ptr++]);
                     HoverThrottle = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     AirSpeedReference = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    TECSPitch2ThrFactor = (byte)InBuffer[ptr++];
+                    TECSPitch2ThrLPF = (byte)InBuffer[ptr++];
+                    TECSAPLPF = (byte)InBuffer[ptr++];
+                    TECSCruiseMin = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    TECSCruiseMax = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    TECSCruise = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    TECSCruiseToRight = Convert.ToBoolean((byte)InBuffer[ptr++]);
                     break;
             }
         }
@@ -2886,7 +2903,12 @@ namespace JCFLIGHTGCS
 
         private void comboBox19_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ComboBoxCH6Tunning = Convert.ToByte(comboBox19.SelectedIndex);
+            ComboBoxCHTunning = Convert.ToByte(comboBox19.SelectedIndex);
+        }
+
+        private void comboBox22_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBoxTunning = Convert.ToByte(comboBox22.SelectedIndex);
         }
 
         private void button10_Click_1(object sender, EventArgs e)
@@ -3484,7 +3506,7 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)0x4a;
                     SendBuffer[VectorPointer++] = (byte)0x43;
                     SendBuffer[VectorPointer++] = (byte)0x3c;
-                    SendBuffer[VectorPointer++] = 45;
+                    SendBuffer[VectorPointer++] = 46;
                     SendBuffer[VectorPointer++] = (byte)31;
                     SendBuffer[VectorPointer++] = (byte)(numericUpDown25.Value * 100);
                     SendBuffer[VectorPointer++] = (byte)(numericUpDown26.Value * 100);
@@ -3525,7 +3547,8 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToInt32(numericUpDown99.Value * 10000) >> 8);
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToInt32(numericUpDown99.Value * 10000) >> 16);
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToInt32(numericUpDown99.Value * 10000) >> 24);
-                    SendBuffer[VectorPointer++] = (byte)ComboBoxCH6Tunning;
+                    SendBuffer[VectorPointer++] = (byte)ComboBoxCHTunning;
+                    SendBuffer[VectorPointer++] = (byte)ComboBoxTunning;
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToByte(buttonToggle9.IsOn));
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown22.Value));
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown22.Value) >> 8);
@@ -3542,7 +3565,7 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)0x4a;
                     SendBuffer[VectorPointer++] = (byte)0x43;
                     SendBuffer[VectorPointer++] = (byte)0x3c;
-                    SendBuffer[VectorPointer++] = 33;
+                    SendBuffer[VectorPointer++] = 43;
                     SendBuffer[VectorPointer++] = (byte)33;
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown54.Value));
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown54.Value) >> 8);
@@ -3577,6 +3600,16 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown48.Value) >> 8);
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown47.Value));
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown47.Value) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)numericUpDown24.Value;
+                    SendBuffer[VectorPointer++] = (byte)numericUpDown23.Value;
+                    SendBuffer[VectorPointer++] = (byte)numericUpDown78.Value;
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown84.Value));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown84.Value) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown88.Value));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown88.Value) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown92.Value));
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown92.Value) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)Convert.ToByte(buttonToggle10.IsOn);
                     for (int i = 3; i < VectorPointer; i++) CheckAllBuffers ^= SendBuffer[i];
                     SendBuffer[VectorPointer++] = CheckAllBuffers;
                     SerialPort.Write(SendBuffer, 0, VectorPointer);
@@ -4184,10 +4217,18 @@ namespace JCFLIGHTGCS
                 numericUpDown90.Value = MaxPitchLevel;
                 buttonToggle13.IsOn = PAMode;
                 numericUpDown99.Value = (decimal)(AirSpeedScale / 10000.0f);
-                comboBox19.SelectedIndex = CH6TunningGuard;
+                comboBox19.SelectedIndex = TunningGuard;
+                comboBox22.SelectedIndex = CHTunningGuard;
                 buttonToggle9.IsOn = LandAfterRTH;
                 numericUpDown22.Value = HoverThrottle;
                 numericUpDown95.Value = AirSpeedReference;
+                numericUpDown24.Value = TECSPitch2ThrFactor;
+                numericUpDown23.Value = TECSPitch2ThrLPF;
+                numericUpDown78.Value = TECSAPLPF;
+                numericUpDown84.Value = TECSCruiseMin;
+                numericUpDown88.Value = TECSCruiseMax;
+                numericUpDown92.Value = TECSCruise;
+                buttonToggle10.IsOn = TECSCruiseToRight;
             }
             SmallCompass = false;
             panel19.Visible = true;
@@ -4272,9 +4313,17 @@ namespace JCFLIGHTGCS
                     buttonToggle13.IsOn = false;
                     numericUpDown99.Value = (decimal)(19936 / 10000.0f);
                     comboBox19.SelectedIndex = 0;
+                    comboBox22.SelectedIndex = 0;
                     buttonToggle9.IsOn = true;
                     numericUpDown22.Value = 1500;
                     numericUpDown95.Value = 1500;
+                    numericUpDown24.Value = 10;
+                    numericUpDown23.Value = 6;
+                    numericUpDown78.Value = 0;
+                    numericUpDown84.Value = 1200;
+                    numericUpDown88.Value = 1700;
+                    numericUpDown92.Value = 1400;
+                    buttonToggle10.IsOn = true;
                 }
                 if (MessageBox.Show("Para aplicar as configurações é necessario reiniciar a controladora de voo.Você deseja reiniciar automaticamente agora?",
               "Reboot", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)

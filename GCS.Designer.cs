@@ -499,6 +499,7 @@
             this.numericUpDown24 = new System.Windows.Forms.NumericUpDown();
             this.label102 = new System.Windows.Forms.Label();
             this.groupBox30 = new System.Windows.Forms.GroupBox();
+            this.comboBox22 = new System.Windows.Forms.ComboBox();
             this.numericUpDown99 = new System.Windows.Forms.NumericUpDown();
             this.label208 = new System.Windows.Forms.Label();
             this.label193 = new System.Windows.Forms.Label();
@@ -647,7 +648,6 @@
             this.throttleExpo2 = new JCFLIGHTGCS.ThrottleExpo();
             this.preArmNotification2 = new JCFLIGHTGCS.PreArmNotification();
             this.preArmNotification1 = new JCFLIGHTGCS.PreArmNotification();
-            this.comboBox22 = new System.Windows.Forms.ComboBox();
             this.BarraTitulo.SuspendLayout();
             this.panel18.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
@@ -6803,7 +6803,7 @@
             this.numericUpDown92.Size = new System.Drawing.Size(60, 22);
             this.numericUpDown92.TabIndex = 203;
             this.numericUpDown92.Value = new decimal(new int[] {
-            1000,
+            1400,
             0,
             0,
             0});
@@ -6836,7 +6836,7 @@
             this.numericUpDown88.Size = new System.Drawing.Size(60, 22);
             this.numericUpDown88.TabIndex = 201;
             this.numericUpDown88.Value = new decimal(new int[] {
-            1000,
+            1700,
             0,
             0,
             0});
@@ -6869,7 +6869,7 @@
             this.numericUpDown84.Size = new System.Drawing.Size(60, 22);
             this.numericUpDown84.TabIndex = 199;
             this.numericUpDown84.Value = new decimal(new int[] {
-            1000,
+            1200,
             0,
             0,
             0});
@@ -6919,6 +6919,11 @@
             this.numericUpDown23.Name = "numericUpDown23";
             this.numericUpDown23.Size = new System.Drawing.Size(60, 22);
             this.numericUpDown23.TabIndex = 195;
+            this.numericUpDown23.Value = new decimal(new int[] {
+            6,
+            0,
+            0,
+            0});
             // 
             // label101
             // 
@@ -6984,6 +6989,27 @@
             this.groupBox30.TabIndex = 186;
             this.groupBox30.TabStop = false;
             this.groupBox30.Text = "Outros Parâmetros";
+            // 
+            // comboBox22
+            // 
+            this.comboBox22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox22.FormattingEnabled = true;
+            this.comboBox22.Items.AddRange(new object[] {
+            "N/C",
+            "AUX1",
+            "AUX2",
+            "AUX3",
+            "AUX4",
+            "AUX5",
+            "AUX6",
+            "AUX7",
+            "AUX8"});
+            this.comboBox22.Location = new System.Drawing.Point(70, 26);
+            this.comboBox22.Name = "comboBox22";
+            this.comboBox22.Size = new System.Drawing.Size(66, 24);
+            this.comboBox22.TabIndex = 188;
+            this.comboBox22.Text = "SELECIONE";
+            this.comboBox22.SelectedIndexChanged += new System.EventHandler(this.comboBox22_SelectedIndexChanged);
             // 
             // numericUpDown99
             // 
@@ -8938,7 +8964,7 @@
             this.buttonToggle10.BorderColor = System.Drawing.Color.LightGray;
             this.buttonToggle10.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonToggle10.ForeColor = System.Drawing.Color.White;
-            this.buttonToggle10.IsOn = false;
+            this.buttonToggle10.IsOn = true;
             this.buttonToggle10.Location = new System.Drawing.Point(186, 193);
             this.buttonToggle10.Name = "buttonToggle10";
             this.buttonToggle10.OffColor = System.Drawing.Color.White;
@@ -9159,25 +9185,6 @@
             this.preArmNotification1.Name = "preArmNotification1";
             this.preArmNotification1.Size = new System.Drawing.Size(247, 123);
             this.preArmNotification1.TabIndex = 9;
-            // 
-            // comboBox22
-            // 
-            this.comboBox22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox22.FormattingEnabled = true;
-            this.comboBox22.Items.AddRange(new object[] {
-            "AUX1",
-            "AUX2",
-            "AUX3",
-            "AUX4",
-            "AUX5",
-            "AUX6",
-            "AUX7",
-            "AUX8"});
-            this.comboBox22.Location = new System.Drawing.Point(70, 26);
-            this.comboBox22.Name = "comboBox22";
-            this.comboBox22.Size = new System.Drawing.Size(66, 24);
-            this.comboBox22.TabIndex = 188;
-            this.comboBox22.Text = "SELECIONE";
             // 
             // GCS
             // 
