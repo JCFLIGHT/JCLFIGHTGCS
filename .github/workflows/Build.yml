@@ -8,19 +8,22 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
+        with:
+          submodules: true
 
       - name: Construir
         shell: pwsh
         run: |
           $msbuildPath = Split-Path (& "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -latest -requires Microsoft.Component.MSBuild -find MSBuild\Current\Bin\amd64\MSBuild.exe | Select-Object -First 1) -Parent
           $env:PATH = $msbuildPath + ';' + $env:PATH
+          nuget locals all -clear
           msbuild -v:m -restore -t:Build -p:Configuration=Release JCFLIGHTGCS.sln
 
       - name: Limpar
         shell: pwsh
         run: |
           cd bin\Release
-          gci | ForEach-Object {                 if (Test-Path $_.Name -PathType Leaf)                {                    Write-Host "Remove" $_.FullName   ;                 Remove-Item $_.FullName                            } else {                    Write-Host $_.Name                }            }
+          gci Plugins | ForEach-Object {                 if (Test-Path $_.Name -PathType Leaf)                {                    Write-Host "Remove" $_.FullName   ;                 Remove-Item $_.FullName                            } else {                    Write-Host $_.Name                }            }
           
       - uses: actions/upload-artifact@v1
         with:
@@ -47,4 +50,4 @@ jobs:
         shell: pwsh
         run: |
           cd bin\Debug
-          gci | ForEach-Object {                 if (Test-Path $_.Name -PathType Leaf)                {                    Write-Host "Remove" $_.FullName   ;                 Remove-Item $_.FullName                            } else {                    Write-Host $_.Name                }            }
+          gci Plugins | ForEach-Object {                 if (Test-Path $_.Name -PathType Leaf)                {                    Write-Host "Remove" $_.FullName   ;                 Remove-Item $_.FullName                            } else {                    Write-Host $_.Name                }            }
