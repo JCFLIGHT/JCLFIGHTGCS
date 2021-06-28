@@ -306,6 +306,7 @@ namespace JCFLIGHTGCS
         int TECSCruiseMax;
         int TECSCruise;
         bool TECSCruiseToRight;
+        bool ContServoTrimState;
 
         StreamWriter BlackBoxStream;
         static bool BlackBoxRunning = false;
@@ -1216,6 +1217,7 @@ namespace JCFLIGHTGCS
                     TECSCruiseMax = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     TECSCruise = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     TECSCruiseToRight = Convert.ToBoolean((byte)InBuffer[ptr++]);
+                    ContServoTrimState = Convert.ToBoolean((byte)InBuffer[ptr++]);
                     break;
             }
         }
@@ -3506,7 +3508,7 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)0x4a;
                     SendBuffer[VectorPointer++] = (byte)0x43;
                     SendBuffer[VectorPointer++] = (byte)0x3c;
-                    SendBuffer[VectorPointer++] = 46;
+                    SendBuffer[VectorPointer++] = 47;
                     SendBuffer[VectorPointer++] = (byte)31;
                     SendBuffer[VectorPointer++] = (byte)(numericUpDown25.Value * 100);
                     SendBuffer[VectorPointer++] = (byte)(numericUpDown26.Value * 100);
@@ -3554,6 +3556,7 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown22.Value) >> 8);
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown95.Value));
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown95.Value) >> 8);
+                    SendBuffer[VectorPointer++] = (byte)(Convert.ToByte(buttonToggle15.IsOn));
                     for (int i = 3; i < VectorPointer; i++) CheckAllBuffers ^= SendBuffer[i];
                     SendBuffer[VectorPointer++] = CheckAllBuffers;
                     SerialPort.Write(SendBuffer, 0, VectorPointer);
@@ -4229,6 +4232,7 @@ namespace JCFLIGHTGCS
                 numericUpDown88.Value = TECSCruiseMax;
                 numericUpDown92.Value = TECSCruise;
                 buttonToggle10.IsOn = TECSCruiseToRight;
+                buttonToggle15.IsOn = ContServoTrimState;
             }
             SmallCompass = false;
             panel19.Visible = true;
@@ -4324,6 +4328,7 @@ namespace JCFLIGHTGCS
                     numericUpDown88.Value = 1700;
                     numericUpDown92.Value = 1400;
                     buttonToggle10.IsOn = true;
+                    buttonToggle15.IsOn = false;
                 }
                 if (MessageBox.Show("Para aplicar as configurações é necessario reiniciar a controladora de voo.Você deseja reiniciar automaticamente agora?",
               "Reboot", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
