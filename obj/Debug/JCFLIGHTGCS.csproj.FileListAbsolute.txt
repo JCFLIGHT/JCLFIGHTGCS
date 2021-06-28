@@ -312,6 +312,7 @@ C:\Users\Julio Cesar\Desktop\Projetos\JCFLIGHT\JCFLIGHTGCS\bin\Debug\sv\ZedGraph
 C:\Users\Julio Cesar\Desktop\Projetos\JCFLIGHT\JCFLIGHTGCS\bin\Debug\tr\ZedGraph.resources.dll
 C:\Users\Julio Cesar\Desktop\Projetos\JCFLIGHT\JCFLIGHTGCS\bin\Debug\zh-cn\ZedGraph.resources.dll
 C:\Users\Julio Cesar\Desktop\Projetos\JCFLIGHT\JCFLIGHTGCS\bin\Debug\zh-tw\ZedGraph.resources.dll
+C:\Users\Julio Cesar\Desktop\Projetos\JCFLIGHT\JCFLIGHTGCS\obj\Debug\JCFLIGHTGCS.csprojAssemblyReference.cache
 C:\Users\Julio Cesar\Desktop\Projetos\JCFLIGHT\JCFLIGHTGCS\obj\Debug\JCFLIGHTGCS.AirFrameOrientation.resources
 C:\Users\Julio Cesar\Desktop\Projetos\JCFLIGHT\JCFLIGHTGCS\obj\Debug\JCFLIGHTGCS.BoardInfo.resources
 C:\Users\Julio Cesar\Desktop\Projetos\JCFLIGHT\JCFLIGHTGCS\obj\Debug\JCFLIGHTGCS.Compass.resources
