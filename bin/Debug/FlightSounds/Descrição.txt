@@ -1,0 +1,7 @@
+//OS ALERTAS DE NAVEGAÇÃO SÃO APENAS PARA O MODO AIRPLANE OU FIXED-WING DA JCFLIGHT
+
+AutoPilotDisengage -> Piloto Automatico desativado
+BankAngle          -> Limite de angulo do roll atingido
+Stall              -> Perda de sustentação das asas
+DontSink           -> Não afunde o nariz (em modo altitude-hold)
+PullUp             -> O avião precisa subir (para uma altitude segura)

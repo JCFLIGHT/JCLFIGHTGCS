@@ -4419,9 +4419,10 @@ namespace JCFLIGHTGCS
                 OkToResetSpeech = true;
             }
 
-            if ((ReadPitch / 10) <= -NumericConvert[20])
+            if ((ReadPitch / 10) <= -NumericConvert[20]) //IMPLEMENTE A VEL. VERTICAL AQUI PARA VERFICAR A TAXA DE DESCIDA EXECESSIVA
             {
-                Player.URL = Directory.GetCurrentDirectory() + "\\FlightSounds" + "\\DontSink.mp3";
+                Player.URL = Directory.GetCurrentDirectory() + "\\FlightSounds" + "\\PullUp.mp3";
+                //Player.URL = Directory.GetCurrentDirectory() + "\\FlightSounds" + "\\DontSink.mp3";
                 OkToResetSpeech = true;
             }
 
@@ -4439,7 +4440,7 @@ namespace JCFLIGHTGCS
             }
             else
             {
-                if (AutoPilotDeactivedCount >= 60)
+                if (AutoPilotDeactivedCount >= 240)
                 {
                     AutoPilotDeactived = false;
                     AutoPilotDeactivedCount = 0;
