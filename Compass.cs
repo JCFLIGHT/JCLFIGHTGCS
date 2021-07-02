@@ -118,9 +118,9 @@ namespace JCFLIGHTGCS
             }
             else
             {
-                RawMagX = GetValues.CompassX;
-                RawMagY = GetValues.CompassY;
-                RawMagZ = GetValues.CompassZ;
+                RawMagX = GetValues.CompassX * 2.0f;
+                RawMagY = GetValues.CompassY * 2.0f;
+                RawMagZ = GetValues.CompassZ * 2.0f;
             }
 
             metroLabel1.Text = "Compass X:" + Convert.ToString(GetValues.CompassX);
