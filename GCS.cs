@@ -3055,32 +3055,20 @@ namespace JCFLIGHTGCS
             if (ComboBoxFrame == 0 || ComboBoxFrame == 1 || ComboBoxFrame == 2 || ComboBoxFrame == 6 || ComboBoxFrame == 7) //QUAD & HEXA
             {
                 label22.Text = "Simples";
-                label44.Text = "> Mantém a borda de ataque sempre pra frente";
                 label23.Text = "Ataque";
-                label46.Text = "> Estabilização com limite de ângulo maior";
                 label20.Text = "Altitude-Hold";
-                label42.Text = "> Retenção de Altitude com base no Barômetro e INS";
                 label21.Text = "Pos-Hold";
-                label43.Text = "> Retenção de Posição com base no GPS e INS";
                 label24.Text = "Auto-Flip";
-                label48.Text = "> Realiza Flips Automáticos de 180° no Pitch e Roll";
                 label92.Text = "Auto-Land";
-                label70.Text = "> Realiza um pouso automático";
             }
             else if (ComboBoxFrame == 3 || ComboBoxFrame == 4 || ComboBoxFrame == 5) //AERO, ASA-FIXA & V-TAIL
             {
                 label22.Text = "Manual";
-                label44.Text = "> Servos independentes do controlador PID";
                 label23.Text = "Auto-TakeOff";
-                label46.Text = "> Lançamento Automático para Aeros e Asa";
                 label20.Text = "Altitude-Hold";
-                label42.Text = "> Mantém a velocidade e a altitude constante";
                 label21.Text = "Auto-Círculo";
-                label43.Text = "> Mantém a posição e a altitude do Aero em Círculo";
                 label24.Text = "Turn-Coord.";
-                label48.Text = "> Curva Coordenada baseada na Veloc. da Fuselagem";
                 label92.Text = "Cruzeiro";
-                label70.Text = "> Mantém a posição e a altitude do Aero em linha reta";
             }
         }
 
@@ -4477,6 +4465,11 @@ namespace JCFLIGHTGCS
             Vibrations VibrationsOpen = new Vibrations();
             VibrationsOpen.TopMost = true;
             VibrationsOpen.Show();
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/JCFLIGHT/JCFLIGHT/wiki/Modos-de-Voo");
         }
     }
 }
