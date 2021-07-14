@@ -306,22 +306,15 @@ namespace JCFLIGHTGCS
             set { _groundColor2 = value; }
         }
 
-        private Color _skyColor1 = Color.Blue;
-        private Color _skyColor2 = Color.LightBlue;
-        private Color _groundColor1 = Color.FromArgb(0x9b, 0xb8, 0x24);
-        private Color _groundColor2 = Color.FromArgb(0x41, 0x4f, 0x07);
-
+        private Color _skyColor1 = Color.MidnightBlue;
+        private Color _skyColor2 = Color.RoyalBlue;
+        private Color _groundColor1 = Color.FromArgb(147, 78, 1);
+        private Color _groundColor2 = Color.FromArgb(60, 33, 4);
+        private readonly SolidBrush LabelsColor = new SolidBrush(Color.Aqua);
         private Color _hudcolor = Color.White;
         private Pen _whitePen = new Pen(Color.White, 2);
         private readonly SolidBrush _whiteBrush = new SolidBrush(Color.White);
-
         private static readonly SolidBrush SolidBrush = new SolidBrush(Color.FromArgb(0x55, 0xff, 0xff, 0xff));
-
-        private static readonly SolidBrush SlightlyTransparentWhiteBrush =
-            new SolidBrush(Color.FromArgb(220, 255, 255, 255));
-
-        private static readonly SolidBrush AltGroundBrush = new SolidBrush(Color.FromArgb(100, Color.BurlyWood));
-
         private readonly object _bgimagelock = new object();
 
         public Image bgimage
@@ -1028,7 +1021,8 @@ namespace JCFLIGHTGCS
 
         private readonly Pen _blackPen = new Pen(Color.Black, 2);
         private readonly Pen _greenPen = new Pen(Color.Green, 2);
-        private readonly Pen _redPen = new Pen(Color.Red, 2);
+        private readonly Pen _YellowPen = new Pen(Color.Yellow, 2);
+        private readonly Pen _FuschiaPen = new Pen(Color.Fuchsia, 2);
 
         void doPaint()
         {
@@ -1108,7 +1102,8 @@ namespace JCFLIGHTGCS
                 // Reset pens
                 this._blackPen.Width = 2;
                 this._greenPen.Width = 2;
-                this._redPen.Width = 2;
+                this._YellowPen.Width = 2;
+                this._FuschiaPen.Width = 2;
 
                 this._whitePen.Color = _hudcolor;
 
@@ -1198,20 +1193,16 @@ namespace JCFLIGHTGCS
 
                 lengthlong = this.Height / 66;
 
-                int extra = (int)(this.Height / 15.0 * 4.9f);
+                int extra = (int)(this.Height / 15.4 * 4.9f);
 
-                int lengthlongex = lengthlong + 2;
+                int lengthlongex = lengthlong + 4;
 
                 Point[] pointlist = new Point[3];
-                pointlist[0] = new Point(0, -lengthlongex * 2 - extra);
-                pointlist[1] = new Point(-lengthlongex, -lengthlongex - extra);
-                pointlist[2] = new Point(lengthlongex, -lengthlongex - extra);
+                pointlist[0] = new Point(0, -lengthlongex * 2 - extra + 3);
+                pointlist[1] = new Point(-lengthlongex, -lengthlongex - extra + 3);
+                pointlist[2] = new Point(lengthlongex, -lengthlongex - extra + 3);
 
-                this._redPen.Width = 2;
-
-                graphicsObject.DrawPolygon(this._redPen, pointlist);
-
-                this._redPen.Width = 2;
+                graphicsObject.DrawPolygon(this._YellowPen, pointlist);
 
                 int[] array = new int[] { -60, -45, -30, -20, -10, 0, 10, 20, 30, 45, 60 };
 
@@ -1220,7 +1211,7 @@ namespace JCFLIGHTGCS
                     graphicsObject.ResetTransform();
                     graphicsObject.TranslateTransform(this.Width / 2, this.Height / 2);
                     graphicsObject.RotateTransform(a - _Roll);
-                    drawstring(String.Format("{0,2}", Math.Abs(a)), font, fontsize, _whiteBrush, 0 - 6 - fontoffset, -lengthlong * 8 - extra);
+                    drawstring(String.Format("{0,2}", Math.Abs(a)), font, fontsize, _whiteBrush, 0 - 8 - fontoffset, -lengthlong * 8 - extra);
                     graphicsObject.DrawLine(this._whitePen, 0, -lengthlong * 3 - extra, 0, -lengthlong * 3 - extra - lengthlong);
                 }
 
@@ -1242,7 +1233,7 @@ namespace JCFLIGHTGCS
 
                 Rectangle centercircle = new Rectangle(-halfwidth / 2, -halfwidth / 2, halfwidth, halfwidth);
 
-                using (Pen redtemp = new Pen(Color.FromArgb(200, this._redPen.Color.R, this._redPen.Color.G, this._redPen.Color.B), 4.0f))
+                using (Pen redtemp = new Pen(Color.FromArgb(200, this._FuschiaPen.Color.R, this._FuschiaPen.Color.G, this._FuschiaPen.Color.B), 4.0f))
                 {
                     // left
                     graphicsObject.DrawLine(redtemp, centercircle.Left - halfwidth / 5, 0, centercircle.Left, 0);
@@ -1259,17 +1250,238 @@ namespace JCFLIGHTGCS
 
                 Rectangle scrollbg = new Rectangle(0, halfheight - halfheight / 2, this.Width / 10, this.Height / 2);
 
-                scrollbg = new Rectangle(this.Width - this.Width / 10, halfheight - halfheight / 2, this.Width / 10, this.Height / 2);
-
                 float velspeed = 0;
+                float _targetspeed = 0; //velocidade definida
+
+                float _alt = (float)GetValues.ReadBarometer;
+                float _targetalt = 0; //altitude definida
+                float _verticalspeed = 0; //velocidade vertical
 
                 velspeed = _VelSpeed;
 
                 velspeed /= 27.778f;
 
+                {
+                    graphicsObject.DrawRectangle(this._whitePen, scrollbg);
+
+                    graphicsObject.FillRectangle(SolidBrush, scrollbg);
+
+                    Point[] arrow = new Point[5];
+
+                    arrow[0] = new Point(0, -10);
+                    arrow[1] = new Point(scrollbg.Width - 10, -10);
+                    arrow[2] = new Point(scrollbg.Width - 5, 0);
+                    arrow[3] = new Point(scrollbg.Width - 10, 10);
+                    arrow[4] = new Point(0, 10);
+
+                    graphicsObject.TranslateTransform(0, this.Height / 2);
+
+                    float viewrange = 26;
+
+                    float speed = velspeed;
+
+                    float space = (scrollbg.Height) / viewrange;
+                    float start = (long)(speed - viewrange / 2);
+
+                    if (start > _targetspeed)
+                    {
+                        this._greenPen.Color = Color.FromArgb(128, this._greenPen.Color);
+                        this._greenPen.Width = 6;
+                        graphicsObject.DrawLine(this._greenPen, scrollbg.Left, scrollbg.Top,
+                            scrollbg.Left + scrollbg.Width, scrollbg.Top);
+                        this._greenPen.Color = Color.FromArgb(255, this._greenPen.Color);
+                    }
+
+                    if ((speed + viewrange / 2) < _targetspeed)
+                    {
+                        this._greenPen.Color = Color.FromArgb(128, this._greenPen.Color);
+                        this._greenPen.Width = 6;
+                        graphicsObject.DrawLine(this._greenPen, scrollbg.Left, scrollbg.Top - space * viewrange,
+                            scrollbg.Left + scrollbg.Width, scrollbg.Top - space * viewrange);
+                        this._greenPen.Color = Color.FromArgb(255, this._greenPen.Color);
+                    }
+
+                    long end = (long)(speed + viewrange / 2);
+                    for (long a = (long)start; a <= end; a += 1)
+                    {
+                        if (a == (long)_targetspeed && _targetspeed != 0)
+                        {
+                            this._greenPen.Width = 6;
+                            graphicsObject.DrawLine(this._greenPen, scrollbg.Left, scrollbg.Top - space * (a - start),
+                                scrollbg.Left + scrollbg.Width, scrollbg.Top - space * (a - start));
+                        }
+
+                        if (a % 5 == 0)
+                        {
+                            graphicsObject.DrawLine(this._whitePen, scrollbg.Right, scrollbg.Top - space * (a - start),
+                                scrollbg.Right - 10, scrollbg.Top - space * (a - start));
+                            drawstring(String.Format("{0,5}", a), font, fontsize, _whiteBrush, 0,
+                                (float)(scrollbg.Top - space * (a - start) - 6 - fontoffset));
+                        }
+
+                    }
+
+                    graphicsObject.DrawPolygon(this._blackPen, arrow);
+                    graphicsObject.FillPolygon(Brushes.Black, arrow);
+                    drawstring((speed).ToString("0"), font, 10, (SolidBrush)Brushes.AliceBlue, 0, -9);
+
+                    graphicsObject.ResetTransform();
+                }
+
+                scrollbg = new Rectangle(this.Width - this.Width / 10, halfheight - halfheight / 2, this.Width / 10, this.Height / 2);
+
+                {
+
+                    graphicsObject.DrawRectangle(this._whitePen, scrollbg);
+
+                    graphicsObject.FillRectangle(SolidBrush, scrollbg);
+
+                    Point[] arrow = new Point[5];
+
+                    arrow[0] = new Point(0, -10);
+                    arrow[1] = new Point(scrollbg.Width - 10, -10);
+                    arrow[2] = new Point(scrollbg.Width - 5, 0);
+                    arrow[3] = new Point(scrollbg.Width - 10, 10);
+                    arrow[4] = new Point(0, 10);
+
+                    graphicsObject.TranslateTransform(0, this.Height / 2);
+
+                    int viewrange = 26;
+
+                    float space = (scrollbg.Height) / (float)viewrange;
+                    long start = ((int)_alt - viewrange / 2);
+
+                    if (start > _targetalt)
+                    {
+                        this._greenPen.Color = Color.FromArgb(128, this._greenPen.Color);
+                        this._greenPen.Width = 6;
+                        graphicsObject.DrawLine(this._greenPen, scrollbg.Left, scrollbg.Top,
+                            scrollbg.Left + scrollbg.Width, scrollbg.Top);
+                        this._greenPen.Color = Color.FromArgb(255, this._greenPen.Color);
+                    }
+
+                    if ((_alt + viewrange / 2) < _targetalt)
+                    {
+                        this._greenPen.Color = Color.FromArgb(128, this._greenPen.Color);
+                        this._greenPen.Width = 6;
+                        graphicsObject.DrawLine(this._greenPen, scrollbg.Left, scrollbg.Top - space * viewrange,
+                            scrollbg.Left + scrollbg.Width, scrollbg.Top - space * viewrange);
+                        this._greenPen.Color = Color.FromArgb(255, this._greenPen.Color);
+                    }
+
+                    for (long a = start; a <= (_alt + viewrange / 2); a += 1)
+                    {
+                        if (a == Math.Round(_targetalt) && _targetalt != 0)
+                        {
+                            this._greenPen.Width = 6;
+                            graphicsObject.DrawLine(this._greenPen, scrollbg.Left, scrollbg.Top - space * (a - start),
+                                scrollbg.Left + scrollbg.Width, scrollbg.Top - space * (a - start));
+                        }
+
+                        if (a % 5 == 0)
+                        {
+                            graphicsObject.DrawLine(this._whitePen, scrollbg.Left, scrollbg.Top - space * (a - start),
+                                scrollbg.Left + 10, scrollbg.Top - space * (a - start));
+                            drawstring(String.Format("{0,5}", a), font, fontsize, _whiteBrush,
+                                scrollbg.Left + 0 + (int)(0 * fontoffset),
+                                scrollbg.Top - space * (a - start) - 6 - fontoffset);
+                        }
+
+                    }
+
+                    this._greenPen.Width = 4;
+
+                    // vsi
+
+                    graphicsObject.ResetTransform();
+
+                    PointF[] poly = new PointF[4];
+
+                    poly[0] = new PointF(scrollbg.Left, scrollbg.Top);
+                    poly[1] = new PointF(scrollbg.Left - scrollbg.Width / 4, scrollbg.Top + scrollbg.Width / 4);
+                    poly[2] = new PointF(scrollbg.Left - scrollbg.Width / 4, scrollbg.Bottom - scrollbg.Width / 4);
+                    poly[3] = new PointF(scrollbg.Left, scrollbg.Bottom);
+
+                    //verticalspeed
+
+                    viewrange = 12;
+
+                    _verticalspeed = Math.Min(viewrange / 2, _verticalspeed);
+                    _verticalspeed = Math.Max(viewrange / -2, _verticalspeed);
+
+                    float scaledvalue = _verticalspeed / -viewrange * (scrollbg.Bottom - scrollbg.Top);
+
+                    float linespace = (float)1 / -viewrange * (scrollbg.Bottom - scrollbg.Top);
+
+                    PointF[] polyn = new PointF[4];
+
+                    polyn[0] = new PointF(scrollbg.Left, scrollbg.Top + (scrollbg.Bottom - scrollbg.Top) / 2);
+                    polyn[1] = new PointF(scrollbg.Left - scrollbg.Width / 4, scrollbg.Top + (scrollbg.Bottom - scrollbg.Top) / 2);
+                    polyn[2] = polyn[1];
+
+                    float peak = 0;
+
+                    if (scaledvalue > 0)
+                    {
+                        peak = -scrollbg.Width / 4;
+                        if (scrollbg.Top + (scrollbg.Bottom - scrollbg.Top) / 2 + scaledvalue + peak <
+                            scrollbg.Top + (scrollbg.Bottom - scrollbg.Top) / 2)
+                            peak = -scaledvalue;
+                    }
+                    else if (scaledvalue < 0)
+                    {
+                        peak = +scrollbg.Width / 4;
+                        if (scrollbg.Top + (scrollbg.Bottom - scrollbg.Top) / 2 + scaledvalue + peak >
+                            scrollbg.Top + (scrollbg.Bottom - scrollbg.Top) / 2)
+                            peak = -scaledvalue;
+                    }
+
+                    polyn[2] = new PointF(scrollbg.Left - scrollbg.Width / 4,
+                        scrollbg.Top + (scrollbg.Bottom - scrollbg.Top) / 2 + scaledvalue + peak);
+                    polyn[3] = new PointF(scrollbg.Left,
+                        scrollbg.Top + (scrollbg.Bottom - scrollbg.Top) / 2 + scaledvalue);
+
+                    if (_verticalspeed > 0)
+                    {
+                        graphicsObject.FillPolygon(Brushes.Green, polyn);
+                    }
+                    else
+                    {
+                        graphicsObject.FillPolygon(Brushes.Red, polyn);
+                    }
+                    // draw outsidebox
+                    graphicsObject.DrawPolygon(this._whitePen, poly);
+
+                    for (int a = 1; a < viewrange; a++)
+                    {
+                        graphicsObject.DrawLine(this._whitePen, scrollbg.Left - scrollbg.Width / 4,
+                            scrollbg.Top - linespace * a, scrollbg.Left - scrollbg.Width / 8,
+                            scrollbg.Top - linespace * a);
+                    }
+
+                    // draw arrow and text
+
+                    graphicsObject.ResetTransform();
+                    graphicsObject.TranslateTransform(this.Width, this.Height / 2);
+                    graphicsObject.RotateTransform(180);
+
+                    graphicsObject.DrawPolygon(this._blackPen, arrow);
+                    graphicsObject.FillPolygon(Brushes.Black, arrow);
+                    graphicsObject.ResetTransform();
+                    graphicsObject.TranslateTransform(0, this.Height / 2);
+
+                    drawstring(((int)_alt).ToString("0"), font, 10, (SolidBrush)Brushes.AliceBlue, scrollbg.Left + 10, -9);
+                    graphicsObject.ResetTransform();
+                }
+
+                this._greenPen.Width = 2;
+
+                scrollbg = new Rectangle(this.Width - this.Width / 10, halfheight - halfheight / 2, this.Width / 10, this.Height / 2);
+
                 drawstring("FuselagemVel:" + velspeed.ToString("0.0") + "KM/h", font, fontsize, _whiteBrush, 1, scrollbg.Bottom + 45);
 
                 if (float.IsNaN(_LinkQualityGCS)) _LinkQualityGCS = 0;
+
                 if (_LinkQualityGCS >= 10 && _LinkQualityGCS < 100)
                 {
                     graphicsObject.DrawLine(this._greenPen, 335, scrollbg.Top - (int)(fontsize * 2.2) - 2 - 35, 335, scrollbg.Top - (int)(fontsize) - 2 - 40);
@@ -1296,23 +1508,28 @@ namespace JCFLIGHTGCS
                     armedtimer = DateTime.Now;
                 }
 
-                if (Math.Abs(this._Roll) > GetValues.BankAngleRollValue)
+                if (Math.Abs(this._Pitch) > 45)
                 {
-                    drawstring("Bank-Angle", font, fontsize + 15, (SolidBrush)Brushes.Red, -85, halfheight / -3);
+                    drawstring("Stall", font, fontsize + 15, LabelsColor, -35, halfheight / -3);
+                    StatusLast = _ARMStatus;
+                }
+                else if (Math.Abs(this._Roll) > GetValues.BankAngleRollValue)
+                {
+                    drawstring("Bank-Angle", font, fontsize + 15, LabelsColor, -85, halfheight / -3);
                     StatusLast = _ARMStatus;
                 }
                 else
                 {
                     if (_ARMStatus == false)
                     {
-                        drawstring("Desarmado", font, fontsize + 15, (SolidBrush)Brushes.Red, -75, halfheight / -3);
+                        drawstring("Desarmado", font, fontsize + 15, LabelsColor, -75, halfheight / -3);
                         StatusLast = _ARMStatus;
                     }
                     else if (_ARMStatus == true)
                     {
                         if ((armedtimer.AddSeconds(8) > DateTime.Now))
                         {
-                            drawstring("Armado", font, fontsize + 15, (SolidBrush)Brushes.Red, -55, halfheight / -3);
+                            drawstring("Armado", font, fontsize + 15, LabelsColor, -55, halfheight / -3);
                             StatusLast = _ARMStatus;
                         }
                     }
@@ -1322,38 +1539,38 @@ namespace JCFLIGHTGCS
                 {
                     if (!_ThrottleSafe)
                     {
-                        drawstring("Throttle seguro para armar", font, fontsize + 2, (SolidBrush)Brushes.Red, -132, 85);
+                        drawstring("Throttle seguro para armar", font, fontsize + 2, LabelsColor, -132, 85);
                     }
                     else
                     {
                         if (!GetValues.SafeStateToLaunch)
                         {
-                            drawstring("Throttle acima do limite para armar", font, fontsize + 2, (SolidBrush)Brushes.Red, -167, 85);
+                            drawstring("Throttle acima do limite para armar", font, fontsize + 2, LabelsColor, -167, 85);
                         }
                         else
                         {
-                            drawstring("Throttle seguro para fazer o Take-Off", font, fontsize + 2, (SolidBrush)Brushes.Red, -165, 85);
+                            drawstring("Throttle seguro para fazer o Take-Off", font, fontsize + 2, LabelsColor, -165, 85);
                         }
                     }
                 }
 
                 if (_IMUHealty == true)
                 {
-                    drawstring("IMU não calibrada", font, fontsize + 10, (SolidBrush)Brushes.Red, -130, 40);
+                    drawstring("IMU não calibrada", font, fontsize + 10, LabelsColor, -130, 40);
                     StatusLast = _ARMStatus;
                 }
                 else
                 {
                     if (_CompassHealty)
                     {
-                        drawstring("Compass Ruim", font, fontsize + 10, (SolidBrush)Brushes.Red, -130, 40);
+                        drawstring("Compass Ruim", font, fontsize + 10, LabelsColor, -130, 40);
                         StatusLast = _ARMStatus;
                     }
                     else
                     {
                         if (_FailSafe == true)
                         {
-                            drawstring("Fail-Safe", font, fontsize + 20, (SolidBrush)Brushes.Red, -75, 40);
+                            drawstring("Fail-Safe", font, fontsize + 20, LabelsColor, -75, 40);
                             StatusLast = _ARMStatus;
                         }
                     }
@@ -1361,7 +1578,7 @@ namespace JCFLIGHTGCS
 
                 if (AHRSHorizontalVariance == true)
                 {
-                    drawstring("Erro de variância na Pos.Horiz.", font, fontsize + 2, (SolidBrush)Brushes.Red, -132, 65);
+                    drawstring("Erro de variância na Pos.Horiz.", font, fontsize + 2, LabelsColor, -132, 65);
                     StatusLast = _ARMStatus;
                 }
 
@@ -1369,14 +1586,16 @@ namespace JCFLIGHTGCS
 
                 vibehitzone = new Rectangle(this.Width - 10 * fontsize, this.Height - ((fontsize) * 3) - fontoffset, 80, fontsize * 2);
 
+                
                 if (InertialSensor.get_vibration_level_X() > 30 || InertialSensor.get_vibration_level_Y() > 30 || InertialSensor.get_vibration_level_Z() > 30)
                 {
-                    drawstring("Vibração", font, fontsize, (SolidBrush)Brushes.Red, vibehitzone.X, vibehitzone.Y);
+                    drawstring("Vibração", font, fontsize, LabelsColor, vibehitzone.X, vibehitzone.Y);
                 }
                 else
                 {
                     drawstring("Vibração", font, fontsize, _whiteBrush, vibehitzone.X, vibehitzone.Y);
                 }
+                
 
                 graphicsObject.ResetTransform();
 

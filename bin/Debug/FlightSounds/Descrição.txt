@@ -5,3 +5,4 @@ BankAngle          -> Limite de angulo do roll atingido
 Stall              -> Perda de sustentação das asas
 DontSink           -> Não afunde o nariz (em modo altitude-hold)
 PullUp             -> O avião precisa subir (para uma altitude segura)
+SinkRate           -> Alta razão de afundamento (alta velocide Z negativa)

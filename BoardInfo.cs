@@ -101,37 +101,37 @@ namespace JCFLIGHTGCS
             {
                 if (checkBox1.Checked)
                 {
-                    zedGraphControl1.GraphPane.CurveList[0].Label.Text = "Acc Roll";
+                    zedGraphControl1.GraphPane.CurveList[0].Label.Text = "Acc Roll (G)";
                     Chart1.Add(TimeStamp, GetValues.AccX);
                 }
 
                 if (checkBox2.Checked)
                 {
-                    zedGraphControl1.GraphPane.CurveList[1].Label.Text = "Acc Pitch";
+                    zedGraphControl1.GraphPane.CurveList[1].Label.Text = "Acc Pitch (G)";
                     Chart2.Add(TimeStamp, GetValues.AccY);
                 }
 
                 if (checkBox3.Checked)
                 {
-                    zedGraphControl1.GraphPane.CurveList[2].Label.Text = "Acc Yaw";
+                    zedGraphControl1.GraphPane.CurveList[2].Label.Text = "Acc Yaw (G)";
                     Chart3.Add(TimeStamp, GetValues.AccZ);
                 }
 
                 if (checkBox7.Checked)
                 {
-                    zedGraphControl1.GraphPane.CurveList[3].Label.Text = "Gyro Roll";
+                    zedGraphControl1.GraphPane.CurveList[3].Label.Text = "Gyro Roll (Deg/S)";
                     Chart4.Add(TimeStamp, GetValues.GyroX);
                 }
 
                 if (checkBox8.Checked)
                 {
-                    zedGraphControl1.GraphPane.CurveList[4].Label.Text = "Gyro Pitch";
+                    zedGraphControl1.GraphPane.CurveList[4].Label.Text = "Gyro Pitch (Deg/S)";
                     Chart5.Add(TimeStamp, GetValues.GyroY);
                 }
 
                 if (checkBox9.Checked)
                 {
-                    zedGraphControl1.GraphPane.CurveList[5].Label.Text = "Gyro Yaw";
+                    zedGraphControl1.GraphPane.CurveList[5].Label.Text = "Gyro Yaw (Deg/S)";
                     Chart6.Add(TimeStamp, GetValues.GyroZ);
                 }
 
@@ -242,12 +242,12 @@ namespace JCFLIGHTGCS
         private void timer1_Tick(object sender, EventArgs e)
         {
             Graphit();
-            label1.Text = "Acc Roll:" + GetValues.AccX;
-            label2.Text = "Acc Pitch:" + GetValues.AccY;
-            label3.Text = "Acc Yaw:" + GetValues.AccZ;
-            label4.Text = "Gyro Roll:" + GetValues.GyroX;
-            label5.Text = "Gyro Pitch:" + GetValues.GyroY;
-            label6.Text = "Gyro Yaw:" + GetValues.GyroZ;
+            label1.Text = "Acc Roll (G):" + GetValues.AccX;
+            label2.Text = "Acc Pitch (G):" + GetValues.AccY;
+            label3.Text = "Acc Yaw (G):" + GetValues.AccZ;
+            label4.Text = "Gyro Roll (Deg/S):" + GetValues.GyroX;
+            label5.Text = "Gyro Pitch (Deg/S):" + GetValues.GyroY;
+            label6.Text = "Gyro Yaw (Deg/S):" + GetValues.GyroZ;
             label7.Text = "Mag Roll:" + GetValues.CompassX;
             label8.Text = "Mag Pitch:" + GetValues.CompassY;
             label9.Text = "Mag Yaw:" + GetValues.CompassZ;

@@ -39,12 +39,12 @@ namespace JCFLIGHTGCS
         /// <summary>
         /// PASSAGEM DE PARAMETROS DE UM FORM PRA OUTRO
         /// </summary>
-        public static int AccX = 0;
-        public static int AccY = 0;
-        public static int AccZ = 0;
-        public static int GyroX = 0;
-        public static int GyroY = 0;
-        public static int GyroZ = 0;
+        public static float AccX = 0;
+        public static float AccY = 0;
+        public static float AccZ = 0;
+        public static float GyroX = 0;
+        public static float GyroY = 0;
+        public static float GyroZ = 0;
         public static int CompassX = 0;
         public static int CompassY = 0;
         public static int CompassZ = 0;

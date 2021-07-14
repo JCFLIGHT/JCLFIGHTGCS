@@ -4,7 +4,8 @@ namespace JCFLIGHTGCS
 {
     class InertialSensor
     {
-        static double _clip_limit = 7.9;
+        //static double _clip_limit = 7.9;
+        static double _clip_limit = 0.79;
         public static UInt32[] _accel_clip_count = new UInt32[3];
         static double[] _accel_vibe_filter = new double[3];
 
@@ -110,11 +111,11 @@ namespace JCFLIGHTGCS
 
         public static void AccCalcVibrationAndClipping()
         {
-            AccelX = (double)(Convert.ToDouble(GetValues.AccX) / 2048 * 9.80665);
+            AccelX = (double)GetValues.AccX;
 
-            AccelY = (double)(Convert.ToDouble(GetValues.AccY) / 2048 * 9.80665);
+            AccelY = (double)GetValues.AccY;
 
-            AccelZ = (double)(Convert.ToDouble(GetValues.AccZ) / 2048);
+            AccelZ = (double)GetValues.AccZ;
 
             if (ABS(AccelX) > _clip_limit)
             {

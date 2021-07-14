@@ -216,16 +216,14 @@ namespace JCFLIGHTGCS
             set { _groundColor2 = value; }
         }
 
-        private Color _skyColor1 = Color.Blue;
-        private Color _skyColor2 = Color.LightBlue;
-        private Color _groundColor1 = Color.FromArgb(0x9b, 0xb8, 0x24);
-        private Color _groundColor2 = Color.FromArgb(0x41, 0x4f, 0x07);
+        private Color _skyColor1 = Color.MidnightBlue;
+        private Color _skyColor2 = Color.RoyalBlue;
+        private Color _groundColor1 = Color.FromArgb(147, 78, 1);
+        private Color _groundColor2 = Color.FromArgb(60, 33, 4);
+        private readonly SolidBrush LabelsColor = new SolidBrush(Color.Aqua);
         private Color _hudcolor = Color.White;
         private Pen _whitePen = new Pen(Color.White, 2);
         private readonly SolidBrush _whiteBrush = new SolidBrush(Color.White);
-        private static readonly SolidBrush SolidBrush = new SolidBrush(Color.FromArgb(0x55, 0xff, 0xff, 0xff));
-        private static readonly SolidBrush SlightlyTransparentWhiteBrush = new SolidBrush(Color.FromArgb(220, 255, 255, 255));
-        private static readonly SolidBrush AltGroundBrush = new SolidBrush(Color.FromArgb(100, Color.BurlyWood));
         private readonly object _bgimagelock = new object();
 
         public Image bgimage
@@ -877,6 +875,7 @@ namespace JCFLIGHTGCS
         private readonly Pen _blackPen = new Pen(Color.Black, 2);
         private readonly Pen _greenPen = new Pen(Color.Green, 2);
         private readonly Pen _redPen = new Pen(Color.Red, 2);
+        private readonly Pen _FuschiaPen = new Pen(Color.Fuchsia, 2);
 
         void doPaint()
         {
@@ -950,6 +949,7 @@ namespace JCFLIGHTGCS
                 this._blackPen.Width = 2;
                 this._greenPen.Width = 2;
                 this._redPen.Width = 2;
+                this._FuschiaPen.Width = 2;
 
                 this._whitePen.Color = _hudcolor;
 
@@ -1043,7 +1043,6 @@ namespace JCFLIGHTGCS
 
                 graphicsObject.DrawPolygon(this._redPen, pointlist);
 
-                this._redPen.Width = 2;
 
                 int[] array = new int[] { -60, -45, -30, -20, -10, 0, 10, 20, 30, 45, 60 };
 
@@ -1074,7 +1073,7 @@ namespace JCFLIGHTGCS
 
                 Rectangle centercircle = new Rectangle(-halfwidth / 2, -halfwidth / 2, halfwidth, halfwidth);
 
-                using (Pen redtemp = new Pen(Color.FromArgb(200, this._redPen.Color.R, this._redPen.Color.G, this._redPen.Color.B), 4.0f))
+                using (Pen redtemp = new Pen(Color.FromArgb(200, this._FuschiaPen.Color.R, this._FuschiaPen.Color.G, this._FuschiaPen.Color.B), 4.0f))
                 {
                     graphicsObject.DrawLine(redtemp, centercircle.Left - halfwidth / 5, 0, centercircle.Left, 0);
                     graphicsObject.DrawLine(redtemp, centercircle.Right, 0, centercircle.Right + halfwidth / 5, 0);
@@ -1131,35 +1130,35 @@ namespace JCFLIGHTGCS
 
                 if (imuhealty == true)
                 {
-                    drawstring("IMU não calibrada", font, fontsize + 1, (SolidBrush)Brushes.Red, -75, 20);
+                    drawstring("IMU não calibrada", font, fontsize + 1, LabelsColor, -75, 20);
                     statuslast = status;
                 }
                 else
                 {
                     if (Math.Abs(this._roll) > GetValues.BankAngleRollValue)
                     {
-                        drawstring("Bank-Angle", font, fontsize + 5, (SolidBrush)Brushes.Red, -75, 20);
+                        drawstring("Bank-Angle", font, fontsize + 5, LabelsColor, -75, 20);
                         statuslast = status;
                     }
                     else
                     {
                         if (failsafe == true)
                         {
-                            drawstring("Fail-Safe", font, fontsize + 5, (SolidBrush)Brushes.Red, -75, 20);
+                            drawstring("Fail-Safe", font, fontsize + 5, LabelsColor, -75, 20);
                             statuslast = status;
                         }
                         else
                         {
                             if (status == 0)
                             {
-                                drawstring("Desarmado", font, fontsize + 5, (SolidBrush)Brushes.Red, -75, 20);
+                                drawstring("Desarmado", font, fontsize + 5, LabelsColor, -75, 20);
                                 statuslast = status;
                             }
                             else if (status == 1)
                             {
                                 if ((armedtimer.AddSeconds(8) > DateTime.Now))
                                 {
-                                    drawstring("Armado", font, fontsize + 5, (SolidBrush)Brushes.Red, -75, 20);
+                                    drawstring("Armado", font, fontsize + 5, LabelsColor, -75, 20);
                                     statuslast = status;
                                 }
                             }

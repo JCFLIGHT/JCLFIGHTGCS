@@ -104,9 +104,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(26, 63);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(61, 15);
+            this.label1.Size = new System.Drawing.Size(81, 15);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Acc Roll:0";
+            this.label1.Text = "Acc Roll (G):0";
             // 
             // label2
             // 
@@ -114,9 +114,9 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(26, 78);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 15);
+            this.label2.Size = new System.Drawing.Size(86, 15);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Acc Pitch:0";
+            this.label2.Text = "Acc Pitch (G):0";
             // 
             // label3
             // 
@@ -124,9 +124,9 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(26, 93);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(62, 15);
+            this.label3.Size = new System.Drawing.Size(82, 15);
             this.label3.TabIndex = 3;
-            this.label3.Text = "Acc Yaw:0";
+            this.label3.Text = "Acc Yaw (G):0";
             // 
             // label4
             // 
@@ -134,9 +134,9 @@
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(26, 124);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(67, 15);
+            this.label4.Size = new System.Drawing.Size(112, 15);
             this.label4.TabIndex = 4;
-            this.label4.Text = "Gyro Roll:0";
+            this.label4.Text = "Gyro Roll (Deg/S):0";
             // 
             // label5
             // 
@@ -144,9 +144,9 @@
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(26, 109);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(72, 15);
+            this.label5.Size = new System.Drawing.Size(117, 15);
             this.label5.TabIndex = 5;
-            this.label5.Text = "Gyro Pitch:0";
+            this.label5.Text = "Gyro Pitch (Deg/S):0";
             // 
             // label6
             // 
@@ -154,9 +154,9 @@
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(26, 139);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(68, 15);
+            this.label6.Size = new System.Drawing.Size(113, 15);
             this.label6.TabIndex = 6;
-            this.label6.Text = "Gyro Yaw:0";
+            this.label6.Text = "Gyro Yaw (Deg/S):0";
             // 
             // label7
             // 

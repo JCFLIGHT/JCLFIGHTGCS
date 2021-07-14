@@ -487,7 +487,7 @@ namespace JCFLIGHTGCS
             zedGraphControl4.AxisChange();
             //PLOTTER TEMPERATURA
             TempGraph = zedGraphControl5.GraphPane;
-            TempGraph.Title.Text = "Temperatura °C (Barômetro)";
+            TempGraph.Title.Text = "Temperatura °C (IMU)";
             TempGraph.XAxis.Title.Text = "";
             TempGraph.YAxis.Title.Text = "";
             TempGraph.XAxis.MajorGrid.IsVisible = true;
@@ -1051,12 +1051,12 @@ namespace JCFLIGHTGCS
                     RollAttitudeData = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     MemoryRamUsed = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     MemoryRamUsedPercent = (byte)InBuffer[ptr++];
-                    GetValues.AccX = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    GetValues.AccY = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    GetValues.AccZ = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    GetValues.GyroX = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    GetValues.GyroY = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
-                    GetValues.GyroZ = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
+                    GetValues.AccX = (float)BitConverter.ToInt16(InBuffer, ptr) / 100.0f; ptr += 2;
+                    GetValues.AccY = (float)BitConverter.ToInt16(InBuffer, ptr) / 100.0f; ptr += 2;
+                    GetValues.AccZ = (float)BitConverter.ToInt16(InBuffer, ptr) / 100.0f; ptr += 2;
+                    GetValues.GyroX = (float)BitConverter.ToInt16(InBuffer, ptr) / 100.0f; ptr += 2;
+                    GetValues.GyroY = (float)BitConverter.ToInt16(InBuffer, ptr) / 100.0f; ptr += 2;
+                    GetValues.GyroZ = (float)BitConverter.ToInt16(InBuffer, ptr) / 100.0f; ptr += 2;
                     GetValues.ReadGroundSpeed = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     GetValues.ReadI2CError = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     GetValues.ReadAirSpeed = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;

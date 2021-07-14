@@ -155,6 +155,28 @@
             this.comboBox12 = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.comboBox11 = new System.Windows.Forms.ComboBox();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.comboBox23 = new System.Windows.Forms.ComboBox();
+            this.label92 = new System.Windows.Forms.Label();
+            this.comboBox10 = new System.Windows.Forms.ComboBox();
+            this.label51 = new System.Windows.Forms.Label();
+            this.comboBox9 = new System.Windows.Forms.ComboBox();
+            this.label41 = new System.Windows.Forms.Label();
+            this.comboBox8 = new System.Windows.Forms.ComboBox();
+            this.label40 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.comboBox6 = new System.Windows.Forms.ComboBox();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.comboBox5 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
             this.button9 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -598,28 +620,6 @@
             this.limparMapaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.carregarWPsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.limparWPsDoMapaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label24 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.comboBox6 = new System.Windows.Forms.ComboBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label40 = new System.Windows.Forms.Label();
-            this.comboBox8 = new System.Windows.Forms.ComboBox();
-            this.label41 = new System.Windows.Forms.Label();
-            this.comboBox9 = new System.Windows.Forms.ComboBox();
-            this.label51 = new System.Windows.Forms.Label();
-            this.comboBox10 = new System.Windows.Forms.ComboBox();
-            this.label92 = new System.Windows.Forms.Label();
-            this.comboBox23 = new System.Windows.Forms.ComboBox();
-            this.groupBox11 = new System.Windows.Forms.GroupBox();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.horizontalProgressBar22 = new JCFLIGHTGCS.HorizontalProgressBar2();
             this.horizontalProgressBar21 = new JCFLIGHTGCS.HorizontalProgressBar2();
             this.HUD1 = new JCFLIGHTGCS.HUD();
@@ -706,6 +706,7 @@
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox11.SuspendLayout();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).BeginInit();
@@ -857,7 +858,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown67)).BeginInit();
             this.panel1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
-            this.groupBox11.SuspendLayout();
             this.SuspendLayout();
             // 
             // serialPort1
@@ -2606,6 +2606,518 @@
             this.comboBox11.TabIndex = 0;
             this.comboBox11.Text = "SELECIONE";
             this.comboBox11.SelectedIndexChanged += new System.EventHandler(this.comboBox11_SelectedIndexChanged);
+            // 
+            // groupBox11
+            // 
+            this.groupBox11.Controls.Add(this.linkLabel1);
+            this.groupBox11.Controls.Add(this.comboBox23);
+            this.groupBox11.Controls.Add(this.label92);
+            this.groupBox11.Controls.Add(this.comboBox10);
+            this.groupBox11.Controls.Add(this.label51);
+            this.groupBox11.Controls.Add(this.comboBox9);
+            this.groupBox11.Controls.Add(this.label41);
+            this.groupBox11.Controls.Add(this.comboBox8);
+            this.groupBox11.Controls.Add(this.label40);
+            this.groupBox11.Controls.Add(this.label15);
+            this.groupBox11.Controls.Add(this.comboBox6);
+            this.groupBox11.Controls.Add(this.comboBox3);
+            this.groupBox11.Controls.Add(this.label24);
+            this.groupBox11.Controls.Add(this.comboBox1);
+            this.groupBox11.Controls.Add(this.label21);
+            this.groupBox11.Controls.Add(this.label22);
+            this.groupBox11.Controls.Add(this.comboBox5);
+            this.groupBox11.Controls.Add(this.comboBox2);
+            this.groupBox11.Controls.Add(this.comboBox4);
+            this.groupBox11.Controls.Add(this.label23);
+            this.groupBox11.Controls.Add(this.label20);
+            this.groupBox11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox11.Location = new System.Drawing.Point(365, 6);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Size = new System.Drawing.Size(678, 432);
+            this.groupBox11.TabIndex = 6;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "MODOS DE VOO";
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(6, 408);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(474, 20);
+            this.linkLabel1.TabIndex = 30;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Clique aqui para visitar a Wiki e ler sobre os modos de voo";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
+            // comboBox23
+            // 
+            this.comboBox23.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox23.FormattingEnabled = true;
+            this.comboBox23.Items.AddRange(new object[] {
+            "NENHUM",
+            "AUX1_BAIXO",
+            "AUX1_MEDIO",
+            "AUX1_ALTO",
+            "AUX2_BAIXO",
+            "AUX2_MEDIO",
+            "AUX2_ALTO",
+            "AUX3_BAIXO",
+            "AUX3_MEDIO",
+            "AUX3_ALTO",
+            "AUX4_BAIXO",
+            "AUX4_MEDIO",
+            "AUX4_ALTO",
+            "AUX5_BAIXO",
+            "AUX5_MEDIO",
+            "AUX5_ALTO",
+            "AUX6_BAIXO",
+            "AUX6_MEDIO",
+            "AUX6_ALTO",
+            "AUX7_BAIXO",
+            "AUX7_MEDIO",
+            "AUX7_ALTO",
+            "AUX8_BAIXO",
+            "AUX8_MEDIO",
+            "AUX8_ALTO"});
+            this.comboBox23.Location = new System.Drawing.Point(143, 365);
+            this.comboBox23.Name = "comboBox23";
+            this.comboBox23.Size = new System.Drawing.Size(138, 24);
+            this.comboBox23.TabIndex = 28;
+            this.comboBox23.Text = "SELECIONE";
+            this.comboBox23.SelectedIndexChanged += new System.EventHandler(this.comboBox23_SelectedIndexChanged);
+            // 
+            // label92
+            // 
+            this.label92.AutoSize = true;
+            this.label92.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label92.Location = new System.Drawing.Point(6, 365);
+            this.label92.Name = "label92";
+            this.label92.Size = new System.Drawing.Size(106, 24);
+            this.label92.TabIndex = 29;
+            this.label92.Text = "Auto-Land";
+            // 
+            // comboBox10
+            // 
+            this.comboBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox10.FormattingEnabled = true;
+            this.comboBox10.Items.AddRange(new object[] {
+            "NENHUM",
+            "AUX1_BAIXO",
+            "AUX1_MEDIO",
+            "AUX1_ALTO",
+            "AUX2_BAIXO",
+            "AUX2_MEDIO",
+            "AUX2_ALTO",
+            "AUX3_BAIXO",
+            "AUX3_MEDIO",
+            "AUX3_ALTO",
+            "AUX4_BAIXO",
+            "AUX4_MEDIO",
+            "AUX4_ALTO",
+            "AUX5_BAIXO",
+            "AUX5_MEDIO",
+            "AUX5_ALTO",
+            "AUX6_BAIXO",
+            "AUX6_MEDIO",
+            "AUX6_ALTO",
+            "AUX7_BAIXO",
+            "AUX7_MEDIO",
+            "AUX7_ALTO",
+            "AUX8_BAIXO",
+            "AUX8_MEDIO",
+            "AUX8_ALTO"});
+            this.comboBox10.Location = new System.Drawing.Point(143, 329);
+            this.comboBox10.Name = "comboBox10";
+            this.comboBox10.Size = new System.Drawing.Size(138, 24);
+            this.comboBox10.TabIndex = 25;
+            this.comboBox10.Text = "SELECIONE";
+            this.comboBox10.SelectedIndexChanged += new System.EventHandler(this.comboBox10_SelectedIndexChanged);
+            // 
+            // label51
+            // 
+            this.label51.AutoSize = true;
+            this.label51.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label51.Location = new System.Drawing.Point(6, 329);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(119, 24);
+            this.label51.TabIndex = 26;
+            this.label51.Text = "Arm-Disarm";
+            // 
+            // comboBox9
+            // 
+            this.comboBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox9.FormattingEnabled = true;
+            this.comboBox9.Items.AddRange(new object[] {
+            "NENHUM",
+            "AUX1_BAIXO",
+            "AUX1_MEDIO",
+            "AUX1_ALTO",
+            "AUX2_BAIXO",
+            "AUX2_MEDIO",
+            "AUX2_ALTO",
+            "AUX3_BAIXO",
+            "AUX3_MEDIO",
+            "AUX3_ALTO",
+            "AUX4_BAIXO",
+            "AUX4_MEDIO",
+            "AUX4_ALTO",
+            "AUX5_BAIXO",
+            "AUX5_MEDIO",
+            "AUX5_ALTO",
+            "AUX6_BAIXO",
+            "AUX6_MEDIO",
+            "AUX6_ALTO",
+            "AUX7_BAIXO",
+            "AUX7_MEDIO",
+            "AUX7_ALTO",
+            "AUX8_BAIXO",
+            "AUX8_MEDIO",
+            "AUX8_ALTO"});
+            this.comboBox9.Location = new System.Drawing.Point(143, 291);
+            this.comboBox9.Name = "comboBox9";
+            this.comboBox9.Size = new System.Drawing.Size(138, 24);
+            this.comboBox9.TabIndex = 15;
+            this.comboBox9.Text = "SELECIONE";
+            this.comboBox9.SelectedIndexChanged += new System.EventHandler(this.comboBox9_SelectedIndexChanged);
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label41.Location = new System.Drawing.Point(6, 291);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(53, 24);
+            this.label41.TabIndex = 16;
+            this.label41.Text = "Auto";
+            // 
+            // comboBox8
+            // 
+            this.comboBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox8.FormattingEnabled = true;
+            this.comboBox8.Items.AddRange(new object[] {
+            "NENHUM",
+            "AUX1_BAIXO",
+            "AUX1_MEDIO",
+            "AUX1_ALTO",
+            "AUX2_BAIXO",
+            "AUX2_MEDIO",
+            "AUX2_ALTO",
+            "AUX3_BAIXO",
+            "AUX3_MEDIO",
+            "AUX3_ALTO",
+            "AUX4_BAIXO",
+            "AUX4_MEDIO",
+            "AUX4_ALTO",
+            "AUX5_BAIXO",
+            "AUX5_MEDIO",
+            "AUX5_ALTO",
+            "AUX6_BAIXO",
+            "AUX6_MEDIO",
+            "AUX6_ALTO",
+            "AUX7_BAIXO",
+            "AUX7_MEDIO",
+            "AUX7_ALTO",
+            "AUX8_BAIXO",
+            "AUX8_MEDIO",
+            "AUX8_ALTO"});
+            this.comboBox8.Location = new System.Drawing.Point(143, 253);
+            this.comboBox8.Name = "comboBox8";
+            this.comboBox8.Size = new System.Drawing.Size(138, 24);
+            this.comboBox8.TabIndex = 13;
+            this.comboBox8.Text = "SELECIONE";
+            this.comboBox8.SelectedIndexChanged += new System.EventHandler(this.comboBox8_SelectedIndexChanged);
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label40.Location = new System.Drawing.Point(6, 25);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(54, 24);
+            this.label40.TabIndex = 14;
+            this.label40.Text = "Acro";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(6, 174);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(52, 24);
+            this.label15.TabIndex = 12;
+            this.label15.Text = "RTH";
+            // 
+            // comboBox6
+            // 
+            this.comboBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox6.FormattingEnabled = true;
+            this.comboBox6.Items.AddRange(new object[] {
+            "NENHUM",
+            "AUX1_BAIXO",
+            "AUX1_MEDIO",
+            "AUX1_ALTO",
+            "AUX2_BAIXO",
+            "AUX2_MEDIO",
+            "AUX2_ALTO",
+            "AUX3_BAIXO",
+            "AUX3_MEDIO",
+            "AUX3_ALTO",
+            "AUX4_BAIXO",
+            "AUX4_MEDIO",
+            "AUX4_ALTO",
+            "AUX5_BAIXO",
+            "AUX5_MEDIO",
+            "AUX5_ALTO",
+            "AUX6_BAIXO",
+            "AUX6_MEDIO",
+            "AUX6_ALTO",
+            "AUX7_BAIXO",
+            "AUX7_MEDIO",
+            "AUX7_ALTO",
+            "AUX8_BAIXO",
+            "AUX8_MEDIO",
+            "AUX8_ALTO"});
+            this.comboBox6.Location = new System.Drawing.Point(143, 215);
+            this.comboBox6.Name = "comboBox6";
+            this.comboBox6.Size = new System.Drawing.Size(138, 24);
+            this.comboBox6.TabIndex = 10;
+            this.comboBox6.Text = "SELECIONE";
+            this.comboBox6.SelectedIndexChanged += new System.EventHandler(this.comboBox6_SelectedIndexChanged);
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Items.AddRange(new object[] {
+            "NENHUM",
+            "AUX1_BAIXO",
+            "AUX1_MEDIO",
+            "AUX1_ALTO",
+            "AUX2_BAIXO",
+            "AUX2_MEDIO",
+            "AUX2_ALTO",
+            "AUX3_BAIXO",
+            "AUX3_MEDIO",
+            "AUX3_ALTO",
+            "AUX4_BAIXO",
+            "AUX4_MEDIO",
+            "AUX4_ALTO",
+            "AUX5_BAIXO",
+            "AUX5_MEDIO",
+            "AUX5_ALTO",
+            "AUX6_BAIXO",
+            "AUX6_MEDIO",
+            "AUX6_ALTO",
+            "AUX7_BAIXO",
+            "AUX7_MEDIO",
+            "AUX7_ALTO",
+            "AUX8_BAIXO",
+            "AUX8_MEDIO",
+            "AUX8_ALTO"});
+            this.comboBox3.Location = new System.Drawing.Point(143, 101);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(138, 24);
+            this.comboBox3.TabIndex = 4;
+            this.comboBox3.Text = "SELECIONE";
+            this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(6, 253);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(95, 24);
+            this.label24.TabIndex = 11;
+            this.label24.Text = "Auto-Flip";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "NENHUM",
+            "AUX1_BAIXO",
+            "AUX1_MEDIO",
+            "AUX1_ALTO",
+            "AUX2_BAIXO",
+            "AUX2_MEDIO",
+            "AUX2_ALTO",
+            "AUX3_BAIXO",
+            "AUX3_MEDIO",
+            "AUX3_ALTO",
+            "AUX4_BAIXO",
+            "AUX4_MEDIO",
+            "AUX4_ALTO",
+            "AUX5_BAIXO",
+            "AUX5_MEDIO",
+            "AUX5_ALTO",
+            "AUX6_BAIXO",
+            "AUX6_MEDIO",
+            "AUX6_ALTO",
+            "AUX7_BAIXO",
+            "AUX7_MEDIO",
+            "AUX7_ALTO",
+            "AUX8_BAIXO",
+            "AUX8_MEDIO",
+            "AUX8_ALTO"});
+            this.comboBox1.Location = new System.Drawing.Point(143, 25);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(138, 24);
+            this.comboBox1.TabIndex = 1;
+            this.comboBox1.Text = "SELECIONE";
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(6, 98);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(96, 24);
+            this.label21.TabIndex = 5;
+            this.label21.Text = "Pos-Hold";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(6, 136);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(84, 24);
+            this.label22.TabIndex = 7;
+            this.label22.Text = "Simples";
+            // 
+            // comboBox5
+            // 
+            this.comboBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox5.FormattingEnabled = true;
+            this.comboBox5.Items.AddRange(new object[] {
+            "NENHUM",
+            "AUX1_BAIXO",
+            "AUX1_MEDIO",
+            "AUX1_ALTO",
+            "AUX2_BAIXO",
+            "AUX2_MEDIO",
+            "AUX2_ALTO",
+            "AUX3_BAIXO",
+            "AUX3_MEDIO",
+            "AUX3_ALTO",
+            "AUX4_BAIXO",
+            "AUX4_MEDIO",
+            "AUX4_ALTO",
+            "AUX5_BAIXO",
+            "AUX5_MEDIO",
+            "AUX5_ALTO",
+            "AUX6_BAIXO",
+            "AUX6_MEDIO",
+            "AUX6_ALTO",
+            "AUX7_BAIXO",
+            "AUX7_MEDIO",
+            "AUX7_ALTO",
+            "AUX8_BAIXO",
+            "AUX8_MEDIO",
+            "AUX8_ALTO"});
+            this.comboBox5.Location = new System.Drawing.Point(143, 177);
+            this.comboBox5.Name = "comboBox5";
+            this.comboBox5.Size = new System.Drawing.Size(138, 24);
+            this.comboBox5.TabIndex = 8;
+            this.comboBox5.Text = "SELECIONE";
+            this.comboBox5.SelectedIndexChanged += new System.EventHandler(this.comboBox5_SelectedIndexChanged);
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "NENHUM",
+            "AUX1_BAIXO",
+            "AUX1_MEDIO",
+            "AUX1_ALTO",
+            "AUX2_BAIXO",
+            "AUX2_MEDIO",
+            "AUX2_ALTO",
+            "AUX3_BAIXO",
+            "AUX3_MEDIO",
+            "AUX3_ALTO",
+            "AUX4_BAIXO",
+            "AUX4_MEDIO",
+            "AUX4_ALTO",
+            "AUX5_BAIXO",
+            "AUX5_MEDIO",
+            "AUX5_ALTO",
+            "AUX6_BAIXO",
+            "AUX6_MEDIO",
+            "AUX6_ALTO",
+            "AUX7_BAIXO",
+            "AUX7_MEDIO",
+            "AUX7_ALTO",
+            "AUX8_BAIXO",
+            "AUX8_MEDIO",
+            "AUX8_ALTO"});
+            this.comboBox2.Location = new System.Drawing.Point(143, 63);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(138, 24);
+            this.comboBox2.TabIndex = 2;
+            this.comboBox2.Text = "SELECIONE";
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            // 
+            // comboBox4
+            // 
+            this.comboBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox4.FormattingEnabled = true;
+            this.comboBox4.Items.AddRange(new object[] {
+            "NENHUM",
+            "AUX1_BAIXO",
+            "AUX1_MEDIO",
+            "AUX1_ALTO",
+            "AUX2_BAIXO",
+            "AUX2_MEDIO",
+            "AUX2_ALTO",
+            "AUX3_BAIXO",
+            "AUX3_MEDIO",
+            "AUX3_ALTO",
+            "AUX4_BAIXO",
+            "AUX4_MEDIO",
+            "AUX4_ALTO",
+            "AUX5_BAIXO",
+            "AUX5_MEDIO",
+            "AUX5_ALTO",
+            "AUX6_BAIXO",
+            "AUX6_MEDIO",
+            "AUX6_ALTO",
+            "AUX7_BAIXO",
+            "AUX7_MEDIO",
+            "AUX7_ALTO",
+            "AUX8_BAIXO",
+            "AUX8_MEDIO",
+            "AUX8_ALTO"});
+            this.comboBox4.Location = new System.Drawing.Point(143, 139);
+            this.comboBox4.Name = "comboBox4";
+            this.comboBox4.Size = new System.Drawing.Size(138, 24);
+            this.comboBox4.TabIndex = 6;
+            this.comboBox4.Text = "SELECIONE";
+            this.comboBox4.SelectedIndexChanged += new System.EventHandler(this.comboBox4_SelectedIndexChanged);
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(6, 212);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(76, 24);
+            this.label23.TabIndex = 9;
+            this.label23.Text = "Ataque";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(6, 63);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(131, 24);
+            this.label20.TabIndex = 3;
+            this.label20.Text = "Altitude-Hold";
             // 
             // button9
             // 
@@ -8281,518 +8793,6 @@
             this.limparWPsDoMapaToolStripMenuItem.Text = "Limpar WP\'s do mapa";
             this.limparWPsDoMapaToolStripMenuItem.Click += new System.EventHandler(this.limparWPsDoMapaToolStripMenuItem_Click);
             // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(6, 63);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(131, 24);
-            this.label20.TabIndex = 3;
-            this.label20.Text = "Altitude-Hold";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(6, 212);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(76, 24);
-            this.label23.TabIndex = 9;
-            this.label23.Text = "Ataque";
-            // 
-            // comboBox4
-            // 
-            this.comboBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Items.AddRange(new object[] {
-            "NENHUM",
-            "AUX1_BAIXO",
-            "AUX1_MEDIO",
-            "AUX1_ALTO",
-            "AUX2_BAIXO",
-            "AUX2_MEDIO",
-            "AUX2_ALTO",
-            "AUX3_BAIXO",
-            "AUX3_MEDIO",
-            "AUX3_ALTO",
-            "AUX4_BAIXO",
-            "AUX4_MEDIO",
-            "AUX4_ALTO",
-            "AUX5_BAIXO",
-            "AUX5_MEDIO",
-            "AUX5_ALTO",
-            "AUX6_BAIXO",
-            "AUX6_MEDIO",
-            "AUX6_ALTO",
-            "AUX7_BAIXO",
-            "AUX7_MEDIO",
-            "AUX7_ALTO",
-            "AUX8_BAIXO",
-            "AUX8_MEDIO",
-            "AUX8_ALTO"});
-            this.comboBox4.Location = new System.Drawing.Point(143, 139);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(138, 24);
-            this.comboBox4.TabIndex = 6;
-            this.comboBox4.Text = "SELECIONE";
-            this.comboBox4.SelectedIndexChanged += new System.EventHandler(this.comboBox4_SelectedIndexChanged);
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "NENHUM",
-            "AUX1_BAIXO",
-            "AUX1_MEDIO",
-            "AUX1_ALTO",
-            "AUX2_BAIXO",
-            "AUX2_MEDIO",
-            "AUX2_ALTO",
-            "AUX3_BAIXO",
-            "AUX3_MEDIO",
-            "AUX3_ALTO",
-            "AUX4_BAIXO",
-            "AUX4_MEDIO",
-            "AUX4_ALTO",
-            "AUX5_BAIXO",
-            "AUX5_MEDIO",
-            "AUX5_ALTO",
-            "AUX6_BAIXO",
-            "AUX6_MEDIO",
-            "AUX6_ALTO",
-            "AUX7_BAIXO",
-            "AUX7_MEDIO",
-            "AUX7_ALTO",
-            "AUX8_BAIXO",
-            "AUX8_MEDIO",
-            "AUX8_ALTO"});
-            this.comboBox2.Location = new System.Drawing.Point(143, 63);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(138, 24);
-            this.comboBox2.TabIndex = 2;
-            this.comboBox2.Text = "SELECIONE";
-            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
-            // 
-            // comboBox5
-            // 
-            this.comboBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Items.AddRange(new object[] {
-            "NENHUM",
-            "AUX1_BAIXO",
-            "AUX1_MEDIO",
-            "AUX1_ALTO",
-            "AUX2_BAIXO",
-            "AUX2_MEDIO",
-            "AUX2_ALTO",
-            "AUX3_BAIXO",
-            "AUX3_MEDIO",
-            "AUX3_ALTO",
-            "AUX4_BAIXO",
-            "AUX4_MEDIO",
-            "AUX4_ALTO",
-            "AUX5_BAIXO",
-            "AUX5_MEDIO",
-            "AUX5_ALTO",
-            "AUX6_BAIXO",
-            "AUX6_MEDIO",
-            "AUX6_ALTO",
-            "AUX7_BAIXO",
-            "AUX7_MEDIO",
-            "AUX7_ALTO",
-            "AUX8_BAIXO",
-            "AUX8_MEDIO",
-            "AUX8_ALTO"});
-            this.comboBox5.Location = new System.Drawing.Point(143, 177);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(138, 24);
-            this.comboBox5.TabIndex = 8;
-            this.comboBox5.Text = "SELECIONE";
-            this.comboBox5.SelectedIndexChanged += new System.EventHandler(this.comboBox5_SelectedIndexChanged);
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(6, 136);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(84, 24);
-            this.label22.TabIndex = 7;
-            this.label22.Text = "Simples";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(6, 98);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(96, 24);
-            this.label21.TabIndex = 5;
-            this.label21.Text = "Pos-Hold";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "NENHUM",
-            "AUX1_BAIXO",
-            "AUX1_MEDIO",
-            "AUX1_ALTO",
-            "AUX2_BAIXO",
-            "AUX2_MEDIO",
-            "AUX2_ALTO",
-            "AUX3_BAIXO",
-            "AUX3_MEDIO",
-            "AUX3_ALTO",
-            "AUX4_BAIXO",
-            "AUX4_MEDIO",
-            "AUX4_ALTO",
-            "AUX5_BAIXO",
-            "AUX5_MEDIO",
-            "AUX5_ALTO",
-            "AUX6_BAIXO",
-            "AUX6_MEDIO",
-            "AUX6_ALTO",
-            "AUX7_BAIXO",
-            "AUX7_MEDIO",
-            "AUX7_ALTO",
-            "AUX8_BAIXO",
-            "AUX8_MEDIO",
-            "AUX8_ALTO"});
-            this.comboBox1.Location = new System.Drawing.Point(143, 25);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(138, 24);
-            this.comboBox1.TabIndex = 1;
-            this.comboBox1.Text = "SELECIONE";
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(6, 253);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(95, 24);
-            this.label24.TabIndex = 11;
-            this.label24.Text = "Auto-Flip";
-            // 
-            // comboBox3
-            // 
-            this.comboBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Items.AddRange(new object[] {
-            "NENHUM",
-            "AUX1_BAIXO",
-            "AUX1_MEDIO",
-            "AUX1_ALTO",
-            "AUX2_BAIXO",
-            "AUX2_MEDIO",
-            "AUX2_ALTO",
-            "AUX3_BAIXO",
-            "AUX3_MEDIO",
-            "AUX3_ALTO",
-            "AUX4_BAIXO",
-            "AUX4_MEDIO",
-            "AUX4_ALTO",
-            "AUX5_BAIXO",
-            "AUX5_MEDIO",
-            "AUX5_ALTO",
-            "AUX6_BAIXO",
-            "AUX6_MEDIO",
-            "AUX6_ALTO",
-            "AUX7_BAIXO",
-            "AUX7_MEDIO",
-            "AUX7_ALTO",
-            "AUX8_BAIXO",
-            "AUX8_MEDIO",
-            "AUX8_ALTO"});
-            this.comboBox3.Location = new System.Drawing.Point(143, 101);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(138, 24);
-            this.comboBox3.TabIndex = 4;
-            this.comboBox3.Text = "SELECIONE";
-            this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
-            // 
-            // comboBox6
-            // 
-            this.comboBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox6.FormattingEnabled = true;
-            this.comboBox6.Items.AddRange(new object[] {
-            "NENHUM",
-            "AUX1_BAIXO",
-            "AUX1_MEDIO",
-            "AUX1_ALTO",
-            "AUX2_BAIXO",
-            "AUX2_MEDIO",
-            "AUX2_ALTO",
-            "AUX3_BAIXO",
-            "AUX3_MEDIO",
-            "AUX3_ALTO",
-            "AUX4_BAIXO",
-            "AUX4_MEDIO",
-            "AUX4_ALTO",
-            "AUX5_BAIXO",
-            "AUX5_MEDIO",
-            "AUX5_ALTO",
-            "AUX6_BAIXO",
-            "AUX6_MEDIO",
-            "AUX6_ALTO",
-            "AUX7_BAIXO",
-            "AUX7_MEDIO",
-            "AUX7_ALTO",
-            "AUX8_BAIXO",
-            "AUX8_MEDIO",
-            "AUX8_ALTO"});
-            this.comboBox6.Location = new System.Drawing.Point(143, 215);
-            this.comboBox6.Name = "comboBox6";
-            this.comboBox6.Size = new System.Drawing.Size(138, 24);
-            this.comboBox6.TabIndex = 10;
-            this.comboBox6.Text = "SELECIONE";
-            this.comboBox6.SelectedIndexChanged += new System.EventHandler(this.comboBox6_SelectedIndexChanged);
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(6, 174);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(52, 24);
-            this.label15.TabIndex = 12;
-            this.label15.Text = "RTH";
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label40.Location = new System.Drawing.Point(6, 25);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(54, 24);
-            this.label40.TabIndex = 14;
-            this.label40.Text = "Acro";
-            // 
-            // comboBox8
-            // 
-            this.comboBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox8.FormattingEnabled = true;
-            this.comboBox8.Items.AddRange(new object[] {
-            "NENHUM",
-            "AUX1_BAIXO",
-            "AUX1_MEDIO",
-            "AUX1_ALTO",
-            "AUX2_BAIXO",
-            "AUX2_MEDIO",
-            "AUX2_ALTO",
-            "AUX3_BAIXO",
-            "AUX3_MEDIO",
-            "AUX3_ALTO",
-            "AUX4_BAIXO",
-            "AUX4_MEDIO",
-            "AUX4_ALTO",
-            "AUX5_BAIXO",
-            "AUX5_MEDIO",
-            "AUX5_ALTO",
-            "AUX6_BAIXO",
-            "AUX6_MEDIO",
-            "AUX6_ALTO",
-            "AUX7_BAIXO",
-            "AUX7_MEDIO",
-            "AUX7_ALTO",
-            "AUX8_BAIXO",
-            "AUX8_MEDIO",
-            "AUX8_ALTO"});
-            this.comboBox8.Location = new System.Drawing.Point(143, 253);
-            this.comboBox8.Name = "comboBox8";
-            this.comboBox8.Size = new System.Drawing.Size(138, 24);
-            this.comboBox8.TabIndex = 13;
-            this.comboBox8.Text = "SELECIONE";
-            this.comboBox8.SelectedIndexChanged += new System.EventHandler(this.comboBox8_SelectedIndexChanged);
-            // 
-            // label41
-            // 
-            this.label41.AutoSize = true;
-            this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label41.Location = new System.Drawing.Point(6, 291);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(53, 24);
-            this.label41.TabIndex = 16;
-            this.label41.Text = "Auto";
-            // 
-            // comboBox9
-            // 
-            this.comboBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox9.FormattingEnabled = true;
-            this.comboBox9.Items.AddRange(new object[] {
-            "NENHUM",
-            "AUX1_BAIXO",
-            "AUX1_MEDIO",
-            "AUX1_ALTO",
-            "AUX2_BAIXO",
-            "AUX2_MEDIO",
-            "AUX2_ALTO",
-            "AUX3_BAIXO",
-            "AUX3_MEDIO",
-            "AUX3_ALTO",
-            "AUX4_BAIXO",
-            "AUX4_MEDIO",
-            "AUX4_ALTO",
-            "AUX5_BAIXO",
-            "AUX5_MEDIO",
-            "AUX5_ALTO",
-            "AUX6_BAIXO",
-            "AUX6_MEDIO",
-            "AUX6_ALTO",
-            "AUX7_BAIXO",
-            "AUX7_MEDIO",
-            "AUX7_ALTO",
-            "AUX8_BAIXO",
-            "AUX8_MEDIO",
-            "AUX8_ALTO"});
-            this.comboBox9.Location = new System.Drawing.Point(143, 291);
-            this.comboBox9.Name = "comboBox9";
-            this.comboBox9.Size = new System.Drawing.Size(138, 24);
-            this.comboBox9.TabIndex = 15;
-            this.comboBox9.Text = "SELECIONE";
-            this.comboBox9.SelectedIndexChanged += new System.EventHandler(this.comboBox9_SelectedIndexChanged);
-            // 
-            // label51
-            // 
-            this.label51.AutoSize = true;
-            this.label51.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label51.Location = new System.Drawing.Point(6, 329);
-            this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(119, 24);
-            this.label51.TabIndex = 26;
-            this.label51.Text = "Arm-Disarm";
-            // 
-            // comboBox10
-            // 
-            this.comboBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox10.FormattingEnabled = true;
-            this.comboBox10.Items.AddRange(new object[] {
-            "NENHUM",
-            "AUX1_BAIXO",
-            "AUX1_MEDIO",
-            "AUX1_ALTO",
-            "AUX2_BAIXO",
-            "AUX2_MEDIO",
-            "AUX2_ALTO",
-            "AUX3_BAIXO",
-            "AUX3_MEDIO",
-            "AUX3_ALTO",
-            "AUX4_BAIXO",
-            "AUX4_MEDIO",
-            "AUX4_ALTO",
-            "AUX5_BAIXO",
-            "AUX5_MEDIO",
-            "AUX5_ALTO",
-            "AUX6_BAIXO",
-            "AUX6_MEDIO",
-            "AUX6_ALTO",
-            "AUX7_BAIXO",
-            "AUX7_MEDIO",
-            "AUX7_ALTO",
-            "AUX8_BAIXO",
-            "AUX8_MEDIO",
-            "AUX8_ALTO"});
-            this.comboBox10.Location = new System.Drawing.Point(143, 329);
-            this.comboBox10.Name = "comboBox10";
-            this.comboBox10.Size = new System.Drawing.Size(138, 24);
-            this.comboBox10.TabIndex = 25;
-            this.comboBox10.Text = "SELECIONE";
-            this.comboBox10.SelectedIndexChanged += new System.EventHandler(this.comboBox10_SelectedIndexChanged);
-            // 
-            // label92
-            // 
-            this.label92.AutoSize = true;
-            this.label92.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label92.Location = new System.Drawing.Point(6, 365);
-            this.label92.Name = "label92";
-            this.label92.Size = new System.Drawing.Size(106, 24);
-            this.label92.TabIndex = 29;
-            this.label92.Text = "Auto-Land";
-            // 
-            // comboBox23
-            // 
-            this.comboBox23.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox23.FormattingEnabled = true;
-            this.comboBox23.Items.AddRange(new object[] {
-            "NENHUM",
-            "AUX1_BAIXO",
-            "AUX1_MEDIO",
-            "AUX1_ALTO",
-            "AUX2_BAIXO",
-            "AUX2_MEDIO",
-            "AUX2_ALTO",
-            "AUX3_BAIXO",
-            "AUX3_MEDIO",
-            "AUX3_ALTO",
-            "AUX4_BAIXO",
-            "AUX4_MEDIO",
-            "AUX4_ALTO",
-            "AUX5_BAIXO",
-            "AUX5_MEDIO",
-            "AUX5_ALTO",
-            "AUX6_BAIXO",
-            "AUX6_MEDIO",
-            "AUX6_ALTO",
-            "AUX7_BAIXO",
-            "AUX7_MEDIO",
-            "AUX7_ALTO",
-            "AUX8_BAIXO",
-            "AUX8_MEDIO",
-            "AUX8_ALTO"});
-            this.comboBox23.Location = new System.Drawing.Point(143, 365);
-            this.comboBox23.Name = "comboBox23";
-            this.comboBox23.Size = new System.Drawing.Size(138, 24);
-            this.comboBox23.TabIndex = 28;
-            this.comboBox23.Text = "SELECIONE";
-            this.comboBox23.SelectedIndexChanged += new System.EventHandler(this.comboBox23_SelectedIndexChanged);
-            // 
-            // groupBox11
-            // 
-            this.groupBox11.Controls.Add(this.linkLabel1);
-            this.groupBox11.Controls.Add(this.comboBox23);
-            this.groupBox11.Controls.Add(this.label92);
-            this.groupBox11.Controls.Add(this.comboBox10);
-            this.groupBox11.Controls.Add(this.label51);
-            this.groupBox11.Controls.Add(this.comboBox9);
-            this.groupBox11.Controls.Add(this.label41);
-            this.groupBox11.Controls.Add(this.comboBox8);
-            this.groupBox11.Controls.Add(this.label40);
-            this.groupBox11.Controls.Add(this.label15);
-            this.groupBox11.Controls.Add(this.comboBox6);
-            this.groupBox11.Controls.Add(this.comboBox3);
-            this.groupBox11.Controls.Add(this.label24);
-            this.groupBox11.Controls.Add(this.comboBox1);
-            this.groupBox11.Controls.Add(this.label21);
-            this.groupBox11.Controls.Add(this.label22);
-            this.groupBox11.Controls.Add(this.comboBox5);
-            this.groupBox11.Controls.Add(this.comboBox2);
-            this.groupBox11.Controls.Add(this.comboBox4);
-            this.groupBox11.Controls.Add(this.label23);
-            this.groupBox11.Controls.Add(this.label20);
-            this.groupBox11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox11.Location = new System.Drawing.Point(365, 6);
-            this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(678, 432);
-            this.groupBox11.TabIndex = 6;
-            this.groupBox11.TabStop = false;
-            this.groupBox11.Text = "MODOS DE VOO";
-            // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(6, 408);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(474, 20);
-            this.linkLabel1.TabIndex = 30;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Clique aqui para visitar a Wiki e ler sobre os modos de voo";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
-            // 
             // horizontalProgressBar22
             // 
             this.horizontalProgressBar22.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(68)))), ((int)(((byte)(69)))));
@@ -8837,6 +8837,8 @@
             this.HUD1.bgimage = null;
             this.HUD1.CompassHealty = false;
             this.HUD1.FailSafe = false;
+            this.HUD1.groundColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(78)))), ((int)(((byte)(1)))));
+            this.HUD1.groundColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(33)))), ((int)(((byte)(4)))));
             this.HUD1.hudcolor = System.Drawing.Color.White;
             this.HUD1.IMUHealty = false;
             this.HUD1.LinkQualityGCS = 0F;
@@ -8846,8 +8848,8 @@
             this.HUD1.Pitch = 0F;
             this.HUD1.Roll = 0F;
             this.HUD1.Size = new System.Drawing.Size(340, 300);
-            this.HUD1.skyColor1 = System.Drawing.Color.Blue;
-            this.HUD1.skyColor2 = System.Drawing.Color.LightBlue;
+            this.HUD1.skyColor1 = System.Drawing.Color.MidnightBlue;
+            this.HUD1.skyColor2 = System.Drawing.Color.RoyalBlue;
             this.HUD1.streamjpg = ((System.IO.MemoryStream)(resources.GetObject("HUD1.streamjpg")));
             this.HUD1.TabIndex = 54;
             this.HUD1.ThrottleSafe = false;
@@ -8906,6 +8908,8 @@
             this.HUD2.bgimage = null;
             this.HUD2.CompassHealty = false;
             this.HUD2.FailSafe = false;
+            this.HUD2.groundColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(78)))), ((int)(((byte)(1)))));
+            this.HUD2.groundColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(33)))), ((int)(((byte)(4)))));
             this.HUD2.hudcolor = System.Drawing.Color.White;
             this.HUD2.IMUHealty = false;
             this.HUD2.LinkQualityGCS = 0F;
@@ -8914,8 +8918,8 @@
             this.HUD2.Pitch = 0F;
             this.HUD2.Roll = 0F;
             this.HUD2.Size = new System.Drawing.Size(360, 360);
-            this.HUD2.skyColor1 = System.Drawing.Color.Blue;
-            this.HUD2.skyColor2 = System.Drawing.Color.LightBlue;
+            this.HUD2.skyColor1 = System.Drawing.Color.MidnightBlue;
+            this.HUD2.skyColor2 = System.Drawing.Color.RoyalBlue;
             this.HUD2.streamjpg = ((System.IO.MemoryStream)(resources.GetObject("HUD2.streamjpg")));
             this.HUD2.TabIndex = 75;
             this.HUD2.ThrottleSafe = false;
@@ -8928,6 +8932,8 @@
             this.HUDSMALL1.bgimage = null;
             this.HUDSMALL1.datetime = new System.DateTime(((long)(0)));
             this.HUDSMALL1.failsafe = false;
+            this.HUDSMALL1.groundColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(78)))), ((int)(((byte)(1)))));
+            this.HUDSMALL1.groundColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(33)))), ((int)(((byte)(4)))));
             this.HUDSMALL1.hudcolor = System.Drawing.Color.White;
             this.HUDSMALL1.imuhealty = false;
             this.HUDSMALL1.linkqualitygcs = 0F;
@@ -8938,8 +8944,8 @@
             this.HUDSMALL1.roll = 0F;
             this.HUDSMALL1.Russian = false;
             this.HUDSMALL1.Size = new System.Drawing.Size(157, 158);
-            this.HUDSMALL1.skyColor1 = System.Drawing.Color.Blue;
-            this.HUDSMALL1.skyColor2 = System.Drawing.Color.LightBlue;
+            this.HUDSMALL1.skyColor1 = System.Drawing.Color.MidnightBlue;
+            this.HUDSMALL1.skyColor2 = System.Drawing.Color.RoyalBlue;
             this.HUDSMALL1.status = 0;
             this.HUDSMALL1.streamjpg = null;
             this.HUDSMALL1.TabIndex = 73;
@@ -9339,6 +9345,8 @@
             this.groupBox4.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
+            this.groupBox11.ResumeLayout(false);
+            this.groupBox11.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).EndInit();
@@ -9525,8 +9533,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown67)).EndInit();
             this.panel1.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
-            this.groupBox11.ResumeLayout(false);
-            this.groupBox11.PerformLayout();
             this.ResumeLayout(false);
 
         }
