@@ -4,8 +4,7 @@ namespace JCFLIGHTGCS
 {
     class InertialSensor
     {
-        //static double _clip_limit = 7.9;
-        static double _clip_limit = 0.79;
+        static double _clip_limit = 7.9;
         public static UInt32[] _accel_clip_count = new UInt32[3];
         static double[] _accel_vibe_filter = new double[3];
 

@@ -63,16 +63,6 @@ namespace JCFLIGHTGCS.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _3901_L0X_1 {
-            get {
-                object obj = ResourceManager.GetObject("_3901_L0X_1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap AccCalib1 {
             get {
                 object obj = ResourceManager.GetObject("AccCalib1", resourceCulture);
@@ -456,16 +446,6 @@ namespace JCFLIGHTGCS.Properties {
         internal static System.Drawing.Bitmap VTail_Orientation {
             get {
                 object obj = ResourceManager.GetObject("VTail_Orientation", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap WhatsApp {
-            get {
-                object obj = ResourceManager.GetObject("WhatsApp", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

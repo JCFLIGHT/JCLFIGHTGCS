@@ -529,7 +529,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="LogoJCFLIGHTIcon.ico" />
-    <None Include="Resources\3901-L0X_1.jpg" />
     <None Include="Resources\Pitot_Tube.jpg" />
     <None Include="Resources\ExpoGraph.bmp" />
     <Content Include="Scripts\jquery-3.5.1.intellisense.js" />
@@ -549,7 +548,6 @@
     <None Include="Resources\HexaI_Orientation.png" />
     <None Include="Resources\HexaX.png" />
     <None Include="Resources\YouTube.png" />
-    <None Include="Resources\WhatsApp.png" />
     <None Include="Resources\Save.png" />
     <None Include="Resources\DefaultPID.png" />
     <None Include="Resources\HexaI.png" />

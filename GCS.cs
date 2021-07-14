@@ -3021,11 +3021,6 @@ namespace JCFLIGHTGCS
             System.Diagnostics.Process.Start("https://www.youtube.com/channel/UC6kk7H1CiaPVv4iKVGS9GsA/featured");
         }
 
-        private void button15_Click(object sender, EventArgs e)
-        {
-            //System.Diagnostics.Process.Start("https://www.youtube.com/channel/UC6kk7H1CiaPVv4iKVGS9GsA/featured");
-        }
-
         private void CheckCompassState(int HeadingCompass)
         {
             //COMPASS
