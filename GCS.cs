@@ -257,6 +257,7 @@ namespace JCFLIGHTGCS
         byte RCRate = 0;
         byte RcExpo = 0;
         byte YawRate = 0;
+        byte YawExpo = 0;
         int RadioMin = 1000;
         int RadioMax = 2000;
         int ThrottleMin;
@@ -1168,6 +1169,7 @@ namespace JCFLIGHTGCS
                     RCRate = (byte)InBuffer[ptr++];
                     RcExpo = (byte)InBuffer[ptr++];
                     YawRate = (byte)InBuffer[ptr++];
+                    YawExpo = (byte)InBuffer[ptr++];
                     RadioMin = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     RadioMax = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
                     ThrottleMin = BitConverter.ToInt16(InBuffer, ptr); ptr += 2;
@@ -3491,13 +3493,14 @@ namespace JCFLIGHTGCS
                     SendBuffer[VectorPointer++] = (byte)0x4a;
                     SendBuffer[VectorPointer++] = (byte)0x43;
                     SendBuffer[VectorPointer++] = (byte)0x3c;
-                    SendBuffer[VectorPointer++] = 47;
+                    SendBuffer[VectorPointer++] = 48;
                     SendBuffer[VectorPointer++] = (byte)31;
                     SendBuffer[VectorPointer++] = (byte)(numericUpDown25.Value * 100);
                     SendBuffer[VectorPointer++] = (byte)(numericUpDown26.Value * 100);
                     SendBuffer[VectorPointer++] = (byte)(numericUpDown27.Value * 100);
                     SendBuffer[VectorPointer++] = (byte)(numericUpDown28.Value * 100);
                     SendBuffer[VectorPointer++] = (byte)(numericUpDown30.Value * 100);
+                    SendBuffer[VectorPointer++] = (byte)(numericUpDown107.Value * 100);
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown35.Value));
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown35.Value) >> 8);
                     SendBuffer[VectorPointer++] = (byte)(Convert.ToInt16(numericUpDown36.Value));
@@ -4168,6 +4171,7 @@ namespace JCFLIGHTGCS
                 numericUpDown27.Value = Convert.ToDecimal(RCRate) / 100;
                 numericUpDown28.Value = Convert.ToDecimal(RcExpo) / 100;
                 numericUpDown30.Value = Convert.ToDecimal(YawRate) / 100;
+                numericUpDown107.Value = Convert.ToDecimal(YawExpo) / 100;
                 numericUpDown35.Value = RadioMin < 800 ? 1000 : RadioMin;
                 numericUpDown36.Value = RadioMax < 1500 ? 2000 : RadioMax;
                 numericUpDown62.Value = ThrottleMin < 800 ? 800 : ThrottleMin;
@@ -4258,7 +4262,8 @@ namespace JCFLIGHTGCS
                     numericUpDown26.Value = (decimal)0.00;
                     numericUpDown27.Value = (decimal)0.90;
                     numericUpDown28.Value = (decimal)0.65;
-                    numericUpDown30.Value = 0;
+                    numericUpDown30.Value = (decimal)0.20;
+                    numericUpDown107.Value = (decimal)0.20;
                     numericUpDown62.Value = 1050;
                     numericUpDown61.Value = 1050;
                     numericUpDown60.Value = 1050;

@@ -95,12 +95,12 @@ namespace JCFLIGHTGCS
                 curvepoints[72] = curvepoints[69];
                 curvepoints[73] = curvepoints[69];
                 pe.Graphics.DrawImageUnscaled(bl, (int)((double)((Math.Max(1100, Throttle) - 1100) * 70 / 900) * 1.9f) + 9, curvepoints[(int)((double)((Math.Max(1100, Throttle) - 1100) * 70 / 900))] + 2);
-                pe.Graphics.DrawString("Mid:" + String.Format("{0:0.00}", T_MID), drawFont, drawBrush, 10, 5);
+                pe.Graphics.DrawString("Méd:" + String.Format("{0:0.00}", T_MID), drawFont, drawBrush, 10, 5);
                 pe.Graphics.DrawString("Expo:" + String.Format("{0:0.00}", T_EXPO), drawFont, drawBrush, 10, 15);
             }
             else
             {
-                pe.Graphics.DrawString("NULL", drawFont, drawBrush, 10, 5);
+                pe.Graphics.DrawString("N/C", drawFont, drawBrush, 10, 5);
             }
 
             gfx.Dispose();

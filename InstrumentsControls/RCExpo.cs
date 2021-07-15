@@ -81,7 +81,7 @@ namespace JCFLIGHTGCS
             }
             else
             {
-                pe.Graphics.DrawString("NULL", drawFont, drawBrush, 10, 5);
+                pe.Graphics.DrawString("N/C", drawFont, drawBrush, 10, 5);
             }
 
             gfx.Dispose();

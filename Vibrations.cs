@@ -21,9 +21,9 @@ namespace JCFLIGHTGCS
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            VibBarX.Value = (int)InertialSensor.get_vibration_level_X();
-            VibBarY.Value = (int)InertialSensor.get_vibration_level_Y();
-            VibBarZ.Value = (int)InertialSensor.get_vibration_level_Z();
+            VibBarX.Value = (int)(InertialSensor.get_vibration_level_X() * 100.0);
+            VibBarY.Value = (int)(InertialSensor.get_vibration_level_Y() * 100.0);
+            VibBarZ.Value = (int)(InertialSensor.get_vibration_level_Z() * 100.0);
             txt_clip0.Text = InertialSensor._accel_clip_count[0].ToString();
             txt_clip1.Text = InertialSensor._accel_clip_count[1].ToString();
             txt_clip2.Text = InertialSensor._accel_clip_count[2].ToString();
