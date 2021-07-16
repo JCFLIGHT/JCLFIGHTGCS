@@ -4136,7 +4136,7 @@ namespace JCFLIGHTGCS
 
         void UpdateBlackBoxData()
         {
-            BlackBoxStream.WriteLine("IMU,{0},{1},{2},{3},{4},{5},{6}", DateTime.Now.ToString("HH:mm:ss.fff"), GetValues.AccX, GetValues.AccY, GetValues.AccZ, GetValues.GyroX, GetValues.GyroY, GetValues.GyroZ);
+            BlackBoxStream.WriteLine("IMU,{0},{1},{2},{3},{4},{5},{6}", DateTime.Now.ToString("HH:mm:ss.fff"), GetValues.AccX * 10, GetValues.AccY * 10, GetValues.AccZ * 10, GetValues.GyroX * 10, GetValues.GyroY * 10, GetValues.GyroZ * 10);
             BlackBoxStream.WriteLine("MAG,{0},{1},{2},{3}", DateTime.Now.ToString("HH:mm:ss.fff"), GetValues.CompassX, GetValues.CompassY, GetValues.CompassZ);
             BlackBoxStream.WriteLine("ATTITUDE,{0},{1},{2},{3},{4}", DateTime.Now.ToString("HH:mm:ss.fff"), GetAccCalibFlag != 63 ? 0 : -ReadRoll, GetAccCalibFlag != 63 ? 0 : -ReadPitch, ReadCompass, label83.Text);
             BlackBoxStream.WriteLine("RADIO,{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12}", DateTime.Now.ToString("HH:mm:ss.fff"), ThrottleData, PitchData, RollData, YawData, Aux1Data, Aux2Data, Aux3Data, Aux4Data, Aux5Data, Aux6Data, Aux7Data, Aux8Data);
